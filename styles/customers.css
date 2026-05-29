@@ -1,0 +1,370 @@
+/* =============================================================
+   Digital Hive - Customers page styles
+   Builds on tokens.css + site.css.
+   ============================================================= */
+
+/* -----------------------------------------------------------
+   Header
+   ----------------------------------------------------------- */
+.cust-hero {
+  padding: 96px 0 80px;
+  border-bottom: 1px solid var(--border-2);
+  background: linear-gradient(180deg, #ECF1F6 0%, #F2F5F9 100%);
+}
+@media (min-width: 768px) { .cust-hero { padding: 128px 0 96px; } }
+
+.cust-hero__grid {
+  display: grid;
+  gap: var(--space-7);
+}
+@media (min-width: 900px) {
+  .cust-hero__grid { grid-template-columns: 1.4fr 1fr; align-items: end; gap: 80px; }
+}
+.cust-hero h1 {
+  margin: 0;
+  max-width: 18ch;
+}
+.cust-hero__aside {
+  display: grid;
+  gap: var(--space-4);
+  justify-items: start;
+}
+@media (min-width: 900px) { .cust-hero__aside { justify-items: end; } }
+
+.cust-hero .g2-badge {
+  background: var(--bg-3);
+  border-color: var(--border-2);
+}
+.cust-hero__reviews {
+  font-size: var(--fs-14);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--dh-orange);
+  border-bottom: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+.cust-hero__reviews:hover { color: var(--link-hover); }
+.cust-hero__reviews .arrow { transition: transform var(--dur-base) var(--ease-out); }
+.cust-hero__reviews:hover .arrow { transform: translateX(4px); }
+
+/* -----------------------------------------------------------
+   Industry-grouped logo wall
+   ----------------------------------------------------------- */
+.industry-wall { padding: 96px 0; }
+.industry-wall__head {
+  margin-bottom: var(--space-7);
+  max-width: 640px;
+}
+.industry-wall__head .eyebrow { color: var(--fg-accent); }
+.industry-wall__head h2 {
+  font-size: clamp(28px, 3.4vw, 40px);
+  letter-spacing: -0.02em;
+  color: var(--dh-navy);
+  margin: var(--space-3) 0 0;
+  line-height: 1.1;
+}
+
+.industry-group {
+  padding: var(--space-7) 0;
+  border-top: 1px solid var(--border-2);
+}
+.industry-group:last-of-type { border-bottom: 1px solid var(--border-2); }
+
+.industry-group__label {
+  display: block;
+  margin-bottom: var(--space-5);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--fg-accent);
+}
+
+.industry-group__logos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6) var(--space-7);
+  align-items: center;
+}
+
+.industry-logo {
+  font-size: var(--fs-20);
+  font-weight: var(--fw-bold);
+  color: var(--dh-grey);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  filter: grayscale(1);
+  opacity: 0.78;
+  transition: filter var(--dur-base) var(--ease-out),
+              opacity var(--dur-base) var(--ease-out),
+              color var(--dur-base) var(--ease-out);
+}
+.industry-logo:hover {
+  filter: grayscale(0);
+  opacity: 1;
+  color: var(--dh-navy);
+}
+.industry-logo .sub {
+  font-weight: var(--fw-medium);
+  color: inherit;
+}
+
+/* -----------------------------------------------------------
+   Featured case study cards
+   ----------------------------------------------------------- */
+.case-studies {
+  padding: 96px 0 120px;
+  background: var(--bg-3);
+  border-top: 1px solid var(--border-2);
+}
+.case-studies__head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-7);
+}
+.case-studies__head h2 {
+  font-size: clamp(28px, 3.4vw, 40px);
+  letter-spacing: -0.02em;
+  color: var(--dh-navy);
+  margin: 0;
+  line-height: 1.1;
+}
+.case-studies__head p {
+  margin: 0;
+  font-size: var(--fs-16);
+  color: var(--fg-2);
+}
+
+.case-studies__grid {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) { .case-studies__grid { grid-template-columns: repeat(3, 1fr); } }
+
+.case-card {
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  background: var(--dh-white);
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: inherit;
+  transition: border-color var(--dur-base) var(--ease-out),
+              transform var(--dur-base) var(--ease-out);
+  min-height: 320px;
+}
+.case-card:hover {
+  border-color: var(--dh-navy);
+  transform: translateY(-2px);
+}
+.case-card__logo {
+  width: 60%;
+  max-width: 140px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--bg-3) 0 6px,
+    var(--dh-grey-100) 6px 12px
+  );
+  border-radius: var(--radius-sm);
+  position: relative;
+  overflow: hidden;
+}
+.case-card__logo::after {
+  content: "Customer logo";
+  position: absolute;
+  inset: 0;
+  display: grid; place-items: center;
+  font-size: 10px;
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--fg-3);
+  background: rgba(244, 246, 248, 0.9);
+}
+.case-card__tag {
+  font-size: var(--fs-12);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--fg-accent);
+}
+.case-card__headline {
+  font-size: var(--fs-24);
+  line-height: 1.2;
+  letter-spacing: -0.018em;
+  color: var(--dh-navy);
+  margin: 0;
+  font-weight: var(--fw-bold);
+}
+.case-card__summary {
+  font-size: var(--fs-16);
+  color: var(--fg-2);
+  margin: 0;
+  line-height: 1.5;
+}
+.case-card__link {
+  margin-top: var(--space-3);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-14);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--dh-navy);
+  border-bottom: none;
+}
+.case-card:hover .case-card__link { color: var(--dh-orange); }
+.case-card__link .arrow { transition: transform var(--dur-base) var(--ease-out); }
+.case-card:hover .case-card__link .arrow { transform: translateX(4px); }
+
+/* -----------------------------------------------------------
+   Testimonial wall - masonry via CSS columns
+   ----------------------------------------------------------- */
+.tm-wall { padding: 96px 0 120px; }
+.tm-wall__head { margin-bottom: var(--space-7); max-width: 640px; }
+.tm-wall__head h2 {
+  font-size: clamp(28px, 3.4vw, 40px);
+  letter-spacing: -0.02em;
+  color: var(--dh-navy);
+  margin: var(--space-3) 0 0;
+  line-height: 1.1;
+}
+
+.tm-grid {
+  column-count: 1;
+  column-gap: var(--space-5);
+}
+@media (min-width: 700px) { .tm-grid { column-count: 2; } }
+@media (min-width: 1100px) { .tm-grid { column-count: 3; } }
+
+.tm-card {
+  break-inside: avoid;
+  margin: 0 0 var(--space-5);
+  padding: var(--space-7) var(--space-6) var(--space-6);
+  background: var(--dh-white);
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-md);
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+.tm-card::before {
+  content: "“";
+  position: absolute;
+  top: -4px;
+  left: var(--space-5);
+  font-size: 104px;
+  line-height: 1;
+  color: var(--dh-yellow);
+  font-family: Georgia, serif;
+}
+.tm-card__quote {
+  font-size: clamp(17px, 1.7vw, 20px);
+  line-height: 1.45;
+  letter-spacing: -0.005em;
+  color: var(--dh-navy);
+  margin: 0 0 var(--space-5);
+  font-weight: var(--fw-medium);
+  text-wrap: pretty;
+  position: relative;
+}
+.tm-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--border-2);
+}
+.tm-card__attrib .name {
+  font-size: var(--fs-14);
+  font-weight: var(--fw-bold);
+  color: var(--dh-navy);
+}
+.tm-card__attrib .role {
+  font-size: var(--fs-12);
+  color: var(--fg-3);
+  margin-top: 2px;
+}
+.tm-card__tier {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 9px;
+  font-size: 10px;
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+.tm-card__tier--enterprise {
+  background: var(--dh-navy);
+  color: var(--dh-yellow);
+}
+.tm-card__tier--mid {
+  background: var(--bg-3);
+  color: var(--fg-2);
+  border: 1px solid var(--border-2);
+}
+
+/* Short-quote cards get more vertical breathing room so they don't feel sparse */
+.tm-card--compact { padding: 56px var(--space-6) 40px; }
+.tm-card--compact .tm-card__quote { font-size: clamp(19px, 2vw, 22px); line-height: 1.45; }
+
+/* -----------------------------------------------------------
+   Bottom CTA - paper, two-line headline
+   ----------------------------------------------------------- */
+.cust-cta {
+  padding: 128px 0;
+  background: var(--dh-navy);
+  color: #fff;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.cust-cta::before {
+  content: "";
+  position: absolute;
+  top: -200px; left: 50%;
+  transform: translateX(-50%);
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(243,146,53,0.15) 0%, transparent 65%);
+  pointer-events: none;
+}
+.cust-cta .container { position: relative; }
+.cust-cta h2 {
+  font-size: clamp(36px, 5vw, 64px);
+  letter-spacing: -0.025em;
+  color: #fff;
+  margin: 0 0 var(--space-5);
+  line-height: 1.05;
+}
+.cust-cta h2 .accent {
+  color: var(--dh-orange);
+  font-style: italic;
+}
+.cust-cta p {
+  font-size: var(--fs-18);
+  color: rgba(255,255,255,0.78);
+  max-width: 540px;
+  margin: 0 auto var(--space-6);
+}
+.cust-cta__note {
+  margin-top: 72px;
+  font-size: var(--fs-12);
+  color: rgba(255,255,255,0.55);
+  letter-spacing: var(--tracking-wide);
+}

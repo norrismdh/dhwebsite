@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Analytics catalog vs data catalog - Digital Hive</title>
+  <meta name="description" content="Two products that share a word. A practical comparison of analytics catalogs and data catalogs - who each is built for, where they overlap, and which to buy first." />
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/site.css" />
+  <link rel="stylesheet" href="../styles/article.css" />
+</head>
+<body>
+
+  <header class="nav" data-screen-label="Navigation">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="../Home.html" aria-label="Digital Hive home" style="border-bottom:none;">
+        <img src="../assets/logo-colour.svg" alt="Digital Hive" />
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav__links">
+          <li><a href="../Product.html">Product</a></li>
+          <li><a href="../UseCases.html">Use cases</a></li>
+          <li><a href="../Customers.html">Customers</a></li>
+          <li><a href="../Resources.html" style="color:var(--dh-orange);">Resources</a></li>
+          <li><a href="../Pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn btn--primary" href="../Demo.html">Book a demo</a>
+        <button type="submit" class="nav__toggle" data-mobile-toggle aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="container mobile-menu" data-mobile-menu>
+      <ul>
+        <li><a href="../Product.html">Product</a></li>
+        <li><a href="../UseCases.html">Use cases</a></li>
+        <li><a href="../Customers.html">Customers</a></li>
+        <li><a href="../Resources.html">Resources</a></li>
+        <li><a href="../Pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <nav class="breadcrumb" aria-label="Breadcrumb" style="padding: var(--space-7) 0 0;">
+      <div class="container">
+        <ol style="list-style:none; margin:0; padding:0; display:flex; gap:var(--space-2); align-items:center; font-size:var(--fs-14); color:var(--fg-3);">
+          <li><a href="../Resources.html" style="color:var(--fg-3); font-weight:var(--fw-medium); border-bottom:none;">Resources</a></li>
+          <li aria-hidden="true" style="color:var(--dh-grey-light);">/</li>
+          <li style="color:var(--dh-navy); font-weight:var(--fw-bold);">Analytics catalog vs data catalog</li>
+        </ol>
+      </div>
+    </nav>
+
+    <header class="art-header" data-screen-label="01 Header">
+      <div class="container reveal">
+        <span class="eyebrow">Side-by-side</span>
+        <h1>Analytics catalog vs data catalog: what's the difference?</h1>
+        <p class="art-header__sub">Two product categories that share a word and confuse buyers constantly. Here's a side-by-side, a decision framework, and a straight answer on whether you need both.</p>
+        <div class="art-meta">
+          <span>10 min read</span>
+          <span class="dot" aria-hidden="true"></span>
+          <span>Updated May 2026</span>
+          <span class="dot" aria-hidden="true"></span>
+          <span>6 sections</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="art-body">
+      <div class="container">
+        <div class="art-body__grid">
+
+          <aside class="toc" data-toc data-screen-label="TOC">
+            <div class="toc__title">
+              <span>On this page</span>
+              <button class="toc__toggle" type="button" data-toc-toggle aria-label="Toggle contents">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                <span>Contents</span>
+              </button>
+            </div>
+            <ol class="toc__list">
+              <li><a href="#quick-answer">Quick answer</a></li>
+              <li><a href="#data-catalog">What a data catalog does and who it's built for</a></li>
+              <li><a href="#analytics-catalog">What an analytics catalog does and who it's built for</a></li>
+              <li><a href="#overlap">Where they overlap</a></li>
+              <li><a href="#both">Do you need both?</a></li>
+              <li><a href="#decision">Which one to buy first - a decision framework</a></li>
+            </ol>
+          </aside>
+
+          <article class="prose">
+            <p class="lede">Analytics catalogs and data catalogs share a word. They solve different problems for different audiences and rarely compete in the same evaluation. Most enterprises need one. Some need both. Which one to start with depends on whether your most painful problem sits upstream of the BI tools or downstream of them.</p>
+        <section id="quick-answer">
+          <h2><span class="num">01</span><span>Quick answer</span></h2>
+<div class="snippet">
+            <p><strong>A data catalog</strong> inventories upstream data assets - tables, columns, pipelines, transformations - for data engineers and platform teams.</p>
+            <p><strong>An analytics catalog</strong> inventories downstream finished outputs - reports, dashboards, metrics, certified analytics - for analysts, business users, and executives.</p>
+          </div>
+          <p>One catalogs the plumbing. The other catalogs the finished menu. They can coexist; they rarely replace each other.</p>
+        </section>
+        <section id="data-catalog">
+          <h2><span class="num">02</span><span>What a data catalog does and who it's built for</span></h2>
+<p>A data catalog provides an inventory of the data assets inside your enterprise - primarily structured data sitting in warehouses, lakes, lakehouses, and operational systems. Its primary audience is the team that builds and maintains the data layer: data engineers, platform owners, governance leads, and increasingly, data product managers.</p>
+          <h3>What it tracks</h3>
+          <ul>
+            <li>Tables and their schemas - column names, types, definitions, sample values</li>
+            <li>Pipelines and transformations - what runs when, what depends on what</li>
+            <li>Lineage - where data originated and where it flows downstream</li>
+            <li>Data quality signals - freshness, completeness, anomaly history</li>
+            <li>Ownership at the dataset level</li>
+          </ul>
+          <h3>Typical questions a data catalog answers</h3>
+          <ul>
+            <li><em>Where does this column come from?</em></li>
+            <li><em>If I change this table, what breaks downstream?</em></li>
+            <li><em>Has this data been certified for production use?</em></li>
+            <li><em>Who owns this pipeline?</em></li>
+          </ul>
+          <p>Examples in the category: Collibra, Alation, Atlan, data.world, Unity Catalog. Different vendors emphasize different aspects - governance, discovery, observability - but the audience is consistent: people who work at the data layer.</p>
+        </section>
+        <section id="analytics-catalog">
+          <h2><span class="num">03</span><span>What an analytics catalog does and who it's built for</span></h2>
+<p>An analytics catalog provides an inventory of the finished analytics produced on top of that data - the reports, dashboards, scorecards, and metrics that business users consume. Its audience is everyone downstream of the data layer: BI architects, analytics leaders, business analysts, executive consumers, and increasingly, the BI vendors' own customer success teams.</p>
+          <h3>What it tracks</h3>
+          <ul>
+            <li>Reports and dashboards across every connected BI tool</li>
+            <li>Metric definitions and their canonical owners</li>
+            <li>Certification status - what's trusted, what's pending, what's deprecated</li>
+            <li>Usage telemetry at the report and user level</li>
+            <li>Source-platform permissions inherited from the underlying tools</li>
+          </ul>
+          <h3>Typical questions an analytics catalog answers</h3>
+          <ul>
+            <li><em>Where is the certified Q4 revenue report?</em></li>
+            <li><em>Which version of this dashboard should I use?</em></li>
+            <li><em>What reports do executives in finance actually open?</em></li>
+            <li><em>Has this metric been certified, and who owns the definition?</em></li>
+          </ul>
+          <p>For the full Digital Hive feature set, see <a href="../Product.html">the product page</a>. For deeper context on the category, see <a href="what-is-an-analytics-catalog.html">what is an analytics catalog?</a></p>
+        </section>
+        <section id="overlap">
+          <h2><span class="num">04</span><span>Where they overlap</span></h2>
+<p>The two categories overlap in three areas. Knowing these helps you avoid buying both products to solve the same problem twice.</p>
+          <ul>
+            <li><strong>Lineage.</strong> Both can show lineage - but at different levels. Data catalogs show column-level lineage; analytics catalogs show report-to-source lineage. If you need lineage from a dashboard tile back to the underlying database table, you likely need them stitched together.</li>
+            <li><strong>Glossary and business definitions.</strong> Both maintain glossaries. Data catalogs anchor definitions to columns; analytics catalogs anchor them to metrics surfaced in reports. Most organizations need one canonical glossary referenced from both layers.</li>
+            <li><strong>Governance workflows.</strong> Certification, ownership, and approval flows exist in both - applied to different artifacts. Data catalogs certify datasets; analytics catalogs certify the reports built on those datasets.</li>
+          </ul>
+          <p>If you already have a data catalog and you're being told the same product can serve business users discovering reports - be skeptical. The vocabulary is wrong, the search experience is wrong, and the audience won't show up.</p>
+        </section>
+        <section id="both">
+          <h2><span class="num">05</span><span>Do you need both?</span></h2>
+<p>Most enterprises eventually run both. The reason is simple: the people building the data layer have different problems than the people consuming the analytics, and one product can rarely serve both audiences without significant compromise.</p>
+          <p>That said, plenty of organizations operate well with only one. A small data team and many business users - likely an analytics catalog only. A large data platform team and centralized BI managed by a few power users - likely a data catalog only.</p>
+          <p>The mistake we see most often: buying a data catalog because the data team has the larger budget, and then expecting business users to use it. They don't. The vocabulary, the audience, and the access patterns are wrong. The investment looks productive on paper and gets quietly underused in practice.</p>
+        </section>
+        <section id="decision">
+          <h2><span class="num">06</span><span>Which one to buy first - a decision framework</span></h2>
+<p>If you're choosing between them, ask: <strong>where is the most painful problem today - upstream or downstream of the BI tools?</strong></p>
+          <h3>Buy a data catalog first if</h3>
+          <ul>
+            <li>You're rebuilding or consolidating your data warehouse and lineage is opaque.</li>
+            <li>Data engineers spend significant time answering "where does this come from?" questions.</li>
+            <li>You're standing up a data mesh or data product organization that needs federated governance.</li>
+            <li>Compliance pressure is on the data layer - sensitive data discovery, residency, classification.</li>
+          </ul>
+          <h3>Buy an analytics catalog first if</h3>
+          <ul>
+            <li>You run multiple BI tools and users can't find what exists across them. <a href="../use-cases/multi-vendor-bi.html">See multi-vendor BI →</a></li>
+            <li>Migration is on the roadmap and you're worried about user disruption.</li>
+            <li>Conflicting metrics between tools are eroding trust in analytics.</li>
+            <li>Adoption is below what leadership expects and you can't isolate the cause.</li>
+          </ul>
+          <p>If both lists describe you, both products are eventually warranted. Start with whichever audience is screaming loudest. The other one will become an obvious second purchase within a year.</p>
+          <p>For more comparisons and working definitions, see <a href="../Resources.html">the resources library</a>.</p>
+        </section>
+          </article>
+
+        </div>
+      </div>
+    </div>
+
+    <section class="art-related" data-screen-label="Related">
+      <div class="container">
+        <h3>Keep reading.</h3>
+        <div class="art-related__grid">
+          <a class="related-card reveal" href="what-is-an-analytics-catalog.html">
+            <span class="tag">Definition</span>
+            <h4>What is an analytics catalog?</h4>
+            <span class="arrow-row">Read the definition <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+          <a class="related-card reveal" href="what-is-a-bi-portal.html">
+            <span class="tag">Definition</span>
+            <h4>What is a BI portal?</h4>
+            <span class="arrow-row">Read the definition <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+          <a class="related-card reveal" href="../Resources.html">
+            <span class="tag">Library</span>
+            <h4>Browse all working definitions and research.</h4>
+            <span class="arrow-row">See all resources <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="art-cta" data-screen-label="CTA">
+      <div class="container reveal">
+        <h2>Need help mapping your situation to the right category?</h2>
+        <p>Bring your stack to a 30-minute call. We'll point at the right tool - even if it's not us.</p>
+        <a class="btn btn--accent" href="../Demo.html">Book a demo <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" data-screen-label="Footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="../assets/logo-reversed.svg" alt="Digital Hive" />
+          <p>Where analytics finally make sense. An enterprise analytics catalog.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0H12v2.2h.07c.63-1.2 2.18-2.46 4.49-2.46 4.8 0 5.69 3.16 5.69 7.27V24h-5v-7.2c0-1.72-.03-3.93-2.4-3.93-2.4 0-2.77 1.87-2.77 3.81V24h-5V8z"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer__col"><h3>Product</h3><ul>
+          <li><a href="../Product.html#catalog">Catalog</a></li>
+          <li><a href="../Product.html#hub">BI Hub</a></li>
+          <li><a href="../Product.html#governance">Governance</a></li>
+          <li><a href="../Connectors.html">Connectors</a></li>
+          <li><a href="../Pricing.html">Pricing</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Use cases</h3><ul>
+          <li><a href="../UseCases.html">All use cases</a></li>
+          <li><a href="../use-cases/multi-vendor-bi.html">Multi-vendor BI</a></li>
+          <li><a href="../use-cases/cloud-migration.html">Cloud migration</a></li>
+          <li><a href="../use-cases/ma-integration.html">M&amp;A integration</a></li>
+          <li><a href="../use-cases/data-sovereignty.html">Data sovereignty</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Company</h3><ul>
+          <li><a href="../About.html">About</a></li>
+          <li><a href="../About.html#team">Leadership</a></li>
+          <li><a href="../Customers.html">Customers</a></li>
+          <li><a href="../Contact.html">Contact</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Resources</h3><ul>
+          <li><a href="../Resources.html">Library</a></li>
+          <li><a href="../FAQ.html">FAQ</a></li>
+          <li><a href="../Home.html#research">ISG report</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Support</a></li>
+        </ul></div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>&copy; 2026 Digital Hive</span>
+        <ul>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Trust center</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../scripts/site.js"></script>
+</body>
+</html>

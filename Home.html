@@ -1,0 +1,636 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Digital Hive - Where analytics finally make sense.</title>
+  <meta name="description" content="One place to find, trust, and use every report and dashboard - across every BI tool you already own. No migration. No rebuilding." />
+  <link rel="stylesheet" href="styles/tokens.css" />
+  <link rel="stylesheet" href="styles/site.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+  <header class="nav" data-screen-label="Navigation">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="#top" aria-label="Digital Hive home" style="border-bottom:none;">
+        <img src="assets/logo-colour.svg" alt="Digital Hive" />
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav__links">
+          <li><a href="Product.html">Product</a></li>
+          <li><a href="UseCases.html">Use cases</a></li>
+          <li><a href="Customers.html">Customers</a></li>
+          <li><a href="Resources.html">Resources</a></li>
+          <li><a href="Pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn btn--primary" href="Demo.html">Book a demo</a>
+        <button type="submit" class="nav__toggle" data-mobile-toggle aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="container mobile-menu" data-mobile-menu>
+      <ul>
+        <li><a href="Product.html">Product</a></li>
+        <li><a href="UseCases.html">Use cases</a></li>
+        <li><a href="Customers.html">Customers</a></li>
+        <li><a href="Resources.html">Resources</a></li>
+        <li><a href="Pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============================================================
+         1 - HERO
+         ============================================================ -->
+    <section class="hero" data-screen-label="01 Hero">
+      <div class="hero__backdrop" aria-hidden="true"></div>
+      <div class="container hero__grid">
+        <div class="hero__copy reveal">
+          <span class="eyebrow">ANALYTICS CATALOG &amp; BI PORTAL</span>
+          <h1>Where analytics finally make sense</h1>
+          <p class="hero__sub">One place to find, trust, and use every report and dashboard - across every BI tool you already own. No migration. No rebuilding.</p>
+          <div class="hero__ctas">
+            <a class="btn btn--primary" href="Demo.html">
+              Book a demo
+              <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a class="btn btn--ghost" href="#how-it-works">See how it works</a>
+          </div>
+          <div class="hero__meta">
+            <span>Works with Power BI, Tableau, Qlik, Cognos, Looker, Databricks, Excel.</span>
+          </div>
+        </div>
+
+        <!-- BI tool consolidation animation -->
+        <div class="hero__visual reveal" aria-hidden="true">
+          <div class="consolidator">
+            <div class="consolidator__field">
+              <!-- Six BI tool chips, gliding in from edges and consolidating to center -->
+              <div class="consolidator__chip chip--pbi">
+                <img class="swatch swatch--img" src="assets/logos/powerbi.png" alt="" loading="lazy" />
+                Power BI
+              </div>
+              <div class="consolidator__chip chip--tab">
+                <img class="swatch swatch--img" src="assets/logos/tableau.png" alt="" loading="lazy" />
+                Tableau
+              </div>
+              <div class="consolidator__chip chip--qlk">
+                <img class="swatch swatch--img" src="assets/logos/qlik.webp" alt="" loading="lazy" />
+                Qlik
+              </div>
+              <div class="consolidator__chip chip--cog">
+                <img class="swatch swatch--img" src="assets/logos/ibm.png" alt="" loading="lazy" />
+                Cognos
+              </div>
+              <div class="consolidator__chip chip--lkr">
+                <img class="swatch swatch--img" src="assets/logos/looker.webp" alt="" loading="lazy" />
+                Looker
+              </div>
+              <div class="consolidator__chip chip--xls">
+                <img class="swatch swatch--img" src="assets/logos/excel.png" alt="" loading="lazy" />
+                Excel
+              </div>
+              <div class="consolidator__chip chip--dbx">
+                <img class="swatch swatch--img" src="assets/logos/databricks.png" alt="" loading="lazy" />
+                Databricks
+              </div>
+              <div class="consolidator__chip chip--shp">
+                <img class="swatch swatch--img" src="assets/logos/sharepoint.png" alt="" loading="lazy" />
+                SharePoint
+              </div>
+            </div>
+
+            <!-- Center: unified Digital Hive catalog window -->
+            <div class="consolidator__hub">
+              <div class="hub__chrome">
+                <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+                <span class="url">hive.acme.com / catalog</span>
+              </div>
+              <div class="hub__body">
+                <div class="hub__side">
+                  <div class="item is-active">All analytics</div>
+                  <div class="item">Certified</div>
+                  <div class="item">Finance</div>
+                  <div class="item">Operations</div>
+                  <div class="item">Marketing</div>
+                </div>
+                <div class="hub__main">
+                  <div class="hub__search">
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    Search 12,400 reports, dashboards &amp; metrics…
+                  </div>
+                  <div class="hub__results">
+                    <div class="hub__card">
+                      <div class="title">Q4 revenue by region</div>
+                      <span class="tag is-certified">Power BI</span>
+                    </div>
+                    <div class="hub__card">
+                      <div class="title">Customer cohort retention</div>
+                      <span class="tag is-certified">Tableau</span>
+                    </div>
+                    <div class="hub__card">
+                      <div class="title">Inventory turnover daily</div>
+                      <span class="tag">Qlik</span>
+                    </div>
+                    <div class="hub__card">
+                      <div class="title">Marketing attribution</div>
+                      <span class="tag is-certified">Looker</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         2 - PROBLEM
+         ============================================================ -->
+    <section class="problem section" data-screen-label="02 Problem">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">The problem</span>
+          <h2>Analytics shouldn't require detective work.</h2>
+          <p>Most enterprises don't have an analytics problem. They have a findability problem - wrapped in three more.</p>
+        </div>
+
+        <div class="problem__grid">
+          <article class="problem__item reveal">
+            <div class="problem__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                <rect x="14" y="14" width="7" height="7" rx="1"/>
+              </svg>
+            </div>
+            <h3>Sprawl</h3>
+            <p>Duplicate dashboards multiply. Nobody retires the old ones.</p>
+          </article>
+
+          <article class="problem__item reveal">
+            <div class="problem__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="7"/>
+                <line x1="21" y1="21" x2="16" y2="16"/>
+                <line x1="8" y1="11" x2="14" y2="11"/>
+              </svg>
+            </div>
+            <h3>Discovery</h3>
+            <p>Users can't find what exists. So they build it again.</p>
+          </article>
+
+          <article class="problem__item reveal">
+            <div class="problem__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/>
+                <circle cx="12" cy="12" r="3"/>
+              </svg>
+            </div>
+            <h3>Trust</h3>
+            <p>Three tools. Three numbers. One argument.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3 - PROMISE (emotional pivot)
+         ============================================================ -->
+    <section class="promise" data-screen-label="03 Promise">
+      <div class="container">
+        <div class="promise__rule reveal" aria-hidden="true"></div>
+        <p class="promise__line reveal">
+          You keep your tools<span class="punct">.</span><br />
+          You gain <span class="accent">clarity</span>, <span class="accent">visibility</span>, and <span class="accent">control</span><span class="punct">.</span>
+        </p>
+        <div class="promise__rule promise__rule--bottom reveal" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4 - HOW IT WORKS
+         ============================================================ -->
+    <section class="how section--lg" id="how-it-works" data-screen-label="04 How it works">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">How it works</span>
+          <h2>Three steps. Nothing replaced.</h2>
+          <p>Digital Hive sits above the BI tools you already own - indexing, governing, and surfacing analytics without touching the source.</p>
+        </div>
+
+        <div class="steps">
+          <div class="step reveal">
+            <div class="step__hex" aria-hidden="true">
+              <span class="step__num">01<span class="lbl">Centralize</span></span>
+            </div>
+            <h3>Centralize</h3>
+            <p>Index and reference analytics from every tool in one catalog.</p>
+            <span class="step__connect" aria-hidden="true"></span>
+          </div>
+
+          <div class="step reveal">
+            <div class="step__hex" aria-hidden="true">
+              <span class="step__num">02<span class="lbl">Guide</span></span>
+            </div>
+            <h3>Guide</h3>
+            <p>Direct users to certified, trusted analytics through a branded BI Hub.</p>
+            <span class="step__connect" aria-hidden="true"></span>
+          </div>
+
+          <div class="step reveal">
+            <div class="step__hex" aria-hidden="true">
+              <span class="step__num">03<span class="lbl">Grow</span></span>
+            </div>
+            <h3>Grow</h3>
+            <p>Surface the right analytics to the right people at the right time.</p>
+          </div>
+        </div>
+
+        <p class="how__footer reveal">
+          <strong>Nothing is migrated. Nothing is rebuilt.</strong>
+          Ownership stays in the native platform.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5 - SOCIAL PROOF
+         ============================================================ -->
+    <section class="proof" id="proof" data-screen-label="05 Social proof">
+      <div class="container">
+        <p class="proof__label reveal">Trusted by analytics teams at</p>
+
+        <div class="proof__row reveal">
+          <span class="proof__logo">Bank <span class="sub">of</span> America</span>
+          <span class="proof__logo">Citigroup</span>
+          <span class="proof__logo">CIBC</span>
+          <span class="proof__logo">Ford</span>
+          <span class="proof__logo">Lowe's</span>
+          <span class="proof__logo">Takeda</span>
+          <span class="proof__logo">Trinity Health</span>
+          <span class="proof__logo">Westpac</span>
+          <span class="proof__logo">Arkansas <span class="sub">BCBS</span></span>
+          <span class="proof__logo">University <span class="sub">of</span> Denver</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5b - METRICS BAND (industry numbers, dark)
+         ============================================================ -->
+    <section class="metrics" data-screen-label="05b Metrics">
+      <div class="container">
+        <div class="metrics__grid">
+          <div class="metric reveal">
+            <p class="metric__num">73<span class="unit">%</span></p>
+            <p class="metric__label">of dashboards built are never reused after 30 days.</p>
+            <p class="metric__source">Forrester, 2024</p>
+          </div>
+          <div class="metric reveal">
+            <p class="metric__num">5.4</p>
+            <p class="metric__label">avg # of BI tools in an enterprise stack.</p>
+            <p class="metric__source">Gartner BI Survey</p>
+          </div>
+          <div class="metric reveal">
+            <p class="metric__num">1 in 3</p>
+            <p class="metric__label">reports show conflicting numbers across tools.</p>
+            <p class="metric__source">IDC, 2025</p>
+          </div>
+          <div class="metric reveal">
+            <p class="metric__num">40<span class="unit unit--word">min</span></p>
+            <p class="metric__label">spent per week per analyst hunting for the right report.</p>
+            <p class="metric__source">IDC, 2025</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         6 - USE CASES
+         ============================================================ -->
+    <section class="usecases section" id="use-cases" data-screen-label="06 Use cases">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Use cases</span>
+          <h2>Built for your situation.</h2>
+          <p>Wherever your analytics stack is today - fragmented, mid-migration, mid-acquisition - Digital Hive meets it there.</p>
+        </div>
+
+        <div class="usecases__grid">
+          <a class="usecase reveal" href="UseCases.html#multi-vendor">
+            <span class="usecase__tag">Multi-vendor</span>
+            <div class="usecase__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="7" height="7" rx="1"/>
+                <rect x="14" y="3" width="7" height="7" rx="1"/>
+                <rect x="3" y="14" width="7" height="7" rx="1"/>
+                <rect x="14" y="14" width="7" height="7" rx="1"/>
+              </svg>
+            </div>
+            <h3>Multi-vendor environments</h3>
+            <p>Running 3+ BI tools? One front door for all of them.</p>
+            <span class="usecase__link">
+              Learn more
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
+
+          <a class="usecase reveal" href="use-cases/cloud-migration.html">
+            <span class="usecase__tag">Migrations</span>
+            <div class="usecase__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 6l5 6-5 6"/>
+                <path d="M2 12h20"/>
+                <path d="M7 18l-5-6 5-6"/>
+              </svg>
+            </div>
+            <h3>Cloud migrations</h3>
+            <p>Migrating platforms? Users never feel the switch.</p>
+            <span class="usecase__link">
+              Learn more
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
+
+          <a class="usecase reveal" href="use-cases/ma-integration.html">
+            <span class="usecase__tag">M&amp;A</span>
+            <div class="usecase__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="8" cy="12" r="4"/>
+                <circle cx="16" cy="12" r="4"/>
+              </svg>
+            </div>
+            <h3>M&amp;A integration</h3>
+            <p>Just acquired a company? Unified analytics from day one.</p>
+            <span class="usecase__link">
+              Learn more
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
+
+          <a class="usecase reveal" href="use-cases/multi-tenant.html">
+            <span class="usecase__tag">Multi-tenant</span>
+            <div class="usecase__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 9l9-6 9 6"/>
+                <path d="M5 8v12h4v-7h6v7h4V8"/>
+              </svg>
+            </div>
+            <h3>Multi-tenant operations</h3>
+            <p>Multiple business units? Personalized Hives for each.</p>
+            <span class="usecase__link">
+              Learn more
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
+
+          <a class="usecase reveal" href="use-cases/version-coexistence.html">
+            <span class="usecase__tag">Coexistence</span>
+            <div class="usecase__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="6" width="9" height="12" rx="1"/>
+                <rect x="13" y="6" width="9" height="12" rx="1"/>
+              </svg>
+            </div>
+            <h3>Version coexistence</h3>
+            <p>Old and new platform side by side? No problem.</p>
+            <span class="usecase__link">
+              Learn more
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
+
+          <a class="usecase reveal" href="use-cases/data-sovereignty.html">
+            <span class="usecase__tag">Sovereignty</span>
+            <div class="usecase__icon" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7l8-4z"/>
+                <path d="M9 12l2 2 4-4"/>
+              </svg>
+            </div>
+            <h3>Data sovereignty</h3>
+            <p>Regulated industry? Content stays where it lives.</p>
+            <span class="usecase__link">
+              Learn more
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         7 - TESTIMONIALS
+         ============================================================ -->
+    <section class="testimonials section" data-screen-label="07 Testimonials">
+      <div class="container">
+        <div class="testimonials__head reveal">
+          <div>
+            <span class="eyebrow">In their words</span>
+            <h2>What analytics leaders say.</h2>
+          </div>
+
+          <div class="g2-badge" aria-label="G2 rating 4.5 out of 5">
+            <svg width="0" height="0" style="position:absolute;">
+              <defs>
+                <linearGradient id="half-fill" x1="0" x2="1" y1="0" y2="0">
+                  <stop offset="50%" stop-color="currentColor"/>
+                  <stop offset="50%" stop-color="#E7ECEF"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            <span class="g2-badge__star" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9.5 17,14.5 18.5,22 12,18 5.5,22 7,14.5 2,9.5 9,9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9.5 17,14.5 18.5,22 12,18 5.5,22 7,14.5 2,9.5 9,9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9.5 17,14.5 18.5,22 12,18 5.5,22 7,14.5 2,9.5 9,9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon points="12,2 15,9 22,9.5 17,14.5 18.5,22 12,18 5.5,22 7,14.5 2,9.5 9,9"/></svg>
+              <svg viewBox="0 0 24 24"><polygon class="half" points="12,2 15,9 22,9.5 17,14.5 18.5,22 12,18 5.5,22 7,14.5 2,9.5 9,9"/></svg>
+            </span>
+            <span class="g2-badge__rating">4.5 / 5</span>
+            <span class="g2-badge__verify">Verified on G2</span>
+          </div>
+        </div>
+
+        <div class="carousel" data-carousel>
+          <div class="carousel__track">
+            <article class="carousel__slide is-active">
+              <div class="testimonial">
+                <p class="testimonial__quote">If we decided to add Power BI, Tableau, or Spotfire - they've got connectors that allow us to do that seamlessly.</p>
+                <div class="testimonial__attrib">
+                  <div class="name">Darren Williams</div>
+                  <div class="role">Head of MI &amp; Data</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="carousel__slide">
+              <div class="testimonial">
+                <p class="testimonial__quote">Digital Hive combines analytics from multiple sources. Users can access exactly what they need according to their requirements.</p>
+                <div class="testimonial__attrib">
+                  <div class="name">Pooja S.</div>
+                  <div class="role">Lead Analyst</div>
+                </div>
+              </div>
+            </article>
+
+            <article class="carousel__slide">
+              <div class="testimonial">
+                <p class="testimonial__quote">Digital Hive centralizes BI tools in one dashboard, saving time and reducing data silos. Faster, data-driven decisions without switching platforms.</p>
+                <div class="testimonial__attrib">
+                  <div class="name">R.S.</div>
+                  <div class="role">Cyber Security</div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="carousel__controls">
+            <div class="carousel__dots" role="tablist" aria-label="Testimonial slides">
+              <button type="submit" class="carousel__dot is-active" data-carousel-dot aria-label="Slide 1"></button>
+              <button type="submit" class="carousel__dot" data-carousel-dot aria-label="Slide 2"></button>
+              <button type="submit" class="carousel__dot" data-carousel-dot aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel__arrows">
+              <button type="submit" class="carousel__arrow" data-carousel-prev aria-label="Previous testimonial">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <button type="submit" class="carousel__arrow" data-carousel-next aria-label="Next testimonial">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         8 - RESEARCH VALIDATION
+         ============================================================ -->
+    <section class="section section--muted" id="research" data-screen-label="08 Research">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Independent validation</span>
+          <h2>Validated by independent research.</h2>
+          <p>ISG Research surveyed enterprise analytics leaders and arrived at four findings that mirror what our customers tell us every week.</p>
+        </div>
+
+        <div class="research__grid">
+          <ol class="research__list reveal">
+            <li>
+              <span class="marker">01</span>
+              <span>Analytics catalogs measurably increase adoption and utilization.</span>
+            </li>
+            <li>
+              <span class="marker">02</span>
+              <span>Governance works best when it enables users, not blocks them.</span>
+            </li>
+            <li>
+              <span class="marker">03</span>
+              <span>Centralized access reduces redundancy and improves decision confidence.</span>
+            </li>
+            <li>
+              <span class="marker">04</span>
+              <span>Enterprises don't need another BI tool - they need a better way to use the ones they already own.</span>
+            </li>
+          </ol>
+
+          <aside class="research__panel reveal">
+            <span class="eyebrow">ISG Research report</span>
+            <h3>The analytics catalog imperative</h3>
+            <p>A 24-page independent study on what's actually driving adoption inside multi-vendor enterprises. Free, gated, no resale.</p>
+            <a class="btn btn--accent" href="#download">
+              Download the report
+              <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            </a>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         9 - FINAL CTA
+         ============================================================ -->
+    <section class="cta-banner" id="demo" data-screen-label="09 Final CTA">
+      <div class="container">
+        <div class="reveal">
+          <h2>See Digital Hive in 30 minutes.</h2>
+          <p>A live, tailored walkthrough. See how simple it is to centralize analytics, improve adoption, and give your teams a BI portal that actually works.</p>
+          <a class="btn btn--accent" href="Demo.html">
+            Book a demo
+            <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <p class="cta-banner__note" style="margin: 32px 252px;">No commitment. No rip-and-replace pitch.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FOOTER
+       ============================================================ -->
+  <footer class="footer" data-screen-label="Footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="assets/logo-reversed.svg" alt="Digital Hive" />
+          <p>Where analytics finally make sense. An enterprise analytics catalog.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0H12v2.2h.07c.63-1.2 2.18-2.46 4.49-2.46 4.8 0 5.69 3.16 5.69 7.27V24h-5v-7.2c0-1.72-.03-3.93-2.4-3.93-2.4 0-2.77 1.87-2.77 3.81V24h-5V8z"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer__col"><h3>Product</h3><ul>
+          <li><a href="Product.html#catalog">Catalog</a></li>
+          <li><a href="Product.html#hub">BI Hub</a></li>
+          <li><a href="Product.html#governance">Governance</a></li>
+          <li><a href="Connectors.html">Connectors</a></li>
+          <li><a href="Pricing.html">Pricing</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Use cases</h3><ul>
+          <li><a href="UseCases.html">All use cases</a></li>
+          <li><a href="use-cases/multi-vendor-bi.html">Multi-vendor BI</a></li>
+          <li><a href="use-cases/cloud-migration.html">Cloud migration</a></li>
+          <li><a href="use-cases/ma-integration.html">M&amp;A integration</a></li>
+          <li><a href="use-cases/data-sovereignty.html">Data sovereignty</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Company</h3><ul>
+          <li><a href="About.html">About</a></li>
+          <li><a href="About.html#team">Leadership</a></li>
+          <li><a href="Customers.html">Customers</a></li>
+          <li><a href="Contact.html">Contact</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Resources</h3><ul>
+          <li><a href="Resources.html">Library</a></li>
+          <li><a href="FAQ.html">FAQ</a></li>
+          <li><a href="Home.html#research">ISG report</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Support</a></li>
+        </ul></div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>&copy; 2026 Digital Hive</span>
+        <ul>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Trust center</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/site.js"></script>
+</body>
+</html>

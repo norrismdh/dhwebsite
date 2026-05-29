@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Frequently asked questions - Digital Hive</title>
+  <meta name="description" content="Common questions about Digital Hive: what it is, how it deploys, what it costs, and how it differs from a data catalog or another BI tool." />
+  <link rel="stylesheet" href="styles/tokens.css" />
+  <link rel="stylesheet" href="styles/site.css" />
+  <link rel="stylesheet" href="styles/faq.css" />
+</head>
+<body>
+
+  <!-- NAVIGATION (mega menu injected) -->
+  <header class="nav" data-screen-label="Navigation">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="Home.html" aria-label="Digital Hive home" style="border-bottom:none;">
+        <img src="assets/logo-colour.svg" alt="Digital Hive" />
+      </a>
+      <nav aria-label="Primary"><ul class="nav__links"></ul></nav>
+      <div class="nav__cta">
+        <a class="btn btn--primary" href="Demo.html">Book a demo</a>
+        <button type="submit" class="nav__toggle" data-mobile-toggle aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="container mobile-menu" data-mobile-menu></div>
+  </header>
+
+  <main>
+    <!-- 1 - HERO -->
+    <section class="faq-hero hex-hero" data-screen-label="01 Hero">
+      <div class="hex-hero__motif" aria-hidden="true"></div>
+      <span class="faq-hex faq-hex--a" aria-hidden="true"></span>
+      <span class="faq-hex faq-hex--b" aria-hidden="true"></span>
+      <span class="faq-hex faq-hex--c" aria-hidden="true"></span>
+      <div class="container">
+        <div class="faq-hero__copy reveal">
+          <span class="eyebrow">Help center</span>
+          <h1>Questions, answered.</h1>
+          <p>Everything we get asked in evaluations, demos, and procurement reviews — in one place.</p>
+          <div class="faq-search">
+            <span class="faq-search__ico" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </span>
+            <input type="search" placeholder="Search for &ldquo;pricing&rdquo;, &ldquo;Cognos&rdquo;, &ldquo;multi-tenant&rdquo;…" data-faq-search aria-label="Search FAQ" />
+            <span class="faq-search__kbd" aria-hidden="true">⌘ K</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 - MAIN: SIDEBAR + ACCORDION -->
+    <section class="faq-main" data-screen-label="02 FAQ">
+      <div class="container">
+        <div class="faq-layout">
+          <!-- Category sidebar -->
+          <aside class="faq-nav reveal" data-faq-nav>
+            <h2>Categories</h2>
+            <ul>
+              <li><button class="faq-nav__link is-current" type="button" data-cat="product">
+                <span class="hex" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12" y2="17.5"/></svg></span>
+                <span class="label">Product</span><span class="count">6</span>
+              </button></li>
+              <li><button class="faq-nav__link" type="button" data-cat="deployment">
+                <span class="hex" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg></span>
+                <span class="label">Deployment</span><span class="count">5</span>
+              </button></li>
+              <li><button class="faq-nav__link" type="button" data-cat="security">
+                <span class="hex" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7z"/></svg></span>
+                <span class="label">Security &amp; compliance</span><span class="count">5</span>
+              </button></li>
+              <li><button class="faq-nav__link" type="button" data-cat="connectors">
+                <span class="hex" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 2v6"/><path d="M15 2v6"/><rect x="7" y="8" width="10" height="6" rx="1"/><path d="M12 14v4a3 3 0 0 0 3 3"/></svg></span>
+                <span class="label">Connectors</span><span class="count">4</span>
+              </button></li>
+              <li><button class="faq-nav__link" type="button" data-cat="pricing">
+                <span class="hex" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12V4h8l10 10-8 8z"/><circle cx="8" cy="9" r="1.5"/></svg></span>
+                <span class="label">Pricing &amp; licensing</span><span class="count">4</span>
+              </button></li>
+              <li><button class="faq-nav__link" type="button" data-cat="support">
+                <span class="hex" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/></svg></span>
+                <span class="label">Support &amp; onboarding</span><span class="count">4</span>
+              </button></li>
+            </ul>
+          </aside>
+
+          <!-- Content panels -->
+          <div class="faq-content reveal">
+
+            <!-- PRODUCT -->
+            <div class="faq-panel is-current" data-panel="product" id="product">
+              <div class="faq-panel__head">
+                <span class="eyebrow">Product</span>
+                <h2>What Digital Hive is — and isn't.</h2>
+                <p>The category, the boundaries, and how it relates to the BI tools you already own.</p>
+              </div>
+              <div class="faq-list">
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>Is Digital Hive a data catalog or a BI tool?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>Neither, on purpose. Digital Hive is an <strong>analytics catalog</strong>: the layer that sits above your BI tools and makes the reports, dashboards, and metrics in them findable, governed, and trusted.</p>
+                    <p>A data catalog (Alation, Collibra) inventories raw data assets — tables, columns, lineage. A BI tool (Power BI, Tableau) <em>creates</em> visualizations. We index the visualizations that already exist across every BI tool you own, without moving or rebuilding anything.</p>
+                  </div></div>
+                </article>
+
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>Will it replace our existing BI investment?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>No. Reports stay in the platform they were built in. Power BI reports stay in Power BI. Tableau dashboards stay in Tableau. Digital Hive references them in a single catalog and surfaces them through a unified BI Hub — but ownership, edit access, and security never leave the source tool.</p>
+                    <p>In fact, the opposite: by making content findable and certified, Digital Hive <strong>increases the ROI of every BI tool you already own.</strong> Customers consistently report a 25–40% lift in active users on existing platforms within the first six months — the licenses you've already paid for, getting used by the people who needed them all along.</p>
+                  </div></div>
+                </article>
+
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>What's the BI Hub?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>The end-user front door. A branded portal where business users search, browse, and open the analytics they need — without knowing which BI tool the content lives in. Single sign-on across every connected tool, certified content surfaced first.</p>
+                  </div></div>
+                </article>
+
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>Can users actually edit reports through Digital Hive?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>Editing happens in the native tool, with the native permissions and authoring experience. Digital Hive launches the right tool into the right artifact in a click. The catalog itself is read-only by design — no shadow versions, no drift.</p>
+                  </div></div>
+                </article>
+
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>How is this different from other analytics catalog vendors?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>Start with what we <em>don't</em> do — that's where most of the daylight is:</p>
+                    <ul>
+                      <li><strong>We don't connect to your data.</strong> No JDBC, no warehouse credentials, no query layer. We index metadata about the reports and dashboards that already exist.</li>
+                      <li><strong>We don't add processes.</strong> No new modeling layer, no semantic remapping, no rebuilds. The reports you have today still work tomorrow — Digital Hive just makes them findable.</li>
+                      <li><strong>We don't touch your security.</strong> Native auth passthrough means whatever permissions exist in the source tool (RLS, OLS, workspace access) are respected automatically. We never escalate, mirror, or override.</li>
+                    </ul>
+                    <p>Beyond that, three things matter in this category and we're built around all three: <strong>independence</strong> (no allegiance to any BI vendor, ever), <strong>experience</strong> (the BI Hub is a first-class branded portal, not a configuration screen), and <strong>depth in messy environments</strong> (multi-vendor, mid-migration, post-M&amp;A, multi-tenant, sovereign).</p>
+                    <p>Happy to walk you through a side-by-side against whoever else you're evaluating. <a href="Contact.html">Send us the shortlist</a> and we'll prep a comparison against your actual must-haves — not ours.</p>
+                  </div></div>
+                </article>
+
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>Is there an AI / natural language layer?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>Yes — semantic search and a Q&amp;A assistant grounded in your indexed catalog metadata only. We deliberately don't train on your content, and the assistant never executes queries against source data.</p>
+                  </div></div>
+                </article>
+              </div>
+            </div>
+
+            <!-- DEPLOYMENT -->
+            <div class="faq-panel" data-panel="deployment" id="deployment">
+              <div class="faq-panel__head">
+                <span class="eyebrow">Deployment</span>
+                <h2>Where it runs, how fast it goes live.</h2>
+                <p>Cloud, on-prem, hybrid, and what implementation actually looks like.</p>
+              </div>
+              <div class="faq-list">
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>Where does the catalog data actually live?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>Digital Hive stores <strong>metadata only</strong> — titles, owners, descriptions, last-modified, usage. Actual report content stays in its source tool. The metadata index lives in your tenant (SaaS) or your VPC (self-hosted), never co-mingled with other customers.</p>
+                  </div></div>
+                </article>
+
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>Can we deploy on-prem or in our own cloud account?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>Yes — three options. <strong>Cloud (SaaS)</strong> is the default. <strong>Customer-managed</strong> runs in your AWS, Azure, or GCP account. <strong>On-prem</strong> is supported via container images for regulated and air-gapped environments. All three are feature-equivalent.</p>
+                  </div></div>
+                </article>
+
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>How long does a typical implementation take?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>First connector live in a day. Five-tool index in under two weeks. End-user Hub rolled out in 4–8 weeks depending on branding and SSO complexity. We don't quote 6-month enterprise rollouts because we don't run them.</p>
+                  </div></div>
+                </article>
+
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>Do you support multi-region or sovereign deployments?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>Yes. EU, UK, US, Canada, and Australia tenants are available. For data sovereignty mandates (EU-AI Act, FedRAMP-aligned, APRA CPS 234), the customer-managed deployment keeps the index entirely within your boundary.</p>
+                  </div></div>
+                </article>
+
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>What happens if a source BI tool is unavailable?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>The catalog stays live and searchable. Users can find content, see metadata, request access — they just can't open the report until the source tool returns. Source-tool outages don't propagate to the Hub.</p>
+                  </div></div>
+                </article>
+              </div>
+            </div>
+
+            <!-- SECURITY -->
+            <div class="faq-panel" data-panel="security" id="security">
+              <div class="faq-panel__head">
+                <span class="eyebrow">Security &amp; compliance</span>
+                <h2>What the security team will ask first.</h2>
+                <p>Auth, audit, data residency, and the certifications that matter for enterprise procurement.</p>
+              </div>
+              <div class="faq-list">
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>How do you handle row-level security across tools?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>We inherit it. When a user opens a report from the Hub, the source tool authenticates them with their identity and applies whatever RLS, OLS, or workspace permission already exists. Digital Hive never bypasses native permissions — and the catalog itself only shows artifacts a user has been granted access to.</p>
+                  </div></div>
+                </article>
+
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>What certifications do you hold?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>SOC 2 Type II, ISO 27001, GDPR, HIPAA-ready. Full controls documentation, penetration test summaries, and continuous monitoring evidence are in the Trust Center (NDA required).</p>
+                  </div></div>
+                </article>
+
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>What identity providers do you support?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>SAML 2.0 and OIDC out of the box. Tested with Azure AD / Entra, Okta, Ping, OneLogin, and Google Workspace. SCIM provisioning is supported on the Enterprise tier.</p>
+                  </div></div>
+                </article>
+
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>Do you train AI models on our metadata?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>No. Customer metadata is never used to train shared or third-party models. Inference for semantic search and Q&amp;A runs against your tenant only, with retention policies under your control.</p>
+                  </div></div>
+                </article>
+
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>What does the audit trail capture?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>Every catalog event: who searched what, who opened which report, who certified or retired which artifact. Audit logs are exportable to SIEM (Splunk, Datadog, Elastic) via webhook or scheduled export.</p>
+                  </div></div>
+                </article>
+              </div>
+            </div>
+
+            <!-- CONNECTORS -->
+            <div class="faq-panel" data-panel="connectors" id="connectors">
+              <div class="faq-panel__head">
+                <span class="eyebrow">Connectors</span>
+                <h2>What we connect to.</h2>
+                <p>BI tools, AI assistants, document repositories, and data sources. <a href="Connectors.html">See the full directory →</a></p>
+              </div>
+              <div class="faq-list">
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>Which BI tools do you connect to?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>Power BI, Tableau, Qlik (Sense + View), Cognos (every version since 10), Looker, Spotfire, Domo, MicroStrategy, Pyramid, SAP BO, Excel, and SharePoint. Plus a generic webhook connector for in-house tools.</p>
+                  </div></div>
+                </article>
+
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>Can we connect to AI tools like Copilot or ChatGPT?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>Yes — both directions. Surface AI-generated analyses from M365 Copilot or your own LLM agents in the same catalog. And expose your indexed catalog metadata to those agents as a grounded source via our MCP-compatible endpoint.</p>
+                  </div></div>
+                </article>
+
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>What about documents — PDFs, decks, Confluence pages?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>Connectors for SharePoint, Google Drive, Confluence, and Notion bring analytical documents into the same catalog. Useful when the actual decision artifact is a PDF briefing — not a dashboard.</p>
+                  </div></div>
+                </article>
+
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>How long until you support [our tool]?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>For listed connectors with active enterprise customers — already built. For new platforms with a public API — typically 6–10 weeks for a production-grade connector. <a href="Contact.html">Tell us what you need.</a></p>
+                  </div></div>
+                </article>
+              </div>
+            </div>
+
+            <!-- PRICING -->
+            <div class="faq-panel" data-panel="pricing" id="pricing">
+              <div class="faq-panel__head">
+                <span class="eyebrow">Pricing &amp; licensing</span>
+                <h2>How procurement should think about it.</h2>
+                <p>Tiers, scaling factors, and what's included at each level.</p>
+              </div>
+              <div class="faq-list">
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>How is Digital Hive priced?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>Three tiers — Team, Business, Enterprise — priced annually based on (a) end-user seats accessing the BI Hub and (b) number of BI/data source connectors. See <a href="Pricing.html">the pricing page</a> for ranges; final pricing is built around your tool list.</p>
+                  </div></div>
+                </article>
+
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>Do you charge per report or per dashboard?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>No. Index unlimited content. We don't punish you for cleaning up your sprawl — that's the point.</p>
+                  </div></div>
+                </article>
+
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>Is there a free trial or proof of value?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>30-day proof of value against two of your tools and up to 100 end users. Live by week one. Success criteria defined together. No PO required to start.</p>
+                  </div></div>
+                </article>
+
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>Are there volume discounts at large scale?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>Yes — discounts kick in at 1,000 seats and step again at 5,000. Multi-year commitments lock in pricing. Procurement teams routinely run us through enterprise paper-paper and we move at their pace.</p>
+                  </div></div>
+                </article>
+              </div>
+            </div>
+
+            <!-- SUPPORT -->
+            <div class="faq-panel" data-panel="support" id="support">
+              <div class="faq-panel__head">
+                <span class="eyebrow">Support &amp; onboarding</span>
+                <h2>What happens after you sign.</h2>
+                <p>Implementation, ongoing support, and how we measure success.</p>
+              </div>
+              <div class="faq-list">
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>What's included in onboarding?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>A dedicated solutions engineer for the first 90 days. Connector setup, SSO wiring, Hub branding, and a structured rollout plan including end-user training assets. You won't be alone in a support portal.</p>
+                  </div></div>
+                </article>
+
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>What support tiers do you offer?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>Standard (12×5, 4-hour critical SLA) and Premium (24×7, 1-hour critical SLA with a named CSM). Both include free upgrades for the life of the contract.</p>
+                  </div></div>
+                </article>
+
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>How often do you release new features?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>Continuous on SaaS; quarterly stable releases for customer-managed deployments. Roadmap reviews twice a year with named-account customers.</p>
+                  </div></div>
+                </article>
+
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>How do you measure success in year one?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>Three numbers we co-own: percentage of analytics users actively on the Hub, time-to-find for a known report, and the count of duplicate dashboards retired. We publish these in your account dashboard — including the unflattering ones.</p>
+                  </div></div>
+                </article>
+              </div>
+            </div>
+
+            <!-- Empty state for search -->
+            <div class="faq-empty" data-faq-empty>
+              <h3>No matches.</h3>
+              <p>Try a broader term, or <a href="Contact.html" style="color:var(--dh-orange);border-bottom:1px solid currentColor;">ask us directly</a>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 - STILL NEED HELP -->
+    <section class="faq-help" data-screen-label="03 Still need help">
+      <div class="container">
+        <div class="faq-help__grid">
+          <div>
+            <h3>Didn't see your question?</h3>
+            <p>We answer every inbound. Most replies inside one business day.</p>
+          </div>
+          <div class="faq-help__ctas">
+            <a class="btn btn--ghost" href="Contact.html">Contact us</a>
+            <a class="btn btn--primary" href="Demo.html">
+              Book a demo
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" data-screen-label="Footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="assets/logo-reversed.svg" alt="Digital Hive" />
+          <p>Where analytics finally make sense. An enterprise analytics catalog.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0H12v2.2h.07c.63-1.2 2.18-2.46 4.49-2.46 4.8 0 5.69 3.16 5.69 7.27V24h-5v-7.2c0-1.72-.03-3.93-2.4-3.93-2.4 0-2.77 1.87-2.77 3.81V24h-5V8z"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer__col"><h3>Product</h3><ul>
+          <li><a href="Product.html#catalog">Catalog</a></li>
+          <li><a href="Product.html#hub">BI Hub</a></li>
+          <li><a href="Product.html#governance">Governance</a></li>
+          <li><a href="Connectors.html">Connectors</a></li>
+          <li><a href="Pricing.html">Pricing</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Use cases</h3><ul>
+          <li><a href="UseCases.html">All use cases</a></li>
+          <li><a href="use-cases/multi-vendor-bi.html">Multi-vendor BI</a></li>
+          <li><a href="use-cases/cloud-migration.html">Cloud migration</a></li>
+          <li><a href="use-cases/ma-integration.html">M&amp;A integration</a></li>
+          <li><a href="use-cases/data-sovereignty.html">Data sovereignty</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Company</h3><ul>
+          <li><a href="About.html">About</a></li>
+          <li><a href="About.html#team">Leadership</a></li>
+          <li><a href="Customers.html">Customers</a></li>
+          <li><a href="Contact.html">Contact</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Resources</h3><ul>
+          <li><a href="Resources.html">Library</a></li>
+          <li><a href="FAQ.html">FAQ</a></li>
+          <li><a href="Home.html#research">ISG report</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Support</a></li>
+        </ul></div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>&copy; 2026 Digital Hive</span>
+        <ul>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Trust center</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/site.js"></script>
+</body>
+</html>

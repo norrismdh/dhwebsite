@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BI Tool Consolidation &amp; Platform Rationalization - Digital Hive</title>
+  <meta name="description" content="You have five BI tools. You want two. But you can't cut anything yet. Digital Hive provides the cross-platform usage data that makes consolidation defensible." />
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/site.css" />
+  <link rel="stylesheet" href="../styles/usecase-detail.css" />
+</head>
+<body>
+
+  <header class="nav" data-screen-label="Navigation">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="../Home.html" aria-label="Digital Hive home" style="border-bottom:none;"><img src="../assets/logo-colour.svg" alt="Digital Hive" /></a>
+      <nav aria-label="Primary">
+        <ul class="nav__links">
+          <li><a href="../Product.html">Product</a></li>
+          <li><a href="../UseCases.html" style="color:var(--dh-orange);">Use cases</a></li>
+          <li><a href="../Customers.html">Customers</a></li>
+          <li><a href="../Resources.html">Resources</a></li>
+          <li><a href="../Pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn btn--primary" href="../Demo.html">Book a demo</a>
+        <button type="button" class="nav__toggle" data-mobile-toggle aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="container mobile-menu" data-mobile-menu>
+      <ul>
+        <li><a href="../Product.html">Product</a></li><li><a href="../UseCases.html">Use cases</a></li>
+        <li><a href="../Customers.html">Customers</a></li><li><a href="../Resources.html">Resources</a></li>
+        <li><a href="../Pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <div class="container">
+        <ol>
+          <li><a href="../UseCases.html">Use cases</a></li>
+          <li class="sep" aria-hidden="true">/</li>
+          <li class="current">Consolidate / Rationalize</li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- ① Header / hero -->
+    <section class="ucd-header" data-screen-label="01 Header">
+      <div class="ucd-header__motif" aria-hidden="true"></div>
+      <div class="container">
+        <div class="ucd-header__grid">
+
+          <div class="ucd-header__copy reveal">
+            <span class="ucd-header__tag"><span class="dot" aria-hidden="true"></span>Consolidate / rationalize</span>
+            <h1 style="font-weight:500;">You have five BI tools. You want two. But you can't cut anything yet.</h1>
+            <p class="ucd-header__sub">Digital Hive provides the cross-platform usage data that makes consolidation defensible — and the access layer that makes it invisible to users.</p>
+          </div>
+
+          <!-- Hero art: 5 platform chips with usage levels — low-usage ones fade out -->
+          <div class="ucd-art reveal art-consol" aria-hidden="true">
+            <style>
+              @keyframes consolFade { 0%,50%{opacity:1;filter:grayscale(0)} 70%,95%{opacity:0.22;filter:grayscale(0.9)} 100%{opacity:1;filter:grayscale(0)} }
+              .art-consol .chip-low1 { animation: consolFade 8s 1s  ease-in-out infinite; }
+              .art-consol .chip-low2 { animation: consolFade 8s 2.5s ease-in-out infinite; }
+              .art-consol .chip-low3 { animation: consolFade 8s 4s  ease-in-out infinite; }
+              .art-consol .con-row { display: grid; grid-template-columns: 28px 1fr 42px; align-items: center; gap: 6px; padding: 4px 6px; border-radius: 4px; font-size: 10px; color: var(--fg-2); }
+              .art-consol .con-bar-wrap { height: 5px; border-radius: 3px; background: rgba(25,51,89,0.08); overflow: hidden; }
+              .art-consol .con-bar-fill { height: 100%; border-radius: 3px; }
+              .art-consol .con-bar-fill--hi  { background: var(--dh-orange); width: 85%; }
+              .art-consol .con-bar-fill--med { background: var(--dh-navy); opacity: 0.5; width: 60%; }
+              .art-consol .con-bar-fill--lo  { background: var(--dh-grey); opacity: 0.4; width: 12%; }
+              .art-consol .con-src { font-size: 8px; font-weight: 700; letter-spacing: 0.05em; padding: 2px 4px; border-radius: 3px; text-align: center; background: var(--dh-grey-100); color: var(--fg-3); }
+              .art-consol .con-pct { font-size: 9px; font-weight: 700; text-align: right; }
+              .art-consol .con-pct--hi  { color: var(--dh-orange); }
+              .art-consol .con-pct--lo  { color: var(--dh-grey); }
+              .art-consol .con-head { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-3); margin-bottom: 5px; display: flex; justify-content: space-between; }
+            </style>
+            <span class="ucd-art__hex"></span>
+
+            <!-- High-usage platforms (bright) -->
+            <div class="ucd-art__chip" style="top:3%;left:5%;transform:rotate(-3deg);">
+              <span class="dot" style="background:#F2C811;"></span>Power BI
+            </div>
+            <div class="ucd-art__chip" style="top:1%;right:4%;transform:rotate(2deg);">
+              <span class="dot" style="background:#1F77B4;"></span>Tableau
+            </div>
+
+            <!-- Low-usage platforms (fading) -->
+            <div class="ucd-art__chip chip-low1" style="top:44%;left:0%;transform:rotate(-2deg);">
+              <span class="dot" style="background:var(--dh-grey);"></span>MicroStrategy
+            </div>
+            <div class="ucd-art__chip chip-low2" style="top:51%;right:1%;transform:rotate(2deg);">
+              <span class="dot" style="background:var(--dh-grey);"></span>Cognos Legacy
+            </div>
+            <div class="ucd-art__chip chip-low3" style="bottom:3%;left:19%;transform:rotate(-1deg);">
+              <span class="dot" style="background:var(--dh-grey);"></span>QlikView
+            </div>
+
+            <svg class="ucd-art__lines" viewBox="0 0 400 320" preserveAspectRatio="none">
+              <g fill="none" stroke="rgba(36,66,113,0.20)" stroke-width="1" stroke-dasharray="3 4">
+                <path d="M 57 51  Q 173 129 200 168"/>
+                <path d="M 347 46 Q 247 121 200 168"/>
+                <path d="M 26 183 Q 130 178 200 168"/>
+                <path d="M 372 200 Q 276 193 200 168"/>
+                <path d="M 114 300 Q 170 234 200 190"/>
+              </g>
+            </svg>
+
+            <!-- Hub: usage analytics across platforms -->
+            <div class="ucd-art__hub">
+              <div class="ucd-art__hub-top">
+                <span class="ucd-art__brand"><span class="hex"></span>Digital Hive</span>
+                <span class="ucd-art__cert">Usage</span>
+              </div>
+              <div class="con-head"><span>Platform</span><span>Active users</span></div>
+              <div class="con-row">
+                <span class="con-src">PBI</span>
+                <div class="con-bar-wrap"><div class="con-bar-fill con-bar-fill--hi"></div></div>
+                <span class="con-pct con-pct--hi">847</span>
+              </div>
+              <div class="con-row">
+                <span class="con-src">TAB</span>
+                <div class="con-bar-wrap"><div class="con-bar-fill con-bar-fill--med"></div></div>
+                <span class="con-pct con-pct--hi">623</span>
+              </div>
+              <div class="con-row" style="opacity:0.5;">
+                <span class="con-src">MST</span>
+                <div class="con-bar-wrap"><div class="con-bar-fill con-bar-fill--lo"></div></div>
+                <span class="con-pct con-pct--lo">12</span>
+              </div>
+            </div>
+
+            <span class="ucd-art__dot ucd-art__dot--o"></span>
+            <span class="ucd-art__dot ucd-art__dot--y"></span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ② Problem -->
+    <section class="ucd-problem" data-screen-label="02 Problem">
+      <div class="container">
+        <div class="ucd-problem__inner reveal">
+          <span class="eyebrow">What actually happens</span>
+          <h2 style="font-weight:500;">The consolidation conversation that never closes.</h2>
+          <p>The tool count grew over years — one per team, one from an acquisition, one a business unit stood up on its own. Every budget cycle, leadership asks about consolidation.</p>
+          <p>The conversation ends the same way: nobody knows what's being used. Licenses renew. Costs compound.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ③ Why it's hard -->
+    <section class="ucd-hard" data-screen-label="03 Why it's hard">
+      <div class="container">
+        <div class="ucd-hard__inner">
+          <div class="ucd-hard__head reveal">
+            <span class="eyebrow">Why this doesn't get fixed</span>
+            <h2 style="font-weight:500;">Why the decision never gets made.</h2>
+            <p>Consolidation requires certainty no one has: which reports are used, how often, by whom.</p>
+          </div>
+          <ul class="ucd-hard__list reveal">
+            <li>Consolidation requires certainty no one has: which reports are used, how often, by whom.</li>
+            <li>That data lives in five separate admin consoles, in five different formats.</li>
+            <li>Every platform has a champion. Without usage data, those arguments can't be countered.</li>
+            <li>The risk of cutting too fast is real. Without evidence, no one will take it.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ④ How Digital Hive solves it -->
+    <section class="ucd-solve" data-screen-label="04 How Digital Hive solves it">
+      <div class="container">
+        <div class="ucd-solve__head reveal">
+          <span class="eyebrow">What changes</span>
+          <h2 style="font-weight:500;">How Digital Hive solves it.</h2>
+          <p>Four shifts that turn consolidation from a debate into a decision.</p>
+        </div>
+        <div class="ucd-solve__grid">
+          <div class="ucd-solve__item reveal">
+            <h3 style="font-weight:500;">Cross-platform usage in one view.</h3>
+            <p>Which reports are opened, how often, by whom — across every connected platform.</p>
+          </div>
+          <div class="ucd-solve__item reveal">
+            <h3 style="font-weight:500;">Abandoned content surfaces.</h3>
+            <p>Duplicates and unused reports identified and flagged. Platform champions see the same numbers everyone else sees.</p>
+          </div>
+          <div class="ucd-solve__item reveal">
+            <h3 style="font-weight:500;">Evidence replaces politics.</h3>
+            <p>Consolidation sequenced on usage data. Content with zero views loses its shield.</p>
+          </div>
+          <div class="ucd-solve__item reveal">
+            <h3 style="font-weight:500;">Phased, invisible execution.</h3>
+            <p>The access layer remains as platforms are retired. Users find everything in the same place.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑤ Outcomes -->
+    <section class="ucd-outcomes" data-screen-label="05 Outcomes">
+      <div class="container">
+        <div class="ucd-outcomes__head reveal">
+          <span class="eyebrow">The impact</span>
+          <h2 style="font-weight:500;">What the research confirms.</h2>
+        </div>
+        <div class="ucd-outcomes__lede reveal">
+          <p class="ucd-outcomes__stat">67<span class="pct">%+</span></p>
+          <div>
+            <p class="ucd-outcomes__statLine">Of enterprises face active BI sprawl with no cross-platform usage view.</p>
+            <p class="ucd-outcomes__source">Datalogz State of BI Report, 2025</p>
+            <p class="ucd-outcomes__note">Sprawl isn't an edge case — it's the default state. Most organizations have no cross-platform usage view, which means consolidation decisions default to politics instead of evidence.</p>
+          </div>
+        </div>
+        <div class="ucd-outcomes__grid">
+          <div class="ucd-outcome reveal">
+            <p class="ucd-outcome__big" style="font-size:50px;">Months<br>not years</p>
+            <p class="ucd-outcome__caption">Usage data making the business case where arguments couldn't for years.</p>
+          </div>
+          <div class="ucd-outcome reveal">
+            <p class="ucd-outcome__big" style="font-size:50px;">Evidence<br>not politics</p>
+            <p class="ucd-outcome__caption">A concrete starting point every stakeholder can see — zero-usage content loses its shield.</p>
+          </div>
+          <div class="ucd-outcome reveal">
+            <p class="ucd-outcome__big" style="font-size:50px;">Better<br>leverage</p>
+            <p class="ucd-outcome__caption">Procurement renegotiating vendor contracts from a position of knowledge.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑥ Related use cases -->
+    <section class="ucd-related" data-screen-label="06 Related use cases">
+      <div class="container">
+        <div class="ucd-related__head reveal">
+          <h3 style="font-weight:500;">Related use cases</h3>
+          <a href="../UseCases.html">All use cases →</a>
+        </div>
+        <div class="ucd-related__grid">
+          <a class="ucd-related__card reveal" href="usage-discovery.html">
+            <span class="tag">Usage &amp; discovery</span>
+            <h4>You have thousands of reports. Nobody knows which ones matter.</h4>
+            <span class="arrow-row">Read this use case <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+          <a class="ucd-related__card reveal" href="cloud-migration.html">
+            <span class="tag">Migration &amp; modernization</span>
+            <h4>You're modernizing your BI stack. Your users can't tell.</h4>
+            <span class="arrow-row">Read this use case <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑦ Bottom CTA -->
+    <section class="ucd-cta" id="demo" data-screen-label="07 Bottom CTA">
+      <div class="ucd-cta__motif" aria-hidden="true"></div>
+      <div class="container">
+        <div class="ucd-cta__grid">
+          <div class="ucd-cta__copy reveal">
+            <span class="ucd-cta__eyebrow">Talk to us</span>
+            <h3 style="font-weight:500;">See this in action.</h3>
+            <p>Tell us which platforms you're running and we'll show you what cross-platform usage data actually looks like — in 30 minutes.</p>
+            <div class="ucd-cta__buttons">
+              <a class="btn btn--accent" href="../Demo.html">Book a demo <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              <a class="btn btn--ghost-light" href="../Contact.html">Contact sales</a>
+            </div>
+          </div>
+          <div class="ucd-cta__art reveal" aria-hidden="true">
+            <div class="ucd-cta__chaos"><span class="ucd-cta__tile ucd-cta__tile--1"></span><span class="ucd-cta__tile ucd-cta__tile--2"></span><span class="ucd-cta__tile ucd-cta__tile--3"></span><span class="ucd-cta__tile ucd-cta__tile--4"></span><span class="ucd-cta__tile ucd-cta__tile--5"></span></div>
+            <svg class="ucd-cta__arrow" viewBox="0 0 60 20" aria-hidden="true"><line x1="2" y1="10" x2="50" y2="10" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-linecap="round"/><polyline points="42,4 52,10 42,16" fill="none" stroke="var(--dh-orange)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="ucd-cta__order"><span class="ucd-cta__order-hex" aria-hidden="true"></span><span class="ucd-cta__order-line"></span><span class="ucd-cta__order-line"></span><span class="ucd-cta__order-line"></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" data-screen-label="Footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="../assets/logo-reversed.svg" alt="Digital Hive" />
+          <p>Where analytics finally make sense. An enterprise analytics catalog.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0H12v2.2h.07c.63-1.2 2.18-2.46 4.49-2.46 4.8 0 5.69 3.16 5.69 7.27V24h-5v-7.2c0-1.72-.03-3.93-2.4-3.93-2.4 0-2.77 1.87-2.77 3.81V24h-5V8z"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer__col"><h3>Product</h3><ul><li><a href="../Product.html#catalog">Catalog</a></li><li><a href="../Product.html#hub">BI Hub</a></li><li><a href="../Product.html#governance">Governance</a></li><li><a href="../Connectors.html">Connectors</a></li><li><a href="../Pricing.html">Pricing</a></li></ul></div>
+        <div class="footer__col"><h3>Use cases</h3><ul><li><a href="../UseCases.html">All use cases</a></li><li><a href="multi-vendor-bi.html">Multi-vendor BI</a></li><li><a href="cloud-migration.html">Cloud migration</a></li><li><a href="ma-integration.html">M&amp;A integration</a></li><li><a href="data-sovereignty.html">Data sovereignty</a></li></ul></div>
+        <div class="footer__col"><h3>Company</h3><ul><li><a href="../About.html">About</a></li><li><a href="../About.html#team">Leadership</a></li><li><a href="../Customers.html">Customers</a></li><li><a href="../Contact.html">Contact</a></li><li><a href="#">Careers</a></li></ul></div>
+        <div class="footer__col"><h3>Resources</h3><ul><li><a href="../Resources.html">Library</a></li><li><a href="../FAQ.html">FAQ</a></li><li><a href="../Home.html#research">ISG report</a></li><li><a href="#">Blog</a></li><li><a href="#">Support</a></li></ul></div>
+      </div>
+      <div class="footer__bottom"><span>&copy; 2026 Digital Hive</span><ul><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="#">Trust center</a></li></ul></div>
+    </div>
+  </footer>
+
+  <script src="../scripts/site.js"></script>
+</body>
+</html>

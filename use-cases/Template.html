@@ -1,0 +1,308 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>[USE CASE NAME] - Digital Hive</title>
+  <meta name="description" content="[META DESCRIPTION - one sentence summarizing the situation and resolution]" />
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/site.css" />
+  <link rel="stylesheet" href="../styles/usecase-detail.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION (shared)
+       ============================================================ -->
+  <header class="nav" data-screen-label="Navigation">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="../Home.html" aria-label="Digital Hive home" style="border-bottom:none;">
+        <img src="../assets/logo-colour.svg" alt="Digital Hive" />
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav__links">
+          <li><a href="../Product.html">Product</a></li>
+          <li><a href="../UseCases.html" style="color:var(--dh-orange);">Use cases</a></li>
+          <li><a href="../Home.html#proof">Customers</a></li>
+          <li><a href="../Home.html#research">Resources</a></li>
+          <li><a href="#pricing">Pricing</a></li>
+        </ul>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn btn--primary" href="#demo">Book a demo</a>
+        <button class="nav__toggle" data-mobile-toggle aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="container mobile-menu" data-mobile-menu>
+      <ul>
+        <li><a href="../Product.html">Product</a></li>
+        <li><a href="../UseCases.html">Use cases</a></li>
+        <li><a href="../Home.html#proof">Customers</a></li>
+        <li><a href="../Home.html#research">Resources</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         1 - BREADCRUMB
+         ============================================================ -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <div class="container">
+        <ol>
+          <li><a href="../UseCases.html">Use cases</a></li>
+          <li class="sep" aria-hidden="true">/</li>
+          <li class="current">[USE CASE NAME]</li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- ============================================================
+         2 - SITUATION TAG + 3. H1 + 4. SUBHEAD
+         ============================================================ -->
+    <section class="ucd-header" data-screen-label="01 Header">
+      <div class="container">
+        <div class="reveal">
+          <span class="ucd-header__tag">
+            <span class="dot" aria-hidden="true"></span>
+            [SITUATION TAG]
+          </span>
+          <h1>[H1 - large, punchy, buyer's language. Stating the problem they recognize.]</h1>
+          <p class="ucd-header__sub">[ONE-SENTENCE SUBHEAD - the resolution, in plain language.]</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5 - PROBLEM
+         ============================================================ -->
+    <section class="ucd-problem" data-screen-label="02 Problem">
+      <div class="container">
+        <div class="ucd-problem__inner reveal">
+          <h2>What's actually happening</h2>
+          <p>[PARAGRAPH 1 - describe the situation in the buyer's words. 2–4 sentences. No marketing register. Concrete details: tool names, team names, day-of-week phrases like "every Monday".]</p>
+          <p>[PARAGRAPH 2 - the operational consequence. Who feels it. What it costs.]</p>
+          <p>[PARAGRAPH 3 - optional. The strategic risk. Where this goes if unfixed.]</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         6 - WHY IT'S HARD
+         ============================================================ -->
+    <section class="ucd-hard" data-screen-label="03 Why it's hard">
+      <div class="container">
+        <div class="ucd-hard__inner">
+          <div class="ucd-hard__head reveal">
+            <span class="eyebrow">Why this doesn't get fixed</span>
+            <h2>The reason this stays broken.</h2>
+            <p>Three constraints that are real, not excuses.</p>
+          </div>
+
+          <ul class="ucd-hard__list reveal">
+            <li>[BULLET 1 - short, honest, em-dash style. Acknowledge the constraint without judgment.]</li>
+            <li>[BULLET 2 - name the structural reason most fixes fail.]</li>
+            <li>[BULLET 3 - the people/process reason, usually political or budgetary.]</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         7 - HOW DIGITAL HIVE SOLVES IT
+         ============================================================ -->
+    <section class="ucd-solve" data-screen-label="04 How Digital Hive solves it">
+      <div class="container">
+        <div class="ucd-solve__head reveal">
+          <span class="eyebrow">What changes</span>
+          <h2>How Digital Hive solves it.</h2>
+          <p>Four shifts that work without replacing anything you already own.</p>
+        </div>
+
+        <div class="ucd-solve__grid">
+          <div class="ucd-solve__item reveal">
+            <h3>[FEATURE 1 NAME]</h3>
+            <p>[ONE-SENTENCE EXPLANATION - what it does, in the buyer's vocabulary.]</p>
+          </div>
+          <div class="ucd-solve__item reveal">
+            <h3>[FEATURE 2 NAME]</h3>
+            <p>[ONE-SENTENCE EXPLANATION.]</p>
+          </div>
+          <div class="ucd-solve__item reveal">
+            <h3>[FEATURE 3 NAME]</h3>
+            <p>[ONE-SENTENCE EXPLANATION.]</p>
+          </div>
+          <div class="ucd-solve__item reveal">
+            <h3>[FEATURE 4 NAME]</h3>
+            <p>[ONE-SENTENCE EXPLANATION.]</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         8 - OUTCOMES
+         ============================================================ -->
+    <section class="ucd-outcomes" data-screen-label="05 Outcomes">
+      <div class="container">
+        <div class="ucd-outcomes__head reveal">
+          <span class="eyebrow">What teams tell us</span>
+          <h2>What changes after rollout.</h2>
+        </div>
+
+        <div class="ucd-outcomes__grid">
+          <div class="ucd-outcome reveal">
+            <!-- Stat option: a number + unit. Replace .pct/.unit colorization as needed. -->
+            <p class="ucd-outcome__big"><span class="up" style="color:var(--dh-orange);">↑</span>30<span class="pct">%</span></p>
+            <p class="ucd-outcome__caption">[CAPTION - what this number represents, in plain language.]</p>
+            <p class="ucd-outcome__source">[Optional source attribution]</p>
+          </div>
+
+          <div class="ucd-outcome reveal">
+            <!-- Stat option: a number + unit. -->
+            <p class="ucd-outcome__big">4<span class="unit">×</span></p>
+            <p class="ucd-outcome__caption">[CAPTION - qualitative or quantitative.]</p>
+          </div>
+
+          <div class="ucd-outcome reveal">
+            <!-- Qualitative option: a single bold phrase as the "big" line. -->
+            <p class="ucd-outcome__big">Zero<br>support tickets.</p>
+            <p class="ucd-outcome__caption">[CAPTION - what this qualitative outcome means in practice.]</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         9 - RELATED USE CASES
+         ============================================================ -->
+    <section class="ucd-related" data-screen-label="06 Related use cases">
+      <div class="container">
+        <div class="ucd-related__head reveal">
+          <h3>Related use cases</h3>
+          <a href="../UseCases.html">All use cases →</a>
+        </div>
+
+        <div class="ucd-related__grid">
+          <a class="ucd-related__card reveal" href="[../use-cases/SLUG.html]">
+            <span class="tag">[RELATED TAG]</span>
+            <h4>[RELATED HEADLINE - the same shape as the parent UC card headline.]</h4>
+            <span class="arrow-row">
+              Read this use case
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
+
+          <a class="ucd-related__card reveal" href="[../use-cases/SLUG.html]">
+            <span class="tag">[RELATED TAG]</span>
+            <h4>[RELATED HEADLINE - the same shape as the parent UC card headline.]</h4>
+            <span class="arrow-row">
+              Read this use case
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         10 - BOTTOM CTA
+         ============================================================ -->
+    <section class="ucd-cta" id="demo" data-screen-label="07 Bottom CTA">
+      <div class="container">
+        <div class="ucd-cta__inner reveal">
+          <div>
+            <h3>See this in action.</h3>
+            <p>Tell us your tool list and we'll walk you through Digital Hive using sample content from the same BI vendors you use today — in 30 minutes.</p>
+          </div>
+          <div class="ucd-cta__actions">
+            <a class="btn btn--accent" href="#book">
+              Book a demo
+              <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a class="btn btn--ghost" href="#contact">Contact sales</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FOOTER (shared)
+       ============================================================ -->
+  <footer class="footer" data-screen-label="Footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="../assets/logo-reversed.svg" alt="Digital Hive" />
+          <p>Where analytics finally make sense. An enterprise analytics catalog.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="LinkedIn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0H12v2.2h.07c.63-1.2 2.18-2.46 4.49-2.46 4.8 0 5.69 3.16 5.69 7.27V24h-5v-7.2c0-1.72-.03-3.93-2.4-3.93-2.4 0-2.77 1.87-2.77 3.81V24h-5V8z"/></svg>
+            </a>
+            <a href="#" aria-label="YouTube">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer__col">
+          <h3>Product</h3>
+          <ul>
+            <li><a href="../Product.html#catalog">Catalog</a></li>
+            <li><a href="../Product.html#hub">BI Hub</a></li>
+            <li><a href="../Product.html#governance">Governance</a></li>
+            <li><a href="../Product.html#connectors">Connectors</a></li>
+            <li><a href="../Product.html#security">Security</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h3>Use cases</h3>
+          <ul>
+            <li><a href="../UseCases.html#multi-tool">Multi-tool</a></li>
+            <li><a href="../UseCases.html#migration">Migration</a></li>
+            <li><a href="../UseCases.html#m-and-a">M&amp;A integration</a></li>
+            <li><a href="../UseCases.html#multi-tenant">Multi-tenant</a></li>
+            <li><a href="../UseCases.html#compliance">Data sovereignty</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h3>Company</h3>
+          <ul>            <li><a href="../Home.html#proof">Customers</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="../Home.html#research">ISG report</a></li>
+            <li><a href="#">Documentation</a></li>
+            <li><a href="#">Webinars</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Support</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>© 2026 Digital Hive</span>
+        <ul>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Trust center</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../scripts/site.js"></script>
+</body>
+</html>

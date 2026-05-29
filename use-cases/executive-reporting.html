@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Executive Reporting - Digital Hive</title>
+  <meta name="description" content="Your executives are working from five different dashboards. None of them agree. Digital Hive delivers a single certified executive portal — one source of truth." />
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/site.css" />
+  <link rel="stylesheet" href="../styles/usecase-detail.css" />
+</head>
+<body>
+
+  <header class="nav" data-screen-label="Navigation">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="../Home.html" aria-label="Digital Hive home" style="border-bottom:none;">
+        <img src="../assets/logo-colour.svg" alt="Digital Hive" />
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav__links">
+          <li><a href="../Product.html">Product</a></li>
+          <li><a href="../UseCases.html" style="color:var(--dh-orange);">Use cases</a></li>
+          <li><a href="../Customers.html">Customers</a></li>
+          <li><a href="../Resources.html">Resources</a></li>
+          <li><a href="../Pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn btn--primary" href="../Demo.html">Book a demo</a>
+        <button type="button" class="nav__toggle" data-mobile-toggle aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="container mobile-menu" data-mobile-menu>
+      <ul>
+        <li><a href="../Product.html">Product</a></li>
+        <li><a href="../UseCases.html">Use cases</a></li>
+        <li><a href="../Customers.html">Customers</a></li>
+        <li><a href="../Resources.html">Resources</a></li>
+        <li><a href="../Pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <div class="container">
+        <ol>
+          <li><a href="../UseCases.html">Use cases</a></li>
+          <li class="sep" aria-hidden="true">/</li>
+          <li class="current">Executive reporting</li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- ① Header / hero -->
+    <section class="ucd-header" data-screen-label="01 Header">
+      <div class="ucd-header__motif" aria-hidden="true"></div>
+      <div class="container">
+        <div class="ucd-header__grid">
+
+          <div class="ucd-header__copy reveal">
+            <span class="ucd-header__tag">
+              <span class="dot" aria-hidden="true"></span>
+              Executive reporting
+            </span>
+            <h1 style="font-weight:500;">Your executives are working from five different dashboards. None of them agree.</h1>
+            <p class="ucd-header__sub">Digital Hive delivers a single curated, certified executive portal — leaders pull their own data when they need it, and every number comes from one source of truth.</p>
+          </div>
+
+          <!-- 5 scattered browser windows converging to one unified portal -->
+          <div class="ucd-header__art exec-dashboards reveal" aria-hidden="true">
+            <style>
+              .exec-dashboards {
+                position: relative;
+                width: 100%;
+                height: 320px;
+                max-width: 480px;
+                margin: 0 auto;
+              }
+              .db-win {
+                position: absolute;
+                background: #fff;
+                border-radius: 8px;
+                box-shadow: 0 4px 20px rgba(25,51,89,0.10), 0 1px 4px rgba(25,51,89,0.05);
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                width: 30%;
+                height: 110px;
+              }
+              .db-chrome {
+                display: flex;
+                align-items: center;
+                gap: 4px;
+                padding: 5px 8px;
+                background: var(--dh-navy);
+              }
+              .db-dot { width: 5px; height: 5px; border-radius: 50%; }
+              .db-dot--r { background: #ff5f57; }
+              .db-dot--y { background: #febc2e; }
+              .db-dot--g { background: #28c840; }
+              .db-url { flex: 1; margin-left: 6px; height: 11px; border-radius: 3px; background: rgba(255,255,255,0.12); }
+              .db-body { padding: 10px; flex: 1; display: flex; flex-direction: column; gap: 5px; }
+              .db-label { font-size: 8px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--fg-3); }
+              .db-metric { font-size: 18px; font-weight: 700; font-family: system-ui, sans-serif; letter-spacing: -0.02em; color: var(--dh-navy); line-height: 1; }
+              .db-metric .db-unit { font-size: 11px; color: var(--fg-3); font-weight: 500; }
+              .db-bars { display: flex; align-items: flex-end; gap: 3px; height: 24px; margin-top: auto; }
+              .db-bars span { flex: 1; border-radius: 2px 2px 0 0; min-width: 5px; }
+              .db-spark { margin-top: auto; }
+              .db-spark polyline { fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+              .db-win--1 { top: 2%;  left: 0%; }
+              .db-win--2 { top: 0%;  left: 34%; }
+              .db-win--3 { top: 2%;  left: 68%; }
+              .db-win--4 { top: 52%; left: 10%; }
+              .db-win--5 { top: 52%; left: 58%; }
+              @keyframes metricPulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+              .db-win .db-metric { animation: metricPulse 2s ease-in-out infinite; }
+              .db-win--1 .db-metric { animation-delay: 0s; }
+              .db-win--2 .db-metric { animation-delay: 0.4s; }
+              .db-win--3 .db-metric { animation-delay: 0.8s; }
+              .db-win--4 .db-metric { animation-delay: 1.2s; }
+              .db-win--5 .db-metric { animation-delay: 1.6s; }
+              @keyframes barShimmer { 0%,100%{transform:scaleY(1)} 50%{transform:scaleY(0.65)} }
+              .db-bars span { animation: barShimmer 3s ease-in-out infinite; transform-origin: bottom; }
+              .db-bars span:nth-child(1){animation-delay:0s} .db-bars span:nth-child(2){animation-delay:.25s}
+              .db-bars span:nth-child(3){animation-delay:.5s}  .db-bars span:nth-child(4){animation-delay:.75s}
+              .db-bars span:nth-child(5){animation-delay:1s}   .db-bars span:nth-child(6){animation-delay:1.25s}
+              @keyframes winConverge1 { 0%,42%{transform:translate(0,0) scale(1);opacity:1} 50%,100%{transform:translate(60px,50px) scale(0.35);opacity:0} }
+              @keyframes winConverge2 { 0%,42%{transform:translate(0,0) scale(1);opacity:1} 50%,100%{transform:translate(0px,50px) scale(0.35);opacity:0} }
+              @keyframes winConverge3 { 0%,42%{transform:translate(0,0) scale(1);opacity:1} 50%,100%{transform:translate(-60px,50px) scale(0.35);opacity:0} }
+              @keyframes winConverge4 { 0%,42%{transform:translate(0,0) scale(1);opacity:1} 50%,100%{transform:translate(40px,-30px) scale(0.35);opacity:0} }
+              @keyframes winConverge5 { 0%,42%{transform:translate(0,0) scale(1);opacity:1} 50%,100%{transform:translate(-40px,-30px) scale(0.35);opacity:0} }
+              .db-win--1{animation:winConverge1 12s ease-in-out infinite}
+              .db-win--2{animation:winConverge2 12s ease-in-out infinite}
+              .db-win--3{animation:winConverge3 12s ease-in-out infinite}
+              .db-win--4{animation:winConverge4 12s ease-in-out infinite}
+              .db-win--5{animation:winConverge5 12s ease-in-out infinite}
+              .db-unified {
+                position: absolute;
+                top: 8%; left: 8%; right: 8%; bottom: 8%;
+                background: #fff;
+                border-radius: 12px;
+                box-shadow: 0 8px 40px rgba(25,51,89,0.14), 0 2px 8px rgba(25,51,89,0.06);
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                animation: unifiedReveal 12s ease-out infinite;
+              }
+              @keyframes unifiedReveal { 0%,50%{transform:scale(0.9);opacity:0} 58%{transform:scale(1);opacity:1} 90%{transform:scale(1);opacity:1} 100%{transform:scale(0.9);opacity:0} }
+              .db-unified .db-chrome { padding: 7px 10px; }
+              .db-unified .db-url-text { flex:1; margin-left:8px; font-size:9px; font-weight:500; color:rgba(255,255,255,0.55); font-family:system-ui,sans-serif; letter-spacing:0.02em; }
+              .db-unified__body { flex:1; display:grid; grid-template-columns:repeat(5,1fr); gap:0; padding:0; }
+              .db-unified__kpi { display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; padding:14px 6px; border-right:1px solid rgba(25,51,89,0.08); animation:kpiFadeUp 12s ease-out infinite; }
+              .db-unified__kpi:last-child { border-right:none; }
+              @keyframes kpiFadeUp { 0%,55%{transform:translateY(10px);opacity:0} 65%{transform:translateY(0);opacity:1} 90%{transform:translateY(0);opacity:1} 100%{transform:translateY(10px);opacity:0} }
+              .db-unified__kpi:nth-child(1){animation-delay:0s} .db-unified__kpi:nth-child(2){animation-delay:.15s}
+              .db-unified__kpi:nth-child(3){animation-delay:.3s}  .db-unified__kpi:nth-child(4){animation-delay:.45s}
+              .db-unified__kpi:nth-child(5){animation-delay:.6s}
+              .db-unified__kpi .db-label { font-size:7px; order:-1; }
+              .db-unified__kpi .db-metric { font-size:16px; animation:none; }
+              .db-unified__kpi .db-mini-spark { height:18px; width:80%; margin-top:2px; }
+              .db-unified__kpi .db-mini-spark polyline { fill:none; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; }
+              .db-unified__badge { display:flex; align-items:center; justify-content:center; gap:5px; padding:6px; background:rgba(25,51,89,0.03); border-top:1px solid rgba(25,51,89,0.08); font-size:8px; font-weight:600; color:var(--fg-3); text-transform:uppercase; letter-spacing:0.06em; animation:kpiFadeUp 12s ease-out infinite; animation-delay:0.8s; }
+              .db-unified__badge svg { color:var(--dh-orange); }
+              @media (prefers-reduced-motion:reduce) {
+                .db-win,.db-unified,.db-unified__kpi,.db-unified__badge,.db-win .db-metric,.db-bars span { animation:none !important; }
+                .db-win { opacity:0; }
+                .db-unified { opacity:1; transform:scale(1); }
+                .db-unified__kpi { opacity:1; transform:none; }
+                .db-unified__badge { opacity:1; }
+              }
+            </style>
+
+            <div class="db-win db-win--1">
+              <div class="db-chrome"><span class="db-dot db-dot--r"></span><span class="db-dot db-dot--y"></span><span class="db-dot db-dot--g"></span><span class="db-url"></span></div>
+              <div class="db-body">
+                <span class="db-label">Revenue</span>
+                <span class="db-metric">$48M</span>
+                <div class="db-bars">
+                  <span style="height:14px;background:#193359;opacity:.25"></span><span style="height:18px;background:#193359;opacity:.30"></span>
+                  <span style="height:12px;background:#193359;opacity:.25"></span><span style="height:22px;background:var(--dh-orange);opacity:.7"></span>
+                  <span style="height:16px;background:#193359;opacity:.20"></span><span style="height:10px;background:#193359;opacity:.15"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="db-win db-win--2">
+              <div class="db-chrome"><span class="db-dot db-dot--r"></span><span class="db-dot db-dot--y"></span><span class="db-dot db-dot--g"></span><span class="db-url"></span></div>
+              <div class="db-body">
+                <span class="db-label">Pipeline</span>
+                <span class="db-metric">$51M</span>
+                <svg class="db-spark" viewBox="0 0 120 30" preserveAspectRatio="none"><polyline points="0,22 15,18 30,24 50,12 70,16 90,6 110,10 120,4" stroke="var(--dh-orange)"/></svg>
+              </div>
+            </div>
+
+            <div class="db-win db-win--3">
+              <div class="db-chrome"><span class="db-dot db-dot--r"></span><span class="db-dot db-dot--y"></span><span class="db-dot db-dot--g"></span><span class="db-url"></span></div>
+              <div class="db-body">
+                <span class="db-label">Operations</span>
+                <span class="db-metric">$47M</span>
+                <div class="db-bars">
+                  <span style="height:11px;background:var(--dh-navy);opacity:.20"></span><span style="height:19px;background:var(--dh-navy);opacity:.30"></span>
+                  <span style="height:13px;background:var(--dh-navy);opacity:.20"></span><span style="height:16px;background:var(--dh-navy);opacity:.25"></span>
+                  <span style="height:23px;background:var(--dh-orange);opacity:.7"></span><span style="height:9px;background:var(--dh-navy);opacity:.15"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="db-win db-win--4">
+              <div class="db-chrome"><span class="db-dot db-dot--r"></span><span class="db-dot db-dot--y"></span><span class="db-dot db-dot--g"></span><span class="db-url"></span></div>
+              <div class="db-body">
+                <span class="db-label">Finance</span>
+                <span class="db-metric">$49.2M</span>
+                <svg class="db-spark" viewBox="0 0 120 30" preserveAspectRatio="none"><polyline points="0,18 20,22 40,14 60,20 80,10 100,16 120,8" stroke="var(--dh-navy)" opacity="0.4"/></svg>
+              </div>
+            </div>
+
+            <div class="db-win db-win--5">
+              <div class="db-chrome"><span class="db-dot db-dot--r"></span><span class="db-dot db-dot--y"></span><span class="db-dot db-dot--g"></span><span class="db-url"></span></div>
+              <div class="db-body">
+                <span class="db-label">CSAT</span>
+                <span class="db-metric">72<span class="db-unit">%</span></span>
+                <svg class="db-spark" viewBox="0 0 120 30" preserveAspectRatio="none"><polyline points="0,26 20,20 40,22 55,14 75,18 95,8 120,12" stroke="var(--dh-orange)"/></svg>
+              </div>
+            </div>
+
+            <div class="db-unified">
+              <div class="db-chrome">
+                <span class="db-dot db-dot--r"></span><span class="db-dot db-dot--y"></span><span class="db-dot db-dot--g"></span>
+                <span class="db-url-text">digitalhive / executive-portal</span>
+              </div>
+              <div class="db-unified__body">
+                <div class="db-unified__kpi"><span class="db-label">Revenue</span><span class="db-metric">$48M</span><svg class="db-mini-spark" viewBox="0 0 60 18" preserveAspectRatio="none"><polyline points="0,14 10,10 20,12 30,6 40,8 50,4 60,2" stroke="var(--dh-orange)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+                <div class="db-unified__kpi"><span class="db-label">Pipeline</span><span class="db-metric">$51M</span><svg class="db-mini-spark" viewBox="0 0 60 18" preserveAspectRatio="none"><polyline points="0,12 12,14 24,8 36,10 48,4 60,6" stroke="var(--dh-orange)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+                <div class="db-unified__kpi"><span class="db-label">Operations</span><span class="db-metric">$47M</span><svg class="db-mini-spark" viewBox="0 0 60 18" preserveAspectRatio="none"><polyline points="0,10 12,6 24,12 36,8 48,14 60,10" stroke="var(--dh-navy)" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.35"/></svg></div>
+                <div class="db-unified__kpi"><span class="db-label">Finance</span><span class="db-metric">$49.2M</span><svg class="db-mini-spark" viewBox="0 0 60 18" preserveAspectRatio="none"><polyline points="0,14 12,10 24,12 36,6 48,8 60,4" stroke="var(--dh-orange)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+                <div class="db-unified__kpi"><span class="db-label">CSAT</span><span class="db-metric">72<span class="db-unit">%</span></span><svg class="db-mini-spark" viewBox="0 0 60 18" preserveAspectRatio="none"><polyline points="0,16 12,12 24,14 36,8 48,10 60,6" stroke="var(--dh-orange)" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div>
+              </div>
+              <div class="db-unified__badge">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                Certified &middot; Single source of truth
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ② Problem -->
+    <section class="ucd-problem" data-screen-label="02 Problem">
+      <div class="container">
+        <div class="ucd-problem__inner reveal">
+          <span class="eyebrow">What actually happens</span>
+          <h2 style="font-weight:500;">The packaging problem that creates the trust problem.</h2>
+          <p>Analysts pull numbers from multiple systems, assemble decks, and distribute on a schedule. By the time the executive reads it, it's stale. When two leaders compare notes and the numbers differ — different tools, different time windows — strategy conversations become data reconciliation conversations.</p>
+          <p>The CFO has one set of numbers. The COO has another. The CEO is asking which one to trust. The answer — that they're both right but measuring slightly different things — isn't one anyone wants to give in a board meeting.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ③ Why it's hard -->
+    <section class="ucd-hard" data-screen-label="03 Why it's hard">
+      <div class="container">
+        <div class="ucd-hard__inner">
+          <div class="ucd-hard__head reveal">
+            <span class="eyebrow">Why this doesn't get fixed</span>
+            <h2 style="font-weight:500;">Why executive reporting keeps breaking at the worst moments.</h2>
+            <p>Push delivery fails at edge cases. No single analyst has a complete picture across fragmented BI tools.</p>
+          </div>
+
+          <ul class="ucd-hard__list reveal">
+            <li>Push delivery fails at edge cases: Sunday evenings, board meetings, absent report authors.</li>
+            <li>No single analyst has a complete picture across fragmented BI tools.</li>
+            <li>Certification is informal. Executives rely on memory and context clues to identify the "official" version.</li>
+            <li>Trust erodes slowly. One "which number is right?" moment creates skepticism that outlasts the incident.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ④ How Digital Hive solves it -->
+    <section class="ucd-solve" data-screen-label="04 How Digital Hive solves it">
+      <div class="container">
+        <div class="ucd-solve__head reveal">
+          <span class="eyebrow">What changes</span>
+          <h2 style="font-weight:500;">How Digital Hive solves it.</h2>
+          <p>Four shifts that put executives in control of their own data.</p>
+        </div>
+
+        <div class="ucd-solve__grid">
+          <div class="ucd-solve__item reveal">
+            <h3 style="font-weight:500;">One branded portal.</h3>
+            <p>Certified, current, cross-platform. Executives open one place — every time.</p>
+          </div>
+          <div class="ucd-solve__item reveal">
+            <h3 style="font-weight:500;">Self-serve when it matters.</h3>
+            <p>Data at the depth the moment requires, without waiting for analyst availability.</p>
+          </div>
+          <div class="ucd-solve__item reveal">
+            <h3 style="font-weight:500;">Certification eliminates version confusion.</h3>
+            <p>What's in the portal has been reviewed and marked authoritative. One answer.</p>
+          </div>
+          <div class="ucd-solve__item reveal">
+            <h3 style="font-weight:500;">New leaders productive immediately.</h3>
+            <p>Curated access to organizational performance from day one — no custom build required.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑤ Outcomes -->
+    <section class="ucd-outcomes" data-screen-label="05 Outcomes">
+      <div class="container">
+        <div class="ucd-outcomes__head reveal">
+          <span class="eyebrow">The impact</span>
+          <h2 style="font-weight:500;">What the research confirms.</h2>
+        </div>
+
+        <div class="ucd-outcomes__lede reveal">
+          <p class="ucd-outcomes__stat">2.5<span class="pct">×</span></p>
+          <div>
+            <p class="ucd-outcomes__statLine">Faster decision-making when executives have direct access to certified analytics.</p>
+            <p class="ucd-outcomes__source">DataStackHub BI Statistics, 2025–2026</p>
+            <p class="ucd-outcomes__note">The bottleneck isn't information — it's access, trust, and freshness. Enterprises where executives have direct access to certified analytics make decisions two and a half times faster.</p>
+          </div>
+        </div>
+
+        <div class="ucd-outcomes__grid">
+          <div class="ucd-outcome reveal">
+            <p class="ucd-outcome__big" style="font-size:50px;">Self-serve<br>on demand</p>
+            <p class="ucd-outcome__caption">On their schedule, at the depth the moment requires — without waiting for analyst availability.</p>
+          </div>
+          <div class="ucd-outcome reveal">
+            <p class="ucd-outcome__big" style="font-size:50px;">One<br>answer</p>
+            <p class="ucd-outcome__caption">One certified portal. One answer. Version arguments have nowhere to start.</p>
+          </div>
+          <div class="ucd-outcome reveal">
+            <p class="ucd-outcome__big" style="font-size:50px;">Day one<br>ready</p>
+            <p class="ucd-outcome__caption">New leaders productive immediately — curated access from day one, no custom dashboard build required.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑥ Related use cases -->
+    <section class="ucd-related" data-screen-label="06 Related use cases">
+      <div class="container">
+        <div class="ucd-related__head reveal">
+          <h3 style="font-weight:500;">Related use cases</h3>
+          <a href="../UseCases.html">All use cases →</a>
+        </div>
+
+        <div class="ucd-related__grid">
+          <a class="ucd-related__card reveal" href="multi-vendor-bi.html">
+            <span class="tag">Multi-vendor analytics</span>
+            <h4>Your BI tools multiplied. Your users are still confused.</h4>
+            <span class="arrow-row">Read this use case <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+          <a class="ucd-related__card reveal" href="self-service.html">
+            <span class="tag">Self-service</span>
+            <h4>Your business users want answers. Your BI team is the bottleneck.</h4>
+            <span class="arrow-row">Read this use case <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑦ Bottom CTA -->
+    <section class="ucd-cta" id="demo" data-screen-label="07 Bottom CTA">
+      <div class="ucd-cta__motif" aria-hidden="true"></div>
+      <div class="container">
+        <div class="ucd-cta__grid">
+          <div class="ucd-cta__copy reveal">
+            <span class="ucd-cta__eyebrow">Talk to us</span>
+            <h3 style="font-weight:500;">See this in action.</h3>
+            <p>Tell us your tool list and we'll walk you through Digital Hive using sample content from the same BI vendors you use today — in 30 minutes.</p>
+            <div class="ucd-cta__buttons">
+              <a class="btn btn--accent" href="../Demo.html">Book a demo <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              <a class="btn btn--ghost-light" href="../Contact.html">Contact sales</a>
+            </div>
+          </div>
+          <div class="ucd-cta__art reveal" aria-hidden="true">
+            <div class="ucd-cta__chaos"><span class="ucd-cta__tile ucd-cta__tile--1"></span><span class="ucd-cta__tile ucd-cta__tile--2"></span><span class="ucd-cta__tile ucd-cta__tile--3"></span><span class="ucd-cta__tile ucd-cta__tile--4"></span><span class="ucd-cta__tile ucd-cta__tile--5"></span></div>
+            <svg class="ucd-cta__arrow" viewBox="0 0 60 20" aria-hidden="true"><line x1="2" y1="10" x2="50" y2="10" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-linecap="round"/><polyline points="42,4 52,10 42,16" fill="none" stroke="var(--dh-orange)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="ucd-cta__order"><span class="ucd-cta__order-hex" aria-hidden="true"></span><span class="ucd-cta__order-line"></span><span class="ucd-cta__order-line"></span><span class="ucd-cta__order-line"></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" data-screen-label="Footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="../assets/logo-reversed.svg" alt="Digital Hive" />
+          <p>Where analytics finally make sense. An enterprise analytics catalog.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0H12v2.2h.07c.63-1.2 2.18-2.46 4.49-2.46 4.8 0 5.69 3.16 5.69 7.27V24h-5v-7.2c0-1.72-.03-3.93-2.4-3.93-2.4 0-2.77 1.87-2.77 3.81V24h-5V8z"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer__col"><h3>Product</h3><ul><li><a href="../Product.html#catalog">Catalog</a></li><li><a href="../Product.html#hub">BI Hub</a></li><li><a href="../Product.html#governance">Governance</a></li><li><a href="../Connectors.html">Connectors</a></li><li><a href="../Pricing.html">Pricing</a></li></ul></div>
+        <div class="footer__col"><h3>Use cases</h3><ul><li><a href="../UseCases.html">All use cases</a></li><li><a href="multi-vendor-bi.html">Multi-vendor BI</a></li><li><a href="cloud-migration.html">Cloud migration</a></li><li><a href="ma-integration.html">M&amp;A integration</a></li><li><a href="data-sovereignty.html">Data sovereignty</a></li></ul></div>
+        <div class="footer__col"><h3>Company</h3><ul><li><a href="../About.html">About</a></li><li><a href="../About.html#team">Leadership</a></li><li><a href="../Customers.html">Customers</a></li><li><a href="../Contact.html">Contact</a></li><li><a href="#">Careers</a></li></ul></div>
+        <div class="footer__col"><h3>Resources</h3><ul><li><a href="../Resources.html">Library</a></li><li><a href="../FAQ.html">FAQ</a></li><li><a href="../Home.html#research">ISG report</a></li><li><a href="#">Blog</a></li><li><a href="#">Support</a></li></ul></div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Digital Hive</span>
+        <ul><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="#">Trust center</a></li></ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../scripts/site.js"></script>
+</body>
+</html>

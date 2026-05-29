@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Analytics Adoption &amp; BI ROI - Digital Hive</title>
+  <meta name="description" content="Low adoption isn't a training problem. It's an access and trust problem quietly eroding your analytics ROI. Digital Hive solves it for the 80% who gave up." />
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/site.css" />
+  <link rel="stylesheet" href="../styles/usecase-detail.css" />
+</head>
+<body>
+
+  <header class="nav" data-screen-label="Navigation">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="../Home.html" aria-label="Digital Hive home" style="border-bottom:none;"><img src="../assets/logo-colour.svg" alt="Digital Hive" /></a>
+      <nav aria-label="Primary">
+        <ul class="nav__links">
+          <li><a href="../Product.html">Product</a></li>
+          <li><a href="../UseCases.html" style="color:var(--dh-orange);">Use cases</a></li>
+          <li><a href="../Customers.html">Customers</a></li>
+          <li><a href="../Resources.html">Resources</a></li>
+          <li><a href="../Pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn btn--primary" href="../Demo.html">Book a demo</a>
+        <button type="button" class="nav__toggle" data-mobile-toggle aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="container mobile-menu" data-mobile-menu>
+      <ul>
+        <li><a href="../Product.html">Product</a></li><li><a href="../UseCases.html">Use cases</a></li>
+        <li><a href="../Customers.html">Customers</a></li><li><a href="../Resources.html">Resources</a></li>
+        <li><a href="../Pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <div class="container">
+        <ol>
+          <li><a href="../UseCases.html">Use cases</a></li>
+          <li class="sep" aria-hidden="true">/</li>
+          <li class="current">Adoption &amp; ROI</li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- ① Header / hero -->
+    <section class="ucd-header" data-screen-label="01 Header">
+      <div class="ucd-header__motif" aria-hidden="true"></div>
+      <div class="container">
+        <div class="ucd-header__grid">
+
+          <div class="ucd-header__copy reveal">
+            <span class="ucd-header__tag"><span class="dot" aria-hidden="true"></span>Adoption &amp; ROI</span>
+            <h1 style="font-weight:500;">You've invested heavily in BI. Half your users still aren't using it.</h1>
+            <p class="ucd-header__sub">Digital Hive solves the access and trust problem that training can't — making analytics work for the 80% who gave up, not just the 20% who figured it out.</p>
+          </div>
+
+          <!-- Hero art: user-role chips waking up as adoption grows -->
+          <div class="ucd-art reveal art-adopt" aria-hidden="true">
+            <style>
+              @keyframes adoptWake {
+                0%, 45% { opacity: 0.22; filter: grayscale(0.85); }
+                62%, 90% { opacity: 1; filter: grayscale(0); }
+                100%     { opacity: 0.22; filter: grayscale(0.85); }
+              }
+              .art-adopt .chip-w1 { animation: adoptWake 10s 1.5s ease-in-out infinite; }
+              .art-adopt .chip-w2 { animation: adoptWake 10s 3s   ease-in-out infinite; }
+              .art-adopt .chip-w3 { animation: adoptWake 10s 4.5s ease-in-out infinite; }
+              @keyframes adoptBar {
+                0%, 40% { width: 21%; }
+                62%, 88% { width: 63%; }
+                100%     { width: 21%; }
+              }
+              .art-adopt .ar-bar  { height: 5px; border-radius: 3px; background: rgba(25,51,89,0.10); overflow: hidden; margin: 6px 0 4px; }
+              .art-adopt .ar-fill { height: 100%; border-radius: 3px; background: var(--dh-orange); width: 21%; animation: adoptBar 10s ease-in-out infinite; }
+              .art-adopt .ar-row  { display: flex; justify-content: space-between; align-items: baseline; }
+              .art-adopt .ar-pct  { font-size: 22px; font-weight: 700; letter-spacing: -0.02em; color: var(--dh-navy); line-height: 1; }
+              .art-adopt .ar-unit { font-size: 11px; font-weight: 700; color: var(--dh-orange); }
+              .art-adopt .ar-lbl  { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-3); }
+            </style>
+            <span class="ucd-art__hex"></span>
+
+            <div class="ucd-art__chip" style="top:4%;left:5%;transform:rotate(-3deg);">
+              <span class="dot" style="background:var(--dh-navy);"></span>Power Users
+            </div>
+            <div class="ucd-art__chip" style="top:2%;right:5%;transform:rotate(2deg);">
+              <span class="dot" style="background:var(--dh-orange);"></span>Analysts
+            </div>
+            <div class="ucd-art__chip chip-w1" style="top:45%;left:0%;transform:rotate(-2deg);">
+              <span class="dot" style="background:var(--dh-grey);"></span>Finance Team
+            </div>
+            <div class="ucd-art__chip chip-w2" style="top:52%;right:2%;transform:rotate(3deg);">
+              <span class="dot" style="background:var(--dh-grey);"></span>Sales Ops
+            </div>
+            <div class="ucd-art__chip chip-w3" style="bottom:4%;left:20%;transform:rotate(-2deg);">
+              <span class="dot" style="background:var(--dh-grey);"></span>HR Users
+            </div>
+
+            <svg class="ucd-art__lines" viewBox="0 0 400 320" preserveAspectRatio="none">
+              <g fill="none" stroke="rgba(36,66,113,0.20)" stroke-width="1" stroke-dasharray="3 4">
+                <path d="M 55 55  Q 170 130 200 170"/>
+                <path d="M 345 50 Q 245 120 200 170"/>
+                <path d="M 28 180 Q 130 175 200 170"/>
+                <path d="M 370 200 Q 275 195 200 170"/>
+                <path d="M 115 300 Q 172 235 200 190"/>
+              </g>
+            </svg>
+
+            <div class="ucd-art__hub">
+              <div class="ucd-art__hub-top">
+                <span class="ucd-art__brand"><span class="hex"></span>Digital Hive</span>
+                <span class="ucd-art__cert">Live</span>
+              </div>
+              <div class="ar-row"><span class="ar-lbl">Active users</span></div>
+              <div class="ar-bar"><div class="ar-fill"></div></div>
+              <div class="ar-row">
+                <span class="ar-pct">63<span class="ar-unit">%</span></span>
+                <span class="ar-lbl">↑ from 21%</span>
+              </div>
+            </div>
+
+            <span class="ucd-art__dot ucd-art__dot--o"></span>
+            <span class="ucd-art__dot ucd-art__dot--y"></span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ② Problem -->
+    <section class="ucd-problem" data-screen-label="02 Problem">
+      <div class="container">
+        <div class="ucd-problem__inner reveal">
+          <span class="eyebrow">What actually happens</span>
+          <h2 style="font-weight:500;">The usage gap that compounds every year.</h2>
+          <p>Platforms deployed. Licenses purchased. Training delivered. Six months later, 20% of licensed users log in regularly. Users point to ten minutes of searching just to find a report, and another ten deciding whether to trust it.</p>
+          <p>The response is usually to buy more. The access problem stays unsolved.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ③ Why it's hard -->
+    <section class="ucd-hard" data-screen-label="03 Why it's hard">
+      <div class="container">
+        <div class="ucd-hard__inner">
+          <div class="ucd-hard__head reveal">
+            <span class="eyebrow">Why this doesn't get fixed</span>
+            <h2 style="font-weight:500;">Why adoption programs don't move the number.</h2>
+            <p>BI adoption is treated as a change management problem. It's a product experience problem.</p>
+          </div>
+          <ul class="ucd-hard__list reveal">
+            <li>BI adoption is treated as a change management problem. It's a product experience problem.</li>
+            <li>Most environments are built for power users. The 80% tried once, hit friction, and stopped.</li>
+            <li>ROI is calculated on platform capability — not on whether users can find and trust what's been built.</li>
+            <li>Buying another tool makes the access problem worse.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ④ How Digital Hive solves it -->
+    <section class="ucd-solve" data-screen-label="04 How Digital Hive solves it">
+      <div class="container">
+        <div class="ucd-solve__head reveal">
+          <span class="eyebrow">What changes</span>
+          <h2 style="font-weight:500;">How Digital Hive solves it.</h2>
+          <p>Four shifts that move the adoption number.</p>
+        </div>
+        <div class="ucd-solve__grid">
+          <div class="ucd-solve__item reveal">
+            <h3 style="font-weight:500;">One front door for the 80%.</h3>
+            <p>A simple, familiar access experience that works for casual users — not just power users.</p>
+          </div>
+          <div class="ucd-solve__item reveal">
+            <h3 style="font-weight:500;">Organic adoption.</h3>
+            <p>Users who haven't touched BI in months find it through a search they understand. No retraining required.</p>
+          </div>
+          <div class="ucd-solve__item reveal">
+            <h3 style="font-weight:500;">Reportable ROI.</h3>
+            <p>Views, unique users, adoption trends — clear evidence for budget conversations.</p>
+          </div>
+          <div class="ucd-solve__item reveal">
+            <h3 style="font-weight:500;">More from what you own.</h3>
+            <p>Stop buying tools to solve the access problem. Start using what you already have.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑤ Outcomes -->
+    <section class="ucd-outcomes" data-screen-label="05 Outcomes">
+      <div class="container">
+        <div class="ucd-outcomes__head reveal">
+          <span class="eyebrow">The impact</span>
+          <h2 style="font-weight:500;">What the research confirms.</h2>
+        </div>
+        <div class="ucd-outcomes__lede reveal">
+          <p class="ucd-outcomes__stat">$28.1<span class="pct">B</span></p>
+          <div>
+            <p class="ucd-outcomes__statLine">Spent on BI software globally in 2025 — yet most organizations can't demonstrate utilization across that investment.</p>
+            <p class="ucd-outcomes__source">Gartner, 2025</p>
+            <p class="ucd-outcomes__note">Enterprises with centralized usage visibility report 40% higher analytics ROI than those without it. Spend is at an all-time high. The access problem is the missing piece.</p>
+          </div>
+        </div>
+        <div class="ucd-outcomes__grid">
+          <div class="ucd-outcome reveal">
+            <p class="ucd-outcome__big" style="font-size:50px;">20% to<br>60%+</p>
+            <p class="ucd-outcome__caption">Active users — without purchasing new tools — by making what exists findable.</p>
+          </div>
+          <div class="ucd-outcome reveal">
+            <p class="ucd-outcome__big" style="font-size:50px;">ROI<br>visible</p>
+            <p class="ucd-outcome__caption">Usage dashboards give BI leadership clear evidence for budget conversations — not estimates.</p>
+          </div>
+          <div class="ucd-outcome reveal">
+            <p class="ucd-outcome__big" style="font-size:50px;">Non-users<br>active</p>
+            <p class="ucd-outcome__caption">Through an access experience that finally works — not a retraining program.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑥ Related use cases -->
+    <section class="ucd-related" data-screen-label="06 Related use cases">
+      <div class="container">
+        <div class="ucd-related__head reveal">
+          <h3 style="font-weight:500;">Related use cases</h3>
+          <a href="../UseCases.html">All use cases →</a>
+        </div>
+        <div class="ucd-related__grid">
+          <a class="ucd-related__card reveal" href="usage-discovery.html">
+            <span class="tag">Usage &amp; discovery</span>
+            <h4>You have thousands of reports. Nobody knows which ones matter.</h4>
+            <span class="arrow-row">Read this use case <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+          <a class="ucd-related__card reveal" href="self-service.html">
+            <span class="tag">Self-service</span>
+            <h4>Your business users want answers. Your BI team is the bottleneck.</h4>
+            <span class="arrow-row">Read this use case <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑦ Bottom CTA -->
+    <section class="ucd-cta" id="demo" data-screen-label="07 Bottom CTA">
+      <div class="ucd-cta__motif" aria-hidden="true"></div>
+      <div class="container">
+        <div class="ucd-cta__grid">
+          <div class="ucd-cta__copy reveal">
+            <span class="ucd-cta__eyebrow">Talk to us</span>
+            <h3 style="font-weight:500;">See this in action.</h3>
+            <p>Tell us your tool list and we'll walk you through Digital Hive using sample content from the same BI vendors you use today — in 30 minutes.</p>
+            <div class="ucd-cta__buttons">
+              <a class="btn btn--accent" href="../Demo.html">Book a demo <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              <a class="btn btn--ghost-light" href="../Contact.html">Contact sales</a>
+            </div>
+          </div>
+          <div class="ucd-cta__art reveal" aria-hidden="true">
+            <div class="ucd-cta__chaos"><span class="ucd-cta__tile ucd-cta__tile--1"></span><span class="ucd-cta__tile ucd-cta__tile--2"></span><span class="ucd-cta__tile ucd-cta__tile--3"></span><span class="ucd-cta__tile ucd-cta__tile--4"></span><span class="ucd-cta__tile ucd-cta__tile--5"></span></div>
+            <svg class="ucd-cta__arrow" viewBox="0 0 60 20" aria-hidden="true"><line x1="2" y1="10" x2="50" y2="10" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-linecap="round"/><polyline points="42,4 52,10 42,16" fill="none" stroke="var(--dh-orange)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="ucd-cta__order"><span class="ucd-cta__order-hex" aria-hidden="true"></span><span class="ucd-cta__order-line"></span><span class="ucd-cta__order-line"></span><span class="ucd-cta__order-line"></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" data-screen-label="Footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="../assets/logo-reversed.svg" alt="Digital Hive" />
+          <p>Where analytics finally make sense. An enterprise analytics catalog.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0H12v2.2h.07c.63-1.2 2.18-2.46 4.49-2.46 4.8 0 5.69 3.16 5.69 7.27V24h-5v-7.2c0-1.72-.03-3.93-2.4-3.93-2.4 0-2.77 1.87-2.77 3.81V24h-5V8z"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer__col"><h3>Product</h3><ul><li><a href="../Product.html#catalog">Catalog</a></li><li><a href="../Product.html#hub">BI Hub</a></li><li><a href="../Product.html#governance">Governance</a></li><li><a href="../Connectors.html">Connectors</a></li><li><a href="../Pricing.html">Pricing</a></li></ul></div>
+        <div class="footer__col"><h3>Use cases</h3><ul><li><a href="../UseCases.html">All use cases</a></li><li><a href="multi-vendor-bi.html">Multi-vendor BI</a></li><li><a href="cloud-migration.html">Cloud migration</a></li><li><a href="ma-integration.html">M&amp;A integration</a></li><li><a href="data-sovereignty.html">Data sovereignty</a></li></ul></div>
+        <div class="footer__col"><h3>Company</h3><ul><li><a href="../About.html">About</a></li><li><a href="../About.html#team">Leadership</a></li><li><a href="../Customers.html">Customers</a></li><li><a href="../Contact.html">Contact</a></li><li><a href="#">Careers</a></li></ul></div>
+        <div class="footer__col"><h3>Resources</h3><ul><li><a href="../Resources.html">Library</a></li><li><a href="../FAQ.html">FAQ</a></li><li><a href="../Home.html#research">ISG report</a></li><li><a href="#">Blog</a></li><li><a href="#">Support</a></li></ul></div>
+      </div>
+      <div class="footer__bottom"><span>&copy; 2026 Digital Hive</span><ul><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="#">Trust center</a></li></ul></div>
+    </div>
+  </footer>
+
+  <script src="../scripts/site.js"></script>
+</body>
+</html>

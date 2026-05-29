@@ -1,0 +1,403 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Use cases - Digital Hive</title>
+  <meta name="description" content="Every BI environment has its own complexity. Pick the category that looks like yours - user experience, transformation, or governance - and find the situation we hear most often." />
+  <link rel="stylesheet" href="styles/tokens.css" />
+  <link rel="stylesheet" href="styles/site.css" />
+  <link rel="stylesheet" href="styles/usecases.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION (shared)
+       ============================================================ -->
+  <header class="nav" data-screen-label="Navigation">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="Home.html" aria-label="Digital Hive home" style="border-bottom:none;">
+        <img src="assets/logo-colour.svg" alt="Digital Hive" />
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav__links">
+          <li><a href="Product.html">Product</a></li>
+          <li><a href="UseCases.html" aria-current="page" style="color:var(--dh-orange);">Use cases</a></li>
+          <li><a href="Customers.html">Customers</a></li>
+          <li><a href="Resources.html">Resources</a></li>
+          <li><a href="Pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn btn--primary" href="Demo.html">Book a demo</a>
+        <button type="button" class="nav__toggle" data-mobile-toggle aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="container mobile-menu" data-mobile-menu>
+      <ul>
+        <li><a href="Product.html">Product</a></li>
+        <li><a href="UseCases.html">Use cases</a></li>
+        <li><a href="Customers.html">Customers</a></li>
+        <li><a href="Resources.html">Resources</a></li>
+        <li><a href="Pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         1 - HEADER (condensed, with illustration)
+         Visual: stacked dashboard tiles + hex backdrop suggests
+         "many environments, one view". This is a placeholder
+         illustration built in CSS/HTML so it's easy to swap for
+         a real graphic or photo later.
+         ============================================================ -->
+    <section class="uc-hero" data-screen-label="01 Header">
+      <div class="uc-hero__motif" aria-hidden="true"></div>
+      <div class="container">
+        <div class="uc-hero__grid">
+          <div class="reveal">
+            <span class="eyebrow">Use cases</span>
+            <h1>Every BI environment has its own complexity. We've seen it.</h1>
+            <p class="uc-hero__sub">What are you trying to solve? Pick a category below to narrow down to the situations we hear most often.</p>
+          </div>
+
+          <div class="uc-art reveal" aria-hidden="true">
+            <span class="uc-art__hex"></span>
+            <span class="uc-art__dot uc-art__dot--o"></span>
+            <span class="uc-art__dot uc-art__dot--y"></span>
+            <span class="uc-art__dot uc-art__dot--n"></span>
+
+            <div class="uc-tile uc-tile--a">
+              <div class="uc-tile__top">Power BI <span class="pill">Certified</span></div>
+              <div class="uc-tile__big">$48.2M</div>
+              <div class="uc-tile__delta">+12.4% YoY</div>
+            </div>
+
+            <div class="uc-tile uc-tile--c">
+              <div class="uc-tile__top">Tableau</div>
+              <div class="uc-tile__bars">
+                <span style="height:42%"></span>
+                <span style="height:78%"></span>
+                <span style="height:56%"></span>
+                <span style="height:92%"></span>
+                <span style="height:64%"></span>
+              </div>
+            </div>
+
+            <div class="uc-tile uc-tile--b">
+              <div class="uc-tile__top">Digital Hive <span class="pill" style="background:var(--dh-navy);color:#fff;">Catalog</span></div>
+              <div class="uc-tile__rows">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div class="uc-tile__line">
+                <svg viewBox="0 0 200 40" preserveAspectRatio="none">
+                  <polyline fill="none" stroke="#F39235" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"
+                            points="0,28 28,22 56,30 84,14 112,20 140,8 168,16 200,6" />
+                </svg>
+              </div>
+            </div>
+
+            <div class="uc-tile uc-tile--d">
+              <div class="uc-tile__top">Cognos <span class="pill">Live</span></div>
+              <div class="uc-tile__rows">
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         2 - NINE CARDS (all visible, grouped with side heading)
+         ============================================================ -->
+    <section class="uc-grid-section" data-screen-label="02 Use case grid">
+      <div class="container">
+
+        <!-- ============== USER EXPERIENCE ============== -->
+        <div class="uc-group-row" data-group="ux">
+          <div class="uc-group-row__head reveal">
+            <h2 class="uc-group-row__title" style="font-weight: 500">User experience</h2>
+            <p class="uc-group-row__sub">Find Â· Trust Â· Use</p>
+          </div>
+          <div class="uc-group-row__cards">
+            <a class="uc-card reveal" data-group="ux" href="use-cases/multi-vendor-bi.html">
+              <span class="uc-card__index">Multi-vendor analytics</span>
+              <h3 style="font-weight: 500">Your BI tools multiplied. Your users are still confused.</h3>
+              <p class="uc-card__problem">Organizations rarely standardize on a single BI platform. The result is scattered analytics and users hunting across multiple tools to find what they need â€” if it exists at all.</p>
+              <span class="uc-card__divider" aria-hidden="true"></span>
+              <ul class="uc-card__outcomes">
+                <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>One front door to every tool</span></li>
+                <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Certified reports surfaced first</span></li>
+                <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>SSO across all platforms</span></li>
+              </ul>
+              <span class="uc-card__link">
+                See how it works
+                <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </a>
+
+            <a class="uc-card reveal" data-group="ux" href="use-cases/self-service.html">
+              <span class="uc-card__index">Self-service</span>
+              <h3 style="font-weight: 500">Your business users want answers. Your BI team is the bottleneck.</h3>
+              <p class="uc-card__problem">Every "can you pull a report for me?" request is a symptom. The real problem is that business users can't find, trust, or access analytics on their own â€” so they don't try.</p>
+              <span class="uc-card__divider" aria-hidden="true"></span>
+              <ul class="uc-card__outcomes">
+                <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Certified content surfaces first â€” every search</span></li>
+                <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Clear ownership of reports and content</span></li>
+                <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Insights without asking IT</span></li>
+              </ul>
+              <span class="uc-card__link">
+                See how it works
+                <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </a>
+
+            <a class="uc-card reveal" data-group="ux" href="use-cases/executive-reporting.html">
+              <span class="uc-card__index">Executive reporting</span>
+              <h3 style="font-weight: 500">Your executive is working from five dashboards. None of them agree.</h3>
+              <p class="uc-card__problem">The CFO has one set of numbers. The COO has another. The CEO is asking which one to trust â€” and the answer that they're both right but measuring slightly different things isn't one anyone wants to give in a board meeting.</p>
+              <span class="uc-card__divider" aria-hidden="true"></span>
+              <ul class="uc-card__outcomes">
+                <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Curated, certified dashboards in a single branded portal</span></li>
+                <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>One source of truth â€” across every BI tool</span></li>
+                <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Always current, always accessible â€” no analyst required</span></li>
+              </ul>
+              <span class="uc-card__link">
+                See how it works
+                <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- ============== TRANSFORMATION ============== -->
+        <div class="uc-group-row" data-group="trans">
+          <div class="uc-group-row__head reveal">
+            <h2 class="uc-group-row__title" style="font-weight: 500">Transformation</h2>
+            <p class="uc-group-row__sub">Migrate Â· Merge Â· Consolidate</p>
+          </div>
+          <div class="uc-group-row__cards">
+            <a class="uc-card reveal" data-group="trans" href="use-cases/ma-integration.html">
+              <span class="uc-card__index">Mergers &amp; acquisitions</span>
+              <h3 style="font-weight: 500">You just acquired a company. Their BI is not your BI.</h3>
+              <p class="uc-card__problem">Day one of an acquisition, two analytics ecosystems collide. Different tools, different metric definitions, different governance standards.</p>
+              <span class="uc-card__divider" aria-hidden="true"></span>
+              <ul class="uc-card__outcomes">
+                <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Unified catalog across both entities on day one</span></li>
+                <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Side-by-side report reconciliation</span></li>
+                <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Single access point for combined-entity reporting</span></li>
+              </ul>
+              <span class="uc-card__link">
+                See how it works
+                <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </a>
+
+            <a class="uc-card reveal" data-group="trans" href="use-cases/cloud-migration.html">
+              <span class="uc-card__index">Migration &amp; modernization</span>
+              <h3 style="font-weight: 500">You're modernizing your BI stack. Your users can't tell.</h3>
+              <p class="uc-card__problem">Modern BI platform selected. Migration underway. But the old platform still holds months of content your teams depend on â€” and now users are stuck managing two systems at once.</p>
+              <span class="uc-card__divider" aria-hidden="true"></span>
+              <ul class="uc-card__outcomes">
+                <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>One interface spanning legacy and modern platforms</span></li>
+                <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Users find content without knowing which platform hosts it</span></li>
+                <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Migrate at your own pace â€” driven by usage, not pressure</span></li>
+              </ul>
+              <span class="uc-card__link">
+                See how it works
+                <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </a>
+
+            <a class="uc-card reveal" data-group="trans" href="use-cases/consolidation.html">
+              <span class="uc-card__index">Consolidate / rationalize</span>
+              <h3 style="font-weight: 500">You have five BI tools. You want two. But you can't cut anything yet.</h3>
+              <p class="uc-card__problem">Every consolidation effort stalls at the same question: which reports are people actually using? Without that answer, nothing can be decommissioned safely.</p>
+              <span class="uc-card__divider" aria-hidden="true"></span>
+              <ul class="uc-card__outcomes">
+                <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Usage analytics across every platform â€” finally in one place</span></li>
+                <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Identify what's active, stale, or duplicated before you cut</span></li>
+                <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Consolidate confidently, incrementally, without disruption</span></li>
+              </ul>
+              <span class="uc-card__link">
+                See how it works
+                <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <!-- ============== GOVERNANCE ============== -->
+        <div class="uc-group-row" data-group="govern">
+          <div class="uc-group-row__head reveal">
+            <h2 class="uc-group-row__title" style="font-weight: 500">Governance</h2>
+            <p class="uc-group-row__sub">Sovereignty Â· Adoption Â· Discovery</p>
+          </div>
+          <div class="uc-group-row__cards">
+            <a class="uc-card reveal" data-group="govern" href="use-cases/data-sovereignty.html">
+              <span class="uc-card__index">Sovereignty &amp; compliance</span>
+              <h3 style="font-weight: 500">Your data can't move. Your governance can't slip.</h3>
+              <p class="uc-card__problem">In financial services, healthcare, and EU-regulated environments, data residency isn't optional. Any solution that moves content creates audit exposure.</p>
+              <span class="uc-card__divider" aria-hidden="true"></span>
+              <ul class="uc-card__outcomes">
+                <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Content stays in its source â€” nothing copied or moved</span></li>
+                <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Source-platform security inherited automatically</span></li>
+                <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Audit trails &amp; lineage for compliance reporting</span></li>
+              </ul>
+              <span class="uc-card__link">
+                See how it works
+                <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </a>
+
+            <a class="uc-card reveal" data-group="govern" href="use-cases/adoption-roi.html">
+              <span class="uc-card__index">Adoption &amp; ROI</span>
+              <h3 style="font-weight: 500">You've spent &amp; spent on BI. Half your users still aren't using it.</h3>
+              <p class="uc-card__problem">Low adoption isn't a training problem or a tool problem. It's an access and trust problem â€” and it's quietly eroding the return on your entire analytics investment.</p>
+              <span class="uc-card__divider" aria-hidden="true"></span>
+              <ul class="uc-card__outcomes">
+                <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Single access point that makes analytics intuitive</span></li>
+                <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Adoption metrics you can show the business</span></li>
+                <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Maximize the value of tools you already own â€” before buying more</span></li>
+              </ul>
+              <span class="uc-card__link">
+                See how it works
+                <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </a>
+
+            <a class="uc-card reveal" data-group="govern" href="use-cases/usage-discovery.html">
+              <span class="uc-card__index">Usage &amp; discovery</span>
+              <h3 style="font-weight: 500">You have thousands of reports. Nobody knows which ones matter.</h3>
+              <p class="uc-card__problem">Most BI environments have more content than anyone can manage â€” and no way to tell what's valuable, what's stale, and what's been built three times by three different teams.</p>
+              <span class="uc-card__divider" aria-hidden="true"></span>
+              <ul class="uc-card__outcomes">
+                <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Usage signals across all platforms â€” views, trends, activity</span></li>
+                <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Surface what's active, flag what's abandoned</span></li>
+                <li><span class="check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span>Guide users to the most trusted content automatically</span></li>
+              </ul>
+              <span class="uc-card__link">
+                See how it works
+                <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3 - BOTTOM CTA (dedicated section, navy panel + illustration)
+         ============================================================ -->
+    <section class="uc-cta" id="demo" data-screen-label="03 Bottom CTA">
+      <div class="uc-cta__motif" aria-hidden="true"></div>
+      <div class="container">
+        <div class="uc-cta__grid">
+          <div class="uc-cta__copy reveal">
+            <span class="uc-cta__eyebrow">Talk to us</span>
+            <h2>Ready to simplify your situation?</h2>
+            <p>Tell us about your environment â€” your tools, your users, your governance constraints â€” and we'll walk you through Digital Hive using sample content from the same BI vendors you use today.</p>
+            <div class="uc-cta__buttons">
+              <a class="btn btn--accent" href="Demo.html">
+                Book a demo
+                <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+              <a class="btn btn--ghost-light" href="#contact">Contact sales</a>
+            </div>
+          </div>
+
+          <!-- Illustration: chaotic stack of tiles resolving to one clean tile -->
+          <div class="uc-cta__art reveal" aria-hidden="true">
+            <div class="uc-cta__chaos">
+              <span class="uc-cta__tile uc-cta__tile--1"></span>
+              <span class="uc-cta__tile uc-cta__tile--2"></span>
+              <span class="uc-cta__tile uc-cta__tile--3"></span>
+              <span class="uc-cta__tile uc-cta__tile--4"></span>
+              <span class="uc-cta__tile uc-cta__tile--5"></span>
+            </div>
+
+            <svg class="uc-cta__arrow" viewBox="0 0 60 20" aria-hidden="true">
+              <line x1="2" y1="10" x2="50" y2="10" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-linecap="round"/>
+              <polyline points="42,4 52,10 42,16" fill="none" stroke="var(--dh-orange)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+
+            <div class="uc-cta__order">
+              <span class="uc-cta__order-hex" aria-hidden="true"></span>
+              <span class="uc-cta__order-line"></span>
+              <span class="uc-cta__order-line"></span>
+              <span class="uc-cta__order-line"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FOOTER (shared)
+       ============================================================ -->
+  <footer class="footer" data-screen-label="Footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="assets/logo-reversed.svg" alt="Digital Hive" />
+          <p>Where analytics finally make sense. An enterprise analytics catalog.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0H12v2.2h.07c.63-1.2 2.18-2.46 4.49-2.46 4.8 0 5.69 3.16 5.69 7.27V24h-5v-7.2c0-1.72-.03-3.93-2.4-3.93-2.4 0-2.77 1.87-2.77 3.81V24h-5V8z"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer__col"><h3>Product</h3><ul>
+          <li><a href="Product.html#catalog">Catalog</a></li>
+          <li><a href="Product.html#hub">BI Hub</a></li>
+          <li><a href="Product.html#governance">Governance</a></li>
+          <li><a href="Connectors.html">Connectors</a></li>
+          <li><a href="Pricing.html">Pricing</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Use cases</h3><ul>
+          <li><a href="UseCases.html">All use cases</a></li>
+          <li><a href="use-cases/multi-vendor-bi.html">Multi-vendor BI</a></li>
+          <li><a href="use-cases/cloud-migration.html">Cloud migration</a></li>
+          <li><a href="use-cases/ma-integration.html">M&amp;A integration</a></li>
+          <li><a href="use-cases/data-sovereignty.html">Data sovereignty</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Company</h3><ul>
+          <li><a href="About.html">About</a></li>
+          <li><a href="About.html#team">Leadership</a></li>
+          <li><a href="Customers.html">Customers</a></li>
+          <li><a href="Contact.html">Contact</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Resources</h3><ul>
+          <li><a href="Resources.html">Library</a></li>
+          <li><a href="FAQ.html">FAQ</a></li>
+          <li><a href="Home.html#research">ISG report</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Support</a></li>
+        </ul></div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>&copy; 2026 Digital Hive</span>
+        <ul>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Trust center</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pricing - Digital Hive</title>
+  <meta name="description" content="Pricing built around your environment, not a seat count guess. Three factors drive the number - we'll explain them honestly and quote your specific situation." />
+  <link rel="stylesheet" href="styles/tokens.css" />
+  <link rel="stylesheet" href="styles/site.css" />
+  <link rel="stylesheet" href="styles/pricing.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION (shared)
+       ============================================================ -->
+  <header class="nav" data-screen-label="Navigation">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="Home.html" aria-label="Digital Hive home" style="border-bottom:none;">
+        <img src="assets/logo-colour.svg" alt="Digital Hive" />
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav__links">
+          <li><a href="Product.html">Product</a></li>
+          <li><a href="UseCases.html">Use cases</a></li>
+          <li><a href="Customers.html">Customers</a></li>
+          <li><a href="Resources.html">Resources</a></li>
+          <li><a href="Pricing.html" aria-current="page" style="color:var(--dh-orange);">Pricing</a></li>
+        </ul>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn btn--primary" href="Demo.html">Book a demo</a>
+        <button type="button" class="nav__toggle" data-mobile-toggle aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="container mobile-menu" data-mobile-menu>
+      <ul>
+        <li><a href="Product.html">Product</a></li>
+        <li><a href="UseCases.html">Use cases</a></li>
+        <li><a href="Customers.html">Customers</a></li>
+        <li><a href="Resources.html">Resources</a></li>
+        <li><a href="Pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         1 - HEADER
+         ============================================================ -->
+    <section class="pr-hero" data-screen-label="01 Header">
+      <div class="container">
+        <div class="pr-hero__grid">
+          <div class="pr-hero__copy reveal">
+            <span class="eyebrow">Pricing &amp; licensing</span>
+            <h1>Built around your deployment &mdash; not a seat count guess</h1>
+            <p>Digital Hive connects to the BI, AI, and content tools you already have &mdash; without replacing them. Pricing reflects your active users, your deployment model, and how far you want to extend access. Nothing else.</p>
+          </div>
+
+          <!-- Hero illustration: a "license card" showing flat per-user pricing -->
+          <div class="pr-hero__art reveal" aria-hidden="true">
+            <div class="pr-hero__hex-bg">
+              <span class="pr-hero__hex pr-hero__hex--1"></span>
+              <span class="pr-hero__hex pr-hero__hex--2"></span>
+              <span class="pr-hero__hex pr-hero__hex--3"></span>
+            </div>
+
+            <div class="pr-hero__card">
+              <div class="pr-hero__card-top">
+                <span class="pr-hero__card-brand">
+                  <span class="pr-hero__brand-hex"></span>
+                  Digital Hive
+                </span>
+                <span class="pr-hero__card-tag">License</span>
+              </div>
+
+              <ul class="pr-hero__line-items">
+                <li>
+                  <span class="pr-hero__li-key">Plan</span>
+                  <span class="pr-hero__li-val">Teams</span>
+                </li>
+                <li>
+                  <span class="pr-hero__li-key">Active users</span>
+                  <span class="pr-hero__li-val pr-hero__li-val--users">
+                    <span class="pr-hero__avatar"></span>
+                    <span class="pr-hero__avatar"></span>
+                    <span class="pr-hero__avatar"></span>
+                    <span class="pr-hero__avatar pr-hero__avatar--more">+</span>
+                  </span>
+                </li>
+                <li>
+                  <span class="pr-hero__li-key">Rate</span>
+                  <span class="pr-hero__li-val">Per user</span>
+                </li>
+                <li>
+                  <span class="pr-hero__li-key">Deployment</span>
+                  <span class="pr-hero__li-val">Private cloud</span>
+                </li>
+              </ul>
+
+              <div class="pr-hero__card-foot">
+                <span class="pr-hero__card-total-label">Per user / month</span>
+                <span class="pr-hero__card-total">
+                  <span class="pr-hero__card-curr">$</span>0<span class="pr-hero__card-cents">.00</span>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         2 - HOW PRICING WORKS - 2 VARIABLES
+         ============================================================ -->
+    <section class="factors" data-screen-label="02 How pricing works">
+      <div class="container">
+        <div class="factors__head reveal">
+          <span class="eyebrow">How pricing works</span>
+          <h2>Two variables shape the number</h2>
+        </div>
+
+        <div class="factors__grid">
+          <div class="factor reveal">
+            <h3>Active users</h3>
+            <p>One flat rate per active user. No role tiers, no admin-versus-viewer pricing. A user is a user.</p>
+            <p>You pay for adoption &mdash; not theoretical access. Connect as many BI and AI tools as your environment requires.</p>
+          </div>
+
+          <div class="factor reveal">
+            <h3>Deployment</h3>
+            <p>Team, enterprise, or external access requirements shape the proposed contract.</p>
+            <p>Deployment choice does not affect the per-user pricing &mdash; options include on-premises, private cloud and public cloud.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3 - PRICING TIERS
+         ============================================================ -->
+    <section class="tiers" data-screen-label="03 Pricing tiers">
+      <div class="container">
+        <div class="tiers__head reveal">
+          <span class="eyebrow">Pricing tiers</span>
+          <h2>Start where you are. Extend as you grow.</h2>
+          <p>Begin with a team deployment and add enterprise-wide or external access when the project calls for it.</p>
+        </div>
+
+        <div class="tiers__grid">
+          <article class="tier tier--teams reveal">
+            <header class="tier__head">
+              <span class="tier__name">Teams</span>
+              <span class="tier__kind">User based</span>
+            </header>
+            <p class="tier__audience">For departmental or divisional groups.</p>
+            <div class="tier__price">
+              <span class="tier__currency">$</span>
+              <span class="tier__amount">5</span>
+              <span class="tier__unit">USD&nbsp;<small>per user / month<sup>*</sup></small></span>
+            </div>
+            <a class="tier__cta tier__cta--primary" href="#quote">
+              Get a quote
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </article>
+
+          <span class="tier__connector" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>
+          </span>
+
+          <article class="tier tier--enterprise reveal">
+            <header class="tier__head">
+              <span class="tier__name">Enterprise</span>
+              <span class="tier__kind tier__kind--accent">Unlimited user access</span>
+            </header>
+            <p class="tier__audience">For large-scale enterprise deployments.</p>
+            <div class="tier__price tier__price--cs">
+              <span class="tier__cs-line">Tailored to your environment</span>
+            </div>
+            <a class="tier__cta" href="Contact.html">
+              Contact sales
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </article>
+
+          <span class="tier__connector" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 6 15 12 9 18"/></svg>
+          </span>
+
+          <article class="tier tier--external reveal">
+            <header class="tier__head">
+              <span class="tier__name">External access</span>
+              <span class="tier__kind tier__kind--accent">Usage, volume or application specific</span>
+            </header>
+            <p class="tier__audience">For customers, partners &amp; collaborators.</p>
+            <div class="tier__price tier__price--cs">
+              <span class="tier__cs-line">Priced to the access model</span>
+            </div>
+            <a class="tier__cta" href="Contact.html">
+              Contact sales
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </article>
+        </div>
+
+        <p class="tiers__footnote reveal"><sup>*</sup> Annual billing. Some limitations may apply to Enterprise and External Access licensing.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4 - CAPABILITIES (single unified checklist)
+         ============================================================ -->
+    <section class="included" data-screen-label="04 Capabilities">
+      <div class="container">
+        <div class="included__head reveal">
+          <span class="eyebrow">What's included</span>
+          <h2>Capabilities.</h2>
+          <p>Every plan includes the full core platform. Flat pricing model. No hidden fees or additional charges.</p>
+        </div>
+
+        <div class="included__card reveal">
+          <ul class="included__list">
+            <li>
+              <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span><strong>Unlimited platform instances</strong> <em>(development, QA, staging, production)</em></span>
+            </li>
+            <li>
+              <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span><strong>Upgrades &amp; hot fixes</strong></span>
+            </li>
+            <li>
+              <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span><strong>Global Customer Success team</strong> to support product and deployment inquiries</span>
+            </li>
+            <li>
+              <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span><strong>Complete connector library</strong> <em>(including new releases)</em></span>
+            </li>
+            <li>
+              <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span><strong>Single sign-on</strong> <em>(SAML, OIDC, Active Directory)</em></span>
+            </li>
+            <li>
+              <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span><strong>Certification and governance workflows</strong></span>
+            </li>
+            <li>
+              <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span><strong>Usage analytics</strong> across every connected tool</span>
+            </li>
+            <li>
+              <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span><strong>Multi-tenant Hives</strong> <em>(business unit or external portal isolation)</em></span>
+            </li>
+            <li>
+              <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span><strong>SLA guarantees</strong></span>
+            </li>
+            <li>
+              <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+              <span><strong>Implementation services</strong> &mdash; scoped per project and can be delivered by Digital Hive or an authorized partner</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5 - EVALUATION (no free trial)
+         ============================================================ -->
+    <section class="notrial" data-screen-label="05 Evaluation">
+      <div class="container">
+        <div class="notrial__inner">
+          <div class="notrial__head reveal">
+            <span class="eyebrow">Evaluation</span>
+            <h2>No free trial. Here&rsquo;s the honest reason why</h2>
+          </div>
+
+          <div class="reveal">
+            <p class="notrial__body">Digital Hive is an enterprise implementation, not a self-serve SaaS tool. A generic sandbox won&rsquo;t showcase how the platform will work in your environment.</p>
+            <p class="notrial__body">Our solution demo runs live &mdash; against multiple BI, AI, and content platforms. It&rsquo;s more useful than a trial and where a meaningful evaluation starts.</p>
+            <a class="notrial__link" href="Demo.html">
+              Request a demo
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         6 - QUOTE FORM
+         ============================================================ -->
+    <section class="quote" id="quote" data-screen-label="06 Quote form">
+      <div class="container">
+        <div class="quote__grid">
+          <div class="quote__head reveal">
+            <span class="eyebrow">Request a quote</span>
+            <h2>Get a quote for your environment.</h2>
+            <p>Tell us roughly what you&rsquo;re running and we&rsquo;ll price it specifically. No surprise add-ons in the proposal.</p>
+            <div class="quote__sla">
+              <span class="pulse" aria-hidden="true"></span>
+              We respond within one business day.
+            </div>
+          </div>
+
+          <form class="quote__form reveal" onsubmit="event.preventDefault(); this.querySelector('button[type=submit]').textContent='Received — we’ll be in touch.'; this.querySelector('button[type=submit]').disabled = true;">
+            <h3>Tell us about your environment.</h3>
+
+            <div class="quote__form-grid">
+              <div class="field">
+                <label for="q-first">First name</label>
+                <input id="q-first" name="firstName" type="text" autocomplete="given-name" required placeholder="Jordan" />
+              </div>
+              <div class="field">
+                <label for="q-last">Last name</label>
+                <input id="q-last" name="lastName" type="text" autocomplete="family-name" required placeholder="Patel" />
+              </div>
+              <div class="field full">
+                <label for="q-email">Business email</label>
+                <input id="q-email" name="email" type="email" autocomplete="email" required placeholder="jordan@acme.com" />
+              </div>
+              <div class="field">
+                <label for="q-company">Company</label>
+                <input id="q-company" name="company" type="text" autocomplete="organization" required placeholder="Acme Inc." />
+              </div>
+              <div class="field">
+                <label for="q-role">Role</label>
+                <select id="q-role" name="role" required>
+                  <option value="">Select&hellip;</option>
+                  <option>BI architect</option>
+                  <option>Analytics lead</option>
+                  <option>Chief Data Officer</option>
+                  <option>IT leadership</option>
+                  <option>Procurement</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="q-tools">Number of analytics tools</label>
+                <select id="q-tools" name="tools" required>
+                  <option value="">Select&hellip;</option>
+                  <option>1&ndash;2 tools</option>
+                  <option>3&ndash;4 tools</option>
+                  <option>5+ tools</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="q-usecase">Primary use case</label>
+                <select id="q-usecase" name="useCase" required>
+                  <option value="">Select&hellip;</option>
+                  <option>Unified access</option>
+                  <option>Migration</option>
+                  <option>M&amp;A integration</option>
+                  <option>Multi-tool consolidation</option>
+                  <option>Compliance &amp; sovereignty</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="field full">
+                <label for="q-users">Approximate user count</label>
+                <select id="q-users" name="users" required>
+                  <option value="">Select&hellip;</option>
+                  <option>Under 500</option>
+                  <option>500&ndash;2,500</option>
+                  <option>2,500&ndash;10,000</option>
+                  <option>10,000+</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="quote__form-submit">
+              <button class="btn btn--primary" type="submit">
+                Request a quote
+                <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </button>
+              <small>No commitment. No rip-and-replace pitch.</small>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         7 - FAQ
+         ============================================================ -->
+    <section class="faq" data-screen-label="07 FAQ">
+      <div class="container">
+        <div class="faq__inner">
+          <div class="faq__head reveal">
+            <span class="eyebrow">Frequently asked</span>
+            <h2>The questions we hear most.</h2>
+            <p>If you have one that isn&rsquo;t here, it&rsquo;s the kind of thing the demo is built to answer.</p>
+          </div>
+
+          <div class="faq__list reveal">
+            <details class="faq__item" open>
+              <summary>
+                <span>Do you offer a free trial?</span>
+                <span class="faq__plus" aria-hidden="true"></span>
+              </summary>
+              <p class="faq__answer">No &mdash; and here&rsquo;s the honest reason. Digital Hive connects to your actual BI environment. A sandbox trial tells you nothing meaningful about what the platform will do for your specific setup. Our solution demo is more useful: it runs live against multiple BI, AI, and content platforms so you can see exactly what a deployment in your environment looks like.</p>
+            </details>
+
+            <details class="faq__item">
+              <summary>
+                <span>Do admins or executives cost more than standard users?</span>
+                <span class="faq__plus" aria-hidden="true"></span>
+              </summary>
+              <p class="faq__answer">No. One flat rate per active user. No role tiers, no administrator markup, no internal-versus-external splits. A user is a user. Pricing is predictable.</p>
+            </details>
+
+            <details class="faq__item">
+              <summary>
+                <span>Does my deployment option affect pricing?</span>
+                <span class="faq__plus" aria-hidden="true"></span>
+              </summary>
+              <p class="faq__answer">Deployment type &mdash; on-premises, private cloud or public cloud &mdash; does not change the per-user rate.</p>
+            </details>
+
+            <details class="faq__item">
+              <summary>
+                <span>What does implementation involve?</span>
+                <span class="faq__plus" aria-hidden="true"></span>
+              </summary>
+              <p class="faq__answer">Most implementations are live within weeks, not months. Your existing BI tools stay in place &mdash; the implementation is platform installation, connector configuration and hive design, not tool migration. Implementation services are scoped per project and can be delivered by Digital Hive or a certified partner.</p>
+            </details>
+
+            <details class="faq__item">
+              <summary>
+                <span>Are there setup or onboarding fees?</span>
+                <span class="faq__plus" aria-hidden="true"></span>
+              </summary>
+              <p class="faq__answer">There are no surprise add-ons in a Digital Hive proposal. Implementation services, when scoped, are clearly itemized.</p>
+            </details>
+
+            <details class="faq__item">
+              <summary>
+                <span>What&rsquo;s the minimum commitment?</span>
+                <span class="faq__plus" aria-hidden="true"></span>
+              </summary>
+              <p class="faq__answer">Proposals are scoped based on your proposed deployment &mdash; active user count, and access requirements. We can discuss your situation and follow with a proposal.</p>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         8 - BOTTOM CTA
+         ============================================================ -->
+    <section class="pr-cta" data-screen-label="08 Bottom CTA">
+      <div class="pr-cta__motif" aria-hidden="true"></div>
+      <div class="container">
+        <div class="pr-cta__grid">
+          <div class="pr-cta__copy reveal">
+            <span class="pr-cta__eyebrow">Talk to us</span>
+            <h3>Ready to see it in your environment?</h3>
+            <p>See Digital Hive running live against multiple BI, AI, and content platforms &mdash; or get a quote shaped to your deployment.</p>
+            <div class="pr-cta__buttons">
+              <a class="btn btn--accent" href="Demo.html">
+                Request a demo
+                <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+              <a class="btn btn--ghost-light" href="#quote">Get a quote</a>
+            </div>
+          </div>
+
+          <div class="pr-cta__art reveal" aria-hidden="true">
+            <div class="pr-cta__hex-stack">
+              <span class="pr-cta__hex pr-cta__hex--1"></span>
+              <span class="pr-cta__hex pr-cta__hex--2"></span>
+              <span class="pr-cta__hex pr-cta__hex--3"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FOOTER (shared)
+       ============================================================ -->
+  <footer class="footer" data-screen-label="Footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="assets/logo-reversed.svg" alt="Digital Hive" />
+          <p>Where analytics finally make sense. An enterprise analytics catalog.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0H12v2.2h.07c.63-1.2 2.18-2.46 4.49-2.46 4.8 0 5.69 3.16 5.69 7.27V24h-5v-7.2c0-1.72-.03-3.93-2.4-3.93-2.4 0-2.77 1.87-2.77 3.81V24h-5V8z"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer__col"><h3>Product</h3><ul>
+          <li><a href="Product.html#catalog">Catalog</a></li>
+          <li><a href="Product.html#hub">BI Hub</a></li>
+          <li><a href="Product.html#governance">Governance</a></li>
+          <li><a href="Connectors.html">Connectors</a></li>
+          <li><a href="Pricing.html">Pricing</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Use cases</h3><ul>
+          <li><a href="UseCases.html">All use cases</a></li>
+          <li><a href="use-cases/multi-vendor-bi.html">Multi-vendor BI</a></li>
+          <li><a href="use-cases/cloud-migration.html">Cloud migration</a></li>
+          <li><a href="use-cases/ma-integration.html">M&amp;A integration</a></li>
+          <li><a href="use-cases/data-sovereignty.html">Data sovereignty</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Company</h3><ul>
+          <li><a href="About.html">About</a></li>
+          <li><a href="About.html#team">Leadership</a></li>
+          <li><a href="Customers.html">Customers</a></li>
+          <li><a href="Contact.html">Contact</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Resources</h3><ul>
+          <li><a href="Resources.html">Library</a></li>
+          <li><a href="FAQ.html">FAQ</a></li>
+          <li><a href="Home.html#research">ISG report</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Support</a></li>
+        </ul></div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>&copy; 2026 Digital Hive</span>
+        <ul>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Trust center</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/site.js"></script>
+</body>
+</html>

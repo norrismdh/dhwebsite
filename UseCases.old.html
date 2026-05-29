@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Use cases - Digital Hive</title>
+  <meta name="description" content="Every BI environment has its own complexity. Select the situation that looks like yours - multi-tool, migration, M&A, multi-tenant, multi-version, or compliance." />
+  <link rel="stylesheet" href="styles/tokens.css" />
+  <link rel="stylesheet" href="styles/site.css" />
+  <link rel="stylesheet" href="styles/usecases.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION (shared)
+       ============================================================ -->
+  <header class="nav" data-screen-label="Navigation">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="Home.html" aria-label="Digital Hive home" style="border-bottom:none;">
+        <img src="assets/logo-colour.svg" alt="Digital Hive" />
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav__links">
+          <li><a href="Product.html">Product</a></li>
+          <li><a href="UseCases.html" aria-current="page" style="color:var(--dh-orange);">Use cases</a></li>
+          <li><a href="Customers.html">Customers</a></li>
+          <li><a href="Resources.html">Resources</a></li>
+          <li><a href="Pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn btn--primary" href="Demo.html">Book a demo</a>
+        <button type="submit" class="nav__toggle" data-mobile-toggle aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="container mobile-menu" data-mobile-menu>
+      <ul>
+        <li><a href="Product.html">Product</a></li>
+        <li><a href="UseCases.html">Use cases</a></li>
+        <li><a href="Customers.html">Customers</a></li>
+        <li><a href="Resources.html">Resources</a></li>
+        <li><a href="Pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         1 - HEADER
+         ============================================================ -->
+    <section class="uc-hero" data-screen-label="01 Header">
+      <div class="container">
+        <div class="reveal">
+          <span class="eyebrow">Use cases</span>
+          <h1>Every BI environment has its own complexity. We've seen it.</h1>
+          <p class="uc-hero__sub">Select the situation that looks like yours.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         2 - SIX BIG CARDS
+         ============================================================ -->
+    <section class="uc-grid-section" data-screen-label="02 Use case grid">
+      <div class="container">
+        <div class="uc-grid">
+
+          <!-- CARD 1 - MULTI-TOOL -->
+          <a class="uc-card reveal" href="use-cases/multi-vendor-bi.html">
+            <span class="uc-card__index" aria-hidden="true">01</span>
+            <span class="uc-card__tag">Multi-tool</span>
+            <h2>Your BI tools multiplied. Your users are still confused.</h2>
+            <p class="uc-card__problem">Organizations rarely standardize on a single BI platform. The result is users hunting across four or more tools to find what they need - if it exists at all.</p>
+            <span class="uc-card__divider" aria-hidden="true"></span>
+            <button class="uc-card__expand" type="button" data-uc-expand aria-expanded="false">
+              <span>3 outcomes</span>
+              <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <ul class="uc-card__outcomes">
+              <li>
+                <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span>One front door to every tool</span>
+              </li>
+              <li>
+                <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span>Certified reports surfaced first</span>
+              </li>
+              <li>
+                <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span>SSO across all platforms</span>
+              </li>
+            </ul>
+            <span class="uc-card__link">
+              See how it works
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
+
+          <!-- CARD 2 - MIGRATION -->
+          <a class="uc-card reveal" href="use-cases/cloud-migration.html">
+            <span class="uc-card__index" aria-hidden="true">02</span>
+            <span class="uc-card__tag">Migration</span>
+            <h2>Migrating platforms shouldn't mean re-training everyone.</h2>
+            <p class="uc-card__problem">When IT swaps Cognos for Power BI, or Tableau for Looker, end users lose their bookmarks and their workflows. Adoption falls during the transition.</p>
+            <span class="uc-card__divider" aria-hidden="true"></span>
+            <button class="uc-card__expand" type="button" data-uc-expand aria-expanded="false">
+              <span>3 outcomes</span>
+              <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <ul class="uc-card__outcomes">
+              <li>
+                <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span>Users see continuity while IT swaps the backend</span>
+              </li>
+              <li>
+                <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span>Replace one tool with another without a single user notification</span>
+              </li>
+              <li>
+                <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span>Usage data to prioritize what to migrate first</span>
+              </li>
+            </ul>
+            <span class="uc-card__link">
+              See how it works
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
+
+          <!-- CARD 3 - M&A -->
+          <a class="uc-card uc-card--enterprise reveal" href="use-cases/ma-integration.html">
+            <span class="uc-card__index" aria-hidden="true">03</span>
+            <div class="uc-card__tag-row">
+              <span class="uc-card__tag">Mergers &amp; acquisitions</span>
+              <span class="uc-card__enterprise" aria-label="Enterprise-tier use case">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12,2 15,9 22,9.5 17,14.5 18.5,22 12,18 5.5,22 7,14.5 2,9.5 9,9"/></svg>
+                Enterprise
+              </span>
+            </div>
+            <h2>You just acquired a company. Their BI is not your BI.</h2>
+            <p class="uc-card__problem">Day one of an acquisition, two analytics ecosystems collide. Different tools, different metric definitions, different governance standards.</p>
+            <span class="uc-card__divider" aria-hidden="true"></span>
+            <button class="uc-card__expand" type="button" data-uc-expand aria-expanded="false">
+              <span>3 outcomes</span>
+              <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <ul class="uc-card__outcomes">
+              <li>
+                <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span>Unified catalog across both entities on day one</span>
+              </li>
+              <li>
+                <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span>Side-by-side report reconciliation</span>
+              </li>
+              <li>
+                <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span>Single access point for combined-entity reporting</span>
+              </li>
+            </ul>
+            <span class="uc-card__link">
+              See how it works
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
+
+          <!-- CARD 4 - MULTI-TENANT -->
+          <a class="uc-card reveal" href="use-cases/multi-tenant.html">
+            <span class="uc-card__index" aria-hidden="true">04</span>
+            <span class="uc-card__tag">Multi-tenant</span>
+            <h2>Multiple business units - each needing their own experience.</h2>
+            <p class="uc-card__problem">A shared BI platform means every team sees everything. Role-based access helps, but it doesn't solve discovery, branding, or feeling like the platform wasn't built for you.</p>
+            <span class="uc-card__divider" aria-hidden="true"></span>
+            <button class="uc-card__expand" type="button" data-uc-expand aria-expanded="false">
+              <span>3 outcomes</span>
+              <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <ul class="uc-card__outcomes">
+              <li>
+                <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span>Customized Hives per tenant, unit, or external user</span>
+              </li>
+              <li>
+                <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span>Isolated experiences on shared infrastructure</span>
+              </li>
+              <li>
+                <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span>External-facing analytics portals supported</span>
+              </li>
+            </ul>
+            <span class="uc-card__link">
+              See how it works
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
+
+          <!-- CARD 5 - MULTI-VERSION -->
+          <a class="uc-card reveal" href="use-cases/version-coexistence.html">
+            <span class="uc-card__index" aria-hidden="true">05</span>
+            <span class="uc-card__tag">Multi-version</span>
+            <h2>Old platform. New platform. Running at the same time.</h2>
+            <p class="uc-card__problem">Upgrades never complete on schedule. Organizations run old and new versions in parallel for months. Users don't know which one has the current report.</p>
+            <span class="uc-card__divider" aria-hidden="true"></span>
+            <button class="uc-card__expand" type="button" data-uc-expand aria-expanded="false">
+              <span>3 outcomes</span>
+              <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <ul class="uc-card__outcomes">
+              <li>
+                <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span>Surface content from all versions in one interface</span>
+              </li>
+              <li>
+                <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span>Users never need to know which version a report lives in</span>
+              </li>
+              <li>
+                <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span>Retire versions once content is validated</span>
+              </li>
+            </ul>
+            <span class="uc-card__link">
+              See how it works
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
+
+          <!-- CARD 6 - COMPLIANCE & SOVEREIGNTY -->
+          <a class="uc-card uc-card--enterprise reveal" href="use-cases/data-sovereignty.html">
+            <span class="uc-card__index" aria-hidden="true">06</span>
+            <div class="uc-card__tag-row">
+              <span class="uc-card__tag">Compliance &amp; sovereignty</span>
+              <span class="uc-card__enterprise" aria-label="Enterprise-tier use case">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="12,2 15,9 22,9.5 17,14.5 18.5,22 12,18 5.5,22 7,14.5 2,9.5 9,9"/></svg>
+                Enterprise
+              </span>
+            </div>
+            <h2>Your data can't move. Your governance can't slip.</h2>
+            <p class="uc-card__problem">In financial services, healthcare, and EU-regulated environments, data residency isn't optional. Any solution that moves content creates audit exposure.</p>
+            <span class="uc-card__divider" aria-hidden="true"></span>
+            <button class="uc-card__expand" type="button" data-uc-expand aria-expanded="false">
+              <span>3 outcomes</span>
+              <svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <ul class="uc-card__outcomes">
+              <li>
+                <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span>Content stays in its source platform - nothing copied or moved</span>
+              </li>
+              <li>
+                <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span>Source-platform security inherited automatically</span>
+              </li>
+              <li>
+                <span class="check" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+                <span>Audit trails and lineage for compliance reporting</span>
+              </li>
+            </ul>
+            <span class="uc-card__link">
+              See how it works
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3 - COMPARISON TEASER
+         ============================================================ -->
+    <section class="uc-compare" data-screen-label="03 Comparison teaser">
+      <div class="container">
+        <div class="uc-compare__head reveal">
+          <h3>Evaluating options?</h3>
+          <p>Honest comparisons. You decide.</p>
+        </div>
+
+        <div class="uc-compare__grid">
+          <a class="uc-compare__card reveal" href="resources/analytics-catalog-vs-data-catalog.html">
+            <span class="uc-compare__title">Analytics catalog <em>vs</em> Data catalog</span>
+            <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4 - BOTTOM CTA
+         ============================================================ -->
+    <section class="uc-cta" id="demo" data-screen-label="04 Bottom CTA">
+      <div class="container reveal">
+        <h2>Not sure which situation fits?</h2>
+        <p>Tell us about your environment. We'll show you the closest match - and skip the rest.</p>
+        <div class="uc-cta__buttons">
+          <a class="btn btn--primary" href="Demo.html">
+            Book a demo
+            <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a class="btn btn--ghost" href="#contact">Contact sales</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FOOTER (shared)
+       ============================================================ -->
+  <footer class="footer" data-screen-label="Footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="assets/logo-reversed.svg" alt="Digital Hive" />
+          <p>Where analytics finally make sense. An enterprise analytics catalog.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="LinkedIn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0H12v2.2h.07c.63-1.2 2.18-2.46 4.49-2.46 4.8 0 5.69 3.16 5.69 7.27V24h-5v-7.2c0-1.72-.03-3.93-2.4-3.93-2.4 0-2.77 1.87-2.77 3.81V24h-5V8z"/></svg>
+            </a>
+            <a href="#" aria-label="YouTube">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer__col">
+          <h3>Product</h3>
+          <ul>
+            <li><a href="Product.html#catalog">Catalog</a></li>
+            <li><a href="Product.html#hub">BI Hub</a></li>
+            <li><a href="Product.html#governance">Governance</a></li>
+            <li><a href="Product.html#connectors">Connectors</a></li>
+            <li><a href="Product.html#security">Security</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h3>Use cases</h3>
+          <ul>
+            <li><a href="use-cases/multi-vendor-bi.html">Multi-vendor BI</a></li>
+            <li><a href="use-cases/cloud-migration.html">Cloud migration</a></li>
+            <li><a href="use-cases/ma-integration.html">M&amp;A integration</a></li>
+            <li><a href="use-cases/multi-tenant.html">Multi-tenant</a></li>
+            <li><a href="use-cases/data-sovereignty.html">Data sovereignty</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h3>Company</h3>
+          <ul>
+            <li><a href="About.html">About</a></li>            <li><a href="Customers.html">Customers</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h3>Resources</h3>
+          <ul>
+            <li><a href="Home.html#research">ISG report</a></li>
+            <li><a href="#">Documentation</a></li>
+            <li><a href="#">Webinars</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Support</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>© 2026 Digital Hive</span>
+        <ul>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Trust center</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/site.js"></script>
+</body>
+</html>

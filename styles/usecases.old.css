@@ -1,0 +1,323 @@
+/* =============================================================
+   Digital Hive - Use Cases parent page styles
+   Six big self-identification cards, comparison teaser, CTA.
+   Builds on tokens.css + site.css.
+   ============================================================= */
+
+/* -----------------------------------------------------------
+   Page header (slimmer than home hero)
+   ----------------------------------------------------------- */
+.uc-hero {
+  padding: 96px 0 56px;
+  border-bottom: 1px solid var(--border-2);
+  background: linear-gradient(180deg, #ECF1F6 0%, #F2F5F9 100%);
+}
+@media (min-width: 768px) { .uc-hero { padding: 128px 0 80px; } }
+
+.uc-hero h1 {
+  font-size: clamp(36px, 5.5vw, 68px);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--dh-navy);
+  margin: 0 0 var(--space-5);
+  max-width: 12ch;
+}
+.uc-hero__sub {
+  font-size: var(--fs-20);
+  color: var(--fg-2);
+  margin: 0;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+/* -----------------------------------------------------------
+   Big card grid (six)
+   ----------------------------------------------------------- */
+.uc-grid-section { padding: 80px 0 96px; }
+@media (min-width: 768px) { .uc-grid-section { padding: 96px 0 128px; } }
+
+.uc-grid {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 900px) {
+  .uc-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-6); }
+}
+
+.uc-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-7);
+  background: var(--dh-white);
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  transition: border-color var(--dur-base) var(--ease-out),
+              box-shadow var(--dur-base) var(--ease-out),
+              transform var(--dur-base) var(--ease-out);
+}
+@media (min-width: 768px) { .uc-card { padding: 48px; } }
+.uc-card:hover {
+  border-color: var(--dh-navy);
+  box-shadow: 0 1px 0 var(--dh-navy), var(--shadow-2);
+  transform: translateY(-2px);
+}
+
+/* Big index number, top-right */
+.uc-card__index {
+  position: absolute;
+  top: var(--space-6); right: var(--space-6);
+  font-size: clamp(56px, 5vw, 80px);
+  font-weight: var(--fw-bold);
+  letter-spacing: -0.04em;
+  color: var(--dh-grey-100);
+  line-height: 1;
+  pointer-events: none;
+  transition: color var(--dur-base) var(--ease-out);
+}
+.uc-card:hover .uc-card__index { color: var(--dh-yellow); }
+
+.uc-card__tag {
+  font-size: var(--fs-12);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--fg-accent);
+  margin-bottom: var(--space-5);
+  display: inline-block;
+}
+
+/* Enterprise-tier cards - subtle differentiation for highest-value use cases */
+.uc-card--enterprise { border-color: var(--dh-grey-300); }
+.uc-card--enterprise:hover { border-color: var(--dh-navy); }
+
+.uc-card__tag-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: var(--space-5);
+  flex-wrap: wrap;
+}
+.uc-card__tag-row .uc-card__tag { margin-bottom: 0; }
+
+.uc-card__enterprise {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px 3px 7px;
+  font-size: 10px;
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  background: var(--dh-navy);
+  color: var(--dh-yellow);
+  border-radius: var(--radius-pill);
+  line-height: 1.6;
+}
+.uc-card__enterprise svg { color: var(--dh-yellow); }
+.uc-card h3 {
+  font-size: clamp(24px, 2.4vw, 32px);
+  line-height: 1.15;
+  letter-spacing: -0.018em;
+  color: var(--dh-navy);
+  margin: 0 0 var(--space-4);
+  max-width: 18ch;
+}
+.uc-card__problem {
+  font-size: var(--fs-16);
+  color: var(--fg-2);
+  line-height: 1.55;
+  margin: 0 0 var(--space-6);
+  max-width: 48ch;
+}
+
+.uc-card__divider {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--border-1);
+  margin: 0 0 var(--space-5);
+}
+
+.uc-card__outcomes {
+  list-style: none;
+  margin: 0 0 var(--space-7);
+  padding: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.uc-card__outcomes li {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: var(--space-3);
+  align-items: start;
+  font-size: var(--fs-16);
+  color: var(--dh-navy);
+  line-height: 1.45;
+}
+.uc-card__outcomes .check {
+  width: 20px; height: 20px;
+  display: grid; place-items: center;
+  color: var(--dh-orange);
+  margin-top: 1px;
+}
+
+/* Mobile: collapse outcomes behind an expand toggle */
+.uc-card__expand {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  width: 100%;
+  margin: 0 0 var(--space-6);
+  padding: 14px 0;
+  background: transparent;
+  border: 0;
+  border-top: 1px solid var(--border-2);
+  border-bottom: 1px solid var(--border-2);
+  font-family: inherit;
+  font-size: var(--fs-14);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--dh-navy);
+  cursor: pointer;
+  text-align: left;
+}
+.uc-card__expand .chev {
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.uc-card__expand[aria-expanded="true"] .chev { transform: rotate(180deg); }
+
+@media (max-width: 899px) {
+  .uc-card__expand { display: flex; }
+  .uc-card__divider { display: none; }
+  .uc-card__outcomes {
+    overflow: hidden;
+    max-height: 0;
+    margin-bottom: 0;
+    opacity: 0;
+    transition: max-height var(--dur-slow) var(--ease-out),
+                opacity var(--dur-slow) var(--ease-out),
+                margin-bottom var(--dur-slow) var(--ease-out);
+  }
+  .uc-card.is-expanded .uc-card__outcomes {
+    max-height: 400px;
+    opacity: 1;
+    margin-bottom: var(--space-6);
+  }
+}
+
+.uc-card__link {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-14);
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--dh-navy);
+  border-bottom: none;
+}
+.uc-card__link .arrow { transition: transform var(--dur-base) var(--ease-out); }
+.uc-card:hover .uc-card__link { color: var(--dh-orange); }
+.uc-card:hover .uc-card__link .arrow { transform: translateX(6px); }
+
+/* -----------------------------------------------------------
+   Comparison teaser
+   ----------------------------------------------------------- */
+.uc-compare {
+  padding: 96px 0;
+  background: var(--bg-3);
+  border-top: 1px solid var(--border-2);
+}
+.uc-compare__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  justify-content: space-between;
+  gap: var(--space-5);
+  margin-bottom: var(--space-6);
+}
+.uc-compare__head h3 {
+  font-size: var(--fs-32);
+  letter-spacing: -0.02em;
+  color: var(--dh-navy);
+  margin: 0;
+}
+.uc-compare__head p {
+  margin: 0;
+  font-size: var(--fs-16);
+  color: var(--fg-2);
+}
+
+.uc-compare__grid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 768px) { .uc-compare__grid { grid-template-columns: repeat(3, 1fr); } }
+
+.uc-compare__card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding: var(--space-5) var(--space-6);
+  background: var(--dh-white);
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-md);
+  color: inherit;
+  text-decoration: none;
+  transition: border-color var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
+}
+.uc-compare__card:hover {
+  border-color: var(--dh-navy);
+  transform: translateY(-1px);
+}
+.uc-compare__title {
+  font-size: var(--fs-16);
+  font-weight: var(--fw-bold);
+  color: var(--dh-navy);
+  letter-spacing: -0.01em;
+}
+.uc-compare__title em {
+  font-style: normal;
+  color: var(--fg-3);
+  font-weight: var(--fw-medium);
+  padding: 0 4px;
+}
+.uc-compare__card .arrow { color: var(--dh-orange); flex-shrink: 0; }
+
+/* -----------------------------------------------------------
+   Bottom CTA (uses paper bg, two buttons)
+   ----------------------------------------------------------- */
+.uc-cta {
+  padding: 128px 0;
+  text-align: center;
+  background: var(--bg-1);
+}
+.uc-cta h2 {
+  font-size: clamp(32px, 4.5vw, 56px);
+  color: var(--dh-navy);
+  margin: 0 0 var(--space-3);
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+}
+.uc-cta p {
+  font-size: var(--fs-18);
+  color: var(--fg-2);
+  max-width: 540px;
+  margin: 0 auto var(--space-7);
+}
+.uc-cta__buttons {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  justify-content: center;
+}

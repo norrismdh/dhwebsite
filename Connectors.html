@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Connectors - Digital Hive</title>
+  <meta name="description" content="One catalog, every tool. Digital Hive connects to your BI tools, AI assistants, document repositories, and data sources — read-only and metadata-only." />
+  <link rel="stylesheet" href="styles/tokens.css" />
+  <link rel="stylesheet" href="styles/site.css" />
+  <link rel="stylesheet" href="styles/connectors.css" />
+</head>
+<body>
+
+  <header class="nav" data-screen-label="Navigation">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="Home.html" aria-label="Digital Hive home" style="border-bottom:none;">
+        <img src="assets/logo-colour.svg" alt="Digital Hive" />
+      </a>
+      <nav aria-label="Primary"><ul class="nav__links"></ul></nav>
+      <div class="nav__cta">
+        <a class="btn btn--primary" href="Demo.html">Book a demo</a>
+        <button type="submit" class="nav__toggle" data-mobile-toggle aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="container mobile-menu" data-mobile-menu></div>
+  </header>
+
+  <main>
+    <!-- 1 - HERO with hub-and-spoke visual -->
+    <section class="cn-hero hex-hero" data-screen-label="01 Hero">
+      <div class="hex-hero__motif" aria-hidden="true"></div>
+      <div class="container">
+        <div class="cn-hero__grid">
+          <div class="reveal">
+            <span class="eyebrow">Connectors</span>
+            <h1>One catalog. Every tool you already own.</h1>
+            <p class="cn-hero__sub">BI platforms, AI assistants, document repositories, data sources — all indexed in one place. Metadata only. Nothing copied, nothing migrated.</p>
+            <div class="hero__ctas">
+              <a class="btn btn--primary" href="#catalog">
+                Browse the directory
+                <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+              <a class="btn btn--ghost" href="Demo.html">See it live</a>
+            </div>
+            <div class="cn-hero__stats">
+              <div class="cn-stat"><span class="num">20+</span><span class="lbl">Connectors</span></div>
+              <div class="cn-stat"><span class="num">5</span><span class="lbl">Categories</span></div>
+              <div class="cn-stat"><span class="num">~1w</span><span class="lbl">To build a new one</span></div>
+            </div>
+          </div>
+
+          <div class="reveal" aria-hidden="true">
+            <div class="cn-hub">
+              <svg class="cn-hub__lines" preserveAspectRatio="none"></svg>
+
+              <div class="cn-hub__center">
+                <img src="assets/logo-reversed.svg" alt="Digital Hive" />
+              </div>
+
+              <div class="cn-spoke cn-spoke--1">
+                <div class="cn-spoke__tile"><img src="assets/logos/powerbi.png" alt="" /></div>
+                <span class="cn-spoke__lbl">Power BI</span>
+              </div>
+              <div class="cn-spoke cn-spoke--2">
+                <div class="cn-spoke__tile"><img src="assets/logos/tableau.png" alt="" /></div>
+                <span class="cn-spoke__lbl">Tableau</span>
+              </div>
+              <div class="cn-spoke cn-spoke--3">
+                <div class="cn-spoke__tile"><img src="assets/logos/qlik.webp" alt="" /></div>
+                <span class="cn-spoke__lbl">Qlik</span>
+              </div>
+              <div class="cn-spoke cn-spoke--4">
+                <div class="cn-spoke__tile"><img src="assets/logos/ibm.png" alt="" /></div>
+                <span class="cn-spoke__lbl">Cognos</span>
+              </div>
+              <div class="cn-spoke cn-spoke--5">
+                <div class="cn-spoke__tile cn-spoke__tile--wide"><img src="assets/logos/spotfire.png" alt="" /></div>
+                <span class="cn-spoke__lbl">Spotfire</span>
+              </div>
+              <div class="cn-spoke cn-spoke--6">
+                <div class="cn-spoke__tile"><img src="assets/logos/excel.png" alt="" /></div>
+                <span class="cn-spoke__lbl">Excel</span>
+              </div>
+              <div class="cn-spoke cn-spoke--7">
+                <div class="cn-spoke__tile"><img src="assets/logos/looker.webp" alt="" /></div>
+                <span class="cn-spoke__lbl">Looker</span>
+              </div>
+              <div class="cn-spoke cn-spoke--8">
+                <div class="cn-spoke__tile"><img src="assets/logos/sharepoint.png" alt="" /></div>
+                <span class="cn-spoke__lbl">SharePoint</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 - DIRECTORY -->
+    <section class="cn-catalog" id="catalog" data-screen-label="02 Directory">
+      <div class="container">
+        <div class="cn-catalog__head">
+          <div class="reveal">
+            <span class="eyebrow">Directory</span>
+            <h2>Find your stack.</h2>
+            <p>Filter by category. If something's missing, we can build it.
+
+</p>
+          </div>
+          <div class="cn-filters reveal" role="tablist">
+            <button class="cn-filter is-on" type="button" data-cn-filter="all">All <span class="count">0</span></button>
+            <button class="cn-filter" type="button" data-cn-filter="bi">BI <span class="count">0</span></button>
+            <button class="cn-filter" type="button" data-cn-filter="ai">AI <span class="count">0</span></button>
+            <button class="cn-filter" type="button" data-cn-filter="docs">Documents <span class="count">0</span></button>
+            <button class="cn-filter" type="button" data-cn-filter="data">Data sources <span class="count">0</span></button>
+          </div>
+        </div>
+
+        <div class="cn-grid reveal" data-connectors>
+          <!-- BI -->
+          <a class="cn-card" href="#" data-cat="bi">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/powerbi.png" alt="" /></div>
+            <p class="cn-card__cat">BI Platform</p>
+            <p class="cn-card__name">Power BI</p>
+            <span class="cn-card__status"><span class="dot"></span>Live</span>
+          </a>
+          <a class="cn-card" href="#" data-cat="bi">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/tableau.png" alt="" /></div>
+            <p class="cn-card__cat">BI Platform</p>
+            <p class="cn-card__name">Tableau</p>
+            <span class="cn-card__status"><span class="dot"></span>Live</span>
+          </a>
+          <a class="cn-card" href="#" data-cat="bi">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/qlik.webp" alt="" /></div>
+            <p class="cn-card__cat">BI Platform</p>
+            <p class="cn-card__name">Qlik Sense</p>
+            <span class="cn-card__status"><span class="dot"></span>Live</span>
+          </a>
+          <a class="cn-card" href="#" data-cat="bi">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/ibm.png" alt="" /></div>
+            <p class="cn-card__cat">BI Platform</p>
+            <p class="cn-card__name">Cognos</p>
+            <span class="cn-card__status"><span class="dot"></span>Live</span>
+          </a>
+          <a class="cn-card" href="#" data-cat="bi">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/looker.webp" alt="" /></div>
+            <p class="cn-card__cat">BI Platform</p>
+            <p class="cn-card__name">Looker</p>
+            <span class="cn-card__status"><span class="dot"></span>Live</span>
+          </a>
+          <a class="cn-card" href="#" data-cat="bi">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/spotfire.png" alt="" /></div>
+            <p class="cn-card__cat">BI Platform</p>
+            <p class="cn-card__name">Spotfire</p>
+            <span class="cn-card__status"><span class="dot"></span>Live</span>
+          </a>
+          <a class="cn-card" href="#" data-cat="bi">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/thoughtspot.png" alt="" /></div>
+            <p class="cn-card__cat">BI Platform</p>
+            <p class="cn-card__name">ThoughtSpot</p>
+            <span class="cn-card__status"><span class="dot"></span>Live</span>
+          </a>
+          <a class="cn-card" href="#" data-cat="data">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/oracle.png" alt="" /></div>
+            <p class="cn-card__cat">Data platform</p>
+            <p class="cn-card__name">Oracle Analytics</p>
+            <span class="cn-card__status"><span class="dot"></span>Live</span>
+          </a>
+          <a class="cn-card" href="#" data-cat="bi">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/sap.png" alt="" /></div>
+            <p class="cn-card__cat">BI Platform</p>
+            <p class="cn-card__name">SAP BusinessObjects</p>
+            <span class="cn-card__status"><span class="dot"></span>Live</span>
+          </a>
+          <a class="cn-card" href="#" data-cat="bi">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/excel.png" alt="" /></div>
+            <p class="cn-card__cat">Spreadsheet</p>
+            <p class="cn-card__name">Excel</p>
+            <span class="cn-card__status"><span class="dot"></span>Live</span>
+          </a>
+
+          <!-- AI -->
+          <a class="cn-card" href="#" data-cat="ai">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/copilot.png" alt="" /></div>
+            <p class="cn-card__cat">AI assistant</p>
+            <p class="cn-card__name">M365 Copilot</p>
+            <span class="cn-card__status"><span class="dot"></span>Live</span>
+          </a>
+          <a class="cn-card" href="#" data-cat="ai">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/chatgpt.webp" alt="" /></div>
+            <p class="cn-card__cat">AI assistant</p>
+            <p class="cn-card__name">ChatGPT Enterprise</p>
+            <span class="cn-card__status cn-card__status--soon"><span class="dot"></span>Soon</span>
+          </a>
+          <a class="cn-card" href="#" data-cat="ai">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/claude.png" alt="" /></div>
+            <p class="cn-card__cat">AI assistant</p>
+            <p class="cn-card__name">Claude</p>
+            <span class="cn-card__status cn-card__status--soon"><span class="dot"></span>Soon</span>
+          </a>
+          <a class="cn-card" href="#" data-cat="ai">
+            <div class="cn-card__logo" style="background:linear-gradient(135deg,#4285F4 0%,#9B72CB 50%,#D96570 100%);color:#fff;font-size:12px;letter-spacing:-0.5px;">G</div>
+            <p class="cn-card__cat">AI assistant</p>
+            <p class="cn-card__name">Google Gemini</p>
+            <span class="cn-card__status cn-card__status--soon"><span class="dot"></span>Soon</span>
+          </a>
+          <a class="cn-card" href="#" data-cat="ai">
+            <div class="cn-card__logo" style="background:#193359;color:#fff;font-size:10px;">MCP</div>
+            <p class="cn-card__cat">Protocol</p>
+            <p class="cn-card__name">MCP endpoint</p>
+            <span class="cn-card__status"><span class="dot"></span>Live</span>
+          </a>
+
+          <!-- Documents -->
+          <a class="cn-card" href="#" data-cat="docs">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/sharepoint.png" alt="" /></div>
+            <p class="cn-card__cat">Documents</p>
+            <p class="cn-card__name">SharePoint</p>
+            <span class="cn-card__status"><span class="dot"></span>Live</span>
+          </a>
+          <a class="cn-card" href="#" data-cat="docs">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/googledrive.avif" alt="" /></div>
+            <p class="cn-card__cat">Documents</p>
+            <p class="cn-card__name">Google Drive</p>
+            <span class="cn-card__status"><span class="dot"></span>Live</span>
+          </a>
+          <a class="cn-card" href="#" data-cat="docs">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/onedrive.png" alt="" /></div>
+            <p class="cn-card__cat">Documents</p>
+            <p class="cn-card__name">OneDrive</p>
+            <span class="cn-card__status"><span class="dot"></span>Live</span>
+          </a>
+          <a class="cn-card" href="#" data-cat="docs">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/box.png" alt="" /></div>
+            <p class="cn-card__cat">Documents</p>
+            <p class="cn-card__name">Box</p>
+            <span class="cn-card__status"><span class="dot"></span>Live</span>
+          </a>
+          <a class="cn-card" href="#" data-cat="docs">
+            <div class="cn-card__logo cn-card__logo--img cn-card__logo--glyph" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 7a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" />
+                <path d="M3 11h18" opacity="0.45" />
+              </svg>
+            </div>
+            <p class="cn-card__cat">Documents</p>
+            <p class="cn-card__name">File System</p>
+            <span class="cn-card__status"><span class="dot"></span>Live</span>
+          </a>
+
+          <!-- Data sources -->
+          <a class="cn-card" href="#" data-cat="data">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/databricks.png" alt="" /></div>
+            <p class="cn-card__cat">Data platform</p>
+            <p class="cn-card__name">Databricks</p>
+            <span class="cn-card__status"><span class="dot"></span>Live</span>
+          </a>
+          <a class="cn-card" href="#" data-cat="data">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/salesforce.png" alt="" /></div>
+            <p class="cn-card__cat">CRM</p>
+            <p class="cn-card__name">Salesforce</p>
+            <span class="cn-card__status"><span class="dot"></span>Live</span>
+          </a>
+          <a class="cn-card" href="#" data-cat="data">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/splunk.png" alt="" /></div>
+            <p class="cn-card__cat">Observability</p>
+            <p class="cn-card__name">Splunk</p>
+            <span class="cn-card__status"><span class="dot"></span>Live</span>
+          </a>
+          <a class="cn-card" href="#" data-cat="docs">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/youtube.png" alt="" /></div>
+            <p class="cn-card__cat">Video</p>
+            <p class="cn-card__name">YouTube</p>
+            <span class="cn-card__status"><span class="dot"></span>Live</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3 - ARCHITECTURE / HOW IT WORKS -->
+    <section class="cn-arch" data-screen-label="03 How connectors work">
+      <div class="container">
+        <div class="cn-arch__head reveal">
+          <span class="eyebrow">How they work</span>
+          <h2>Read-only. Metadata-only. Native auth.</h2>
+          <p>Every connector follows the same three rules. No exceptions, no special cases per tool.</p>
+        </div>
+        <div class="cn-arch__steps">
+          <div class="cn-arch__step reveal">
+            <span class="cn-arch__hex" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </span>
+            <h3>1. Read-only indexing</h3>
+            <p>We crawl your tool's metadata API on a schedule you set. We never write, never edit, never overwrite. Source platforms can't tell the difference between us and a viewer.</p>
+          </div>
+          <div class="cn-arch__step reveal">
+            <span class="cn-arch__hex" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 22 8 12 14 2 8 12 2"/><polyline points="2 16 12 22 22 16"/></svg>
+            </span>
+            <h3>2. Metadata only</h3>
+            <p>Titles, owners, descriptions, last-modified, usage signals. Never the data itself. The actual numbers and pixels stay in the source tool — viewed there, edited there.</p>
+          </div>
+          <div class="cn-arch__step reveal">
+            <span class="cn-arch__hex" aria-hidden="true">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7z"/></svg>
+            </span>
+            <h3>3. Native auth passthrough</h3>
+            <p>When a user opens a report, the source tool authenticates them with their own identity. RLS, OLS, workspace permissions — all inherited automatically. We never escalate privileges.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4 - REQUEST -->
+    <section class="cn-request" data-screen-label="04 Request connector">
+      <div class="container">
+        <h2>Don't see your tool?</h2>
+        <p>If it has a metadata API, we can usually build a production-grade connector in 8–10 weeks. Tell us what you'd connect to next.</p>
+        <a class="btn btn--accent" href="Contact.html">
+          Request a connector
+          <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" data-screen-label="Footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="assets/logo-reversed.svg" alt="Digital Hive" />
+          <p>Where analytics finally make sense. An enterprise analytics catalog.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0H12v2.2h.07c.63-1.2 2.18-2.46 4.49-2.46 4.8 0 5.69 3.16 5.69 7.27V24h-5v-7.2c0-1.72-.03-3.93-2.4-3.93-2.4 0-2.77 1.87-2.77 3.81V24h-5V8z"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer__col"><h3>Product</h3><ul>
+          <li><a href="Product.html#catalog">Catalog</a></li>
+          <li><a href="Product.html#hub">BI Hub</a></li>
+          <li><a href="Product.html#governance">Governance</a></li>
+          <li><a href="Connectors.html">Connectors</a></li>
+          <li><a href="Pricing.html">Pricing</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Use cases</h3><ul>
+          <li><a href="UseCases.html">All use cases</a></li>
+          <li><a href="use-cases/multi-vendor-bi.html">Multi-vendor BI</a></li>
+          <li><a href="use-cases/cloud-migration.html">Cloud migration</a></li>
+          <li><a href="use-cases/ma-integration.html">M&amp;A integration</a></li>
+          <li><a href="use-cases/data-sovereignty.html">Data sovereignty</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Company</h3><ul>
+          <li><a href="About.html">About</a></li>
+          <li><a href="About.html#team">Leadership</a></li>
+          <li><a href="Customers.html">Customers</a></li>
+          <li><a href="Contact.html">Contact</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Resources</h3><ul>
+          <li><a href="Resources.html">Library</a></li>
+          <li><a href="FAQ.html">FAQ</a></li>
+          <li><a href="Home.html#research">ISG report</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Support</a></li>
+        </ul></div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>&copy; 2026 Digital Hive</span>
+        <ul>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Trust center</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/site.js"></script>
+</body>
+</html>

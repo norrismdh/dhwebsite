@@ -1,0 +1,242 @@
+/* =============================================================
+   Digital Hive - Colors & Type
+   Single source of truth for brand foundations.
+   ============================================================= */
+
+/* Webfont - Montserrat (self-hosted from /fonts).
+   Files provided: Regular 400, Italic 400, Medium 500, MediumItalic 500, Bold 700.
+   Weights 300 (Light) and 600 (SemiBold) referenced in the brand guide were
+   NOT provided - browsers will synthesise them from the nearest available
+   weight. Add Montserrat-Light.ttf / Montserrat-SemiBold.ttf to /fonts and
+   register them below to remove the synthesis. */
+@font-face {
+  font-family: "Montserrat";
+  src: url("fonts/Montserrat-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("fonts/Montserrat-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("fonts/Montserrat-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("fonts/Montserrat-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("fonts/Montserrat-Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* -----------------------------------------------------------
+     BRAND PALETTE (from Brand Guidelines, p.9)
+     ----------------------------------------------------------- */
+  --dh-navy:        #193359;  /* Primary - CMYK 100 82 36 30 */
+  --dh-orange:      #F39235;  /* Accent  - CMYK 0 51 84 0   */
+  --dh-yellow:      #FAB400;  /* Accent  - CMYK 0 33 100 0  */
+  --dh-yellow-warm: #FFCF00;  /* Accent  - CMYK 0 18 99 0   */
+  --dh-grey:        #708795;  /* Neutral - CMYK 59 36 31 12 */
+  --dh-grey-light:  #A4B2BC;  /* Neutral - CMYK 40 23 21 3  */
+
+  /* Hive orange used in the wordmark SVG itself */
+  --dh-orange-mark: #F49638;
+
+  /* -----------------------------------------------------------
+     NEUTRAL SCALE - derived from the navy/grey family
+     ----------------------------------------------------------- */
+  --dh-ink:        #0E1F39;   /* deeper navy for body copy */
+  --dh-navy-700:   #244271;
+  --dh-navy-500:   #3C5A88;
+  --dh-grey-700:   #5A6F7C;
+  --dh-grey-300:   #C9D2D9;
+  --dh-grey-100:   #E7ECEF;
+  --dh-grey-50:    #F4F6F8;
+  --dh-white:      #FFFFFF;
+  --dh-black:      #0A0F1A;
+  --dh-paper:      #FAFAF7;   /* warm off-white \u2014 marketing-site page bg */
+
+  /* -----------------------------------------------------------
+     SEMANTIC TOKENS
+     ----------------------------------------------------------- */
+  --fg-1:          var(--dh-navy);        /* primary text */
+  --fg-2:          var(--dh-grey-700);    /* secondary text */
+  --fg-3:          var(--dh-grey);        /* tertiary / meta */
+  --fg-on-dark:    var(--dh-white);
+  --fg-accent:     var(--dh-orange);
+
+  --bg-1:          var(--dh-paper);       /* marketing page */
+  --bg-2:          var(--dh-white);       /* card / panel */
+  --bg-3:          var(--dh-grey-50);     /* sunken / muted section */
+  --bg-inverse:    var(--dh-navy);
+
+  --border-1:      var(--dh-grey-300);
+  --border-2:      var(--dh-grey-100);
+  --border-strong: var(--dh-navy);
+
+  --link:          var(--dh-orange);
+  --link-hover:    #D87A1F;
+
+  /* Status - extrapolated, harmonised to the cool/warm balance */
+  --success:       #2E8B57;
+  --warning:       var(--dh-yellow);
+  --danger:        #C0392B;
+  --info:          var(--dh-navy-500);
+
+  /* -----------------------------------------------------------
+     TYPOGRAPHY
+     ----------------------------------------------------------- */
+  --font-sans: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --fw-light:    300;
+  --fw-regular:  400;
+  --fw-medium:   500;
+  --fw-semibold: 600;
+  --fw-bold:     700;
+
+  /* Type scale (1.25 ratio, rounded) */
+  --fs-12: 0.75rem;
+  --fs-14: 0.875rem;
+  --fs-16: 1rem;
+  --fs-18: 1.125rem;
+  --fs-20: 1.25rem;
+  --fs-24: 1.5rem;
+  --fs-32: 2rem;
+  --fs-40: 2.5rem;
+  --fs-56: 3.5rem;
+  --fs-72: 4.5rem;
+
+  --lh-tight: 1.1;
+  --lh-snug:  1.25;
+  --lh-base:  1.5;
+  --lh-loose: 1.65;
+
+  --tracking-tight:  -0.02em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.04em;
+  --tracking-caps:   0.12em;
+
+  /* -----------------------------------------------------------
+     SPACING, RADII, ELEVATION
+     ----------------------------------------------------------- */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  48px;
+  --space-8:  64px;
+  --space-9:  96px;
+
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+  --radius-xl: 22px;
+  --radius-pill: 999px;
+
+  --shadow-1: 0 1px 2px rgba(25, 51, 89, 0.06), 0 1px 1px rgba(25, 51, 89, 0.04);
+  --shadow-2: 0 4px 12px rgba(25, 51, 89, 0.08), 0 1px 2px rgba(25, 51, 89, 0.04);
+  --shadow-3: 0 12px 32px rgba(25, 51, 89, 0.12), 0 2px 6px rgba(25, 51, 89, 0.06);
+  --shadow-inset: inset 0 0 0 1px rgba(25, 51, 89, 0.08);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur-base: 200ms;
+  --dur-slow: 320ms;
+}
+
+/* =============================================================
+   SEMANTIC ELEMENT STYLES
+   Drop this stylesheet into a page and the elements look on-brand.
+   ============================================================= */
+
+html { color-scheme: light; }
+body {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-regular);
+  font-size: var(--fs-16);
+  line-height: var(--lh-base);
+  color: var(--fg-1);
+  background: var(--bg-1);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  color: var(--fg-1);
+  margin: 0 0 var(--space-4);
+  text-wrap: balance;
+}
+h1 { font-size: var(--fs-56); font-weight: var(--fw-bold);     line-height: var(--lh-tight); letter-spacing: var(--tracking-tight); }
+h2 { font-size: var(--fs-40); font-weight: var(--fw-bold);     line-height: var(--lh-tight); letter-spacing: var(--tracking-tight); }
+h3 { font-size: var(--fs-32); font-weight: var(--fw-bold);     line-height: var(--lh-snug); }
+h4 { font-size: var(--fs-24); font-weight: var(--fw-medium);   line-height: var(--lh-snug); }
+h5 { font-size: var(--fs-20); font-weight: var(--fw-medium);   line-height: var(--lh-snug); }
+h6 { font-size: var(--fs-16); font-weight: var(--fw-medium);   line-height: var(--lh-snug); text-transform: uppercase; letter-spacing: var(--tracking-caps); color: var(--fg-2); }
+
+p { margin: 0 0 var(--space-4); text-wrap: pretty; }
+
+small, .meta {
+  font-size: var(--fs-12);
+  color: var(--fg-3);
+  letter-spacing: var(--tracking-wide);
+}
+
+.eyebrow {
+  font-size: var(--fs-12);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--fg-accent);
+  margin: 0 0 var(--space-4);
+  display: inline-block;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+a:hover { color: var(--link-hover); }
+
+code, kbd, samp, pre {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  background: var(--bg-2);
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-sm);
+  padding: 0.1em 0.35em;
+}
+pre { padding: var(--space-4); overflow-x: auto; }
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border-2);
+  margin: var(--space-6) 0;
+}
+
+::selection { background: var(--dh-yellow); color: var(--dh-navy); }

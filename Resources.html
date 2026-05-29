@@ -1,0 +1,449 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Resources - Digital Hive</title>
+  <meta name="description" content="Understand the analytics catalog category before you evaluate the vendors. Independent research, working definitions, honest comparisons." />
+  <link rel="stylesheet" href="styles/tokens.css" />
+  <link rel="stylesheet" href="styles/site.css" />
+  <link rel="stylesheet" href="styles/resources.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION (shared)
+       ============================================================ -->
+  <header class="nav" data-screen-label="Navigation">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="Home.html" aria-label="Digital Hive home" style="border-bottom:none;">
+        <img src="assets/logo-colour.svg" alt="Digital Hive" />
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav__links">
+          <li><a href="Product.html">Product</a></li>
+          <li><a href="UseCases.html">Use cases</a></li>
+          <li><a href="Customers.html">Customers</a></li>
+          <li><a href="Resources.html" aria-current="page" style="color:var(--dh-orange);">Resources</a></li>
+          <li><a href="Pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn btn--primary" href="Demo.html">Book a demo</a>
+        <button type="submit" class="nav__toggle" data-mobile-toggle aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="container mobile-menu" data-mobile-menu>
+      <ul>
+        <li><a href="Product.html">Product</a></li>
+        <li><a href="UseCases.html">Use cases</a></li>
+        <li><a href="Customers.html">Customers</a></li>
+        <li><a href="Resources.html">Resources</a></li>
+        <li><a href="Pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         1 - HEADER
+         ============================================================ -->
+    <section class="res-hero" data-screen-label="01 Header">
+      <div class="container reveal">
+        <span class="eyebrow">Resources</span>
+        <h1>Understand the category before you evaluate the vendors.</h1>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         2 - FEATURED RESOURCE (gated)
+         ============================================================ -->
+    <section class="feat" data-screen-label="02 Featured report">
+      <div class="container">
+        <div class="feat__grid">
+          <div class="feat__copy reveal">
+            <span class="eyebrow">Featured · ISG research</span>
+            <h2>Analytics catalogs: adoption, governance, and the business case.</h2>
+            <p>Independent analyst research on what's actually driving adoption inside multi-vendor enterprises. The constraints, the patterns, and the four findings that most BI strategy decks are missing.</p>
+            <div class="feat__meta">
+              <span>24-page report</span>
+              <span class="dot" aria-hidden="true"></span>
+              <span>ISG Research</span>
+              <span class="dot" aria-hidden="true"></span>
+              <span>Updated 2026</span>
+            </div>
+          </div>
+
+          <form class="feat__form reveal" onsubmit="event.preventDefault(); this.querySelector('button[type=submit]').textContent='Sent - check your inbox.';">
+            <div class="feat__form-head">
+              <span class="lock" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </span>
+              Free download
+            </div>
+            <h3>Download the ISG research report.</h3>
+
+            <div class="feat__form-grid">
+              <div class="field">
+                <label for="f-name">Name</label>
+                <input id="f-name" name="name" type="text" autocomplete="name" required placeholder="Jordan Patel" />
+              </div>
+              <div class="field">
+                <label for="f-email">Business email</label>
+                <input id="f-email" name="email" type="email" autocomplete="email" required placeholder="jordan@acme.com" />
+              </div>
+              <div class="field">
+                <label for="f-company">Company</label>
+                <input id="f-company" name="company" type="text" autocomplete="organization" required placeholder="Acme Inc." />
+              </div>
+              <div class="field">
+                <label for="f-role">Role</label>
+                <select id="f-role" name="role" required>
+                  <option value="">Select your role…</option>
+                  <option>BI architect</option>
+                  <option>Analytics lead</option>
+                  <option>Chief Data Officer</option>
+                  <option>Data engineer</option>
+                  <option>Business analyst</option>
+                  <option>IT leadership</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="feat__form-submit">
+              <button class="btn btn--primary" type="submit">
+                Download free report
+                <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              </button>
+              <small>We'll email the report and never sell your address. Single, unsubscribable follow-up only.</small>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3 - RESOURCE LIBRARY
+         ============================================================ -->
+    <section class="library" data-library data-screen-label="03 Resource library">
+      <div class="container">
+        <div class="library__head reveal">
+          <div>
+            <span class="eyebrow">Library</span>
+            <h2>Working perspectives. Practical reads.</h2>
+          </div>
+        </div>
+
+        <div class="library__tabs reveal" role="tablist">
+          <button class="library__tab is-active" type="button" data-filter="all">All <span class="count">0</span></button>
+          <button class="library__tab" type="button" data-filter="blog">Blog <span class="count">0</span></button>
+          <button class="library__tab" type="button" data-filter="whitepaper">Whitepapers <span class="count">0</span></button>
+          <button class="library__tab" type="button" data-filter="webinar">Webinars <span class="count">0</span></button>
+          <button class="library__tab" type="button" data-filter="event">Events <span class="count">0</span></button>
+        </div>
+
+        <div class="library__grid">
+
+          <!-- BLOGS (7) -->
+          <a class="res-card reveal" href="#blog-1" data-type="blog">
+            <div class="res-card__thumb">
+              <span class="res-card__type-strip"><span class="swatch"></span>Blog</span>
+              <span class="res-card__mark">dh<span class="dot">.</span></span>
+            </div>
+            <div class="res-card__body">
+              <h3 class="res-card__title">Data catalogs are dead - and the industry's refusal to admit it is costing you.</h3>
+              <div class="res-card__meta">
+                <span>Mar 2026 · 7 min read</span>
+                <span class="res-card__cta">Read <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+              </div>
+            </div>
+          </a>
+
+          <a class="res-card reveal" href="#blog-2" data-type="blog">
+            <div class="res-card__thumb">
+              <span class="res-card__type-strip"><span class="swatch"></span>Blog</span>
+              <span class="res-card__mark">dh<span class="dot">.</span></span>
+            </div>
+            <div class="res-card__body">
+              <h3 class="res-card__title">Analytics catalogs: actually useful, or just another checkbox?</h3>
+              <div class="res-card__meta">
+                <span>Feb 2026 · 6 min read</span>
+                <span class="res-card__cta">Read <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+              </div>
+            </div>
+          </a>
+
+          <a class="res-card reveal" href="#blog-3" data-type="blog">
+            <div class="res-card__thumb">
+              <span class="res-card__type-strip"><span class="swatch"></span>Blog</span>
+              <span class="res-card__mark">dh<span class="dot">.</span></span>
+            </div>
+            <div class="res-card__body">
+              <h3 class="res-card__title">A peaceful transition of power - for your analytics.</h3>
+              <div class="res-card__meta">
+                <span>Feb 2026 · 5 min read</span>
+                <span class="res-card__cta">Read <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+              </div>
+            </div>
+          </a>
+
+          <a class="res-card reveal" href="#blog-4" data-type="blog">
+            <div class="res-card__thumb">
+              <span class="res-card__type-strip"><span class="swatch"></span>Blog</span>
+              <span class="res-card__mark">dh<span class="dot">.</span></span>
+            </div>
+            <div class="res-card__body">
+              <h3 class="res-card__title">Why choose just one tool: how to bring the titans of BI together.</h3>
+              <div class="res-card__meta">
+                <span>Jan 2026 · 8 min read</span>
+                <span class="res-card__cta">Read <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+              </div>
+            </div>
+          </a>
+
+          <a class="res-card reveal" href="#blog-5" data-type="blog">
+            <div class="res-card__thumb">
+              <span class="res-card__type-strip"><span class="swatch"></span>Blog</span>
+              <span class="res-card__mark">dh<span class="dot">.</span></span>
+            </div>
+            <div class="res-card__body">
+              <h3 class="res-card__title">The future of analytics is now: unifying siloed tools.</h3>
+              <div class="res-card__meta">
+                <span>Jan 2026 · 5 min read</span>
+                <span class="res-card__cta">Read <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+              </div>
+            </div>
+          </a>
+
+          <a class="res-card reveal" href="#blog-6" data-type="blog">
+            <div class="res-card__thumb">
+              <span class="res-card__type-strip"><span class="swatch"></span>Blog</span>
+              <span class="res-card__mark">dh<span class="dot">.</span></span>
+            </div>
+            <div class="res-card__body">
+              <h3 class="res-card__title">5 great reasons to pair an analytics catalog with Microsoft Power BI.</h3>
+              <div class="res-card__meta">
+                <span>Dec 2025 · 6 min read</span>
+                <span class="res-card__cta">Read <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+              </div>
+            </div>
+          </a>
+
+          <a class="res-card reveal" href="#blog-7" data-type="blog">
+            <div class="res-card__thumb">
+              <span class="res-card__type-strip"><span class="swatch"></span>Blog</span>
+              <span class="res-card__mark">dh<span class="dot">.</span></span>
+            </div>
+            <div class="res-card__body">
+              <h3 class="res-card__title">The Dewey Decimal System for business intelligence.</h3>
+              <div class="res-card__meta">
+                <span>Nov 2025 · 7 min read</span>
+                <span class="res-card__cta">Read <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+              </div>
+            </div>
+          </a>
+
+          <!-- WHITEPAPERS -->
+          <a class="res-card reveal" href="#wp-1" data-type="whitepaper">
+            <div class="res-card__thumb">
+              <span class="res-card__type-strip"><span class="swatch"></span>Whitepaper</span>
+              <span class="res-card__mark">dh<span class="dot">.</span></span>
+            </div>
+            <div class="res-card__body">
+              <h3 class="res-card__title">The analytics catalog imperative - ISG research findings.</h3>
+              <div class="res-card__meta">
+                <span>24 pages · Gated</span>
+                <span class="res-card__cta">Download <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+              </div>
+            </div>
+          </a>
+
+          <a class="res-card reveal" href="#wp-2" data-type="whitepaper">
+            <div class="res-card__thumb">
+              <span class="res-card__type-strip"><span class="swatch"></span>Whitepaper</span>
+              <span class="res-card__mark">dh<span class="dot">.</span></span>
+            </div>
+            <div class="res-card__body">
+              <h3 class="res-card__title">A BI architect's guide to multi-vendor governance.</h3>
+              <div class="res-card__meta">
+                <span>18 pages · Open</span>
+                <span class="res-card__cta">Download <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+              </div>
+            </div>
+          </a>
+
+          <!-- WEBINARS -->
+          <a class="res-card reveal" href="#wb-1" data-type="webinar">
+            <div class="res-card__thumb">
+              <span class="res-card__type-strip"><span class="swatch"></span>Webinar</span>
+              <span class="res-card__mark">dh<span class="dot">.</span></span>
+            </div>
+            <div class="res-card__body">
+              <h3 class="res-card__title">Migrating Cognos to Power BI without breaking your users.</h3>
+              <div class="res-card__meta">
+                <span>On-demand · 38 min</span>
+                <span class="res-card__cta">Watch <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+              </div>
+            </div>
+          </a>
+
+          <a class="res-card reveal" href="#wb-2" data-type="webinar">
+            <div class="res-card__thumb">
+              <span class="res-card__type-strip"><span class="swatch"></span>Webinar</span>
+              <span class="res-card__mark">dh<span class="dot">.</span></span>
+            </div>
+            <div class="res-card__body">
+              <h3 class="res-card__title">Day-one analytics integration in an M&amp;A scenario.</h3>
+              <div class="res-card__meta">
+                <span>On-demand · 45 min</span>
+                <span class="res-card__cta">Watch <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+              </div>
+            </div>
+          </a>
+
+          <!-- EVENTS -->
+          <a class="res-card reveal" href="#ev-1" data-type="event">
+            <div class="res-card__thumb">
+              <span class="res-card__type-strip"><span class="swatch"></span>Event</span>
+              <span class="res-card__mark">dh<span class="dot">.</span></span>
+            </div>
+            <div class="res-card__body">
+              <h3 class="res-card__title">Gartner Data &amp; Analytics Summit - booth 318.</h3>
+              <div class="res-card__meta">
+                <span>Jun 8–10 · Orlando, FL</span>
+                <span class="res-card__cta">RSVP <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <div class="library__empty">No resources match this filter yet.</div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4 - PILLAR CONTENT
+         ============================================================ -->
+    <section class="pillar" data-screen-label="04 Pillar content">
+      <div class="container">
+        <div class="pillar__head reveal">
+          <span class="eyebrow">Working definitions</span>
+          <h2>Start with the basics.</h2>
+        </div>
+
+        <div class="pillar__grid">
+          <a class="pillar__card reveal" href="resources/what-is-an-analytics-catalog.html">
+            <span class="marker">01 · Concept</span>
+            <h3>What is an analytics catalog?</h3>
+            <p>The difference between a list of reports and a working catalog - and why the distinction matters more than the label.</p>
+            <span class="row">
+              Read the definition
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
+
+          <a class="pillar__card reveal" href="resources/what-is-a-bi-portal.html">
+            <span class="marker">02 · Concept</span>
+            <h3>What is a BI portal?</h3>
+            <p>A working definition of the front-end layer that gives your users one place to find analytics, regardless of tool.</p>
+            <span class="row">
+              Read the definition
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
+
+          <a class="pillar__card reveal" href="resources/analytics-catalog-vs-data-catalog.html">
+            <span class="marker">03 · Comparison</span>
+            <h3>Analytics catalog vs data catalog.</h3>
+            <p>Two products that share a word but solve different problems. Who each is for, where they overlap, and where they don't.</p>
+            <span class="row">
+              Read the comparison
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         5 - COMPARISON PAGES (hidden — vendor comparisons removed)
+         ============================================================ -->
+    <section class="compare" data-screen-label="05 Comparisons" hidden>
+      <div class="container">
+        <div class="compare__head reveal">
+          <div>
+            <span class="eyebrow">Vendor comparisons</span>
+            <h3>Evaluating multiple options?</h3>
+          </div>
+          <p>Honest. Side-by-side. You decide.</p>
+        </div>
+
+        <div class="compare__grid">
+          <!-- Vendor comparison cards intentionally removed; pages still exist in /vs. -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FOOTER (shared)
+       ============================================================ -->
+  <footer class="footer" data-screen-label="Footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="assets/logo-reversed.svg" alt="Digital Hive" />
+          <p>Where analytics finally make sense. An enterprise analytics catalog.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0H12v2.2h.07c.63-1.2 2.18-2.46 4.49-2.46 4.8 0 5.69 3.16 5.69 7.27V24h-5v-7.2c0-1.72-.03-3.93-2.4-3.93-2.4 0-2.77 1.87-2.77 3.81V24h-5V8z"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer__col"><h3>Product</h3><ul>
+          <li><a href="Product.html#catalog">Catalog</a></li>
+          <li><a href="Product.html#hub">BI Hub</a></li>
+          <li><a href="Product.html#governance">Governance</a></li>
+          <li><a href="Connectors.html">Connectors</a></li>
+          <li><a href="Pricing.html">Pricing</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Use cases</h3><ul>
+          <li><a href="UseCases.html">All use cases</a></li>
+          <li><a href="use-cases/multi-vendor-bi.html">Multi-vendor BI</a></li>
+          <li><a href="use-cases/cloud-migration.html">Cloud migration</a></li>
+          <li><a href="use-cases/ma-integration.html">M&amp;A integration</a></li>
+          <li><a href="use-cases/data-sovereignty.html">Data sovereignty</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Company</h3><ul>
+          <li><a href="About.html">About</a></li>
+          <li><a href="About.html#team">Leadership</a></li>
+          <li><a href="Customers.html">Customers</a></li>
+          <li><a href="Contact.html">Contact</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Resources</h3><ul>
+          <li><a href="Resources.html">Library</a></li>
+          <li><a href="FAQ.html">FAQ</a></li>
+          <li><a href="Home.html#research">ISG report</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Support</a></li>
+        </ul></div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>&copy; 2026 Digital Hive</span>
+        <ul>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Trust center</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/site.js"></script>
+</body>
+</html>

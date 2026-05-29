@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>What is a BI portal? - Digital Hive</title>
+  <meta name="description" content="A BI portal is the front-end layer that gives end users one place to find analytics, regardless of tool. Definition, what good portals do, and how to know if you need one." />
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/site.css" />
+  <link rel="stylesheet" href="../styles/article.css" />
+</head>
+<body>
+
+  <header class="nav" data-screen-label="Navigation">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="../Home.html" aria-label="Digital Hive home" style="border-bottom:none;">
+        <img src="../assets/logo-colour.svg" alt="Digital Hive" />
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav__links">
+          <li><a href="../Product.html">Product</a></li>
+          <li><a href="../UseCases.html">Use cases</a></li>
+          <li><a href="../Customers.html">Customers</a></li>
+          <li><a href="../Resources.html" style="color:var(--dh-orange);">Resources</a></li>
+          <li><a href="../Pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn btn--primary" href="../Demo.html">Book a demo</a>
+        <button type="submit" class="nav__toggle" data-mobile-toggle aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="container mobile-menu" data-mobile-menu>
+      <ul>
+        <li><a href="../Product.html">Product</a></li>
+        <li><a href="../UseCases.html">Use cases</a></li>
+        <li><a href="../Customers.html">Customers</a></li>
+        <li><a href="../Resources.html">Resources</a></li>
+        <li><a href="../Pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <nav class="breadcrumb" aria-label="Breadcrumb" style="padding: var(--space-7) 0 0;">
+      <div class="container">
+        <ol style="list-style:none; margin:0; padding:0; display:flex; gap:var(--space-2); align-items:center; font-size:var(--fs-14); color:var(--fg-3);">
+          <li><a href="../Resources.html" style="color:var(--fg-3); font-weight:var(--fw-medium); border-bottom:none;">Resources</a></li>
+          <li aria-hidden="true" style="color:var(--dh-grey-light);">/</li>
+          <li style="color:var(--dh-navy); font-weight:var(--fw-bold);">What is a BI portal?</li>
+        </ol>
+      </div>
+    </nav>
+
+    <header class="art-header" data-screen-label="01 Header">
+      <div class="container reveal">
+        <span class="eyebrow">Working definition</span>
+        <h1>What is a BI portal?</h1>
+        <p class="art-header__sub">A working definition of the front-end layer that gives your users one place to find analytics - across whatever BI tools you happen to run underneath.</p>
+        <div class="art-meta">
+          <span>9 min read</span>
+          <span class="dot" aria-hidden="true"></span>
+          <span>Updated May 2026</span>
+          <span class="dot" aria-hidden="true"></span>
+          <span>6 sections</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="art-body">
+      <div class="container">
+        <div class="art-body__grid">
+
+          <aside class="toc" data-toc data-screen-label="TOC">
+            <div class="toc__title">
+              <span>On this page</span>
+              <button class="toc__toggle" type="button" data-toc-toggle aria-label="Toggle contents">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                <span>Contents</span>
+              </button>
+            </div>
+            <ol class="toc__list">
+              <li><a href="#definition">A plain-language definition</a></li>
+              <li><a href="#vs-catalog">BI portal vs analytics catalog - are they the same thing?</a></li>
+              <li><a href="#for-users">What a BI portal should do for end users</a></li>
+              <li><a href="#for-it">What a BI portal should do for IT and governance</a></li>
+              <li><a href="#need-one">How to know if you need one</a></li>
+              <li><a href="#questions">Questions to ask BI portal vendors</a></li>
+            </ol>
+          </aside>
+
+          <article class="prose">
+            <p class="lede">A BI portal is the user-facing surface that organizes analytics around how your business actually works - not which tool happens to produce them. It's where business users go when they need a number, an executive opens for a Monday review, or a new hire learns where to find anything at all.</p>
+        <section id="definition">
+          <h2><span class="num">01</span><span>A plain-language definition</span></h2>
+<p>A BI portal is a branded web experience that aggregates, organizes, and personalizes the analytics produced by your underlying BI tools. It's where users land. It's not where reports are built.</p>
+          <div class="def">
+            <span class="def__label">In one sentence</span>
+            <p>A BI portal is the front door to your analytics - one consistent interface that organizes content by team, role, or business function, regardless of which tool produced it.</p>
+          </div>
+          <p>The portal isn't a BI tool. It doesn't render charts. It doesn't connect to data sources directly. What it does is give users a single, navigable destination - usually URL-stable, usually branded to look like your company - that surfaces the right report at the right time, then delegates rendering to the underlying tool when the user clicks through.</p>
+          <p>A good portal also handles single sign-on, role-based personalization, governance signals like certification marks, and the small but constant friction-removal work that determines whether end users actually use analytics or quietly stop trying.</p>
+        </section>
+        <section id="vs-catalog">
+          <h2><span class="num">02</span><span>BI portal vs analytics catalog - are they the same thing?</span></h2>
+<p>They're not the same, but they're related. An analytics catalog is the inventory layer - it knows what exists, where, and whether to trust it. A BI portal is the presentation layer - it organizes that inventory into a usable experience for end users.</p>
+          <p>In practice, most analytics catalogs include a portal. The catalog provides the underlying truth (what content exists, who owns it, what's certified); the portal renders that truth into a branded, role-personalized front door. Buying a catalog without thinking about the portal experience usually means rolling your own - and most teams who try this find it harder than they expected.</p>
+          <p>For more on the catalog side, see <a href="what-is-an-analytics-catalog.html">what is an analytics catalog?</a> For Digital Hive's portal implementation, see <a href="../Product.html#hub">the BI Hub</a>.</p>
+        </section>
+        <section id="for-users">
+          <h2><span class="num">03</span><span>What a BI portal should do for end users</span></h2>
+<p>End users have low patience and high expectations. A good portal earns trust through five concrete behaviors.</p>
+          <ul>
+            <li><strong>One URL.</strong> Users bookmark one address. They never have to remember which tool owns which report.</li>
+            <li><strong>One search.</strong> Type a phrase, get every relevant report across every connected tool - with certification visible.</li>
+            <li><strong>Role-personalized landing.</strong> Finance lands on finance. Sales lands on sales. Executives land on the dashboards that drive review meetings.</li>
+            <li><strong>Branded experience.</strong> The portal looks like your company, not the vendor's. White-label down to the favicon.</li>
+            <li><strong>Single sign-on.</strong> One authentication. Every downstream tool opens without a fresh login.</li>
+          </ul>
+          <p>Each one of these is small. Together they're the difference between users adopting analytics and users quietly going back to spreadsheets.</p>
+        </section>
+        <section id="for-it">
+          <h2><span class="num">04</span><span>What a BI portal should do for IT and governance</span></h2>
+<p>The user experience matters most, but the portal also has to be defensible at the BI architect's desk and the audit committee's table.</p>
+          <ul>
+            <li><strong>Source-platform permissions inherited.</strong> Whatever access rules you maintain in Power BI, Tableau, or Cognos are respected automatically. The portal doesn't create a parallel security model.</li>
+            <li><strong>Certification workflows.</strong> Designated owners certify reports. The audit trail shows who certified what, when, and for how long.</li>
+            <li><strong>Usage telemetry across tools.</strong> One dashboard answers <em>which reports get used, by whom, in which department</em> - without manually pulling logs from each platform.</li>
+            <li><strong>Lifecycle management.</strong> Stale assets surface themselves so retirement decisions are evidence-based, not political.</li>
+            <li><strong>Multi-tenancy.</strong> The same deployment can serve multiple business units, subsidiaries, or external clients as isolated, branded experiences. <a href="../use-cases/multi-tenant.html">See multi-tenant use case →</a></li>
+          </ul>
+          <p>If the portal is doing its job, governance feels like a navigation aid for users - not a brake.</p>
+        </section>
+        <section id="need-one">
+          <h2><span class="num">05</span><span>How to know if you need one</span></h2>
+<p>Not every organization needs a BI portal. The ones that do tend to recognize themselves in three or more of these statements.</p>
+          <ol>
+            <li>You run three or more BI tools and you're not consolidating to one anytime soon.</li>
+            <li>New hires take more than a week to figure out where reports live.</li>
+            <li>"Where is the report for X?" is a recurring help-desk ticket.</li>
+            <li>You're mid-migration or pre-migration and worried about user disruption. <a href="../use-cases/cloud-migration.html">Cloud migration use case →</a></li>
+            <li>You serve multiple business units that want their own branded analytics experience.</li>
+            <li>You provide analytics to external clients or partners on shared infrastructure.</li>
+            <li>Adoption of analytics tools is lower than leadership expects, and you can't pinpoint why.</li>
+          </ol>
+          <p>If most of those apply, a portal is a near-certain fit. If only one or two apply, start with the underlying catalog and revisit portal needs when the audience grows.</p>
+        </section>
+        <section id="questions">
+          <h2><span class="num">06</span><span>Questions to ask BI portal vendors</span></h2>
+<p>Six questions that separate genuine portal products from rebranded report viewers.</p>
+          <ol>
+            <li>Does the portal support multi-tenancy from a single deployment, or does each branded experience require a separate instance?</li>
+            <li>How are source-platform permissions enforced - does your portal replicate them, or inherit them?</li>
+            <li>What's your SSO support - SAML, OIDC, Active Directory? Show me the configuration UI.</li>
+            <li>Can a non-technical admin reshape a Hive's layout without a vendor engagement?</li>
+            <li>What does the usage analytics look like at the report level, and at the user level?</li>
+            <li>How customizable is the branding - favicon, colors, typography, navigation labels?</li>
+          </ol>
+          <p>If the vendor answers question one with "deploy a separate environment per tenant," they're not selling a portal - they're selling a deployment service. That distinction matters at scale.</p>
+        </section>
+          </article>
+
+        </div>
+      </div>
+    </div>
+
+    <section class="art-related" data-screen-label="Related">
+      <div class="container">
+        <h3>Keep reading.</h3>
+        <div class="art-related__grid">
+          <a class="related-card reveal" href="what-is-an-analytics-catalog.html">
+            <span class="tag">Definition</span>
+            <h4>What is an analytics catalog?</h4>
+            <span class="arrow-row">Read the definition <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+          <a class="related-card reveal" href="../Product.html#hub">
+            <span class="tag">Product</span>
+            <h4>How the BI Hub works in Digital Hive.</h4>
+            <span class="arrow-row">See the BI Hub <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+          <a class="related-card reveal" href="../use-cases/multi-tenant.html">
+            <span class="tag">Use case</span>
+            <h4>Multi-tenant: distinct experiences on shared infrastructure.</h4>
+            <span class="arrow-row">Read the use case <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="art-cta" data-screen-label="CTA">
+      <div class="container reveal">
+        <h2>Want to see a BI portal organized around your teams?</h2>
+        <p>A 30-minute walkthrough showing the Hub configured for your vendor stack and your roles.</p>
+        <a class="btn btn--accent" href="../Demo.html">Book a demo <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" data-screen-label="Footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="../assets/logo-reversed.svg" alt="Digital Hive" />
+          <p>Where analytics finally make sense. An enterprise analytics catalog.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0H12v2.2h.07c.63-1.2 2.18-2.46 4.49-2.46 4.8 0 5.69 3.16 5.69 7.27V24h-5v-7.2c0-1.72-.03-3.93-2.4-3.93-2.4 0-2.77 1.87-2.77 3.81V24h-5V8z"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer__col"><h3>Product</h3><ul>
+          <li><a href="../Product.html#catalog">Catalog</a></li>
+          <li><a href="../Product.html#hub">BI Hub</a></li>
+          <li><a href="../Product.html#governance">Governance</a></li>
+          <li><a href="../Connectors.html">Connectors</a></li>
+          <li><a href="../Pricing.html">Pricing</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Use cases</h3><ul>
+          <li><a href="../UseCases.html">All use cases</a></li>
+          <li><a href="../use-cases/multi-vendor-bi.html">Multi-vendor BI</a></li>
+          <li><a href="../use-cases/cloud-migration.html">Cloud migration</a></li>
+          <li><a href="../use-cases/ma-integration.html">M&amp;A integration</a></li>
+          <li><a href="../use-cases/data-sovereignty.html">Data sovereignty</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Company</h3><ul>
+          <li><a href="../About.html">About</a></li>
+          <li><a href="../About.html#team">Leadership</a></li>
+          <li><a href="../Customers.html">Customers</a></li>
+          <li><a href="../Contact.html">Contact</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Resources</h3><ul>
+          <li><a href="../Resources.html">Library</a></li>
+          <li><a href="../FAQ.html">FAQ</a></li>
+          <li><a href="../Home.html#research">ISG report</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Support</a></li>
+        </ul></div>
+      </div>
+
+      <div class="footer__bottom">
+        <span>&copy; 2026 Digital Hive</span>
+        <ul>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Trust center</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../scripts/site.js"></script>
+</body>
+</html>

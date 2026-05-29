@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mergers &amp; Acquisitions - Digital Hive</title>
+  <meta name="description" content="You just acquired a company. Their BI is not your BI. Digital Hive creates a single analytics access layer across both organizations immediately — no migration required." />
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/site.css" />
+  <link rel="stylesheet" href="../styles/usecase-detail.css" />
+</head>
+<body>
+
+  <header class="nav" data-screen-label="Navigation">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="../Home.html" aria-label="Digital Hive home" style="border-bottom:none;"><img src="../assets/logo-colour.svg" alt="Digital Hive" /></a>
+      <nav aria-label="Primary">
+        <ul class="nav__links">
+          <li><a href="../Product.html">Product</a></li>
+          <li><a href="../UseCases.html" style="color:var(--dh-orange);">Use cases</a></li>
+          <li><a href="../Customers.html">Customers</a></li>
+          <li><a href="../Resources.html">Resources</a></li>
+          <li><a href="../Pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn btn--primary" href="../Demo.html">Book a demo</a>
+        <button type="button" class="nav__toggle" data-mobile-toggle aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="container mobile-menu" data-mobile-menu>
+      <ul>
+        <li><a href="../Product.html">Product</a></li><li><a href="../UseCases.html">Use cases</a></li>
+        <li><a href="../Customers.html">Customers</a></li><li><a href="../Resources.html">Resources</a></li>
+        <li><a href="../Pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <div class="container">
+        <ol>
+          <li><a href="../UseCases.html">Use cases</a></li>
+          <li class="sep" aria-hidden="true">/</li>
+          <li class="current">Mergers &amp; Acquisitions</li>
+        </ol>
+      </div>
+    </nav>
+
+    <!-- ① Header / hero -->
+    <section class="ucd-header" data-screen-label="01 Header">
+      <div class="ucd-header__motif" aria-hidden="true"></div>
+      <div class="container">
+        <div class="ucd-header__grid">
+
+          <div class="ucd-header__copy reveal">
+            <span class="ucd-header__tag"><span class="dot" aria-hidden="true"></span>Mergers &amp; acquisitions</span>
+            <h1 style="font-weight:500;">You just acquired a company. Their BI is not your BI.</h1>
+            <p class="ucd-header__sub">Digital Hive creates a single analytics access layer across both organizations immediately — no migration, no rebuilding, no waiting.</p>
+          </div>
+
+          <!-- Hero art: two company BI stacks merging into one unified catalog -->
+          <div class="ucd-art reveal art-ma" aria-hidden="true">
+            <style>
+              .art-ma .chip-a { border-color: rgba(25,51,89,0.30); }
+              .art-ma .chip-b { border-color: rgba(243,146,53,0.45); background: rgba(243,146,53,0.04); }
+              @keyframes maReveal { 0%,60%{opacity:0.45;transform:translateY(4px)} 75%,90%{opacity:1;transform:translateY(0)} 100%{opacity:0.45;transform:translateY(4px)} }
+              .art-ma .chip-day1 { animation: maReveal 5s ease-in-out infinite; }
+              .art-ma .ma-row { display: grid; grid-template-columns: 28px 1fr auto; align-items: center; gap: 7px; padding: 4px 6px; border-radius: 4px; font-size: 10px; color: var(--fg-2); }
+              .art-ma .ma-row--a { background: rgba(25,51,89,0.06); color: var(--dh-navy); font-weight: 600; }
+              .art-ma .ma-row--b { background: rgba(243,146,53,0.06); }
+              .art-ma .ma-src { font-size: 8px; font-weight: 700; letter-spacing: 0.05em; padding: 2px 4px; border-radius: 3px; text-align: center; }
+              .art-ma .ma-src--a { background: rgba(25,51,89,0.12); color: var(--dh-navy); }
+              .art-ma .ma-src--b { background: rgba(243,146,53,0.18); color: #a05000; }
+              .art-ma .ma-badge  { font-size: 7px; font-weight: 700; text-transform: uppercase; background: var(--dh-yellow); color: var(--dh-navy); padding: 2px 5px; border-radius: 2px; white-space: nowrap; }
+              .art-ma .ma-head   { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--fg-3); margin-bottom: 5px; }
+              .art-ma .ma-day1-pill { display: inline-block; font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; background: var(--dh-orange); color: #fff; padding: 2px 7px; border-radius: 999px; float: right; }
+            </style>
+            <span class="ucd-art__hex"></span>
+
+            <!-- Company A tools (left) -->
+            <div class="ucd-art__chip chip-a" style="top:3%;left:4%;transform:rotate(-4deg);">
+              <span class="dot" style="background:#F2C811;"></span>Co. A · Power BI
+            </div>
+            <div class="ucd-art__chip chip-a" style="top:44%;left:0%;transform:rotate(-2deg);">
+              <span class="dot" style="background:#1F77B4;"></span>Co. A · Tableau
+            </div>
+
+            <!-- Company B tools (right) -->
+            <div class="ucd-art__chip chip-b" style="top:1%;right:2%;transform:rotate(3deg);">
+              <span class="dot" style="background:#1F70C1;"></span>Co. B · Cognos
+            </div>
+            <div class="ucd-art__chip chip-b" style="top:51%;right:1%;transform:rotate(2deg);">
+              <span class="dot" style="background:#009845;"></span>Co. B · Qlik
+            </div>
+
+            <!-- Day 1 unified chip -->
+            <div class="ucd-art__chip chip-day1" style="bottom:3%;left:20%;transform:rotate(-1deg);">
+              <span class="dot" style="background:var(--dh-orange);"></span>Day 1 · Unified
+            </div>
+
+            <svg class="ucd-art__lines" viewBox="0 0 400 320" preserveAspectRatio="none">
+              <g fill="none" stroke="rgba(36,66,113,0.20)" stroke-width="1" stroke-dasharray="3 4">
+                <path d="M 56 52  Q 172 128 200 168"/>
+                <path d="M 347 47 Q 247 122 200 168"/>
+                <path d="M 26 183 Q 130 178 200 168"/>
+                <path d="M 371 200 Q 275 194 200 168"/>
+                <path d="M 113 300 Q 170 234 200 190"/>
+              </g>
+            </svg>
+
+            <!-- Hub: unified catalog showing both companies -->
+            <div class="ucd-art__hub">
+              <div class="ucd-art__hub-top">
+                <span class="ucd-art__brand"><span class="hex"></span>Digital Hive</span>
+                <span class="ma-day1-pill">Day 1</span>
+              </div>
+              <div class="ma-head">Unified catalog</div>
+              <div class="ma-row ma-row--a">
+                <span class="ma-src ma-src--a">PBI</span>
+                <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Q3 Revenue</span>
+                <span class="ma-badge">Certified</span>
+              </div>
+              <div class="ma-row ma-row--b">
+                <span class="ma-src ma-src--b">COG</span>
+                <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Revenue Summary</span>
+                <span style="font-size:8px;color:var(--fg-3);">Co. B</span>
+              </div>
+              <div class="ma-row">
+                <span class="ma-src ma-src--a">TAB</span>
+                <span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">Pipeline — Qtr</span>
+                <span style="font-size:8px;color:var(--dh-orange);">Co. A</span>
+              </div>
+            </div>
+
+            <span class="ucd-art__dot ucd-art__dot--o"></span>
+            <span class="ucd-art__dot ucd-art__dot--y"></span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ② Problem -->
+    <section class="ucd-problem" data-screen-label="02 Problem">
+      <div class="container">
+        <div class="ucd-problem__inner reveal">
+          <span class="eyebrow">What actually happens</span>
+          <h2 style="font-weight:500;">The first week after close.</h2>
+          <p>Two BI environments land in the same organization overnight. Both have a report called "Revenue Summary." Neither number matches. IT is in triage. Executives can't get answers. Your users can't see their content.</p>
+          <p>And IT doesn't have six months to rebuild everything before the business needs to move.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ③ Why it's hard -->
+    <section class="ucd-hard" data-screen-label="03 Why it's hard">
+      <div class="container">
+        <div class="ucd-hard__inner">
+          <div class="ucd-hard__head reveal">
+            <span class="eyebrow">Why this doesn't get fixed</span>
+            <h2 style="font-weight:500;">Three reasons this stays unresolved.</h2>
+            <p>Integration gets scoped as a migration — which takes months and leaves both sides in limbo.</p>
+          </div>
+          <ul class="ucd-hard__list reveal">
+            <li>Integration gets scoped as a migration — which takes months and leaves both sides in limbo.</li>
+            <li>No neutral ground: one company's tools win, the other loses access until IT catches up.</li>
+            <li>Governance can't wait, but integrating two security models across two platforms is a project on its own.</li>
+            <li>Metric conflicts surface in board meetings — not in the systems where they can be resolved.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ④ How Digital Hive solves it -->
+    <section class="ucd-solve" data-screen-label="04 How Digital Hive solves it">
+      <div class="container">
+        <div class="ucd-solve__head reveal">
+          <span class="eyebrow">What changes</span>
+          <h2 style="font-weight:500;">How Digital Hive solves it.</h2>
+          <p>Four shifts. No migration required.</p>
+        </div>
+        <div class="ucd-solve__grid">
+          <div class="ucd-solve__item reveal">
+            <h3 style="font-weight:500;">Unified access layer — day one.</h3>
+            <p>Digital Hive indexes content from both environments. One search. Everything visible.</p>
+          </div>
+          <div class="ucd-solve__item reveal">
+            <h3 style="font-weight:500;">Existing credentials, existing permissions.</h3>
+            <p>Users on both sides use their current credentials. No new provisioning. No new security model.</p>
+          </div>
+          <div class="ucd-solve__item reveal">
+            <h3 style="font-weight:500;">Side-by-side reconciliation.</h3>
+            <p>Metric conflicts surface immediately — not in a board meeting three months later.</p>
+          </div>
+          <div class="ucd-solve__item reveal">
+            <h3 style="font-weight:500;">Governance centralized, not rebuilt.</h3>
+            <p>Both security models inherited and enforced through one layer from day one.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑤ Outcomes -->
+    <section class="ucd-outcomes" data-screen-label="05 Outcomes">
+      <div class="container">
+        <div class="ucd-outcomes__head reveal">
+          <span class="eyebrow">The impact</span>
+          <h2 style="font-weight:500;">What the research confirms.</h2>
+        </div>
+        <div class="ucd-outcomes__lede reveal">
+          <p class="ucd-outcomes__stat">897<span class="pct"> apps</span></p>
+          <div>
+            <p class="ucd-outcomes__statLine">Average number of applications in an enterprise. An acquisition doubles that complexity overnight.</p>
+            <p class="ucd-outcomes__source">MuleSoft, 2025</p>
+            <p class="ucd-outcomes__note">The average enterprise manages nearly 900 applications — with no unified view of what analytics exists across either side. Acquisitions land that problem on day one.</p>
+          </div>
+        </div>
+        <div class="ucd-outcomes__grid">
+          <div class="ucd-outcome reveal">
+            <p class="ucd-outcome__big" style="font-size:50px;">Day three<br>access</p>
+            <p class="ucd-outcome__caption">Acquired-company users finding reports before the first week ends.</p>
+          </div>
+          <div class="ucd-outcome reveal">
+            <p class="ucd-outcome__big" style="font-size:50px;">Zero<br>rebuilds</p>
+            <p class="ucd-outcome__caption">Both environments connected and usable immediately — no migration required.</p>
+          </div>
+          <div class="ucd-outcome reveal">
+            <p class="ucd-outcome__big" style="font-size:50px;">Metric<br>clarity</p>
+            <p class="ucd-outcome__caption">Discrepancies visible and resolvable in weeks, not surfacing unexpectedly in board meetings.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑥ Related use cases -->
+    <section class="ucd-related" data-screen-label="06 Related use cases">
+      <div class="container">
+        <div class="ucd-related__head reveal">
+          <h3 style="font-weight:500;">Related use cases</h3>
+          <a href="../UseCases.html">All use cases →</a>
+        </div>
+        <div class="ucd-related__grid">
+          <a class="ucd-related__card reveal" href="cloud-migration.html">
+            <span class="tag">Migration &amp; modernization</span>
+            <h4>You're modernizing your BI stack. Your users can't tell.</h4>
+            <span class="arrow-row">Read this use case <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+          <a class="ucd-related__card reveal" href="consolidation.html">
+            <span class="tag">Consolidation</span>
+            <h4>You have five BI tools. You want two. But you can't cut anything yet.</h4>
+            <span class="arrow-row">Read this use case <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ⑦ Bottom CTA -->
+    <section class="ucd-cta" id="demo" data-screen-label="07 Bottom CTA">
+      <div class="ucd-cta__motif" aria-hidden="true"></div>
+      <div class="container">
+        <div class="ucd-cta__grid">
+          <div class="ucd-cta__copy reveal">
+            <span class="ucd-cta__eyebrow">Talk to us</span>
+            <h3 style="font-weight:500;">See this in action.</h3>
+            <p>Tell us the BI tools on both sides of your acquisition and we'll show you how Digital Hive bridges them — in 30 minutes.</p>
+            <div class="ucd-cta__buttons">
+              <a class="btn btn--accent" href="../Demo.html">Book a demo <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+              <a class="btn btn--ghost-light" href="../Contact.html">Contact sales</a>
+            </div>
+          </div>
+          <div class="ucd-cta__art reveal" aria-hidden="true">
+            <div class="ucd-cta__chaos"><span class="ucd-cta__tile ucd-cta__tile--1"></span><span class="ucd-cta__tile ucd-cta__tile--2"></span><span class="ucd-cta__tile ucd-cta__tile--3"></span><span class="ucd-cta__tile ucd-cta__tile--4"></span><span class="ucd-cta__tile ucd-cta__tile--5"></span></div>
+            <svg class="ucd-cta__arrow" viewBox="0 0 60 20" aria-hidden="true"><line x1="2" y1="10" x2="50" y2="10" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-linecap="round"/><polyline points="42,4 52,10 42,16" fill="none" stroke="var(--dh-orange)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <div class="ucd-cta__order"><span class="ucd-cta__order-hex" aria-hidden="true"></span><span class="ucd-cta__order-line"></span><span class="ucd-cta__order-line"></span><span class="ucd-cta__order-line"></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer" data-screen-label="Footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="../assets/logo-reversed.svg" alt="Digital Hive" />
+          <p>Where analytics finally make sense. An enterprise analytics catalog.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0H12v2.2h.07c.63-1.2 2.18-2.46 4.49-2.46 4.8 0 5.69 3.16 5.69 7.27V24h-5v-7.2c0-1.72-.03-3.93-2.4-3.93-2.4 0-2.77 1.87-2.77 3.81V24h-5V8z"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer__col"><h3>Product</h3><ul><li><a href="../Product.html#catalog">Catalog</a></li><li><a href="../Product.html#hub">BI Hub</a></li><li><a href="../Product.html#governance">Governance</a></li><li><a href="../Connectors.html">Connectors</a></li><li><a href="../Pricing.html">Pricing</a></li></ul></div>
+        <div class="footer__col"><h3>Use cases</h3><ul><li><a href="../UseCases.html">All use cases</a></li><li><a href="multi-vendor-bi.html">Multi-vendor BI</a></li><li><a href="cloud-migration.html">Cloud migration</a></li><li><a href="ma-integration.html">M&amp;A integration</a></li><li><a href="data-sovereignty.html">Data sovereignty</a></li></ul></div>
+        <div class="footer__col"><h3>Company</h3><ul><li><a href="../About.html">About</a></li><li><a href="../About.html#team">Leadership</a></li><li><a href="../Customers.html">Customers</a></li><li><a href="../Contact.html">Contact</a></li><li><a href="#">Careers</a></li></ul></div>
+        <div class="footer__col"><h3>Resources</h3><ul><li><a href="../Resources.html">Library</a></li><li><a href="../FAQ.html">FAQ</a></li><li><a href="../Home.html#research">ISG report</a></li><li><a href="#">Blog</a></li><li><a href="#">Support</a></li></ul></div>
+      </div>
+      <div class="footer__bottom"><span>&copy; 2026 Digital Hive</span><ul><li><a href="#">Privacy</a></li><li><a href="#">Terms</a></li><li><a href="#">Trust center</a></li></ul></div>
+    </div>
+  </footer>
+
+  <script src="../scripts/site.js"></script>
+</body>
+</html>
