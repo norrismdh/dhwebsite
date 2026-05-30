@@ -49,7 +49,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { firstName, lastName, email, company, role, biTools, message } = req.body ?? {};
+  const { firstName, lastName, email, company, role, biTools, message, leadSource } = req.body ?? {};
 
   if (!email) {
     return res.status(400).json({ error: 'Email is required' });
@@ -76,7 +76,7 @@ export default async function handler(req, res) {
           Email:       email,
           Company:     company   ?? '',
           Title:       role      ?? '',
-          Lead_Source: 'Website',
+          Lead_Source: leadSource ?? 'Website',
           Description: description,
         }],
       }),

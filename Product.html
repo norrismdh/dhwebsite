@@ -8,14 +8,6 @@
   <link rel="stylesheet" href="styles/tokens.css" />
   <link rel="stylesheet" href="styles/site.css" />
   <link rel="stylesheet" href="styles/product.css" />
-  <script>
-    // Apply tweak defaults (currently: Segoe UI) before first paint.
-    // The Tweaks panel below can override this at runtime.
-    document.documentElement.style.setProperty(
-      '--font-sans',
-      '"Segoe UI", system-ui, -apple-system, "Helvetica Neue", Helvetica, Arial, sans-serif'
-    );
-  </script>
 </head>
 <body>
 
@@ -61,26 +53,154 @@
          ============================================================ -->
     <section class="page-hero" data-screen-label="01 Page header">
       <div class="container page-hero__grid">
+
         <div class="reveal">
           <span class="eyebrow">Product</span>
           <h1>The analytics catalog and BI portal built for complex environments.</h1>
           <p class="page-hero__sub">Digital Hive sits above your existing BI tools. It indexes them, organizes them, governs them, and surfaces them to the right people - without touching a single report.</p>
+          <div class="page-hero__meta">
+            <div class="item">
+              <span class="num">10+</span>
+              <span class="lbl">BI platforms supported</span>
+            </div>
+            <div class="item">
+              <span class="num">0</span>
+              <span class="lbl">Reports migrated</span>
+            </div>
+            <div class="item">
+              <span class="num">30%</span>
+              <span class="lbl">Adoption lift on average</span>
+            </div>
+          </div>
         </div>
 
-        <div class="page-hero__meta reveal">
-          <div class="item">
-            <span class="num">10+</span>
-            <span class="lbl">BI platforms supported</span>
-          </div>
-          <div class="item">
-            <span class="num">0</span>
-            <span class="lbl">Reports migrated</span>
-          </div>
-          <div class="item">
-            <span class="num">30%</span>
-            <span class="lbl">Adoption lift on average</span>
-          </div>
-        </div>
+        <!-- App UI mockup -->
+        <div class="page-hero__visual reveal" aria-hidden="true">
+          <div class="dh-mockup">
+
+            <!-- Browser chrome -->
+            <div class="dh-mockup__chrome">
+              <div class="dh-mockup__dots"><span></span><span></span><span></span></div>
+              <div class="dh-mockup__url">app.digitalhive.com</div>
+            </div>
+
+            <!-- App top bar -->
+            <div class="dh-mockup__topbar">
+              <div class="dh-mockup__brand">Digital<span>Hive.</span></div>
+              <nav class="dh-mockup__tabs">
+                <span class="dh-mockup__tab dh-mockup__tab--active">
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                  Content Catalog
+                </span>
+                <span class="dh-mockup__tab">Custom Experience</span>
+                <span class="dh-mockup__tab">Executive Dashboard</span>
+              </nav>
+              <div class="dh-mockup__search">
+                <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                Search everywhere
+              </div>
+            </div>
+
+            <!-- App body: sidebar + main -->
+            <div class="dh-mockup__body">
+
+              <aside class="dh-mockup__sidebar">
+                <div class="dh-mockup__sitem dh-mockup__sitem--active">
+                  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                  Content Systems
+                </div>
+                <div class="dh-mockup__sitem dh-mockup__sitem--indent">
+                  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                  Power BI
+                </div>
+                <div class="dh-mockup__sitem dh-mockup__sitem--indent">
+                  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                  Tableau
+                </div>
+                <div class="dh-mockup__sitem dh-mockup__sitem--indent">
+                  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                  Qlik Cloud
+                </div>
+                <div class="dh-mockup__sitem dh-mockup__sitem--indent">
+                  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                  SAP Analytics
+                </div>
+                <div class="dh-mockup__sdivider"></div>
+                <div class="dh-mockup__sitem">
+                  <svg width="9" height="9" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+                  Favorites
+                </div>
+                <div class="dh-mockup__sitem">
+                  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  Recently seen
+                </div>
+                <div class="dh-mockup__sitem">
+                  <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                  Trending
+                </div>
+              </aside>
+
+              <main class="dh-mockup__main">
+                <div class="dh-mockup__toolbar">
+                  <span class="dh-mockup__toolbar-title">Content Systems</span>
+                  <span class="dh-mockup__toolbar-sort">
+                    <svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+                    Name ↑
+                  </span>
+                </div>
+                <div class="dh-mockup__cards">
+                  <div class="dh-mockup__card">
+                    <img src="assets/logos/ibm.png" alt="" />
+                    <span class="dh-mockup__card-name">Cognos Analytics</span>
+                    <span class="dh-mockup__card-type">Folder</span>
+                  </div>
+                  <div class="dh-mockup__card">
+                    <img src="assets/logos/databricks.png" alt="" />
+                    <span class="dh-mockup__card-name">Databricks</span>
+                    <span class="dh-mockup__card-type">Folder</span>
+                  </div>
+                  <div class="dh-mockup__card">
+                    <img src="assets/logos/powerbi.png" alt="" />
+                    <span class="dh-mockup__card-name">Power BI</span>
+                    <span class="dh-mockup__card-type">Folder</span>
+                  </div>
+                  <div class="dh-mockup__card">
+                    <img src="assets/logos/qlik.webp" alt="" />
+                    <span class="dh-mockup__card-name">Qlik Cloud</span>
+                    <span class="dh-mockup__card-type">Folder</span>
+                  </div>
+                  <div class="dh-mockup__card">
+                    <img src="assets/logos/sap.png" alt="" />
+                    <span class="dh-mockup__card-name">SAP Analytics Cloud</span>
+                    <span class="dh-mockup__card-type">Folder</span>
+                  </div>
+                  <div class="dh-mockup__card">
+                    <img src="assets/logos/sharepoint.png" alt="" />
+                    <span class="dh-mockup__card-name">SharePoint Online</span>
+                    <span class="dh-mockup__card-type">Folder</span>
+                  </div>
+                  <div class="dh-mockup__card">
+                    <img src="assets/logos/tableau.png" alt="" />
+                    <span class="dh-mockup__card-name">Tableau</span>
+                    <span class="dh-mockup__card-type">Folder</span>
+                  </div>
+                  <div class="dh-mockup__card">
+                    <img src="assets/logos/looker.webp" alt="" />
+                    <span class="dh-mockup__card-name">Looker</span>
+                    <span class="dh-mockup__card-type">Folder</span>
+                  </div>
+                  <div class="dh-mockup__card">
+                    <img src="assets/logos/microstrategy.png" alt="" />
+                    <span class="dh-mockup__card-name">MicroStrategy</span>
+                    <span class="dh-mockup__card-type">Folder</span>
+                  </div>
+                </div>
+              </main>
+
+            </div><!-- /.dh-mockup__body -->
+          </div><!-- /.dh-mockup -->
+        </div><!-- /.page-hero__visual -->
+
       </div>
     </section>
 
@@ -689,7 +809,7 @@
         <span>&copy; 2026 Digital Hive</span>
         <ul>
           <li><a href="/Privacy.html">Privacy</a></li>
-          <li><a href="#">Terms</a></li>
+          <li><a href="Terms.html">Terms</a></li>
           <li><a href="#">Trust center</a></li>
         </ul>
       </div>
@@ -697,14 +817,5 @@
   </footer>
 
   <script src="scripts/site.js"></script>
-
-  <!-- Tweaks: React + Babel + Tweaks shell + product tweak definitions.
-       The default font is Segoe UI; the panel exposes Montserrat (brand) and
-       a system stack as alternates. Toggle "Tweaks" from the toolbar. -->
-  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
-  <script type="text/babel" src="scripts/tweaks-panel.jsx"></script>
-  <script type="text/babel" src="scripts/product-tweaks.jsx"></script>
 </body>
 </html>
