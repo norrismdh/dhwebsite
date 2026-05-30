@@ -1,3 +1,49 @@
+// Cache the access token for the lifetime of the function instance.
+// Zoho tokens are valid for 3600s; we refresh 5 minutes early to be safe.
+let cachedToken = null;
+let tokenExpiresAt = 0;
+
+async function getAccessToken() {
+  console.log('ZOHO env vars present:', {
+    CLIENT_ID:    !!process.env.ZOHO_CLIENT_ID,
+    CLIENT_SECRET:!!process.env.ZOHO_CLIENT_SECRET,
+    REFRESH_TOKEN:!!process.env.ZOHO_REFRESH_TOKEN,
+    ACCESS_TOKEN: !!process.env.ZOHO_ACCESS_TOKEN,
+  });
+
+  // ZOHO_ACCESS_TOKEN in .env.local lets dev skip the rate-limited token endpoint.
+  if (process.env.ZOHO_ACCESS_TOKEN) {
+    console.log('Using pre-seeded ZOHO_ACCESS_TOKEN');
+    return process.env.ZOHO_ACCESS_TOKEN;
+  }
+
+  const now = Date.now();
+  if (cachedToken && now < tokenExpiresAt) {
+    return cachedToken;
+  }
+
+  const tokenRes = await fetch('https://accounts.zoho.com/oauth/v2/token', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      client_id:     process.env.ZOHO_CLIENT_ID,
+      client_secret: process.env.ZOHO_CLIENT_SECRET,
+      refresh_token: process.env.ZOHO_REFRESH_TOKEN,
+      grant_type:    'refresh_token',
+    }),
+  });
+
+  const tokenData = await tokenRes.json();
+  if (!tokenData.access_token) {
+    console.error('Zoho token error:', tokenData);
+    throw new Error('Could not obtain Zoho access token');
+  }
+
+  cachedToken = tokenData.access_token;
+  tokenExpiresAt = now + (tokenData.expires_in ?? 3600) * 1000 - 5 * 60 * 1000;
+  return cachedToken;
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -10,22 +56,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const tokenRes = await fetch('https://accounts.zoho.com/oauth/v2/token', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams({
-        client_id:     process.env.ZOHO_CLIENT_ID,
-        client_secret: process.env.ZOHO_CLIENT_SECRET,
-        refresh_token: process.env.ZOHO_REFRESH_TOKEN,
-        grant_type:    'refresh_token',
-      }),
-    });
-
-    const tokenData = await tokenRes.json();
-    if (!tokenData.access_token) {
-      console.error('Zoho token error:', tokenData);
-      throw new Error('Could not obtain Zoho access token');
-    }
+    const accessToken = await getAccessToken();
 
     const biList = Array.isArray(biTools) && biTools.length
       ? `BI Stack: ${biTools.join(', ')}\n\n`
@@ -35,7 +66,7 @@ export default async function handler(req, res) {
     const leadRes = await fetch('https://www.zohoapis.com/crm/v2/Leads', {
       method: 'POST',
       headers: {
-        Authorization:  `Zoho-oauthtoken ${tokenData.access_token}`,
+        Authorization:  `Zoho-oauthtoken ${accessToken}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
