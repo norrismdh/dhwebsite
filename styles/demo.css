@@ -93,36 +93,6 @@
 .demo-rail__expect .dash { color: var(--dh-orange); font-weight: var(--fw-bold); font-size: var(--fs-18); line-height: 1.2; }
 
 /* -----------------------------------------------------------
-   Calendly toggle + collapse
-   ----------------------------------------------------------- */
-.calendly-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 24px;
-  background: var(--dh-navy);
-  color: var(--dh-orange);
-  border: none;
-  border-radius: var(--radius-md);
-  font-family: inherit;
-  font-size: var(--fs-16);
-  font-weight: var(--fw-bold);
-  cursor: pointer;
-  transition: background var(--dur-fast) var(--ease-out);
-  width: 100%;
-  justify-content: center;
-}
-.calendly-toggle:hover { background: var(--dh-ink); }
-.calendly-toggle svg { transition: transform var(--dur-fast) var(--ease-out); }
-.calendly-toggle.is-hidden { display: none; }
-
-.calendly-collapse {
-  display: none;
-  margin-top: var(--space-5);
-}
-.calendly-collapse.is-open { display: block; }
-
-/* -----------------------------------------------------------
    Calendly embed area
    ----------------------------------------------------------- */
 .scheduler {
