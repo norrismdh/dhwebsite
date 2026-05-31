@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
   <title>Resources - Digital Hive</title>
   <meta name="description" content="Understand the analytics catalog category before you evaluate the vendors. Independent research, working definitions, honest comparisons." />
   <link rel="stylesheet" href="styles/tokens.css" />
@@ -62,7 +63,7 @@
     <!-- ============================================================
          2 - FEATURED RESOURCE (gated)
          ============================================================ -->
-    <section class="feat" data-screen-label="02 Featured report">
+    <section class="feat" id="download" data-screen-label="02 Featured report">
       <div class="container">
         <div class="feat__grid">
           <div class="feat__copy reveal">
@@ -78,7 +79,7 @@
             </div>
           </div>
 
-          <form class="feat__form reveal" onsubmit="event.preventDefault(); this.querySelector('button[type=submit]').textContent='Sent - check your inbox.';">
+          <form class="feat__form reveal" id="isg-download-form" novalidate>
             <div class="feat__form-head">
               <span class="lock" aria-hidden="true">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
@@ -116,11 +117,11 @@
             </div>
 
             <div class="feat__form-submit">
-              <button class="btn btn--primary" type="submit">
+              <button class="btn btn--primary" type="submit" id="isg-download-btn">
                 Download free report
                 <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               </button>
-              <small>We'll email the report and never sell your address. Single, unsubscribable follow-up only.</small>
+              <small id="isg-download-msg">Free. We never sell your address.</small>
             </div>
           </form>
         </div>
@@ -149,14 +150,14 @@
 
         <div class="library__grid">
 
-          <!-- BLOGS (7) -->
-          <a class="res-card reveal" href="#blog-1" data-type="blog">
+          <!-- BLOGS (17) -->
+          <a class="res-card reveal" href="blog/data-catalogs-are-dead.html" data-type="blog">
             <div class="res-card__thumb">
               <span class="res-card__type-strip"><span class="swatch"></span>Blog</span>
               <span class="res-card__mark">dh<span class="dot">.</span></span>
             </div>
             <div class="res-card__body">
-              <h3 class="res-card__title">Data catalogs are dead - and the industry's refusal to admit it is costing you.</h3>
+              <h3 class="res-card__title">Data catalogs are dead - and the industry refusal to admit it is costing you.</h3>
               <div class="res-card__meta">
                 <span>Mar 2026 · 7 min read</span>
                 <span class="res-card__cta">Read <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
@@ -164,7 +165,7 @@
             </div>
           </a>
 
-          <a class="res-card reveal" href="#blog-2" data-type="blog">
+          <a class="res-card reveal" href="blog/analytics-catalogs-actually-useful.html" data-type="blog">
             <div class="res-card__thumb">
               <span class="res-card__type-strip"><span class="swatch"></span>Blog</span>
               <span class="res-card__mark">dh<span class="dot">.</span></span>
@@ -172,13 +173,13 @@
             <div class="res-card__body">
               <h3 class="res-card__title">Analytics catalogs: actually useful, or just another checkbox?</h3>
               <div class="res-card__meta">
-                <span>Feb 2026 · 6 min read</span>
+                <span>Aug 2025 · 5 min read</span>
                 <span class="res-card__cta">Read <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
               </div>
             </div>
           </a>
 
-          <a class="res-card reveal" href="#blog-3" data-type="blog">
+          <a class="res-card reveal" href="blog/peaceful-transition-analytics.html" data-type="blog">
             <div class="res-card__thumb">
               <span class="res-card__type-strip"><span class="swatch"></span>Blog</span>
               <span class="res-card__mark">dh<span class="dot">.</span></span>
@@ -186,41 +187,83 @@
             <div class="res-card__body">
               <h3 class="res-card__title">A peaceful transition of power - for your analytics.</h3>
               <div class="res-card__meta">
-                <span>Feb 2026 · 5 min read</span>
+                <span>Jan 2025 · 4 min read</span>
                 <span class="res-card__cta">Read <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
               </div>
             </div>
           </a>
 
-          <a class="res-card reveal" href="#blog-4" data-type="blog">
+          <a class="res-card reveal" href="blog/10-statistics-cdao-2024.html" data-type="blog">
             <div class="res-card__thumb">
               <span class="res-card__type-strip"><span class="swatch"></span>Blog</span>
               <span class="res-card__mark">dh<span class="dot">.</span></span>
             </div>
             <div class="res-card__body">
-              <h3 class="res-card__title">Why choose just one tool: how to bring the titans of BI together.</h3>
+              <h3 class="res-card__title">10 key statistics every Chief Data Analytics Officer should know.</h3>
               <div class="res-card__meta">
-                <span>Jan 2026 · 8 min read</span>
+                <span>Sep 2024 · 6 min read</span>
                 <span class="res-card__cta">Read <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
               </div>
             </div>
           </a>
 
-          <a class="res-card reveal" href="#blog-5" data-type="blog">
+          <a class="res-card reveal" href="blog/how-many-bi-tools.html" data-type="blog">
             <div class="res-card__thumb">
               <span class="res-card__type-strip"><span class="swatch"></span>Blog</span>
               <span class="res-card__mark">dh<span class="dot">.</span></span>
             </div>
             <div class="res-card__body">
-              <h3 class="res-card__title">The future of analytics is now: unifying siloed tools.</h3>
+              <h3 class="res-card__title">Navigating the maze: how many BI tools does your organization actually need?</h3>
               <div class="res-card__meta">
-                <span>Jan 2026 · 5 min read</span>
+                <span>Jul 2024 · 5 min read</span>
                 <span class="res-card__cta">Read <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
               </div>
             </div>
           </a>
 
-          <a class="res-card reveal" href="#blog-6" data-type="blog">
+          <a class="res-card reveal" href="blog/how-to-read-gartner-mq-2024.html" data-type="blog">
+            <div class="res-card__thumb">
+              <span class="res-card__type-strip"><span class="swatch"></span>Blog</span>
+              <span class="res-card__mark">dh<span class="dot">.</span></span>
+            </div>
+            <div class="res-card__body">
+              <h3 class="res-card__title">How to read the Gartner Magic Quadrant and Critical Capabilities - 2024 edition.</h3>
+              <div class="res-card__meta">
+                <span>Jul 2024 · 6 min read</span>
+                <span class="res-card__cta">Read <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+              </div>
+            </div>
+          </a>
+
+          <a class="res-card reveal" href="blog/ultimate-guide-analytics-catalogs.html" data-type="blog">
+            <div class="res-card__thumb">
+              <span class="res-card__type-strip"><span class="swatch"></span>Blog</span>
+              <span class="res-card__mark">dh<span class="dot">.</span></span>
+            </div>
+            <div class="res-card__body">
+              <h3 class="res-card__title">Your complete guide to analytics catalogs: solving today's biggest challenges.</h3>
+              <div class="res-card__meta">
+                <span>Jun 2024 · 5 min read</span>
+                <span class="res-card__cta">Read <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+              </div>
+            </div>
+          </a>
+
+          <a class="res-card reveal" href="blog/creativity-analytics-catalog.html" data-type="blog">
+            <div class="res-card__thumb">
+              <span class="res-card__type-strip"><span class="swatch"></span>Blog</span>
+              <span class="res-card__mark">dh<span class="dot">.</span></span>
+            </div>
+            <div class="res-card__body">
+              <h3 class="res-card__title">Better creativity happens when your analytics are organized.</h3>
+              <div class="res-card__meta">
+                <span>Apr 2024 · 4 min read</span>
+                <span class="res-card__cta">Read <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+              </div>
+            </div>
+          </a>
+
+          <a class="res-card reveal" href="blog/power-bi-analytics-catalog.html" data-type="blog">
             <div class="res-card__thumb">
               <span class="res-card__type-strip"><span class="swatch"></span>Blog</span>
               <span class="res-card__mark">dh<span class="dot">.</span></span>
@@ -228,21 +271,119 @@
             <div class="res-card__body">
               <h3 class="res-card__title">5 great reasons to pair an analytics catalog with Microsoft Power BI.</h3>
               <div class="res-card__meta">
-                <span>Dec 2025 · 6 min read</span>
+                <span>Jan 2024 · 5 min read</span>
                 <span class="res-card__cta">Read <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
               </div>
             </div>
           </a>
 
-          <a class="res-card reveal" href="#blog-7" data-type="blog">
+          <a class="res-card reveal" href="blog/dewey-decimal-business-intelligence.html" data-type="blog">
             <div class="res-card__thumb">
               <span class="res-card__type-strip"><span class="swatch"></span>Blog</span>
               <span class="res-card__mark">dh<span class="dot">.</span></span>
             </div>
             <div class="res-card__body">
-              <h3 class="res-card__title">The Dewey Decimal System for business intelligence.</h3>
+              <h3 class="res-card__title">People are freaking out about the Dewey Decimal System for business intelligence.</h3>
               <div class="res-card__meta">
-                <span>Nov 2025 · 7 min read</span>
+                <span>Dec 2023 · 4 min read</span>
+                <span class="res-card__cta">Read <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+              </div>
+            </div>
+          </a>
+
+          <a class="res-card reveal" href="blog/reimagining-analytics-ux.html" data-type="blog">
+            <div class="res-card__thumb">
+              <span class="res-card__type-strip"><span class="swatch"></span>Blog</span>
+              <span class="res-card__mark">dh<span class="dot">.</span></span>
+            </div>
+            <div class="res-card__body">
+              <h3 class="res-card__title">Reimagining user experience in the analytics world.</h3>
+              <div class="res-card__meta">
+                <span>Oct 2023 · 4 min read</span>
+                <span class="res-card__cta">Read <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+              </div>
+            </div>
+          </a>
+
+          <a class="res-card reveal" href="blog/bring-bi-tools-together.html" data-type="blog">
+            <div class="res-card__thumb">
+              <span class="res-card__type-strip"><span class="swatch"></span>Blog</span>
+              <span class="res-card__mark">dh<span class="dot">.</span></span>
+            </div>
+            <div class="res-card__body">
+              <h3 class="res-card__title">Why choose just one tool? How to bring the titans of BI together.</h3>
+              <div class="res-card__meta">
+                <span>Sep 2023 · 5 min read</span>
+                <span class="res-card__cta">Read <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+              </div>
+            </div>
+          </a>
+
+          <a class="res-card reveal" href="blog/future-analytics-unified-tools.html" data-type="blog">
+            <div class="res-card__thumb">
+              <span class="res-card__type-strip"><span class="swatch"></span>Blog</span>
+              <span class="res-card__mark">dh<span class="dot">.</span></span>
+            </div>
+            <div class="res-card__body">
+              <h3 class="res-card__title">The future of analytics is unified - not standardized.</h3>
+              <div class="res-card__meta">
+                <span>Aug 2023 · 4 min read</span>
+                <span class="res-card__cta">Read <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+              </div>
+            </div>
+          </a>
+
+          <a class="res-card reveal" href="blog/top-5-analytics-catalog-benefits.html" data-type="blog">
+            <div class="res-card__thumb">
+              <span class="res-card__type-strip"><span class="swatch"></span>Blog</span>
+              <span class="res-card__mark">dh<span class="dot">.</span></span>
+            </div>
+            <div class="res-card__body">
+              <h3 class="res-card__title">The top 5 benefits of analytics catalogs you need to know.</h3>
+              <div class="res-card__meta">
+                <span>Aug 2023 · 5 min read</span>
+                <span class="res-card__cta">Read <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+              </div>
+            </div>
+          </a>
+
+          <a class="res-card reveal" href="blog/analytics-data-metrics-cheatsheet.html" data-type="blog">
+            <div class="res-card__thumb">
+              <span class="res-card__type-strip"><span class="swatch"></span>Blog</span>
+              <span class="res-card__mark">dh<span class="dot">.</span></span>
+            </div>
+            <div class="res-card__body">
+              <h3 class="res-card__title">Analytics catalogs, data catalogs, and metrics stores: a plain-language cheat sheet.</h3>
+              <div class="res-card__meta">
+                <span>Aug 2023 · 4 min read</span>
+                <span class="res-card__cta">Read <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+              </div>
+            </div>
+          </a>
+
+          <a class="res-card reveal" href="blog/era-of-bi-standardisation-over.html" data-type="blog">
+            <div class="res-card__thumb">
+              <span class="res-card__type-strip"><span class="swatch"></span>Blog</span>
+              <span class="res-card__mark">dh<span class="dot">.</span></span>
+            </div>
+            <div class="res-card__body">
+              <h3 class="res-card__title">The era of BI standardization is over.</h3>
+              <div class="res-card__meta">
+                <span>Jul 2023 · 5 min read</span>
+                <span class="res-card__cta">Read <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+              </div>
+            </div>
+          </a>
+
+          <a class="res-card reveal" href="blog/standardisation-is-wrong.html" data-type="blog">
+            <div class="res-card__thumb">
+              <span class="res-card__type-strip"><span class="swatch"></span>Blog</span>
+              <span class="res-card__mark">dh<span class="dot">.</span></span>
+            </div>
+            <div class="res-card__body">
+              <h3 class="res-card__title">Standardization is the wrong answer for analytics.</h3>
+              <div class="res-card__meta">
+                <span>Jun 2023 · 4 min read</span>
                 <span class="res-card__cta">Read <svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
               </div>
             </div>
@@ -371,7 +512,7 @@
     </section>
 
     <!-- ============================================================
-         5 - COMPARISON PAGES (hidden — vendor comparisons removed)
+         5 - COMPARISON PAGES (hidden  -  vendor comparisons removed)
          ============================================================ -->
     <section class="compare" data-screen-label="05 Comparisons" hidden>
       <div class="container">
@@ -447,5 +588,56 @@
 
     <script src="scripts/consent.js"></script>
   <script src="scripts/site.js"></script>
+  <script>
+  (function () {
+    const form = document.getElementById('isg-download-form');
+    const btn  = document.getElementById('isg-download-btn');
+    const msg  = document.getElementById('isg-download-msg');
+    if (!form) return;
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      const data = {
+        name:    form.querySelector('[name=name]').value.trim(),
+        email:   form.querySelector('[name=email]').value.trim(),
+        company: form.querySelector('[name=company]').value.trim(),
+        role:    form.querySelector('[name=role]').value,
+      };
+
+      try {
+        const res  = await fetch('/api/download-report', {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify(data),
+        });
+        const json = await res.json();
+
+        if (!res.ok || !json.url) throw new Error(json.error || 'Unknown error');
+
+        // Trigger download
+        const a = document.createElement('a');
+        a.href     = json.url;
+        a.download = 'ISG-Analytics-Catalog.pdf';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        btn.textContent = 'Downloaded';
+        msg.textContent = 'Your download has started.';
+        form.querySelectorAll('input, select').forEach(el => el.disabled = true);
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = 'Download free report';
+        msg.style.color = '#c0392b';
+        msg.textContent = err.message || 'Something went wrong. Please try again.';
+      }
+    });
+  })();
+  </script>
 </body>
 </html>

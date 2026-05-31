@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
   <title>Contact us - Digital Hive</title>
-  <meta name="description" content="Have a question or want to see Digital Hive in action? We'll connect you with the right team — fast." />
+  <meta name="description" content="Have a question or want to see Digital Hive in action? We'll connect you with the right team  -  fast." />
   <link rel="stylesheet" href="styles/tokens.css" />
   <link rel="stylesheet" href="styles/site.css" />
   <link rel="stylesheet" href="styles/consent.css" />
@@ -43,7 +44,7 @@
         <div class="ct-hero__inner reveal">
           <span class="eyebrow">Contact</span>
           <h1>Let's talk about your analytics stack.</h1>
-          <p>Whether you want a live walkthrough, a procurement quote, or a deep technical Q&amp;A — we'll route you to a real human, fast. No sales gauntlet.</p>
+          <p>Whether you want a live walkthrough, a procurement quote, or a deep technical Q&amp;A  -  we'll route you to a real human, fast. No sales gauntlet.</p>
         </div>
       </div>
     </section>
@@ -337,6 +338,56 @@
 
     <script src="scripts/consent.js"></script>
   <script src="scripts/site.js"></script>
+  <script>
+  (function () {
+    const form = document.querySelector('.ct-form');
+    if (!form) return;
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      const btn = form.querySelector('button[type=submit]');
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      const biTools = Array.from(
+        form.querySelectorAll('.ct-chips input[type=checkbox]:checked')
+      ).map(cb => cb.closest('.ct-chip').textContent.trim());
+
+      const data = {
+        firstName:  form.querySelector('#ct-first').value.trim(),
+        lastName:   form.querySelector('#ct-last').value.trim(),
+        email:      form.querySelector('#ct-email').value.trim(),
+        company:    form.querySelector('#ct-company').value.trim(),
+        role:       form.querySelector('#ct-role').value,
+        biTools,
+        message:    form.querySelector('#ct-msg').value.trim(),
+        leadSource: 'Website Contact',
+      };
+
+      try {
+        const res  = await fetch('/api/submit-lead', {
+          method:  'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body:    JSON.stringify(data),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.error || 'Unknown error');
+
+        window.location.href = 'thank-you.html';
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = 'Send message';
+        const errEl = form.querySelector('.ct-form-error') || document.createElement('p');
+        errEl.className = 'ct-form-error';
+        errEl.style.cssText = 'color:#c0392b;font-size:var(--fs-14);margin-top:var(--space-3);';
+        errEl.textContent = err.message || 'Something went wrong. Please try again.';
+        form.querySelector('.ct-submit').appendChild(errEl);
+      }
+    });
+  })();
+  </script>
   <script src="scripts/contact.js"></script>
 </body>
 </html>
