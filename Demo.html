@@ -86,13 +86,22 @@
 
           <!-- RIGHT - scheduler -->
           <div class="reveal">
-            <!-- Calendly inline widget begin -->
-            <div class="calendly-inline-widget"
-                 data-url="https://calendly.com/d/wpc8-q57/see-digital-hive-in-action?hide_event_type_details=1&amp;hide_gdpr_banner=1&amp;primary_color=193359&amp;text_color=F39235"
-                 data-resize="true"
-                 style="min-width:320px;height:700px;"></div>
-            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-            <!-- Calendly inline widget end -->
+            <!-- Trigger button — hidden once widget opens -->
+            <button class="calendly-toggle" id="js-cal-trigger" aria-expanded="false" aria-controls="js-cal-collapse">
+              Pick a time that works for you
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+
+            <!-- Collapsible Calendly widget -->
+            <div class="calendly-collapse" id="js-cal-collapse" aria-hidden="true">
+              <!-- Calendly inline widget begin -->
+              <div class="calendly-inline-widget"
+                   data-url="https://calendly.com/d/wpc8-q57/see-digital-hive-in-action?hide_event_type_details=1&amp;hide_gdpr_banner=1&amp;primary_color=193359&amp;text_color=F39235"
+                   data-resize="true"
+                   style="min-width:320px;height:700px;"></div>
+              <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+              <!-- Calendly inline widget end -->
+            </div>
 
             <!-- Fallback channels -->
             <div class="demo-channels">
@@ -176,5 +185,18 @@
 
     <script src="scripts/consent.js"></script>
   <script src="scripts/site.js"></script>
+  <script>
+    (function () {
+      var btn = document.getElementById('js-cal-trigger');
+      var panel = document.getElementById('js-cal-collapse');
+      if (!btn || !panel) return;
+      btn.addEventListener('click', function () {
+        panel.classList.add('is-open');
+        panel.setAttribute('aria-hidden', 'false');
+        btn.classList.add('is-hidden');
+        btn.setAttribute('aria-expanded', 'true');
+      });
+    })();
+  </script>
 </body>
 </html>
