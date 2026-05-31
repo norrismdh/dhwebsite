@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <title>Data catalogs are dead - and the industry refusal to admit it is costing you. - Digital Hive</title>
+  <meta name="description" content="Why enterprise data catalogs fail business users, what it costs, and how analytics catalogs solve what data catalogs never could." />
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/site.css" />
+  <link rel="stylesheet" href="../styles/consent.css" />
+  <link rel="stylesheet" href="../styles/article.css" />
+</head>
+<body>
+
+  <header class="nav" data-screen-label="Navigation">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="../Home.html" aria-label="Digital Hive home" style="border-bottom:none;">
+        <img src="../assets/logo-colour.svg" alt="Digital Hive" />
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav__links">
+          <li><a href="../Product.html">Product</a></li>
+          <li><a href="../UseCases.html">Use cases</a></li>
+          <li><a href="../Customers.html">Customers</a></li>
+          <li><a href="../Resources.html" style="color:var(--dh-orange);">Resources</a></li>
+          <li><a href="../Pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn btn--primary" href="../Demo.html">Book a demo</a>
+        <button type="submit" class="nav__toggle" data-mobile-toggle aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="container mobile-menu" data-mobile-menu>
+      <ul>
+        <li><a href="../Product.html">Product</a></li>
+        <li><a href="../UseCases.html">Use cases</a></li>
+        <li><a href="../Customers.html">Customers</a></li>
+        <li><a href="../Resources.html">Resources</a></li>
+        <li><a href="../Pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <nav class="breadcrumb" aria-label="Breadcrumb" style="padding: var(--space-7) 0 0;">
+      <div class="container">
+        <ol style="list-style:none; margin:0; padding:0; display:flex; gap:var(--space-2); align-items:center; font-size:var(--fs-14); color:var(--fg-3);">
+          <li><a href="../Resources.html" style="color:var(--fg-3); font-weight:var(--fw-medium); border-bottom:none;">Resources</a></li>
+          <li aria-hidden="true" style="color:var(--dh-grey-light);">/</li>
+          <li style="color:var(--dh-navy); font-weight:var(--fw-bold);">Data catalogs are dead - and the industry refusal to admit it is costing you.</li>
+        </ol>
+      </div>
+    </nav>
+
+    <header class="art-header" data-screen-label="01 Header">
+      <div class="container reveal">
+        <span class="eyebrow">Blog &middot; BI Modernization</span>
+        <h1>Data catalogs are dead - and the industry refusal to admit it is costing you.</h1>
+        <p class="art-header__sub">The enterprise data catalog as implemented over the past decade has failed. The industry keeps selling them anyway. Here is what is actually happening and what to do instead.</p>
+        <div class="art-meta">
+          <span>7 min read</span>
+          <span class="dot" aria-hidden="true"></span>
+          <span>Mar 2026</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="art-body">
+      <div class="container">
+        <div class="art-body__grid">
+
+          <aside class="toc" data-toc data-screen-label="TOC">
+            <div class="toc__title">
+              <span>On this page</span>
+              <button class="toc__toggle" type="button" data-toc-toggle aria-label="Toggle contents">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                <span>Contents</span>
+              </button>
+            </div>
+            <ol class="toc__list">
+              <li><a href="#failure">The failure nobody will admit</a></li>
+              <li><a href="#costs">Three categories of cost</a></li>
+              <li><a href="#wrong-layer">The problem is the layer</a></li>
+              <li><a href="#analytics-catalog">What actually works: the analytics catalog</a></li>
+              <li><a href="#shift">Making the shift</a></li>
+            </ol>
+          </aside>
+
+          <article class="prose">
+            <p class="lede">Enterprise data catalogs cost six to seven figures, require dedicated staff to maintain, and are actively used by roughly 5% of the people they were sold to serve. The industry knows this. It does not talk about it. And every year the same platforms get renewed, the same implementation consultants get re-engaged, and the same business users quietly go back to emailing each other Excel files asking "is this the right number?"</p>
+
+            <section id="failure">
+              <h2><span class="num">01</span><span>The failure nobody will admit</span></h2>
+              <p>Data catalogs were built by data engineers, designed around concepts that data engineers care about - tables, columns, schemas, lineage, data types, pipeline metadata. That is a coherent design for a coherent audience. The problem arrived when vendors began packaging those tools as enterprise-wide solutions and selling them into organizations on the premise that every employee would benefit from understanding their data assets. That premise was false, and the usage numbers in virtually every enterprise deployment prove it.</p>
+              <p>The core mismatch is straightforward. A data engineer troubleshooting a broken pipeline needs to know which tables feed which downstream views. A governance analyst validating compliance needs column-level lineage. Those are real needs. But a sales director trying to find the most recent regional performance dashboard does not need any of that. She needs the dashboard. When she opens a data catalog and is confronted with a tree of schemas, a glossary of technical terms she did not write, and lineage graphs that look like electrical schematics, she closes the tab and asks a colleague. She does not come back.</p>
+              <p>This abandonment pattern is consistent and well-documented inside organizations that will discuss it candidly. Initial deployment generates enthusiasm, followed by a structured rollout, followed by adoption numbers that plateau in the single digits across the broader business population. The teams that actually use the tool - data engineering, data governance - could be counted in tens of people. The "enterprise" audience for which the tool was licensed often numbers in the hundreds or thousands. The ratio is brutal and the industry handles it by focusing conversations on the enthusiastic technical minority and avoiding questions about everyone else.</p>
+              <p>Nobody announces the failure because the failure is distributed and easy to rationalize. Vendors attribute low adoption to change management problems. Data leaders attribute it to business users not being "data literate" enough. Both explanations protect the tool from scrutiny. The more accurate explanation is simpler: the tool was built for the wrong audience, deployed to the wrong audience, and measured against metrics that disguised the gap. The business users were not failing to use the catalog correctly. They were correctly identifying that the catalog was not built for them.</p>
+            </section>
+
+            <section id="costs">
+              <h2><span class="num">02</span><span>Three categories of cost</span></h2>
+              <p>The first and most visible cost is licensing. Enterprise data catalog platforms from established vendors - Alation, Collibra, Informatica, and others - carry price tags in the six to seven figure range annually when you include modules, user seats, and support contracts. For a tool whose active users represent 5% of the licensed population, the math on cost per actual user becomes uncomfortable quickly. Organizations rarely calculate it that way, because the license is typically justified as infrastructure and measured against the total headcount it is theoretically available to. If it were measured against the headcount that opens it monthly, the ROI conversation would be very different.</p>
+              <p>The second cost is the maintenance tax, and it is the one most frequently underestimated during procurement. A data catalog is not a fire-and-forget deployment. Business glossaries require ongoing enrichment as terminology evolves. Metadata needs to be validated as source systems change. Lineage documentation needs to be updated as pipelines are refactored. Data quality scores need to be recalibrated as datasets grow or shift. All of this work falls to someone - typically the governance team or data platform team - and it is work that competes with everything else those teams are already responsible for. In practice, it usually loses that competition. The result is a catalog that grows progressively staler, a glossary that nobody trusts, and lineage graphs that no longer accurately reflect the actual state of the systems. A stale catalog is often worse than no catalog because it creates the impression of documented knowledge while delivering misinformation.</p>
+              <p>The third cost is the hardest to quantify and the most damaging over time: opportunity cost and trust erosion. When a high-visibility data initiative fails to deliver - and a data catalog rollout that achieves 5% adoption has failed, regardless of what the renewal conversation claims - it does not fail quietly. It fails in front of the executive sponsors who funded it, the business stakeholders who were promised a better experience, and the data team that spent months on implementation. That failure becomes a data point. The next time a data leader proposes a new tool or program, the memory of the last initiative shapes the reception. Skepticism compounds. Budget conversations get harder. The phrase "we tried something like that before" starts appearing in steering committee meetings.</p>
+
+              <blockquote><p>A data catalog that achieves 5% adoption is not a partial success. It is a failed initiative with a renewal contract attached.</p></blockquote>
+
+              <p>Taken together, these three cost categories - licensing, maintenance, and eroded organizational trust - represent a significant drag on data programs. The licensing cost is recoverable if the investment is redirected. The maintenance tax stops the moment the tool stops requiring it. But the trust deficit built by a failed high-profile initiative can take years to reverse, and it limits what the data organization can accomplish in the interim. That is the cost the industry is least willing to discuss, because it implicates not just the tool but the entire sales cycle that placed it in the organization.</p>
+            </section>
+
+            <section id="wrong-layer">
+              <h2><span class="num">03</span><span>The problem is the layer</span></h2>
+              <p>Every enterprise technology stack has layers, and tools designed for one layer rarely serve another well. Data infrastructure operates at a foundational layer - databases, pipelines, transformation logic, storage, compute. Data catalogs were designed to serve that layer by documenting it. That is their native habitat, and within that habitat they are genuinely useful. The mistake was assuming that making the infrastructure layer discoverable would also make the business layer discoverable. It does not, because business users do not live at the infrastructure layer. They never have.</p>
+              <p>Business users live at the analytics layer - the finished outputs of all that infrastructure. A Q4 revenue report is the result of dozens of tables, pipelines, and transformations. A CFO who wants to review that report does not want to navigate the tables that feed it. She wants the report. An executive KPI dashboard is the product of a data model, a set of certified metrics, and a BI tool rendering them. A VP of Operations who needs to present that dashboard does not want to understand the data model. He wants the dashboard. The analytics layer is where decisions get made, where numbers get questioned, where trust or distrust in data gets formed. It is the layer that actually matters to the 95% of the organization that the data catalog was supposed to serve.</p>
+              <p>This layer problem becomes most visible when you observe how business users actually search for analytics content. They search by report name, by the business question the report answers, by the name of the person who usually sends it, by the meeting it gets presented in. They do not search by schema, by table name, by lineage path, or by data domain classification. Those concepts are foreign to them and forcing them to learn a technical vocabulary before they can find a report they need twice a week is not a data literacy problem. It is a product design problem. The catalog was built for the wrong search model because it was built for people who think in schemas, not people who think in business questions.</p>
+              <p>The layer problem also explains why governance programs built on top of data catalogs struggle to reach business users. Data stewardship, certification, and trust signals exist in the catalog at the table and column level. But the business user is not consuming tables. She is consuming a dashboard built on top of those tables, accessed through a BI tool that sits between her and the infrastructure the catalog documents. The governance signal never reaches her. She has no idea whether the dashboard she is using has been certified, when it was last validated, or whether the metrics in it align with the definitions her finance team approved. That information exists somewhere in the infrastructure layer. It never surfaces at the analytics layer where she is working.</p>
+            </section>
+
+            <section id="analytics-catalog">
+              <h2><span class="num">04</span><span>What actually works: the analytics catalog</span></h2>
+              <p>An analytics catalog is built on a fundamentally different premise: that the right unit of discovery for a business user is not a table or a schema but a finished analytical asset - a report, a dashboard, a metric, a certified KPI. Instead of asking users to understand data infrastructure and navigate technical metadata, an analytics catalog aggregates the outputs of that infrastructure into a single searchable front door. When a business user searches for "Q4 revenue," they see the Q4 revenue dashboard, the Q4 revenue report, and the certified Q4 revenue metric - not the tables that power them. The answer is surfaced directly, without requiring the user to understand how the answer was constructed.</p>
+              <p>This shift in the unit of cataloging has cascading effects. Governance moves to where users actually operate. Certification, trust signals, and definitions attach to the dashboard and the metric - the objects the user touches - rather than to the underlying tables she never sees. A business user can see at a glance whether the dashboard she is about to present in an executive meeting has been certified by the data team, when it was last validated, and who owns it. That is governance that lands. It reaches the person making decisions, at the moment she is making them, in a form she can actually act on. This is categorically different from governance buried in a schema browser that she has never opened.</p>
+              <p>The audience expansion is equally significant. A data catalog with 5% adoption has failed to build a data-driven culture, regardless of what the implementation report says. An analytics catalog that indexes every report and dashboard across every BI tool in the organization - Tableau, Power BI, Looker, Qlik, whatever the organization has accumulated - and makes that content searchable by business users gives those users a genuine reason to engage. The product solves a problem they actually have: finding content they know exists but cannot locate across fragmented tools and folder structures. That is a problem that affects the entire organization, not just the technical minority. Adoption numbers reflect the difference.</p>
+
+              <blockquote><p>Governance that lives at the infrastructure layer never reaches the business user. Governance that lives at the analytics layer reaches her every time she opens a dashboard.</p></blockquote>
+
+              <p>An analytics catalog also addresses the multi-vendor reality that most large enterprises are living with. Organizations rarely operate a single BI tool. They have Power BI for some teams, Tableau for others, Looker for the data-native teams, and legacy reports in tools they are trying to retire. Each tool is a silo. Each has its own search, its own folder structure, its own notion of certification. Business users either know which tool to check for which content - a form of tribal knowledge that does not survive turnover - or they give up and ask a colleague. An analytics catalog collapses those silos. It does not require migrating content, decommissioning tools, or choosing a winner in the BI vendor competition. It simply indexes everything and gives users one place to search. That is the kind of pragmatic, non-disruptive value that data programs have struggled to deliver for years.</p>
+            </section>
+
+            <section id="shift">
+              <h2><span class="num">05</span><span>Making the shift</span></h2>
+              <p>The shift to an analytics catalog does not require removing the data catalog. That framing - "replace the old tool with the new tool" - is the wrong way to think about it, and it is also the framing that generates the most organizational resistance. The data catalog serves a real audience: data engineers who need lineage, governance teams who need column-level metadata, compliance functions that need to document data flows. Those needs are legitimate and the data catalog serves them reasonably well. The argument is not that the data catalog has no value. The argument is that it has value for a specific technical audience and almost no value for anyone else. Both of those things can be true simultaneously.</p>
+              <p>The productive reframe is audience segmentation. The data catalog serves the infrastructure layer for the technical minority. The analytics catalog serves the analytics layer for everyone else. Both tools exist in the same organization, both serve their respective audiences, and they do not compete because they are solving different problems for different people. The data engineer keeps using the data catalog for lineage and schema documentation. The finance analyst uses the analytics catalog to find the certified revenue dashboard before her quarterly review. Neither experience is compromised by the existence of the other. The governance teams that maintain the data catalog can even feed trust signals upward into the analytics catalog, so that the certification work they do at the infrastructure level surfaces as visible indicators at the analytics level where business users operate.</p>
+              <p>The key shift in mindset is recognizing that "data discoverability" and "analytics discoverability" are not the same problem. The enterprise software industry has treated them as synonymous for a decade, selling data catalogs into analytics use cases and wondering why adoption stalls at the business layer. They are not synonymous. Data discoverability is an infrastructure problem. Analytics discoverability is a business user experience problem. The tools that solve one do not automatically solve the other, and organizations that recognize that distinction stop waiting for the data catalog to become something it was never designed to be.</p>
+              <p>Getting started does not require a lengthy procurement cycle or a multi-year implementation. An analytics catalog can be deployed alongside existing infrastructure, indexing the BI content the organization already has, without requiring source system changes or pipeline modifications. The first proof of value typically comes quickly - when a business user finds a report in thirty seconds that previously required a Slack thread and two days of waiting. That is the moment the investment justifies itself, and it is achievable in weeks rather than years. The question is not whether the organization can afford to add an analytics catalog. The question is whether it can afford to keep paying for a data catalog that 95% of the organization has already quietly abandoned.</p>
+            </section>
+
+          </article>
+
+        </div>
+      </div>
+    </div>
+
+    <section class="art-related" data-screen-label="Related">
+      <div class="container">
+        <h3>Keep reading.</h3>
+        <div class="art-related__grid">
+          <a class="related-card reveal" href="../resources/what-is-an-analytics-catalog.html">
+            <span class="tag">Definition</span>
+            <h4>What is an analytics catalog?</h4>
+            <span class="arrow-row">Read the definition <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+          <a class="related-card reveal" href="analytics-data-metrics-cheatsheet.html">
+            <span class="tag">Blog</span>
+            <h4>Analytics catalogs, data catalogs, and metrics stores: a plain-language cheat sheet.</h4>
+            <span class="arrow-row">Read post <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+          <a class="related-card reveal" href="top-5-analytics-catalog-benefits.html">
+            <span class="tag">Blog</span>
+            <h4>The top 5 benefits of analytics catalogs you need to know.</h4>
+            <span class="arrow-row">Read post <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="art-cta" data-screen-label="CTA">
+      <div class="container reveal">
+        <h2>See how Digital Hive connects your analytics stack.</h2>
+        <p>A 30-minute walkthrough using sample content from your BI vendors. No commitment, no rip-and-replace pitch.</p>
+        <a class="btn btn--accent" href="../Demo.html">Book a demo <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" data-screen-label="Footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="../assets/logo-reversed.svg" alt="Digital Hive" />
+          <p>Where analytics finally make sense. An enterprise analytics catalog.</p>
+          <div class="footer__social">
+            <a href="https://www.linkedin.com/company/digital-hive-bi-portal" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0H12v2.2h.07c.63-1.2 2.18-2.46 4.49-2.46 4.8 0 5.69 3.16 5.69 7.27V24h-5v-7.2c0-1.72-.03-3.93-2.4-3.93-2.4 0-2.77 1.87-2.77 3.81V24h-5V8z"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer__col"><h3>Product</h3><ul>
+          <li><a href="../Product.html#catalog">Catalog</a></li>
+          <li><a href="../Product.html#hub">BI Hub</a></li>
+          <li><a href="../Product.html#governance">Governance</a></li>
+          <li><a href="../Connectors.html">Connectors</a></li>
+          <li><a href="../Pricing.html">Pricing</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Use cases</h3><ul>
+          <li><a href="../UseCases.html">All use cases</a></li>
+          <li><a href="../use-cases/multi-vendor-bi.html">Multi-vendor BI</a></li>
+          <li><a href="../use-cases/cloud-migration.html">Cloud migration</a></li>
+          <li><a href="../use-cases/ma-integration.html">M&amp;A integration</a></li>
+          <li><a href="../use-cases/data-sovereignty.html">Data sovereignty</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Company</h3><ul>
+          <li><a href="../About.html">About</a></li>
+          <li><a href="../About.html#team">Leadership</a></li>
+          <li><a href="../Customers.html">Customers</a></li>
+          <li><a href="../Contact.html">Contact</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Resources</h3><ul>
+          <li><a href="../Resources.html">Library</a></li>
+          <li><a href="../FAQ.html">FAQ</a></li>
+          <li><a href="../Home.html#research">ISG report</a></li>
+          <li><a href="../Resources.html#blog">Blog</a></li>
+          <li><a href="https://support.digitalhive.com">Support</a></li>
+        </ul></div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Digital Hive</span>
+        <ul>
+          <li><a href="../Privacy.html">Privacy</a></li>
+          <li><a href="../Terms.html">Terms</a></li>
+          <li><a href="#">Trust center</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../scripts/consent.js"></script>
+  <script src="../scripts/site.js"></script>
+</body>
+</html>

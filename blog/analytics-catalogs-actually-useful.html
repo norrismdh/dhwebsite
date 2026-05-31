@@ -1,0 +1,234 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <title>Analytics catalogs: actually useful, or just another checkbox? - Digital Hive</title>
+  <meta name="description" content="An honest look at what analytics catalogs actually do, who benefits, and when they genuinely solve discovery problems versus adding noise." />
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/site.css" />
+  <link rel="stylesheet" href="../styles/consent.css" />
+  <link rel="stylesheet" href="../styles/article.css" />
+</head>
+<body>
+
+  <header class="nav" data-screen-label="Navigation">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="../Home.html" aria-label="Digital Hive home" style="border-bottom:none;">
+        <img src="../assets/logo-colour.svg" alt="Digital Hive" />
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav__links">
+          <li><a href="../Product.html">Product</a></li>
+          <li><a href="../UseCases.html">Use cases</a></li>
+          <li><a href="../Customers.html">Customers</a></li>
+          <li><a href="../Resources.html" style="color:var(--dh-orange);">Resources</a></li>
+          <li><a href="../Pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn btn--primary" href="../Demo.html">Book a demo</a>
+        <button type="submit" class="nav__toggle" data-mobile-toggle aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="container mobile-menu" data-mobile-menu>
+      <ul>
+        <li><a href="../Product.html">Product</a></li>
+        <li><a href="../UseCases.html">Use cases</a></li>
+        <li><a href="../Customers.html">Customers</a></li>
+        <li><a href="../Resources.html">Resources</a></li>
+        <li><a href="../Pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <nav class="breadcrumb" aria-label="Breadcrumb" style="padding: var(--space-7) 0 0;">
+      <div class="container">
+        <ol style="list-style:none; margin:0; padding:0; display:flex; gap:var(--space-2); align-items:center; font-size:var(--fs-14); color:var(--fg-3);">
+          <li><a href="../Resources.html" style="color:var(--fg-3); font-weight:var(--fw-medium); border-bottom:none;">Resources</a></li>
+          <li aria-hidden="true" style="color:var(--dh-grey-light);">/</li>
+          <li style="color:var(--dh-navy); font-weight:var(--fw-bold);">Analytics catalogs: actually useful, or just another checkbox?</li>
+        </ol>
+      </div>
+    </nav>
+
+    <header class="art-header" data-screen-label="01 Header">
+      <div class="container reveal">
+        <span class="eyebrow">Blog · Analytics Maturity</span>
+        <h1>Analytics catalogs: actually useful, or just another checkbox?</h1>
+        <p class="art-header__sub">Another new category shows up. Analysts get excited. Vendors swarm. Then everyone asks the real question: does this solve something or just add to the stack?</p>
+        <div class="art-meta">
+          <span>5 min read</span>
+          <span class="dot" aria-hidden="true"></span>
+          <span>Aug 2025</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="art-body">
+      <div class="container">
+        <div class="art-body__grid">
+
+          <aside class="toc" data-toc data-screen-label="TOC">
+            <div class="toc__title">
+              <span>On this page</span>
+              <button class="toc__toggle" type="button" data-toc-toggle aria-label="Toggle contents">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                <span>Contents</span>
+              </button>
+            </div>
+            <ol class="toc__list">
+              <li><a href="#real-problem">The problem is discovery, not analytics</a></li>
+              <li><a href="#what-it-is">What an analytics catalog actually is</a></li>
+              <li><a href="#who-benefits">Who benefits and how specifically</a></li>
+              <li><a href="#honest-answer">The honest answer</a></li>
+            </ol>
+          </aside>
+
+          <article class="prose">
+            <p class="lede">Every enterprise analytics team has the same conversation: the tools are fine, the data exists, the dashboards were built. The problem is nobody can find them. Analytics catalogs emerged to solve that specific failure - and whether they are worth it depends entirely on whether you have that specific problem.</p>
+
+            <section id="real-problem">
+              <h2><span class="num">01</span><span>The problem is discovery, not analytics</span></h2>
+              <p>Most organizations have not underinvested in analytics tooling. They have overinvested. Tableau licenses were purchased. Power BI was included in the Microsoft agreement so it got deployed. Someone bought Cognos in 2014 and it still runs the financial close reports. Qlik was introduced for operations. SAP BusinessObjects came with the ERP. And finance has never stopped using Excel. The result is a fragmented estate where reporting assets exist across six platforms, built by different teams, governed inconsistently, and almost impossible to locate by the people who need them most.</p>
+
+              <p>The hidden cost of this fragmentation is not license spend - it is analyst time. Studies consistently find that business users and BI teams spend 30 to 40 percent of their working time searching for analytics content they believe exists somewhere. They ask colleagues. They post in Slack channels. They raise tickets with the BI team, who then runs the same search. After enough failed attempts, users give up and build the report from scratch - duplicating work that was already done, potentially producing a different number, and adding yet another asset to an already overcrowded estate.</p>
+
+              <p>The tools themselves are not the source of the problem. Tableau produces excellent visualizations. Power BI integrates well with the Microsoft stack. Each platform was likely the right choice when it was purchased. The problem is that none of these tools was designed to be discoverable from outside itself. Search within Tableau finds Tableau content. Search within Power BI finds Power BI content. There is no cross-platform front door, no shared vocabulary, no unified metadata layer that lets a user ask "where is the Q3 revenue report" and get a single, authoritative answer.</p>
+
+              <p>This is a discovery problem, not an analytics problem. Solving it does not require replacing any of your BI tools. It requires a layer that sits above them - one that indexes everything, normalizes the metadata, and gives users a single place to search, regardless of which platform the content lives on. That is what an analytics catalog does.</p>
+            </section>
+
+            <section id="what-it-is">
+              <h2><span class="num">02</span><span>What an analytics catalog actually is</span></h2>
+              <p>The most useful analogy is Netflix for dashboards. Netflix does not produce all the content you watch - it aggregates content from many sources, organizes it by relevance and role, surfaces what is popular and what is recommended for you, and makes the browsing experience fast enough that you find what you want without thinking too hard about it. An analytics catalog does the same thing for your reporting estate. It does not replace Tableau or Power BI or any other tool. It provides one front door - a single search interface that spans everything you have built, across every platform you run.</p>
+
+              <p>When a user lands in an analytics catalog and searches for "revenue by region," they see results from every connected platform in one list. Each result surfaces the metadata that matters: whether the report is certified by a data owner, who is responsible for maintaining it, when it was last refreshed, how many users opened it in the last 30 days, and what related reports exist. That information turns a list of search results into a trust signal. Users are not just finding content - they are finding content they can rely on, with context that tells them whether to use it or escalate to the data team.</p>
+
+              <p>Certification is particularly important in organizations where the same metric gets calculated differently in different tools. When users see a certification badge next to one result and nothing next to another, the decision becomes obvious. The certified report is the one the data team has validated. The uncertified version might be an old build from a previous analyst. Without a catalog surface showing that distinction, users have no way to know which number to trust. With it, governance becomes visible - and visible governance actually gets used.</p>
+
+              <p>The one-click principle matters too. A catalog is not useful if it requires users to understand your BI estate in order to navigate it. The goal is that a business user searches, finds what they need, clicks once, and lands in the right tool viewing the right content. No knowledge of which platform hosts which report. No understanding of folder structures in Tableau Server or workspace hierarchies in Power BI. One search, one list, one click. The catalog abstracts away the complexity that currently forces non-technical users to either avoid self-service analytics or rely on the BI team as a search proxy.</p>
+            </section>
+
+            <section id="who-benefits">
+              <h2><span class="num">03</span><span>Who benefits and how specifically</span></h2>
+              <p>Finance teams and CFOs tend to see the most immediate, measurable impact. The core problem in enterprise finance analytics is version proliferation - four slightly different revenue numbers produced by four slightly different reports built at four different points in time by four different analysts. Board decks get assembled by pulling from whichever report the analyst found first, which may not be the certified version. An analytics catalog with enforced certification eliminates this by making the authoritative report the first and most prominent result. Finance users stop hunting for the right number because the right number is always the first thing they find.</p>
+
+              <p>For Chief Data and Analytics Officers, the value shows up in team capacity and investment visibility. When discovery is handled by the catalog, BI teams stop functioning as a search service - their time shifts from fielding "where is the report for X" requests toward building better reports and improving data quality. That shift compounds over time. Analysts who were spending a third of their week on search requests are now building and improving. Simultaneously, the catalog generates usage data that was previously invisible: which reports are used, by whom, how frequently, and which are never opened. That data is the foundation for an evidence-based conversation about which BI investments are delivering value.</p>
+
+              <p>Operations and technology leaders benefit from the cost-side clarity that usage data provides. Most enterprise analytics estates have significant waste baked in - licenses paid for tools that see minimal use, reports maintained by teams that have no active consumers, platforms running infrastructure for a handful of legacy reports. Without usage telemetry, this waste is invisible. A catalog surfaces it directly. Operations leaders can see exactly which platforms and reports are driving actual business decisions versus sitting idle. That visibility supports license rationalization, platform consolidation decisions, and the kind of ROI reporting that justifies analytics budget to finance leadership.</p>
+
+              <blockquote><p>The question to answer first: how long does it take your average business user to find a specific report? If the answer is more than two minutes, you have a discovery problem. An analytics catalog solves it.</p></blockquote>
+
+              <p>Business analysts and power users benefit from a different angle - they gain professional context for the content they find. Rather than opening a dashboard and not knowing whether it reflects this week's data or last quarter's, they see refresh schedules, lineage, and ownership directly in the catalog. They can reach the right person when something looks wrong. They can find related reports they did not know existed and build a more complete picture without starting from scratch. Discovery becomes a capability multiplier rather than a time sink.</p>
+            </section>
+
+            <section id="honest-answer">
+              <h2><span class="num">04</span><span>The honest answer</span></h2>
+              <p>Analytics catalogs are not universally useful. If your organization has already solved discovery - a single BI platform, strong governance, high user adoption, and a BI team that can respond to requests quickly - adding a catalog layer creates overhead without solving a real problem. The same is true for early-stage analytics organizations that have not yet built a meaningful estate to catalog. Indexing ten reports is not a use case. The tool serves a specific maturity stage, and it is worth being clear about that.</p>
+
+              <p>The genuine use cases are specific and recognizable. Organizations running three or more BI platforms are almost always experiencing discovery fragmentation - users cannot search across platforms, so they either rely on the BI team or duplicate work. Organizations where "where is the report for X" is a regular internal question have confirmed, observable discovery failure. Organizations mid-migration from one platform to another need to maintain discoverability across both estates during the transition period without forcing users to know which tool currently hosts which content. And organizations being asked to justify analytics spend need usage data they cannot get from individual platform tools alone.</p>
+
+              <p>The honest diagnostic is not a capability checklist - it is a time measurement. Pick a report your business users need regularly. Time how long it takes an average user, not a power user or a member of the BI team, to find it on their own. If the answer is under two minutes and the user arrives at the right, certified version with confidence, your discovery is working. If the answer involves asking someone, checking multiple platforms, or opening a stale bookmark and hoping for the best, you have a discovery problem. An analytics catalog is a direct solution to that problem and only that problem.</p>
+
+              <p>The category exists because the problem is real and widespread. The vendors have arrived because the problem is common enough to support a market. But the right question is not whether analytics catalogs are a real category - it is whether your organization has the problem they solve. If discovery is broken, the catalog is one of the highest-leverage investments you can make in your analytics ecosystem. If discovery is not broken, the same budget is better spent on data quality, model development, or capability building. Know which situation you are in before you evaluate the tool.</p>
+            </section>
+
+          </article>
+
+        </div>
+      </div>
+    </div>
+
+    <section class="art-related" data-screen-label="Related">
+      <div class="container">
+        <h3>Keep reading.</h3>
+        <div class="art-related__grid">
+          <a class="related-card reveal" href="data-catalogs-are-dead.html">
+            <span class="tag">Blog</span>
+            <h4>Data catalogs are dead - and the industry refusal to admit it is costing you.</h4>
+            <span class="arrow-row">Read post <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+          <a class="related-card reveal" href="ultimate-guide-analytics-catalogs.html">
+            <span class="tag">Blog</span>
+            <h4>Your complete guide to analytics catalogs.</h4>
+            <span class="arrow-row">Read post <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+          <a class="related-card reveal" href="../Product.html">
+            <span class="tag">Product</span>
+            <h4>How Digital Hive implements the analytics catalog.</h4>
+            <span class="arrow-row">See the product <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="art-cta" data-screen-label="CTA">
+      <div class="container reveal">
+        <h2>See how Digital Hive connects your analytics stack.</h2>
+        <p>A 30-minute walkthrough using sample content from your BI vendors. No commitment, no rip-and-replace pitch.</p>
+        <a class="btn btn--accent" href="../Demo.html">Book a demo <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" data-screen-label="Footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="../assets/logo-reversed.svg" alt="Digital Hive" />
+          <p>Where analytics finally make sense. An enterprise analytics catalog.</p>
+          <div class="footer__social">
+            <a href="https://www.linkedin.com/company/digital-hive-bi-portal" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0H12v2.2h.07c.63-1.2 2.18-2.46 4.49-2.46 4.8 0 5.69 3.16 5.69 7.27V24h-5v-7.2c0-1.72-.03-3.93-2.4-3.93-2.4 0-2.77 1.87-2.77 3.81V24h-5V8z"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer__col"><h3>Product</h3><ul>
+          <li><a href="../Product.html#catalog">Catalog</a></li>
+          <li><a href="../Product.html#hub">BI Hub</a></li>
+          <li><a href="../Product.html#governance">Governance</a></li>
+          <li><a href="../Connectors.html">Connectors</a></li>
+          <li><a href="../Pricing.html">Pricing</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Use cases</h3><ul>
+          <li><a href="../UseCases.html">All use cases</a></li>
+          <li><a href="../use-cases/multi-vendor-bi.html">Multi-vendor BI</a></li>
+          <li><a href="../use-cases/cloud-migration.html">Cloud migration</a></li>
+          <li><a href="../use-cases/ma-integration.html">M&amp;A integration</a></li>
+          <li><a href="../use-cases/data-sovereignty.html">Data sovereignty</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Company</h3><ul>
+          <li><a href="../About.html">About</a></li>
+          <li><a href="../About.html#team">Leadership</a></li>
+          <li><a href="../Customers.html">Customers</a></li>
+          <li><a href="../Contact.html">Contact</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Resources</h3><ul>
+          <li><a href="../Resources.html">Library</a></li>
+          <li><a href="../FAQ.html">FAQ</a></li>
+          <li><a href="../Home.html#research">ISG report</a></li>
+          <li><a href="../Resources.html#blog">Blog</a></li>
+          <li><a href="https://support.digitalhive.com">Support</a></li>
+        </ul></div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Digital Hive</span>
+        <ul>
+          <li><a href="../Privacy.html">Privacy</a></li>
+          <li><a href="../Terms.html">Terms</a></li>
+          <li><a href="#">Trust center</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../scripts/consent.js"></script>
+  <script src="../scripts/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <!-- D — extracted from logo, navy #193359 -->
+  <path fill="#ffffff" stroke="#ffffff" stroke-width="5" stroke-linejoin="round" transform="translate(3,13) scale(0.55) translate(-23.19,-32.57)"
+    d="M57.81,42.77a20.45,20.45,0,0,0-7.67-7.47,21.25,21.25,0,0,0-10.61-2.73H23.19V73.66H39.47a21.43,21.43,0,0,0,10.64-2.74,20.43,20.43,0,0,0,7.7-7.46,20.38,20.38,0,0,0,0-20.69Zm-2.2,19.45a18.63,18.63,0,0,1-16.08,9H25.66V35H39.47a18.69,18.69,0,0,1,16.14,9,17.91,17.91,0,0,1,0,18.22Z"/>
+  <!-- H — extracted from logo, orange #f49638 -->
+  <path fill="#f49638" transform="translate(24,13) scale(0.55) translate(-201.34,-32.13)"
+    d="M201.34,32.13h7.95V49.86H230V32.13h7.94V73.65H230V56.8H209.29V73.65h-7.95Z"/>
+</svg>

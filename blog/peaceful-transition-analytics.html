@@ -1,0 +1,226 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <title>A peaceful transition of power - for your analytics. - Digital Hive</title>
+  <meta name="description" content="Why BI tool transitions keep failing and what it looks like when the analytics layer is properly abstracted from the technology stack." />
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/site.css" />
+  <link rel="stylesheet" href="../styles/consent.css" />
+  <link rel="stylesheet" href="../styles/article.css" />
+</head>
+<body>
+
+  <header class="nav" data-screen-label="Navigation">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="../Home.html" aria-label="Digital Hive home" style="border-bottom:none;">
+        <img src="../assets/logo-colour.svg" alt="Digital Hive" />
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav__links">
+          <li><a href="../Product.html">Product</a></li>
+          <li><a href="../UseCases.html">Use cases</a></li>
+          <li><a href="../Customers.html">Customers</a></li>
+          <li><a href="../Resources.html" style="color:var(--dh-orange);">Resources</a></li>
+          <li><a href="../Pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn btn--primary" href="../Demo.html">Book a demo</a>
+        <button type="submit" class="nav__toggle" data-mobile-toggle aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="container mobile-menu" data-mobile-menu>
+      <ul>
+        <li><a href="../Product.html">Product</a></li>
+        <li><a href="../UseCases.html">Use cases</a></li>
+        <li><a href="../Customers.html">Customers</a></li>
+        <li><a href="../Resources.html">Resources</a></li>
+        <li><a href="../Pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <nav class="breadcrumb" aria-label="Breadcrumb" style="padding: var(--space-7) 0 0;">
+      <div class="container">
+        <ol style="list-style:none; margin:0; padding:0; display:flex; gap:var(--space-2); align-items:center; font-size:var(--fs-14); color:var(--fg-3);">
+          <li><a href="../Resources.html" style="color:var(--fg-3); font-weight:var(--fw-medium); border-bottom:none;">Resources</a></li>
+          <li aria-hidden="true" style="color:var(--dh-grey-light);">/</li>
+          <li style="color:var(--dh-navy); font-weight:var(--fw-bold);">A peaceful transition of power - for your analytics.</li>
+        </ol>
+      </div>
+    </nav>
+
+    <header class="art-header" data-screen-label="01 Header">
+      <div class="container reveal">
+        <span class="eyebrow">Blog · BI Modernization</span>
+        <h1>A peaceful transition of power - for your analytics.</h1>
+        <p class="art-header__sub">BI tools come and go. The analytics stacks that survive organizational change are not the ones with the best tools - they are the ones that abstracted the user from the tool underneath.</p>
+        <div class="art-meta">
+          <span>4 min read</span>
+          <span class="dot" aria-hidden="true"></span>
+          <span>Jan 2025</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="art-body">
+      <div class="container">
+        <div class="art-body__grid">
+
+          <aside class="toc" data-toc data-screen-label="TOC">
+            <div class="toc__title">
+              <span>On this page</span>
+              <button class="toc__toggle" type="button" data-toc-toggle aria-label="Toggle contents">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                <span>Contents</span>
+              </button>
+            </div>
+            <ol class="toc__list">
+              <li><a href="#three-waves">The three waves of analytics</a></li>
+              <li><a href="#why-transitions-fail">Why transitions keep failing</a></li>
+              <li><a href="#abstraction">The abstraction that changes everything</a></li>
+              <li><a href="#in-practice">What this looks like in practice</a></li>
+            </ol>
+          </aside>
+
+          <article class="prose">
+            <p class="lede">Every few years, a new generation of BI tooling arrives with better visuals, faster queries, and lower licensing costs. And every few years, the migration project stalls. The content moves. The users do not. The only way to break that cycle is to stop asking users to follow the technology - and start putting the technology somewhere users never have to see it change.</p>
+
+            <section id="three-waves">
+              <h2><span class="num">01</span><span>The three waves of analytics</span></h2>
+              <p>The first wave of enterprise BI arrived in the 1990s and early 2000s under the banners of IBM Cognos, MicroStrategy, and SAP BusinessObjects. These platforms were IT-driven, expensive to license, and slow to deploy - but they were powerful. They handled large data volumes, complex security models, and enterprise reporting at scale. The trade-off was rigidity: every report required a developer, every change went through a ticket queue, and business users were consumers of information rather than creators of it.</p>
+              <p>The second wave - self-service BI - changed the power dynamic. Tableau, Qlik, and eventually Power BI put drag-and-drop interfaces in front of business analysts and gave them the ability to build their own views of data without waiting on IT. The results were faster insights and more visual, exploratory analytics. The cost was sprawl. Without governance frameworks to match the pace of adoption, organizations accumulated hundreds of workspaces, thousands of dashboards, and no reliable way to know which number was the authoritative one. The business had more access to analytics than ever, and less confidence in any individual report.</p>
+              <p>The third wave is still arriving. AI-assisted analytics platforms - IBM Watson Analytics in its various forms, ThoughtSpot, and the AI features now embedded in every major BI vendor's roadmap - promise to reduce the gap between having a question and getting an answer. Natural language querying, automated insight generation, and AI-curated recommendations are real capabilities, not vaporware. But they are still landing. Most organizations are in the middle of evaluating them, piloting them, or watching to see which implementations actually stick.</p>
+              <p>The critical problem is not that the third wave is coming. It is that most organizations never fully replaced their tools between any of the waves. They added. Legacy Cognos environments still run the operational reports that finance depends on. Tableau is embedded in the muscle memory of every senior analyst. Power BI is the corporate standard in the new Microsoft-aligned strategy. And now there are AI tools being piloted on top of all three. The result is not a modern analytics stack - it is three generations of technology running simultaneously, with no coherent layer connecting them to the people who need to use them.</p>
+            </section>
+
+            <section id="why-transitions-fail">
+              <h2><span class="num">02</span><span>Why transitions keep failing</span></h2>
+              <p>Every failed BI migration follows the same basic arc. A vendor relationship changes, a licensing cost becomes untenable, or a new platform is evaluated and found to be genuinely better. A business case is built, a project is scoped, and IT begins the technical work of migrating content from the old system to the new one. The migration completes - or comes close enough that it gets declared complete - and the old system is scheduled for decommission. Then the usage data comes in, and it is not what anyone expected.</p>
+              <p>Users are creatures of habit in a very specific sense. They are not resistant to new technology because they dislike change in the abstract. They are resistant because they already know where the answers live. A sales manager who has been clicking the same Tableau bookmark every Monday morning for four years has built that workflow into their operational routine. When a new URL appears - a new login screen, a new interface, a reorganized folder structure - that manager does not think "time to learn the new system." They think "I do not have time for this right now" and go back to the bookmark that already works. That decision happens in about three seconds, and it happens every time.</p>
+              <p>This is the core dynamic behind every failed migration: IT completes the technical work, declares the new platform live, and the old one starts getting turned off - but users' mental maps still point to the old one. The content moved. The users did not. And when the old platform is decommissioned before users have genuinely re-routed their habits, the result is frustration, shadow IT, requests to reopen the old system, and a project that management considers a failure even if every technical objective was met.</p>
+
+              <blockquote><p>A migration is not complete when the content is moved. It is complete when the users have moved. Those are two very different definitions of done.</p></blockquote>
+
+              <p>The organizational dynamics compound the technical ones. In most enterprises, the people responsible for building the new platform are not the same people responsible for driving adoption of it. IT owns the migration. The business owns the users. Change management, if it is funded at all, tends to focus on training - which addresses the "can they use it" question but not the "will they bother" one. The result is a gap between technical completion and behavioral adoption that most migration projects never close.</p>
+            </section>
+
+            <section id="abstraction">
+              <h2><span class="num">03</span><span>The abstraction that changes everything</span></h2>
+              <p>The solution is not better training or more aggressive decommission deadlines or a change management program with more budget. The solution is architectural. When a unified analytics layer sits above every BI tool in the organization, users do not need to know - and do not need to care - what is underneath. They search in one place. They find what they need. They click through to the report. Behind the click is whatever tool actually hosts it. That is the layer where the magic of platform neutrality happens, and it is the layer that most analytics architectures have never built.</p>
+              <p>This kind of abstraction requires an analytics catalog - a searchable, governed index of every piece of analytical content across every platform the organization runs. Not a portal that duplicates content. Not a static intranet page with links organized by department. A live catalog that knows where every report lives, what it is called, who owns it, what data it uses, and how often it is accessed. When a user searches for "monthly revenue by region," the catalog returns the authoritative result regardless of whether it lives in Cognos, Tableau, Power BI, or a spreadsheet someone built last Tuesday. The user does not see the platform. They see the answer.</p>
+              <p>The architectural consequence of this abstraction is that the tool underneath becomes swappable. When a report migrates from Tableau to Power BI, the catalog link is updated. The search result still appears in the same place, with the same name, in the same context. The user clicks. They land in Power BI instead of Tableau. For most users, that distinction is either irrelevant or barely noticeable - especially if the underlying report has been rebuilt to match the original. The tool changed. The user's experience of finding and accessing the report did not.</p>
+              <p>This is what a peaceful transition looks like. Not a forced cutover where every user is simultaneously told to change their behavior on a project deadline. Not a dual-running period where IT maintains two full platforms indefinitely while hoping adoption shifts organically. A gradual, report-by-report migration that runs at the pace IT can manage content quality, while users continue to find their content in the same place they always have. The platform decision becomes an infrastructure decision - important, but invisible to the people who depend on the output.</p>
+            </section>
+
+            <section id="in-practice">
+              <h2><span class="num">04</span><span>What this looks like in practice</span></h2>
+              <p>Consider a mid-sized enterprise running a Tableau to Power BI migration. Without a catalog, this is a two-to-three year project with a hard cutover date, a training program, a decommission timeline, and a significant probability of user revolt when the old bookmarks stop working. With a catalog in place from day one, the project looks entirely different. On the first day of the migration, both platforms are connected to the catalog. Users searching for reports see results from both Tableau and Power BI in the same interface. IT begins migrating reports - rebuilding them in Power BI, validating the numbers, and updating the catalog links. Users experience no disruption. The same search returns the same content. It just now lives in Power BI instead of Tableau.</p>
+              <p>The migration can run at IT's pace rather than at the pace users can tolerate. High-traffic, high-value reports get migrated first because they are easy to prioritize - the catalog's usage data shows exactly which reports matter most. Low-traffic reports can be evaluated: do they need to be migrated at all, or can they simply be retired? The long tail of rarely-used content that typically consumes a disproportionate share of migration budget can be handled strategically rather than mechanically. This is a fundamentally different project than a forced cutover, and it produces fundamentally different outcomes - both in timeline and in user satisfaction.</p>
+              <p>The same model applies beyond vendor migrations. When an organization acquires a company running a different BI stack, the catalog can connect both environments immediately, giving combined teams a single place to find content from both organizations while integration work proceeds behind the scenes. When a cloud migration moves data infrastructure but keeps the reporting layer intact, the catalog abstracts the underlying data movement from the users who consume the reports. When licensing changes force a platform decision mid-contract-cycle, IT can begin moving content without waiting for a migration project to be formally scoped and funded, because the user-facing layer is already decoupled from the platform underneath.</p>
+
+              <blockquote><p>The organizations that handle BI transitions best are not the ones with the cleanest technology decisions. They are the ones that stopped asking users to track which tool their report lives in.</p></blockquote>
+
+              <p>None of this eliminates the work of migration. Reports still need to be rebuilt, validated, and tested. Data connections need to be reconfigured. Governance metadata needs to be updated. But it separates that work from the user disruption that typically makes migrations so costly and politically difficult. IT can do the infrastructure work at the pace that infrastructure work requires. Users can do their jobs without interruption. And the organization ends up with a cleaner analytics stack, a governed catalog of its analytical content, and a model for handling the next platform transition - because there will always be a next one.</p>
+            </section>
+
+          </article>
+
+        </div>
+      </div>
+    </div>
+
+    <section class="art-related" data-screen-label="Related">
+      <div class="container">
+        <h3>Keep reading.</h3>
+        <div class="art-related__grid">
+          <a class="related-card reveal" href="../use-cases/cloud-migration.html">
+            <span class="tag">Use case</span>
+            <h4>Cloud migration without breaking your users.</h4>
+            <span class="arrow-row">Read use case <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+          <a class="related-card reveal" href="bring-bi-tools-together.html">
+            <span class="tag">Blog</span>
+            <h4>Why choose just one tool? How to bring the titans of BI together.</h4>
+            <span class="arrow-row">Read post <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+          <a class="related-card reveal" href="era-of-bi-standardisation-over.html">
+            <span class="tag">Blog</span>
+            <h4>The era of BI standardization is over.</h4>
+            <span class="arrow-row">Read post <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="art-cta" data-screen-label="CTA">
+      <div class="container reveal">
+        <h2>See how Digital Hive connects your analytics stack.</h2>
+        <p>A 30-minute walkthrough using sample content from your BI vendors. No commitment, no rip-and-replace pitch.</p>
+        <a class="btn btn--accent" href="../Demo.html">Book a demo <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" data-screen-label="Footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="../assets/logo-reversed.svg" alt="Digital Hive" />
+          <p>Where analytics finally make sense. An enterprise analytics catalog.</p>
+          <div class="footer__social">
+            <a href="https://www.linkedin.com/company/digital-hive-bi-portal" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0H12v2.2h.07c.63-1.2 2.18-2.46 4.49-2.46 4.8 0 5.69 3.16 5.69 7.27V24h-5v-7.2c0-1.72-.03-3.93-2.4-3.93-2.4 0-2.77 1.87-2.77 3.81V24h-5V8z"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer__col"><h3>Product</h3><ul>
+          <li><a href="../Product.html#catalog">Catalog</a></li>
+          <li><a href="../Product.html#hub">BI Hub</a></li>
+          <li><a href="../Product.html#governance">Governance</a></li>
+          <li><a href="../Connectors.html">Connectors</a></li>
+          <li><a href="../Pricing.html">Pricing</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Use cases</h3><ul>
+          <li><a href="../UseCases.html">All use cases</a></li>
+          <li><a href="../use-cases/multi-vendor-bi.html">Multi-vendor BI</a></li>
+          <li><a href="../use-cases/cloud-migration.html">Cloud migration</a></li>
+          <li><a href="../use-cases/ma-integration.html">M&amp;A integration</a></li>
+          <li><a href="../use-cases/data-sovereignty.html">Data sovereignty</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Company</h3><ul>
+          <li><a href="../About.html">About</a></li>
+          <li><a href="../About.html#team">Leadership</a></li>
+          <li><a href="../Customers.html">Customers</a></li>
+          <li><a href="../Contact.html">Contact</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Resources</h3><ul>
+          <li><a href="../Resources.html">Library</a></li>
+          <li><a href="../FAQ.html">FAQ</a></li>
+          <li><a href="../Home.html#research">ISG report</a></li>
+          <li><a href="../Resources.html#blog">Blog</a></li>
+          <li><a href="https://support.digitalhive.com">Support</a></li>
+        </ul></div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Digital Hive</span>
+        <ul>
+          <li><a href="../Privacy.html">Privacy</a></li>
+          <li><a href="../Terms.html">Terms</a></li>
+          <li><a href="#">Trust center</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../scripts/consent.js"></script>
+  <script src="../scripts/site.js"></script>
+</body>
+</html>

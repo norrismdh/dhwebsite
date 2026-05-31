@@ -1,0 +1,232 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <title>Analytics catalogs, data catalogs, and metrics stores: a plain-language cheat sheet. - Digital Hive</title>
+  <meta name="description" content="A clear-language comparison of data catalogs, metrics stores, and analytics catalogs - their purposes, primary users, and how they relate to each other." />
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/site.css" />
+  <link rel="stylesheet" href="../styles/consent.css" />
+  <link rel="stylesheet" href="../styles/article.css" />
+</head>
+<body>
+
+  <header class="nav" data-screen-label="Navigation">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="../Home.html" aria-label="Digital Hive home" style="border-bottom:none;">
+        <img src="../assets/logo-colour.svg" alt="Digital Hive" />
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav__links">
+          <li><a href="../Product.html">Product</a></li>
+          <li><a href="../UseCases.html">Use cases</a></li>
+          <li><a href="../Customers.html">Customers</a></li>
+          <li><a href="../Resources.html" style="color:var(--dh-orange);">Resources</a></li>
+          <li><a href="../Pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn btn--primary" href="../Demo.html">Book a demo</a>
+        <button type="submit" class="nav__toggle" data-mobile-toggle aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="container mobile-menu" data-mobile-menu>
+      <ul>
+        <li><a href="../Product.html">Product</a></li>
+        <li><a href="../UseCases.html">Use cases</a></li>
+        <li><a href="../Customers.html">Customers</a></li>
+        <li><a href="../Resources.html">Resources</a></li>
+        <li><a href="../Pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <nav class="breadcrumb" aria-label="Breadcrumb" style="padding: var(--space-7) 0 0;">
+      <div class="container">
+        <ol style="list-style:none; margin:0; padding:0; display:flex; gap:var(--space-2); align-items:center; font-size:var(--fs-14); color:var(--fg-3);">
+          <li><a href="../Resources.html" style="color:var(--fg-3); font-weight:var(--fw-medium); border-bottom:none;">Resources</a></li>
+          <li aria-hidden="true" style="color:var(--dh-grey-light);">/</li>
+          <li style="color:var(--dh-navy); font-weight:var(--fw-bold);">Analytics catalogs, data catalogs, and metrics stores: a plain-language cheat sheet.</li>
+        </ol>
+      </div>
+    </nav>
+
+    <header class="art-header" data-screen-label="01 Header">
+      <div class="container reveal">
+        <span class="eyebrow">Blog · BI Modernization</span>
+        <h1>Analytics catalogs, data catalogs, and metrics stores: a plain-language cheat sheet.</h1>
+        <p class="art-header__sub">Three terms. Three distinct tools. One very confused market. Here is what each one actually is, who uses it, and why you might need more than one.</p>
+        <div class="art-meta">
+          <span>4 min read</span>
+          <span class="dot" aria-hidden="true"></span>
+          <span>Aug 2023</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="art-body">
+      <div class="container">
+        <div class="art-body__grid">
+
+          <aside class="toc" data-toc data-screen-label="TOC">
+            <div class="toc__title">
+              <span>On this page</span>
+              <button class="toc__toggle" type="button" data-toc-toggle aria-label="Toggle contents">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                <span>Contents</span>
+              </button>
+            </div>
+            <ol class="toc__list">
+              <li><a href="#data-catalog">Data catalog: the infrastructure layer</a></li>
+              <li><a href="#metrics-store">Metrics store: the semantic layer</a></li>
+              <li><a href="#analytics-catalog">Analytics catalog: the output layer</a></li>
+              <li><a href="#how-they-relate">How they relate to each other</a></li>
+              <li><a href="#quick-reference">Quick reference</a></li>
+            </ol>
+          </aside>
+
+          <article class="prose">
+            <p class="lede">The data industry has a terminology problem. "Data catalog," "metrics store," and "analytics catalog" are used interchangeably in analyst reports, vendor pitches, and Slack channels - but they describe three categorically different tools that serve different audiences at different layers of the data stack. Getting the distinction wrong means buying the wrong thing, implementing it for the wrong team, and explaining to leadership why the problem still isn't solved.</p>
+
+            <section id="data-catalog">
+              <h2><span class="num">01</span><span>Data catalog: the infrastructure layer</span></h2>
+              <p>A data catalog is a centralized metadata repository that documents the raw data assets across an organization. It captures tables, columns, pipelines, transformations, and data lineage - the technical fabric that holds a data infrastructure together. When a data engineer asks "where did this field come from, and what transformations has it passed through?" the data catalog is the system designed to answer that question. It is, at its core, a tool for understanding data provenance.</p>
+              <p>The primary users of a data catalog are data engineers, data scientists, and governance and compliance teams. These are people who need to understand data at a structural level - not to consume a finished report, but to build, validate, audit, or trust the pipelines that produce reports. A data scientist running a model needs to know whether the training data has been transformed in a way that would introduce bias. A compliance officer needs to trace a specific customer record through every system that has touched it. These are the workflows a data catalog is built for.</p>
+              <p>What a data catalog is not is a tool for business users to discover finished analytics. This is a persistent misconception, partly because "catalog" is a word that implies searchability and discoverability to any audience. But the discoverability a data catalog offers is technical discoverability - finding the right table, understanding its schema, seeing its lineage. A business analyst who wants to find the certified Q4 revenue dashboard will get very little value from a data catalog. The assets it surfaces are raw and semi-processed data, not finished analytics output.</p>
+              <p>Vendors in this space include Collibra, Alation, Atlan, and data.world. Each has its own strengths across lineage visualization, governance workflow, and active metadata management. If your organization is managing a complex multi-source data infrastructure, dealing with regulatory requirements around data handling, or struggling with data quality issues that trace back to unclear ownership and lineage, a data catalog addresses those problems directly. It is an infrastructure investment, not a business-facing product.</p>
+            </section>
+
+            <section id="metrics-store">
+              <h2><span class="num">02</span><span>Metrics store: the semantic layer</span></h2>
+              <p>A metrics store - also called a semantic layer or metrics layer - solves a specific and damaging problem: inconsistent metric definitions across BI tools. In most enterprises, "revenue" is calculated slightly differently in Power BI than it is in Tableau, which calculates it differently from the number that appears in the executive dashboard built in Looker. Each team has made reasonable local decisions that compound into organization-wide confusion. The metrics store is the architectural response to that problem.</p>
+              <p>A metrics store sits between raw data sources and downstream analytics tools. It defines business metrics - revenue, churn, conversion rate, customer lifetime value - in a single, authoritative way. Every BI tool in the environment then queries the metrics store rather than writing its own calculation logic. The result is that when a business user asks for "revenue" in any tool, they get the same number, because the definition lives in one place and every system draws from it. This is not a minor convenience - in large enterprises, metric inconsistency is one of the most common causes of lost trust in analytics programs.</p>
+              <p>The primary users of a metrics store are data engineers and BI content producers - the people responsible for building and maintaining analytics. A metrics store is not a business-facing tool in the way an analytics catalog is. Business users benefit from it indirectly, because the numbers they see become consistent and reliable. But they do not interact with the metrics store directly. The experience of building and maintaining it is a technical one, requiring knowledge of data modeling, SQL, and the specific BI environments in use.</p>
+              <p>Examples in this space include dbt metrics, Cube, and Transform. Like the data catalog, the metrics store addresses a problem that sits upstream of the finished analytics output. It governs the logic and definitions that feed the analytics layer, not the analytics layer itself. Organizations that are running multiple BI tools and experiencing divergent numbers across them will find a metrics store directly relevant. Organizations running a single, tightly controlled BI environment may have less immediate need - though the discipline of centralizing metric definitions remains valuable at almost any scale.</p>
+            </section>
+
+            <section id="analytics-catalog">
+              <h2><span class="num">03</span><span>Analytics catalog: the output layer</span></h2>
+              <p>An analytics catalog organizes the finished output of an analytics program - reports, dashboards, visualizations, and certified metrics - and makes them discoverable, governable, and accessible across an organization. Where the data catalog addresses raw data assets and the metrics store addresses business logic definitions, the analytics catalog addresses what business users actually see and use. It is the front door to the analytics program for the broadest audience in the organization.</p>
+              <p>The primary users of an analytics catalog are business users, analysts, executives, and BI governance teams. These are people who need to find relevant, trusted analytics content quickly - not to understand its technical underpinnings, but to use it to make decisions. An analytics catalog provides a single searchable interface that spans all analytics assets regardless of which tool produced them. A report built in Power BI, a dashboard built in Tableau, and a certified metric defined in dbt can all surface through the same catalog experience, with consistent metadata, usage tracking, and certification status.</p>
+              <p>The governance dimension of an analytics catalog is what distinguishes it from a simple link library or SharePoint folder. An analytics catalog tracks usage - which reports are being accessed, by whom, and how often. It surfaces certified content first, so users are more likely to land on the authoritative version of a report rather than a stale copy. It applies governance rules across platforms, enabling teams to manage access, ownership, and lifecycle across a heterogeneous BI environment without rebuilding governance from scratch inside each tool.</p>
+
+              <blockquote><p>An analytics catalog is not a BI tool, a data storage system, or a replacement for source platform permissions. It is a governance and discoverability layer that sits on top of the tools already in use.</p></blockquote>
+
+              <p>This distinction matters because analytics catalogs are sometimes positioned as replacements for existing BI tools, which they are not. They do not render visualizations or execute queries. They do not replace the row-level security configured inside Power BI or Tableau. What they do is provide a unified consumption experience and governance infrastructure that makes a multi-vendor BI environment manageable and trustworthy. For organizations running more than one BI platform - which describes most enterprises - this is the layer that ties everything together for the users who matter most.</p>
+            </section>
+
+            <section id="how-they-relate">
+              <h2><span class="num">04</span><span>How they relate to each other</span></h2>
+              <p>These three tools serve different audiences at different layers of the same pipeline, and the clearest way to understand them is through that pipeline framing. The data catalog governs the inputs - raw data assets at the infrastructure layer. The metrics store governs the definitions - shared business logic at the semantic layer. The analytics catalog governs the outputs - finished analytics at the consumption layer. Each tool is the right answer to a different question, asked by a different person, at a different point in the data value chain.</p>
+              <p>Most enterprises with mature data programs eventually need all three. They are complementary, not competitive. A well-governed data catalog ensures that the data feeding the metrics store is trustworthy and understood. A well-maintained metrics store ensures that the reports surfaced through the analytics catalog reflect consistent, agreed-upon business definitions. The analytics catalog makes the output of that entire chain accessible and governable for the people who use it to run the business. When all three are in place and connected, the result is an analytics program that is trustworthy from source to consumption.</p>
+              <p>The confusion in the market arises because vendors in each category sometimes overstate their scope. A data catalog vendor may claim that business users can discover analytics through their platform - and while some have built light analytics discovery features, that is not the core capability. A metrics store vendor may claim to solve governance - and while consistent definitions are a form of governance, managing the full lifecycle of finished analytics output requires a dedicated layer. Vendor marketing does not always make these boundaries clear, so buyers need to be deliberate about which problem they are actually trying to solve before evaluating tools.</p>
+              <p>For organizations early in their data maturity journey, understanding the distinctions helps avoid the common mistake of investing in the wrong layer. Buying a data catalog when the organization's real problem is that business users cannot find trusted reports is a frequent misstep. The data catalog will improve the experience for data engineers and governance teams, but the business user problem will remain unsolved. Mapping the problem clearly to the right layer - infrastructure, semantic, or output - is the prerequisite for any successful tool selection.</p>
+            </section>
+
+            <section id="quick-reference">
+              <h2><span class="num">05</span><span>Quick reference</span></h2>
+              <p>If the question your team is asking is "where does this column come from?" or "what transformations has this data field passed through?" - the answer is a data catalog. These are questions about data provenance and technical lineage, and they are most commonly asked by data engineers, data scientists, and compliance teams who need to understand infrastructure before they can trust what is built on top of it.</p>
+              <p>If the question is "why does our revenue number look different in Power BI versus Tableau?" or "how do we ensure that 'active customer' means the same thing across every report in every tool?" - the answer is a metrics store. These are questions about definition consistency and semantic governance. They are asked by data engineers and BI content producers who are responsible for maintaining analytical accuracy across a multi-tool environment. The metrics store does not solve this problem by policing the BI tools - it solves it by giving every tool a single authoritative source to draw from.</p>
+              <p>If the question is "where is the certified Q4 revenue report?" or "how do I know which version of this dashboard is the one I should trust?" or "can I search across all our analytics assets in one place?" - the answer is an analytics catalog. These are questions about discoverability, trust, and governance at the consumption layer. They are asked by business users, analysts, and executives every day, and the absence of an analytics catalog is why most organizations have a spreadsheet somewhere listing "the real versions" of the important reports.</p>
+              <p>If you are evaluating all three and need to prioritize: start with the analytics catalog. It delivers user-visible value the fastest, because it directly addresses the experience of the broadest audience - the business users who rely on analytics to make decisions. It also creates the governance infrastructure - ownership, certification, usage data, cross-platform discoverability - that the other tools connect to and build on. Data catalogs and metrics stores are critical investments for mature data programs, but they improve the experience of a technical minority. The analytics catalog improves the experience of everyone, and it does so immediately.</p>
+            </section>
+
+          </article>
+
+        </div>
+      </div>
+    </div>
+
+    <section class="art-related" data-screen-label="Related">
+      <div class="container">
+        <h3>Keep reading.</h3>
+        <div class="art-related__grid">
+          <a class="related-card reveal" href="data-catalogs-are-dead.html">
+            <span class="tag">Blog</span>
+            <h4>Data catalogs are dead - and the industry refusal to admit it is costing you.</h4>
+            <span class="arrow-row">Read post <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+          <a class="related-card reveal" href="../resources/analytics-catalog-vs-data-catalog.html">
+            <span class="tag">Comparison</span>
+            <h4>Analytics catalog vs data catalog in depth.</h4>
+            <span class="arrow-row">Read the comparison <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+          <a class="related-card reveal" href="../resources/what-is-an-analytics-catalog.html">
+            <span class="tag">Definition</span>
+            <h4>What is an analytics catalog?</h4>
+            <span class="arrow-row">Read the definition <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="art-cta" data-screen-label="CTA">
+      <div class="container reveal">
+        <h2>See how Digital Hive connects your analytics stack.</h2>
+        <p>A 30-minute walkthrough using sample content from your BI vendors. No commitment, no rip-and-replace pitch.</p>
+        <a class="btn btn--accent" href="../Demo.html">Book a demo <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" data-screen-label="Footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="../assets/logo-reversed.svg" alt="Digital Hive" />
+          <p>Where analytics finally make sense. An enterprise analytics catalog.</p>
+          <div class="footer__social">
+            <a href="https://www.linkedin.com/company/digital-hive-bi-portal" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0H12v2.2h.07c.63-1.2 2.18-2.46 4.49-2.46 4.8 0 5.69 3.16 5.69 7.27V24h-5v-7.2c0-1.72-.03-3.93-2.4-3.93-2.4 0-2.77 1.87-2.77 3.81V24h-5V8z"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer__col"><h3>Product</h3><ul>
+          <li><a href="../Product.html#catalog">Catalog</a></li>
+          <li><a href="../Product.html#hub">BI Hub</a></li>
+          <li><a href="../Product.html#governance">Governance</a></li>
+          <li><a href="../Connectors.html">Connectors</a></li>
+          <li><a href="../Pricing.html">Pricing</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Use cases</h3><ul>
+          <li><a href="../UseCases.html">All use cases</a></li>
+          <li><a href="../use-cases/multi-vendor-bi.html">Multi-vendor BI</a></li>
+          <li><a href="../use-cases/cloud-migration.html">Cloud migration</a></li>
+          <li><a href="../use-cases/ma-integration.html">M&amp;A integration</a></li>
+          <li><a href="../use-cases/data-sovereignty.html">Data sovereignty</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Company</h3><ul>
+          <li><a href="../About.html">About</a></li>
+          <li><a href="../About.html#team">Leadership</a></li>
+          <li><a href="../Customers.html">Customers</a></li>
+          <li><a href="../Contact.html">Contact</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Resources</h3><ul>
+          <li><a href="../Resources.html">Library</a></li>
+          <li><a href="../FAQ.html">FAQ</a></li>
+          <li><a href="../Home.html#research">ISG report</a></li>
+          <li><a href="../Resources.html#blog">Blog</a></li>
+          <li><a href="https://support.digitalhive.com">Support</a></li>
+        </ul></div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Digital Hive</span>
+        <ul>
+          <li><a href="../Privacy.html">Privacy</a></li>
+          <li><a href="../Terms.html">Terms</a></li>
+          <li><a href="#">Trust center</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../scripts/consent.js"></script>
+  <script src="../scripts/site.js"></script>
+</body>
+</html>

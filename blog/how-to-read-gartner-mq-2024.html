@@ -1,0 +1,230 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <title>How to read the Gartner Magic Quadrant and Critical Capabilities - 2024 edition. - Digital Hive</title>
+  <meta name="description" content="A practical guide to reading the Gartner Magic Quadrant and Critical Capabilities reports without mistaking market position for the right fit for your use case." />
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/site.css" />
+  <link rel="stylesheet" href="../styles/consent.css" />
+  <link rel="stylesheet" href="../styles/article.css" />
+</head>
+<body>
+
+  <header class="nav" data-screen-label="Navigation">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="../Home.html" aria-label="Digital Hive home" style="border-bottom:none;">
+        <img src="../assets/logo-colour.svg" alt="Digital Hive" />
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav__links">
+          <li><a href="../Product.html">Product</a></li>
+          <li><a href="../UseCases.html">Use cases</a></li>
+          <li><a href="../Customers.html">Customers</a></li>
+          <li><a href="../Resources.html" style="color:var(--dh-orange);">Resources</a></li>
+          <li><a href="../Pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn btn--primary" href="../Demo.html">Book a demo</a>
+        <button type="submit" class="nav__toggle" data-mobile-toggle aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="container mobile-menu" data-mobile-menu>
+      <ul>
+        <li><a href="../Product.html">Product</a></li>
+        <li><a href="../UseCases.html">Use cases</a></li>
+        <li><a href="../Customers.html">Customers</a></li>
+        <li><a href="../Resources.html">Resources</a></li>
+        <li><a href="../Pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <nav class="breadcrumb" aria-label="Breadcrumb" style="padding: var(--space-7) 0 0;">
+      <div class="container">
+        <ol style="list-style:none; margin:0; padding:0; display:flex; gap:var(--space-2); align-items:center; font-size:var(--fs-14); color:var(--fg-3);">
+          <li><a href="../Resources.html" style="color:var(--fg-3); font-weight:var(--fw-medium); border-bottom:none;">Resources</a></li>
+          <li aria-hidden="true" style="color:var(--dh-grey-light);">/</li>
+          <li style="color:var(--dh-navy); font-weight:var(--fw-bold);">How to read the Gartner Magic Quadrant and Critical Capabilities - 2024 edition.</li>
+        </ol>
+      </div>
+    </nav>
+
+    <header class="art-header" data-screen-label="01 Header">
+      <div class="container reveal">
+        <span class="eyebrow">Blog · BI Modernization</span>
+        <h1>How to read the Gartner Magic Quadrant and Critical Capabilities - 2024 edition.</h1>
+        <p class="art-header__sub">The MQ is a market map, not a capability ranking. Most BI teams use it backwards. Here is how to get actual buying signal from Gartner research.</p>
+        <div class="art-meta">
+          <span>6 min read</span>
+          <span class="dot" aria-hidden="true"></span>
+          <span>Jul 2024</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="art-body">
+      <div class="container">
+        <div class="art-body__grid">
+
+          <aside class="toc" data-toc data-screen-label="TOC">
+            <div class="toc__title">
+              <span>On this page</span>
+              <button class="toc__toggle" type="button" data-toc-toggle aria-label="Toggle contents">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                <span>Contents</span>
+              </button>
+            </div>
+            <ol class="toc__list">
+              <li><a href="#what-mq-measures">What the MQ is actually measuring</a></li>
+              <li><a href="#common-misreading">The most common misreading</a></li>
+              <li><a href="#critical-capabilities">How the Critical Capabilities report works</a></li>
+              <li><a href="#practical-weighting">A practical weighting approach</a></li>
+              <li><a href="#analytics-catalogs-gartner">Where analytics catalogs fit in Gartner coverage</a></li>
+            </ol>
+          </aside>
+
+          <article class="prose">
+            <p class="lede">Gartner publishes two BI research documents that most organizations treat as one. They are not. The Magic Quadrant tells you which vendors are significant players in the market. The Critical Capabilities report tells you which vendors are strong at specific things. Used together correctly, they are genuinely useful. Used in isolation - or worse, used as a simple ranking of quality - they lead to vendor decisions that are misaligned with actual organizational needs.</p>
+
+            <section id="what-mq-measures">
+              <h2><span class="num">01</span><span>What the MQ is actually measuring</span></h2>
+              <p>The Magic Quadrant plots vendors on two axes: completeness of vision and ability to execute. Completeness of vision measures whether the vendor understands where the market is heading - whether their product roadmap, go-to-market strategy, and innovation investments reflect an accurate model of where enterprise BI demand is moving. Ability to execute measures whether the vendor can actually deliver: sales force, support organization, financial health, customer experience, and operational infrastructure. Neither axis measures "is this the right tool for your problem."</p>
+              <p>The MQ is fundamentally a market presence document. To appear in the Magic Quadrant at all, a vendor must have sufficient revenue, customer base, and visibility among Gartner's enterprise client population. This creates a structural bias: the report reflects the buying patterns of large organizations, because those organizations make up the majority of Gartner's research client base. A vendor that is excellent at serving mid-market analytics teams, or that has deep capability in a specialized vertical, may not appear in the MQ at all - not because of capability gaps, but because of market segment focus.</p>
+              <p>This also means the report is backward-looking in a specific way. A vendor's position reflects their performance over the evaluation period, which typically lags current product capability by six to twelve months. A vendor that has made significant product investments in the past year may not see those investments reflected in the current MQ placement. Conversely, a vendor with a strong current position may be coasting on reputation while competitors are advancing faster.</p>
+              <p>Smaller or more specialized vendors are simply invisible to the MQ regardless of how capable their products are. This is not a flaw in Gartner's methodology - it is a consequence of what the report is designed to measure. The MQ is a view of the major commercial players in a market. It is not a comprehensive catalog of available solutions. Organizations that restrict their evaluations to MQ participants are, by definition, excluding a significant portion of the available solution space.</p>
+            </section>
+
+            <section id="common-misreading">
+              <h2><span class="num">02</span><span>The most common misreading</span></h2>
+              <p>The most common misreading of the MQ is this: "Vendor X is in the Leader quadrant, therefore Vendor X is the best BI tool." This is not what the Leader quadrant means. Leader quadrant placement indicates that the vendor has a large, established presence in the market, strong execution capability, and a coherent vision for where they are taking the product. It says nothing about whether the vendor's product is the best match for your specific use case, your team's skill set, your data architecture, or your budget constraints.</p>
+              <p>Microsoft's consistent Leader placement in the BI MQ illustrates this clearly. Power BI occupies the Leader quadrant in large part because of the scale of Microsoft's install base, the depth of Microsoft 365 integration, and the company's financial and operational execution capability. These are real advantages for organizations that are deeply invested in the Microsoft stack. But they are not universal advantages. For organizations running on different data platforms, or with governance requirements that require platform-neutral tooling, or with embedded analytics use cases that need a different rendering model, Power BI's Leader placement does not translate to the right choice.</p>
+              <blockquote><p>Leader quadrant placement tells you a vendor can sustain and scale. It does not tell you the vendor solves your problem better than anyone else.</p></blockquote>
+              <p>The same misreading applies in the opposite direction. A vendor in the Niche Players quadrant is not necessarily a weak product. Niche Players are typically vendors with focused capability in a specific segment, or vendors that serve a defined customer profile very well but lack the broad market footprint that would move them up the vertical axis. For an organization whose requirements align closely with a Niche Player's strengths, that vendor may be the correct choice - and the MQ position would actively mislead the evaluation if taken at face value.</p>
+              <p>The practical implication is that the MQ should be treated as an input to vendor discovery, not as a ranking system. Use it to identify which vendors have reached a threshold of market maturity and execution stability. Use it to flag vendors that may be too early-stage or too financially fragile for an enterprise deployment. Then stop using it for anything beyond that. The actual capability comparison requires a different document entirely.</p>
+            </section>
+
+            <section id="critical-capabilities">
+              <h2><span class="num">03</span><span>How the Critical Capabilities report works</span></h2>
+              <p>The Critical Capabilities report is published alongside the Magic Quadrant, but it operates differently. Where the MQ plots overall market position, the CC report scores vendors on specific functional dimensions. In the BI and Analytics platform CC report, those dimensions typically include data visualization, natural language query, data preparation, predictive and advanced analytics, embedded analytics, collaboration, governance and metadata management, and platform administration. Each vendor receives a score on each dimension, on a scale from one to five.</p>
+              <p>The critical insight - and the one most users miss - is that the CC report is designed to be weighted by the reader. Gartner publishes the raw scores, but also defines several use case profiles, each with a pre-defined weighting across dimensions. An "enterprise reporting" use case weights governance and scalability heavily. A "self-service analytics" use case weights data preparation and visualization higher. A "data science and machine learning" use case shifts weight toward predictive analytics and platform extensibility. When you apply different weightings, the ranked order of vendors changes - sometimes dramatically.</p>
+              <p>This is where the CC report becomes genuinely useful. A vendor that ranks second or third on the raw CC scores might rank first when you apply weights that reflect your actual requirements. Conversely, a vendor that leads the raw scores might drop significantly when your use case does not require the dimensions in which they score highest. The CC report is, in effect, a configurable decision support tool - but only if you actually configure it. Most organizations read it as a flat ranking, which defeats the purpose entirely.</p>
+              <p>Gartner also updates the CC dimensions over time as the market evolves. In recent editions, dimensions around AI-assisted analytics and cloud-native deployment have become more prominent. This means a CC report from two years ago may not reflect the same weighting structure as the current edition. Always work from the current year's publication, and review which dimensions have been added, removed, or restructured since your previous evaluation cycle.</p>
+            </section>
+
+            <section id="practical-weighting">
+              <h2><span class="num">04</span><span>A practical weighting approach</span></h2>
+              <p>Before you open the Critical Capabilities report, do the work on your side first. Define your use case requirements in concrete terms: who are the primary users, what decisions will they be making with the platform, what data sources need to connect, what governance or compliance constraints apply, and what does successful adoption look like in your organization? This framing exercise should produce a list of capability requirements that you can map to the CC dimensions. The mapping does not need to be perfect - it needs to be honest about what matters most for your context.</p>
+              <p>Once you have your requirements mapped, assign importance weights that sum to 100. Be deliberate about this. A small team primarily needs strong visualization and self-service data prep - the predictive analytics dimension may carry very low weight for them. A large enterprise with a complex governance requirement needs to weight metadata management and platform administration more heavily. An organization building customer-facing analytics products will weight embedded analytics capability at or near the top. Example weights for a self-service focused deployment might look like: data visualization 40%, data preparation 25%, natural language query 15%, governance and metadata 10%, embedded analytics 10%.</p>
+              <p>Apply your weights to the CC scores and calculate a weighted total for each vendor. Sort the results. The list you now have is your personalized ranking - a view of which vendors score highest on the capabilities that matter for your context, rather than a generic average across all dimensions. This typically surfaces a different set of vendors than the MQ default ordering, and in many evaluations, one or two vendors that did not appear prominently in the MQ move to the top of the weighted CC ranking.</p>
+              <p>Cross-reference the CC-weighted results with the MQ quadrant positions. Vendors with strong weighted CC scores and Leader or Challenger MQ placement represent the safest short list: they have relevant capability and demonstrated execution stability. Vendors with strong CC scores but Niche or Visionary placement warrant a closer look at financial stability and support infrastructure before advancing in an evaluation. Vendors that score well on the MQ but poorly on your weighted CC ranking should move down your list, regardless of brand recognition. The MQ cannot override a genuine capability gap for your use case.</p>
+            </section>
+
+            <section id="analytics-catalogs-gartner">
+              <h2><span class="num">05</span><span>Where analytics catalogs fit in Gartner coverage</span></h2>
+              <p>Analytics catalogs occupy an interesting position in Gartner's taxonomy. The capability does not have its own dedicated Magic Quadrant - instead, it surfaces as a dimension within the BI platform evaluations, specifically around the ability to unify content from multiple BI vendors in a single discovery and access layer. This matters because many organizations running multi-vendor BI environments - Power BI alongside Tableau, or Cognos alongside a cloud-native tool - face a fragmentation problem that no single BI platform vendor is incentivized to solve. The BI MQ evaluates vendors on their own platforms, not on how well they integrate with competitors.</p>
+              <p>Among the vendors Gartner evaluates in the BI MQ, analytics catalog capability - specifically the ability to surface, govern, and activate content across multiple platforms - is thin. Most platform vendors have invested in their own catalog and governance features, but those features are designed to manage content within their platform. Cross-platform catalog capability requires a different architectural commitment, and it is not a direction that incumbent BI platform vendors have prioritized.</p>
+              <p>Digital Hive was recognized as a Gartner Cool Vendor and has been cited in Gartner research multiple times specifically for analytics catalog capability. That recognition reflects a category that the BI MQ does not fully capture: the layer that sits above individual BI platforms and provides unified access, governance, and discovery across the full analytics stack. For organizations that are evaluating whether to rationalize their BI tooling or preserve multi-vendor environments, this distinction is operationally significant. The MQ will not surface it.</p>
+              <p>For organizations specifically evaluating analytics catalog solutions, the Gartner BI MQ is a useful starting point for understanding the platform landscape - it is not the answer to the catalog question. The relevant evaluation criteria for an analytics catalog are different from those for a BI platform: breadth of connector coverage across BI vendors, metadata federation capability, search and discovery experience across platforms, usage analytics across tools, and governance that works above the platform layer rather than within it. These criteria require their own evaluation framework, applied to a vendor set that extends beyond the MQ.</p>
+            </section>
+
+          </article>
+
+        </div>
+      </div>
+    </div>
+
+    <section class="art-related" data-screen-label="Related">
+      <div class="container">
+        <h3>Keep reading.</h3>
+        <div class="art-related__grid">
+          <a class="related-card reveal" href="analytics-catalogs-actually-useful.html">
+            <span class="tag">Blog</span>
+            <h4>Analytics catalogs: actually useful, or just another checkbox?</h4>
+            <span class="arrow-row">Read post <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+          <a class="related-card reveal" href="top-5-analytics-catalog-benefits.html">
+            <span class="tag">Blog</span>
+            <h4>The top 5 benefits of analytics catalogs.</h4>
+            <span class="arrow-row">Read post <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+          <a class="related-card reveal" href="../resources/what-is-an-analytics-catalog.html">
+            <span class="tag">Definition</span>
+            <h4>What is an analytics catalog?</h4>
+            <span class="arrow-row">Read the definition <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="art-cta" data-screen-label="CTA">
+      <div class="container reveal">
+        <h2>See how Digital Hive connects your analytics stack.</h2>
+        <p>A 30-minute walkthrough using sample content from your BI vendors. No commitment, no rip-and-replace pitch.</p>
+        <a class="btn btn--accent" href="../Demo.html">Book a demo <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" data-screen-label="Footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="../assets/logo-reversed.svg" alt="Digital Hive" />
+          <p>Where analytics finally make sense. An enterprise analytics catalog.</p>
+          <div class="footer__social">
+            <a href="https://www.linkedin.com/company/digital-hive-bi-portal" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0H12v2.2h.07c.63-1.2 2.18-2.46 4.49-2.46 4.8 0 5.69 3.16 5.69 7.27V24h-5v-7.2c0-1.72-.03-3.93-2.4-3.93-2.4 0-2.77 1.87-2.77 3.81V24h-5V8z"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer__col"><h3>Product</h3><ul>
+          <li><a href="../Product.html#catalog">Catalog</a></li>
+          <li><a href="../Product.html#hub">BI Hub</a></li>
+          <li><a href="../Product.html#governance">Governance</a></li>
+          <li><a href="../Connectors.html">Connectors</a></li>
+          <li><a href="../Pricing.html">Pricing</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Use cases</h3><ul>
+          <li><a href="../UseCases.html">All use cases</a></li>
+          <li><a href="../use-cases/multi-vendor-bi.html">Multi-vendor BI</a></li>
+          <li><a href="../use-cases/cloud-migration.html">Cloud migration</a></li>
+          <li><a href="../use-cases/ma-integration.html">M&amp;A integration</a></li>
+          <li><a href="../use-cases/data-sovereignty.html">Data sovereignty</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Company</h3><ul>
+          <li><a href="../About.html">About</a></li>
+          <li><a href="../About.html#team">Leadership</a></li>
+          <li><a href="../Customers.html">Customers</a></li>
+          <li><a href="../Contact.html">Contact</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Resources</h3><ul>
+          <li><a href="../Resources.html">Library</a></li>
+          <li><a href="../FAQ.html">FAQ</a></li>
+          <li><a href="../Home.html#research">ISG report</a></li>
+          <li><a href="../Resources.html#blog">Blog</a></li>
+          <li><a href="https://support.digitalhive.com">Support</a></li>
+        </ul></div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Digital Hive</span>
+        <ul>
+          <li><a href="../Privacy.html">Privacy</a></li>
+          <li><a href="../Terms.html">Terms</a></li>
+          <li><a href="#">Trust center</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../scripts/consent.js"></script>
+  <script src="../scripts/site.js"></script>
+</body>
+</html>
