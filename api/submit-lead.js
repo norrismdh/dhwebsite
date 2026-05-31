@@ -12,8 +12,9 @@ async function getAccessToken() {
   });
 
   // ZOHO_ACCESS_TOKEN in .env.local lets dev skip the rate-limited token endpoint.
-  if (process.env.ZOHO_ACCESS_TOKEN) {
-    console.log('Using pre-seeded ZOHO_ACCESS_TOKEN');
+  // Explicitly disabled in production — pre-seeded tokens expire after 1 hour.
+  if (process.env.ZOHO_ACCESS_TOKEN && process.env.NODE_ENV !== 'production') {
+    console.log('Using pre-seeded ZOHO_ACCESS_TOKEN (dev only)');
     return process.env.ZOHO_ACCESS_TOKEN;
   }
 
@@ -92,14 +93,16 @@ export default async function handler(req, res) {
     });
 
     const leadData = await leadRes.json();
+    console.log('Zoho response status:', leadRes.status);
+    console.log('Zoho response body:', JSON.stringify(leadData));
     const result = leadData.data?.[0];
 
     if (result?.code === 'SUCCESS') {
       return res.status(200).json({ success: true });
     }
 
-    console.error('Zoho lead error:', result);
-    throw new Error(result?.message ?? 'Failed to create lead');
+    console.error('Zoho lead error:', JSON.stringify(result ?? leadData));
+    throw new Error(result?.message ?? leadData?.message ?? 'Failed to create lead');
   } catch (err) {
     console.error('submit-lead error:', err.message);
     return res.status(500).json({ error: 'Submission failed. Please try again or email us directly.' });
