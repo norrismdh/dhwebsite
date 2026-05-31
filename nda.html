@@ -88,10 +88,137 @@
       box-shadow: 0 0 0 3px rgba(243,146,53,.15);
     }
     .nda-field input::placeholder { color: var(--fg-3, #aab0bb); }
+    .nda-field select:invalid { color: var(--fg-3, #aab0bb); }
     .nda-row-2 {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: var(--space-3);
+      align-items: end; /* keep inputs aligned even when a label wraps */
+    }
+    .nda-field__hint {
+      font-size: var(--fs-12);
+      color: var(--fg-3);
+      margin-top: 2px;
+    }
+
+    /* ── Address autocomplete dropdown ──────────────────────────────── */
+    .nda-ac { position: relative; }
+    .nda-ac__list {
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      z-index: 30;
+      background: #fff;
+      border: 1px solid var(--border-1, #d0d5dd);
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.12);
+      overflow: hidden;
+      display: none;
+    }
+    .nda-ac__list.is-open { display: block; }
+    .nda-ac__item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: 10px var(--space-3);
+      font-size: var(--fs-14);
+      color: var(--fg-1);
+      cursor: pointer;
+      border-bottom: 1px solid var(--border-2, #f0f2f5);
+    }
+    .nda-ac__item:last-child { border-bottom: none; }
+    .nda-ac__item:hover,
+    .nda-ac__item.is-active { background: color-mix(in srgb, var(--dh-orange) 8%, transparent); }
+    .nda-ac__item svg { flex-shrink: 0; color: var(--dh-orange); }
+    .nda-ac__attr {
+      padding: 6px var(--space-3);
+      text-align: right;
+      font-size: 10px;
+      color: var(--fg-3);
+      background: #fafbfc;
+    }
+
+    /* ── Read full NDA link ─────────────────────────────────────────── */
+    .nda-read {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0 0 var(--space-6);
+      padding: 0;
+      background: none;
+      border: none;
+      font-size: var(--fs-14);
+      font-weight: 600;
+      color: var(--dh-orange);
+      cursor: pointer;
+    }
+    .nda-read:hover { text-decoration: underline; }
+    .nda-read svg { flex-shrink: 0; }
+
+    /* ── NDA modal ──────────────────────────────────────────────────── */
+    .nda-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-4);
+      background: rgba(15,35,64,.55);
+      backdrop-filter: blur(2px);
+    }
+    .nda-modal.is-open { display: flex; }
+    .nda-modal__panel {
+      background: #fff;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 720px;
+      max-height: 86vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,.3);
+    }
+    .nda-modal__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-3);
+      padding: var(--space-4) var(--space-6);
+      border-bottom: 1px solid var(--border-1, #e4e7ec);
+    }
+    .nda-modal__head h2 { font-size: var(--fs-18); margin: 0; }
+    .nda-modal__close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--fg-2);
+      line-height: 0;
+      padding: 4px;
+      border-radius: 6px;
+    }
+    .nda-modal__close:hover { background: var(--border-2, #f0f2f5); color: var(--fg-1); }
+    .nda-modal__body {
+      padding: var(--space-6);
+      overflow-y: auto;
+      font-size: var(--fs-14);
+      line-height: 1.65;
+      color: var(--fg-1);
+    }
+    .nda-modal__body h3 {
+      font-size: var(--fs-15);
+      margin: var(--space-5) 0 var(--space-2);
+      color: var(--dh-navy);
+    }
+    .nda-modal__body h3:first-child { margin-top: 0; }
+    .nda-modal__body p { margin: 0 0 var(--space-3); color: var(--fg-2); }
+    .nda-modal__body ol { margin: 0 0 var(--space-3) var(--space-5); color: var(--fg-2); }
+    .nda-modal__body li { margin-bottom: var(--space-2); }
+    .nda-modal__foot {
+      padding: var(--space-4) var(--space-6);
+      border-top: 1px solid var(--border-1, #e4e7ec);
+      text-align: right;
     }
 
     /* ── Consent ────────────────────────────────────────────────────── */
@@ -174,6 +301,11 @@
           <h2>Your details</h2>
           <p>Please use your legal name and company as they should appear on the agreement.</p>
 
+          <button type="button" class="nda-read" id="nda-read-btn" aria-haspopup="dialog">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+            Read the full agreement
+          </button>
+
           <form id="nda-form" novalidate>
 
             <!-- Honeypot — must stay empty -->
@@ -188,8 +320,8 @@
                 <input id="nda-name" name="fullName" type="text" placeholder="Jane Smith" required autocomplete="name" />
               </div>
               <div class="nda-field">
-                <label for="nda-title">Your title</label>
-                <input id="nda-title" name="title" type="text" placeholder="VP of Analytics" autocomplete="organization-title" />
+                <label for="nda-title">Your title *</label>
+                <input id="nda-title" name="title" type="text" placeholder="VP of Analytics" required autocomplete="organization-title" />
               </div>
             </div>
 
@@ -199,9 +331,9 @@
                 <input id="nda-company" name="company" type="text" placeholder="Acme Corp" required autocomplete="organization" />
               </div>
               <div class="nda-field">
-                <label for="nda-entity">Entity type</label>
-                <select id="nda-entity" name="entityType">
-                  <option value="">Select&hellip;</option>
+                <label for="nda-entity">Entity type *</label>
+                <select id="nda-entity" name="entityType" required>
+                  <option value="" disabled selected>Select&hellip;</option>
                   <option>Corporation</option>
                   <option>LLC</option>
                   <option>LP</option>
@@ -214,13 +346,17 @@
 
             <div class="nda-field">
               <label for="nda-address">Registered business address *</label>
-              <input id="nda-address" name="address" type="text" placeholder="123 Main St, Dallas, TX 75001" required autocomplete="street-address" />
+              <div class="nda-ac">
+                <input id="nda-address" name="address" type="text" placeholder="Start typing your address&hellip;" required autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="nda-ac-list" />
+                <div class="nda-ac__list" id="nda-ac-list" role="listbox"></div>
+              </div>
+              <span class="nda-field__hint">Start typing and choose your address from the list.</span>
             </div>
 
             <div class="nda-field">
               <label for="nda-email">Work email *</label>
               <input id="nda-email" name="email" type="email" placeholder="jane@acme.com" required autocomplete="email" />
-              <span style="font-size:var(--fs-12);color:var(--fg-3);margin-top:2px;">Your signed copy will be sent here.</span>
+              <span class="nda-field__hint">Your signed copy will be sent here.</span>
             </div>
 
             <div class="nda-consent">
@@ -246,6 +382,53 @@
     </div>
 
   </main>
+
+  <!-- NDA MODAL -->
+  <div class="nda-modal" id="nda-modal" role="dialog" aria-modal="true" aria-labelledby="nda-modal-title" hidden>
+    <div class="nda-modal__panel">
+      <div class="nda-modal__head">
+        <h2 id="nda-modal-title">Mutual Non-Disclosure &amp; Confidentiality Agreement</h2>
+        <button type="button" class="nda-modal__close" id="nda-modal-close" aria-label="Close">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="nda-modal__body" tabindex="0">
+        <p>This is a summary of the agreement you will be asked to sign. The full, legally binding text — including the signature blocks — is presented on the secure signing page after you submit your details.</p>
+
+        <h3>Parties</h3>
+        <p>This Agreement is between <strong>Digital Hive Software, Inc.</strong>, a Texas corporation located at 6600 Chase Oaks Boulevard, Suite 150, Plano, TX 75023, and its subsidiaries and affiliates (&ldquo;Digital Hive&rdquo;), and your company (&ldquo;Company&rdquo;), together the &ldquo;Parties.&rdquo;</p>
+
+        <h3>1. Definitions</h3>
+        <p>&ldquo;Proprietary Information&rdquo; covers both <strong>Confidential Information</strong> (non-public business information that is marked confidential or would reasonably be understood to be confidential) and <strong>Trade Secrets</strong> as defined under the Texas Uniform Trade Secrets Act. Digital Hive&rsquo;s Trade Secrets include all components of its software products, documentation, help content, and any ideas, algorithms, or information embodied in them.</p>
+
+        <h3>2. Rights &amp; Obligations</h3>
+        <p>Each Party receiving Proprietary Information agrees to:</p>
+        <ol>
+          <li>Treat all Proprietary Information as strictly confidential and use it only for the purpose of the potential business relationship.</li>
+          <li>Not use the information to compete with the disclosing Party.</li>
+          <li>Only share it with representatives who have a need to know and are bound by these same obligations.</li>
+          <li>Not use the information to train or improve any AI, machine-learning, or large language model system, and not upload it to any third-party AI system unless that provider is bound by equally restrictive terms.</li>
+          <li>Promptly cease use and return or destroy all copies upon request, and certify destruction.</li>
+          <li>Exercise commercially reasonable care to protect the information.</li>
+        </ol>
+        <p>Standard exceptions apply for information that becomes public through no fault of the receiving Party, was already lawfully known, or is received from a third party without a duty of confidentiality.</p>
+
+        <h3>3. Remedies</h3>
+        <p>The Parties agree that a breach would cause irreparable harm. The disclosing Party is entitled to injunctive relief (without bond) in addition to damages, and the prevailing Party in any dispute is entitled to reasonable attorney&rsquo;s fees and costs.</p>
+
+        <h3>4. Term &amp; Termination</h3>
+        <p>Confidential Information is protected for at least <strong>five (5) years</strong> from disclosure; Trade Secrets are protected <strong>in perpetuity</strong> or until they no longer qualify under law. The Agreement runs for one (1) year, renews automatically for successive one-year terms, and either Party may terminate on sixty (60) days&rsquo; written notice.</p>
+
+        <h3>5&ndash;11. Additional Terms</h3>
+        <p>The Agreement also covers export compliance, assignability, severability, the validity of electronic signatures, entire-agreement and amendment terms, Texas choice of law and venue (Dallas County), and obligations regarding subpoenas or legal demands for the information.</p>
+
+        <p style="margin-top:var(--space-5);font-style:italic;">The summary above is provided for convenience only and does not modify the binding terms of the Agreement presented for signature.</p>
+      </div>
+      <div class="nda-modal__foot">
+        <button type="button" class="btn btn--primary" id="nda-modal-ok">Got it</button>
+      </div>
+    </div>
+  </div>
 
   <!-- FOOTER (shared) -->
   <footer class="footer" data-screen-label="Footer">
@@ -301,6 +484,176 @@
   <script src="scripts/consent.js"></script>
   <script src="scripts/site.js"></script>
   <script>
+  /* ── NDA modal ──────────────────────────────────────────────────── */
+  (function () {
+    const modal   = document.getElementById('nda-modal');
+    const openBtn = document.getElementById('nda-read-btn');
+    const closers = [document.getElementById('nda-modal-close'), document.getElementById('nda-modal-ok')];
+    if (!modal || !openBtn) return;
+
+    let lastFocused = null;
+
+    function open() {
+      lastFocused = document.activeElement;
+      modal.hidden = false;
+      modal.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+      modal.querySelector('.nda-modal__body').focus();
+    }
+    function close() {
+      modal.classList.remove('is-open');
+      modal.hidden = true;
+      document.body.style.overflow = '';
+      if (lastFocused) lastFocused.focus();
+    }
+
+    openBtn.addEventListener('click', open);
+    closers.forEach(b => b && b.addEventListener('click', close));
+    modal.addEventListener('click', e => { if (e.target === modal) close(); });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) close();
+    });
+  })();
+
+  /* ── Google Places address autocomplete (custom UI, graceful) ───── */
+  (function () {
+    const input = document.getElementById('nda-address');
+    const list  = document.getElementById('nda-ac-list');
+    if (!input || !list) return;
+
+    let suggestionLib = null;   // { AutocompleteSuggestion, AutocompleteSessionToken }
+    let token = null;
+    let items = [];             // current placePrediction objects
+    let activeIdx = -1;
+    let debounce;
+
+    // Load the Maps JS API using a key served from our own endpoint.
+    async function loadMaps() {
+      try {
+        const res = await fetch('/api/maps-key');
+        if (!res.ok) return false;
+        const { key } = await res.json();
+        if (!key) return false;
+
+        // Official inline bootstrap loader (parameterised with our key)
+        (g => { var h, a, k, p = "The Google Maps JavaScript API", c = "google", l = "importLibrary", q = "__ib__", m = document, b = window; b = b[c] || (b[c] = {}); var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => { await (a = m.createElement("script")); e.set("libraries", [...r] + ""); for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]); e.set("callback", c + ".maps." + q); a.src = `https://maps.${c}apis.com/maps/api/js?` + e; d[q] = f; a.onerror = () => h = n(Error(p + " could not load.")); a.nonce = m.querySelector("script[nonce]")?.nonce || ""; m.head.append(a) })); d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)) })({ key, v: "weekly" });
+
+        suggestionLib = await google.maps.importLibrary("places");
+        newSession();
+        return true;
+      } catch (err) {
+        console.warn('Address autocomplete unavailable; using plain text input.', err);
+        return false;
+      }
+    }
+
+    function newSession() {
+      if (suggestionLib) token = new suggestionLib.AutocompleteSessionToken();
+    }
+
+    function closeList() {
+      list.classList.remove('is-open');
+      list.innerHTML = '';
+      items = [];
+      activeIdx = -1;
+      input.setAttribute('aria-expanded', 'false');
+    }
+
+    function renderList() {
+      if (!items.length) { closeList(); return; }
+      list.innerHTML =
+        items.map((s, i) => {
+          const text = s.placePrediction.text.text;
+          return `<div class="nda-ac__item" role="option" data-idx="${i}" id="nda-ac-opt-${i}">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            <span>${text.replace(/</g, '&lt;')}</span>
+          </div>`;
+        }).join('') +
+        '<div class="nda-ac__attr">Powered by Google</div>';
+      list.classList.add('is-open');
+      input.setAttribute('aria-expanded', 'true');
+
+      list.querySelectorAll('.nda-ac__item').forEach(el => {
+        el.addEventListener('mousedown', e => {       // mousedown beats input blur
+          e.preventDefault();
+          choose(Number(el.dataset.idx));
+        });
+      });
+    }
+
+    async function choose(idx) {
+      const s = items[idx];
+      if (!s) return;
+      try {
+        const place = s.placePrediction.toPlace();
+        await place.fetchFields({ fields: ['formattedAddress'] });
+        input.value = place.formattedAddress || s.placePrediction.text.text;
+      } catch {
+        input.value = s.placePrediction.text.text;
+      }
+      closeList();
+      newSession();             // a selection ends the billing session
+      input.dispatchEvent(new Event('change'));
+    }
+
+    async function fetchSuggestions(value) {
+      if (!suggestionLib || value.trim().length < 3) { closeList(); return; }
+      try {
+        const { suggestions } = await suggestionLib.AutocompleteSuggestion.fetchAutocompleteSuggestions({
+          input: value,
+          sessionToken: token,
+          includedRegionCodes: ['us'],
+        });
+        items = (suggestions || []).filter(s => s.placePrediction).slice(0, 5);
+        activeIdx = -1;
+        renderList();
+      } catch (err) {
+        console.warn('Suggestion fetch failed:', err);
+        closeList();
+      }
+    }
+
+    function setActive(idx) {
+      const opts = list.querySelectorAll('.nda-ac__item');
+      opts.forEach(o => o.classList.remove('is-active'));
+      if (idx >= 0 && opts[idx]) {
+        opts[idx].classList.add('is-active');
+        input.setAttribute('aria-activedescendant', `nda-ac-opt-${idx}`);
+      } else {
+        input.removeAttribute('aria-activedescendant');
+      }
+    }
+
+    input.addEventListener('input', () => {
+      clearTimeout(debounce);
+      const v = input.value;
+      debounce = setTimeout(() => fetchSuggestions(v), 250);
+    });
+
+    input.addEventListener('keydown', e => {
+      if (!list.classList.contains('is-open')) return;
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        activeIdx = Math.min(activeIdx + 1, items.length - 1);
+        setActive(activeIdx);
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        activeIdx = Math.max(activeIdx - 1, 0);
+        setActive(activeIdx);
+      } else if (e.key === 'Enter' && activeIdx >= 0) {
+        e.preventDefault();
+        choose(activeIdx);
+      } else if (e.key === 'Escape') {
+        closeList();
+      }
+    });
+
+    input.addEventListener('blur', () => setTimeout(closeList, 150));
+
+    loadMaps();
+  })();
+
+  /* ── Form submission ────────────────────────────────────────────── */
   (function () {
     const form  = document.getElementById('nda-form');
     const btn   = document.getElementById('nda-btn');
