@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <title>NDA signed — Digital Hive</title>
+  <meta name="description" content="Your NDA has been signed. We'll be in touch shortly." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="styles/tokens.css" />
+  <link rel="stylesheet" href="styles/site.css" />
+  <link rel="stylesheet" href="styles/consent.css" />
+  <style>
+    /* ── Layout ──────────────────────────────────────────────────── */
+    .ty-shell {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 72px);
+      padding: var(--space-12) var(--space-4);
+      text-align: center;
+      overflow: hidden;
+    }
+
+    /* ── Floating hexagons ───────────────────────────────────────── */
+    .ty-hex {
+      position: absolute;
+      pointer-events: none;
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      opacity: 0;
+      animation: hex-appear 0.6s ease forwards, hex-float 7s ease-in-out infinite;
+    }
+    .ty-hex--1 { width:96px;  height:110px; background:var(--dh-orange); top:10%;    left:8%;   animation-delay:0.3s,  0.3s;  animation-duration:0.6s, 7s; }
+    .ty-hex--2 { width:56px;  height:64px;  background:var(--dh-yellow); top:14%;    right:10%; animation-delay:0.6s,  0.6s;  animation-duration:0.6s, 5s; }
+    .ty-hex--3 { width:72px;  height:82px;  background:var(--dh-navy);   bottom:16%; left:12%;  animation-delay:0.9s,  0.9s;  animation-duration:0.6s, 8s; }
+    .ty-hex--4 { width:40px;  height:46px;  background:var(--dh-orange); bottom:20%; right:8%;  animation-delay:1.1s,  1.1s;  animation-duration:0.6s, 6s; }
+    .ty-hex--5 { width:28px;  height:32px;  background:var(--dh-yellow); top:48%;    left:5%;   animation-delay:1.3s,  1.3s;  animation-duration:0.6s, 9s; }
+    .ty-hex--6 { width:22px;  height:25px;  background:var(--dh-navy);   top:32%;    right:5%;  animation-delay:0.75s, 0.75s; animation-duration:0.6s, 7s; }
+
+    @keyframes hex-appear {
+      from { opacity: 0; transform: scale(0.3) rotate(-20deg); }
+      to   { opacity: 0.18; transform: scale(1) rotate(0deg); }
+    }
+    @keyframes hex-float {
+      0%,100% { transform: translateY(0px)   rotate(0deg); }
+      33%     { transform: translateY(-18px)  rotate(6deg); }
+      66%     { transform: translateY(10px)   rotate(-4deg); }
+    }
+
+    /* ── Animated checkmark ──────────────────────────────────────── */
+    .ty-check {
+      margin: 0 auto var(--space-6);
+      animation: check-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both;
+    }
+    @keyframes check-pop {
+      from { transform: scale(0); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+    .ty-check__circle {
+      stroke: var(--dh-orange);
+      stroke-width: 3;
+      fill: color-mix(in srgb, var(--dh-orange) 10%, transparent);
+      stroke-dasharray: 283;
+      stroke-dashoffset: 283;
+      animation: circle-draw 0.7s ease 0.4s forwards;
+    }
+    @keyframes circle-draw { to { stroke-dashoffset: 0; } }
+    .ty-check__tick {
+      stroke: var(--dh-orange);
+      stroke-width: 3.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+      stroke-dasharray: 60;
+      stroke-dashoffset: 60;
+      animation: tick-draw 0.4s ease 1s forwards;
+    }
+    @keyframes tick-draw { to { stroke-dashoffset: 0; } }
+
+    /* ── Content ─────────────────────────────────────────────────── */
+    .ty-shell h1 {
+      font-size: var(--fs-36);
+      margin: 0 0 var(--space-3);
+      animation: fade-up 0.5s ease 1.1s both;
+    }
+    .ty-desc {
+      font-size: var(--fs-18);
+      color: var(--fg-2);
+      max-width: 480px;
+      margin: 0 auto var(--space-6);
+      animation: fade-up 0.5s ease 1.25s both;
+    }
+    @keyframes fade-up {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Countdown redirect notice ───────────────────────────────── */
+    .ty-redirect {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      font-size: var(--fs-14);
+      color: var(--fg-2);
+      margin: 0 auto var(--space-8);
+      animation: fade-up 0.5s ease 1.4s both;
+    }
+    .ty-redirect__ring-wrap {
+      position: relative;
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+    }
+    .ty-redirect__track {
+      stroke: color-mix(in srgb, var(--dh-orange) 18%, transparent);
+      fill: none;
+      stroke-width: 3;
+    }
+    .ty-redirect__fill {
+      stroke: var(--dh-orange);
+      fill: none;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-dasharray: 88;
+      stroke-dashoffset: 0;
+      transform-origin: 18px 18px;
+      transform: rotate(-90deg);
+      transition: stroke-dashoffset 1s linear;
+    }
+    .ty-redirect__num {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+      color: #c4720f;
+    }
+
+    /* ── Buttons ─────────────────────────────────────────────────── */
+    .ty-links {
+      display: flex;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fade-up 0.5s ease 1.5s both;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION (mega menu injected by site.js) -->
+  <header class="nav" data-screen-label="Navigation">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="Home.html" aria-label="Digital Hive home" style="border-bottom:none;">
+        <img src="assets/logo-colour.svg" alt="Digital Hive" />
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav__links"></ul>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn btn--primary" href="Demo.html">Book a demo</a>
+        <button type="button" class="nav__toggle" data-mobile-toggle aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="container mobile-menu" data-mobile-menu></div>
+  </header>
+
+  <main>
+    <div class="ty-shell">
+
+      <span class="ty-hex ty-hex--1" aria-hidden="true"></span>
+      <span class="ty-hex ty-hex--2" aria-hidden="true"></span>
+      <span class="ty-hex ty-hex--3" aria-hidden="true"></span>
+      <span class="ty-hex ty-hex--4" aria-hidden="true"></span>
+      <span class="ty-hex ty-hex--5" aria-hidden="true"></span>
+      <span class="ty-hex ty-hex--6" aria-hidden="true"></span>
+
+      <div class="ty-check" aria-hidden="true">
+        <svg width="96" height="96" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg" focusable="false" tabindex="-1">
+          <circle class="ty-check__circle" cx="48" cy="48" r="45" />
+          <polyline class="ty-check__tick" points="28,50 42,64 68,34" />
+        </svg>
+      </div>
+
+      <h1>You're all set.</h1>
+      <p class="ty-desc" id="ty-desc">Your signed NDA has been sent to your email. Someone from Digital Hive will be in touch shortly.</p>
+
+      <div class="ty-redirect" role="status" aria-live="polite">
+        <div class="ty-redirect__ring-wrap">
+          <svg width="36" height="36" viewBox="0 0 36 36" aria-hidden="true" focusable="false" tabindex="-1">
+            <circle class="ty-redirect__track" cx="18" cy="18" r="14" />
+            <circle class="ty-redirect__fill" id="ty-ring" cx="18" cy="18" r="14" />
+          </svg>
+          <div class="ty-redirect__num" id="ty-count">10</div>
+        </div>
+        <span>Redirecting to the home page in <strong id="ty-count-text">10</strong> seconds&hellip;</span>
+      </div>
+
+      <div class="ty-links">
+        <a class="btn btn--primary" href="Demo.html">Book a demo</a>
+        <a class="btn btn--ghost" href="Home.html" id="ty-home">Back to home</a>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="scripts/consent.js"></script>
+  <script src="scripts/site.js"></script>
+  <script>
+    (function () {
+      // Personalise the message if name/email were passed in the URL
+      const params = new URLSearchParams(window.location.search);
+      const name   = params.get('name');
+      const email  = params.get('email');
+      const desc   = document.getElementById('ty-desc');
+      if (name || email) {
+        const to = email ? ` to <strong>${email}</strong>` : '';
+        const hi = name  ? `Thanks, ${name}. ` : '';
+        desc.innerHTML = `${hi}Your signed NDA has been sent${to}. Someone from Digital Hive will be in touch shortly.`;
+      }
+
+      // Countdown ring
+      const TOTAL  = 10;
+      const circum = 2 * Math.PI * 14;
+
+      const ring    = document.getElementById('ty-ring');
+      const countEl = document.getElementById('ty-count');
+      const countTx = document.getElementById('ty-count-text');
+
+      ring.style.strokeDasharray  = circum;
+      ring.style.strokeDashoffset = 0;
+
+      let remaining = TOTAL;
+
+      function tick() {
+        remaining -= 1;
+        const progress = remaining / TOTAL;
+        ring.style.strokeDashoffset = circum * (1 - progress);
+        countEl.textContent = remaining;
+        countTx.textContent = remaining;
+        if (remaining <= 0) {
+          clearInterval(timer);
+          window.location.href = '/Home.html';
+        }
+      }
+
+      const timer = setInterval(tick, 1000);
+
+      document.querySelectorAll('.ty-links a').forEach(function (a) {
+        a.addEventListener('click', function () { clearInterval(timer); });
+      });
+    })();
+  </script>
+</body>
+</html>
