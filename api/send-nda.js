@@ -68,8 +68,6 @@ export default async function handler(req, res) {
   try {
     const token     = await getSignToken();
     const firstName = fullName.trim().split(/\s+/)[0];
-    const baseUrl   = process.env.SITE_URL || `https://${process.env.VERCEL_URL}`;
-    const redirectUrl = `${baseUrl}/nda-signed.html?name=${encodeURIComponent(firstName)}&email=${encodeURIComponent(email.trim())}`;
 
     // Fetch the template's action_id (required by Zoho Sign API, cached after first call)
     const templateActionId = await getTemplateActionId(token);
@@ -104,7 +102,6 @@ export default async function handler(req, res) {
               role:            'Counterparty',
               signing_order:   1,
               private_notes:   'Please review and sign the Digital Hive Non-Disclosure Agreement.',
-              redirect_url:    redirectUrl,
             }],
           },
         }),
