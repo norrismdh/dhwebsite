@@ -5,6 +5,13 @@ let cachedTemplateActionId = null;
 async function getTemplateActionId(token) {
   if (cachedTemplateActionId) return cachedTemplateActionId;
 
+  // Diagnostic: list all templates visible to this token
+  const listRes  = await fetch('https://sign.zoho.com/api/v1/templates', {
+    headers: { Authorization: `Zoho-oauthtoken ${token}` },
+  });
+  const listData = await listRes.json();
+  console.log('Zoho Sign templates list:', JSON.stringify(listData));
+
   const res  = await fetch(
     `https://sign.zoho.com/api/v1/templates/${process.env.ZOHO_SIGN_TEMPLATE_ID}`,
     { headers: { Authorization: `Zoho-oauthtoken ${token}` } }
