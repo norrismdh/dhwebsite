@@ -1,0 +1,207 @@
+/* =============================================================
+   Digital Hive - Security & Trust page styles
+   Builds on tokens.css + site.css + product.css
+   ============================================================= */
+
+/* -----------------------------------------------------------
+   Hero overrides
+   ----------------------------------------------------------- */
+.sec-hero__grid {
+  align-items: center;
+}
+
+.sec-hero__badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border-2);
+}
+.sec-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  background: var(--dh-white);
+  border: 1.5px solid var(--dh-navy);
+  border-radius: var(--radius-pill);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-bold);
+  color: var(--dh-navy);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+
+/* Right-column visual */
+.sec-hero__visual {
+  background: var(--dh-navy);
+  border-radius: var(--radius-lg);
+  padding: var(--space-7);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-5);
+}
+.sec-shield {
+  color: var(--dh-yellow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 96px;
+  height: 96px;
+  background: rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+}
+.sec-pillars {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-4);
+  width: 100%;
+}
+.sec-pillars li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: var(--fs-15);
+  color: rgba(255,255,255,0.85);
+  line-height: 1.4;
+}
+.sec-pillars li svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--dh-yellow);
+}
+
+/* -----------------------------------------------------------
+   Certifications grid
+   ----------------------------------------------------------- */
+.sec-certs {
+  padding: 96px 0;
+  border-bottom: 1px solid var(--border-2);
+}
+
+.sec-certs__grid {
+  display: grid;
+  gap: var(--space-5);
+  margin-top: var(--space-8);
+}
+@media (min-width: 640px) {
+  .sec-certs__grid { grid-template-columns: 1fr 1fr; }
+}
+@media (min-width: 1024px) {
+  .sec-certs__grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.sec-cert {
+  padding: var(--space-6);
+  background: var(--dh-white);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition: box-shadow var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out);
+}
+.sec-cert:hover {
+  border-color: var(--dh-navy);
+  box-shadow: var(--shadow-2);
+}
+
+.sec-cert__icon {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  background: var(--bg-3);
+  border-radius: var(--radius-md);
+  color: var(--dh-navy);
+  margin-bottom: var(--space-2);
+}
+
+.sec-cert__status {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  background: #E6F4EC;
+  color: #1a7a40;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  width: fit-content;
+}
+.sec-cert__status--ready {
+  background: #EEF2FA;
+  color: var(--dh-navy);
+}
+
+.sec-cert h3 {
+  font-size: var(--fs-20);
+  font-weight: var(--fw-bold);
+  color: var(--dh-navy);
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+.sec-cert p {
+  font-size: var(--fs-14);
+  color: var(--fg-2);
+  line-height: 1.55;
+  margin: 0;
+  flex: 1;
+}
+
+.sec-cert__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-13);
+  font-weight: var(--fw-bold);
+  color: var(--dh-navy);
+  border-bottom: none;
+  margin-top: var(--space-2);
+}
+.sec-cert__link:hover { color: var(--dh-orange); }
+.sec-cert__link svg { transition: transform var(--dur-fast) var(--ease-out); }
+.sec-cert__link:hover svg { transform: translateX(3px); }
+
+/* -----------------------------------------------------------
+   CTA strip
+   ----------------------------------------------------------- */
+.sec-cta {
+  padding: 96px 0;
+  background: linear-gradient(180deg, #ECF1F6 0%, #F2F5F9 100%);
+  border-top: 1px solid var(--border-2);
+}
+.sec-cta__inner {
+  display: grid;
+  gap: var(--space-7);
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .sec-cta__inner { grid-template-columns: 1fr auto; gap: 64px; }
+}
+.sec-cta__inner h2 {
+  font-size: clamp(24px, 3vw, 36px);
+  margin: var(--space-3) 0 var(--space-4);
+  letter-spacing: -0.02em;
+}
+.sec-cta__inner p {
+  font-size: var(--fs-16);
+  color: var(--fg-2);
+  max-width: 560px;
+  line-height: 1.6;
+  margin: 0;
+}
+.sec-cta__actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 220px;
+}

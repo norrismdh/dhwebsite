@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <title>Security &amp; Trust - Digital Hive</title>
+  <meta name="description" content="SOC 2 Type II certified, ISO 20243 certified, HIPAA Ready, and GDPR Compliant. Digital Hive is a metadata layer — your data never moves, your permissions never change." />
+  <link rel="stylesheet" href="styles/tokens.css" />
+  <link rel="stylesheet" href="styles/site.css" />
+  <link rel="stylesheet" href="styles/consent.css" />
+  <link rel="stylesheet" href="styles/product.css" />
+  <link rel="stylesheet" href="styles/security.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION (shared)
+       ============================================================ -->
+  <header class="nav" data-screen-label="Navigation">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="Home.html" aria-label="Digital Hive home" style="border-bottom:none;">
+        <img src="assets/logo-colour.svg" alt="Digital Hive" />
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav__links">
+          <li><a href="Product.html" aria-current="page" style="color:var(--dh-orange);">Product</a></li>
+          <li><a href="UseCases.html">Use cases</a></li>
+          <li><a href="Customers.html">Customers</a></li>
+          <li><a href="Resources.html">Resources</a></li>
+          <li><a href="Pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn btn--primary" href="Demo.html">Book a demo</a>
+        <button type="button" class="nav__toggle" data-mobile-toggle aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="container mobile-menu" data-mobile-menu>
+      <ul>
+        <li><a href="Product.html">Product</a></li>
+        <li><a href="UseCases.html">Use cases</a></li>
+        <li><a href="Customers.html">Customers</a></li>
+        <li><a href="Resources.html">Resources</a></li>
+        <li><a href="Pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================================================
+         1 - PAGE HERO
+         ============================================================ -->
+    <section class="page-hero" data-screen-label="01 Security hero">
+      <div class="container page-hero__grid sec-hero__grid">
+
+        <div class="reveal">
+          <span class="eyebrow">Security &amp; Trust</span>
+          <h1>Enterprise security. No new attack surface.</h1>
+          <p class="page-hero__sub">Digital Hive is a metadata layer. Reports and data stay in your existing platforms. Permissions are inherited, not copied. Authentication uses your existing identity stack.</p>
+          <div class="sec-hero__badges">
+            <span class="sec-badge">SOC 2 Type II</span>
+            <span class="sec-badge">ISO 20243</span>
+            <span class="sec-badge">HIPAA Ready</span>
+            <span class="sec-badge">GDPR Compliant</span>
+          </div>
+        </div>
+
+        <div class="sec-hero__visual reveal" aria-hidden="true">
+          <div class="sec-shield">
+            <svg width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7l8-4z"/><polyline points="9 12 11 14 15 10"/></svg>
+          </div>
+          <ul class="sec-pillars">
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Metadata only &mdash; no data movement
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Source permissions inherited automatically
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              SAML 2.0, OIDC, and Active Directory SSO
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              AES-256 at rest &mdash; TLS 1.2+ in transit
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Full audit trail on every access and change
+            </li>
+            <li>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Read-only metadata access &mdash; no write permissions
+            </li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================
+         2 - CERTIFICATIONS
+         ============================================================ -->
+    <section class="sec-certs" data-screen-label="02 Certifications">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Certifications &amp; Compliance</span>
+          <h2>Independently verified. Continuously maintained.</h2>
+          <p>Our compliance posture is audited externally and updated continuously. Documentation is available under NDA for qualified prospects.</p>
+        </div>
+
+        <div class="sec-certs__grid reveal">
+
+          <div class="sec-cert">
+            <div class="sec-cert__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7l8-4z"/><polyline points="9 12 11 14 15 10"/></svg>
+            </div>
+            <div class="sec-cert__status">Certified</div>
+            <h3>SOC 2 Type II</h3>
+            <p>Annual third-party examination of our security, availability, and confidentiality controls by an independent CPA firm. The Type II report covers a full 12-month period.</p>
+            <a class="sec-cert__link" href="Contact.html">Request report under NDA
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+
+          <div class="sec-cert">
+            <div class="sec-cert__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-4 0v2"/><path d="M8 7V5a2 2 0 0 0-4 0v2"/><line x1="12" y1="12" x2="12" y2="16"/><circle cx="12" cy="12" r=".5" fill="currentColor"/></svg>
+            </div>
+            <div class="sec-cert__status">Certified</div>
+            <h3>ISO 20243</h3>
+            <p>Open Trusted Technology Provider Standard (O-TTPS). Verifies supply chain integrity and security practices across the product lifecycle, from development through delivery.</p>
+            <a class="sec-cert__link" href="Contact.html">Request documentation
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+
+          <div class="sec-cert">
+            <div class="sec-cert__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            </div>
+            <div class="sec-cert__status sec-cert__status--ready">Ready</div>
+            <h3>HIPAA Ready</h3>
+            <p>Deployment and configuration guidance is available for healthcare environments. Business Associate Agreement (BAA) available on request. Suitable for analytics workflows involving protected health information.</p>
+            <a class="sec-cert__link" href="Contact.html">Request BAA
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+
+          <div class="sec-cert">
+            <div class="sec-cert__icon" aria-hidden="true">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <div class="sec-cert__status sec-cert__status--ready">Compliant</div>
+            <h3>GDPR Compliant</h3>
+            <p>Data Processing Agreement (DPA) available for EU customers. Data subject rights honored. Sub-processor list maintained and published. Lawful basis documented for all processing activities.</p>
+            <a class="sec-cert__link" href="Contact.html">Request DPA
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         3 - SECURITY ARCHITECTURE
+         ============================================================ -->
+    <section class="security" id="architecture" data-screen-label="03 Security architecture">
+      <div class="container security__grid">
+        <div class="security__head reveal">
+          <span class="eyebrow" style="color:var(--dh-yellow);">Architecture</span>
+          <h2>Security by design, not by configuration.</h2>
+          <p>The fundamental security property of Digital Hive is structural. A metadata-only architecture means there is no path for data to be exfiltrated through us &mdash; because we never hold it.</p>
+          <div class="security__links">
+            <a href="Contact.html">Request security datasheet
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a href="Demo.html">Talk to a solutions engineer
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <ul class="security__list reveal">
+          <li>
+            <div class="ico" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>
+            </div>
+            <div>
+              <span class="ttl">Metadata only &mdash; no data movement</span>
+              <span class="desc">Reports and underlying data remain in native platforms. Digital Hive indexes titles, descriptions, ownership, certification status, and usage signals only. Nothing is copied or cached.</span>
+            </div>
+          </li>
+          <li>
+            <div class="ico" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <div>
+              <span class="ttl">Source permissions inherited automatically</span>
+              <span class="desc">Row-level security (RLS), object-level security (OLS), and workspace-level permissions defined in each BI platform are respected. Digital Hive never overwrites, escalates, or bypasses them.</span>
+            </div>
+          </li>
+          <li>
+            <div class="ico" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <div>
+              <span class="ttl">SSO and MFA</span>
+              <span class="desc">Enterprise authentication via SAML 2.0, OIDC, and Active Directory. MFA enforced at the identity provider. Sessions, scopes, and token lifetimes configured to your policy.</span>
+            </div>
+          </li>
+          <li>
+            <div class="ico" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <div>
+              <span class="ttl">Encryption at rest and in transit</span>
+              <span class="desc">AES-256 encryption for all data at rest. TLS 1.2 or higher for all data in transit. Keys managed through dedicated key management infrastructure.</span>
+            </div>
+          </li>
+          <li>
+            <div class="ico" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            </div>
+            <div>
+              <span class="ttl">Complete audit trail</span>
+              <span class="desc">Every search, view, certification change, permission update, and administrative action is logged with timestamp, user identity, and full attribution. Exportable for SIEM integration.</span>
+            </div>
+          </li>
+          <li>
+            <div class="ico" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+            </div>
+            <div>
+              <span class="ttl">Least-privilege connector access</span>
+              <span class="desc">Connectors request only the read access required to index metadata. No write permissions are requested or granted to any source system.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         4 - CTA
+         ============================================================ -->
+    <section class="sec-cta" data-screen-label="04 CTA">
+      <div class="container sec-cta__inner reveal">
+        <div>
+          <span class="eyebrow">Ready to evaluate?</span>
+          <h2>Security documentation available on request.</h2>
+          <p>SOC 2 Type II report, penetration test summaries, security questionnaire responses, and architecture documentation are available for qualified prospects under NDA.</p>
+        </div>
+        <div class="sec-cta__actions">
+          <a class="btn btn--primary" href="Demo.html">Book a security review
+            <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a class="btn btn--outline" href="Contact.html">Request documentation</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================
+       FOOTER (shared)
+       ============================================================ -->
+  <footer class="footer" data-screen-label="Footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="assets/logo-reversed.svg" alt="Digital Hive" />
+          <p>Where analytics finally make sense. An enterprise analytics catalog.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0H12v2.2h.07c.63-1.2 2.18-2.46 4.49-2.46 4.8 0 5.69 3.16 5.69 7.27V24h-5v-7.2c0-1.72-.03-3.93-2.4-3.93-2.4 0-2.77 1.87-2.77 3.81V24h-5V8z"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer__col"><h3>Product</h3><ul>
+          <li><a href="Product.html">Catalog</a></li>
+          <li><a href="Product.html#hub">BI Hub</a></li>
+          <li><a href="Product.html#governance">Governance</a></li>
+          <li><a href="Connectors.html">Connectors</a></li>
+          <li><a href="Security.html" aria-current="page">Security</a></li>
+          <li><a href="Pricing.html">Pricing</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Use cases</h3><ul>
+          <li><a href="UseCases.html">All use cases</a></li>
+          <li><a href="use-cases/multi-vendor-bi.html">Multi-vendor BI</a></li>
+          <li><a href="use-cases/cloud-migration.html">Cloud migration</a></li>
+          <li><a href="use-cases/ma-integration.html">M&amp;A integration</a></li>
+          <li><a href="use-cases/data-sovereignty.html">Data sovereignty</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Company</h3><ul>
+          <li><a href="About.html">About</a></li>
+          <li><a href="About.html#team">Leadership</a></li>
+          <li><a href="Customers.html">Customers</a></li>
+          <li><a href="Contact.html">Contact</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Resources</h3><ul>
+          <li><a href="Resources.html">Library</a></li>
+          <li><a href="FAQ.html">FAQ</a></li>
+          <li><a href="Resources.html#reports">ISG report</a></li>
+          <li><a href="Resources.html#blog">Blog</a></li>
+          <li><a href="#">Support</a></li>
+        </ul></div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Digital Hive</span>
+        <ul>
+          <li><a href="Privacy.html">Privacy</a></li>
+          <li><a href="Terms.html">Terms</a></li>
+          <li><button type="button" class="footer__cookie-btn" data-open-consent>Cookie settings</button></li>
+          <li><a href="Security.html" aria-current="page">Trust center</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <div class="consent-banner" role="region" aria-label="Cookie preferences" data-consent-banner hidden>
+    <div class="consent-banner__inner">
+      <div class="consent-banner__text">
+        <strong>Cookie preferences</strong>
+        <p>We use cookies to keep the site running. With your consent we also track performance analytics and campaign attribution. <a href="Privacy.html">Learn more</a>.</p>
+      </div>
+      <div class="consent-banner__actions">
+        <button type="button" class="btn btn--ghost" data-consent-manage>Manage</button>
+        <button type="button" class="btn btn--outline" data-consent-reject>Reject optional</button>
+        <button type="button" class="btn btn--primary" data-consent-accept>Accept all</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts/consent.js"></script>
+  <script src="scripts/site.js"></script>
+</body>
+</html>

@@ -14,7 +14,7 @@
     const path = (location.pathname.split('/').pop() || 'Home.html').toLowerCase();
     const dir  = location.pathname.replace(/\\/g, '/').split('/').slice(0, -1).pop() || '';
     const base = ['use-cases', 'resources', 'vs'].includes(dir.toLowerCase()) ? '../' : '';
-    const inPlatform = ['product.html', 'usecases.html', 'connectors.html'].includes(path);
+    const inPlatform = ['product.html', 'usecases.html', 'connectors.html', 'security.html'].includes(path);
     const inResources = ['resources.html', 'faq.html', 'customers.html'].includes(path);
     const inCompany = ['about.html', 'contact.html'].includes(path);
 
@@ -51,10 +51,11 @@
         eyebrow: 'The Digital Hive Platform',
         title: 'A unified analytics experience above your existing BI stack.',
         items: [
-          { ico: ICO.grid,      label: 'Platform overview', sub: 'Catalog, BI Hub, governance', href: 'Product.html' },
-          { ico: ICO.plug,      label: 'Connectors',         sub: 'BI, AI, data & document tools', href: 'Connectors.html' },
-          { ico: ICO.layers,    label: 'Use cases',          sub: 'By situation and industry',     href: 'UseCases.html' },
-          { ico: ICO.blueprint, label: 'Architecture',       sub: 'Deployment, security, scale',   href: 'Product.html#security' },
+          { ico: ICO.grid,      label: 'Platform overview', sub: 'Catalog, BI Hub, governance',      href: 'Product.html' },
+          { ico: ICO.plug,      label: 'Connectors',         sub: 'BI, AI, data & document tools',  href: 'Connectors.html' },
+          { ico: ICO.layers,    label: 'Use cases',          sub: 'By situation and industry',       href: 'UseCases.html' },
+          { ico: ICO.blueprint, label: 'Architecture',       sub: 'Deployment and scale',            href: 'Product.html#security' },
+          { ico: ICO.shield,    label: 'Security',           sub: 'Certifications, compliance, trust', href: 'Security.html' },
         ],
         cta: { label: 'See the full platform', href: 'Product.html' },
       },
@@ -69,7 +70,7 @@
           { ico: ICO.book,     label: 'Resource library', sub: 'Reports, guides, briefs',   href: 'Resources.html' },
           { ico: ICO.users,    label: 'Customer stories', sub: 'Real outcomes, real teams', href: 'Customers.html' },
           { ico: ICO.pencil,   label: 'Blog',             sub: 'Field notes from the team', href: 'Resources.html#blog' },
-          { ico: ICO.shield,   label: 'Trust Center',     sub: 'Security & compliance',     href: 'About.html#trust' },
+          { ico: ICO.shield,   label: 'Trust Center',     sub: 'Security & compliance',     href: 'Security.html' },
         ],
         cta: { label: 'Open the library', href: 'Resources.html' },
       },
