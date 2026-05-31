@@ -45,7 +45,8 @@ export default async function handler(req, res) {
   try {
     const token     = await getSignToken();
     const firstName = fullName.trim().split(/\s+/)[0];
-    const redirectUrl = `https://digitalhive.com/nda-signed.html?name=${encodeURIComponent(firstName)}&email=${encodeURIComponent(email.trim())}`;
+    const baseUrl   = process.env.SITE_URL || `https://${process.env.VERCEL_URL}`;
+    const redirectUrl = `${baseUrl}/nda-signed.html?name=${encodeURIComponent(firstName)}&email=${encodeURIComponent(email.trim())}`;
 
     // Field names must match the labels set in the Zoho Sign template
     // Step 1 — create document from template
