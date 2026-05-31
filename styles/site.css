@@ -55,6 +55,7 @@ button { font-family: inherit; cursor: pointer; }
 .section-head { max-width: 720px; margin-bottom: var(--space-6); }
 .section-head h2 { margin-bottom: var(--space-3); }
 .section-head p { color: var(--fg-2); font-size: var(--fs-18); margin: 0; }
+.section-head .eyebrow { color: var(--fg-1); }
 
 /* -----------------------------------------------------------
    Buttons
