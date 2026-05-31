@@ -169,7 +169,7 @@ button { font-family: inherit; cursor: pointer; }
   gap: var(--space-5);
   height: 84px;
 }
-.nav__logo img { height: 42px; width: auto; transition: transform var(--dur-base) var(--ease-out); }
+.nav__logo img { height: 52px; width: auto; transition: transform var(--dur-base) var(--ease-out); }
 .nav__logo:hover img { transform: translateY(-1px); }
 .nav__links {
   display: none;
@@ -620,50 +620,50 @@ button { font-family: inherit; cursor: pointer; }
 @keyframes glide-tl {
   0%, 0%    { opacity: 0; transform: translate(-20px, -20px) scale(0.85); }
   7%, 55%   { opacity: 1; transform: translate(0,0) scale(1); }
-  69%       { opacity: 0.5; transform: translate(40%, 60%) scale(0.5); }
-  73%, 100% { opacity: 0; transform: translate(40%, 60%) scale(0.45); }
+  69%       { opacity: 0.5; transform: translate(60%, 85%) scale(0.32); }
+  73%, 100% { opacity: 0; transform: translate(60%, 85%) scale(0.28); }
 }
 @keyframes glide-tr {
   0%, 2%    { opacity: 0; transform: translate(20px, -20px) scale(0.85); }
   9%, 55%   { opacity: 1; transform: translate(0,0) scale(1); }
-  69%       { opacity: 0.5; transform: translate(-50%, 50%) scale(0.5); }
-  73%, 100% { opacity: 0; transform: translate(-50%, 50%) scale(0.45); }
+  69%       { opacity: 0.5; transform: translate(-70%, 70%) scale(0.32); }
+  73%, 100% { opacity: 0; transform: translate(-70%, 70%) scale(0.28); }
 }
 @keyframes glide-l {
   0%, 4%    { opacity: 0; transform: translate(-30px, 0) scale(0.85); }
   11%, 55%  { opacity: 1; transform: translate(0,0) scale(1); }
-  69%       { opacity: 0.5; transform: translate(80%, 0) scale(0.5); }
-  73%, 100% { opacity: 0; transform: translate(80%, 0) scale(0.45); }
+  69%       { opacity: 0.5; transform: translate(120%, 0) scale(0.32); }
+  73%, 100% { opacity: 0; transform: translate(120%, 0) scale(0.28); }
 }
 @keyframes glide-r {
   0%, 10%   { opacity: 0; transform: translate(30px, 0) scale(0.85); }
   17%, 55%  { opacity: 1; transform: translate(0,0) scale(1); }
-  69%       { opacity: 0.5; transform: translate(-80%, 0) scale(0.5); }
-  73%, 100% { opacity: 0; transform: translate(-80%, 0) scale(0.45); }
+  69%       { opacity: 0.5; transform: translate(-120%, 0) scale(0.32); }
+  73%, 100% { opacity: 0; transform: translate(-120%, 0) scale(0.28); }
 }
 @keyframes glide-bl {
   0%, 6%    { opacity: 0; transform: translate(-20px, 20px) scale(0.85); }
   13%, 55%  { opacity: 1; transform: translate(0,0) scale(1); }
-  69%       { opacity: 0.5; transform: translate(60%, -50%) scale(0.5); }
-  73%, 100% { opacity: 0; transform: translate(60%, -50%) scale(0.45); }
+  69%       { opacity: 0.5; transform: translate(85%, -70%) scale(0.32); }
+  73%, 100% { opacity: 0; transform: translate(85%, -70%) scale(0.28); }
 }
 @keyframes glide-br {
   0%, 8%    { opacity: 0; transform: translate(20px, 20px) scale(0.85); }
   15%, 55%  { opacity: 1; transform: translate(0,0) scale(1); }
-  69%       { opacity: 0.5; transform: translate(-50%, -50%) scale(0.5); }
-  73%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.45); }
+  69%       { opacity: 0.5; transform: translate(-70%, -70%) scale(0.32); }
+  73%, 100% { opacity: 0; transform: translate(-70%, -70%) scale(0.28); }
 }
 @keyframes glide-bc {
   0%, 12%   { opacity: 0; transform: translate(-50%, 20px) scale(0.85); }
   19%, 55%  { opacity: 1; transform: translate(-50%, 0) scale(1); }
-  69%       { opacity: 0.5; transform: translate(-50%, -120%) scale(0.5); }
-  73%, 100% { opacity: 0; transform: translate(-50%, -120%) scale(0.45); }
+  69%       { opacity: 0.5; transform: translate(-50%, -170%) scale(0.32); }
+  73%, 100% { opacity: 0; transform: translate(-50%, -170%) scale(0.28); }
 }
 @keyframes glide-tc {
   0%, 14%   { opacity: 0; transform: translate(-50%, -20px) scale(0.85); }
   21%, 55%  { opacity: 1; transform: translate(-50%, 0) scale(1); }
-  69%       { opacity: 0.5; transform: translate(-50%, 120%) scale(0.5); }
-  73%, 100% { opacity: 0; transform: translate(-50%, 120%) scale(0.45); }
+  69%       { opacity: 0.5; transform: translate(-50%, 170%) scale(0.32); }
+  73%, 100% { opacity: 0; transform: translate(-50%, 170%) scale(0.28); }
 }
 
 /* Center "Digital Hive catalog" window appears as chips consolidate */
@@ -682,7 +682,9 @@ button { font-family: inherit; cursor: pointer; }
 }
 @keyframes hub-reveal {
   0%, 30%   { opacity: 0; transform: translate(-50%, -50%) scale(0.92); }
-  38%, 90%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  38%, 58%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  71%       { opacity: 1; transform: translate(-50%, -50%) scale(1.12); }
+  82%, 90%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
   100%      { opacity: 0; transform: translate(-50%, -50%) scale(0.96); }
 }
 .hub__chrome {
