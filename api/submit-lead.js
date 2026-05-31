@@ -49,7 +49,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { firstName, lastName, email, company, role, biTools, message, leadSource } = req.body ?? {};
+  const { firstName, lastName, email, company, role, biTools, message, leadSource, utm } = req.body ?? {};
 
   if (!email) {
     return res.status(400).json({ error: 'Email is required' });
@@ -61,7 +61,16 @@ export default async function handler(req, res) {
     const biList = Array.isArray(biTools) && biTools.length
       ? `BI Stack: ${biTools.join(', ')}\n\n`
       : '';
-    const description = `${biList}${message ?? ''}`.trim();
+
+    const utmLines = utm && typeof utm === 'object'
+      ? Object.entries(utm)
+          .filter(([, v]) => v)
+          .map(([k, v]) => `${k}: ${v}`)
+          .join('\n')
+      : '';
+    const utmBlock = utmLines ? `\n\nCampaign attribution:\n${utmLines}` : '';
+
+    const description = `${biList}${message ?? ''}${utmBlock}`.trim();
 
     const leadRes = await fetch('https://www.zohoapis.com/crm/v2/Leads', {
       method: 'POST',
@@ -76,7 +85,7 @@ export default async function handler(req, res) {
           Email:       email,
           Company:     company   ?? '',
           Title:       role      ?? '',
-          Lead_Source: leadSource ?? 'Website',
+          Lead_Source: leadSource ?? (utm?.utm_source ? `Website - ${utm.utm_source}` : 'Website'),
           Description: description,
         }],
       }),

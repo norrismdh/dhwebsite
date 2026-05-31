@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -7,6 +7,7 @@
   <meta name="description" content="Pricing built around your environment, not a seat count guess. Three factors drive the number - we'll explain them honestly and quote your specific situation." />
   <link rel="stylesheet" href="styles/tokens.css" />
   <link rel="stylesheet" href="styles/site.css" />
+  <link rel="stylesheet" href="styles/consent.css" />
   <link rel="stylesheet" href="styles/pricing.css" />
 </head>
 <body>
@@ -374,6 +375,10 @@
             </div>
 
             <div class="quote__form-submit">
+              <div class="form-consent">
+                <input type="checkbox" id="q-consent" name="consent" required />
+                <label for="q-consent">I agree to Digital Hive processing my details to respond to this enquiry, as described in our <a href="/Privacy.html">Privacy Policy</a>.</label>
+              </div>
               <button class="btn btn--primary" type="submit">
                 Request a quote
                 <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
@@ -537,6 +542,7 @@
     </div>
   </footer>
 
+    <script src="scripts/consent.js"></script>
   <script src="scripts/site.js"></script>
   <script src="scripts/pricing.js"></script>
 </body>

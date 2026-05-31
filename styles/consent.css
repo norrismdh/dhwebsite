@@ -1,0 +1,319 @@
+/* =============================================================
+   Digital Hive — Cookie Consent
+   Banner (bottom bar) + Preference modal + Toggle switches
+   ============================================================= */
+
+/* ── Shared button tokens ───────────────────────────────────── */
+.dh-cb {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 10px var(--space-5);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-sans);
+  font-size: var(--fs-14);
+  font-weight: var(--fw-medium);
+  line-height: 1;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: background var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out);
+  white-space: nowrap;
+}
+.dh-cb--primary {
+  background: var(--dh-navy);
+  color: var(--dh-white);
+  border-color: var(--dh-navy);
+}
+.dh-cb--primary:hover { background: var(--dh-navy-700); border-color: var(--dh-navy-700); }
+.dh-cb--outline {
+  background: transparent;
+  color: var(--fg-1);
+  border-color: var(--border-1);
+}
+.dh-cb--outline:hover { border-color: var(--dh-navy); }
+.dh-cb--ghost {
+  background: transparent;
+  color: var(--fg-2);
+  border-color: transparent;
+  padding-left: var(--space-3);
+  padding-right: var(--space-3);
+}
+.dh-cb--ghost:hover { color: var(--fg-1); }
+
+/* ── Cookie banner ──────────────────────────────────────────── */
+.dh-consent-banner {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 9000;
+  background: var(--dh-white);
+  border-top: 1px solid var(--border-1);
+  box-shadow: 0 -4px 24px rgba(25, 51, 89, 0.10);
+  transform: translateY(100%);
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+.dh-consent-banner.is-visible { transform: translateY(0); }
+
+.dh-consent-banner__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-5) var(--space-6);
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.dh-consent-banner__text {
+  flex: 1;
+  min-width: 0;
+}
+.dh-consent-banner__text strong {
+  display: block;
+  font-size: var(--fs-16);
+  font-weight: var(--fw-medium);
+  color: var(--fg-1);
+  margin-bottom: var(--space-1);
+}
+.dh-consent-banner__text p {
+  font-size: var(--fs-14);
+  color: var(--fg-2);
+  line-height: var(--lh-base);
+  margin: 0;
+}
+.dh-consent-banner__text a {
+  color: var(--link);
+  border-bottom: none;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.dh-consent-banner__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-shrink: 0;
+}
+
+@media (max-width: 700px) {
+  .dh-consent-banner__inner {
+    flex-direction: column;
+    align-items: stretch;
+    padding: var(--space-5);
+  }
+  .dh-consent-banner__actions {
+    flex-wrap: wrap;
+  }
+  .dh-cb--primary { flex: 1; justify-content: center; }
+  .dh-cb--outline { flex: 1; justify-content: center; }
+}
+
+/* ── Preference modal ───────────────────────────────────────── */
+.dh-cm {
+  position: fixed;
+  inset: 0;
+  z-index: 9100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--dur-base) var(--ease-out),
+              visibility var(--dur-base) var(--ease-out);
+}
+.dh-cm.is-visible { opacity: 1; visibility: visible; }
+
+.dh-cm__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(14, 31, 57, 0.55);
+  backdrop-filter: blur(2px);
+  cursor: pointer;
+}
+
+.dh-cm__box {
+  position: relative;
+  z-index: 1;
+  background: var(--dh-white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-3);
+  width: min(560px, calc(100vw - 2 * var(--space-5)));
+  max-height: calc(100vh - var(--space-9));
+  display: flex;
+  flex-direction: column;
+  transform: translateY(16px);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.dh-cm.is-visible .dh-cm__box { transform: translateY(0); }
+
+.dh-cm__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-6) var(--space-6) var(--space-4);
+  border-bottom: 1px solid var(--border-2);
+}
+.dh-cm__title {
+  font-size: var(--fs-20);
+  font-weight: var(--fw-bold);
+  margin: 0;
+}
+.dh-cm__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  border: none;
+  background: transparent;
+  color: var(--fg-2);
+  cursor: pointer;
+  transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+.dh-cm__close:hover { background: var(--bg-3); color: var(--fg-1); }
+
+.dh-cm__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-4) var(--space-6);
+}
+.dh-cm__intro {
+  font-size: var(--fs-14);
+  color: var(--fg-2);
+  margin-bottom: var(--space-5);
+}
+
+.dh-cm__row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-5);
+  padding: var(--space-5) 0;
+  border-bottom: 1px solid var(--border-2);
+}
+.dh-cm__row:last-child { border-bottom: none; }
+
+.dh-cm__row-text { flex: 1; min-width: 0; }
+.dh-cm__row-text strong {
+  display: block;
+  font-size: var(--fs-14);
+  font-weight: var(--fw-medium);
+  color: var(--fg-1);
+  margin-bottom: 4px;
+}
+.dh-cm__row-text p {
+  font-size: var(--fs-12);
+  color: var(--fg-2);
+  line-height: var(--lh-loose);
+  margin: 0;
+}
+
+/* ── Toggle switch ──────────────────────────────────────────── */
+.dh-toggle {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 2px;
+}
+.dh-toggle input { position: absolute; opacity: 0; width: 0; height: 0; }
+.dh-toggle__track {
+  display: block;
+  width: 44px;
+  height: 24px;
+  border-radius: var(--radius-pill);
+  background: var(--dh-grey-300);
+  position: relative;
+  transition: background var(--dur-base) var(--ease-out);
+}
+.dh-toggle__track::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--dh-white);
+  box-shadow: var(--shadow-1);
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.dh-toggle input:checked + .dh-toggle__track { background: var(--dh-navy); }
+.dh-toggle input:checked + .dh-toggle__track::after { transform: translateX(20px); }
+.dh-toggle input:disabled + .dh-toggle__track {
+  background: var(--dh-grey-100);
+  cursor: not-allowed;
+}
+.dh-toggle input:disabled + .dh-toggle__track::after { background: var(--dh-grey-light); }
+.dh-toggle input:focus-visible + .dh-toggle__track {
+  outline: 2px solid var(--dh-orange);
+  outline-offset: 2px;
+}
+.dh-toggle input:disabled ~ * { cursor: not-allowed; }
+.dh-toggle:has(input:disabled) { cursor: not-allowed; }
+
+/* ── Modal footer ───────────────────────────────────────────── */
+.dh-cm__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-5) var(--space-6);
+  border-top: 1px solid var(--border-2);
+}
+.dh-cm__policy-link {
+  font-size: var(--fs-12);
+  color: var(--fg-2);
+  border-bottom: none;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.dh-cm__foot-actions { display: flex; gap: var(--space-2); }
+
+@media (max-width: 500px) {
+  .dh-cm__foot { flex-direction: column; align-items: stretch; }
+  .dh-cm__foot-actions { flex-direction: column; }
+}
+
+/* ── Footer cookie settings button ──────────────────────────── */
+.footer__cookie-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  font-size: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  opacity: 0.85;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.footer__cookie-btn:hover { opacity: 1; }
+
+/* ── Form consent row ───────────────────────────────────────── */
+.form-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+.form-consent input[type="checkbox"] {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  accent-color: var(--dh-navy);
+  cursor: pointer;
+}
+.form-consent label {
+  font-size: var(--fs-13, 0.8125rem);
+  color: var(--fg-2);
+  line-height: var(--lh-loose);
+  cursor: pointer;
+}
+.form-consent label a {
+  color: var(--fg-2);
+  text-underline-offset: 2px;
+}

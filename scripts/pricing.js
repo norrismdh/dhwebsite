@@ -21,6 +21,8 @@
       users   && `Approximate user count: ${users}`,
     ].filter(Boolean);
 
+    const utm = typeof window.DH_getUtm === 'function' ? window.DH_getUtm() : {};
+
     const payload = {
       firstName:  form.querySelector('#q-first').value.trim(),
       lastName:   form.querySelector('#q-last').value.trim(),
@@ -29,6 +31,7 @@
       role:       form.querySelector('#q-role').value,
       leadSource: 'Website - Quote Request',
       message:    contextLines.join('\n'),
+      utm,
     };
 
     try {

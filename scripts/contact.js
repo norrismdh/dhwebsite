@@ -15,6 +15,8 @@
       form.querySelectorAll('.ct-chips input[type=checkbox]:checked')
     ).map(cb => cb.closest('label').textContent.trim());
 
+    const utm = typeof window.DH_getUtm === 'function' ? window.DH_getUtm() : {};
+
     const payload = {
       firstName: form.querySelector('#ct-first').value.trim(),
       lastName:  form.querySelector('#ct-last').value.trim(),
@@ -23,6 +25,7 @@
       role:      form.querySelector('#ct-role').value,
       biTools,
       message:   form.querySelector('#ct-msg').value.trim(),
+      utm,
     };
 
     try {
