@@ -5,16 +5,14 @@ let cachedTemplateActionId = null;
 async function getTemplateActionId(token) {
   if (cachedTemplateActionId) return cachedTemplateActionId;
 
-  // Diagnostic: list all templates visible to this token
-  const listRes  = await fetch('https://sign.zoho.com/api/v1/templates', {
-    headers: { Authorization: `Zoho-oauthtoken ${token}` },
-  });
-  const listData = await listRes.json();
-  console.log('Zoho Sign templates list:', JSON.stringify(listData));
+  const signHeaders = {
+    Authorization: `Zoho-oauthtoken ${token}`,
+    ...(process.env.ZOHO_SIGN_ORG_ID ? { 'X-ZS-ORGID': process.env.ZOHO_SIGN_ORG_ID } : {}),
+  };
 
   const res  = await fetch(
     `https://sign.zoho.com/api/v1/templates/${process.env.ZOHO_SIGN_TEMPLATE_ID}`,
-    { headers: { Authorization: `Zoho-oauthtoken ${token}` } }
+    { headers: signHeaders }
   );
   const data = await res.json();
   console.log('Zoho Sign template response:', JSON.stringify(data));
@@ -78,14 +76,17 @@ export default async function handler(req, res) {
 
     // Step 1 — create document from template
     // Field names must match the labels set in the Zoho Sign template
+    const signHeaders = {
+      Authorization:  `Zoho-oauthtoken ${token}`,
+      'Content-Type': 'application/json',
+      ...(process.env.ZOHO_SIGN_ORG_ID ? { 'X-ZS-ORGID': process.env.ZOHO_SIGN_ORG_ID } : {}),
+    };
+
     const createRes = await fetch(
       `https://sign.zoho.com/api/v1/templates/${process.env.ZOHO_SIGN_TEMPLATE_ID}/createdocument`,
       {
         method:  'POST',
-        headers: {
-          Authorization:  `Zoho-oauthtoken ${token}`,
-          'Content-Type': 'application/json',
-        },
+        headers: signHeaders,
         body: JSON.stringify({
           templates: {
             field_data: {
@@ -130,7 +131,7 @@ export default async function handler(req, res) {
     if (!signingUrl && actionId) {
       const urlRes  = await fetch(
         `https://sign.zoho.com/api/v1/requests/${requestId}/embeddedurl?requestsign_signer_id=${actionId}`,
-        { headers: { Authorization: `Zoho-oauthtoken ${token}` } }
+        { headers: { Authorization: `Zoho-oauthtoken ${token}`, ...(process.env.ZOHO_SIGN_ORG_ID ? { 'X-ZS-ORGID': process.env.ZOHO_SIGN_ORG_ID } : {}) } }
       );
       const urlData = await urlRes.json();
       console.log('Zoho Sign embedded URL response:', JSON.stringify(urlData));
