@@ -1,5 +1,23 @@
 let cachedSignToken    = null;
 let signTokenExpiresAt = 0;
+let cachedTemplateActionId = null;
+
+async function getTemplateActionId(token) {
+  if (cachedTemplateActionId) return cachedTemplateActionId;
+
+  const res  = await fetch(
+    `https://sign.zoho.com/api/v1/templates/${process.env.ZOHO_SIGN_TEMPLATE_ID}`,
+    { headers: { Authorization: `Zoho-oauthtoken ${token}` } }
+  );
+  const data = await res.json();
+  console.log('Zoho Sign template response:', JSON.stringify(data));
+
+  const actionId = data?.templates?.actions?.[0]?.action_id;
+  if (!actionId) throw new Error('Could not read action_id from Zoho Sign template');
+
+  cachedTemplateActionId = actionId;
+  return actionId;
+}
 
 async function getSignToken() {
   const now = Date.now();
@@ -48,8 +66,11 @@ export default async function handler(req, res) {
     const baseUrl   = process.env.SITE_URL || `https://${process.env.VERCEL_URL}`;
     const redirectUrl = `${baseUrl}/nda-signed.html?name=${encodeURIComponent(firstName)}&email=${encodeURIComponent(email.trim())}`;
 
-    // Field names must match the labels set in the Zoho Sign template
+    // Fetch the template's action_id (required by Zoho Sign API, cached after first call)
+    const templateActionId = await getTemplateActionId(token);
+
     // Step 1 — create document from template
+    // Field names must match the labels set in the Zoho Sign template
     const createRes = await fetch(
       `https://sign.zoho.com/api/v1/templates/${process.env.ZOHO_SIGN_TEMPLATE_ID}/createdocument`,
       {
@@ -70,6 +91,7 @@ export default async function handler(req, res) {
               },
             },
             actions: [{
+              action_id:       templateActionId,
               action_type:     'SIGN',
               recipient_name:  fullName.trim(),
               recipient_email: email.trim(),
