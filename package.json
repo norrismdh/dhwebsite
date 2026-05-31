@@ -2,6 +2,7 @@
   "name": "dhwebsite",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "start": "serve . --listen 3000 --single",
     "lint": "eslint .",
