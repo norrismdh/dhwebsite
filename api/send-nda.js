@@ -91,11 +91,9 @@ export default async function handler(req, res) {
           templates: {
             field_data: {
               field_text_data: {
-                company_name:       company.trim(),
-                entity_type:        entityType?.trim() || '',
-                company_address:    address.trim(),
-                counterparty_name:  fullName.trim(),
-                counterparty_title: title?.trim() || '',
+                'Company':   company.trim(),
+                'Text - 1':  entityType?.trim() || '',
+                'Text - 2':  address.trim(),
               },
             },
             actions: [{
@@ -106,8 +104,8 @@ export default async function handler(req, res) {
               role:            'Counterparty',
               signing_order:   1,
               private_notes:   'Please review and sign the Digital Hive Non-Disclosure Agreement.',
+              redirect_url:    redirectUrl,
             }],
-            redirect_url: redirectUrl,
           },
         }),
       }
