@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -46,7 +46,7 @@
             <span class="faq-search__ico" aria-hidden="true">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
             </span>
-            <input type="search" placeholder="Search for &ldquo;pricing&rdquo;, &ldquo;Cognos&rdquo;, &ldquo;multi-tenant&rdquo;…" data-faq-search aria-label="Search FAQ" />
+            <input type="search" placeholder="Search for &ldquo;pricing&rdquo;, &ldquo;Cognos&rdquo;, &ldquo;multi-tenant&rdquo;&hellip;" data-faq-search aria-label="Search FAQ" />
             <span class="faq-search__kbd" aria-hidden="true">⌘ K</span>
           </div>
         </div>
@@ -61,17 +61,21 @@
           <aside class="faq-nav reveal" data-faq-nav>
             <h2>Categories</h2>
             <ul>
-              <li><button class="faq-nav__link is-current" type="button" data-cat="product">
+              <li><button class="faq-nav__link is-current" type="button" data-cat="general">
+                <span class="hex" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12" y2="16.5"/></svg></span>
+                <span class="label">General</span><span class="count">5</span>
+              </button></li>
+              <li><button class="faq-nav__link" type="button" data-cat="product">
                 <span class="hex" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12" y2="17.5"/></svg></span>
                 <span class="label">Product</span><span class="count">6</span>
               </button></li>
-              <li><button class="faq-nav__link" type="button" data-cat="deployment">
+              <li><button class="faq-nav__link" type="button" data-cat="implementation">
                 <span class="hex" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg></span>
-                <span class="label">Deployment</span><span class="count">5</span>
+                <span class="label">Implementation</span><span class="count">4</span>
               </button></li>
               <li><button class="faq-nav__link" type="button" data-cat="security">
                 <span class="hex" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7z"/></svg></span>
-                <span class="label">Security &amp; compliance</span><span class="count">5</span>
+                <span class="label">Security &amp; compliance</span><span class="count">6</span>
               </button></li>
               <li><button class="faq-nav__link" type="button" data-cat="connectors">
                 <span class="hex" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 2v6"/><path d="M15 2v6"/><rect x="7" y="8" width="10" height="6" rx="1"/><path d="M12 14v4a3 3 0 0 0 3 3"/></svg></span>
@@ -83,7 +87,7 @@
               </button></li>
               <li><button class="faq-nav__link" type="button" data-cat="support">
                 <span class="hex" aria-hidden="true"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/></svg></span>
-                <span class="label">Support &amp; onboarding</span><span class="count">4</span>
+                <span class="label">Support &amp; onboarding</span><span class="count">3</span>
               </button></li>
             </ul>
           </aside>
@@ -91,25 +95,79 @@
           <!-- Content panels -->
           <div class="faq-content reveal">
 
+            <!-- GENERAL -->
+            <div class="faq-panel is-current" data-panel="general" id="general">
+              <div class="faq-panel__head">
+                <span class="eyebrow">General</span>
+                <h2>The basics, clearly defined.</h2>
+                <p>What BI Portals and Analytics Catalogs are  -  and how to tell them apart.</p>
+              </div>
+              <div class="faq-list">
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>What is a BI Portal?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>It is a single interface that centralizes access to analytics across multiple systems. It simplifies how users find, access, and use data without switching between tools. It removes the need to remember where reports live or how to navigate different platforms. Instead, analytics are organized in a way that reflects how the business operates  -  not how systems are structured.</p>
+                    <p>A well-designed portal does more than aggregate links. It organizes, filters, and presents analytics so users can quickly find what they need and understand how to use it.</p>
+                  </div></div>
+                </article>
+
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>Why do organizations implement a BI Portal?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>Organizations implement BI Portals to reduce the friction between users and analytics. Without one, users often search across multiple tools, rely on bookmarks or shared links, and recreate reports they cannot find. A BI Portal provides a consistent entry point where analytics are easier to discover, access, and reuse.</p>
+                    <p>The primary benefit is not access  -  it is reducing the time and effort required to get to usable information.</p>
+                  </div></div>
+                </article>
+
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>What are the most important features of a BI Portal?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>The most important: unified access across every connected tool (users don't need to know where content lives), semantic search by intent rather than file path, native security inheritance (row-level permissions respected automatically), content governance (certified vs. exploratory, with deprecation workflows), and usage analytics (what's being opened, what's ignored, what can be retired).</p>
+                    <p>The features that separate a good portal from a great one are SSO across all connected tools, consistent branding, multi-vendor support without allegiance to any single BI vendor, and the ability to surface AI-generated outputs alongside traditional reports in the same front door.</p>
+                  </div></div>
+                </article>
+
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>What is a Unified Analytics Catalog?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>A Unified Analytics Catalog indexes every analytical asset across your environment  -  reports, dashboards, metrics, documents, AI outputs  -  in a single searchable, governed layer. Unlike a BI tool that creates content or a data catalog that inventories raw data, an analytics catalog organizes and governs the finished intelligence that analysts and business users already produce.</p>
+                    <p>"Unified" is the key word: one catalog, one set of governance rules, one search experience  -  regardless of how many BI tools, teams, or platforms sit behind it.</p>
+                  </div></div>
+                </article>
+
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>What is the difference between a Data Catalog and an Analytics Catalog?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>A data catalog (Alation, Collibra, Atlan) manages raw data assets  -  tables, columns, lineage, pipelines. An analytics catalog manages finished analytical assets  -  the reports, dashboards, and metrics built on top of that data. Both deal with metadata; they operate at different layers of the stack.</p>
+                    <p>Most organizations need both: the data catalog answers "where did this number come from?" and the analytics catalog answers "which report do I open to see that number, and should I trust it?" Digital Hive is an analytics catalog  -  we don't compete with, and often complement, data catalog vendors already in your environment.</p>
+                  </div></div>
+                </article>
+              </div>
+            </div>
+
             <!-- PRODUCT -->
-            <div class="faq-panel is-current" data-panel="product" id="product">
+            <div class="faq-panel" data-panel="product" id="product">
               <div class="faq-panel__head">
                 <span class="eyebrow">Product</span>
                 <h2>What Digital Hive is  -  and isn't.</h2>
                 <p>The category, the boundaries, and how it relates to the BI tools you already own.</p>
               </div>
               <div class="faq-list">
-                <article class="faq-item">
-                  <button class="faq-item__q" type="button" aria-expanded="false">
-                    <span>Is Digital Hive a data catalog or a BI tool?</span>
-                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
-                  </button>
-                  <div class="faq-item__a"><div class="faq-item__a-inner">
-                    <p>Neither, on purpose. Digital Hive is an <strong>analytics catalog</strong>: the layer that sits above your BI tools and makes the reports, dashboards, and metrics in them findable, governed, and trusted.</p>
-                    <p>A data catalog (Alation, Collibra) inventories raw data assets  -  tables, columns, lineage. A BI tool (Power BI, Tableau) <em>creates</em> visualizations. We index the visualizations that already exist across every BI tool you own, without moving or rebuilding anything.</p>
-                  </div></div>
-                </article>
-
                 <article class="faq-item">
                   <button class="faq-item__q" type="button" aria-expanded="false">
                     <span>Will it replace our existing BI investment?</span>
@@ -128,6 +186,16 @@
                   </button>
                   <div class="faq-item__a"><div class="faq-item__a-inner">
                     <p>The end-user front door. A branded portal where business users search, browse, and open the analytics they need  -  without knowing which BI tool the content lives in. Single sign-on across every connected tool, certified content surfaced first.</p>
+                  </div></div>
+                </article>
+
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>What types of content can Digital Hive present?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>Reports and dashboards from any connected BI tool. Metrics and KPI definitions from your semantic layers or metric stores. PDFs, briefing documents, and slide decks from SharePoint, Google Drive, Confluence, or Notion. AI-generated analyses and insights from M365 Copilot or your own LLM agents. Everything in the catalog is searchable, certifiable, and openable from the same front door  -  regardless of where it was created or stored.</p>
                   </div></div>
                 </article>
 
@@ -170,10 +238,10 @@
               </div>
             </div>
 
-            <!-- DEPLOYMENT -->
-            <div class="faq-panel" data-panel="deployment" id="deployment">
+            <!-- IMPLEMENTATION -->
+            <div class="faq-panel" data-panel="implementation" id="implementation">
               <div class="faq-panel__head">
-                <span class="eyebrow">Deployment</span>
+                <span class="eyebrow">Implementation</span>
                 <h2>Where it runs, how fast it goes live.</h2>
                 <p>Cloud, on-prem, hybrid, and what implementation actually looks like.</p>
               </div>
@@ -195,16 +263,6 @@
                   </button>
                   <div class="faq-item__a"><div class="faq-item__a-inner">
                     <p>Yes  -  three options. <strong>Cloud (SaaS)</strong> is the default. <strong>Customer-managed</strong> runs in your AWS, Azure, or GCP account. <strong>On-prem</strong> is supported via container images for regulated and air-gapped environments. All three are feature-equivalent.</p>
-                  </div></div>
-                </article>
-
-                <article class="faq-item">
-                  <button class="faq-item__q" type="button" aria-expanded="false">
-                    <span>How long does a typical implementation take?</span>
-                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
-                  </button>
-                  <div class="faq-item__a"><div class="faq-item__a-inner">
-                    <p>First connector live in a day. Five-tool index in under two weeks. End-user Hub rolled out in 4–8 weeks depending on branding and SSO complexity. We don't quote 6-month enterprise rollouts because we don't run them.</p>
                   </div></div>
                 </article>
 
@@ -238,6 +296,17 @@
                 <p>Auth, audit, data residency, and the certifications that matter for enterprise procurement.</p>
               </div>
               <div class="faq-list">
+                <article class="faq-item">
+                  <button class="faq-item__q" type="button" aria-expanded="false">
+                    <span>How do you support analytics governance?</span>
+                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <div class="faq-item__a"><div class="faq-item__a-inner">
+                    <p>Digital Hive's governance layer lets administrators certify, deprecate, classify, and retire analytics content without moving or rebuilding it. Certified content surfaces first in every search result. Deprecated artifacts remain findable but are flagged. Ownership, access requests, and change history are tracked in the audit log.</p>
+                    <p>For regulated environments, certification workflows can require dual approval before content is promoted  -  keeping your compliance team in the chain without creating a new system of record.</p>
+                  </div></div>
+                </article>
+
                 <article class="faq-item">
                   <button class="faq-item__q" type="button" aria-expanded="false">
                     <span>How do you handle row-level security across tools?</span>
@@ -295,7 +364,7 @@
               <div class="faq-panel__head">
                 <span class="eyebrow">Connectors</span>
                 <h2>What we connect to.</h2>
-                <p>BI tools, AI assistants, document repositories, and data sources. <a href="Connectors.html">See the full directory →</a></p>
+                <p>BI tools, AI assistants, document repositories, and data sources. <a href="Connectors.html">See the full directory &rarr;</a></p>
               </div>
               <div class="faq-list">
                 <article class="faq-item">
@@ -334,7 +403,7 @@
                     <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                   </button>
                   <div class="faq-item__a"><div class="faq-item__a-inner">
-                    <p>For listed connectors with active enterprise customers  -  already built. For new platforms with a public API  -  typically 6–10 weeks for a production-grade connector. <a href="Contact.html">Tell us what you need.</a></p>
+                    <p>For listed connectors with active enterprise customers  -  already built. For new platforms with a public API  -  typically &lt;4 weeks for a production-grade connector. <a href="Contact.html">Tell us what you need.</a></p>
                   </div></div>
                 </article>
               </div>
@@ -354,7 +423,7 @@
                     <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                   </button>
                   <div class="faq-item__a"><div class="faq-item__a-inner">
-                    <p>Three tiers  -  Team, Business, Enterprise  -  priced annually based on (a) end-user seats accessing the BI Hub and (b) number of BI/data source connectors. See <a href="Pricing.html">the pricing page</a> for ranges; final pricing is built around your tool list.</p>
+                    <p>Three tiers  -  Team, Business, Enterprise  -  priced annually on a <strong>per-user basis</strong>. The two scaling factors are (a) the number of end users accessing the BI Hub and (b) the number of BI and data source connectors. See <a href="Pricing.html">the pricing page</a> for ranges; final pricing is built around your tool list and seat count.</p>
                   </div></div>
                 </article>
 
@@ -384,7 +453,7 @@
                     <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                   </button>
                   <div class="faq-item__a"><div class="faq-item__a-inner">
-                    <p>Yes  -  discounts kick in at 1,000 seats and step again at 5,000. Multi-year commitments lock in pricing. Procurement teams routinely run us through enterprise paper-paper and we move at their pace.</p>
+                    <p>Yes  -  discounts kick in at 1,000 seats and step again at 5,000. Multi-year Enterprise License agreements lock in per-user pricing for the term. Procurement teams routinely run us through enterprise paper and we move at their pace.</p>
                   </div></div>
                 </article>
               </div>
@@ -414,7 +483,7 @@
                     <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
                   </button>
                   <div class="faq-item__a"><div class="faq-item__a-inner">
-                    <p>Standard (12×5, 4-hour critical SLA) and Premium (24×7, 1-hour critical SLA with a named CSM). Both include free upgrades for the life of the contract.</p>
+                    <p>Standard (12&times;5, 4-hour critical SLA) and Premium (24&times;7, 1-hour critical SLA with a named CSM). Both include free upgrades for the life of the contract.</p>
                   </div></div>
                 </article>
 
@@ -425,16 +494,6 @@
                   </button>
                   <div class="faq-item__a"><div class="faq-item__a-inner">
                     <p>Continuous on SaaS; quarterly stable releases for customer-managed deployments. Roadmap reviews twice a year with named-account customers.</p>
-                  </div></div>
-                </article>
-
-                <article class="faq-item">
-                  <button class="faq-item__q" type="button" aria-expanded="false">
-                    <span>How do you measure success in year one?</span>
-                    <span class="faq-item__chev"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></span>
-                  </button>
-                  <div class="faq-item__a"><div class="faq-item__a-inner">
-                    <p>Three numbers we co-own: percentage of analytics users actively on the Hub, time-to-find for a known report, and the count of duplicate dashboards retired. We publish these in your account dashboard  -  including the unflattering ones.</p>
                   </div></div>
                 </article>
               </div>
@@ -451,19 +510,28 @@
     </section>
 
     <!-- 3 - STILL NEED HELP -->
-    <section class="faq-help" data-screen-label="03 Still need help">
+    <section class="pr-cta" data-screen-label="03 Still need help">
+      <div class="pr-cta__motif" aria-hidden="true"></div>
       <div class="container">
-        <div class="faq-help__grid">
-          <div>
+        <div class="pr-cta__grid">
+          <div class="pr-cta__copy reveal">
+            <span class="pr-cta__eyebrow">Still have questions?</span>
             <h3>Didn't see your question?</h3>
             <p>We answer every inbound. Most replies inside one business day.</p>
+            <div class="pr-cta__buttons">
+              <a class="btn btn--accent" href="Demo.html">
+                Book a demo
+                <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+              <a class="btn btn--ghost-light" href="Contact.html">Contact us</a>
+            </div>
           </div>
-          <div class="faq-help__ctas">
-            <a class="btn btn--ghost" href="Contact.html">Contact us</a>
-            <a class="btn btn--primary" href="Demo.html">
-              Book a demo
-              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
+          <div class="pr-cta__art reveal" aria-hidden="true">
+            <div class="pr-cta__hex-stack">
+              <span class="pr-cta__hex pr-cta__hex--1"></span>
+              <span class="pr-cta__hex pr-cta__hex--2"></span>
+              <span class="pr-cta__hex pr-cta__hex--3"></span>
+            </div>
           </div>
         </div>
       </div>
