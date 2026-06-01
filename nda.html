@@ -644,6 +644,12 @@
         const { suggestions } = await suggestionLib.AutocompleteSuggestion.fetchAutocompleteSuggestions({
           input: value,
           sessionToken: token,
+          // Google caps this at 15 region codes — US + Canada + the 13 largest
+          // EU economies (covers the vast majority of EU business activity).
+          includedRegionCodes: [
+            'us', 'ca',
+            'de', 'fr', 'it', 'es', 'nl', 'ie', 'se', 'pl', 'be', 'dk', 'at', 'fi', 'pt',
+          ],
         });
         items = (suggestions || []).filter(s => s.placePrediction).slice(0, 5);
         activeIdx = -1;
