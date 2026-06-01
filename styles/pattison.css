@@ -168,12 +168,12 @@
 /* -----------------------------------------------------------
    Hero
    ----------------------------------------------------------- */
-.cs-hero { padding: var(--space-6) 0 var(--space-7); }
+.cs-hero { padding: var(--space-8) 0 var(--space-7); }
 @media (min-width: 768px) { .cs-hero { padding: 80px 0 64px; } }
 
 .cs-hero__grid {
   display: grid;
-  gap: var(--space-6);
+  gap: var(--space-8);
   align-items: start;
 }
 @media (min-width: 900px) {
@@ -183,10 +183,10 @@
 .cs-customer-row {
   display: flex;
   align-items: center;
-  gap: var(--space-4);
+  gap: var(--space-5);
   flex-wrap: wrap;
-  margin-bottom: var(--space-4);
-  padding-bottom: var(--space-4);
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-5);
   border-bottom: 1px solid var(--border-2);
 }
 .cs-customer-logo {
@@ -196,15 +196,10 @@
   object-fit: contain;
 }
 .cs-customer-meta {
-  display: none;
-}
-@media (min-width: 768px) {
-  .cs-customer-meta {
-    display: flex;
-    gap: var(--space-5);
-    flex-wrap: wrap;
-    margin: 0; padding: 0;
-  }
+  display: flex;
+  gap: var(--space-5);
+  flex-wrap: wrap;
+  margin: 0; padding: 0;
 }
 .cs-customer-meta > div { display: flex; flex-direction: column; gap: 2px; }
 .cs-customer-meta dt {
@@ -216,25 +211,21 @@
 }
 .cs-customer-meta strong { font-size: var(--fs-13, 13px); color: var(--dh-navy); }
 
-.cs-hero .eyebrow { display: block; margin-bottom: var(--space-3); }
+.cs-hero .eyebrow { display: block; margin-bottom: var(--space-4); }
 .cs-hero h1 {
-  font-size: clamp(28px, 3.8vw, 48px);
+  font-size: clamp(30px, 3.8vw, 48px);
   letter-spacing: -0.02em;
   line-height: 1.1;
-  margin: 0 0 var(--space-3);
+  margin: 0 0 var(--space-5);
   color: var(--dh-navy);
 }
 .cs-hero h1 .accent { color: var(--dh-orange); }
 .cs-hero .dek {
-  font-size: var(--fs-16);
+  font-size: var(--fs-18);
   color: var(--fg-2);
   line-height: 1.55;
-  margin: 0 0 var(--space-4);
+  margin: 0 0 var(--space-6);
   max-width: 52ch;
-}
-@media (min-width: 768px) {
-  .cs-hero h1 { font-size: clamp(30px, 3.8vw, 48px); margin-bottom: var(--space-5); }
-  .cs-hero .dek { font-size: var(--fs-18); margin-bottom: var(--space-6); }
 }
 .cs-hero__ctas {
   display: flex;
@@ -382,7 +373,7 @@
   border: 1px solid var(--border-2);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  margin-top: var(--space-9);
+  margin-top: var(--space-8);
 }
 @media (min-width: 600px) { .cs-kpi-strip { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 900px) { .cs-kpi-strip { grid-template-columns: repeat(4, 1fr); } }
