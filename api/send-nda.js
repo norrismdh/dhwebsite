@@ -73,6 +73,8 @@ export default async function handler(req, res) {
   try {
     const token     = await getSignToken();
     const firstName = fullName.trim().split(/\s+/)[0];
+    const baseUrl   = process.env.SITE_URL || `https://${process.env.VERCEL_URL}`;
+    const redirectUrl = `${baseUrl}/nda-signed.html?name=${encodeURIComponent(firstName)}&email=${encodeURIComponent(email.trim())}`;
 
     // Fetch the template's action_id (required by Zoho Sign API, cached after first call)
     const templateActionId = await getTemplateActionId(token);
@@ -106,8 +108,14 @@ export default async function handler(req, res) {
               recipient_email: email.trim(),
               role:            'Counterparty',
               signing_order:   1,
+              is_embedded:     true,   // sign in-app, no email to the counterparty
               private_notes:   'Please review and sign the Digital Hive Non-Disclosure Agreement.',
             }],
+            // Where Zoho sends the signer after embedded signing finishes
+            redirect_pages: {
+              sign_completed: redirectUrl,
+              sign_success:   redirectUrl,
+            },
           },
         }),
       }
@@ -125,19 +133,28 @@ export default async function handler(req, res) {
       throw new Error('Failed to create signing request');
     }
 
-    // Step 2 — signing URL may be in the create response; if not, fetch it explicitly
-    let signingUrl = action?.signing_url ?? action?.sign_url;
-
-    if (!signingUrl && actionId) {
-      const urlRes  = await fetch(
-        `https://sign.zoho.com/api/v1/requests/${requestId}/embeddedurl?requestsign_signer_id=${actionId}`,
-        { headers: { Authorization: `Zoho-oauthtoken ${token}`, ...(process.env.ZOHO_SIGN_ORG_ID ? { 'X-ZS-ORGID': process.env.ZOHO_SIGN_ORG_ID } : {}) } }
-      );
-      const urlData = await urlRes.json();
-      console.log('Zoho Sign embedded URL response:', JSON.stringify(urlData));
-      signingUrl = urlData?.sign_url ?? urlData?.signing_url;
+    if (!actionId) {
+      console.error('No action_id from Zoho Sign create:', JSON.stringify(createData));
+      throw new Error('Failed to create signing request');
     }
 
+    // Step 2 — generate the embedded signing URL (valid ~2 min, single use)
+    const tokenRes = await fetch(
+      `https://sign.zoho.com/api/v1/requests/${requestId}/actions/${actionId}/embedtoken`,
+      {
+        method:  'POST',
+        headers: {
+          Authorization:  `Zoho-oauthtoken ${token}`,
+          'Content-Type': 'application/x-www-form-urlencoded',
+          ...(process.env.ZOHO_SIGN_ORG_ID ? { 'X-ZS-ORGID': process.env.ZOHO_SIGN_ORG_ID } : {}),
+        },
+        body: new URLSearchParams({ host: baseUrl }),
+      }
+    );
+    const tokenData = await tokenRes.json();
+    console.log('Zoho Sign embedtoken response:', JSON.stringify(tokenData));
+
+    const signingUrl = tokenData?.sign_url ?? tokenData?.signing_url;
     if (!signingUrl) {
       console.error('Could not obtain signing URL. request_id:', requestId, 'action_id:', actionId);
       throw new Error('Signing URL not available');
