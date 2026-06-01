@@ -34,7 +34,7 @@
     'tempmail.com', 'temp-mail.org', 'getnada.com', 'throwaway.email', 'yopmail.com',
     'dispostable.com', 'sharklasers.com', 'maildrop.cc', 'trashmail.com', 'fakeinbox.com',
     'mintemail.com', 'mohmal.com', 'spam4.me', 'mailnesia.com', 'tempmailo.com',
-    'emailondeck.com', 'mailcatch.com'
+    'emailondeck.com', 'mailcatch.com', 'si.llanhai.com', 'wz.ddip88.com', 'dzhi.org'
   ]);
 
   function domain(email) {
