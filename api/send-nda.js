@@ -73,7 +73,12 @@ export default async function handler(req, res) {
   try {
     const token     = await getSignToken();
     const firstName = fullName.trim().split(/\s+/)[0];
-    const baseUrl   = process.env.SITE_URL || `https://${process.env.VERCEL_URL}`;
+    // Prefer an explicit SITE_URL, then Vercel's stable production alias; fall back to the
+    // per-deployment URL only as a last resort (it's the ugly immutable deployment hostname).
+    const baseUrl =
+      process.env.SITE_URL ||
+      (process.env.VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`) ||
+      `https://${process.env.VERCEL_URL}`;
     const redirectUrl = `${baseUrl}/nda-signed.html?name=${encodeURIComponent(firstName)}&email=${encodeURIComponent(email.trim())}`;
 
     // Fetch the template's action_id (required by Zoho Sign API, cached after first call)
