@@ -201,62 +201,68 @@
     }
 
     // ── Main ──────────────────────────────────────────────────────────────────
+    // Wrapped in an async function so `return` is valid (top-level return is
+    // illegal in ES modules).
 
-    try {
-      // Initialise auth — redirects to Azure AD if not signed in
-      const auth = await initAdmin();
-      if (!auth) return; // Redirect in progress
+    async function main() {
+      try {
+        // Initialise auth — redirects to Azure AD if not signed in
+        const auth = await initAdmin();
+        if (!auth) return; // Redirect in progress
 
-      // Reveal the app shell
-      document.getElementById('admin-loading').hidden = true;
-      document.getElementById('admin-app').hidden     = false;
+        // Reveal the app shell
+        document.getElementById('admin-loading').hidden = true;
+        document.getElementById('admin-app').hidden     = false;
 
-      // Populate user info and sign-out action
-      document.getElementById('admin-user-email').textContent = auth.account.username;
-      document.getElementById('admin-signout').addEventListener('click', () => auth.signOut());
+        // Populate user info and sign-out action
+        document.getElementById('admin-user-email').textContent = auth.account.username;
+        document.getElementById('admin-signout').addEventListener('click', () => auth.signOut());
 
-      // Load releases from the admin API
-      const res = await adminFetch('/api/admin/releases', auth);
-      if (!res) return; // Token refresh triggered a redirect
+        // Load releases from the admin API
+        const res = await adminFetch('/api/admin/releases', auth);
+        if (!res) return; // Token refresh triggered a redirect
 
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const { releases } = await res.json();
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const { releases } = await res.json();
 
-      renderTable(releases, auth);
+        renderTable(releases, auth);
 
-      // Quick enable/disable toggle — event delegation on the tbody
-      document.getElementById('release-tbody').addEventListener('click', async (e) => {
-        const btn = e.target.closest('.admin-toggle-btn');
-        if (!btn || btn.disabled) return;
+        // Quick enable/disable toggle — event delegation on the tbody
+        document.getElementById('release-tbody').addEventListener('click', async (e) => {
+          const btn = e.target.closest('.admin-toggle-btn');
+          if (!btn || btn.disabled) return;
 
-        const id      = btn.dataset.id;
-        const enabled = btn.dataset.enabled === 'true';
+          const id      = btn.dataset.id;
+          const enabled = btn.dataset.enabled === 'true';
 
-        btn.disabled    = true;
-        btn.textContent = '…';
+          btn.disabled    = true;
+          btn.textContent = '…';
 
-        const res = await adminFetch(`/api/admin/release/${id}`, auth, {
-          method: 'PUT',
-          body: JSON.stringify({ enabled: !enabled }),
+          const res = await adminFetch(`/api/admin/release/${id}`, auth, {
+            method: 'PUT',
+            body: JSON.stringify({ enabled: !enabled }),
+          });
+
+          if (res?.ok) {
+            window.location.reload();
+          } else {
+            btn.disabled    = false;
+            btn.textContent = enabled ? 'Disable' : 'Enable';
+            alert('Toggle failed — please try again.');
+          }
         });
 
-        if (res?.ok) {
-          window.location.reload();
-        } else {
-          btn.disabled    = false;
-          btn.textContent = enabled ? 'Disable' : 'Enable';
-          alert('Toggle failed — please try again.');
-        }
-      });
-
-    } catch (err) {
-      console.error('[dhadmin]', err);
-      // Still show the loading screen but with the error message
-      document.getElementById('admin-loading-msg').textContent = `Error: ${err.message}`;
-      // If the app was already revealed, also show the table error
-      document.getElementById('table-loading').hidden = true;
-      document.getElementById('table-error').hidden   = false;
+      } catch (err) {
+        console.error('[dhadmin]', err);
+        // Still show the loading screen but with the error message
+        document.getElementById('admin-loading-msg').textContent = `Error: ${err.message}`;
+        // If the app was already revealed, also show the table error
+        document.getElementById('table-loading').hidden = true;
+        document.getElementById('table-error').hidden   = false;
+      }
     }
+
+    main();
   </script>
 
 </body>

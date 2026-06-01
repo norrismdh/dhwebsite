@@ -359,21 +359,27 @@ async function handleSubmit(e, auth) {
 }
 
 // ── Init ──────────────────────────────────────────────────────────────────────
+// Wrapped in an async function so `return` is valid (top-level return is
+// illegal in ES modules).
 
-try {
-  const auth = await initAdmin();
-  if (!auth) return; // Redirect in progress
+async function main() {
+  try {
+    const auth = await initAdmin();
+    if (!auth) return; // Redirect in progress
 
-  loadingEl.hidden = true;
-  appEl.hidden     = false;
+    loadingEl.hidden = true;
+    appEl.hidden     = false;
 
-  document.getElementById('admin-user-email').textContent = auth.account.username;
-  document.getElementById('admin-signout').addEventListener('click', () => auth.signOut());
+    document.getElementById('admin-user-email').textContent = auth.account.username;
+    document.getElementById('admin-signout').addEventListener('click', () => auth.signOut());
 
-  form.addEventListener('submit', e => handleSubmit(e, auth));
-  cancelBtn.addEventListener('click', () => handleCancel(auth));
+    form.addEventListener('submit', e => handleSubmit(e, auth));
+    cancelBtn.addEventListener('click', () => handleCancel(auth));
 
-} catch (err) {
-  loadingMsg.textContent = `Error: ${err.message}`;
-  console.error('[dhadmin-upload]', err);
+  } catch (err) {
+    loadingMsg.textContent = `Error: ${err.message}`;
+    console.error('[dhadmin-upload]', err);
+  }
 }
+
+main();
