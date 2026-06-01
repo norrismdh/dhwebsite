@@ -94,11 +94,14 @@ export default async function handler(req, res) {
         headers: signHeaders,
         body: JSON.stringify({
           templates: {
+            // These labels must match "Prefill by you" fields in the Zoho Sign template
             field_data: {
               field_text_data: {
-                'Company':   company.trim(),
-                'Text - 1':  entityType?.trim() || '',
-                'Text - 2':  address.trim(),
+                company_name:       company.trim(),
+                entity_type:        entityType?.trim() || '',
+                company_address:    address.trim(),
+                counterparty_name:  fullName.trim(),
+                counterparty_title: title?.trim() || '',
               },
             },
             actions: [{
