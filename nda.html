@@ -644,7 +644,6 @@
         const { suggestions } = await suggestionLib.AutocompleteSuggestion.fetchAutocompleteSuggestions({
           input: value,
           sessionToken: token,
-          includedRegionCodes: ['us'],
         });
         items = (suggestions || []).filter(s => s.placePrediction).slice(0, 5);
         activeIdx = -1;
