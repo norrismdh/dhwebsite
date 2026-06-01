@@ -1,8 +1,8 @@
 /* ─── DH DOWNLOADS MODULE ────────────────────────────────────────────────────
  * Admin auth module — ES module loaded by all /dhadmin pages.
  *
- * Depends on:  window.msal  (MSAL Browser v3, loaded via CDN script tag
- *              before this module, so it is available at call time)
+ * MSAL Browser v3 is imported directly as an ES module from esm.sh so that
+ * no separate <script> CDN tag is needed on each page.
  *
  * Exports:
  *   initAdmin()            → Promise<AuthContext|null>
@@ -19,6 +19,8 @@
  * The server (_auth.js) verifies it against Azure AD's public JWKS and
  * enforces the ADMIN_ALLOWED_EMAILS allowlist.
  * ─────────────────────────────────────────────────────────────────────────── */
+
+import { PublicClientApplication, LogLevel } from 'https://esm.sh/@azure/msal-browser@3';
 
 const SCOPES        = ['openid', 'profile', 'email'];
 const REDIRECT_PATH = '/dhadmin'; // Must match the Azure AD App Registration URIs
@@ -44,8 +46,8 @@ export async function initAdmin() {
     throw new Error('Azure AD is not configured. Check Vercel env vars AZURE_AD_CLIENT_ID and AZURE_AD_TENANT_ID.');
   }
 
-  // 2. Initialise MSAL (window.msal is the UMD bundle loaded via CDN <script>)
-  const msalInstance = new window.msal.PublicClientApplication({
+  // 2. Initialise MSAL (imported directly as an ES module — no CDN script tag needed)
+  const msalInstance = new PublicClientApplication({
     auth: {
       clientId,
       authority:   `https://login.microsoftonline.com/${tenantId}`,
@@ -57,7 +59,7 @@ export async function initAdmin() {
     },
     system: {
       loggerOptions: {
-        logLevel:         window.msal.LogLevel.Warning,
+        logLevel:         LogLevel.Warning,
         loggerCallback:   (level, msg) => console.debug('[msal]', msg),
         piiLoggingEnabled: false,
       },

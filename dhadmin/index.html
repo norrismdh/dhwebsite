@@ -127,12 +127,7 @@
 
   </div><!-- /admin-app -->
 
-  <!-- ============================================================
-       SCRIPTS
-       MSAL v3 must load before dhadmin.js (sets window.msal)
-       ============================================================ -->
-  <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@3/dist/msal-browser.min.js"></script>
-
+  <!-- MSAL is imported directly inside dhadmin.js (ES module) — no CDN tag needed -->
   <script type="module">
     import { initAdmin, adminFetch } from '../scripts/dhadmin.js';
 
