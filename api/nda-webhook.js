@@ -27,6 +27,58 @@ async function getCrmToken() {
   return cachedCrmToken;
 }
 
+// ── Zoho Sign token (separate creds) — needed to read the signed request's fields ──
+let cachedSignToken    = null;
+let signTokenExpiresAt = 0;
+
+async function getSignToken() {
+  const now = Date.now();
+  if (cachedSignToken && now < signTokenExpiresAt) return cachedSignToken;
+
+  const res = await fetch('https://accounts.zoho.com/oauth/v2/token', {
+    method:  'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({
+      client_id:     process.env.ZOHO_SIGN_CLIENT_ID,
+      client_secret: process.env.ZOHO_SIGN_CLIENT_SECRET,
+      refresh_token: process.env.ZOHO_SIGN_REFRESH_TOKEN,
+      grant_type:    'refresh_token',
+    }),
+  });
+
+  const data = await res.json();
+  if (!data.access_token) {
+    console.error('Zoho Sign token error:', JSON.stringify(data));
+    throw new Error('Could not obtain Zoho Sign access token');
+  }
+
+  cachedSignToken    = data.access_token;
+  signTokenExpiresAt = now + (data.expires_in ?? 3600) * 1000 - 5 * 60 * 1000;
+  return cachedSignToken;
+}
+
+// The completion webhook carries no field values — fetch the full request to read them.
+async function fetchRequestFields(requestId) {
+  try {
+    const token = await getSignToken();
+    const res   = await fetch(`https://sign.zoho.com/api/v1/requests/${requestId}`, {
+      headers: {
+        Authorization: `Zoho-oauthtoken ${token}`,
+        ...(process.env.ZOHO_SIGN_ORG_ID ? { 'X-ZS-ORGID': process.env.ZOHO_SIGN_ORG_ID } : {}),
+      },
+    });
+    const data = await res.json();
+    const r    = data?.requests ?? {};
+    return [
+      ...(r.document_fields ?? []).flatMap(d => d.fields ?? []),
+      ...(r.actions ?? []).flatMap(a => Array.isArray(a.fields) ? a.fields : (a.fields?.text_fields ?? [])),
+    ];
+  } catch (err) {
+    console.error('NDA webhook: failed to fetch request fields:', err.message);
+    return [];
+  }
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
@@ -57,20 +109,24 @@ export default async function handler(req, res) {
       ?? actions.find(a => a.role === 'Counterparty')
       ?? actions[0] ?? {};
 
-    // Flatten every field/value pair from the document-level prefill fields AND all actions,
-    // so we can look up values by label regardless of where Zoho places them.
-    const allFieldArrays = [
-      ...(requests.document_fields ?? []).flatMap(d => d.fields ?? []),
-      ...actions.flatMap(a => Array.isArray(a.fields) ? a.fields : (a.fields?.text_fields ?? [])),
-    ];
-    const fieldVal = label => allFieldArrays.find(f => f.field_label === label && f.field_value)?.field_value ?? '';
+    // The webhook payload has no field values — fetch the full request and look up by label.
+    const fields = await fetchRequestFields(requestId);
+    console.log('NDA webhook fields:', JSON.stringify(fields.map(f => ({ l: f.field_label, v: f.field_value }))));
+    const fieldVal = (...labels) => {
+      for (const label of labels) {
+        const hit = fields.find(f => f.field_label === label && f.field_value);
+        if (hit) return hit.field_value;
+      }
+      return '';
+    };
 
-    const company  = fieldVal('company_name') || 'Unknown Company';
-    const entity   = fieldVal('entity_type');
-    const title    = fieldVal('counterparty_title');
+    // Try our intended labels first, fall back to the template's original labels
+    const company  = fieldVal('company_name', 'Company') || 'Unknown Company';
+    const entity   = fieldVal('entity_type', 'Text - 1');
+    const title    = fieldVal('counterparty_title', 'Job title');
 
     const recipientEmail = signer.recipient_email ?? signer.signing_email ?? '';
-    const recipientName  = signer.recipient_name ?? signer.signing_name ?? fieldVal('counterparty_name');
+    const recipientName  = signer.recipient_name ?? signer.signing_name ?? fieldVal('counterparty_name', 'Full name');
     const version  = process.env.ZOHO_SIGN_NDA_VERSION ?? '';
     const docLink  = `https://sign.zoho.com/zs#/requests/${requestId}`;
     const signedAt = new Date().toISOString().split('T')[0];
