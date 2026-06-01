@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <title>Upload Release — Downloads Admin — Digital Hive</title>
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/site.css" />
+  <link rel="stylesheet" href="../styles/dhadmin.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       AUTH LOADING
+       ============================================================ -->
+  <div id="admin-loading" class="admin-loading" role="status" aria-live="polite">
+    <div class="admin-loading__spinner" aria-hidden="true"></div>
+    <p id="admin-loading-msg">Authenticating&hellip;</p>
+  </div>
+
+  <!-- ============================================================
+       ADMIN APP
+       ============================================================ -->
+  <div id="admin-app" hidden>
+
+    <header class="admin-topbar">
+      <div class="admin-topbar__inner">
+        <div class="admin-topbar__brand">
+          <img src="../assets/logo-reversed.svg" alt="Digital Hive" height="28" />
+          <span class="admin-topbar__brand-title">Downloads Admin</span>
+        </div>
+        <nav class="admin-nav" aria-label="Admin">
+          <a href="/dhadmin"        class="admin-nav__item" id="nav-releases">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="5" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="3" y="12" width="7" height="9" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/></svg>
+            Releases
+          </a>
+          <a href="/dhadmin/upload" class="admin-nav__item is-active" aria-current="page" id="nav-upload">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+            Upload new
+          </a>
+        </nav>
+        <div class="admin-topbar__user">
+          <span id="admin-user-email" class="admin-user-email"></span>
+          <button id="admin-signout" class="admin-signout-btn" type="button">Sign out</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <div class="container" style="max-width:860px">
+
+        <div class="admin-page-head">
+          <h1>Upload new release</h1>
+          <a href="/dhadmin" class="btn btn--ghost">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            Back to releases
+          </a>
+        </div>
+
+        <!-- ── FORM PANEL ──────────────────────────────────────── -->
+        <div id="form-panel" class="admin-panel">
+          <div class="admin-panel__head"><h2>Release details</h2></div>
+          <div class="admin-panel__body">
+
+            <form id="upload-form" novalidate>
+
+              <!-- Row: type + version -->
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="f-type">Release type <span class="form-required">*</span></label>
+                  <select id="f-type" name="type" required>
+                    <option value="Release">Release</option>
+                    <option value="Update">Update</option>
+                    <option value="Hotfix">Hotfix</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="f-version">Version <span class="form-required">*</span></label>
+                  <input type="text" id="f-version" name="version"
+                    placeholder="e.g. 2.4.0"
+                    pattern="^\d+\.\d+(\.\d+)*$"
+                    autocomplete="off"
+                    required />
+                  <span class="form-hint">Semantic version — digits and dots only</span>
+                </div>
+              </div>
+
+              <!-- Title -->
+              <div class="form-group">
+                <label for="f-title">Release title <span class="form-required">*</span></label>
+                <input type="text" id="f-title" name="title"
+                  placeholder="e.g. Digital Hive Platform 2.4.0"
+                  autocomplete="off"
+                  required />
+              </div>
+
+              <!-- Release notes -->
+              <div class="form-group">
+                <label for="f-notes">
+                  Release notes
+                  <span class="form-hint-inline">Markdown supported</span>
+                </label>
+                <textarea id="f-notes" name="notes" rows="10"
+                  placeholder="## What's New&#10;&#10;- Feature A description&#10;- Bug fix for XYZ&#10;&#10;## Installation&#10;&#10;Follow the standard upgrade procedure..."></textarea>
+                <span class="form-hint">Rendered as formatted HTML on the public downloads page.</span>
+              </div>
+
+              <hr class="form-divider" />
+
+              <!-- Windows file -->
+              <div class="form-group">
+                <label>
+                  Windows installer
+                  <span class="form-optional">optional</span>
+                </label>
+                <div class="file-zone" id="win-zone">
+                  <input type="file" id="f-win" class="file-zone__input" accept=".exe,.msi" aria-label="Choose Windows installer" />
+                  <div class="file-zone__prompt" aria-hidden="true">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+                    <span>Drop .exe / .msi here, or click to browse</span>
+                  </div>
+                  <div class="file-zone__selected" id="win-selected" hidden>
+                    <svg width="16" height="16" viewBox="0 0 23 23" fill="currentColor" aria-hidden="true"><path d="M0 3.4 9.9 2v9.6H0V3.4zm10.9-1.5L23 0v11.5H10.9V1.9zm-10.9 10 9.9.1v9.5L0 19.6v-8.1zm10.9.2H23V22l-13.1 1.9v-10.2z"/></svg>
+                    <span class="file-zone__name" id="win-name"></span>
+                    <span class="file-zone__size" id="win-size"></span>
+                    <button type="button" class="file-zone__clear" id="win-clear" aria-label="Remove Windows file">&times;</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Linux file -->
+              <div class="form-group">
+                <label>
+                  Linux package
+                  <span class="form-optional">optional</span>
+                </label>
+                <div class="file-zone" id="lnx-zone">
+                  <input type="file" id="f-lnx" class="file-zone__input" accept=".gz,.deb,.rpm,.AppImage,.tar.xz" aria-label="Choose Linux package" />
+                  <div class="file-zone__prompt" aria-hidden="true">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+                    <span>Drop .tar.gz / .deb / .rpm here, or click to browse</span>
+                  </div>
+                  <div class="file-zone__selected" id="lnx-selected" hidden>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/><line x1="5" y1="10" x2="7" y2="10"/><polyline points="5 13 5 8 7 10"/></svg>
+                    <span class="file-zone__name" id="lnx-name"></span>
+                    <span class="file-zone__size" id="lnx-size"></span>
+                    <button type="button" class="file-zone__clear" id="lnx-clear" aria-label="Remove Linux file">&times;</button>
+                  </div>
+                </div>
+              </div>
+
+              <div id="form-error" class="form-error" hidden></div>
+
+              <div class="form-actions">
+                <a href="/dhadmin" class="btn btn--ghost">Cancel</a>
+                <button type="submit" id="submit-btn" class="btn btn--primary">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+                  Upload release
+                </button>
+              </div>
+
+            </form>
+          </div>
+        </div><!-- /form-panel -->
+
+        <!-- ── PROGRESS PANEL ──────────────────────────────────── -->
+        <div id="progress-panel" class="admin-panel" hidden>
+          <div class="admin-panel__head">
+            <h2>Uploading&hellip;</h2>
+            <span id="progress-overall-label" class="form-hint"></span>
+          </div>
+          <div class="admin-panel__body">
+
+            <!-- Windows progress -->
+            <div id="win-prog" class="upload-prog" hidden>
+              <div class="upload-prog__header">
+                <svg width="15" height="15" viewBox="0 0 23 23" fill="currentColor" aria-hidden="true"><path d="M0 3.4 9.9 2v9.6H0V3.4zm10.9-1.5L23 0v11.5H10.9V1.9zm-10.9 10 9.9.1v9.5L0 19.6v-8.1zm10.9.2H23V22l-13.1 1.9v-10.2z"/></svg>
+                <span class="upload-prog__label">Windows installer</span>
+                <span class="upload-prog__filename" id="win-prog-filename"></span>
+                <span class="upload-prog__pct" id="win-prog-pct">0%</span>
+              </div>
+              <div class="upload-prog__bar"><div class="upload-prog__fill" id="win-prog-fill"></div></div>
+              <div class="upload-prog__parts" id="win-prog-parts">Preparing&hellip;</div>
+            </div>
+
+            <!-- Linux progress -->
+            <div id="lnx-prog" class="upload-prog" hidden>
+              <div class="upload-prog__header">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/><line x1="5" y1="10" x2="7" y2="10"/><polyline points="5 13 5 8 7 10"/></svg>
+                <span class="upload-prog__label">Linux package</span>
+                <span class="upload-prog__filename" id="lnx-prog-filename"></span>
+                <span class="upload-prog__pct" id="lnx-prog-pct">0%</span>
+              </div>
+              <div class="upload-prog__bar"><div class="upload-prog__fill" id="lnx-prog-fill"></div></div>
+              <div class="upload-prog__parts" id="lnx-prog-parts">Waiting&hellip;</div>
+            </div>
+
+            <div id="progress-error" class="form-error" hidden></div>
+
+            <div class="form-actions" style="margin-top:var(--space-6)">
+              <button type="button" id="cancel-btn" class="btn btn--ghost">Cancel upload</button>
+            </div>
+
+          </div>
+        </div><!-- /progress-panel -->
+
+        <!-- ── SUCCESS PANEL ───────────────────────────────────── -->
+        <div id="success-panel" class="admin-panel" hidden>
+          <div class="admin-panel__body">
+            <div class="upload-success">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 15 10"/></svg>
+              <div>
+                <h3>Release created successfully</h3>
+                <p id="success-detail" style="color:var(--fg-2);margin:0"></p>
+              </div>
+            </div>
+            <div class="form-actions" style="margin-top:var(--space-6)">
+              <a href="/dhadmin/upload" class="btn btn--ghost">Upload another</a>
+              <a href="/dhadmin" class="btn btn--primary">View all releases</a>
+            </div>
+          </div>
+        </div><!-- /success-panel -->
+
+      </div>
+    </main>
+  </div><!-- /admin-app -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@3/dist/msal-browser.min.js"></script>
+  <script type="module" src="../scripts/dhadmin-upload.js"></script>
+
+</body>
+</html>

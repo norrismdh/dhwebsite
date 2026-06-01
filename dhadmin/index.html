@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <title>Releases — Downloads Admin — Digital Hive</title>
+  <!-- No marketing nav/footer on admin pages — admin has its own chrome -->
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/site.css" />
+  <link rel="stylesheet" href="../styles/dhadmin.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       AUTH LOADING — shown while MSAL initialises / redirecting
+       ============================================================ -->
+  <div id="admin-loading" class="admin-loading" role="status" aria-live="polite">
+    <div class="admin-loading__spinner" aria-hidden="true"></div>
+    <p id="admin-loading-msg">Authenticating&hellip;</p>
+  </div>
+
+  <!-- ============================================================
+       ADMIN APP — hidden until auth confirmed
+       ============================================================ -->
+  <div id="admin-app" hidden>
+
+    <!-- Top bar -->
+    <header class="admin-topbar">
+      <div class="admin-topbar__inner">
+
+        <div class="admin-topbar__brand">
+          <img src="../assets/logo-reversed.svg" alt="Digital Hive" height="28" />
+          <span class="admin-topbar__brand-title">Downloads Admin</span>
+        </div>
+
+        <nav class="admin-nav" aria-label="Admin">
+          <a href="/dhadmin"        class="admin-nav__item" aria-current="page" id="nav-releases">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="5" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="3" y="12" width="7" height="9" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/></svg>
+            Releases
+          </a>
+          <a href="/dhadmin/upload" class="admin-nav__item" id="nav-upload">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+            Upload new
+          </a>
+        </nav>
+
+        <div class="admin-topbar__user">
+          <span id="admin-user-email" class="admin-user-email" aria-label="Signed in as"></span>
+          <button id="admin-signout" class="admin-signout-btn" type="button">Sign out</button>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="admin-main" id="admin-content">
+      <div class="container">
+
+        <!-- Page header -->
+        <div class="admin-page-head">
+          <h1>Releases</h1>
+          <a href="/dhadmin/upload" class="btn btn--primary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Upload new release
+          </a>
+        </div>
+
+        <!-- Summary stats (populated by JS) -->
+        <div class="admin-stats">
+          <div class="admin-stat-card">
+            <div class="admin-stat-card__label">Active releases</div>
+            <div class="admin-stat-card__value" id="stat-active">—</div>
+          </div>
+          <div class="admin-stat-card">
+            <div class="admin-stat-card__label">Total downloads</div>
+            <div class="admin-stat-card__value" id="stat-downloads">—</div>
+          </div>
+          <div class="admin-stat-card">
+            <div class="admin-stat-card__label">Latest version</div>
+            <div class="admin-stat-card__value" id="stat-latest" style="font-size:var(--fs-20)">—</div>
+          </div>
+        </div>
+
+        <!-- Release table panel -->
+        <div class="admin-panel">
+          <div class="admin-panel__head">
+            <h2>All releases</h2>
+          </div>
+
+          <!-- Loading state -->
+          <div id="table-loading" class="admin-panel__body" style="color:var(--fg-3)">
+            Loading&hellip;
+          </div>
+
+          <!-- Empty state -->
+          <div id="table-empty" class="admin-panel__body" hidden>
+            <p style="color:var(--fg-3);margin:0">No releases yet. <a href="/dhadmin/upload">Upload your first release.</a></p>
+          </div>
+
+          <!-- Error state -->
+          <div id="table-error" class="admin-panel__body" hidden style="color:var(--danger)">
+            Failed to load releases.
+          </div>
+
+          <!-- Table (populated by JS) -->
+          <div id="table-wrap" class="admin-table-wrap" hidden>
+            <table class="admin-table" aria-label="Releases">
+              <thead>
+                <tr>
+                  <th>Type</th>
+                  <th>Version</th>
+                  <th>Title</th>
+                  <th>Published</th>
+                  <th>Downloads</th>
+                  <th>Status</th>
+                  <th><span class="sr-only">Actions</span></th>
+                </tr>
+              </thead>
+              <tbody id="release-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div><!-- /admin-app -->
+
+  <!-- ============================================================
+       SCRIPTS
+       MSAL v3 must load before dhadmin.js (sets window.msal)
+       ============================================================ -->
+  <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@3/dist/msal-browser.min.js"></script>
+
+  <script type="module">
+    import { initAdmin, adminFetch } from '../scripts/dhadmin.js';
+
+    // ── Helpers ──────────────────────────────────────────────────────────────
+
+    function formatDate(iso) {
+      if (!iso) return '—';
+      return new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+    }
+
+    function badgeHtml(type) {
+      const cls = { Release: 'dl-badge--release', Update: 'dl-badge--update', Hotfix: 'dl-badge--hotfix' }[type] ?? 'dl-badge--release';
+      return `<span class="dl-badge ${cls}">${type}</span>`;
+    }
+
+    function statusHtml(enabled) {
+      return enabled
+        ? `<span class="admin-status admin-status--on"><span class="admin-status__dot"></span>Active</span>`
+        : `<span class="admin-status admin-status--off"><span class="admin-status__dot"></span>Disabled</span>`;
+    }
+
+    function totalDownloads(files) {
+      return Object.values(files ?? {}).reduce((sum, f) => sum + (f.downloadCount ?? 0), 0);
+    }
+
+    // ── Render releases table ─────────────────────────────────────────────────
+
+    function renderTable(releases, auth) {
+      const tbody = document.getElementById('release-tbody');
+
+      if (!releases.length) {
+        document.getElementById('table-loading').hidden = true;
+        document.getElementById('table-empty').hidden   = false;
+        return;
+      }
+
+      tbody.innerHTML = releases.map(r => `
+        <tr data-id="${r.id}">
+          <td>${badgeHtml(r.type)}</td>
+          <td style="font-weight:var(--fw-bold)">v${r.version}</td>
+          <td>${r.title}</td>
+          <td style="color:var(--fg-3)">${formatDate(r.publishedAt)}</td>
+          <td style="color:var(--fg-2)">${totalDownloads(r.files)}</td>
+          <td>${statusHtml(r.enabled)}</td>
+          <td style="display:flex;gap:var(--space-2);flex-wrap:wrap">
+            <button class="btn btn--ghost admin-toggle-btn"
+              data-id="${r.id}" data-enabled="${r.enabled}"
+              style="padding:6px 14px;font-size:var(--fs-12)">
+              ${r.enabled ? 'Disable' : 'Enable'}
+            </button>
+            <a href="/dhadmin/edit?id=${r.id}" class="btn btn--ghost" style="padding:6px 14px;font-size:var(--fs-12)">Edit</a>
+          </td>
+        </tr>`).join('');
+
+      // Populate stat cards
+      const active      = releases.filter(r => r.enabled).length;
+      const allDownloads = releases.reduce((s, r) => s + totalDownloads(r.files), 0);
+      const latest      = releases.find(r => r.enabled);
+
+      document.getElementById('stat-active').textContent    = active;
+      document.getElementById('stat-downloads').textContent = allDownloads.toLocaleString();
+      document.getElementById('stat-latest').textContent    = latest ? `v${latest.version}` : '—';
+
+      document.getElementById('table-loading').hidden = true;
+      document.getElementById('table-wrap').hidden    = false;
+    }
+
+    // ── Main ──────────────────────────────────────────────────────────────────
+
+    try {
+      // Initialise auth — redirects to Azure AD if not signed in
+      const auth = await initAdmin();
+      if (!auth) return; // Redirect in progress
+
+      // Reveal the app shell
+      document.getElementById('admin-loading').hidden = true;
+      document.getElementById('admin-app').hidden     = false;
+
+      // Populate user info and sign-out action
+      document.getElementById('admin-user-email').textContent = auth.account.username;
+      document.getElementById('admin-signout').addEventListener('click', () => auth.signOut());
+
+      // Load releases from the admin API
+      const res = await adminFetch('/api/admin/releases', auth);
+      if (!res) return; // Token refresh triggered a redirect
+
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const { releases } = await res.json();
+
+      renderTable(releases, auth);
+
+      // Quick enable/disable toggle — event delegation on the tbody
+      document.getElementById('release-tbody').addEventListener('click', async (e) => {
+        const btn = e.target.closest('.admin-toggle-btn');
+        if (!btn || btn.disabled) return;
+
+        const id      = btn.dataset.id;
+        const enabled = btn.dataset.enabled === 'true';
+
+        btn.disabled    = true;
+        btn.textContent = '…';
+
+        const res = await adminFetch(`/api/admin/release/${id}`, auth, {
+          method: 'PUT',
+          body: JSON.stringify({ enabled: !enabled }),
+        });
+
+        if (res?.ok) {
+          window.location.reload();
+        } else {
+          btn.disabled    = false;
+          btn.textContent = enabled ? 'Disable' : 'Enable';
+          alert('Toggle failed — please try again.');
+        }
+      });
+
+    } catch (err) {
+      console.error('[dhadmin]', err);
+      // Still show the loading screen but with the error message
+      document.getElementById('admin-loading-msg').textContent = `Error: ${err.message}`;
+      // If the app was already revealed, also show the table error
+      document.getElementById('table-loading').hidden = true;
+      document.getElementById('table-error').hidden   = false;
+    }
+  </script>
+
+</body>
+</html>

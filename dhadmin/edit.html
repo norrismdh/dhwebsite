@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <title>Edit Release — Downloads Admin — Digital Hive</title>
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/site.css" />
+  <link rel="stylesheet" href="../styles/dhadmin.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       AUTH LOADING
+       ============================================================ -->
+  <div id="admin-loading" class="admin-loading" role="status" aria-live="polite">
+    <div class="admin-loading__spinner" aria-hidden="true"></div>
+    <p id="admin-loading-msg">Authenticating&hellip;</p>
+  </div>
+
+  <!-- ============================================================
+       ADMIN APP
+       ============================================================ -->
+  <div id="admin-app" hidden>
+
+    <header class="admin-topbar">
+      <div class="admin-topbar__inner">
+        <div class="admin-topbar__brand">
+          <img src="../assets/logo-reversed.svg" alt="Digital Hive" height="28" />
+          <span class="admin-topbar__brand-title">Downloads Admin</span>
+        </div>
+        <nav class="admin-nav" aria-label="Admin">
+          <a href="/dhadmin"        class="admin-nav__item is-active" aria-current="page">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="5" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="3" y="12" width="7" height="9" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/></svg>
+            Releases
+          </a>
+          <a href="/dhadmin/upload" class="admin-nav__item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 16 12 12 8 16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"/></svg>
+            Upload new
+          </a>
+        </nav>
+        <div class="admin-topbar__user">
+          <span id="admin-user-email" class="admin-user-email"></span>
+          <button id="admin-signout" class="admin-signout-btn" type="button">Sign out</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-main">
+      <div class="container" style="max-width:860px">
+
+        <!-- Page header -->
+        <div class="admin-page-head">
+          <div style="display:flex;align-items:center;gap:var(--space-4)">
+            <a href="/dhadmin" class="btn btn--ghost" style="padding:8px 14px">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+            </a>
+            <h1 id="page-title">Edit release</h1>
+          </div>
+          <div style="display:flex;align-items:center;gap:var(--space-3)">
+            <div id="status-badge"></div>
+            <button id="toggle-btn" class="btn btn--ghost" type="button"></button>
+          </div>
+        </div>
+
+        <!-- Save feedback banner -->
+        <div id="save-banner" class="save-banner" hidden role="alert" aria-live="polite"></div>
+
+        <!-- ── EDIT FORM PANEL ────────────────────────────────── -->
+        <div class="admin-panel" style="margin-bottom:var(--space-6)">
+          <div class="admin-panel__head"><h2>Release details</h2></div>
+          <div class="admin-panel__body">
+            <form id="edit-form" novalidate>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="f-type">Release type <span class="form-required">*</span></label>
+                  <select id="f-type" name="type" required>
+                    <option value="Release">Release</option>
+                    <option value="Update">Update</option>
+                    <option value="Hotfix">Hotfix</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="f-version">Version <span class="form-required">*</span></label>
+                  <input type="text" id="f-version" name="version"
+                    placeholder="e.g. 2.4.0"
+                    pattern="^\d+\.\d+(\.\d+)*$"
+                    autocomplete="off"
+                    required />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="f-title">Release title <span class="form-required">*</span></label>
+                <input type="text" id="f-title" name="title" required autocomplete="off" />
+              </div>
+
+              <div class="form-group">
+                <label for="f-notes">
+                  Release notes
+                  <span class="form-hint-inline">Markdown</span>
+                </label>
+                <textarea id="f-notes" name="notes" rows="12"></textarea>
+              </div>
+
+              <div id="form-error" class="form-error" hidden></div>
+
+              <div class="form-actions">
+                <a href="/dhadmin" class="btn btn--ghost">Cancel</a>
+                <button type="submit" id="save-btn" class="btn btn--primary">Save changes</button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+        <!-- ── FILES PANEL (read-only) ───────────────────────── -->
+        <div class="admin-panel" style="margin-bottom:var(--space-6)">
+          <div class="admin-panel__head">
+            <h2>Uploaded files</h2>
+            <span class="form-hint">Files cannot be changed after upload — create a new release to replace them.</span>
+          </div>
+          <div id="files-panel-body" class="admin-panel__body"></div>
+        </div>
+
+        <!-- ── DANGER ZONE ───────────────────────────────────── -->
+        <div class="admin-panel admin-panel--danger">
+          <div class="admin-panel__head">
+            <h2 style="color:var(--danger)">Danger zone</h2>
+          </div>
+          <div class="admin-panel__body">
+            <div class="danger-row">
+              <div>
+                <strong>Delete this release</strong>
+                <p style="color:var(--fg-2);margin:var(--space-1) 0 0;font-size:var(--fs-14)">
+                  Permanently removes the release record and deletes all associated files from R2. This cannot be undone.
+                </p>
+              </div>
+              <button id="delete-btn" class="btn btn--danger" type="button">Delete release</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div><!-- /admin-app -->
+
+  <!-- ============================================================
+       DELETE CONFIRMATION MODAL
+       ============================================================ -->
+  <div id="delete-modal" class="modal-overlay" hidden aria-modal="true" role="dialog" aria-labelledby="modal-title">
+    <div class="modal">
+      <h3 id="modal-title">Delete this release?</h3>
+      <p>This permanently deletes all R2 files and cannot be undone.</p>
+      <p>Type <strong id="modal-version-hint"></strong> to confirm:</p>
+      <input type="text" id="modal-confirm-input"
+        class="modal-input"
+        autocomplete="off"
+        placeholder="Type the version number" />
+      <div id="modal-error" class="form-error" hidden></div>
+      <div class="modal-actions">
+        <button type="button" id="modal-cancel-btn" class="btn btn--ghost">Cancel</button>
+        <button type="button" id="modal-delete-btn" class="btn btn--danger" disabled>Delete permanently</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@3/dist/msal-browser.min.js"></script>
+  <script type="module" src="../scripts/dhadmin-edit.js"></script>
+
+</body>
+</html>

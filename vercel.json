@@ -6,6 +6,9 @@
   "redirects": [
     { "source": "/", "destination": "/Home", "permanent": false }
   ],
+  "rewrites": [
+    { "source": "/downloads/:fileId", "destination": "/api/download/:fileId" }
+  ],
   "headers": [
     {
       "source": "/(.*)",
