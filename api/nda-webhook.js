@@ -46,20 +46,31 @@ export default async function handler(req, res) {
       return res.status(200).json({ received: true, skipped: status });
     }
 
-    const requestId   = requests.request_id;
-    const actions     = requests.actions ?? [];
-    const signer      = actions.find(a => a.role === 'Counterparty') ?? actions[0] ?? {};
+    const requestId = requests.request_id;
+    const actions   = requests.actions ?? [];
 
-    const recipientEmail = signer.recipient_email ?? signer.signing_email ?? '';
-    const recipientName  = signer.recipient_name  ?? signer.signing_name  ?? '';
+    // The real signer is the SIGN action — NOT the "Prefill by you" pseudo-recipient
+    // (which Zoho adds with a noreply@zohosign.com address) that may sit at actions[0].
+    const signer =
+      actions.find(a => a.action_type === 'SIGN' && a.recipient_email && !/zohosign\.com$/i.test(a.recipient_email))
+      ?? actions.find(a => a.action_type === 'SIGN')
+      ?? actions.find(a => a.role === 'Counterparty')
+      ?? actions[0] ?? {};
 
-    // Pull field values from the signed document (fields may be an array or {text_fields:[]})
-    const textFields = Array.isArray(signer.fields) ? signer.fields : (signer.fields?.text_fields ?? []);
-    const fieldVal   = label => textFields.find(f => f.field_label === label)?.field_value ?? '';
+    // Flatten every field/value pair from the document-level prefill fields AND all actions,
+    // so we can look up values by label regardless of where Zoho places them.
+    const allFieldArrays = [
+      ...(requests.document_fields ?? []).flatMap(d => d.fields ?? []),
+      ...actions.flatMap(a => Array.isArray(a.fields) ? a.fields : (a.fields?.text_fields ?? [])),
+    ];
+    const fieldVal = label => allFieldArrays.find(f => f.field_label === label && f.field_value)?.field_value ?? '';
 
-    const company  = fieldVal('company_name')    || 'Unknown Company';
+    const company  = fieldVal('company_name') || 'Unknown Company';
     const entity   = fieldVal('entity_type');
     const title    = fieldVal('counterparty_title');
+
+    const recipientEmail = signer.recipient_email ?? signer.signing_email ?? '';
+    const recipientName  = signer.recipient_name ?? signer.signing_name ?? fieldVal('counterparty_name');
     const version  = process.env.ZOHO_SIGN_NDA_VERSION ?? '';
     const docLink  = `https://sign.zoho.com/zs#/requests/${requestId}`;
     const signedAt = new Date().toISOString().split('T')[0];
