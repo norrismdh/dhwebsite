@@ -1,3 +1,5 @@
+import { isBusinessEmail, BUSINESS_EMAIL_MESSAGE } from './_business-email.js';
+
 let cachedSignToken    = null;
 let signTokenExpiresAt = 0;
 let cachedTemplateActionId = null;
@@ -63,6 +65,9 @@ export default async function handler(req, res) {
   }
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
     return res.status(400).json({ error: 'Please enter a valid email address.' });
+  }
+  if (!isBusinessEmail(email)) {
+    return res.status(400).json({ error: BUSINESS_EMAIL_MESSAGE });
   }
 
   try {

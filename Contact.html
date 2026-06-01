@@ -338,14 +338,30 @@
 
     <script src="scripts/consent.js"></script>
   <script src="scripts/site.js"></script>
+  <script src="scripts/business-email.js"></script>
   <script>
   (function () {
     const form = document.querySelector('.ct-form');
     if (!form) return;
 
+    function showFormError(msg) {
+      const errEl = form.querySelector('.ct-form-error') || document.createElement('p');
+      errEl.className = 'ct-form-error';
+      errEl.style.cssText = 'color:#c0392b;font-size:var(--fs-14);margin-top:var(--space-3);';
+      errEl.textContent = msg;
+      form.querySelector('.ct-submit').appendChild(errEl);
+    }
+
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      const emailVal = form.querySelector('#ct-email').value.trim();
+      if (window.dhIsBusinessEmail && !window.dhIsBusinessEmail(emailVal)) {
+        showFormError(window.DH_BUSINESS_EMAIL_MESSAGE);
+        form.querySelector('#ct-email').focus();
+        return;
+      }
 
       const btn = form.querySelector('button[type=submit]');
       btn.disabled = true;

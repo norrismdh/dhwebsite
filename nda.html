@@ -80,6 +80,8 @@
       color: var(--fg-1);
       background: #fff;
       transition: border-color .15s;
+      box-sizing: border-box;
+      width: 100%;
     }
     .nda-field input:focus,
     .nda-field select:focus {
@@ -512,6 +514,7 @@
 
   <script src="scripts/consent.js"></script>
   <script src="scripts/site.js"></script>
+  <script src="scripts/business-email.js"></script>
   <script>
   /* ── NDA modal ──────────────────────────────────────────────────── */
   (function () {
@@ -700,6 +703,13 @@
       error.classList.remove('is-visible');
 
       if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      const emailVal = form.querySelector('#nda-email').value.trim();
+      if (window.dhIsBusinessEmail && !window.dhIsBusinessEmail(emailVal)) {
+        showError(window.DH_BUSINESS_EMAIL_MESSAGE);
+        form.querySelector('#nda-email').focus();
+        return;
+      }
 
       btn.disabled = true;
       btn.textContent = 'Preparing your document…';

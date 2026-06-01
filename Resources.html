@@ -588,6 +588,7 @@
 
     <script src="scripts/consent.js"></script>
   <script src="scripts/site.js"></script>
+  <script src="scripts/business-email.js"></script>
   <script>
   (function () {
     const form = document.getElementById('isg-download-form');
@@ -598,6 +599,14 @@
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      const emailVal = form.querySelector('[name=email]').value.trim();
+      if (window.dhIsBusinessEmail && !window.dhIsBusinessEmail(emailVal)) {
+        msg.style.color = '#c0392b';
+        msg.textContent = window.DH_BUSINESS_EMAIL_MESSAGE;
+        form.querySelector('[name=email]').focus();
+        return;
+      }
 
       btn.disabled = true;
       btn.textContent = 'Sending…';

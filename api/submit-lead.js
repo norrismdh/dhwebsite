@@ -1,3 +1,5 @@
+import { isBusinessEmail, BUSINESS_EMAIL_MESSAGE } from './_business-email.js';
+
 // Cache the access token for the lifetime of the function instance.
 // Zoho tokens are valid for 3600s; we refresh 5 minutes early to be safe.
 let cachedToken = null;
@@ -54,6 +56,9 @@ export default async function handler(req, res) {
 
   if (!email) {
     return res.status(400).json({ error: 'Email is required' });
+  }
+  if (!isBusinessEmail(email)) {
+    return res.status(400).json({ error: BUSINESS_EMAIL_MESSAGE });
   }
 
   try {

@@ -1,3 +1,5 @@
+import { isBusinessEmail, BUSINESS_EMAIL_MESSAGE } from './_business-email.js';
+
 // Zoho token cache — same pattern as submit-lead.js
 let cachedToken = null;
 let tokenExpiresAt = 0;
@@ -41,6 +43,9 @@ export default async function handler(req, res) {
 
   if (!email) {
     return res.status(400).json({ error: 'Email is required' });
+  }
+  if (!isBusinessEmail(email)) {
+    return res.status(400).json({ error: BUSINESS_EMAIL_MESSAGE });
   }
 
   // Split "First Last" — fall back to email prefix if no name given

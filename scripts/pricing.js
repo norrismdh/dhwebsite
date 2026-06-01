@@ -6,6 +6,13 @@
     e.preventDefault();
     clearError(form);
 
+    const emailVal = form.querySelector('#q-email').value.trim();
+    if (window.dhIsBusinessEmail && !window.dhIsBusinessEmail(emailVal)) {
+      showError(form, window.DH_BUSINESS_EMAIL_MESSAGE);
+      form.querySelector('#q-email').focus();
+      return;
+    }
+
     const btn = form.querySelector('button[type=submit]');
     const originalHTML = btn.innerHTML;
     btn.disabled = true;
