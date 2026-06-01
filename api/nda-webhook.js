@@ -30,32 +30,31 @@ async function getCrmToken() {
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  // Always acknowledge Zoho Sign immediately to prevent retries
-  res.status(200).json({ received: true });
-
+  // NOTE: do all work BEFORE responding. On Vercel the function can freeze once the
+  // response is sent, so awaited CRM calls after res.send() may never run.
   try {
-    const body = req.body ?? {};
+    const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body ?? {});
+    console.log('NDA webhook raw body:', JSON.stringify(body));
 
     // Zoho Sign wraps the payload under "requests" or "notifications.data"
     const requests = body.requests ?? body.notifications?.data ?? body;
-    const status   = requests?.request_status ?? requests?.status;
+    const status   = (requests?.request_status ?? requests?.status ?? '').toLowerCase();
 
     // Only process fully completed documents
     if (status !== 'completed') {
       console.log('NDA webhook: skipping status', status);
-      return;
+      return res.status(200).json({ received: true, skipped: status });
     }
 
     const requestId   = requests.request_id;
-    const requestName = requests.request_name ?? 'NDA';
     const actions     = requests.actions ?? [];
     const signer      = actions.find(a => a.role === 'Counterparty') ?? actions[0] ?? {};
 
     const recipientEmail = signer.recipient_email ?? signer.signing_email ?? '';
     const recipientName  = signer.recipient_name  ?? signer.signing_name  ?? '';
 
-    // Pull field values from the signed document
-    const textFields = signer.fields?.text_fields ?? [];
+    // Pull field values from the signed document (fields may be an array or {text_fields:[]})
+    const textFields = Array.isArray(signer.fields) ? signer.fields : (signer.fields?.text_fields ?? []);
     const fieldVal   = label => textFields.find(f => f.field_label === label)?.field_value ?? '';
 
     const company  = fieldVal('company_name')    || 'Unknown Company';
@@ -153,7 +152,10 @@ export default async function handler(req, res) {
     // upon completion — check your Zoho Sign notification settings to confirm this is enabled.
     console.log(`NDA webhook: complete — ${recipientName} <${recipientEmail}>, ${company}, ${docLink}`);
 
+    return res.status(200).json({ received: true });
   } catch (err) {
     console.error('nda-webhook error:', err.message);
+    // Still 200 so Zoho doesn't retry-storm; the error is logged for us.
+    return res.status(200).json({ received: true, error: err.message });
   }
 }
