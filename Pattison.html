@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <title>Pattison Outdoor — Case study · Digital Hive</title>
+  <meta name="description" content="How Canada's largest out-of-home advertiser unified 1.4 TB of marketing collateral and made it findable in seconds — without rebuilding a single folder." />
+  <link rel="stylesheet" href="styles/tokens.css" />
+  <link rel="stylesheet" href="styles/site.css" />
+  <link rel="stylesheet" href="styles/consent.css" />
+  <link rel="stylesheet" href="styles/pattison.css" />
+  <link rel="preconnect" href="https://unpkg.com" />
+  <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js" defer></script>
+</head>
+<body>
+
+  <!-- Reading progress -->
+  <div class="cs-progress" aria-hidden="true"><div class="cs-progress__bar" id="csProgressBar"></div></div>
+
+  <!-- ============================================================
+       NAVIGATION (shared)
+       ============================================================ -->
+  <header class="nav" data-screen-label="Navigation">
+    <div class="container nav__inner">
+      <a class="nav__logo" href="Home.html" aria-label="Digital Hive home" style="border-bottom:none;">
+        <img src="assets/logo-colour.svg" alt="Digital Hive" />
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav__links">
+          <li><a href="Product.html">Product</a></li>
+          <li><a href="UseCases.html">Use cases</a></li>
+          <li><a href="Customers.html" style="color:var(--dh-orange);">Customers</a></li>
+          <li><a href="Resources.html">Resources</a></li>
+          <li><a href="Pricing.html">Pricing</a></li>
+        </ul>
+      </nav>
+      <div class="nav__cta">
+        <a class="btn btn--primary" href="Demo.html">Book a demo</a>
+        <button type="submit" class="nav__toggle" data-mobile-toggle aria-label="Open menu" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="container mobile-menu" data-mobile-menu>
+      <ul>
+        <li><a href="Product.html">Product</a></li>
+        <li><a href="UseCases.html">Use cases</a></li>
+        <li><a href="Customers.html">Customers</a></li>
+        <li><a href="Resources.html">Resources</a></li>
+        <li><a href="Pricing.html">Pricing</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       DOC LAYOUT — sticky TOC + content column
+       ============================================================ -->
+  <div class="cs-doc">
+
+    <!-- Sticky "On this page" rail -->
+    <aside class="cs-toc" aria-label="On this page">
+      <p class="cs-toc__label">On this page</p>
+      <ul class="cs-toc__list" id="csTocList">
+        <li><a href="#overview"><span class="cs-toc__num">01</span><span>Overview</span></a></li>
+        <li><a href="#snapshot"><span class="cs-toc__num">02</span><span>Snapshot</span></a></li>
+        <li><a href="#challenge"><span class="cs-toc__num">03</span><span>The challenge</span></a></li>
+        <li><a href="#solution"><span class="cs-toc__num">04</span><span>The solution</span></a></li>
+        <li><a href="#approach"><span class="cs-toc__num">05</span><span>The approach</span></a></li>
+        <li><a href="#before-after"><span class="cs-toc__num">06</span><span>Before / after</span></a></li>
+        <li><a href="#results"><span class="cs-toc__num">07</span><span>Results</span></a></li>
+        <li><a href="#voice"><span class="cs-toc__num">08</span><span>In their words</span></a></li>
+        <li><a href="#capabilities"><span class="cs-toc__num">09</span><span>Capabilities</span></a></li>
+        <li><a href="#related"><span class="cs-toc__num">10</span><span>More stories</span></a></li>
+        <li><a href="#demo"><span class="cs-toc__num">11</span><span>Book a demo</span></a></li>
+      </ul>
+    </aside>
+
+    <div>
+
+      <!-- ============================================================
+           BREADCRUMB
+           ============================================================ -->
+      <div class="cs-wrap">
+        <nav class="cs-crumbs" aria-label="Breadcrumb">
+          <a href="Customers.html">Customers</a>
+          <span class="sep">/</span>
+          <a href="Customers.html">Case studies</a>
+          <span class="sep">/</span>
+          <span class="here">Pattison Outdoor</span>
+        </nav>
+      </div>
+
+      <!-- ============================================================
+           01 HERO — overview
+           ============================================================ -->
+      <section class="cs-hero" id="overview">
+        <div class="cs-wrap">
+          <div class="cs-hero__grid">
+
+            <!-- Left: copy -->
+            <div data-cs-reveal>
+              <div class="cs-customer-row">
+                <img src="assets/pattison-logo.png" alt="PATTISON Outdoor Advertising" class="cs-customer-logo" />
+                <dl class="cs-customer-meta">
+                  <div><dt>Industry</dt><strong>Out-of-Home Advertising</strong></div>
+                  <div><dt>HQ</dt><strong>Toronto, Canada</strong></div>
+                  <div><dt>Founded</dt><strong>1908</strong></div>
+                </dl>
+              </div>
+
+              <span class="eyebrow">Customer story &middot; Marketing &amp; advertising</span>
+              <h1>
+                <span class="accent">1.4&nbsp;TB</span> of marketing assets.<br />
+                Found in seconds&mdash;not minutes.
+              </h1>
+              <p class="dek">
+                How Canada's largest out-of-home advertiser replaced a decades-old folder
+                archive with Digital Hive&mdash;and finally got every sales rep
+                searching, surfacing, and selling from the same source of truth.
+              </p>
+              <div class="cs-hero__ctas">
+                <a href="#demo" class="cs-btn-primary">Book a demo <i data-lucide="arrow-right" style="width:16px;height:16px;display:inline-block;vertical-align:middle;"></i></a>
+                <a href="#results" class="cs-btn-secondary">See the results</a>
+              </div>
+            </div>
+
+            <!-- Right: portal mock -->
+            <div data-cs-reveal style="transition-delay: 120ms;">
+              <div class="cs-portal-mock" role="img" aria-label="Pattison sales portal — Netflix-style swim lanes powered by Digital Hive">
+                <div class="cs-portal-chrome">
+                  <div class="cs-portal-dots"><span></span><span></span><span></span></div>
+                  <div class="cs-portal-url">hive.pattison.com&nbsp;/&nbsp;sales-toolkit</div>
+                </div>
+                <div class="cs-portal-body">
+                  <div class="cs-portal-search">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                    <span>Search 1.2M assets &mdash; faces, decks, research, video&hellip;</span>
+                    <span class="badge">Google-fast</span>
+                  </div>
+                  <div class="cs-swim-lane">
+                    <h6>Faces <span class="count">240,000</span></h6>
+                    <div class="cs-tiles">
+                      <div class="cs-tile bb"><span class="cs-cert">CERTIFIED</span></div>
+                      <div class="cs-tile tr"></div>
+                      <div class="cs-tile dg"><span class="cs-cert">CERTIFIED</span></div>
+                      <div class="cs-tile st"></div>
+                      <div class="cs-tile bb"></div>
+                    </div>
+                  </div>
+                  <div class="cs-swim-lane">
+                    <h6>Decks &amp; research <span class="count">8,400</span></h6>
+                    <div class="cs-tiles">
+                      <div class="cs-tile doc">PDF</div>
+                      <div class="cs-tile doc">PPT</div>
+                      <div class="cs-tile doc">XLS</div>
+                      <div class="cs-tile doc">PDF</div>
+                      <div class="cs-tile doc">DOC</div>
+                    </div>
+                  </div>
+                  <div class="cs-swim-lane">
+                    <h6>Recommended for automotive <span class="count">12</span></h6>
+                    <div class="cs-tiles">
+                      <div class="cs-tile dg"></div>
+                      <div class="cs-tile bb"><span class="cs-cert">CERTIFIED</span></div>
+                      <div class="cs-tile st"></div>
+                      <div class="cs-tile doc">MP4</div>
+                      <div class="cs-tile bb"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- KPI strip -->
+          <div class="cs-kpi-strip" data-cs-reveal>
+            <div class="cs-kpi">
+              <div class="val">1.4<span class="unit">TB</span></div>
+              <div class="label">Marketing assets unified&mdash;photos, video, decks, research, client histories.</div>
+            </div>
+            <div class="cs-kpi">
+              <div class="val">240k<span class="unit">+</span></div>
+              <div class="label">Individual ad displays ("faces") indexed and instantly searchable.</div>
+            </div>
+            <div class="cs-kpi">
+              <div class="val">5<span class="unit">mo</span></div>
+              <div class="label">From kickoff to full rollout&mdash;after two previous failed platform attempts.</div>
+            </div>
+            <div class="cs-kpi">
+              <div class="val"><span class="unit">~</span>0</div>
+              <div class="label">Retraining needed. The folder structure salespeople knew stayed intact.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           02 SNAPSHOT
+           ============================================================ -->
+      <section class="cs-section" id="snapshot">
+        <div class="cs-wrap">
+          <div class="cs-snapshot-grid">
+            <aside data-cs-reveal>
+              <div class="cs-snap-card">
+                <h3>Snapshot</h3>
+                <dl>
+                  <div class="cs-snap-row"><dt>Customer</dt><dd>PATTISON Outdoor Advertising</dd></div>
+                  <div class="cs-snap-row"><dt>Parent</dt><dd>The Jim Pattison Group</dd></div>
+                  <div class="cs-snap-row"><dt>Industry</dt><dd>Out-of-Home advertising</dd></div>
+                  <div class="cs-snap-row"><dt>Sales offices</dt><dd>25 across Canada</dd></div>
+                  <div class="cs-snap-row"><dt>Markets served</dt><dd>200+ coast to coast</dd></div>
+                  <div class="cs-snap-row"><dt>Use case</dt><dd>Sales &amp; marketing asset catalog</dd></div>
+                  <div class="cs-snap-row"><dt>Centralized</dt><dd>
+                    <div class="cs-tool-pills">
+                      <span class="cs-tool-pill">Legacy file server</span>
+                      <span class="cs-tool-pill">SharePoint</span>
+                      <span class="cs-tool-pill">Video archive</span>
+                      <span class="cs-tool-pill">Research DB</span>
+                      <span class="cs-tool-pill">CMS</span>
+                    </div>
+                  </dd></div>
+                </dl>
+              </div>
+            </aside>
+
+            <div data-cs-reveal>
+              <span class="eyebrow">The outcome</span>
+              <h2 style="font-size: clamp(2rem, 3.4vw, 2.75rem); letter-spacing: -0.02em; line-height: 1.1; margin: 0 0 var(--space-5);">
+                A pure sales organization, finally selling from one shelf.
+              </h2>
+              <p class="cs-lede">
+                PATTISON's 25 sales offices run on visual collateral&mdash;240,000 ad faces,
+                a century of billboard photography, decks, research and client journey
+                histories totalling 1.4 terabytes. The legacy folder server was buckling.
+                Two previous platform attempts had failed. Digital Hive shipped a working
+                system in five months, kept the folder muscle memory intact, and gave
+                marketing the broadcast tools it never had.
+              </p>
+              <div class="cs-body">
+                <p>
+                  PATTISON Outdoor is the acknowledged Canadian leader in out-of-home
+                  advertising&mdash;billboards, transit, street-level, large-format
+                  hoardings, digital. The company runs campaigns across more than 200
+                  markets from St. John's to Victoria, and as part of Canada's
+                  second-largest privately held company, the Jim Pattison Group, it sits
+                  alongside brands as varied as Guinness World Records and TNG, North
+                  America's largest magazine distributor.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           03 CHALLENGE
+           ============================================================ -->
+      <section class="cs-section cs-sunken" id="challenge">
+        <div class="cs-wrap">
+          <div class="cs-section-head" data-cs-reveal>
+            <span class="eyebrow">The challenge</span>
+            <h2>A stubbornly sticky legacy system.</h2>
+            <p>
+              PATTISON didn't have an asset problem. It had a findability problem&mdash;
+              wrapped in two failed migrations and a workforce that kept gravitating
+              back to what worked.
+            </p>
+          </div>
+          <div class="cs-problem-grid">
+            <div class="cs-problem" data-cs-reveal>
+              <div class="cs-icon-box"><i data-lucide="folder-search" style="width:28px;height:28px;"></i></div>
+              <h4>Manual search service</h4>
+              <p>Marketing was acting as a human Google&mdash;tracking down decades-old billboards from the treasure trove on demand. Not sustainable.</p>
+            </div>
+            <div class="cs-problem" data-cs-reveal style="transition-delay: 80ms;">
+              <div class="cs-icon-box"><i data-lucide="rotate-ccw" style="width:28px;height:28px;"></i></div>
+              <h4>Two prior platforms&mdash;rejected</h4>
+              <p>Each modern web CMS the team tried, salespeople drifted back to the old folder server. The new interfaces just didn't surface things fast enough.</p>
+            </div>
+            <div class="cs-problem" data-cs-reveal style="transition-delay: 160ms;">
+              <div class="cs-icon-box"><i data-lucide="hard-drive" style="width:28px;height:28px;"></i></div>
+              <h4>1.4 TB, growing weekly</h4>
+              <p>240,000 ad faces, video, research, client histories&mdash;all accumulating on a single legacy server that was reaching its physical and cognitive limits.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           04 SOLUTION
+           ============================================================ -->
+      <section class="cs-section" id="solution">
+        <div class="cs-wrap">
+          <div class="cs-section-head" data-cs-reveal>
+            <span class="eyebrow">The solution</span>
+            <h2>Adapt the tool to the people. Not the other way around.</h2>
+            <p>
+              Digital Hive sat above the existing archive&mdash;indexing, governing, and
+              surfacing assets without touching the source. The folder structure
+              salespeople trusted stayed put. Everything underneath got rebuilt.
+            </p>
+          </div>
+          <div class="cs-feature-grid">
+            <div class="cs-feature" data-cs-reveal>
+              <div class="cs-feature-row">
+                <span class="cs-feature-ic"><i data-lucide="search-check" style="width:20px;height:20px;"></i></span>
+                <span class="cs-feature-num">01 / FEDERATED SEARCH</span>
+              </div>
+              <h4>Google-like search across 1.4 TB.</h4>
+              <p>Custom-tuned load-time work for PATTISON's high-volume image and video files&mdash;so a face from 1998 surfaces as fast as a deck from last week.</p>
+            </div>
+            <div class="cs-feature" data-cs-reveal style="transition-delay: 60ms;">
+              <div class="cs-feature-row">
+                <span class="cs-feature-ic"><i data-lucide="tags" style="width:20px;height:20px;"></i></span>
+                <span class="cs-feature-num">02 / CUSTOM TAGGING</span>
+              </div>
+              <h4>One asset. Many ways to find it.</h4>
+              <p>Digital Hive shipped new product functionality so reps in automotive, financial services, retail&mdash;each tag the same content their own way.</p>
+            </div>
+            <div class="cs-feature" data-cs-reveal style="transition-delay: 120ms;">
+              <div class="cs-feature-row">
+                <span class="cs-feature-ic"><i data-lucide="layout-grid" style="width:20px;height:20px;"></i></span>
+                <span class="cs-feature-num">03 / SWIM-LANE VIEW</span>
+              </div>
+              <h4>Netflix navigation. Zero training.</h4>
+              <p>Familiar horizontal lanes&mdash;Faces, Decks, Recommended, Compliance&mdash;mean a 30-year sales vet and a new hire find what they need the same way.</p>
+            </div>
+            <div class="cs-feature" data-cs-reveal style="transition-delay: 180ms;">
+              <div class="cs-feature-row">
+                <span class="cs-feature-ic"><i data-lucide="radio-tower" style="width:20px;height:20px;"></i></span>
+                <span class="cs-feature-num">04 / BROADCASTS</span>
+              </div>
+              <h4>Marketing finally has a megaphone.</h4>
+              <p>Weekly company news, fresh creative, compliance updates&mdash;pushed to every sales office regardless of location or timezone.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           05 IMPLEMENTATION / APPROACH (navy)
+           ============================================================ -->
+      <section class="cs-section cs-inverse compact" id="approach">
+        <div class="cs-hex-bg"></div>
+        <div class="cs-wrap" style="position:relative;">
+          <div class="cs-section-head" data-cs-reveal>
+            <span class="eyebrow">The approach</span>
+            <h2>Five months. Three rollouts. One platform that finally stuck.</h2>
+            <p>
+              PATTISON had been burned twice. Digital Hive's deployment was phased,
+              stress-tested by actual sales execs, and custom-tuned to the way the
+              business already worked.
+            </p>
+          </div>
+          <div class="cs-timeline">
+            <div class="cs-tl-step" data-cs-reveal>
+              <div class="cs-tl-hex"><div class="n">01</div><div class="ll">Index</div></div>
+              <h4>Stand up the catalog.</h4>
+              <p>Connect the legacy archive, SharePoint, research DB and video store. Metadata only&mdash;nothing migrated, nothing rebuilt.</p>
+            </div>
+            <div class="cs-tl-step" data-cs-reveal style="transition-delay: 80ms;">
+              <div class="cs-tl-hex"><div class="n">02</div><div class="ll">Pilot</div></div>
+              <h4>Test with real sellers.</h4>
+              <p>Phased rollout to a representative sales pod. Feedback shaped the search ranking, lane structure, and tagging UX.</p>
+            </div>
+            <div class="cs-tl-step" data-cs-reveal style="transition-delay: 160ms;">
+              <div class="cs-tl-hex"><div class="n">03</div><div class="ll">Tune</div></div>
+              <h4>Speed up the heavy stuff.</h4>
+              <p>Custom engineering work for PATTISON's outsized image and video payloads. Load-time targets met before general rollout.</p>
+            </div>
+            <div class="cs-tl-step" data-cs-reveal style="transition-delay: 240ms;">
+              <div class="cs-tl-hex"><div class="n">04</div><div class="ll">Launch</div></div>
+              <h4>All 25 offices, in stride.</h4>
+              <p>Familiar folder structure preserved. New broadcast, personalization and recommendation layers turned on for everyone.</p>
+            </div>
+          </div>
+          <div class="cs-tl-foot" data-cs-reveal>
+            <strong>Nothing migrated. Nothing rebuilt.</strong>
+            <span class="muted">The archive that worked stayed where it lived.</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           06 BEFORE / AFTER
+           ============================================================ -->
+      <section class="cs-section" id="before-after">
+        <div class="cs-wrap">
+          <div class="cs-section-head" data-cs-reveal>
+            <span class="eyebrow">Before / After</span>
+            <h2>The sales floor, before and after.</h2>
+            <p>Same assets. Same people. Different day.</p>
+          </div>
+          <div class="cs-ba" data-cs-reveal>
+            <div class="cs-before">
+              <h5>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                Before Digital Hive
+              </h5>
+              <ul>
+                <li>
+                  <svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/></svg>
+                  <span>Reps phoned or emailed Marketing to track down assets, mid-pitch.</span>
+                </li>
+                <li>
+                  <svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/></svg>
+                  <span>Two prior platforms abandoned&mdash;teams gravitated back to the legacy folder.</span>
+                </li>
+                <li>
+                  <svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/></svg>
+                  <span>Decades of billboard photography effectively unsearchable.</span>
+                </li>
+                <li>
+                  <svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/></svg>
+                  <span>No way to push fresh creative or compliance updates to the field.</span>
+                </li>
+                <li>
+                  <svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/></svg>
+                  <span>One tag scheme for everyone&mdash;auto, finance, retail forced into the same vocabulary.</span>
+                </li>
+                <li>
+                  <svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/></svg>
+                  <span>Retraining cost killed every prior migration attempt.</span>
+                </li>
+              </ul>
+            </div>
+            <div class="cs-after">
+              <h5>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                With Digital Hive
+              </h5>
+              <ul>
+                <li>
+                  <svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  <span>Self-service search across 1.4 TB&mdash;results in seconds, not minutes.</span>
+                </li>
+                <li>
+                  <svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  <span>Familiar folder structure preserved. Adoption from day one.</span>
+                </li>
+                <li>
+                  <svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  <span>Every face, deck and research file indexed&mdash;back to the 1908 archive.</span>
+                </li>
+                <li>
+                  <svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  <span>Marketing broadcasts new creative weekly. Coast to coast, on schedule.</span>
+                </li>
+                <li>
+                  <svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  <span>Per-vertical tagging. Auto teams tag in auto. Finance in finance.</span>
+                </li>
+                <li>
+                  <svg class="ck" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  <span>Netflix-style swim-lane UI. Next to no training to operate.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           07 RESULTS (navy)
+           ============================================================ -->
+      <section class="cs-section cs-inverse" id="results">
+        <div class="cs-hex-bg"></div>
+        <div class="cs-wrap" style="position:relative;">
+          <div class="cs-section-head" data-cs-reveal>
+            <span class="eyebrow">Results</span>
+            <h2>Where the work shows up.</h2>
+            <p>
+              Measurable on the floor. Audible in the comments coming back to marketing.
+              Visible in the queue of departments now asking for their own Hive.
+            </p>
+          </div>
+          <div class="cs-results-grid">
+            <div class="cs-r-stat" data-cs-reveal>
+              <div class="val">1.4<span class="unit">TB</span></div>
+              <div class="label">Searchable in one place&mdash;assets, video, research, client journey histories.</div>
+            </div>
+            <div class="cs-r-stat" data-cs-reveal style="transition-delay: 80ms;">
+              <div class="val">240k<span class="unit">+</span></div>
+              <div class="label">Ad faces indexed and surfaced through Google-like search.</div>
+            </div>
+            <div class="cs-r-stat" data-cs-reveal style="transition-delay: 160ms;">
+              <div class="val">5<span class="unit">mo</span></div>
+              <div class="label">End-to-end deployment&mdash;after two prior platform attempts had failed.</div>
+            </div>
+            <div class="cs-r-stat" data-cs-reveal style="transition-delay: 240ms;">
+              <div class="val"><span class="arrow">&#8593;</span>3<span class="unit">rd</span></div>
+              <div class="label">Department now requesting their own tailored Hive&mdash;early client rollout discussions underway.</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           08 PULL QUOTE
+           ============================================================ -->
+      <section class="cs-section cs-sunken" id="voice">
+        <div class="cs-narrow">
+          <div class="cs-pullquote" data-cs-reveal>
+            <div class="cs-quote-mark" aria-hidden="true">&ldquo;</div>
+            <div>
+              <blockquote>
+                People want to tag content their own way, depending on their focus
+                area, so it's fast and easy to surface. Digital Hive adapted the
+                tagging system to make this possible&mdash;a true value add for us
+                as a business.
+              </blockquote>
+              <div class="cs-who">
+                <div class="cs-avatar">M</div>
+                <div>
+                  <div class="name">Mary</div>
+                  <div class="role">Marketing Lead &middot; PATTISON Outdoor Advertising</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           09 CAPABILITIES
+           ============================================================ -->
+      <section class="cs-section" id="capabilities">
+        <div class="cs-wrap">
+          <div class="cs-section-head" data-cs-reveal>
+            <span class="eyebrow">What did the work</span>
+            <h2>The capabilities behind the outcome.</h2>
+            <p>
+              Six Digital Hive capabilities did the heavy lifting at PATTISON. Every
+              one of them is in production today across the customer base.
+            </p>
+          </div>
+          <div class="cs-value-grid">
+            <div class="cs-value" data-cs-reveal>
+              <span class="ic"><i data-lucide="search" style="width:20px;height:20px;"></i></span>
+              <span class="eyebrow">Federated search</span>
+              <h4>Google-fast, on enterprise data.</h4>
+              <p>One search box across every connected source. Tuned per customer for asset weight and result ranking.</p>
+            </div>
+            <div class="cs-value" data-cs-reveal style="transition-delay: 60ms;">
+              <span class="ic"><i data-lucide="tags" style="width:20px;height:20px;"></i></span>
+              <span class="eyebrow">Custom tagging</span>
+              <h4>Tag once. Find many ways.</h4>
+              <p>Per-team, per-vertical tag schemes layered over the same source content. Built for PATTISON, shipped to all.</p>
+            </div>
+            <div class="cs-value" data-cs-reveal style="transition-delay: 120ms;">
+              <span class="ic"><i data-lucide="layout-grid" style="width:20px;height:20px;"></i></span>
+              <span class="eyebrow">Swim-lane UI</span>
+              <h4>Netflix navigation for analytics.</h4>
+              <p>Horizontal lanes by category and audience. Familiar enough to need no training.</p>
+            </div>
+            <div class="cs-value" data-cs-reveal style="transition-delay: 180ms;">
+              <span class="ic"><i data-lucide="user-cog" style="width:20px;height:20px;"></i></span>
+              <span class="eyebrow">Personalization</span>
+              <h4>The right content. The right rep.</h4>
+              <p>Markets with no subway transit don't see subway creative. Region, vertical, role&mdash;all in the personalization model.</p>
+            </div>
+            <div class="cs-value" data-cs-reveal style="transition-delay: 240ms;">
+              <span class="ic"><i data-lucide="radio-tower" style="width:20px;height:20px;"></i></span>
+              <span class="eyebrow">Broadcast</span>
+              <h4>Marketing has a megaphone.</h4>
+              <p>Push new creative, news, compliance updates to every sales office on a schedule. No more email blast and pray.</p>
+            </div>
+            <div class="cs-value" data-cs-reveal style="transition-delay: 300ms;">
+              <span class="ic"><i data-lucide="key-round" style="width:20px;height:20px;"></i></span>
+              <span class="eyebrow">Single sign-on</span>
+              <h4>One door to the whole stack.</h4>
+              <p>Same identity, same governance, same audit trail across every connected source. IT keeps control. Reps just sign in.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           10 RELATED STORIES
+           ============================================================ -->
+      <section class="cs-section cs-sunken" id="related">
+        <div class="cs-wrap">
+          <div class="cs-section-head" data-cs-reveal>
+            <span class="eyebrow">More customer stories</span>
+            <h2>How other enterprises got there.</h2>
+            <p>Banks, healthcare systems, public universities. Different stacks. Same outcome.</p>
+          </div>
+          <div class="cs-related-grid">
+            <a href="Customers.html" class="cs-related-card" data-cs-reveal>
+              <span class="industry">Financial services</span>
+              <span class="name">Bank of America</span>
+              <p class="outcome">How a top-three US bank unified six BI tools into one governed analytics catalog&mdash;without a single migration.</p>
+              <span class="read">Read the story <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+            </a>
+            <a href="Customers.html" class="cs-related-card" data-cs-reveal style="transition-delay: 80ms;">
+              <span class="industry">Healthcare</span>
+              <span class="name">Trinity Health</span>
+              <p class="outcome">94 hospitals, one shared analytics layer. Clinicians find certified dashboards in two clicks.</p>
+              <span class="read">Read the story <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+            </a>
+            <a href="Customers.html" class="cs-related-card" data-cs-reveal style="transition-delay: 160ms;">
+              <span class="industry">Public sector &amp; education</span>
+              <span class="name">University of Denver</span>
+              <p class="outcome">A 12,000-student research institution gives every department personalized access to its analytics estate.</p>
+              <span class="read">Read the story <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="display:inline-block;vertical-align:middle;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================================================
+           11 DEMO CTA (navy)
+           ============================================================ -->
+      <section class="cs-section cs-inverse cs-cta" id="demo">
+        <div class="cs-hex-bg"></div>
+        <div class="cs-narrow" style="position:relative;">
+          <span class="eyebrow">Your turn</span>
+          <h2>Where analytics <span class="accent">finally</span> make sense.</h2>
+          <p>
+            See Digital Hive running against your own stack. Thirty minutes. We bring
+            the demo. You keep your tools.
+          </p>
+          <div class="cs-cta-row">
+            <a href="Demo.html" class="cs-btn-dark-primary">Book a demo <i data-lucide="arrow-right" style="width:16px;height:16px;display:inline-block;vertical-align:middle;"></i></a>
+            <a href="assets/pattison-case-study.pdf" class="cs-btn-dark-secondary" target="_blank" rel="noopener">Download this case study (PDF)</a>
+          </div>
+          <p class="micro">No commitment. No rip-and-replace pitch.</p>
+        </div>
+      </section>
+
+    </div><!-- end doc main -->
+  </div><!-- end cs-doc -->
+
+  <!-- ============================================================
+       FOOTER (shared)
+       ============================================================ -->
+  <footer class="footer" data-screen-label="Footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__brand">
+          <img src="assets/logo-reversed.svg" alt="Digital Hive" />
+          <p>Where analytics finally make sense. An enterprise analytics catalog.</p>
+          <div class="footer__social">
+            <a href="https://www.linkedin.com/company/digital-hive-bi-portal" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0H12v2.2h.07c.63-1.2 2.18-2.46 4.49-2.46 4.8 0 5.69 3.16 5.69 7.27V24h-5v-7.2c0-1.72-.03-3.93-2.4-3.93-2.4 0-2.77 1.87-2.77 3.81V24h-5V8z"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a>
+          </div>
+        </div>
+        <div class="footer__col"><h3>Product</h3><ul>
+          <li><a href="Product.html#catalog">Catalog</a></li>
+          <li><a href="Product.html#hub">BI Hub</a></li>
+          <li><a href="Product.html#governance">Governance</a></li>
+          <li><a href="Connectors.html">Connectors</a></li>
+          <li><a href="Pricing.html">Pricing</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Use cases</h3><ul>
+          <li><a href="UseCases.html">All use cases</a></li>
+          <li><a href="use-cases/multi-vendor-bi.html">Multi-vendor BI</a></li>
+          <li><a href="use-cases/cloud-migration.html">Cloud migration</a></li>
+          <li><a href="use-cases/ma-integration.html">M&amp;A integration</a></li>
+          <li><a href="use-cases/data-sovereignty.html">Data sovereignty</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Company</h3><ul>
+          <li><a href="About.html">About</a></li>
+          <li><a href="About.html#team">Leadership</a></li>
+          <li><a href="Customers.html">Customers</a></li>
+          <li><a href="Contact.html">Contact</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul></div>
+        <div class="footer__col"><h3>Resources</h3><ul>
+          <li><a href="Resources.html">Library</a></li>
+          <li><a href="FAQ.html">FAQ</a></li>
+          <li><a href="Home.html#research">ISG report</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="https://support.digitalhive.com">Support</a></li>
+        </ul></div>
+      </div>
+      <div class="footer__bottom">
+        <span>&copy; 2026 Digital Hive</span>
+        <ul>
+          <li><a href="/Privacy.html">Privacy</a></li>
+          <li><a href="Terms.html">Terms</a></li>
+          <li><a href="#">Trust center</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/consent.js"></script>
+  <script src="scripts/site.js"></script>
+  <script>
+    // Lucide icons
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
+    });
+
+    // Reading progress bar
+    const csBar = document.getElementById('csProgressBar');
+    if (csBar) {
+      const onScroll = () => {
+        const h = document.documentElement;
+        const max = h.scrollHeight - h.clientHeight;
+        csBar.style.width = (max > 0 ? (h.scrollTop / max) * 100 : 0) + '%';
+      };
+      document.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    }
+
+    // Reveal on scroll
+    const csReveal = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('in'); csReveal.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
+    requestAnimationFrame(() => {
+      document.querySelectorAll('[data-cs-reveal]').forEach(el => csReveal.observe(el));
+    });
+    setTimeout(() => {
+      document.querySelectorAll('[data-cs-reveal]:not(.in)').forEach(el => el.classList.add('in'));
+    }, 1200);
+
+    // TOC scroll-spy
+    const tocLinks = [...document.querySelectorAll('#csTocList a')];
+    const tocMap = new Map();
+    tocLinks.forEach(a => {
+      const id = a.getAttribute('href').slice(1);
+      const target = document.getElementById(id);
+      if (target) tocMap.set(target, a);
+    });
+    const tocSpy = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          tocLinks.forEach(a => a.classList.remove('active'));
+          const a = tocMap.get(e.target);
+          if (a) a.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+    tocMap.forEach((a, t) => tocSpy.observe(t));
+  </script>
+
+</body>
+</html>
