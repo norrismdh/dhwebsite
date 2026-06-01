@@ -5,6 +5,13 @@
    ============================================================= */
 
 /* -----------------------------------------------------------
+   Ensure the HTML `hidden` attribute always wins over any
+   display property set by a class — e.g. .admin-loading
+   has display:flex which would otherwise beat [hidden].
+   ----------------------------------------------------------- */
+[hidden] { display: none !important; }
+
+/* -----------------------------------------------------------
    Reset marketing decorations
    ----------------------------------------------------------- */
 body {
