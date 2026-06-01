@@ -17,7 +17,6 @@ async function getTemplateActionId(token) {
     { headers: signHeaders }
   );
   const data = await res.json();
-  console.log('Zoho Sign template response:', JSON.stringify(data));
 
   const actionId = data?.templates?.actions?.[0]?.action_id;
   if (!actionId) throw new Error('Could not read action_id from Zoho Sign template');
@@ -130,7 +129,6 @@ export default async function handler(req, res) {
     );
 
     const createData = await createRes.json();
-    console.log('Zoho Sign create response:', JSON.stringify(createData));
 
     const requestId = createData?.requests?.request_id;
     const action    = createData?.requests?.actions?.[0];
@@ -160,7 +158,6 @@ export default async function handler(req, res) {
       }
     );
     const tokenData = await tokenRes.json();
-    console.log('Zoho Sign embedtoken response:', JSON.stringify(tokenData));
 
     const signingUrl = tokenData?.sign_url ?? tokenData?.signing_url;
     if (!signingUrl) {

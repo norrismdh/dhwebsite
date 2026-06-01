@@ -86,16 +86,17 @@ export default async function handler(req, res) {
   // response is sent, so awaited CRM calls after res.send() may never run.
   try {
     const body = typeof req.body === 'string' ? JSON.parse(req.body || '{}') : (req.body ?? {});
-    console.log('NDA webhook raw body:', JSON.stringify(body));
 
     // Zoho Sign wraps the payload under "requests" or "notifications.data"
-    const requests = body.requests ?? body.notifications?.data ?? body;
-    const status   = (requests?.request_status ?? requests?.status ?? '').toLowerCase();
+    const requests  = body.requests ?? body.notifications?.data ?? body;
+    const operation = body.notifications?.operation_type;
+    const status    = (requests?.request_status ?? requests?.status ?? '').toLowerCase();
 
-    // Only process fully completed documents
-    if (status !== 'completed') {
-      console.log('NDA webhook: skipping status', status);
-      return res.status(200).json({ received: true, skipped: status });
+    // Zoho fires multiple events (e.g. RequestSigningSuccess AND RequestCompleted), each with
+    // status "completed". Only act on the final completion event to avoid duplicate Leads.
+    const isCompletion = operation ? operation === 'RequestCompleted' : status === 'completed';
+    if (!isCompletion) {
+      return res.status(200).json({ received: true, skipped: operation || status });
     }
 
     const requestId = requests.request_id;
@@ -111,7 +112,6 @@ export default async function handler(req, res) {
 
     // The webhook payload has no field values — fetch the full request and look up by label.
     const fields = await fetchRequestFields(requestId);
-    console.log('NDA webhook fields:', JSON.stringify(fields.map(f => ({ l: f.field_label, v: f.field_value }))));
     const fieldVal = (...labels) => {
       for (const label of labels) {
         const hit = fields.find(f => f.field_label === label && f.field_value);
@@ -138,8 +138,6 @@ export default async function handler(req, res) {
       `Signer: ${recipientName}${title ? `, ${title}` : ''}`,
       `Document: ${docLink}`,
     ].join('\n');
-
-    console.log('NDA webhook: processing completion for', recipientEmail);
 
     const crmToken = await getCrmToken();
 
@@ -210,14 +208,14 @@ export default async function handler(req, res) {
         }),
       });
       const createData = await createRes.json();
-      console.log('NDA webhook: created Lead', JSON.stringify(createData?.data?.[0]));
+      const result = createData?.data?.[0];
+      if (result?.code !== 'SUCCESS') console.error('NDA webhook: Lead create failed:', JSON.stringify(result ?? createData));
     }
 
     // TODO: Send email notification to NDA_NOTIFY_EMAIL
     // Requires adding ZohoMail.messages.CREATE scope and ZOHO_MAIL_ACCOUNT_ID env var.
-    // Until then, Zoho Sign automatically emails the document owner (mike.norris@digitalhive.com)
-    // upon completion — check your Zoho Sign notification settings to confirm this is enabled.
-    console.log(`NDA webhook: complete — ${recipientName} <${recipientEmail}>, ${company}, ${docLink}`);
+    // Until then, Zoho Sign automatically emails the document owner upon completion.
+    console.log(`NDA webhook: completed for ${recipientEmail} (${company})`);
 
     return res.status(200).json({ received: true });
   } catch (err) {
