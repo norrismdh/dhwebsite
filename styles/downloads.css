@@ -14,6 +14,12 @@
   color: var(--fg-2);
   font-size: var(--fs-18);
 }
+/* The `hidden` attribute must win over .dl-state's display:flex, otherwise
+   JS toggling these states (loadingEl.hidden = true, etc.) has no visual
+   effect and every state shows at once. */
+.dl-state[hidden] {
+  display: none;
+}
 
 .dl-state--error {
   color: var(--danger);
