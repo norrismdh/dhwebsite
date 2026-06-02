@@ -127,6 +127,26 @@
 
   </div><!-- /admin-app -->
 
+  <!-- ============================================================
+       DELETE CONFIRMATION MODAL
+       ============================================================ -->
+  <div id="delete-modal" class="modal-overlay" hidden aria-modal="true" role="dialog" aria-labelledby="modal-title">
+    <div class="modal">
+      <h3 id="modal-title">Delete this release?</h3>
+      <p>This permanently deletes all R2 files and cannot be undone.</p>
+      <p>Type <strong id="modal-version-hint"></strong> to confirm:</p>
+      <input type="text" id="modal-confirm-input"
+        class="modal-input"
+        autocomplete="off"
+        placeholder="Type the version number" />
+      <div id="modal-error" class="form-error" hidden></div>
+      <div class="modal-actions">
+        <button type="button" id="modal-cancel-btn" class="btn btn--ghost">Cancel</button>
+        <button type="button" id="modal-delete-btn" class="btn btn--danger" disabled>Delete permanently</button>
+      </div>
+    </div>
+  </div>
+
   <!-- MSAL is imported directly inside dhadmin.js (ES module) — no CDN tag needed -->
   <script type="module">
     import { initAdmin, adminFetch } from '../scripts/dhadmin.js';
@@ -179,6 +199,11 @@
               ${r.enabled ? 'Disable' : 'Enable'}
             </button>
             <a href="/dhadmin/edit?id=${r.id}" class="btn btn--ghost" style="padding:6px 14px;font-size:var(--fs-12)">Edit</a>
+            <button class="btn btn--danger admin-delete-btn"
+              data-id="${r.id}" data-version="${r.version}"
+              style="padding:6px 14px;font-size:var(--fs-12)">
+              Delete
+            </button>
           </td>
         </tr>`).join('');
 
@@ -244,6 +269,73 @@
             btn.disabled    = false;
             btn.textContent = enabled ? 'Disable' : 'Enable';
             alert('Toggle failed — please try again.');
+          }
+        });
+
+        // ── Delete flow ────────────────────────────────────────────────────────
+
+        const deleteModal       = document.getElementById('delete-modal');
+        const modalVersionHint  = document.getElementById('modal-version-hint');
+        const modalConfirmInput = document.getElementById('modal-confirm-input');
+        const modalError        = document.getElementById('modal-error');
+        const modalCancelBtn    = document.getElementById('modal-cancel-btn');
+        const modalDeleteBtn    = document.getElementById('modal-delete-btn');
+
+        let pendingDeleteId = null;
+
+        function openDeleteModal(id, version) {
+          pendingDeleteId = id;
+          modalVersionHint.textContent = `v${version}`;
+          modalConfirmInput.value = '';
+          modalDeleteBtn.disabled = true;
+          modalError.hidden = true;
+          deleteModal.hidden = false;
+          modalConfirmInput.focus();
+        }
+
+        function closeDeleteModal() {
+          deleteModal.hidden = true;
+          pendingDeleteId = null;
+          modalConfirmInput.value = '';
+        }
+
+        // Open modal when a Delete button is clicked
+        document.getElementById('release-tbody').addEventListener('click', (e) => {
+          const btn = e.target.closest('.admin-delete-btn');
+          if (!btn) return;
+          openDeleteModal(btn.dataset.id, btn.dataset.version);
+        });
+
+        // Enable confirm button only when version is typed correctly
+        modalConfirmInput.addEventListener('input', () => {
+          const typed = modalConfirmInput.value.trim();
+          const hint  = modalVersionHint.textContent; // "v2.4.0"
+          modalDeleteBtn.disabled = typed !== hint && typed !== hint.slice(1); // accept with or without leading v
+        });
+
+        modalCancelBtn.addEventListener('click', closeDeleteModal);
+        deleteModal.addEventListener('click', (e) => { if (e.target === deleteModal) closeDeleteModal(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !deleteModal.hidden) closeDeleteModal(); });
+
+        modalDeleteBtn.addEventListener('click', async () => {
+          if (!pendingDeleteId) return;
+          modalDeleteBtn.disabled = true;
+          modalDeleteBtn.textContent = 'Deleting…';
+          modalError.hidden = true;
+
+          const res = await adminFetch(`/api/admin/release/${pendingDeleteId}`, auth, {
+            method: 'DELETE',
+          });
+
+          if (res?.ok) {
+            closeDeleteModal();
+            window.location.reload();
+          } else {
+            const err = await res?.json().catch(() => ({}));
+            modalError.textContent = `Delete failed: ${err?.error ?? 'Unknown error'}`;
+            modalError.hidden = false;
+            modalDeleteBtn.disabled = false;
+            modalDeleteBtn.textContent = 'Delete permanently';
           }
         });
 
