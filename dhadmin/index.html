@@ -80,10 +80,26 @@
             <div class="admin-stat-card__label">Latest version</div>
             <div class="admin-stat-card__value" id="stat-latest" style="font-size:var(--fs-20)">—</div>
           </div>
-          <div class="admin-stat-card">
-            <div class="admin-stat-card__label">Storage used <span style="font-weight:normal;opacity:.6">/ 10 GB</span></div>
-            <div class="admin-stat-card__value" id="stat-storage" style="font-size:var(--fs-20)">—</div>
-            <div id="stat-storage-note" style="font-size:var(--fs-12);margin-top:var(--space-1);line-height:1.4" hidden></div>
+          <div class="admin-stat-card" style="align-items:center">
+            <div class="admin-stat-card__label">Storage used</div>
+            <!-- Donut chart — filled by JS -->
+            <div style="position:relative;display:inline-flex;align-items:center;justify-content:center;margin:var(--space-2) 0">
+              <svg id="storage-donut" viewBox="0 0 80 80" width="88" height="88" aria-hidden="true">
+                <!-- Track -->
+                <circle cx="40" cy="40" r="30" fill="none" stroke="var(--border-1)" stroke-width="8"/>
+                <!-- Arc: stroke and dashoffset set by JS; circumference = 2π×30 ≈ 188.5 -->
+                <circle id="storage-arc" cx="40" cy="40" r="30" fill="none"
+                  stroke="#22c55e" stroke-width="8"
+                  stroke-dasharray="188.5 188.5" stroke-dashoffset="188.5"
+                  stroke-linecap="round" transform="rotate(-90 40 40)"/>
+              </svg>
+              <!-- Centre label -->
+              <div style="position:absolute;text-align:center;line-height:1.25;pointer-events:none">
+                <div id="stat-storage" style="font-size:var(--fs-13);font-weight:var(--fw-bold);color:var(--fg-1)">—</div>
+                <div style="font-size:10px;color:var(--fg-3)">/ 10 GB</div>
+              </div>
+            </div>
+            <div id="stat-storage-note" style="font-size:var(--fs-11);text-align:center;line-height:1.4;max-width:130px" hidden></div>
           </div>
         </div>
 
@@ -229,27 +245,35 @@
       document.getElementById('stat-active').textContent    = active;
       document.getElementById('stat-downloads').textContent = allDownloads.toLocaleString();
       document.getElementById('stat-latest').textContent    = latest ? `v${latest.version}` : '—';
-      document.getElementById('stat-storage').textContent   = formatStorage(totalBytes);
 
-      // Storage warning — 10 GB is the soft cost threshold
-      const STORAGE_WARN_GB  = 8;   // amber warning at 80 %
-      const STORAGE_LIMIT_GB = 10;  // red warning at limit
-      const storageGb        = totalBytes / (1024 ** 3);
-      const storageCard      = document.getElementById('stat-storage').closest('.admin-stat-card');
-      const storageNote      = document.getElementById('stat-storage-note');
+      // ── Storage donut chart ────────────────────────────────────────────────
+      // Circumference = 2π × r(30) ≈ 188.5
+      const CIRC      = 2 * Math.PI * 30;
+      const storageGb = totalBytes / (1024 ** 3);
+      const pct       = Math.min(storageGb / 10, 1);      // 0–1, capped at 100 %
+      const hue       = 120 * (1 - pct);                  // green(120°) → red(0°)
+      const arcColor  = `hsl(${hue.toFixed(1)},65%,42%)`;
 
-      if (storageGb >= STORAGE_LIMIT_GB) {
-        storageCard.style.borderColor = 'var(--danger)';
-        storageCard.style.background  = 'color-mix(in srgb, var(--danger) 8%, var(--bg-1))';
-        document.getElementById('stat-storage').style.color = 'var(--danger)';
-        storageNote.textContent = '⚠ Over 10 GB limit — additional R2 costs apply.';
-        storageNote.hidden = false;
-      } else if (storageGb >= STORAGE_WARN_GB) {
-        storageCard.style.borderColor = 'var(--warning, #f59e0b)';
-        storageCard.style.background  = 'color-mix(in srgb, #f59e0b 8%, var(--bg-1))';
-        document.getElementById('stat-storage').style.color = 'var(--warning, #f59e0b)';
-        storageNote.textContent = `Approaching 10 GB limit (${((storageGb / STORAGE_LIMIT_GB) * 100).toFixed(0)}% used).`;
-        storageNote.hidden = false;
+      // Animate the arc
+      const arc = document.getElementById('storage-arc');
+      arc.setAttribute('stroke', arcColor);
+      arc.setAttribute('stroke-dashoffset', (CIRC * (1 - pct)).toFixed(2));
+
+      // Centre label
+      const storageValueEl = document.getElementById('stat-storage');
+      storageValueEl.textContent   = formatStorage(totalBytes);
+      storageValueEl.style.color   = pct >= 0.8 ? arcColor : 'var(--fg-1)';
+
+      // Warning note below the donut
+      const storageNote = document.getElementById('stat-storage-note');
+      if (pct >= 1) {
+        storageNote.textContent   = '⚠ Over 10 GB — extra R2 costs apply.';
+        storageNote.style.color   = arcColor;
+        storageNote.hidden        = false;
+      } else if (pct >= 0.8) {
+        storageNote.textContent   = `${(pct * 100).toFixed(0)}% of 10 GB used`;
+        storageNote.style.color   = arcColor;
+        storageNote.hidden        = false;
       }
 
       document.getElementById('table-loading').hidden = true;
