@@ -81,8 +81,9 @@
             <div class="admin-stat-card__value" id="stat-latest" style="font-size:var(--fs-20)">—</div>
           </div>
           <div class="admin-stat-card">
-            <div class="admin-stat-card__label">Storage used</div>
+            <div class="admin-stat-card__label">Storage used <span style="font-weight:normal;opacity:.6">/ 10 GB</span></div>
             <div class="admin-stat-card__value" id="stat-storage" style="font-size:var(--fs-20)">—</div>
+            <div id="stat-storage-note" style="font-size:var(--fs-12);margin-top:var(--space-1);line-height:1.4" hidden></div>
           </div>
         </div>
 
@@ -229,6 +230,27 @@
       document.getElementById('stat-downloads').textContent = allDownloads.toLocaleString();
       document.getElementById('stat-latest').textContent    = latest ? `v${latest.version}` : '—';
       document.getElementById('stat-storage').textContent   = formatStorage(totalBytes);
+
+      // Storage warning — 10 GB is the soft cost threshold
+      const STORAGE_WARN_GB  = 8;   // amber warning at 80 %
+      const STORAGE_LIMIT_GB = 10;  // red warning at limit
+      const storageGb        = totalBytes / (1024 ** 3);
+      const storageCard      = document.getElementById('stat-storage').closest('.admin-stat-card');
+      const storageNote      = document.getElementById('stat-storage-note');
+
+      if (storageGb >= STORAGE_LIMIT_GB) {
+        storageCard.style.borderColor = 'var(--danger)';
+        storageCard.style.background  = 'color-mix(in srgb, var(--danger) 8%, var(--bg-1))';
+        document.getElementById('stat-storage').style.color = 'var(--danger)';
+        storageNote.textContent = '⚠ Over 10 GB limit — additional R2 costs apply.';
+        storageNote.hidden = false;
+      } else if (storageGb >= STORAGE_WARN_GB) {
+        storageCard.style.borderColor = 'var(--warning, #f59e0b)';
+        storageCard.style.background  = 'color-mix(in srgb, #f59e0b 8%, var(--bg-1))';
+        document.getElementById('stat-storage').style.color = 'var(--warning, #f59e0b)';
+        storageNote.textContent = `Approaching 10 GB limit (${((storageGb / STORAGE_LIMIT_GB) * 100).toFixed(0)}% used).`;
+        storageNote.hidden = false;
+      }
 
       document.getElementById('table-loading').hidden = true;
       document.getElementById('table-wrap').hidden    = false;
