@@ -12,6 +12,18 @@
   <link rel="stylesheet" href="styles/case-study.css?v=20260602" />
   <link rel="preconnect" href="https://unpkg.com" />
   <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js" defer></script>
+  <style>
+    /* Clarity hero portal mock — recolour to the brand's black (#161717)
+       and yellow (#FFD200), scoped so it doesn't affect other case studies. */
+    .cs-portal-mock--clarity .cs-tile.d-navy  { background: linear-gradient(135deg, #161717, #3a3b3b); }
+    .cs-portal-mock--clarity .cs-tile.d-deep  { background: linear-gradient(135deg, #0b0b0b, #2a2b2b); }
+    .cs-portal-mock--clarity .cs-tile.d-steel { background: linear-gradient(135deg, #4a4b4b, #6e6f6f); }
+    .cs-portal-mock--clarity .cs-tile.d-orange { background: linear-gradient(135deg, #FFD200, #ffe04d); }
+    .cs-portal-mock--clarity .cs-tile.d-orange .dash-label { color: rgba(22,23,23,0.9); }
+    .cs-portal-mock--clarity .cs-tile.d-orange .mini i { background: rgba(22,23,23,0.5); }
+    .cs-portal-mock--clarity .cs-cert.live { background: #FFD200; color: #161717; }
+    .cs-portal-mock--clarity .cs-portal-search .badge { background: #161717; color: #FFD200; }
+  </style>
 </head>
 <body>
 
@@ -128,10 +140,10 @@
 
             <!-- Right: Go2Insight analytics-portal mock -->
             <div data-cs-reveal style="transition-delay: 120ms;">
-              <div class="cs-portal-mock" role="img" aria-label="Go2Insight — Clarity's analytics portal powered by Digital Hive">
+              <div class="cs-portal-mock cs-portal-mock--clarity" role="img" aria-label="ClarityInsights — Clarity's analytics portal powered by Digital Hive">
                 <div class="cs-portal-chrome">
                   <div class="cs-portal-dots"><span></span><span></span><span></span></div>
-                  <div class="cs-portal-url">go2insight.clarity.travel&nbsp;/&nbsp;portal</div>
+                  <div class="cs-portal-url">clarityinsights.clarity.travel&nbsp;/&nbsp;portal</div>
                 </div>
                 <div class="cs-portal-body">
                   <div class="cs-portal-search">
