@@ -162,6 +162,67 @@
     </div>
   </footer>
 
+  <!-- ============================================================
+       EULA / LICENSE AGREEMENT MODAL
+       Shown when a download button is clicked.
+       ============================================================ -->
+  <div id="eula-modal" class="eula-overlay" hidden
+       role="dialog" aria-modal="true" aria-labelledby="eula-modal-title">
+    <div class="eula-modal">
+
+      <div class="eula-modal__header">
+        <h2 id="eula-modal-title">License Agreement</h2>
+        <p>Please read and accept the following before downloading.</p>
+      </div>
+
+      <div class="eula-modal__body">
+        <h3>Notice</h3>
+        <p>The following language is for informational purposes only. Please refer to your contract for more details.</p>
+        <p>This copy of Digital Hive and accompanying documentation (collectively "Software Product") is licensed and not sold. This Software Product is protected by copyright laws and treaties, as well as laws and treaties related to other forms of intellectual property. Digital Hive Software Inc, or its subsidiaries, affiliates, and suppliers (collectively "Digital Hive Software Inc") own intellectual property rights in the Software Product.</p>
+
+        <h4>Definitions</h4>
+        <dl>
+          <dt>Confidential Information</dt>
+          <dd>shall mean non-public information of a party that is marked or otherwise identified as confidential at the time of disclosure, or that a reasonable person would understand to be confidential based on the nature of the information and the circumstances surrounding disclosure. As an example only and not by way of limitation, Digital Hive Software Inc's Executable Code, Source Code, Software Product, Documentation, and any idea, algorithm, or trade secrets of Digital Hive Software Inc in the Software Product or Documentation will be deemed to be Digital Hive Software Inc's Confidential Information.</dd>
+
+          <dt>Documentation</dt>
+          <dd>shall mean the user manuals and/or other documentation provided to You along with the Software, whether in tangible or electronic form.</dd>
+
+          <dt>Executable Code</dt>
+          <dd>shall mean the fully compiled version of a software program that can be executed by a computer and used by an end-user without further compilation.</dd>
+
+          <dt>Intellectual Property Rights</dt>
+          <dd>shall mean all copyrights, trademarks, service marks, trade secrets, patents, moral rights, contract rights, and other proprietary rights.</dd>
+
+          <dt>Service Bureau</dt>
+          <dd>includes but is not limited to application service providers, hosting companies and Internet portals that would use the software for the benefit of third party to third party transactions.</dd>
+
+          <dt>Source Code</dt>
+          <dd>shall mean the human-readable version of a software program that can be compiled into Executable Code.</dd>
+        </dl>
+
+        <h4>Restrictions on Use</h4>
+        <p>You may not:</p>
+        <ul>
+          <li>use, copy, or install the Software Product on any system with more than one computer, or permit the use, copying, or installation of the Software Product by more than the licensed number of users, if restricted in your contract;</li>
+          <li>modify, adapt, alter, or translate the Software Product unless you have requested, in writing, permission from Digital Hive Software Inc and such permission has been granted to you in writing from Digital Hive Software Inc;</li>
+          <li>sell, distribute, transfer sublicense, lease, rent, or loan the Software Product to any third party (other than to another user who has accepted and agreed to be bound by the terms of the Agreement);</li>
+          <li>reverse engineer, decompile, disassemble, or otherwise attempt to derive the Software Product's Source Code;</li>
+          <li>circumvent technological measures intended to control access to the Software Product;</li>
+          <li>develop, distribute, or use with the Software Product any products that circumvent the technological measures;</li>
+          <li>use the Software Product in connection with the operations of a Service Bureau, in a time-sharing environment, or for the benefit of any third party; or</li>
+          <li>use the Software Product except as expressly allowed in your contract.</li>
+        </ul>
+      </div>
+
+      <div class="eula-modal__footer">
+        <button id="eula-decline" class="btn btn--ghost" type="button">Decline</button>
+        <button id="eula-accept" class="btn btn--primary" type="button">Accept &amp; Download</button>
+      </div>
+
+    </div>
+  </div>
+
   <script src="../scripts/consent.js"></script>
   <script src="../scripts/site.js"></script>
   <!-- marked: markdown renderer for release notes (pinned major version) -->

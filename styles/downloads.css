@@ -276,6 +276,107 @@
 }
 
 /* -----------------------------------------------------------
+   EULA / License modal
+   ----------------------------------------------------------- */
+.eula-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-5);
+  backdrop-filter: blur(3px);
+}
+
+.eula-overlay[hidden] { display: none; }
+
+.eula-modal {
+  background: var(--bg-1);
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-4, 0 24px 64px rgba(0,0,0,.22));
+  width: 100%;
+  max-width: 660px;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.eula-modal__header {
+  padding: var(--space-5) var(--space-6);
+  border-bottom: 1px solid var(--border-2);
+  flex-shrink: 0;
+}
+
+.eula-modal__header h2 {
+  font-size: var(--fs-20);
+  font-weight: var(--fw-bold);
+  color: var(--fg-1);
+  margin: 0 0 var(--space-1);
+}
+
+.eula-modal__header p {
+  font-size: var(--fs-13);
+  color: var(--fg-3);
+  margin: 0;
+}
+
+.eula-modal__body {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-5) var(--space-6);
+  font-size: var(--fs-14);
+  line-height: var(--lh-loose);
+  color: var(--fg-2);
+}
+
+.eula-modal__body h3 {
+  font-size: var(--fs-15);
+  font-weight: var(--fw-bold);
+  color: var(--fg-1);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  margin: 0 0 var(--space-4);
+}
+
+.eula-modal__body h4 {
+  font-size: var(--fs-14);
+  font-weight: var(--fw-bold);
+  color: var(--fg-1);
+  margin: var(--space-6) 0 var(--space-3);
+}
+
+.eula-modal__body p { margin: 0 0 var(--space-3); }
+
+.eula-modal__body dl { margin: 0 0 var(--space-3); }
+.eula-modal__body dt {
+  font-weight: var(--fw-bold);
+  color: var(--fg-1);
+  margin-top: var(--space-4);
+}
+.eula-modal__body dd { margin: var(--space-1) 0 0 var(--space-4); }
+
+.eula-modal__body ul {
+  padding-left: var(--space-6);
+  margin: var(--space-3) 0;
+}
+.eula-modal__body li { margin-bottom: var(--space-3); }
+
+.eula-modal__footer {
+  padding: var(--space-4) var(--space-6);
+  border-top: 1px solid var(--border-2);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  flex-shrink: 0;
+  background: var(--bg-2);
+}
+
+/* -----------------------------------------------------------
    Responsive tweaks
    ----------------------------------------------------------- */
 @media (max-width: 600px) {

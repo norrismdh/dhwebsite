@@ -110,6 +110,39 @@ function renderCard(release) {
     </article>`;
 }
 
+// ── EULA modal ────────────────────────────────────────────────────────────────
+
+const eulaModal   = document.getElementById('eula-modal');
+const eulaAccept  = document.getElementById('eula-accept');
+const eulaDecline = document.getElementById('eula-decline');
+
+let pendingDownloadUrl = null;
+
+function openEula(url) {
+  pendingDownloadUrl = url;
+  eulaModal.hidden   = false;
+  document.body.style.overflow = 'hidden';
+  eulaAccept.focus();
+}
+
+function closeEula() {
+  eulaModal.hidden   = true;
+  pendingDownloadUrl = null;
+  document.body.style.overflow = '';
+}
+
+eulaAccept.addEventListener('click', () => {
+  const url = pendingDownloadUrl;
+  closeEula();
+  if (url) window.location.href = url;
+});
+
+eulaDecline.addEventListener('click', closeEula);
+
+// Close on backdrop click or Escape
+eulaModal.addEventListener('click', (e) => { if (e.target === eulaModal) closeEula(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !eulaModal.hidden) closeEula(); });
+
 // ── Main ──────────────────────────────────────────────────────────────────────
 
 async function loadReleases() {
@@ -127,6 +160,15 @@ async function loadReleases() {
     }
 
     listEl.innerHTML = releases.map(renderCard).join('');
+
+    // Intercept all download button clicks — show EULA before navigating
+    listEl.addEventListener('click', (e) => {
+      const btn = e.target.closest('.dl-btn');
+      if (!btn) return;
+      e.preventDefault();
+      openEula(btn.href);
+    });
+
   } catch (err) {
     console.error('[downloads]', err.message);
     loadingEl.hidden = true;
