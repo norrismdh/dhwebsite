@@ -80,6 +80,10 @@
             <div class="admin-stat-card__label">Latest version</div>
             <div class="admin-stat-card__value" id="stat-latest" style="font-size:var(--fs-20)">—</div>
           </div>
+          <div class="admin-stat-card">
+            <div class="admin-stat-card__label">Storage used</div>
+            <div class="admin-stat-card__value" id="stat-storage" style="font-size:var(--fs-20)">—</div>
+          </div>
         </div>
 
         <!-- Release table panel -->
@@ -208,13 +212,23 @@
         </tr>`).join('');
 
       // Populate stat cards
-      const active      = releases.filter(r => r.enabled).length;
+      const active       = releases.filter(r => r.enabled).length;
       const allDownloads = releases.reduce((s, r) => s + totalDownloads(r.files), 0);
-      const latest      = releases.find(r => r.enabled);
+      const latest       = releases.find(r => r.enabled);
+      const totalBytes   = releases.reduce((s, r) =>
+        s + Object.values(r.files ?? {}).reduce((fs, f) => fs + (f.sizeBytes ?? 0), 0), 0);
+
+      function formatStorage(bytes) {
+        if (!bytes) return '0 MB';
+        const gb = bytes / (1024 ** 3);
+        if (gb >= 1) return `${gb.toFixed(2)} GB`;
+        return `${(bytes / (1024 ** 2)).toFixed(0)} MB`;
+      }
 
       document.getElementById('stat-active').textContent    = active;
       document.getElementById('stat-downloads').textContent = allDownloads.toLocaleString();
       document.getElementById('stat-latest').textContent    = latest ? `v${latest.version}` : '—';
+      document.getElementById('stat-storage').textContent   = formatStorage(totalBytes);
 
       document.getElementById('table-loading').hidden = true;
       document.getElementById('table-wrap').hidden    = false;
