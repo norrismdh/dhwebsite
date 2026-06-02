@@ -13,17 +13,18 @@
   <link rel="preconnect" href="https://unpkg.com" />
   <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js" defer></script>
   <style>
-    /* Denver hero portal mock — recolour to University of Denver brand
-       (crimson #C8102E + gold #FFC72C), scoped so it doesn't affect other
-       case studies that share the .cs-tile classes. */
-    .cs-portal-mock--denver .cs-tile.d-navy  { background: linear-gradient(135deg, #C8102E, #9e0c24); }
-    .cs-portal-mock--denver .cs-tile.d-deep  { background: linear-gradient(135deg, #6e0a1a, #a80c26); }
-    .cs-portal-mock--denver .cs-tile.d-steel { background: linear-gradient(135deg, #3a3b3b, #5c5d5d); }
-    .cs-portal-mock--denver .cs-tile.d-orange { background: linear-gradient(135deg, #FFC72C, #ffd95e); }
+    /* Denver hero portal mock — recolour to the official University of Denver
+       brand palette: DU Crimson #BA0C2F (primary), DU Gold #A89968, with the
+       approved Navy Secondary #375060 and Dark Grey Secondary #54565B for tile
+       variety. Scoped so it doesn't affect case studies sharing .cs-tile. */
+    .cs-portal-mock--denver .cs-tile.d-navy  { background: linear-gradient(135deg, #BA0C2F, #8a0a23); }
+    .cs-portal-mock--denver .cs-tile.d-deep  { background: linear-gradient(135deg, #375060, #2a3d4a); }
+    .cs-portal-mock--denver .cs-tile.d-steel { background: linear-gradient(135deg, #54565B, #3f4044); }
+    .cs-portal-mock--denver .cs-tile.d-orange { background: linear-gradient(135deg, #A89968, #CCBA8C); }
     .cs-portal-mock--denver .cs-tile.d-orange .dash-label { color: rgba(26,26,26,0.9); }
-    .cs-portal-mock--denver .cs-tile.d-orange .mini i { background: rgba(26,26,26,0.45); }
-    .cs-portal-mock--denver .cs-cert.live { background: #FFC72C; color: #1a1a1a; }
-    .cs-portal-mock--denver .cs-portal-search .badge { background: #C8102E; color: #fff; }
+    .cs-portal-mock--denver .cs-tile.d-orange .mini i { background: rgba(26,26,26,0.5); }
+    .cs-portal-mock--denver .cs-cert.live { background: #A89968; color: #1a1a1a; }
+    .cs-portal-mock--denver .cs-portal-search .badge { background: #BA0C2F; color: #fff; }
   </style>
 </head>
 <body>
