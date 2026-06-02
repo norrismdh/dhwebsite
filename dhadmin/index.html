@@ -83,20 +83,21 @@
           <div class="admin-stat-card" style="align-items:center">
             <div class="admin-stat-card__label">Storage used</div>
             <!-- Donut chart — filled by JS -->
+            <!-- viewBox 100×100, r=44, stroke-width=5 → inner diameter ≈ 78 vbox units = ~117px rendered -->
             <div style="position:relative;display:inline-flex;align-items:center;justify-content:center;margin:var(--space-2) 0">
-              <svg id="storage-donut" viewBox="0 0 80 80" width="88" height="88" aria-hidden="true">
+              <svg id="storage-donut" viewBox="0 0 100 100" width="140" height="140" aria-hidden="true">
                 <!-- Track -->
-                <circle cx="40" cy="40" r="30" fill="none" stroke="var(--border-1)" stroke-width="8"/>
-                <!-- Arc: stroke and dashoffset set by JS; circumference = 2π×30 ≈ 188.5 -->
-                <circle id="storage-arc" cx="40" cy="40" r="30" fill="none"
-                  stroke="#22c55e" stroke-width="8"
-                  stroke-dasharray="188.5 188.5" stroke-dashoffset="188.5"
-                  stroke-linecap="round" transform="rotate(-90 40 40)"/>
+                <circle cx="50" cy="50" r="44" fill="none" stroke="var(--border-1)" stroke-width="5"/>
+                <!-- Arc: stroke and dashoffset set by JS; circumference = 2π×44 ≈ 276.46 -->
+                <circle id="storage-arc" cx="50" cy="50" r="44" fill="none"
+                  stroke="#22c55e" stroke-width="5"
+                  stroke-dasharray="276.46 276.46" stroke-dashoffset="276.46"
+                  stroke-linecap="round" transform="rotate(-90 50 50)"/>
               </svg>
-              <!-- Centre label -->
-              <div style="position:absolute;text-align:center;line-height:1.25;pointer-events:none">
-                <div id="stat-storage" style="font-size:var(--fs-13);font-weight:var(--fw-bold);color:var(--fg-1)">—</div>
-                <div style="font-size:10px;color:var(--fg-3)">/ 10 GB</div>
+              <!-- Centre label — sits inside the ring with room to spare -->
+              <div style="position:absolute;text-align:center;line-height:1.3;pointer-events:none">
+                <div id="stat-storage" style="font-size:var(--fs-16);font-weight:var(--fw-bold);color:var(--fg-1)">—</div>
+                <div style="font-size:11px;color:var(--fg-3);margin-top:2px">/ 10 GB</div>
               </div>
             </div>
             <div id="stat-storage-note" style="font-size:var(--fs-11);text-align:center;line-height:1.4;max-width:130px" hidden></div>
@@ -247,8 +248,8 @@
       document.getElementById('stat-latest').textContent    = latest ? `v${latest.version}` : '—';
 
       // ── Storage donut chart ────────────────────────────────────────────────
-      // Circumference = 2π × r(30) ≈ 188.5
-      const CIRC      = 2 * Math.PI * 30;
+      // Circumference = 2π × r(44) ≈ 276.46
+      const CIRC      = 2 * Math.PI * 44;
       const storageGb = totalBytes / (1024 ** 3);
       const pct       = Math.min(storageGb / 10, 1);      // 0–1, capped at 100 %
       const hue       = 120 * (1 - pct);                  // green(120°) → red(0°)
