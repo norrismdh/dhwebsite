@@ -1,5 +1,8 @@
 /* =============================================================
-   Pattison Case Study page
+   Case Study template — shared by Pattison, Clarity, etc.
+   Generic .cs-* component styles. Page-specific accents (e.g. the
+   Clarity analytics portal-mock tiles) live in the section at the
+   bottom of this file.
    ============================================================= */
 
 /* -----------------------------------------------------------
@@ -924,3 +927,60 @@
   transition: border-color var(--dur-base) var(--ease-out);
 }
 .cs-btn-dark-secondary:hover { border-color: #fff; }
+
+/* =============================================================
+   Text wordmark (used when a customer has no logo asset)
+   ============================================================= */
+.cs-customer-wordmark {
+  font-size: 26px;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.04em;
+  color: var(--dh-navy);
+  line-height: 1;
+}
+.cs-customer-wordmark::after {
+  content: ".";
+  color: var(--dh-orange);
+}
+
+/* =============================================================
+   Clarity — analytics portal-mock tiles (Go2Insight dashboards)
+   Repurposes the .cs-tile block as little dashboard cards with
+   mini bar/line charts and connected-feed labels.
+   ============================================================= */
+.cs-tile.d-navy  { background: linear-gradient(135deg, #193359, #2d5183); }
+.cs-tile.d-orange{ background: linear-gradient(135deg, #f39235, #fab400); }
+.cs-tile.d-steel { background: linear-gradient(135deg, #4a5b6e, #708795); }
+.cs-tile.d-deep  { background: linear-gradient(135deg, #122844, #1f4a7a); }
+.cs-tile.d-navy, .cs-tile.d-orange, .cs-tile.d-steel, .cs-tile.d-deep {
+  aspect-ratio: 4/3;
+}
+.cs-tile .dash-label {
+  position: absolute; top: 7px; left: 8px;
+  font-size: 8px; font-weight: var(--fw-bold); letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.92); text-transform: uppercase;
+}
+.cs-tile.d-orange .dash-label { color: rgba(25,51,89,0.85); }
+.cs-tile .mini {
+  position: absolute; left: 8px; right: 8px; bottom: 8px;
+  display: flex; gap: 3px; align-items: flex-end; height: 30px;
+}
+.cs-tile .mini i { flex: 1; background: rgba(255,255,255,0.55); border-radius: 1px; }
+.cs-tile.d-orange .mini i { background: rgba(25,51,89,0.45); }
+.cs-tile .line {
+  position: absolute; left: 8px; right: 8px; bottom: 12px; height: 20px;
+  background:
+    linear-gradient(to top right, transparent 48%, rgba(255,255,255,0.6) 49%, rgba(255,255,255,0.6) 52%, transparent 53%);
+}
+.cs-tile.feed {
+  background: var(--bg-1);
+  border: 1px solid var(--border-2);
+  color: var(--dh-grey);
+  font-size: 10px;
+  font-weight: var(--fw-bold);
+  letter-spacing: 0.03em;
+  justify-content: center;
+  align-items: center;
+  aspect-ratio: 3/2;
+}
+.cs-cert.live { background: var(--dh-orange); }
