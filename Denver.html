@@ -12,6 +12,19 @@
   <link rel="stylesheet" href="styles/case-study.css?v=20260602" />
   <link rel="preconnect" href="https://unpkg.com" />
   <script src="https://unpkg.com/lucide@0.460.0/dist/umd/lucide.min.js" defer></script>
+  <style>
+    /* Denver hero portal mock — recolour to University of Denver brand
+       (crimson #C8102E + gold #FFC72C), scoped so it doesn't affect other
+       case studies that share the .cs-tile classes. */
+    .cs-portal-mock--denver .cs-tile.d-navy  { background: linear-gradient(135deg, #C8102E, #9e0c24); }
+    .cs-portal-mock--denver .cs-tile.d-deep  { background: linear-gradient(135deg, #6e0a1a, #a80c26); }
+    .cs-portal-mock--denver .cs-tile.d-steel { background: linear-gradient(135deg, #3a3b3b, #5c5d5d); }
+    .cs-portal-mock--denver .cs-tile.d-orange { background: linear-gradient(135deg, #FFC72C, #ffd95e); }
+    .cs-portal-mock--denver .cs-tile.d-orange .dash-label { color: rgba(26,26,26,0.9); }
+    .cs-portal-mock--denver .cs-tile.d-orange .mini i { background: rgba(26,26,26,0.45); }
+    .cs-portal-mock--denver .cs-cert.live { background: #FFC72C; color: #1a1a1a; }
+    .cs-portal-mock--denver .cs-portal-search .badge { background: #C8102E; color: #fff; }
+  </style>
 </head>
 <body>
 
@@ -127,7 +140,7 @@
 
             <!-- Right: research-assistant portal mock -->
             <div data-cs-reveal style="transition-delay: 120ms;">
-              <div class="cs-portal-mock" role="img" aria-label="University of Denver — the Digital Hive research-assistant portal">
+              <div class="cs-portal-mock cs-portal-mock--denver" role="img" aria-label="University of Denver — the Digital Hive research-assistant portal">
                 <div class="cs-portal-chrome">
                   <div class="cs-portal-dots"><span></span><span></span><span></span></div>
                   <div class="cs-portal-url">hive.du.edu&nbsp;/&nbsp;research-assistant</div>
