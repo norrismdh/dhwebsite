@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
-  <title>Releases — Downloads Admin — Digital Hive</title>
-  <!-- No marketing nav/footer on admin pages — admin has its own chrome -->
+  <title>Releases - Downloads Admin - Digital Hive</title>
+  <!-- No marketing nav/footer on admin pages - admin has its own chrome -->
   <link rel="stylesheet" href="../styles/tokens.css" />
   <link rel="stylesheet" href="../styles/site.css" />
   <link rel="stylesheet" href="../styles/dhadmin.css" />
@@ -13,7 +13,7 @@
 <body>
 
   <!-- ============================================================
-       AUTH LOADING — shown while MSAL initialises / redirecting
+       AUTH LOADING - shown while MSAL initialises / redirecting
        ============================================================ -->
   <div id="admin-loading" class="admin-loading" role="status" aria-live="polite">
     <div class="admin-loading__spinner" aria-hidden="true"></div>
@@ -21,7 +21,7 @@
   </div>
 
   <!-- ============================================================
-       ADMIN APP — hidden until auth confirmed
+       ADMIN APP - hidden until auth confirmed
        ============================================================ -->
   <div id="admin-app" hidden>
 
@@ -66,19 +66,19 @@
         <div class="admin-stats">
           <div class="admin-stat-card">
             <div class="admin-stat-card__label">Active releases</div>
-            <div class="admin-stat-card__value" id="stat-active">—</div>
+            <div class="admin-stat-card__value" id="stat-active">-</div>
           </div>
           <div class="admin-stat-card">
             <div class="admin-stat-card__label">Total downloads</div>
-            <div class="admin-stat-card__value" id="stat-downloads">—</div>
+            <div class="admin-stat-card__value" id="stat-downloads">-</div>
           </div>
           <div class="admin-stat-card">
             <div class="admin-stat-card__label">Latest version</div>
-            <div class="admin-stat-card__value" id="stat-latest" style="font-size:var(--fs-20)">—</div>
+            <div class="admin-stat-card__value" id="stat-latest" style="font-size:var(--fs-20)">-</div>
           </div>
           <div class="admin-stat-card">
             <div class="admin-stat-card__label">Storage used</div>
-            <!-- Donut chart — filled by JS -->
+            <!-- Donut chart - filled by JS -->
             <!-- viewBox 100×100, r=44, stroke-width=5 → inner diameter ≈ 78 vbox units = ~117px rendered -->
             <div style="flex:1;display:flex;align-items:center;justify-content:center;position:relative;margin:var(--space-2) 0">
               <svg id="storage-donut" viewBox="0 0 100 100" width="140" height="140" aria-hidden="true">
@@ -90,9 +90,9 @@
                   stroke-dasharray="276.46 276.46" stroke-dashoffset="276.46"
                   stroke-linecap="round" transform="rotate(-90 50 50)"/>
               </svg>
-              <!-- Centre label — sits inside the ring with room to spare -->
+              <!-- Centre label - sits inside the ring with room to spare -->
               <div style="position:absolute;text-align:center;line-height:1.3;pointer-events:none">
-                <div id="stat-storage" style="font-size:var(--fs-16);font-weight:var(--fw-bold);color:var(--fg-1)">—</div>
+                <div id="stat-storage" style="font-size:var(--fs-16);font-weight:var(--fw-bold);color:var(--fg-1)">-</div>
                 <div style="font-size:11px;color:var(--fg-3);margin-top:2px">/ 10 GB</div>
               </div>
             </div>
@@ -165,14 +165,14 @@
     </div>
   </div>
 
-  <!-- MSAL is imported directly inside dhadmin.js (ES module) — no CDN tag needed -->
+  <!-- MSAL is imported directly inside dhadmin.js (ES module) - no CDN tag needed -->
   <script type="module">
     import { initAdmin, adminFetch } from '../scripts/dhadmin.js';
 
     // ── Helpers ──────────────────────────────────────────────────────────────
 
     function formatDate(iso) {
-      if (!iso) return '—';
+      if (!iso) return '-';
       return new Date(iso).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
     }
 
@@ -241,7 +241,7 @@
 
       document.getElementById('stat-active').textContent    = active;
       document.getElementById('stat-downloads').textContent = allDownloads.toLocaleString();
-      document.getElementById('stat-latest').textContent    = latest ? `v${latest.version}` : '—';
+      document.getElementById('stat-latest').textContent    = latest ? `v${latest.version}` : '-';
 
       // ── Storage donut chart ────────────────────────────────────────────────
       // Circumference = 2π × r(44) ≈ 276.46
@@ -264,7 +264,7 @@
       // Warning note below the donut
       const storageNote = document.getElementById('stat-storage-note');
       if (pct >= 1) {
-        storageNote.textContent   = '⚠ Over 10 GB — extra R2 costs apply.';
+        storageNote.textContent   = '⚠ Over 10 GB - extra R2 costs apply.';
         storageNote.style.color   = arcColor;
         storageNote.hidden        = false;
       } else if (pct >= 0.8) {
@@ -283,7 +283,7 @@
 
     async function main() {
       try {
-        // Initialise auth — redirects to Azure AD if not signed in
+        // Initialise auth - redirects to Azure AD if not signed in
         const auth = await initAdmin();
         if (!auth) return; // Redirect in progress
 
@@ -304,7 +304,7 @@
 
         renderTable(releases, auth);
 
-        // Quick enable/disable toggle — event delegation on the tbody
+        // Quick enable/disable toggle - event delegation on the tbody
         document.getElementById('release-tbody').addEventListener('click', async (e) => {
           const btn = e.target.closest('.admin-toggle-btn');
           if (!btn || btn.disabled) return;
@@ -325,7 +325,7 @@
           } else {
             btn.disabled    = false;
             btn.textContent = enabled ? 'Disable' : 'Enable';
-            alert('Toggle failed — please try again.');
+            alert('Toggle failed - please try again.');
           }
         });
 
