@@ -783,7 +783,7 @@ button { font-family: inherit; cursor: pointer; }
 /* -----------------------------------------------------------
    Problem section - 3 columns, muted
    ----------------------------------------------------------- */
-.problem { background: var(--bg-3); }
+.problem { background: var(--bg-1); }
 .problem__grid {
   display: grid;
   gap: var(--space-6);
@@ -820,7 +820,7 @@ button { font-family: inherit; cursor: pointer; }
 .promise {
   padding: 72px 0;
   text-align: center;
-  background: var(--bg-1);
+  background: var(--bg-3);
   position: relative;
 }
 @media (min-width: 768px) {
