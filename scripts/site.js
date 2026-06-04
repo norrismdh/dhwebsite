@@ -15,7 +15,7 @@
     const dir  = location.pathname.replace(/\\/g, '/').split('/').slice(0, -1).pop() || '';
     const base = ['use-cases', 'resources', 'vs'].includes(dir.toLowerCase()) ? '../' : '';
     const inPlatform = ['product.html', 'usecases.html', 'connectors.html', 'security.html'].includes(path);
-    const inResources = ['resources.html', 'faq.html', 'customers.html'].includes(path);
+    const inResources = ['resources.html', 'faq.html', 'customers.html', 'blog.html'].includes(path) || dir === 'blog';
     const inCompany = ['about.html', 'contact.html'].includes(path);
 
     // Icon factory — all hex-framed line icons, same visual weight
@@ -69,7 +69,7 @@
           { ico: ICO.question, label: 'FAQ',              sub: 'Common questions answered', href: 'FAQ.html' },
           { ico: ICO.book,     label: 'Resource library', sub: 'Reports, guides, briefs',   href: 'Resources.html' },
           { ico: ICO.users,    label: 'Customer stories', sub: 'Real outcomes, real teams', href: 'Customers.html' },
-          { ico: ICO.pencil,   label: 'Blog',             sub: 'Field notes from the team', href: 'Resources.html#blog' },
+          { ico: ICO.pencil,   label: 'Blog',             sub: 'Field notes from the team', href: 'Blog.html' },
           { ico: ICO.shield,   label: 'Trust Center',     sub: 'Security & compliance',     href: 'Security.html' },
         ],
         cta: { label: 'Open the library', href: 'Resources.html' },
