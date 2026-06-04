@@ -159,15 +159,6 @@
 @media (min-width: 768px) {
   .blog-feat__inner { grid-template-columns: 1fr auto; align-items: end; gap: var(--space-7); }
 }
-.blog-feat__inner::before {
-  content: '';
-  position: absolute;
-  top: -80px; right: -80px;
-  width: 320px; height: 320px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(243,146,53,0.16) 0%, transparent 70%);
-  pointer-events: none;
-}
 .blog-feat__eyebrow {
   display: inline-flex;
   align-items: center;
