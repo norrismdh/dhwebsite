@@ -55,10 +55,139 @@
          1 - HERO
          ============================================================ -->
     <section class="blog-hero" data-screen-label="01 Hero">
-      <div class="container reveal">
-        <span class="eyebrow">Digital Hive Blog</span>
-        <h1>What analytics leaders are reading.</h1>
-        <p class="blog-hero__sub">Strategy, education, and perspective for data and BI leaders navigating complex multi-tool analytics environments — without starting over.</p>
+      <div class="container blog-hero__grid">
+
+        <div class="blog-hero__copy reveal">
+          <span class="eyebrow">Digital Hive Blog</span>
+          <h1>What analytics leaders are reading.</h1>
+          <p class="blog-hero__sub">Strategy, education, and perspective for data and BI leaders navigating complex multi-tool analytics environments — without starting over.</p>
+        </div>
+
+        <!-- Browser / AI-news illustration -->
+        <div class="blog-hero__visual reveal" aria-hidden="true">
+          <svg class="blog-hero__svg" viewBox="0 0 440 308" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Browser window showing a BI and AI analytics news feed">
+            <defs>
+              <clipPath id="brClip">
+                <rect x="0" y="0" width="440" height="308" rx="10"/>
+              </clipPath>
+            </defs>
+
+            <g clip-path="url(#brClip)">
+
+              <!-- Chrome bar -->
+              <rect x="0" y="0" width="440" height="32" fill="#DDDFE1"/>
+              <circle cx="16" cy="16" r="5" fill="#FF5F57"/>
+              <circle cx="28" cy="16" r="5" fill="#FEBC2E"/>
+              <circle cx="40" cy="16" r="5" fill="#28C840"/>
+              <rect x="62" y="9" width="268" height="14" rx="7" fill="#FFFFFF" opacity="0.75"/>
+              <text x="196" y="20" text-anchor="middle" fill="#708795" font-family="Montserrat,sans-serif" font-size="7.5" font-weight="500">blog.digitalhive.com</text>
+
+              <!-- Page body -->
+              <rect x="0" y="32" width="440" height="276" fill="#F4F6F8"/>
+
+              <!-- Site nav -->
+              <rect x="0" y="32" width="440" height="26" fill="#FFFFFF"/>
+              <line x1="0" y1="58" x2="440" y2="58" stroke="#E7ECEF" stroke-width="1"/>
+              <text x="14" y="50" fill="#193359" font-family="Montserrat,sans-serif" font-size="11" font-weight="700">dh<tspan fill="#F39235">.</tspan></text>
+              <rect x="42" y="37" width="36" height="15" rx="4" fill="#193359"/>
+              <text x="60" y="48" text-anchor="middle" fill="#FFFFFF" font-family="Montserrat,sans-serif" font-size="7.5" font-weight="600">Latest</text>
+              <text x="90"  y="48" fill="#9AAEBE" font-family="Montserrat,sans-serif" font-size="7.5">Strategy</text>
+              <text x="131" y="48" fill="#9AAEBE" font-family="Montserrat,sans-serif" font-size="7.5">Catalogs</text>
+              <text x="177" y="48" fill="#9AAEBE" font-family="Montserrat,sans-serif" font-size="7.5">Guides</text>
+              <circle cx="422" cy="45" r="5.5" fill="none" stroke="#C9D2D9" stroke-width="1.5"/>
+              <line x1="425.9" y1="48.9" x2="428" y2="51" stroke="#C9D2D9" stroke-width="1.5" stroke-linecap="round"/>
+
+              <!-- Featured article (x=10,y=64,w=282,h=116; right=292) -->
+              <rect x="10" y="64" width="282" height="116" rx="6" fill="#FFFFFF" stroke="#E7ECEF" stroke-width="1"/>
+              <rect x="18" y="73" width="50" height="12" rx="4" fill="#EBF0FF"/>
+              <text x="43" y="82.5" text-anchor="middle" fill="#4285F4" font-family="Montserrat,sans-serif" font-size="7" font-weight="700">✦ AI Insight</text>
+              <rect x="74" y="73" width="64" height="12" rx="4" fill="#FFF3E6"/>
+              <text x="106" y="82.5" text-anchor="middle" fill="#F39235" font-family="Montserrat,sans-serif" font-size="7" font-weight="700">BI Modernization</text>
+              <!-- headline: x=18, available to x=212 (leaves room for sparkline at x=214-286) -->
+              <text x="18" y="100" fill="#193359" font-family="Montserrat,sans-serif" font-size="11" font-weight="700">Data catalogs are dead —</text>
+              <text x="18" y="113" fill="#193359" font-family="Montserrat,sans-serif" font-size="11" font-weight="700">the industry knows it.</text>
+              <!-- excerpt: 8px fits ~270px from x=18 → max ~44 chars -->
+              <text x="18" y="128" fill="#708795" font-family="Montserrat,sans-serif" font-size="8">A decade of promises. Most orgs got shelfware.</text>
+              <text x="18" y="142" fill="#A4B2BC" font-family="Montserrat,sans-serif" font-size="7">Mar 2026 · 7 min read</text>
+              <text x="238" y="142" fill="#F39235" font-family="Montserrat,sans-serif" font-size="7" font-weight="700">Read →</text>
+              <!-- sparkline top-right: x=214 to x=286 -->
+              <path d="M 214,95 L 225,87 L 237,91 L 250,79 L 263,84 L 278,73" stroke="#22A06B" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M 214,95 L 225,87 L 237,91 L 250,79 L 263,84 L 278,73 L 278,107 L 214,107Z" fill="#22A06B" opacity="0.08"/>
+
+              <!-- Article row 2 (y=186,h=36; chip x=18-80; text x=86 to x=284=198px; max ~39 chars at 7.5px) -->
+              <rect x="10" y="186" width="282" height="36" rx="5" fill="#FFFFFF" stroke="#E7ECEF" stroke-width="1"/>
+              <rect x="18" y="193" width="58" height="11" rx="3" fill="#EEF8F0"/>
+              <text x="47" y="202" text-anchor="middle" fill="#22A06B" font-family="Montserrat,sans-serif" font-size="6.5" font-weight="700">Analytics Catalogs</text>
+              <text x="84" y="200" fill="#193359" font-family="Montserrat,sans-serif" font-size="8" font-weight="600">Catalogs: valuable or just a checkbox?</text>
+              <text x="18" y="215" fill="#A4B2BC" font-family="Montserrat,sans-serif" font-size="6.5">Aug 2025 · 5 min read</text>
+              <text x="248" y="215" fill="#A4B2BC" font-family="Montserrat,sans-serif" font-size="6.5">Read →</text>
+
+              <!-- Article row 3 (y=228,h=36; chip x=18-64; text x=70 to x=284=214px; max ~42 chars at 7.5px) -->
+              <rect x="10" y="228" width="282" height="36" rx="5" fill="#FFFFFF" stroke="#E7ECEF" stroke-width="1"/>
+              <rect x="18" y="235" width="42" height="11" rx="3" fill="#FFF3E6"/>
+              <text x="39" y="244" text-anchor="middle" fill="#F39235" font-family="Montserrat,sans-serif" font-size="6.5" font-weight="700">BI Strategy</text>
+              <text x="68" y="242" fill="#193359" font-family="Montserrat,sans-serif" font-size="8" font-weight="600">The era of BI standardization is over.</text>
+              <text x="18" y="257" fill="#A4B2BC" font-family="Montserrat,sans-serif" font-size="6.5">Jul 2023 · 5 min read</text>
+
+              <!-- Article row 4 (y=270,h=28; chip x=18-72; text x=78 to x=284=206px; max ~40 chars at 7.5px) -->
+              <rect x="10" y="270" width="282" height="28" rx="5" fill="#FFFFFF" stroke="#E7ECEF" stroke-width="1"/>
+              <rect x="18" y="277" width="50" height="11" rx="3" fill="#F3E8FF"/>
+              <text x="43" y="286" text-anchor="middle" fill="#7C3AED" font-family="Montserrat,sans-serif" font-size="6.5" font-weight="700">Industry Trends</text>
+              <text x="76" y="286" fill="#193359" font-family="Montserrat,sans-serif" font-size="8" font-weight="600">Future of analytics: unified, not standard.</text>
+
+              <!-- Sidebar (x=298,y=64,w=132,h=234; text at x=328; right=430; avail=102px → ~20 chars@7px) -->
+              <rect x="298" y="64" width="132" height="234" rx="6" fill="#FFFFFF" stroke="#E7ECEF" stroke-width="1"/>
+              <text x="308" y="80" fill="#F39235" font-family="Montserrat,sans-serif" font-size="7" font-weight="700" letter-spacing="1">TRENDING</text>
+              <line x1="308" y1="85" x2="422" y2="85" stroke="#E7ECEF" stroke-width="1"/>
+
+              <!-- item 1 -->
+              <circle cx="316" cy="100" r="7" fill="#193359"/>
+              <text x="316" y="103" text-anchor="middle" fill="#FFFFFF" font-family="Montserrat,sans-serif" font-size="7" font-weight="700">1</text>
+              <text x="328" y="98"  fill="#193359" font-family="Montserrat,sans-serif" font-size="7" font-weight="600">Data catalogs are dead</text>
+              <text x="328" y="108" fill="#A4B2BC" font-family="Montserrat,sans-serif" font-size="6">7 min · Mar 2026</text>
+
+              <!-- item 2 -->
+              <circle cx="316" cy="124" r="7" fill="#F4F6F8" stroke="#E7ECEF" stroke-width="1"/>
+              <text x="316" y="127" text-anchor="middle" fill="#9AAEBE" font-family="Montserrat,sans-serif" font-size="7" font-weight="700">2</text>
+              <text x="328" y="122" fill="#193359" font-family="Montserrat,sans-serif" font-size="7" font-weight="600">How many BI tools?</text>
+              <text x="328" y="132" fill="#A4B2BC" font-family="Montserrat,sans-serif" font-size="6">5 min · BI Strategy</text>
+
+              <!-- item 3 -->
+              <circle cx="316" cy="150" r="7" fill="#F4F6F8" stroke="#E7ECEF" stroke-width="1"/>
+              <text x="316" y="153" text-anchor="middle" fill="#9AAEBE" font-family="Montserrat,sans-serif" font-size="7" font-weight="700">3</text>
+              <text x="328" y="148" fill="#193359" font-family="Montserrat,sans-serif" font-size="7" font-weight="600">Gartner MQ guide 2024</text>
+              <text x="328" y="158" fill="#A4B2BC" font-family="Montserrat,sans-serif" font-size="6">6 min · Education</text>
+
+              <!-- AI Summary box (x=306,y=172,w=118; text x=314; right=424; avail=110px → ~22 chars@7px) -->
+              <rect x="306" y="170" width="118" height="90" rx="6" fill="#EBF0FF"/>
+              <rect x="306" y="170" width="118" height="4"  rx="3" fill="#4285F4" opacity="0.6"/>
+              <text x="314" y="186" fill="#4285F4" font-family="Montserrat,sans-serif" font-size="7.5" font-weight="700">✦ AI Summary</text>
+              <text x="314" y="199" fill="#193359" font-family="Montserrat,sans-serif" font-size="7" font-weight="600">Top themes this week:</text>
+              <text x="314" y="212" fill="#193359" font-family="Montserrat,sans-serif" font-size="6.5">→ BI consolidation myths</text>
+              <text x="314" y="223" fill="#193359" font-family="Montserrat,sans-serif" font-size="6.5">→ Catalog adoption</text>
+              <text x="314" y="234" fill="#193359" font-family="Montserrat,sans-serif" font-size="6.5">→ Governance deficits</text>
+              <text x="314" y="252" fill="#4285F4" font-family="Montserrat,sans-serif" font-size="6.5" font-weight="600">Ask AI about this →</text>
+
+              <!-- Weekly reads bar chart -->
+              <line x1="306" y1="268" x2="422" y2="268" stroke="#E7ECEF" stroke-width="1"/>
+              <text x="306" y="278" fill="#9AAEBE" font-family="Montserrat,sans-serif" font-size="6">Reads this week</text>
+              <rect x="306" y="283" width="7" height="7"  rx="1" fill="#193359" opacity="0.40"/>
+              <rect x="315" y="279" width="7" height="11" rx="1" fill="#F39235" opacity="0.70"/>
+              <rect x="324" y="281" width="7" height="9"  rx="1" fill="#193359" opacity="0.35"/>
+              <rect x="333" y="277" width="7" height="13" rx="1" fill="#F39235" opacity="0.85"/>
+              <rect x="342" y="280" width="7" height="10" rx="1" fill="#193359" opacity="0.30"/>
+              <rect x="351" y="275" width="7" height="15" rx="1" fill="#F39235"/>
+              <rect x="360" y="279" width="7" height="11" rx="1" fill="#193359" opacity="0.45"/>
+              <rect x="369" y="274" width="7" height="16" rx="1" fill="#F39235" opacity="0.90"/>
+              <rect x="378" y="278" width="7" height="12" rx="1" fill="#22A06B" opacity="0.70"/>
+              <rect x="387" y="273" width="7" height="17" rx="1" fill="#F39235"/>
+              <rect x="396" y="277" width="7" height="13" rx="1" fill="#193359" opacity="0.50"/>
+              <rect x="405" y="272" width="7" height="18" rx="1" fill="#F39235" opacity="0.80"/>
+
+            </g>
+          </svg>
+        </div>
+
       </div>
     </section>
 
