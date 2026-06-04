@@ -786,10 +786,7 @@
 .pr-cta__motif {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(900px 320px at 90% 0%, rgba(243,146,53,0.12), transparent 60%),
-    radial-gradient(800px 280px at 0% 100%, rgba(250,180,0,0.08), transparent 60%),
-    repeating-linear-gradient(90deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 32px);
+  background: none;
   pointer-events: none;
 }
 .pr-cta .container { position: relative; z-index: 1; }

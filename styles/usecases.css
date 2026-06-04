@@ -24,9 +24,7 @@
   opacity: 0.55;
   background-image:
     radial-gradient(circle at 12% 88%, rgba(243, 146, 53, 0.10), transparent 42%),
-    radial-gradient(circle at 88% 14%, rgba(36, 66, 113, 0.10), transparent 50%),
-    repeating-linear-gradient(0deg,    rgba(25,51,89,0.04) 0 1px, transparent 1px 28px),
-    repeating-linear-gradient(90deg,   rgba(25,51,89,0.04) 0 1px, transparent 1px 28px);
+    radial-gradient(circle at 88% 14%, rgba(36, 66, 113, 0.10), transparent 50%);
 }
 
 .uc-hero .container { position: relative; z-index: 1; }
@@ -536,9 +534,7 @@
   pointer-events: none;
   opacity: 0.5;
   background-image:
-    radial-gradient(circle at 92% 18%, rgba(243, 146, 53, 0.12), transparent 45%),
-    repeating-linear-gradient(0deg,  rgba(255,255,255,0.025) 0 1px, transparent 1px 32px),
-    repeating-linear-gradient(90deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 32px);
+    radial-gradient(circle at 92% 18%, rgba(243, 146, 53, 0.12), transparent 45%);
 }
 .uc-cta .container { position: relative; z-index: 1; }
 

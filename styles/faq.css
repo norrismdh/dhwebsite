@@ -267,9 +267,7 @@
 .pr-cta__motif {
   position: absolute;
   inset: 0;
-  background:
-    repeating-linear-gradient(rgba(255,255,255,0.025) 0 1px, transparent 1px 32px),
-    repeating-linear-gradient(90deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 32px);
+  background: none;
   pointer-events: none;
 }
 .pr-cta .container { position: relative; z-index: 1; }
