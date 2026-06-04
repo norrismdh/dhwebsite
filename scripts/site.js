@@ -13,7 +13,7 @@
     // Current page detection + subdirectory base path
     const path = (location.pathname.split('/').pop() || 'Home.html').toLowerCase();
     const dir  = location.pathname.replace(/\\/g, '/').split('/').slice(0, -1).pop() || '';
-    const base = ['use-cases', 'resources', 'vs'].includes(dir.toLowerCase()) ? '../' : '';
+    const base = ['use-cases', 'resources', 'vs', 'blog'].includes(dir.toLowerCase()) ? '../' : '';
     const inPlatform = ['product.html', 'usecases.html', 'connectors.html', 'security.html'].includes(path);
     const inResources = ['resources.html', 'faq.html', 'customers.html', 'blog.html'].includes(path) || dir === 'blog';
     const inCompany = ['about.html', 'contact.html'].includes(path);
