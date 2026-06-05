@@ -888,7 +888,7 @@ button { font-family: inherit; cursor: pointer; }
 .promise {
   padding: 56px 0;
   text-align: center;
-  background: var(--bg-3);
+  background: var(--dh-white);
   position: relative;
 }
 @media (min-width: 768px) {
