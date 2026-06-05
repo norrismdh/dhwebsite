@@ -232,7 +232,7 @@ body::before {
   font-weight: var(--fw-bold);
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
-  color: var(--fg-3);
+  color: var(--fg-2);
   margin-bottom: 0;     /* gap handled by value's flex growth */
 }
 
@@ -299,7 +299,7 @@ body::before {
 
 .admin-table th {
   font-weight: var(--fw-bold);
-  color: var(--fg-3);
+  color: var(--fg-2);
   font-size: var(--fs-12);
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
@@ -353,7 +353,7 @@ body::before {
 
 .admin-status--off {
   background: var(--bg-3);
-  color: var(--fg-3);
+  color: var(--fg-2);
 }
 
 .admin-status__dot {
@@ -408,7 +408,7 @@ body::before {
 .form-optional {
   font-size: var(--fs-12);
   font-weight: var(--fw-regular);
-  color: var(--fg-3);
+  color: var(--fg-2);
   padding: 2px 6px;
   background: var(--bg-3);
   border-radius: var(--radius-sm);
@@ -416,11 +416,11 @@ body::before {
 .form-hint-inline {
   font-size: var(--fs-12);
   font-weight: var(--fw-regular);
-  color: var(--fg-3);
+  color: var(--fg-2);
 }
 .form-hint {
   font-size: var(--fs-12);
-  color: var(--fg-3);
+  color: var(--fg-2);
   line-height: var(--lh-base);
 }
 
@@ -521,7 +521,7 @@ body::before {
   align-items: center;
   gap: var(--space-3);
   padding: var(--space-7) var(--space-5);
-  color: var(--fg-3);
+  color: var(--fg-2);
   font-size: var(--fs-14);
   text-align: center;
   pointer-events: none;
@@ -536,11 +536,11 @@ body::before {
 }
 
 .file-zone__name { font-weight: var(--fw-medium); color: var(--fg-1); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.file-zone__size { color: var(--fg-3); flex-shrink: 0; }
+.file-zone__size { color: var(--fg-2); flex-shrink: 0; }
 .file-zone__clear {
   background: none;
   border: none;
-  color: var(--fg-3);
+  color: var(--fg-2);
   font-size: var(--fs-18);
   line-height: 1;
   cursor: pointer;
@@ -572,7 +572,7 @@ body::before {
 }
 
 .upload-prog__label   { font-weight: var(--fw-bold); font-size: var(--fs-14); }
-.upload-prog__filename { font-size: var(--fs-12); color: var(--fg-3); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.upload-prog__filename { font-size: var(--fs-12); color: var(--fg-2); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .upload-prog__pct     { font-weight: var(--fw-bold); font-size: var(--fs-14); color: var(--dh-navy); margin-left: auto; flex-shrink: 0; }
 
 .upload-prog__bar {
@@ -593,7 +593,7 @@ body::before {
 
 .upload-prog__parts {
   font-size: var(--fs-12);
-  color: var(--fg-3);
+  color: var(--fg-2);
 }
 
 /* -----------------------------------------------------------
@@ -683,7 +683,7 @@ body::before {
 .file-info-row:last-child { border-bottom: none; }
 
 .file-info-row__icon {
-  color: var(--fg-3);
+  color: var(--fg-2);
   flex-shrink: 0;
   margin-top: 2px;
 }
@@ -700,7 +700,7 @@ body::before {
   font-weight: var(--fw-bold);
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
-  color: var(--fg-3);
+  color: var(--fg-2);
 }
 
 .file-info-row__name {
@@ -710,12 +710,12 @@ body::before {
   word-break: break-all;
 }
 
-.file-info-row__meta { font-size: var(--fs-12); color: var(--fg-3); }
+.file-info-row__meta { font-size: var(--fs-12); color: var(--fg-2); }
 
 .file-info-row__key {
   font-size: var(--fs-12);
   font-family: var(--font-mono);
-  color: var(--fg-3);
+  color: var(--fg-2);
   word-break: break-all;
 }
 
