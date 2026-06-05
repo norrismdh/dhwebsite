@@ -64,7 +64,6 @@
   .ab2-hero__grid { grid-template-columns: 1.05fr 0.95fr; gap: 64px; }
 }
 .ab2-hero h1 {
-  font-size: clamp(34px, 4.8vw, 60px);
   line-height: 1.04;
   letter-spacing: -0.025em;
   color: var(--dh-navy);

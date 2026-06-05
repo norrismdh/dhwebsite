@@ -520,17 +520,19 @@ button { font-family: inherit; cursor: pointer; }
    Page-specific *-hero rules own only layout (margin, max-width). */
 .hero h1,
 .ab-hero h1,
+.ab2-hero h1,
 .cust-hero h1,
 .pr-hero h1,
 .res-hero h1,
 .cn-hero h1,
 .cmp-hero h1,
 .faq-hero h1,
+.blog-hero h1,
 .page-hero h1,
 .ct-hero h1,
 .uc-hero h1,
 .ucd-header h1 {
-  font-size: clamp(40px, 6vw, 76px);
+  font-size: clamp(36px, 5.4vw, 56px);
   line-height: 1.02;
   letter-spacing: -0.025em;
   color: var(--dh-navy);

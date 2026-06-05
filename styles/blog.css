@@ -24,7 +24,6 @@
 .blog-hero__copy { padding-bottom: 64px; }
 @media (min-width: 960px) { .blog-hero__copy { padding-bottom: 80px; } }
 .blog-hero h1 {
-  font-size: clamp(32px, 4.5vw, 52px);
   font-weight: var(--fw-bold);
   color: var(--dh-navy);
   letter-spacing: -0.02em;
