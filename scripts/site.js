@@ -104,10 +104,10 @@
 
       return `
         <li class="nav__item" data-mega="${key}">
-          <button class="nav__trigger${def.active ? ' is-current' : ''}" type="button" aria-haspopup="true" aria-expanded="false">
+          <a class="nav__trigger${def.active ? ' is-current' : ''}" href="${base}${def.href}" aria-haspopup="true" aria-expanded="false">
             <span>${def.label}</span>
             <svg class="nav__chev" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
-          </button>
+          </a>
           <div class="mega__panel" role="menu" aria-hidden="true">
             <span class="mega__caret" aria-hidden="true"></span>
             <div class="mega__panel-inner">
@@ -163,11 +163,15 @@
         clearTimeout(closeTimer);
         closeTimer = setTimeout(closeAll, 160);
       });
-      // Click trigger → toggle (also drives keyboard / touch)
+      // Click trigger → two-tap pattern:
+      // • Desktop hover already opens the panel, so click goes straight to the page.
+      // • Touch / keyboard: first tap opens the panel (preventDefault); second tap navigates.
       trigger.addEventListener('click', (e) => {
-        e.preventDefault();
-        if (li.classList.contains('is-open')) closeAll();
-        else openOne(li);
+        if (!li.classList.contains('is-open')) {
+          e.preventDefault();
+          openOne(li);
+        }
+        // Panel already open → let the <a> navigate normally (no preventDefault)
       });
       // Tab focus through links inside panel keeps it open
       li.addEventListener('focusin', () => { clearTimeout(closeTimer); openOne(li); });
