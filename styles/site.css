@@ -562,7 +562,7 @@ button { font-family: inherit; cursor: pointer; }
   align-items: center;
   gap: var(--space-3);
   font-size: var(--fs-14);
-  color: var(--fg-3);
+  color: var(--fg-2);
 }
 .hero__meta .dot { width: 4px; height: 4px; background: var(--dh-grey-light); border-radius: 50%; }
 
