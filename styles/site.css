@@ -794,7 +794,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 /* -----------------------------------------------------------
-   Problem section - 3 columns, muted
+   Problem section - 4 columns, muted
    ----------------------------------------------------------- */
 .problem { background: var(--bg-1); }
 .problem__grid {
@@ -802,18 +802,27 @@ button { font-family: inherit; cursor: pointer; }
   gap: var(--space-6);
   grid-template-columns: 1fr;
 }
-@media (min-width: 768px) { .problem__grid { grid-template-columns: repeat(3, 1fr); gap: var(--space-7); } }
+@media (min-width: 600px) { .problem__grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-6); } }
+@media (min-width: 960px) { .problem__grid { grid-template-columns: repeat(4, 1fr); gap: var(--space-7); } }
 
 .problem__item {
   border-top: 2px solid var(--dh-navy);
   padding-top: var(--space-5);
+  transition: border-color var(--dur-base) var(--ease-out);
 }
+.problem__item:hover { border-color: var(--dh-orange); }
+
 .problem__icon {
   width: 44px; height: 44px;
   display: grid; place-items: center;
   color: var(--dh-navy);
   margin-bottom: var(--space-4);
   opacity: 0.55;
+  transition: opacity var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out);
+}
+.problem__item:hover .problem__icon {
+  opacity: 1;
+  color: var(--dh-orange);
 }
 .problem__item h3 {
   font-size: var(--fs-24);
