@@ -1484,10 +1484,12 @@ button { font-family: inherit; cursor: pointer; }
 }
 .cta-banner .container { position: relative; }
 .cta-banner h2 {
-  font-size: clamp(36px, 5.5vw, 64px);
+  font-size: clamp(36px, 5.4vw, 56px);
+  font-weight: var(--fw-medium);
   color: #fff;
   margin: 0 0 var(--space-5);
   letter-spacing: -0.025em;
+  line-height: 1.02;
 }
 .cta-banner p {
   font-size: var(--fs-18);
