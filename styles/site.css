@@ -1049,7 +1049,7 @@ button { font-family: inherit; cursor: pointer; }
 /* -----------------------------------------------------------
    Social proof / logo bar
    ----------------------------------------------------------- */
-.proof { padding: 56px 0 44px; background: var(--bg-1); }
+.proof { padding: 56px 0 44px; background: var(--bg-3); }
 .proof__label {
   text-align: center;
   font-size: var(--fs-12);
