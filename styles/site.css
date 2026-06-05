@@ -539,11 +539,11 @@ button { font-family: inherit; cursor: pointer; }
   font-weight: var(--fw-medium);
 }
 .hero__sub {
-  font-size: var(--fs-20);
+  font-size: var(--fs-18);
   color: var(--fg-2);
   max-width: 540px;
   margin: 0 0 var(--space-7);
-  line-height: 1.55;
+  line-height: 1.5;
 }
 .hero__ctas { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-bottom: var(--space-6); }
 .hero__meta {

@@ -43,7 +43,7 @@
   max-width: 16ch;
 }
 .uc-hero__sub {
-  font-size: var(--fs-20);
+  font-size: var(--fs-18);
   color: var(--fg-2);
   margin: 0;
   max-width: 56ch;

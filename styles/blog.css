@@ -32,10 +32,10 @@
   max-width: 560px;
 }
 .blog-hero__sub {
-  font-size: var(--fs-20);
+  font-size: var(--fs-18);
   color: var(--fg-2);
   max-width: 480px;
-  line-height: var(--lh-loose);
+  line-height: 1.5;
   margin: 0;
 }
 .blog-hero__visual {

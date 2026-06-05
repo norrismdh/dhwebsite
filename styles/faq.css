@@ -11,10 +11,11 @@
   margin: 0 0 var(--space-4);
 }
 .faq-hero p {
-  font-size: var(--fs-20);
+  font-size: var(--fs-18);
   color: var(--fg-2);
   max-width: 580px;
   margin: 0 0 var(--space-6);
+  line-height: 1.5;
 }
 
 /* Search bar */

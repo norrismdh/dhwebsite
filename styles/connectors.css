@@ -17,9 +17,10 @@
   margin: 0 0 var(--space-4);
 }
 .cn-hero__sub {
-  font-size: var(--fs-20);
+  font-size: var(--fs-18);
   color: var(--fg-2);
   margin: 0 0 var(--space-5);
+  line-height: 1.5;
 }
 .cn-hero__stats {
   display: flex;

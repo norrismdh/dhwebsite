@@ -71,11 +71,11 @@
   max-width: 16ch;
 }
 .ab2-hero__sub {
-  font-size: var(--fs-20);
+  font-size: var(--fs-18);
   color: var(--fg-2);
   margin: 0 0 var(--space-6);
   max-width: 50ch;
-  line-height: 1.55;
+  line-height: 1.5;
 }
 .ab2-hero__ctas { display: flex; flex-wrap: wrap; gap: var(--space-3); }
 

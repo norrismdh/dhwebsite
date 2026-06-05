@@ -12,10 +12,11 @@
   margin: 0 0 var(--space-4);
 }
 .ct-hero p {
-  font-size: var(--fs-20);
+  font-size: var(--fs-18);
   color: var(--fg-2);
   max-width: 580px;
   margin: 0;
+  line-height: 1.5;
 }
 
 /* Decorative hex clusters in hero — three sizes, brand colors */
