@@ -229,7 +229,7 @@
   font-size: 22px;
   color: var(--dh-navy);
   margin: 0 0 var(--space-2);
-  letter-spacing: -0.015em;
+  letter-spacing: var(--tracking-tight);
   font-weight: var(--fw-bold);
 }
 .factor p {
@@ -323,7 +323,7 @@
   font-size: 22px;
   font-weight: var(--fw-bold);
   color: var(--dh-navy);
-  letter-spacing: -0.015em;
+  letter-spacing: var(--tracking-tight);
 }
 .tier--teams .tier__name { color: #fff; }
 .tier__kind {
@@ -410,7 +410,7 @@
   border-color: var(--dh-orange);
   color: #fff;
 }
-.tier__cta--primary:hover { background: #E0801C; border-color: #E0801C; color: #fff; }
+.tier__cta--primary:hover { background: var(--link-hover); border-color: var(--link-hover); color: #fff; }
 .tier__cta .arrow { transition: transform var(--dur-base) var(--ease-out); }
 .tier__cta:hover .arrow { transform: translateX(2px); }
 
@@ -826,23 +826,16 @@
   color: #fff;
   border: 1px solid var(--dh-orange);
 }
-.pr-cta .btn--accent:hover { background: #E0801C; border-color: #E0801C; }
+.pr-cta .btn--accent:hover { background: var(--link-hover); border-color: var(--link-hover); }
 .pr-cta .btn--accent .arrow { transition: transform var(--dur-base) var(--ease-out); }
 .pr-cta .btn--accent:hover .arrow { transform: translateX(3px); }
+/* .btn--ghost-light base → site.css; page-level sizing only */
 .pr-cta .btn--ghost-light {
-  background: transparent;
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.4);
   padding: 12px 22px;
   font-weight: var(--fw-bold);
-  font-size: 15px;
+  font-size: var(--fs-16);
   border-radius: var(--radius-sm);
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  transition: border-color var(--dur-base) var(--ease-out), background var(--dur-base) var(--ease-out);
 }
-.pr-cta .btn--ghost-light:hover { border-color: #fff; background: rgba(255,255,255,0.06); }
 
 /* hex stack motif */
 .pr-cta__art { display: none; }

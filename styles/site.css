@@ -103,8 +103,8 @@ button { font-family: inherit; cursor: pointer; }
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
 .btn--accent:hover {
-  background: #D87A1F;
-  border-color: #D87A1F;
+  background: var(--link-hover);
+  border-color: var(--link-hover);
   color: var(--dh-white);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
 }
@@ -116,6 +116,17 @@ button { font-family: inherit; cursor: pointer; }
 .btn--ghost:hover { border-color: var(--dh-navy); background: rgba(25, 51, 89, 0.03); }
 .section--dark .btn--ghost { color: var(--dh-white); border-color: rgba(255,255,255,0.3); }
 .section--dark .btn--ghost:hover { border-color: var(--dh-white); background: rgba(255,255,255,0.05); }
+/* Ghost on dark backgrounds — base used by all CTA banners */
+.btn--ghost-light {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.4);
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  transition: border-color var(--dur-base) var(--ease-out), background var(--dur-base) var(--ease-out);
+}
+.btn--ghost-light:hover { border-color: #fff; background: rgba(255,255,255,0.06); }
 .btn .arrow { transition: transform var(--dur-base) var(--ease-out); }
 .btn:hover .arrow { transform: translateX(3px); }
 
@@ -592,7 +603,7 @@ button { font-family: inherit; cursor: pointer; }
   border-radius: 4px;
   display: grid; place-items: center;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: var(--fw-bold);
   color: #fff;
   flex-shrink: 0;
   object-fit: contain;
@@ -716,7 +727,7 @@ button { font-family: inherit; cursor: pointer; }
   display: flex; flex-direction: column; gap: 4px;
   font-size: 8px;
 }
-.hub__side .item { padding: 4px 5px; border-radius: 4px; color: var(--fg-2); font-weight: 500; }
+.hub__side .item { padding: 4px 5px; border-radius: 4px; color: var(--fg-2); font-weight: var(--fw-medium); }
 .hub__side .item.is-active { background: var(--dh-navy); color: #fff; }
 .hub__main { display: grid; gap: 8px; }
 .hub__search {
@@ -737,7 +748,7 @@ button { font-family: inherit; cursor: pointer; }
   border-radius: 6px;
   font-size: 9px;
 }
-.hub__card .title { font-weight: 600; color: var(--dh-navy); margin-bottom: 4px; line-height: 1.3; }
+.hub__card .title { font-weight: var(--fw-semibold); color: var(--dh-navy); margin-bottom: 4px; line-height: 1.3; }
 .hub__card .tag {
   display: inline-flex;
   align-items: center;
@@ -747,7 +758,7 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--fg-2);
   border-radius: 3px;
   font-size: 8px;
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
   border: 1px solid var(--border-2);
   white-space: nowrap;
   flex-shrink: 0;
@@ -763,8 +774,8 @@ button { font-family: inherit; cursor: pointer; }
 .hub__card .tag { white-space: nowrap; flex-shrink: 0; }
 .hub__spark { display: block; width: 100%; height: 18px; }
 .hub__metric { display: flex; align-items: baseline; gap: 4px; margin-top: 4px; }
-.hub__metric-val { font-size: 13px; font-weight: 700; color: var(--dh-navy); line-height: 1; }
-.hub__metric-up { font-size: 8px; font-weight: 700; color: #2E8B57; }
+.hub__metric-val { font-size: 13px; font-weight: var(--fw-bold); color: var(--dh-navy); line-height: 1; }
+.hub__metric-up { font-size: 8px; font-weight: var(--fw-bold); color: #2E8B57; }
 .hub__hbars { display: flex; flex-direction: column; gap: 3px; margin-top: 6px; }
 .hub__hbar { height: 4px; border-radius: 2px; }
 .hub__hbar--a { width: 78%; background: var(--dh-orange); }

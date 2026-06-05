@@ -538,23 +538,16 @@
   color: #fff;
   border: 1px solid var(--dh-orange);
 }
-.pr-cta .btn--accent:hover { background: #E0801C; border-color: #E0801C; }
+.pr-cta .btn--accent:hover { background: var(--link-hover); border-color: var(--link-hover); }
 .pr-cta .btn--accent .arrow { transition: transform var(--dur-base) var(--ease-out); }
 .pr-cta .btn--accent:hover .arrow { transform: translateX(3px); }
+/* .btn--ghost-light base → site.css; page-level sizing only */
 .btn--ghost-light {
-  background: transparent;
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.4);
   padding: 12px 22px;
   font-weight: var(--fw-bold);
-  font-size: 0.9375rem;
+  font-size: var(--fs-16);
   border-radius: var(--radius-sm);
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  transition: border-color var(--dur-base) var(--ease-out), background var(--dur-base) var(--ease-out);
 }
-.btn--ghost-light:hover { border-color: #fff; background: rgba(255,255,255,0.06); }
 .pr-cta__art { display: none; }
 @media (min-width: 720px) {
   .pr-cta__art { display: block; position: relative; width: 160px; height: 160px; }

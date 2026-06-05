@@ -141,7 +141,7 @@
   border: 1px solid var(--border-1);
   border-radius: 999px;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: var(--fw-bold);
   color: var(--dh-navy);
   letter-spacing: 0.01em;
   box-shadow: 0 6px 16px rgba(25,51,89,0.10), 0 1px 2px rgba(25,51,89,0.05);
@@ -182,7 +182,7 @@
   align-items: center;
   gap: 6px;
   font-size: 10px;
-  font-weight: 700;
+  font-weight: var(--fw-bold);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--dh-navy);
@@ -194,7 +194,7 @@
 }
 .ucd-art__cert {
   font-size: 9px;
-  font-weight: 700;
+  font-weight: var(--fw-bold);
   letter-spacing: 0.10em;
   text-transform: uppercase;
   color: var(--dh-navy);
@@ -246,11 +246,11 @@
 .ucd-art__results li:first-child {
   background: rgba(243, 146, 53, 0.08);
   color: var(--dh-navy);
-  font-weight: 600;
+  font-weight: var(--fw-semibold);
 }
 .ucd-art__results .src {
   font-size: 9px;
-  font-weight: 700;
+  font-weight: var(--fw-bold);
   letter-spacing: 0.08em;
   color: var(--fg-3);
   background: var(--dh-grey-100);
@@ -261,7 +261,7 @@
 .ucd-art__results .ttl { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .ucd-art__results .badge {
   font-size: 8px;
-  font-weight: 700;
+  font-weight: var(--fw-bold);
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--dh-navy);
@@ -443,7 +443,7 @@
 }
 .ucd-outcomes__stat {
   font-size: clamp(48px, 6vw, 84px);
-  font-weight: 700;
+  font-weight: var(--fw-bold);
   letter-spacing: -0.03em;
   line-height: 0.95;
   color: var(--dh-navy);
@@ -653,23 +653,17 @@
   color: #fff;
   border: 1px solid var(--dh-orange);
 }
-.ucd-cta .btn--accent:hover { background: #E08020; border-color: #E08020; }
+.ucd-cta .btn--accent:hover { background: var(--link-hover); border-color: var(--link-hover); }
+/* .btn--ghost-light base → site.css; page-level sizing only */
 .ucd-cta .btn--ghost-light {
-  background: transparent;
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.3);
+  border-color: rgba(255,255,255,0.3);
   padding: 11px 22px;
   font-weight: var(--fw-bold);
   font-size: var(--fs-14);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   border-radius: var(--radius-md);
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  transition: border-color var(--dur-base) var(--ease-out), background var(--dur-base) var(--ease-out);
 }
-.ucd-cta .btn--ghost-light:hover { border-color: #fff; background: rgba(255,255,255,0.06); }
 
 /* ----- chaos → order graphic ----- */
 .ucd-cta__art {

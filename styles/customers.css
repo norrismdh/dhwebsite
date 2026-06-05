@@ -209,7 +209,7 @@
 .case-card__headline {
   font-size: var(--fs-24);
   line-height: 1.2;
-  letter-spacing: -0.018em;
+  letter-spacing: var(--tracking-tight);
   color: var(--dh-navy);
   margin: 0;
   font-weight: var(--fw-bold);

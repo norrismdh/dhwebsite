@@ -90,7 +90,7 @@
 }
 .uc-tile__top {
   display: flex; align-items: center; gap: 6px;
-  font-size: 10px; font-weight: 700;
+  font-size: 10px; font-weight: var(--fw-bold);
   letter-spacing: 0.14em; text-transform: uppercase;
   color: var(--fg-3);
 }
@@ -100,11 +100,11 @@
   background: var(--dh-grey-100); color: var(--dh-navy);
 }
 .uc-tile__big {
-  font-size: 22px; font-weight: 700;
+  font-size: 22px; font-weight: var(--fw-bold);
   color: var(--dh-navy); letter-spacing: -0.02em;
   line-height: 1;
 }
-.uc-tile__delta { font-size: 11px; color: var(--success); font-weight: 600; }
+.uc-tile__delta { font-size: 11px; color: var(--success); font-weight: var(--fw-semibold); }
 .uc-tile__bars {
   display: flex; align-items: flex-end; gap: 4px;
   height: 38px; margin-top: 2px;
@@ -199,7 +199,7 @@
 }
 .uc-tab__index {
   font-size: 10px;
-  font-weight: 700;
+  font-weight: var(--fw-bold);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--fg-3);
@@ -217,7 +217,7 @@
 }
 .uc-tab__lbl {
   font-size: var(--fs-18);
-  font-weight: 700;
+  font-weight: var(--fw-bold);
   color: var(--dh-navy);
   letter-spacing: -0.01em;
   line-height: 1.1;
@@ -280,7 +280,7 @@
 .uc-group-row__index {
   display: block;
   font-size: 11px;
-  font-weight: 700;
+  font-weight: var(--fw-bold);
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--fg-3);
@@ -289,7 +289,7 @@
 }
 .uc-group-row__title {
   font-size: clamp(26px, 2.6vw, 34px);
-  font-weight: 700;
+  font-weight: var(--fw-bold);
   color: var(--dh-navy);
   letter-spacing: -0.02em;
   line-height: 1.1;
@@ -368,7 +368,7 @@
 
 .uc-card__index {
   font-size: 12px;
-  font-weight: 700;
+  font-weight: var(--fw-bold);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--dh-orange);
@@ -556,7 +556,7 @@
   margin: 0 0 var(--space-2);
   letter-spacing: -0.02em;
   line-height: 1.15;
-  font-weight: 700;
+  font-weight: var(--fw-bold);
 }
 .uc-cta p {
   font-size: var(--fs-16);
@@ -575,23 +575,17 @@
   color: #fff;
   border: 1px solid var(--dh-orange);
 }
-.uc-cta .btn--accent:hover { background: #E08020; border-color: #E08020; }
+.uc-cta .btn--accent:hover { background: var(--link-hover); border-color: var(--link-hover); }
+/* .btn--ghost-light base → site.css; page-level sizing only */
 .uc-cta .btn--ghost-light {
-  background: transparent;
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.3);
+  border-color: rgba(255,255,255,0.3);
   padding: 11px 22px;
   font-weight: var(--fw-bold);
   font-size: var(--fs-14);
   text-transform: uppercase;
   letter-spacing: 0.08em;
   border-radius: var(--radius-md);
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  transition: border-color var(--dur-base) var(--ease-out), background var(--dur-base) var(--ease-out);
 }
-.uc-cta .btn--ghost-light:hover { border-color: #fff; background: rgba(255,255,255,0.06); }
 
 /* ----- CTA illustration: chaos → order ----- */
 .uc-cta__art {

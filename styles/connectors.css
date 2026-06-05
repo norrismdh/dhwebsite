@@ -111,7 +111,7 @@
 }
 .cn-spoke__tile {
   width: 56px; height: 56px;
-  border-radius: 12px;
+  border-radius: var(--radius-12);
   background: #fff;
   border: 1px solid var(--border-1);
   box-shadow: 0 4px 14px rgba(25,51,89,0.08);
@@ -128,7 +128,7 @@
   color: #fff;
   width: 32px; height: 32px;
   display: grid; place-items: center;
-  border-radius: 6px;
+  border-radius: var(--radius-6);
 }
 .cn-spoke__tile img {
   width: 38px;
@@ -210,7 +210,7 @@
 .cn-catalog__head h2 {
   font-size: clamp(28px, 3.6vw, 40px);
   margin: 0 0 var(--space-2);
-  letter-spacing: -0.015em;
+  letter-spacing: var(--tracking-tight);
 }
 .cn-catalog__head p { color: var(--fg-2); margin: 0; font-size: var(--fs-16); }
 
@@ -278,7 +278,7 @@
 }
 .cn-card__logo {
   width: 44px; height: 44px;
-  border-radius: 10px;
+  border-radius: var(--radius-10);
   display: grid; place-items: center;
   font-size: 14px;
   font-weight: var(--fw-bold);
