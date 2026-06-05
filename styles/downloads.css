@@ -1,4 +1,4 @@
-/* =============================================================
+﻿/* =============================================================
    DH DOWNLOADS MODULE — Public release listing styles
    Builds on tokens.css + site.css.
    ============================================================= */
@@ -85,7 +85,7 @@
 
 .dl-card__date {
   font-size: var(--fs-12);
-  color: var(--fg-3);
+  color: var(--fg-2);
   letter-spacing: var(--tracking-wide);
   margin-left: auto;
 }
@@ -320,7 +320,7 @@
 
 .eula-modal__header p {
   font-size: var(--fs-13);
-  color: var(--fg-3);
+  color: var(--fg-2);
   margin: 0;
 }
 
@@ -387,3 +387,4 @@
   .dl-card__date   { margin-left: 0; width: 100%; }
   .dl-support      { flex-direction: column; align-items: flex-start; }
 }
+

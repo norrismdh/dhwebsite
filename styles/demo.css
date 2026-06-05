@@ -61,7 +61,7 @@
   flex: 1;
   font-size: 9px;
   font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-  color: var(--fg-3);
+  color: var(--fg-2);
   text-align: center;
   background: var(--dh-white);
   border-radius: 999px;
@@ -148,10 +148,10 @@
   background: var(--dh-white);
   border-radius: 4px;
   font-size: 8.5px;
-  color: var(--fg-3);
+  color: var(--fg-2);
   border: 1px solid var(--border-2);
 }
-.laptop__search svg { color: var(--fg-3); flex-shrink: 0; }
+.laptop__search svg { color: var(--fg-2); flex-shrink: 0; }
 .laptop__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -183,7 +183,7 @@
   letter-spacing: 0.04em;
   padding: 1px 5px;
   background: var(--bg-3);
-  color: var(--fg-3);
+  color: var(--fg-2);
   border-radius: 2px;
   border: 1px solid var(--border-2);
 }
@@ -444,7 +444,7 @@
   font-weight: var(--fw-bold);
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
-  color: var(--fg-3);
+  color: var(--fg-2);
   margin-bottom: 6px;
 }
 .direct__email {

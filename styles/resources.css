@@ -94,7 +94,7 @@
   font-weight: var(--fw-bold);
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
-  color: var(--fg-3);
+  color: var(--fg-2);
   margin-bottom: var(--space-5);
 }
 .feat__form-head .lock {
@@ -128,7 +128,7 @@
   font-weight: var(--fw-bold);
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
-  color: var(--fg-3);
+  color: var(--fg-2);
 }
 .field input,
 .field select {
@@ -157,7 +157,7 @@
 }
 .feat__form-submit small {
   font-size: var(--fs-12);
-  color: var(--fg-3);
+  color: var(--fg-2);
   max-width: 280px;
   line-height: 1.45;
 }
@@ -222,7 +222,7 @@
   font-weight: var(--fw-bold);
   border-radius: var(--radius-pill);
   background: rgba(25, 51, 89, 0.08);
-  color: var(--fg-3);
+  color: var(--fg-2);
 }
 .library__tab.is-active .count {
   background: rgba(255,255,255,0.18);
@@ -342,7 +342,7 @@
   justify-content: space-between;
   gap: var(--space-3);
   font-size: var(--fs-12);
-  color: var(--fg-3);
+  color: var(--fg-2);
   letter-spacing: var(--tracking-wide);
 }
 .res-card__cta {
@@ -363,7 +363,7 @@
   display: none;
   text-align: center;
   padding: var(--space-8) 0;
-  color: var(--fg-3);
+  color: var(--fg-2);
 }
 .library.is-empty .library__grid { display: none; }
 .library.is-empty .library__empty { display: block; }
@@ -505,7 +505,7 @@
   font-size: var(--fs-12);
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
-  color: var(--fg-3);
+  color: var(--fg-2);
   font-weight: var(--fw-bold);
 }
 .compare__brand .name {
@@ -529,6 +529,6 @@
   font-weight: var(--fw-bold);
   text-transform: uppercase;
   letter-spacing: var(--tracking-wide);
-  color: var(--fg-3);
+  color: var(--fg-2);
 }
 .compare__card .arrow { color: var(--dh-orange); flex-shrink: 0; }

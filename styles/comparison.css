@@ -1,4 +1,4 @@
-/* =============================================================
+﻿/* =============================================================
    Digital Hive - Competitor comparison page styles
    ============================================================= */
 
@@ -18,7 +18,7 @@
   font-weight: var(--fw-bold);
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
-  color: var(--fg-3);
+  color: var(--fg-2);
   margin: 0 0 var(--space-4);
 }
 .cmp-hero__tag .vs {
@@ -127,7 +127,7 @@
 }
 .summary__card .role {
   font-size: var(--fs-12);
-  color: var(--fg-3);
+  color: var(--fg-2);
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
   font-weight: var(--fw-bold);
@@ -188,7 +188,7 @@
   text-align: left;
   padding: var(--space-5) var(--space-5);
   font-size: var(--fs-14);
-  color: var(--fg-3);
+  color: var(--fg-2);
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
   font-weight: var(--fw-bold);
@@ -223,7 +223,7 @@
 .cmp-table-wrap tbody tr:last-child td { border-bottom: none; }
 .cmp-table-wrap tbody td:first-child {
   font-size: var(--fs-12);
-  color: var(--fg-3);
+  color: var(--fg-2);
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
   font-weight: var(--fw-bold);
@@ -246,7 +246,7 @@
 .cmp-table-section__note {
   margin-top: var(--space-5);
   font-size: var(--fs-12);
-  color: var(--fg-3);
+  color: var(--fg-2);
   letter-spacing: var(--tracking-wide);
   text-align: center;
 }
@@ -261,7 +261,7 @@
 
 .leads__head { max-width: 720px; margin-bottom: var(--space-7); }
 .leads__head .eyebrow { color: var(--fg-accent); }
-.leads--alt .leads__head .eyebrow { color: var(--fg-3); }
+.leads--alt .leads__head .eyebrow { color: var(--fg-2); }
 .leads__head h2 {
   font-size: clamp(28px, 3.4vw, 40px);
   letter-spacing: -0.02em;
@@ -425,3 +425,4 @@
   color: rgba(255,255,255,0.55);
   letter-spacing: var(--tracking-wide);
 }
+

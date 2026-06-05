@@ -1,4 +1,4 @@
-/* =============================================================
+﻿/* =============================================================
    Connectors page
    ============================================================= */
 
@@ -40,7 +40,7 @@
   font-size: var(--fs-12);
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
-  color: var(--fg-3);
+  color: var(--fg-2);
   margin-top: 6px;
   display: block;
 }
@@ -333,7 +333,7 @@
 }
 .cn-card__cat {
   font-size: var(--fs-12);
-  color: var(--fg-3);
+  color: var(--fg-2);
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
   margin: 0;
@@ -361,7 +361,7 @@
   background: var(--success);
 }
 .cn-card__status--soon {
-  color: var(--fg-3);
+  color: var(--fg-2);
   background: var(--dh-grey-50);
 }
 .cn-card__status--soon .dot { background: var(--dh-grey-light); }
@@ -411,3 +411,4 @@
 .cn-request .container { position: relative; }
 .cn-request h2 { color: #fff; font-size: clamp(28px, 4vw, 40px); margin: 0 0 var(--space-3); }
 .cn-request p { color: rgba(255,255,255,0.7); max-width: 580px; margin: 0 auto var(--space-5); font-size: var(--fs-16); }
+

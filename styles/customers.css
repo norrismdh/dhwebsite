@@ -1,4 +1,4 @@
-/* =============================================================
+﻿/* =============================================================
    Digital Hive - Customers page styles
    Builds on tokens.css + site.css.
    ============================================================= */
@@ -190,7 +190,7 @@
   font-weight: var(--fw-bold);
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
-  color: var(--fg-3);
+  color: var(--fg-2);
   background: rgba(244, 246, 248, 0.9);
 }
 .case-card__logo--real {
@@ -302,7 +302,7 @@
 }
 .tm-card__attrib .role {
   font-size: var(--fs-12);
-  color: var(--fg-3);
+  color: var(--fg-2);
   margin-top: 2px;
 }
 .tm-card__tier {
@@ -374,3 +374,4 @@
   color: rgba(255,255,255,0.55);
   letter-spacing: var(--tracking-wide);
 }
+

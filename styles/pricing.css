@@ -130,7 +130,7 @@
   font-size: 13px;
 }
 .pr-hero__li-key {
-  color: var(--fg-3);
+  color: var(--fg-2);
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
   font-size: 11px;
@@ -173,7 +173,7 @@
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
   font-weight: var(--fw-bold);
-  color: var(--fg-3);
+  color: var(--fg-2);
 }
 .pr-hero__card-total {
   font-size: 36px;
@@ -184,13 +184,13 @@
 }
 .pr-hero__card-curr {
   font-size: 20px;
-  color: var(--fg-3);
+  color: var(--fg-2);
   font-weight: var(--fw-medium);
   margin-right: 2px;
 }
 .pr-hero__card-cents {
   font-size: 18px;
-  color: var(--fg-3);
+  color: var(--fg-2);
   font-weight: var(--fw-medium);
 }
 
@@ -328,7 +328,7 @@
 .tier--teams .tier__name { color: #fff; }
 .tier__kind {
   font-size: var(--fs-14);
-  color: var(--fg-3);
+  color: var(--fg-2);
   font-weight: var(--fw-medium);
 }
 .tier--teams .tier__kind { color: rgba(255,255,255,0.72); }
@@ -428,7 +428,7 @@
 .tiers__footnote {
   margin: var(--space-3) 0 0;
   font-size: var(--fs-12);
-  color: var(--fg-3);
+  color: var(--fg-2);
   font-style: italic;
   line-height: 1.4;
 }
@@ -501,7 +501,7 @@
 }
 .included__list em {
   font-style: normal;
-  color: var(--fg-3);
+  color: var(--fg-2);
   font-weight: var(--fw-regular);
 }
 .included__list strong {
@@ -660,7 +660,7 @@
   font-weight: var(--fw-bold);
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
-  color: var(--fg-3);
+  color: var(--fg-2);
 }
 .quote__form .field input,
 .quote__form .field select {
@@ -689,7 +689,7 @@
 }
 .quote__form-submit small {
   font-size: var(--fs-12);
-  color: var(--fg-3);
+  color: var(--fg-2);
   letter-spacing: var(--tracking-wide);
 }
 
