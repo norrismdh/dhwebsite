@@ -1382,6 +1382,22 @@ button { font-family: inherit; cursor: pointer; }
 .research__panel .btn { position: relative; z-index: 1; }
 
 /* -----------------------------------------------------------
+   Shared CTA eyebrow (dark-bg banner variant — used across
+   about.css, faq.css, pricing.css, usecase pages)
+   ----------------------------------------------------------- */
+.pr-cta__eyebrow,
+.ucd-cta__eyebrow,
+.uc-cta__eyebrow {
+  display: inline-block;
+  font-size: var(--fs-12);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--dh-yellow);
+  margin-bottom: var(--space-3);
+}
+
+/* -----------------------------------------------------------
    Final CTA
    ----------------------------------------------------------- */
 .cta-banner {

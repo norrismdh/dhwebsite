@@ -800,15 +800,7 @@
 }
 
 .pr-cta__copy { max-width: 620px; }
-.pr-cta__eyebrow {
-  display: inline-block;
-  font-size: 11px;
-  font-weight: var(--fw-bold);
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-caps);
-  color: var(--dh-yellow);
-  margin-bottom: var(--space-3);
-}
+/* .pr-cta__eyebrow — consolidated into site.css */
 .pr-cta h3 {
   font-size: clamp(24px, 2.6vw, 34px);
   color: #fff;
