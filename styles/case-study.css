@@ -30,12 +30,16 @@
    ----------------------------------------------------------- */
 .cs-doc {
   display: grid;
-  grid-template-columns: 1fr;
+  /* minmax(0, 1fr) instead of plain 1fr so the track is capped at the
+     available grid width rather than the content's intrinsic minimum.
+     Plain 1fr = minmax(auto, 1fr) which inflates past the viewport on
+     mobile when a portal-mock or wide element sets a large min-content. */
+  grid-template-columns: minmax(0, 1fr);
   max-width: 1320px;
   margin: 0 auto;
 }
 @media (min-width: 1080px) {
-  .cs-doc { grid-template-columns: 220px 1fr; align-items: start; }
+  .cs-doc { grid-template-columns: 220px minmax(0, 1fr); align-items: start; }
 }
 
 .cs-toc {
@@ -183,11 +187,14 @@
 
 .cs-hero__grid {
   display: grid;
+  /* Explicit minmax(0,1fr) prevents an auto column from inflating to
+     a child's intrinsic minimum (portal mock / swim-lane tiles). */
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--space-8);
   align-items: start;
 }
 @media (min-width: 900px) {
-  .cs-hero__grid { grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .cs-hero__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: center; }
 }
 
 .cs-customer-row {
@@ -337,6 +344,7 @@
 }
 .cs-tile {
   flex: 1;
+  min-width: 0; /* Prevents flex+aspect-ratio from locking a minimum width */
   aspect-ratio: 3/4;
   border-radius: var(--radius-md);
   background: var(--dh-grey-50);

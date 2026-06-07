@@ -4,7 +4,7 @@
    ============================================================= */
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; } /* overflow-x on html is required for iOS Safari */
 body { margin: 0; overflow-x: hidden; position: relative; }
 
 /* Subtle full-page lift - sits behind everything, only visible through paper bg.
