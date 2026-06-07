@@ -108,7 +108,7 @@
             <span>${def.label}</span>
             <svg class="nav__chev" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
           </a>
-          <div class="mega__panel" role="menu" aria-hidden="true">
+          <div class="mega__panel" role="menu" aria-hidden="true" inert>
             <span class="mega__caret" aria-hidden="true"></span>
             <div class="mega__panel-inner">
               <div class="mega__lede">
@@ -142,7 +142,7 @@
         const t = li.querySelector('.nav__trigger');
         const p = li.querySelector('.mega__panel');
         if (t) t.setAttribute('aria-expanded', 'false');
-        if (p) p.setAttribute('aria-hidden', 'true');
+        if (p) { p.setAttribute('aria-hidden', 'true'); p.setAttribute('inert', ''); }
       });
     };
     const openOne = (li) => {
@@ -150,7 +150,7 @@
       const t = li.querySelector('.nav__trigger');
       const p = li.querySelector('.mega__panel');
       if (t) t.setAttribute('aria-expanded', 'true');
-      if (p) p.setAttribute('aria-hidden', 'false');
+      if (p) { p.setAttribute('aria-hidden', 'false'); p.removeAttribute('inert'); }
     };
 
     items.forEach(li => {
