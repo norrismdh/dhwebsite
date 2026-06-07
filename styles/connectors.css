@@ -57,7 +57,7 @@
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
-  width: 28%;
+  width: 22%;
   aspect-ratio: 1 / 1.1;
   clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
   background: linear-gradient(180deg, #244271 0%, #193359 100%);
@@ -66,13 +66,13 @@
   place-items: center;
   color: #fff;
   text-align: center;
-  padding: 18px;
+  padding: 14px;
   z-index: 3;
 }
 .cn-hub__center img {
-  width: 88%;
+  width: 96%;
   height: auto;
-  max-height: 60%;
+  max-height: 65%;
   object-fit: contain;
   /* The reversed mark is already white — drop the previous filter */
 }
@@ -165,7 +165,7 @@
 
 /* Position 8 spokes around the hub */
 .cn-spoke--1 {
-  top: 3%;
+  top: 7%;
   left: 50%;
   transform: translateX(-50%);
   /* Label sits above the tile so it doesn't overlap the dashed
@@ -173,13 +173,13 @@
   grid-auto-flow: row;
 }
 .cn-spoke--1 .cn-spoke__lbl { order: -1; }
-.cn-spoke--2 { top: 17%;   right: 8%; }
-.cn-spoke--3 { top: 50%;   right: 2%; transform: translateY(-50%); }
-.cn-spoke--4 { bottom: 17%; right: 8%; }
-.cn-spoke--5 { bottom:  5%; left: 50%; transform: translateX(-50%); }
-.cn-spoke--6 { bottom: 17%; left: 8%; }
-.cn-spoke--7 { top: 50%;   left: 2%; transform: translateY(-50%); }
-.cn-spoke--8 { top: 17%;   left: 8%; }
+.cn-spoke--2 { top: 18%;   right: 13%; }
+.cn-spoke--3 { top: 50%;   right: 7%; transform: translateY(-50%); }
+.cn-spoke--4 { bottom: 18%; right: 13%; }
+.cn-spoke--5 { bottom:  8%; left: 50%; transform: translateX(-50%); }
+.cn-spoke--6 { bottom: 18%; left: 13%; }
+.cn-spoke--7 { top: 50%;   left: 7%; transform: translateY(-50%); }
+.cn-spoke--8 { top: 18%;   left: 13%; }
 
 /* Subtle pulse on the center */
 @keyframes cn-pulse {
