@@ -101,6 +101,11 @@
   margin: 0 auto;
   padding: 0 var(--space-7);
 }
+/* On narrow screens use the same 24px edge padding as .container */
+@media (max-width: 767px) {
+  .cs-wrap,
+  .cs-narrow { padding-left: var(--space-5); padding-right: var(--space-5); }
+}
 .cs-section { padding: var(--space-9) 0; }
 @media (min-width: 768px) { .cs-section { padding: 96px 0; } }
 .cs-section.compact { padding: var(--space-8) 0; }
@@ -694,6 +699,10 @@
   gap: var(--space-5);
   grid-template-columns: auto 1fr;
   align-items: start;
+}
+@media (max-width: 767px) {
+  .cs-pullquote { grid-template-columns: 1fr; gap: var(--space-4); }
+  .cs-quote-mark { display: none; }
 }
 .cs-quote-mark {
   font-size: 96px;

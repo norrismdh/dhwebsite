@@ -184,10 +184,12 @@ button { font-family: inherit; cursor: pointer; }
   align-items: center;
   justify-content: space-between;
   gap: var(--space-5);
-  height: 84px;
+  height: 64px;
 }
+@media (min-width: 768px) { .nav__inner { height: 84px; } }
 .nav__logo { border-bottom: none; }
-.nav__logo img { height: 52px; width: auto; transition: transform var(--dur-base) var(--ease-out); }
+.nav__logo img { height: 40px; width: auto; transition: transform var(--dur-base) var(--ease-out); }
+@media (min-width: 768px) { .nav__logo img { height: 52px; } }
 .nav__logo:hover img { transform: translateY(-1px); }
 .nav__links {
   display: none;
@@ -492,7 +494,7 @@ button { font-family: inherit; cursor: pointer; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 40px; height: 40px;
+  width: 44px; height: 44px;
   background: transparent;
   border: 1px solid var(--border-1);
   border-radius: var(--radius-sm);
@@ -502,12 +504,24 @@ button { font-family: inherit; cursor: pointer; }
 
 .mobile-menu {
   display: none;
-  padding: var(--space-5) 0;
+  /* Use padding-top/bottom only so we don't override the horizontal
+     padding inherited from the .container class (padding: 0 var(--space-5)). */
+  padding-top: var(--space-5);
+  padding-bottom: var(--space-5);
   border-top: 1px solid var(--border-2);
 }
 .mobile-menu.is-open { display: block; }
 .mobile-menu ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-4); }
-.mobile-menu a { color: var(--dh-navy); font-weight: var(--fw-medium); border: none; font-size: var(--fs-18); }
+.mobile-menu a {
+  color: var(--dh-navy);
+  font-weight: var(--fw-medium);
+  border: none;
+  font-size: var(--fs-18);
+  /* WCAG 2.5.5: minimum 44×44 CSS px touch target */
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
 
 /* -----------------------------------------------------------
    Hero
@@ -1367,14 +1381,28 @@ button { font-family: inherit; cursor: pointer; }
   display: flex; gap: var(--space-2);
 }
 .carousel__dot {
-  width: 28px; height: 4px;
-  background: var(--border-1);
-  border-radius: var(--radius-pill);
+  /* Tap target is the full 44px-tall button — the visible pill is a ::after pseudo */
+  width: 28px;
+  height: 44px;
+  background: transparent;
   border: none;
   padding: 0;
-  transition: background var(--dur-base) var(--ease-out), width var(--dur-base) var(--ease-out);
+  cursor: pointer;
+  position: relative;
+  transition: width var(--dur-base) var(--ease-out);
 }
-.carousel__dot.is-active { background: var(--dh-navy); width: 44px; }
+.carousel__dot::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  top: 50%; transform: translateY(-50%);
+  height: 4px;
+  background: var(--border-1);
+  border-radius: var(--radius-pill);
+  transition: background var(--dur-base) var(--ease-out);
+}
+.carousel__dot.is-active { width: 44px; }
+.carousel__dot.is-active::after { background: var(--dh-navy); }
 
 .carousel__arrows { display: flex; gap: var(--space-2); }
 .carousel__arrow {
@@ -1568,6 +1596,13 @@ button { font-family: inherit; cursor: pointer; }
   border-bottom: none;
 }
 .footer__col a:hover { color: var(--dh-orange); }
+@media (max-width: 767px) {
+  .footer__col a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+}
 
 .footer__bottom {
   margin-top: var(--space-5);
