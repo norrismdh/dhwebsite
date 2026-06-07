@@ -1598,6 +1598,22 @@ button { font-family: inherit; cursor: pointer; }
 }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
+/* -----------------------------------------------------------
+   ISG research list — staggered slide-in per item
+   The ol carries .reveal (triggers is-visible); li items
+   pick up individually with a stagger delay.
+   ----------------------------------------------------------- */
+.research__list li {
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 350ms var(--ease-out), transform 350ms var(--ease-out);
+}
+.research__list.is-visible li { opacity: 1; transform: none; }
+.research__list.is-visible li:nth-child(1) { transition-delay: 80ms; }
+.research__list.is-visible li:nth-child(2) { transition-delay: 160ms; }
+.research__list.is-visible li:nth-child(3) { transition-delay: 240ms; }
+.research__list.is-visible li:nth-child(4) { transition-delay: 320ms; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

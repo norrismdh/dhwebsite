@@ -510,6 +510,54 @@
     setTimeout(draw, 100);
   }
 
+  // ---------- Count-up animation ----------
+  const countEls = document.querySelectorAll('[data-count-up]');
+  if (countEls.length && 'IntersectionObserver' in window) {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const runCount = (el) => {
+      const target   = parseFloat(el.dataset.countUp);
+      const decimals = parseInt(el.dataset.countDecimals || '0', 10);
+      const duration = 1200;
+      const startTime = performance.now();
+      const easeOut  = (t) => 1 - Math.pow(1 - t, 3);
+      const tick = (now) => {
+        const progress = Math.min((now - startTime) / duration, 1);
+        el.textContent = (easeOut(progress) * target).toFixed(decimals);
+        if (progress < 1) requestAnimationFrame(tick);
+        else el.textContent = target.toFixed(decimals);
+      };
+      el.textContent = (0).toFixed(decimals);
+      requestAnimationFrame(tick);
+    };
+
+    const countIO = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        countIO.unobserve(entry.target);
+        if (!reducedMotion) runCount(entry.target);
+      });
+    }, { threshold: 0.6 });
+    countEls.forEach((el) => countIO.observe(el));
+  }
+
+  // ---------- Governance bar chart ----------
+  const govBars = document.querySelector('.mock-gov__bars');
+  if (govBars && 'IntersectionObserver' in window) {
+    const barIO = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.bar').forEach((bar, i) => {
+            const pct = parseFloat(bar.dataset.barH) || 0;
+            setTimeout(() => { bar.style.height = pct + '%'; }, i * 45);
+          });
+          barIO.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    barIO.observe(govBars);
+  }
+
   // ---------- Testimonials carousel ----------
   const carousel = document.querySelector('[data-carousel]');
   if (carousel) {
