@@ -532,3 +532,11 @@
   color: var(--fg-2);
 }
 .compare__card .arrow { color: var(--dh-orange); flex-shrink: 0; }
+
+@media (hover: none) {
+  .res-card:hover { transform: none; }
+  .res-card:hover .res-card__cta .arrow { transform: none; }
+  .pillar__card:hover { transform: none; }
+  .pillar__card:hover .arrow { transform: none; }
+  .compare__card:hover { transform: none; }
+}

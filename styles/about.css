@@ -561,3 +561,8 @@
 .pr-cta__hex--1 { top: 0;    left: 0;    background: rgba(255,255,255,0.06); }
 .pr-cta__hex--2 { top: 24px; left: 50px; background: rgba(243,146,53,0.18); width: 90px; height: 78px; }
 .pr-cta__hex--3 { top: 48px; left: 8px;  background: rgba(250,180,0,0.16);  width: 80px; height: 69px; }
+
+@media (hover: none) {
+  .cap:hover { transform: none; }
+  .pr-cta .btn--accent:hover .arrow { transform: none; }
+}

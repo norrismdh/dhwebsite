@@ -585,10 +585,12 @@ body::before {
 
 .upload-prog__fill {
   height: 100%;
+  width: 100%;
   background: linear-gradient(90deg, var(--dh-navy), var(--dh-navy-500));
   border-radius: var(--radius-pill);
-  transition: width 0.3s var(--ease-out);
-  width: 0%;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s var(--ease-out);
 }
 
 .upload-prog__parts {

@@ -835,3 +835,8 @@
 }
 .ucd-cta .btn--ghost:hover { border-color: #fff; }
 
+@media (hover: none) {
+  .ucd-related__card:hover { transform: none; }
+  .ucd-related__card:hover .arrow-row .arrow { transform: none; }
+}
+

@@ -503,3 +503,8 @@
   margin: 0 0 var(--space-6);
 }
 
+@media (hover: none) {
+  .related-card:hover { transform: none; }
+  .related-card:hover .arrow { transform: none; }
+}
+

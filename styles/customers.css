@@ -375,3 +375,9 @@
   letter-spacing: var(--tracking-wide);
 }
 
+@media (hover: none) {
+  .cust-hero__reviews:hover .arrow { transform: none; }
+  .case-card:hover { transform: none; }
+  .case-card:hover .case-card__link .arrow { transform: none; }
+}
+

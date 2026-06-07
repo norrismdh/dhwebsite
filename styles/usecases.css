@@ -649,3 +649,10 @@
 .uc-cta__order-line:first-of-type { width: 100%; background: var(--dh-navy); }
 .uc-cta__order-line:nth-of-type(2) { width: 80%; }
 .uc-cta__order-line:nth-of-type(3) { width: 60%; }
+
+@media (hover: none) {
+  .uc-card:hover { transform: none; }
+  .uc-card:hover::before { transform: scaleX(0); }
+  .uc-card:hover .uc-card__link .arrow { transform: none; }
+  .uc-compare__card:hover { transform: none; }
+}

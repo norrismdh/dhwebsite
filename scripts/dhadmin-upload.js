@@ -144,7 +144,7 @@ let activeUpload = null; // { r2Key, uploadId }
 function updateProgress(progEl, pctEl, fillEl, partsEl, done, total) {
   const pct = Math.round((done / total) * 100);
   pctEl.textContent  = `${pct}%`;
-  fillEl.style.width = `${pct}%`;
+  fillEl.style.transform = `scaleX(${done / total})`;
   partsEl.textContent = `Part ${done} of ${total}`;
 }
 

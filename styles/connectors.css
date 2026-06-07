@@ -412,3 +412,8 @@
 .cn-request h2 { color: #fff; font-size: clamp(28px, 4vw, 40px); margin: 0 0 var(--space-3); }
 .cn-request p { color: rgba(255,255,255,0.7); max-width: 580px; margin: 0 auto var(--space-5); font-size: var(--fs-16); }
 
+@media (hover: none) {
+  .cn-spoke:hover .cn-spoke__tile { transform: none; }
+  .cn-card:hover { transform: none; }
+}
+

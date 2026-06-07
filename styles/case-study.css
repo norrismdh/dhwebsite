@@ -18,9 +18,11 @@
 }
 .cs-progress__bar {
   height: 100%;
-  width: 0%;
+  width: 100%;
   background: var(--dh-orange);
-  transition: width 0.1s linear;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.1s linear;
 }
 
 /* -----------------------------------------------------------

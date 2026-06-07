@@ -467,3 +467,8 @@
   color: var(--fg-2);
   line-height: 1.5;
 }
+
+@media (hover: none) {
+  .pillar:hover { transform: none; }
+  .direct__email:hover svg { transform: none; }
+}

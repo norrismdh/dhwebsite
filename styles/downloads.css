@@ -388,3 +388,8 @@
   .dl-support      { flex-direction: column; align-items: flex-start; }
 }
 
+@media (hover: none) {
+  .dl-btn:hover,
+  .dl-btn--ghost:hover { transform: none; }
+}
+

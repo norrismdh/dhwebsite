@@ -233,7 +233,7 @@
   font-weight: var(--fw-medium);
   color: var(--dh-navy);
   cursor: pointer;
-  transition: all var(--dur-fast) var(--ease-out);
+  transition: border-color var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
   user-select: none;
 }
 .ct-chip input { display: none; }
@@ -333,5 +333,10 @@
   border: 1px solid color-mix(in srgb, #e53e3e 30%, transparent);
   color: #c53030;
   font-size: var(--fs-14);
+}
+
+@media (hover: none) {
+  .ct-path:hover { transform: none; }
+  .ct-path:hover .ct-path__link svg { transform: none; }
 }
 
