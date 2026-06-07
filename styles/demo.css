@@ -392,7 +392,7 @@
 .trusted__logo {
   font-size: var(--fs-18);
   font-weight: var(--fw-bold);
-  color: var(--dh-grey);
+  color: var(--dh-grey-700);
   letter-spacing: -0.01em;
   white-space: nowrap;
   text-align: center;
