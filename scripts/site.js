@@ -383,6 +383,10 @@
     tabs.forEach((tab) => {
       const c = tab.querySelector('.count');
       if (c) c.textContent = counts[tab.dataset.filter] || 0;
+      // Hide tabs with no matching content (except "All")
+      if (tab.dataset.filter !== 'all') {
+        tab.hidden = !(counts[tab.dataset.filter] > 0);
+      }
     });
 
     const apply = (filter) => {
