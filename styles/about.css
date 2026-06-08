@@ -222,7 +222,7 @@
 .ab2-why-item__ico .hex { position: absolute; inset: 0; opacity: 0.4; }
 .ab2-why-item__ico .glyph { position: relative; width: 24px; height: 24px; }
 .ab2-why-item__label {
-  font-size: var(--fs-16); font-weight: var(--fw-bold);
+  font-size: var(--fs-20); font-weight: var(--fw-bold);
   color: var(--dh-navy); letter-spacing: -0.01em;
 }
 .ab2-why-sec__close {
@@ -375,9 +375,7 @@
   border-top: 1px solid rgba(255,255,255,0.12);
   font-size: var(--fs-18);
   color: rgba(255,255,255,0.82);
-  text-wrap: pretty;
   line-height: 1.55;
-  max-width: 70ch;
 }
 .ab2-serve__close strong { color: #fff; font-weight: var(--fw-medium); }
 
