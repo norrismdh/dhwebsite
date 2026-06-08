@@ -483,13 +483,28 @@
   gap: var(--space-8);
   grid-template-columns: 1fr;
 }
-@media (min-width: 768px) {
-  .ucd-outcomes__grid { grid-template-columns: repeat(3, 1fr); gap: 80px; }
-}
-
 .ucd-outcome {
   display: grid;
   gap: var(--space-4);
+}
+@media (min-width: 768px) {
+  /* Two explicit row tracks: heading row + caption row.
+     column-gap keeps the 80px spacing; row-gap is the heading→caption gap. */
+  .ucd-outcomes__grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: 80px;
+    row-gap: var(--space-4);
+  }
+  /* Each card spans both row tracks and uses subgrid so all headings
+     share one row height and all captions start at the same baseline. */
+  .ucd-outcome {
+    grid-row: span 2;
+    display: grid;
+    grid-template-rows: subgrid;
+    gap: 0;
+    align-content: start;
+  }
 }
 .ucd-outcome__big {
   font-size: clamp(40px, 5vw, 64px);
