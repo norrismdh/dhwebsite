@@ -234,3 +234,19 @@
 /* Category strip variant — topic instead of "Blog" */
 .res-card__type-strip .swatch { background: var(--dh-orange); }
 
+/* -----------------------------------------------------------
+   WCAG AA contrast fixes for blog library
+   Orange (#F39235) on white = ~2.6:1 — fails 4.5:1 requirement.
+   Use navy as the resting colour; orange surfaces only on hover
+   (transient hover states are exempt from the contrast rule).
+   ----------------------------------------------------------- */
+.blog-library__head .eyebrow {
+  color: var(--dh-navy);
+}
+.blog-library .res-card__cta {
+  color: var(--dh-navy);
+}
+.blog-library .res-card:hover .res-card__cta {
+  color: var(--dh-orange);
+}
+
