@@ -3,9 +3,9 @@
    ============================================================= */
 
 .faq-hero {
-  padding: 88px 0 56px;
+  padding: 72px 0 56px;
 }
-@media (min-width: 768px) { .faq-hero { padding: 112px 0 64px; } }
+@media (min-width: 768px) { .faq-hero { padding: 112px 0 80px; } }
 .faq-hero__copy { max-width: 720px; }
 .faq-hero h1 {
   margin: 0 0 var(--space-4);
@@ -77,8 +77,8 @@
 .faq-hex--c { width: 36px; height: 42px;  background: var(--dh-navy);   opacity: 0.18; top: 30%; right: 22%; }
 
 /* ============ Main grid: sidebar + content ============ */
-.faq-main { padding: var(--space-7) 0 var(--space-8); }
-@media (min-width: 768px) { .faq-main { padding: var(--space-8) 0 96px; } }
+.faq-main { padding: 72px 0; }
+@media (min-width: 768px) { .faq-main { padding: 96px 0; } }
 
 .faq-layout {
   display: grid;
@@ -271,11 +271,11 @@
 .pr-cta {
   position: relative;
   overflow: hidden;
-  padding: 64px 0;
+  padding: 48px 0;
   background: var(--dh-navy);
   color: #fff;
 }
-@media (min-width: 768px) { .pr-cta { padding: 80px 0; } }
+@media (min-width: 768px) { .pr-cta { padding: 64px 0; } }
 .pr-cta__motif {
   position: absolute;
   inset: 0;

@@ -11,11 +11,11 @@
 .uc-hero {
   position: relative;
   overflow: hidden;
-  padding: 24px 0 20px;
+  padding: 48px 0 36px;
   border-bottom: 1px solid var(--border-2);
   background: linear-gradient(180deg, #ECF1F6 0%, #F2F5F9 100%);
 }
-@media (min-width: 768px) { .uc-hero { padding: 36px 0 28px; } }
+@media (min-width: 768px) { .uc-hero { padding: 64px 0 48px; } }
 
 .uc-hero__motif {
   position: absolute;
@@ -252,7 +252,7 @@
 .uc-group-row:first-child { border-top: 0; padding-top: 8px; }
 .uc-group-row:last-child { padding-bottom: 8px; }
 @media (min-width: 768px) {
-  .uc-group-row { padding: 56px 0; }
+  .uc-group-row { padding: 64px 0; }
 }
 
 .uc-group-row__head {
@@ -318,8 +318,8 @@
 /* -----------------------------------------------------------
    Card grid (3 per row at desktop)
    ----------------------------------------------------------- */
-.uc-grid-section { padding: 36px 0 80px; }
-@media (min-width: 768px) { .uc-grid-section { padding: 44px 0 96px; } }
+.uc-grid-section { padding: 72px 0; }
+@media (min-width: 768px) { .uc-grid-section { padding: 96px 0; } }
 
 .uc-grid {
   display: grid;
@@ -463,6 +463,7 @@
   background: var(--bg-3);
   border-top: 1px solid var(--border-2);
 }
+@media (min-width: 768px) { .uc-compare { padding: 64px 0; } }
 .uc-compare__head {
   display: flex;
   flex-wrap: wrap;
@@ -526,7 +527,7 @@
   background: var(--dh-navy);
   color: #fff;
 }
-@media (min-width: 768px) { .uc-cta { padding: 56px 0; } }
+@media (min-width: 768px) { .uc-cta { padding: 64px 0; } }
 
 .uc-cta__motif {
   position: absolute;

@@ -37,12 +37,12 @@
 .ucd-header {
   position: relative;
   overflow: hidden;
-  padding: 40px 0 48px;
+  padding: 56px 0 48px;
   border-bottom: 1px solid var(--border-2);
   background: linear-gradient(180deg, #ECF1F6 0%, #F2F5F9 100%);
 }
 @media (min-width: 768px) {
-  .ucd-header { padding: 56px 0 64px; }
+  .ucd-header { padding: 80px 0 64px; }
 }
 .ucd-header__motif {
   position: absolute;
@@ -273,10 +273,10 @@
    ----------------------------------------------------------- */
 .ucd-problem {
   background: var(--bg-3);
-  padding: 64px 0;
+  padding: 72px 0;
 }
 @media (min-width: 768px) {
-  .ucd-problem { padding: 80px 0; }
+  .ucd-problem { padding: 96px 0; }
 }
 .ucd-problem__inner {
   max-width: 760px;
@@ -308,6 +308,9 @@
 .ucd-hard {
   padding: 72px 0;
   border-bottom: 1px solid var(--border-2);
+}
+@media (min-width: 768px) {
+  .ucd-hard { padding: 96px 0; }
 }
 .ucd-hard__inner {
   display: grid;
@@ -364,6 +367,9 @@
 .ucd-solve {
   padding: 72px 0;
   background: var(--dh-white);
+}
+@media (min-width: 768px) {
+  .ucd-solve { padding: 96px 0; }
 }
 .ucd-solve__head {
   max-width: 720px;
@@ -515,9 +521,12 @@
    Related use cases – 2 small cards
    ----------------------------------------------------------- */
 .ucd-related {
-  padding: 64px 0;
+  padding: 72px 0;
   background: var(--bg-3);
   border-top: 1px solid var(--border-2);
+}
+@media (min-width: 768px) {
+  .ucd-related { padding: 96px 0; }
 }
 .ucd-related__head {
   display: flex;
@@ -603,7 +612,7 @@
   background: var(--dh-navy);
   color: #fff;
 }
-@media (min-width: 768px) { .ucd-cta { padding: 56px 0; } }
+@media (min-width: 768px) { .ucd-cta { padding: 64px 0; } }
 
 .ucd-cta__motif {
   position: absolute;

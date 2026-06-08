@@ -6,11 +6,11 @@
    Header
    ----------------------------------------------------------- */
 .res-hero {
-  padding: 96px 0 64px;
+  padding: 72px 0 56px;
   border-bottom: 1px solid var(--border-2);
   background: linear-gradient(180deg, #ECF1F6 0%, #F2F5F9 100%);
 }
-@media (min-width: 768px) { .res-hero { padding: 128px 0 80px; } }
+@media (min-width: 768px) { .res-hero { padding: 112px 0 80px; } }
 .res-hero h1 {
   margin: var(--space-4) 0 0;
   max-width: 18ch;
@@ -22,10 +22,11 @@
 .feat {
   background: var(--dh-navy);
   color: #fff;
-  padding: 96px 0 112px;
+  padding: 72px 0;
   position: relative;
   overflow: hidden;
 }
+@media (min-width: 768px) { .feat { padding: 96px 0; } }
 .feat::after {
   /* faint hex motif */
   content: "";
@@ -170,7 +171,8 @@
 /* -----------------------------------------------------------
    Resource library
    ----------------------------------------------------------- */
-.library { padding: 96px 0 120px; }
+.library { padding: 72px 0; }
+@media (min-width: 768px) { .library { padding: 96px 0; } }
 .library__head {
   display: flex;
   justify-content: space-between;
@@ -373,9 +375,10 @@
    ----------------------------------------------------------- */
 .pillar {
   background: var(--bg-3);
-  padding: 96px 0;
+  padding: 72px 0;
   border-top: 1px solid var(--border-2);
 }
+@media (min-width: 768px) { .pillar { padding: 96px 0; } }
 .pillar__head {
   max-width: 640px;
   margin-bottom: var(--space-7);
@@ -452,8 +455,9 @@
    Comparison pages block
    ----------------------------------------------------------- */
 .compare {
-  padding: 96px 0;
+  padding: 72px 0;
 }
+@media (min-width: 768px) { .compare { padding: 96px 0; } }
 .compare__head {
   display: flex;
   align-items: end;

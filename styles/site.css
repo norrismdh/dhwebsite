@@ -907,13 +907,13 @@ button { font-family: inherit; cursor: pointer; }
    Promise - full-bleed statement
    ----------------------------------------------------------- */
 .promise {
-  padding: 56px 0;
+  padding: 72px 0;
   text-align: center;
   background: var(--dh-white);
   position: relative;
 }
 @media (min-width: 768px) {
-  .promise { padding: 80px 0; }
+  .promise { padding: 96px 0; }
 }
 .promise__rule {
   width: 80px;
@@ -1070,7 +1070,10 @@ button { font-family: inherit; cursor: pointer; }
 /* -----------------------------------------------------------
    Social proof / logo bar
    ----------------------------------------------------------- */
-.proof { padding: 56px 0 44px; background: var(--bg-3); }
+.proof { padding: 48px 0; background: var(--bg-3); }
+@media (min-width: 768px) {
+  .proof { padding: 64px 0; }
+}
 .proof__label {
   text-align: center;
   font-size: var(--fs-12);
@@ -1508,10 +1511,13 @@ button { font-family: inherit; cursor: pointer; }
 .cta-banner {
   background: var(--dh-navy);
   color: #fff;
-  padding: 72px 0;
+  padding: 48px 0;
   text-align: center;
   position: relative;
   overflow: hidden;
+}
+@media (min-width: 768px) {
+  .cta-banner { padding: 64px 0; }
 }
 .cta-banner::before {
   content: "";

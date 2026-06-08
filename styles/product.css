@@ -8,12 +8,12 @@
    Page hero (smaller than home hero)
    ----------------------------------------------------------- */
 .page-hero {
-  padding: 96px 0 72px;
+  padding: 72px 0 56px;
   border-bottom: 1px solid var(--border-2);
   background: linear-gradient(180deg, #ECF1F6 0%, #F2F5F9 100%);
 }
 @media (min-width: 768px) {
-  .page-hero { padding: 128px 0 96px; }
+  .page-hero { padding: 112px 0 80px; }
 }
 .page-hero__grid {
   display: grid;
@@ -341,12 +341,15 @@
    Alternating feature rows (Catalog, Hub, Governance)
    ----------------------------------------------------------- */
 .feature-row {
-  padding: 112px 0;
+  padding: 72px 0;
   background: var(--dh-white);
   scroll-margin-top: 128px;
 }
 @media (max-width: 767px) {
-  .feature-row { padding: 72px 0; scroll-margin-top: 120px; }
+  .feature-row { scroll-margin-top: 120px; }
+}
+@media (min-width: 768px) {
+  .feature-row { padding: 96px 0; }
 }
 .feature-row + .feature-row { border-top: 1px solid var(--border-2); }
 .feature-row--muted { background: var(--bg-3); }
@@ -720,9 +723,12 @@
    Connectors wall
    ----------------------------------------------------------- */
 .connectors {
-  padding: 112px 0;
+  padding: 72px 0;
   background: var(--bg-3);
   scroll-margin-top: 128px;
+}
+@media (min-width: 768px) {
+  .connectors { padding: 96px 0; }
 }
 .connectors__head { margin-bottom: var(--space-7); max-width: 720px; }
 .connectors__head h2 {
@@ -833,10 +839,13 @@
    Security
    ----------------------------------------------------------- */
 .security {
-  padding: 112px 0;
+  padding: 72px 0;
   background: var(--dh-navy);
   color: #fff;
   scroll-margin-top: 128px;
+}
+@media (min-width: 768px) {
+  .security { padding: 96px 0; }
 }
 .security__grid {
   display: grid;
@@ -907,8 +916,11 @@
    What we are not (3-column muted)
    ----------------------------------------------------------- */
 .notwhat {
-  padding: 112px 0;
+  padding: 72px 0;
   background: var(--bg-1);
+}
+@media (min-width: 768px) {
+  .notwhat { padding: 96px 0; }
 }
 .notwhat__head { margin-bottom: var(--space-7); max-width: 600px; }
 .notwhat__head h2 {
@@ -971,10 +983,13 @@
    Bottom CTA - paper variant (not navy this time, lighter close)
    ----------------------------------------------------------- */
 .bottom-cta {
-  padding: 120px 0;
+  padding: 72px 0;
   text-align: center;
   background: var(--bg-1);
   border-top: 1px solid var(--border-2);
+}
+@media (min-width: 768px) {
+  .bottom-cta { padding: 96px 0; }
 }
 .bottom-cta h2 {
   font-size: clamp(32px, 4.5vw, 56px);

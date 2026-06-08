@@ -4,9 +4,9 @@
 
 /* Hero with hex motif backdrop */
 .ct-hero {
-  padding: 88px 0 56px;
+  padding: 72px 0 56px;
 }
-@media (min-width: 768px) { .ct-hero { padding: 112px 0 72px; } }
+@media (min-width: 768px) { .ct-hero { padding: 112px 0 80px; } }
 .ct-hero__inner { max-width: 760px; }
 .ct-hero h1 {
   margin: 0 0 var(--space-4);
@@ -102,7 +102,7 @@
 .ct-path:hover .ct-path__link svg { transform: translateX(3px); }
 
 /* ============ Main contact form + side rail ============ */
-.ct-main { padding: var(--space-8) 0 var(--space-8); }
+.ct-main { padding: 72px 0; }
 @media (min-width: 768px) { .ct-main { padding: 96px 0; } }
 .ct-grid {
   display: grid;
@@ -281,10 +281,10 @@
   gap: var(--space-5);
   grid-template-columns: 1fr;
   align-items: center;
-  padding: var(--space-7) 0;
+  padding: 48px 0;
 }
 @media (min-width: 768px) {
-  .ct-faq-teaser__grid { grid-template-columns: 1.1fr 1fr; gap: var(--space-8); padding: var(--space-8) 0; }
+  .ct-faq-teaser__grid { grid-template-columns: 1.1fr 1fr; gap: var(--space-8); padding: 64px 0; }
 }
 .ct-faq-teaser h3 {
   color: #fff;

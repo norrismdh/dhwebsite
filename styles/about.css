@@ -51,9 +51,9 @@
   overflow: hidden;
   border-bottom: 1px solid var(--border-2);
   background: linear-gradient(180deg, #ECF1F6 0%, #F2F5F9 100%);
-  padding: 72px 0 0;
+  padding: 72px 0 56px;
 }
-@media (min-width: 1024px) { .ab2-hero { padding: 104px 0 0; } }
+@media (min-width: 768px) { .ab2-hero { padding: 112px 0 80px; } }
 
 .ab2-hero__grid {
   display: grid;
@@ -139,7 +139,8 @@
 /* -----------------------------------------------------------
    2 — CLARITY PROBLEM (full-width, centered)
    ----------------------------------------------------------- */
-.ab2-observation { padding: 84px 0 76px; }
+.ab2-observation { padding: 72px 0; }
+@media (min-width: 768px) { .ab2-observation { padding: 96px 0; } }
 .ab2-observation__inner { max-width: 720px; margin: 0 auto; text-align: center; }
 .ab2-observation h2 {
   font-size: clamp(26px, 3.2vw, 38px);
@@ -182,10 +183,11 @@
   background: var(--bg-3);
   border-top: 1px solid var(--border-2);
   border-bottom: 1px solid var(--border-2);
-  padding: 80px 0;
+  padding: 72px 0;
   position: relative;
   overflow: hidden;
 }
+@media (min-width: 768px) { .ab2-why-sec { padding: 96px 0; } }
 .ab2-why-sec::before {
   content: "";
   position: absolute; inset: 0;
@@ -232,7 +234,8 @@
 /* -----------------------------------------------------------
    4 — WHAT WE DO: 4 capability cards
    ----------------------------------------------------------- */
-.ab2-do { background: var(--bg-1); padding: 80px 0; }
+.ab2-do { background: var(--bg-1); padding: 72px 0; }
+@media (min-width: 768px) { .ab2-do { padding: 96px 0; } }
 .ab2-do__head {
   display: grid; gap: var(--space-5);
   margin-bottom: var(--space-7);
@@ -300,10 +303,11 @@
 .ab2-serve {
   background: var(--dh-navy);
   color: #fff;
-  padding: 88px 0;
+  padding: 72px 0;
   position: relative;
   overflow: hidden;
 }
+@media (min-width: 768px) { .ab2-serve { padding: 96px 0; } }
 .ab2-serve::after {
   content: "";
   position: absolute; inset: 0;
@@ -380,7 +384,8 @@
 /* -----------------------------------------------------------
    6 — TEAM (compact)
    ----------------------------------------------------------- */
-.ab2-team { padding: 80px 0; }
+.ab2-team { padding: 72px 0; }
+@media (min-width: 768px) { .ab2-team { padding: 96px 0; } }
 .ab2-team__head {
   display: flex; align-items: end; justify-content: space-between;
   gap: var(--space-5); flex-wrap: wrap;
@@ -447,8 +452,9 @@
 .ab2-close {
   background: var(--bg-1);
   text-align: center;
-  padding: 64px 0 56px;
+  padding: 48px 0;
 }
+@media (min-width: 768px) { .ab2-close { padding: 64px 0; } }
 .ab2-close .eyebrow { color: var(--dh-orange); }
 .ab2-belief {
   font-size: clamp(28px, 4vw, 46px);
@@ -497,11 +503,11 @@
 .pr-cta {
   position: relative;
   overflow: hidden;
-  padding: 56px 0;
+  padding: 48px 0;
   background: var(--dh-navy);
   color: #fff;
 }
-@media (min-width: 768px) { .pr-cta { padding: 68px 0; } }
+@media (min-width: 768px) { .pr-cta { padding: 64px 0; } }
 .pr-cta__motif {
   position: absolute;
   inset: 0;
