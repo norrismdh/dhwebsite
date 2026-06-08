@@ -6,12 +6,12 @@
    Hero
    ----------------------------------------------------------- */
 .blog-hero {
-  padding: 72px 0 56px;
+  padding: 56px 0 40px;
   border-bottom: 1px solid var(--border-2);
   overflow: hidden;
 }
 @media (min-width: 768px) {
-  .blog-hero { padding: 112px 0 80px; }
+  .blog-hero { padding: 80px 0 56px; }
 }
 .blog-hero__grid {
   display: grid;
@@ -57,12 +57,12 @@
    Reading paths — buyer journey entry points
    ----------------------------------------------------------- */
 .blog-paths {
-  padding: 72px 0;
+  padding: 56px 0;
   background: var(--bg-2);
   border-bottom: 1px solid var(--border-2);
 }
 @media (min-width: 768px) {
-  .blog-paths { padding: 96px 0; }
+  .blog-paths { padding: 72px 0; }
 }
 .blog-paths__head { margin-bottom: var(--space-6); }
 .blog-paths__head h2 {
@@ -143,12 +143,12 @@
    Featured post
    ----------------------------------------------------------- */
 .blog-feat {
-  padding: 72px 0;
+  padding: 56px 0;
   background: var(--bg-1);
   border-bottom: 1px solid var(--border-2);
 }
 @media (min-width: 768px) {
-  .blog-feat { padding: 96px 0; }
+  .blog-feat { padding: 72px 0; }
 }
 .blog-feat__inner {
   background: var(--dh-navy);

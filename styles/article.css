@@ -6,10 +6,10 @@
    Article header
    ----------------------------------------------------------- */
 .art-header {
-  padding: 72px 0 56px;
+  padding: 56px 0 40px;
   border-bottom: 1px solid var(--border-2);
 }
-@media (min-width: 768px) { .art-header { padding: 112px 0 80px; } }
+@media (min-width: 768px) { .art-header { padding: 80px 0 56px; } }
 .art-header h1 {
   font-size: clamp(36px, 5.4vw, 64px);
   line-height: 1.06;
@@ -42,8 +42,8 @@
 /* -----------------------------------------------------------
    Body layout - sidebar TOC + prose
    ----------------------------------------------------------- */
-.art-body { padding: 72px 0; }
-@media (min-width: 768px) { .art-body { padding: 96px 0; } }
+.art-body { padding: 56px 0; }
+@media (min-width: 768px) { .art-body { padding: 72px 0; } }
 .art-body__grid {
   display: grid;
   gap: var(--space-7);
@@ -407,9 +407,9 @@
 .art-related {
   background: var(--bg-3);
   border-top: 1px solid var(--border-2);
-  padding: 72px 0;
+  padding: 56px 0;
 }
-@media (min-width: 768px) { .art-related { padding: 96px 0; } }
+@media (min-width: 768px) { .art-related { padding: 72px 0; } }
 .art-related h3 {
   font-size: var(--fs-32);
   letter-spacing: -0.02em;
@@ -474,14 +474,14 @@
    Subtle bottom CTA
    ----------------------------------------------------------- */
 .art-cta {
-  padding: 72px 0;
+  padding: 56px 0;
   background: var(--dh-navy);
   color: #fff;
   text-align: center;
   position: relative;
   overflow: hidden;
 }
-@media (min-width: 768px) { .art-cta { padding: 96px 0; } }
+@media (min-width: 768px) { .art-cta { padding: 72px 0; } }
 .art-cta::before {
   content: "";
   position: absolute;

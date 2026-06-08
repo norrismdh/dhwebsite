@@ -110,10 +110,10 @@
   .cs-wrap,
   .cs-narrow { padding-left: var(--space-5); padding-right: var(--space-5); }
 }
-.cs-section { padding: 72px 0; }
-@media (min-width: 768px) { .cs-section { padding: 96px 0; } }
-.cs-section.compact { padding: 48px 0; }
-@media (min-width: 768px) { .cs-section.compact { padding: 64px 0; } }
+.cs-section { padding: 56px 0; }
+@media (min-width: 768px) { .cs-section { padding: 72px 0; } }
+.cs-section.compact { padding: 36px 0; }
+@media (min-width: 768px) { .cs-section.compact { padding: 48px 0; } }
 
 .cs-inverse {
   background: var(--dh-navy);
@@ -182,8 +182,8 @@
 /* -----------------------------------------------------------
    Hero
    ----------------------------------------------------------- */
-.cs-hero { padding: 72px 0 56px; }
-@media (min-width: 768px) { .cs-hero { padding: 112px 0 80px; } }
+.cs-hero { padding: 56px 0 40px; }
+@media (min-width: 768px) { .cs-hero { padding: 80px 0 56px; } }
 
 .cs-hero__grid {
   display: grid;
@@ -841,9 +841,9 @@
    ----------------------------------------------------------- */
 .cs-cta {
   text-align: center;
-  padding: 72px 0;
+  padding: 56px 0;
 }
-@media (min-width: 768px) { .cs-cta { padding: 96px 0; } }
+@media (min-width: 768px) { .cs-cta { padding: 72px 0; } }
 .cs-cta .eyebrow { display: block; margin-bottom: var(--space-4); }
 .cs-cta h2 {
   font-size: clamp(28px, 3.6vw, 44px);

@@ -6,10 +6,10 @@
    Header
    ----------------------------------------------------------- */
 .cmp-hero {
-  padding: 72px 0 56px;
+  padding: 56px 0 40px;
   border-bottom: 1px solid var(--border-2);
 }
-@media (min-width: 768px) { .cmp-hero { padding: 112px 0 80px; } }
+@media (min-width: 768px) { .cmp-hero { padding: 80px 0 56px; } }
 .cmp-hero__tag {
   display: inline-flex;
   align-items: center;
@@ -45,7 +45,7 @@
    Quick summary - 2-column side-by-side
    ----------------------------------------------------------- */
 .summary {
-  padding: 96px 0;
+  padding: 72px 0;
 }
 .summary__head { max-width: 640px; margin-bottom: var(--space-7); }
 .summary__head h2 {
@@ -160,12 +160,12 @@
    Comparison table
    ----------------------------------------------------------- */
 .cmp-table-section {
-  padding: 72px 0;
+  padding: 56px 0;
   background: var(--bg-3);
   border-top: 1px solid var(--border-2);
   border-bottom: 1px solid var(--border-2);
 }
-@media (min-width: 768px) { .cmp-table-section { padding: 96px 0; } }
+@media (min-width: 768px) { .cmp-table-section { padding: 72px 0; } }
 .cmp-table-section__head { max-width: 640px; margin-bottom: var(--space-7); }
 .cmp-table-section__head h2 {
   font-size: clamp(28px, 3.4vw, 40px);
@@ -256,7 +256,7 @@
    Where each leads
    ----------------------------------------------------------- */
 .leads {
-  padding: 96px 0;
+  padding: 72px 0;
 }
 .leads--alt { background: var(--bg-3); border-top: 1px solid var(--border-2); border-bottom: 1px solid var(--border-2); }
 
@@ -323,9 +323,9 @@
    Customer quote callout
    ----------------------------------------------------------- */
 .cmp-quote {
-  padding: 72px 0;
+  padding: 56px 0;
 }
-@media (min-width: 768px) { .cmp-quote { padding: 96px 0; } }
+@media (min-width: 768px) { .cmp-quote { padding: 72px 0; } }
 .cmp-quote__inner {
   max-width: 880px;
   margin: 0 auto;
@@ -388,14 +388,14 @@
    Bottom CTA
    ----------------------------------------------------------- */
 .cmp-cta {
-  padding: 72px 0;
+  padding: 56px 0;
   background: var(--dh-navy);
   color: #fff;
   text-align: center;
   position: relative;
   overflow: hidden;
 }
-@media (min-width: 768px) { .cmp-cta { padding: 96px 0; } }
+@media (min-width: 768px) { .cmp-cta { padding: 72px 0; } }
 .cmp-cta::before {
   content: "";
   position: absolute;

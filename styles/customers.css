@@ -7,11 +7,11 @@
    Header
    ----------------------------------------------------------- */
 .cust-hero {
-  padding: 72px 0 56px;
+  padding: 56px 0 40px;
   border-bottom: 1px solid var(--border-2);
   background: linear-gradient(180deg, #ECF1F6 0%, #F2F5F9 100%);
 }
-@media (min-width: 768px) { .cust-hero { padding: 112px 0 80px; } }
+@media (min-width: 768px) { .cust-hero { padding: 80px 0 56px; } }
 
 .cust-hero__grid {
   display: grid;
@@ -53,8 +53,8 @@
 /* -----------------------------------------------------------
    Industry-grouped logo wall
    ----------------------------------------------------------- */
-.industry-wall { padding: 72px 0; }
-@media (min-width: 768px) { .industry-wall { padding: 96px 0; } }
+.industry-wall { padding: 56px 0; }
+@media (min-width: 768px) { .industry-wall { padding: 72px 0; } }
 .industry-wall__head {
   margin-bottom: var(--space-7);
   max-width: 640px;
@@ -117,11 +117,11 @@
    Featured case study cards
    ----------------------------------------------------------- */
 .case-studies {
-  padding: 72px 0;
+  padding: 56px 0;
   background: var(--bg-3);
   border-top: 1px solid var(--border-2);
 }
-@media (min-width: 768px) { .case-studies { padding: 96px 0; } }
+@media (min-width: 768px) { .case-studies { padding: 72px 0; } }
 .case-studies__head {
   display: flex;
   align-items: end;
@@ -241,8 +241,8 @@
 /* -----------------------------------------------------------
    Testimonial wall - masonry via CSS columns
    ----------------------------------------------------------- */
-.tm-wall { padding: 72px 0; }
-@media (min-width: 768px) { .tm-wall { padding: 96px 0; } }
+.tm-wall { padding: 56px 0; }
+@media (min-width: 768px) { .tm-wall { padding: 72px 0; } }
 .tm-wall__head { margin-bottom: var(--space-7); max-width: 640px; }
 .tm-wall__head h2 {
   font-size: clamp(28px, 3.4vw, 40px);
@@ -337,14 +337,14 @@
    Bottom CTA - paper, two-line headline
    ----------------------------------------------------------- */
 .cust-cta {
-  padding: 72px 0;
+  padding: 56px 0;
   background: var(--dh-navy);
   color: #fff;
   text-align: center;
   position: relative;
   overflow: hidden;
 }
-@media (min-width: 768px) { .cust-cta { padding: 96px 0; } }
+@media (min-width: 768px) { .cust-cta { padding: 72px 0; } }
 .cust-cta::before {
   content: "";
   position: absolute;

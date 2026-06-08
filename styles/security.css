@@ -81,11 +81,11 @@
 .sec-certs .section-head .eyebrow { color: var(--dh-orange); }
 
 .sec-certs {
-  padding: 72px 0;
+  padding: 56px 0;
   border-bottom: 1px solid var(--border-2);
 }
 @media (min-width: 768px) {
-  .sec-certs { padding: 96px 0; }
+  .sec-certs { padding: 72px 0; }
 }
 
 .sec-certs__grid {
@@ -188,12 +188,12 @@
    CTA strip
    ----------------------------------------------------------- */
 .sec-cta {
-  padding: 72px 0;
+  padding: 56px 0;
   background: linear-gradient(180deg, #ECF1F6 0%, #F2F5F9 100%);
   border-top: 1px solid var(--border-2);
 }
 @media (min-width: 768px) {
-  .sec-cta { padding: 96px 0; }
+  .sec-cta { padding: 72px 0; }
 }
 .sec-cta__inner {
   display: grid;

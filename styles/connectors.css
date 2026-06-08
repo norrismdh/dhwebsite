@@ -2,8 +2,8 @@
    Connectors page
    ============================================================= */
 
-.cn-hero { padding: 72px 0 56px; }
-@media (min-width: 768px) { .cn-hero { padding: 112px 0 80px; } }
+.cn-hero { padding: 56px 0 40px; }
+@media (min-width: 768px) { .cn-hero { padding: 80px 0 56px; } }
 
 .cn-hero__grid {
   display: grid;
@@ -190,12 +190,12 @@
 
 /* ============ Category filters + grid ============ */
 .cn-catalog {
-  padding: 72px 0;
+  padding: 56px 0;
   background: var(--bg-3);
   border-top: 1px solid var(--border-2);
   border-bottom: 1px solid var(--border-2);
 }
-@media (min-width: 768px) { .cn-catalog { padding: 96px 0; } }
+@media (min-width: 768px) { .cn-catalog { padding: 72px 0; } }
 
 .cn-catalog__head {
   display: grid;
@@ -367,8 +367,8 @@
 .cn-card__status--soon .dot { background: var(--dh-grey-light); }
 
 /* ============ Architecture / How section ============ */
-.cn-arch { padding: 72px 0; }
-@media (min-width: 768px) { .cn-arch { padding: 96px 0; } }
+.cn-arch { padding: 56px 0; }
+@media (min-width: 768px) { .cn-arch { padding: 72px 0; } }
 .cn-arch__head { max-width: 720px; margin-bottom: var(--space-7); }
 .cn-arch__steps {
   display: grid;
@@ -397,11 +397,11 @@
   background: var(--dh-navy);
   color: #fff;
   text-align: center;
-  padding: 72px 0;
+  padding: 56px 0;
   overflow: hidden;
   position: relative;
 }
-@media (min-width: 768px) { .cn-request { padding: 96px 0; } }
+@media (min-width: 768px) { .cn-request { padding: 72px 0; } }
 .cn-request::before {
   content: "";
   position: absolute;
