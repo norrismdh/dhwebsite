@@ -245,10 +245,10 @@
         </div>
 
         <div class="library__tabs reveal" role="tablist" data-blog-tabs>
-          <button class="library__tab is-active" type="button" data-filter="all">All <span class="count">17</span></button>
-          <button class="library__tab" type="button" data-filter="strategy">BI Strategy <span class="count">9</span></button>
-          <button class="library__tab" type="button" data-filter="catalogs">Analytics Catalogs <span class="count">5</span></button>
-          <button class="library__tab" type="button" data-filter="education">Education &amp; Guides <span class="count">3</span></button>
+          <button class="library__tab is-active" type="button" role="tab" aria-selected="true" data-filter="all">All <span class="count">17</span></button>
+          <button class="library__tab" type="button" role="tab" aria-selected="false" data-filter="strategy">BI Strategy <span class="count">9</span></button>
+          <button class="library__tab" type="button" role="tab" aria-selected="false" data-filter="catalogs">Analytics Catalogs <span class="count">5</span></button>
+          <button class="library__tab" type="button" role="tab" aria-selected="false" data-filter="education">Education &amp; Guides <span class="count">3</span></button>
         </div>
 
         <div class="library__grid" data-blog-grid>
@@ -542,8 +542,12 @@
       var cards = document.querySelectorAll('[data-blog-grid] .res-card');
       tabs.forEach(function (btn) {
         btn.addEventListener('click', function () {
-          tabs.forEach(function (b) { b.classList.remove('is-active'); });
+          tabs.forEach(function (b) {
+            b.classList.remove('is-active');
+            b.setAttribute('aria-selected', 'false');
+          });
           btn.classList.add('is-active');
+          btn.setAttribute('aria-selected', 'true');
           var f = btn.dataset.filter;
           cards.forEach(function (card) {
             card.style.display = (f === 'all' || card.dataset.cat === f) ? '' : 'none';
