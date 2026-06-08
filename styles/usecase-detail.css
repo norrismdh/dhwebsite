@@ -76,9 +76,7 @@
   margin: 0 0 var(--space-4);
 }
 .ucd-header__tag .dot {
-  width: 6px; height: 6px;
-  background: var(--fg-accent);
-  border-radius: 50%;
+  display: none;
 }
 .ucd-header h1 {
   font-size: clamp(32px, 4.8vw, 60px);
