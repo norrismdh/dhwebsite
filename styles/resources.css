@@ -290,7 +290,7 @@
 .res-card[data-type="whitepaper"] .res-card__thumb { background: linear-gradient(135deg, #1B345B 0%, #0E1F39 100%); }
 .res-card[data-type="webinar"] .res-card__thumb { background: linear-gradient(135deg, #244271 0%, #193359 100%); }
 .res-card[data-type="event"] .res-card__thumb { background: linear-gradient(135deg, #3C5A88 0%, #1B345B 100%); }
-.res-card[data-type="blog"] .res-card__thumb { background: linear-gradient(135deg, #193359 0%, #0E1F39 100%); }
+.res-card[data-type="blog"] .res-card__thumb { background: linear-gradient(135deg, #3C5A88 0%, #244271 100%); }
 
 .res-card__type-strip {
   position: absolute;
