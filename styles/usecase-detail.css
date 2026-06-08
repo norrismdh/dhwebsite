@@ -485,7 +485,7 @@
 }
 .ucd-outcome {
   display: grid;
-  gap: var(--space-4);
+  gap: var(--space-6);
 }
 @media (min-width: 768px) {
   /* Two explicit row tracks: heading row + caption row.
@@ -494,17 +494,19 @@
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto auto;
     column-gap: 80px;
-    row-gap: var(--space-4);
+    row-gap: var(--space-6);
   }
   /* Each card spans both row tracks and uses subgrid so all headings
-     share one row height and all captions start at the same baseline. */
+     share one row height and all captions start at the same baseline.
+     Explicit grid-row on each child forces correct auto-track sizing. */
   .ucd-outcome {
     grid-row: span 2;
     display: grid;
     grid-template-rows: subgrid;
     gap: 0;
-    align-content: start;
   }
+  .ucd-outcome__big     { grid-row: 1; padding-bottom: var(--space-5); }
+  .ucd-outcome__caption { grid-row: 2; align-self: start; }
 }
 .ucd-outcome__big {
   font-size: clamp(40px, 5vw, 64px);
