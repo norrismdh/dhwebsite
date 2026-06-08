@@ -7,13 +7,33 @@
 (function () {
   // ---------- Mega menu (injected so every page picks it up) ----------
   function setupMegaMenu() {
-    const navLinks = document.querySelector('.nav__links');
-    if (!navLinks) return;
+    const nav = document.querySelector('.nav');
+    if (!nav) return;
 
     // Current page detection + subdirectory base path
     const path = (location.pathname.split('/').pop() || 'Home.html').toLowerCase();
     const dir  = location.pathname.replace(/\\/g, '/').split('/').slice(0, -1).pop() || '';
-    const base = ['use-cases', 'resources', 'vs', 'blog'].includes(dir.toLowerCase()) ? '../' : '';
+    const base = ['use-cases', 'resources', 'vs', 'blog', 'downloads'].includes(dir.toLowerCase()) ? '../' : '';
+
+    // Inject full nav shell so the header is a single source of truth
+    nav.innerHTML = `
+      <div class="container nav__inner">
+        <a class="nav__logo" href="${base}Home.html" aria-label="Digital Hive home">
+          <img src="${base}assets/logo-colour.svg" alt="Digital Hive" />
+        </a>
+        <nav aria-label="Primary">
+          <ul class="nav__links"></ul>
+        </nav>
+        <div class="nav__cta">
+          <a class="btn btn--primary" href="${base}Demo.html">Book a demo</a>
+          <button type="button" class="nav__toggle" data-mobile-toggle aria-label="Open menu" aria-expanded="false">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+          </button>
+        </div>
+      </div>
+      <div class="container mobile-menu" data-mobile-menu></div>`;
+
+    const navLinks = nav.querySelector('.nav__links');
     const inPlatform = ['product.html', 'usecases.html', 'connectors.html', 'security.html'].includes(path);
     const inResources = ['resources.html', 'faq.html', 'customers.html', 'blog.html'].includes(path) || dir === 'blog';
     const inCompany = ['about.html', 'contact.html'].includes(path);
