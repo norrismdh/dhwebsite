@@ -836,6 +836,12 @@
   color: var(--dh-orange);
   margin-top: auto;
 }
+.cs-related-card .read svg {
+  transition: transform 180ms ease-out;
+}
+.cs-related-card:hover .read svg {
+  transform: translateX(4px);
+}
 
 /* -----------------------------------------------------------
    Demo CTA (navy)
