@@ -250,22 +250,21 @@
 }
 
 .tm-grid {
-  column-count: 1;
-  column-gap: var(--space-5);
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: 1fr;
 }
-@media (min-width: 700px) { .tm-grid { column-count: 2; } }
-@media (min-width: 1100px) { .tm-grid { column-count: 3; } }
+@media (min-width: 700px) { .tm-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .tm-grid { grid-template-columns: repeat(3, 1fr); } }
 
 .tm-card {
-  break-inside: avoid;
-  margin: 0 0 var(--space-5);
   padding: var(--space-7) var(--space-6) var(--space-6);
   background: var(--dh-white);
   border: 1px solid var(--border-2);
   border-radius: var(--radius-md);
   position: relative;
-  display: inline-block;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
 }
 .tm-card::before {
   content: "“";
@@ -286,6 +285,7 @@
   font-weight: var(--fw-medium);
   text-wrap: pretty;
   position: relative;
+  flex: 1;
 }
 .tm-card__footer {
   display: flex;
@@ -326,9 +326,6 @@
   border: 1px solid var(--border-2);
 }
 
-/* Short-quote cards get more vertical breathing room so they don't feel sparse */
-.tm-card--compact { padding: 56px var(--space-6) 40px; }
-.tm-card--compact .tm-card__quote { font-size: clamp(19px, 2vw, 22px); line-height: 1.45; }
 
 /* -----------------------------------------------------------
    Bottom CTA - paper, two-line headline
