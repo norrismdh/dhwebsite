@@ -617,7 +617,7 @@ button { font-family: inherit; cursor: pointer; }
   transform-origin: center;
   animation-duration: 11s;
   animation-iteration-count: infinite;
-  animation-timing-function: cubic-bezier(0.55, 0.05, 0.25, 1);
+  animation-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
 }
 .consolidator__chip .swatch {
   width: 24px; height: 24px;
@@ -826,6 +826,10 @@ button { font-family: inherit; cursor: pointer; }
 @media (min-width: 600px) { .problem__grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-6); } }
 @media (min-width: 960px) { .problem__grid { grid-template-columns: repeat(4, 1fr); gap: var(--space-7); } }
 
+.problem__grid .problem__item:nth-child(2) { transition-delay: 60ms; }
+.problem__grid .problem__item:nth-child(3) { transition-delay: 120ms; }
+.problem__grid .problem__item:nth-child(4) { transition-delay: 180ms; }
+
 .problem__item {
   border-top: 2px solid var(--dh-navy);
   padding-top: var(--space-5);
@@ -867,6 +871,10 @@ button { font-family: inherit; cursor: pointer; }
   grid-template-columns: 1fr;
 }
 @media (min-width: 768px) { .solution__grid { grid-template-columns: 1fr 1fr; } }
+
+.solution__grid .sol-card:nth-child(2) { transition-delay: 60ms; }
+.solution__grid .sol-card:nth-child(3) { transition-delay: 120ms; }
+.solution__grid .sol-card:nth-child(4) { transition-delay: 180ms; }
 
 .sol-card {
   background: var(--dh-white);
@@ -922,6 +930,16 @@ button { font-family: inherit; cursor: pointer; }
   margin: 0 auto var(--space-6);
 }
 .promise__rule--bottom { margin: var(--space-6) auto 0; }
+/* Override standard .reveal for the rules — clip-path expand from center instead of fade+slide */
+.promise__rule.reveal {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0 50% 0 50%);
+  transition: clip-path 600ms var(--ease-out, cubic-bezier(0.23,1,0.32,1));
+}
+.promise__rule.reveal.is-visible {
+  clip-path: inset(0 0% 0 0%);
+}
 .promise__line {
   font-family: var(--font-sans);
   font-weight: var(--fw-bold);
@@ -1196,6 +1214,12 @@ button { font-family: inherit; cursor: pointer; }
 @media (min-width: 600px) { .usecases__grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .usecases__grid { grid-template-columns: repeat(3, 1fr); } }
 
+.usecases__grid .usecase:nth-child(2) { transition-delay:  50ms; }
+.usecases__grid .usecase:nth-child(3) { transition-delay: 100ms; }
+.usecases__grid .usecase:nth-child(4) { transition-delay: 150ms; }
+.usecases__grid .usecase:nth-child(5) { transition-delay: 200ms; }
+.usecases__grid .usecase:nth-child(6) { transition-delay: 250ms; }
+
 .usecase {
   position: relative;
   display: flex;
@@ -1223,6 +1247,7 @@ button { font-family: inherit; cursor: pointer; }
 .usecase:hover {
   border-color: var(--dh-yellow);
   box-shadow: 0 1px 0 var(--dh-yellow), var(--shadow-2);
+  transform: translateY(-2px);
 }
 .usecase__tag {
   font-size: 10px;
@@ -1418,6 +1443,8 @@ button { font-family: inherit; cursor: pointer; }
   transition: background var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out);
 }
 .carousel__arrow:hover { border-color: var(--dh-navy); }
+.carousel__arrow { transition: background var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out), transform 120ms ease-out; }
+.carousel__arrow:active { transform: scale(0.97); }
 
 /* -----------------------------------------------------------
    Research validation
@@ -1639,7 +1666,7 @@ button { font-family: inherit; cursor: pointer; }
 .reveal {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out);
+  transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
 }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
