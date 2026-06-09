@@ -120,6 +120,12 @@ button { font-family: inherit; cursor: pointer; }
   border-color: var(--border-1);
 }
 .btn--ghost:hover { border-color: var(--dh-navy); background: rgba(25, 51, 89, 0.03); }
+.btn--outline {
+  background: transparent;
+  color: var(--dh-navy);
+  border-color: var(--dh-navy);
+}
+.btn--outline:hover { background: rgba(25, 51, 89, 0.04); }
 .section--dark .btn--ghost { color: var(--dh-white); border-color: rgba(255,255,255,0.3); }
 .section--dark .btn--ghost:hover { border-color: var(--dh-white); background: rgba(255,255,255,0.05); }
 /* Ghost on dark backgrounds — base used by all CTA banners */
