@@ -289,7 +289,7 @@
   transform: translateY(-100%);
   opacity: 0;
   pointer-events: none;
-  transition: transform var(--dur-slow) var(--ease-out), opacity var(--dur-slow) var(--ease-out);
+  transition: transform 180ms var(--ease-out), opacity 180ms var(--ease-out);
 }
 .subnav.is-active {
   transform: translateY(0);
@@ -326,7 +326,7 @@
   height: 3px;
   background: var(--dh-yellow);
   transform: scaleX(0);
-  transform-origin: center;
+  transform-origin: left;
   transition: transform var(--dur-base) var(--ease-out);
 }
 .subnav a:hover { color: var(--dh-navy); background: transparent; }
@@ -1380,10 +1380,14 @@
   text-align: left;
   position: relative;
   transition: background var(--dur-base) var(--ease-out),
-              border-color var(--dur-base) var(--ease-out);
+              border-color var(--dur-base) var(--ease-out),
+              transform 120ms ease-out;
   font-family: inherit;
 }
-.seg__btn:hover { border-color: rgba(25,51,89,0.25); background: var(--dh-white); }
+@media (hover: hover) and (pointer: fine) {
+  .seg__btn:hover { border-color: rgba(25,51,89,0.25); background: var(--dh-white); }
+}
+.seg__btn:active { transform: scale(0.97); }
 
 .seg__num {
   font-size: var(--fs-12);
@@ -1414,7 +1418,7 @@
 /* -----------------------------------------------------------
    Cap panels
    ----------------------------------------------------------- */
-.explorer__panels { position: relative; }
+.explorer__panels { position: relative; min-height: 420px; }
 .cap-panel { display: none; }
 .cap-panel.is-active {
   display: block;
