@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
   <title>Product — Digital Hive</title>
-  <meta name="description" content="Digital Hive sits above your BI tools — indexing, governing, and surfacing analytics to the right people. No migration required." />
+  <meta name="description" content="Digital Hive is a centralized analytics hub that connects dashboards, reports, and business context into a single, structured experience — without rebuilding or replacing what you already use." />
   <link rel="stylesheet" href="styles/tokens.css" />
   <link rel="stylesheet" href="styles/site.css" />
   <link rel="stylesheet" href="styles/consent.css" />
@@ -28,16 +28,21 @@
       <div class="container page-hero__grid">
 
         <div class="reveal">
-          <span class="eyebrow">Product overview</span>
-          <h1>The analytics catalog and BI portal built for complex environments</h1>
-          <p class="page-hero__sub">Digital Hive sits above your existing BI tools — indexing them, organizing them, governing them, and surfacing them to the right people. Without touching a single report.</p>
+          <span class="eyebrow">Platform Overview</span>
+          <h1>Business Intelligence Portal &amp; Analytics Hub</h1>
+          <p class="page-hero__sub">Unify your analytics across platforms — without rebuilding or replacing what you already use.</p>
+
+          <div class="page-hero__body">
+            <p>Digital Hive is a centralized analytics hub that connects dashboards, reports, and business context into a single, structured experience. As organizations adopt more analytics tools — not fewer — users are left navigating fragmented systems and disconnected insights.</p>
+            <p class="page-hero__kicker">Digital Hive provides the unified layer that makes it all make sense.</p>
+          </div>
 
           <div class="page-hero__buttons">
             <a class="btn btn--accent" href="Demo.html">
               Book a demo
               <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
-            <a class="btn btn--ghost" href="Pricing.html">View pricing</a>
+            <a class="btn btn--ghost" href="#capabilities">Explore the platform</a>
           </div>
 
           <div class="page-hero__meta">
@@ -184,597 +189,656 @@
       </div>
     </section>
 
-    <!-- ============================================================
-         SENTINEL — when this crosses the viewport top the subnav appears
-         ============================================================ -->
+    <!-- Sentinel — crossing the viewport top makes the subnav appear -->
     <div data-subnav-sentinel aria-hidden="true"></div>
 
-    <!-- Sticky sub-nav -->
+    <!-- Sticky sub-nav: links jump to specific explorer tabs -->
     <nav class="subnav" data-subnav aria-label="On this page">
       <div class="container subnav__inner">
-        <a href="#catalog">The catalog</a>
-        <a href="#hub">The BI Hub</a>
-        <a href="#governance">Governance</a>
-        <a href="#connectors">Connectors</a>
-        <a href="#security">Security</a>
+        <a href="#capabilities" data-tab-jump="catalog">Catalog</a>
+        <a href="#capabilities" data-tab-jump="filtering">Filtering</a>
+        <a href="#capabilities" data-tab-jump="governance">Governance</a>
+        <a href="#capabilities" data-tab-jump="ai">AI</a>
+        <a href="#capabilities" data-tab-jump="storyboards">Storyboards</a>
+        <a href="#capabilities" data-tab-jump="branding">Branding</a>
+        <a href="#capabilities" data-tab-jump="connectors">Connectors</a>
+        <a href="#capabilities" data-tab-jump="enterprise">Enterprise</a>
       </div>
     </nav>
 
     <!-- ============================================================
-         02 OUTCOMES — four business benefits at a glance
+         02 PLATFORM CAPABILITIES EXPLORER
          ============================================================ -->
-    <section class="prod-outcomes" data-screen-label="02 Outcomes">
+    <section class="explorer" id="capabilities" data-screen-label="02 Platform capabilities">
       <div class="container">
-        <div class="prod-outcomes__grid">
 
-          <div class="prod-outcome reveal">
-            <div class="prod-outcome__ico" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            </div>
-            <span class="prod-outcome__ttl">Find any report, instantly</span>
-            <p class="prod-outcome__desc">One unified search across every connected BI platform. Stop hunting across browser tabs.</p>
-          </div>
-
-          <div class="prod-outcome reveal">
-            <div class="prod-outcome__ico" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            </div>
-            <span class="prod-outcome__ttl">Know exactly what to trust</span>
-            <p class="prod-outcome__desc">Certification, ownership, and stale-content detection built in. Users always know the difference.</p>
-          </div>
-
-          <div class="prod-outcome reveal">
-            <div class="prod-outcome__ico" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <span class="prod-outcome__ttl">Right content, right people</span>
-            <p class="prod-outcome__desc">Role-personalized BI Hubs surface the analytics each team needs — without overwhelming them.</p>
-          </div>
-
-          <div class="prod-outcome reveal">
-            <div class="prod-outcome__ico" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-            </div>
-            <span class="prod-outcome__ttl">Adoption that compounds</span>
-            <p class="prod-outcome__desc">Retire stale assets, trace metrics to source, and watch engagement grow — without mandates.</p>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         03 HOW IT WORKS — three-step overview
-         ============================================================ -->
-    <section class="prod-how" data-screen-label="03 How it works">
-      <div class="container">
-        <div class="prod-how__head reveal">
-          <span class="eyebrow">How it works</span>
-          <h2>Up and running in days, not months</h2>
-          <p>No migration. No rebuilding reports. Just connectors pointing at the stack you already have.</p>
+        <div class="explorer__head reveal">
+          <span class="eyebrow">The platform</span>
+          <h2>One platform. Eight ways it works for you.</h2>
+          <p>Every capability sits on the same unified layer. Pick a topic to see how it works — nothing here replaces your BI tools, it makes sense of them.</p>
         </div>
 
-        <div class="prod-how__grid">
-
-          <div class="prod-step reveal">
-            <div class="prod-step__num prod-step__num--1">1</div>
-            <div>
-              <h3>Connect your stack</h3>
-              <p>Point Digital Hive at your BI platforms. Connectors harvest reports, dashboards, and metadata automatically — no manual cataloguing required.</p>
-            </div>
-          </div>
-
-          <div class="prod-step reveal">
-            <div class="prod-step__num prod-step__num--2">2</div>
-            <div>
-              <h3>Catalog and govern</h3>
-              <p>Every asset is indexed and searchable from day one. Layer on certification, ownership, lineage, and lifecycle management at your own pace.</p>
-            </div>
-          </div>
-
-          <div class="prod-step reveal">
-            <div class="prod-step__num prod-step__num--3">3</div>
-            <div>
-              <h3>Surface to every audience</h3>
-              <p>Branded BI Hubs give each team a curated home. Universal search covers the rest. Users find what they need — every time.</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         04 THE CATALOG
-         ============================================================ -->
-    <section class="feature-row" id="catalog" data-screen-label="04 The catalog">
-      <div class="container feature-row__grid">
-        <div class="feature-row__copy reveal">
-          <span class="eyebrow">The catalog</span>
-          <h2>One inventory. Every tool. Zero rebuilding</h2>
-          <p class="lead">Digital Hive indexes reports and dashboards from every connected BI platform. It captures metadata — ownership, certification status, usage data, lineage — and makes every asset searchable in one place.</p>
-
-          <ul class="feature-list">
-            <li>
-              <span class="ico" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6m0 8v6M2 12h6m8 0h6M5 5l4 4m6 6l4 4M5 19l4-4m6-6l4-4"/></svg>
-              </span>
-              <span>
-                <span class="ttl">Automated metadata harvesting</span>
-                <span class="desc">No manual tagging required to get started — connectors pull metadata directly from each source platform.</span>
-              </span>
-            </li>
-            <li>
-              <span class="ico" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              </span>
-              <span>
-                <span class="ttl">Certification and ownership visibility</span>
-                <span class="desc">Users know what to trust instantly. Every asset shows who owns it and whether it's certified.</span>
-              </span>
-            </li>
-            <li>
-              <span class="ico" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-              </span>
-              <span>
-                <span class="ttl">Usage telemetry</span>
-                <span class="desc">See what's actually being used, and what isn't. Stale assets surface themselves — retirement becomes obvious.</span>
-              </span>
-            </li>
-          </ul>
+        <!-- Selection bar -->
+        <div class="seg reveal" role="tablist" aria-label="Platform capabilities">
+          <button class="seg__btn is-active" role="tab" type="button" data-tab="catalog" aria-selected="true">
+            <span class="seg__num">01</span><span class="seg__lbl">Catalog &amp; Discovery</span>
+          </button>
+          <button class="seg__btn" role="tab" type="button" data-tab="filtering" aria-selected="false">
+            <span class="seg__num">02</span><span class="seg__lbl">Dynamic Filtering</span>
+          </button>
+          <button class="seg__btn" role="tab" type="button" data-tab="governance" aria-selected="false">
+            <span class="seg__num">03</span><span class="seg__lbl">Governance</span>
+          </button>
+          <button class="seg__btn" role="tab" type="button" data-tab="ai" aria-selected="false">
+            <span class="seg__num">04</span><span class="seg__lbl">AI Recommendations</span>
+          </button>
+          <button class="seg__btn" role="tab" type="button" data-tab="storyboards" aria-selected="false">
+            <span class="seg__num">05</span><span class="seg__lbl">Storyboards</span>
+          </button>
+          <button class="seg__btn" role="tab" type="button" data-tab="branding" aria-selected="false">
+            <span class="seg__num">06</span><span class="seg__lbl">Branding</span>
+          </button>
+          <button class="seg__btn" role="tab" type="button" data-tab="connectors" aria-selected="false">
+            <span class="seg__num">07</span><span class="seg__lbl">Connectors</span>
+          </button>
+          <button class="seg__btn" role="tab" type="button" data-tab="enterprise" aria-selected="false">
+            <span class="seg__num">08</span><span class="seg__lbl">Enterprise scale</span>
+          </button>
         </div>
 
-        <!-- Catalog mockup -->
-        <div class="reveal" aria-hidden="true">
-          <div class="mockup">
-            <div class="mockup__chrome">
-              <div class="mockup__dots"><span></span><span></span><span></span></div>
-              <div class="mockup__url">hive.acme.com / catalog</div>
-            </div>
-            <div class="mockup__body">
-              <div class="mock-catalog__top">
-                <div class="mock-catalog__search">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                  <span>Q4 revenue<span class="placeholder"> by region</span></span>
-                  <span class="caret"></span>
-                </div>
+        <!-- Panels -->
+        <div class="explorer__panels">
+
+          <!-- 01 — Catalog & Discovery -->
+          <div class="cap-panel is-active" role="tabpanel" data-panel="catalog">
+            <div class="cap-panel__grid">
+              <div class="cap-panel__copy">
+                <span class="eyebrow">Analytics Catalog &amp; Discovery</span>
+                <h3>Find and understand analytics across every system.</h3>
+                <p class="lead">Digital Hive acts as a unified analytics catalog — indexing content across BI tools, documents, and enterprise systems into a single, searchable experience. It captures metadata — ownership, certification status, usage data — and makes every asset searchable in one place.</p>
+                <ul class="cap-list">
+                  <li>Global search across BI platforms and content systems</li>
+                  <li>Metadata-driven discovery (definitions, ownership, usage)</li>
+                  <li>Personalized access (favorites, recommendations)</li>
+                  <li>Cross-platform usage visibility (popularity, engagement, relevance)</li>
+                  <li>Support for structured and unstructured content (AI agents, BI, documents, video, external feeds)</li>
+                </ul>
               </div>
-              <div class="mock-catalog__filters">
-                <span class="mock-catalog__filter is-on">All platforms</span>
-                <span class="mock-catalog__filter">Certified only</span>
-                <span class="mock-catalog__filter">Finance</span>
-                <span class="mock-catalog__filter">Last 30 days</span>
-                <span class="mock-catalog__filter">My team</span>
-              </div>
-              <div class="mock-catalog__results">
-                <div class="mock-result">
-                  <span class="mock-result__platform" style="background:#F2C811;color:#222;">PB</span>
-                  <div>
-                    <div class="mock-result__title">Q4 revenue by region - executive view</div>
-                    <div class="mock-result__meta">Power BI · Owner: J. Patel · 1,240 views / 30d</div>
+              <div class="cap-panel__visual cap-panel__visual--stack">
+                <!-- Mockup 1: unified search + results -->
+                <div class="mockup">
+                  <div class="mockup__chrome">
+                    <div class="mockup__dots"><span></span><span></span><span></span></div>
+                    <div class="mockup__url">app.digitalhive.com / catalog</div>
                   </div>
-                  <span class="mock-result__tag is-certified">Certified</span>
-                </div>
-                <div class="mock-result">
-                  <span class="mock-result__platform" style="background:#1F4E79;">Tb</span>
-                  <div>
-                    <div class="mock-result__title">Q4 revenue waterfall - finance ops</div>
-                    <div class="mock-result__meta">Tableau · Owner: M. Chen · 824 views / 30d</div>
-                  </div>
-                  <span class="mock-result__tag is-certified">Certified</span>
-                </div>
-                <div class="mock-result">
-                  <span class="mock-result__platform" style="background:#054ADA;">Cg</span>
-                  <div>
-                    <div class="mock-result__title">Revenue by region - legacy report</div>
-                    <div class="mock-result__meta">Cognos · Owner: ‹unassigned› · 18 views / 30d</div>
-                  </div>
-                  <span class="mock-result__tag is-stale">Stale</span>
-                </div>
-                <div class="mock-result">
-                  <span class="mock-result__platform" style="background:#009848;">Qk</span>
-                  <div>
-                    <div class="mock-result__title">Q4 regional roll-up</div>
-                    <div class="mock-result__meta">Qlik · Owner: S. Okoro · awaiting review</div>
-                  </div>
-                  <span class="mock-result__tag is-pending">Pending</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         05 THE BI HUB
-         ============================================================ -->
-    <section class="feature-row feature-row--muted feature-row--reverse" id="hub" data-screen-label="05 The BI Hub">
-      <div class="container feature-row__grid">
-        <div class="feature-row__copy reveal">
-          <span class="eyebrow">The BI Hub</span>
-          <h2>Analytics organized around how your business works — not which tool built it</h2>
-          <p class="lead">Most organizations organize analytics by platform. Business users think in functions, teams, and outcomes. The BI Hub delivers analytics through a branded, role-personalized experience. Finance sees finance. Sales sees sales. Executives see what drives strategy.</p>
-
-          <ul class="feature-list">
-            <li>
-              <span class="ico" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-              </span>
-              <span>
-                <span class="ttl">Customizable Hives per team, role, or business unit</span>
-                <span class="desc">Each audience sees a curated home. Same source data. Different lens.</span>
-              </span>
-            </li>
-            <li>
-              <span class="ico" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
-              </span>
-              <span>
-                <span class="ttl">No-code layout builder for hub admins</span>
-                <span class="desc">Drag, drop, publish. Admins reshape Hives without touching a line of code.</span>
-              </span>
-            </li>
-            <li>
-              <span class="ico" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              </span>
-              <span>
-                <span class="ttl">Single sign-on — one login, every tool</span>
-                <span class="desc">Users authenticate once. From there, every connected platform opens without re-login.</span>
-              </span>
-            </li>
-            <li>
-              <span class="ico" aria-hidden="true">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
-              </span>
-              <span>
-                <span class="ttl">Branded experience — your logo, your colours</span>
-                <span class="desc">The Hub looks like your company, not ours. White-label down to the favicon.</span>
-              </span>
-            </li>
-          </ul>
-        </div>
-
-        <!-- BI Hub mockup -->
-        <div class="reveal" aria-hidden="true">
-          <div class="mockup">
-            <div class="mockup__chrome">
-              <div class="mockup__dots"><span></span><span></span><span></span></div>
-              <div class="mockup__url">hive.acme.com / finance</div>
-            </div>
-            <div class="mockup__body" style="padding:0;">
-              <div class="mock-hub">
-                <div class="mock-hub__nav">
-                  <div class="brand">acme<br>finance</div>
-                  <div class="item is-on">Overview</div>
-                  <div class="item">Revenue</div>
-                  <div class="item">Spend</div>
-                  <div class="item">Forecast</div>
-                  <div class="item">Reports</div>
-                </div>
-                <div class="mock-hub__main">
-                  <div class="mock-hub__role">
-                    <div class="avatar">JP</div>
-                    <div class="meta">
-                      <strong>Jamila Patel</strong>
-                      <span>Finance · Director</span>
+                  <div class="mockup__body">
+                    <div class="mock-catalog__top">
+                      <div class="mock-catalog__search">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                        <span>Revenue by Region</span>
+                        <span class="caret" aria-hidden="true"></span>
+                      </div>
+                    </div>
+                    <div class="mock-catalog__filters">
+                      <span class="mock-catalog__filter is-on">Power BI</span>
+                      <span class="mock-catalog__filter is-on">Certified</span>
+                      <span class="mock-catalog__filter">Finance</span>
+                      <span class="mock-catalog__filter">Q4 2025</span>
+                    </div>
+                    <div class="mock-catalog__results">
+                      <div class="mock-result">
+                        <div class="mock-result__platform" style="background:#F2C811;color:#1a1a1a;">PBI</div>
+                        <div>
+                          <div class="mock-result__title">Revenue by Region — Q4 2025</div>
+                          <div class="mock-result__meta">Power BI · Finance team · 234 views</div>
+                        </div>
+                        <span class="mock-result__tag is-certified">✓ Certified</span>
+                      </div>
+                      <div class="mock-result">
+                        <div class="mock-result__platform" style="background:#1A73E8;">TAB</div>
+                        <div>
+                          <div class="mock-result__title">Regional Sales Performance</div>
+                          <div class="mock-result__meta">Tableau · Sales Ops · 89 views</div>
+                        </div>
+                        <span class="mock-result__tag is-certified">✓ Certified</span>
+                      </div>
+                      <div class="mock-result">
+                        <div class="mock-result__platform" style="background:#193359;">COG</div>
+                        <div>
+                          <div class="mock-result__title">Region Revenue Breakdown FY25</div>
+                          <div class="mock-result__meta">Cognos · Finance · 12 views</div>
+                        </div>
+                        <span class="mock-result__tag is-pending">Review</span>
+                      </div>
                     </div>
                   </div>
-                  <div class="mock-hub__tiles">
-                    <div class="mock-hub__tile">
-                      <span class="platform">Power BI · Certified</span>
-                      <div class="ttl">Q4 revenue by region</div>
-                      <div class="viz"></div>
-                    </div>
-                    <div class="mock-hub__tile">
-                      <span class="platform">Tableau · Certified</span>
-                      <div class="ttl">Operating margin trend</div>
-                      <div class="viz"></div>
-                    </div>
-                    <div class="mock-hub__tile">
-                      <span class="platform">Excel · Source</span>
-                      <div class="ttl">FY26 forecast workbook</div>
-                      <div class="viz"></div>
-                    </div>
-                    <div class="mock-hub__tile">
-                      <span class="platform">Cognos · Certified</span>
-                      <div class="ttl">Headcount &amp; payroll</div>
-                      <div class="viz"></div>
-                    </div>
-                    <div class="mock-hub__tile">
-                      <span class="platform">Tableau · Certified</span>
-                      <div class="ttl">DSO &amp; collections</div>
-                      <div class="viz"></div>
-                    </div>
-                    <div class="mock-hub__tile">
-                      <span class="platform">Power BI · Draft</span>
-                      <div class="ttl">FX exposure dashboard</div>
-                      <div class="viz"></div>
+                </div>
+                <!-- Mockup 2: usage insight stats -->
+                <div class="mockup">
+                  <div class="mockup__chrome">
+                    <div class="mockup__dots"><span></span><span></span><span></span></div>
+                    <div class="mockup__url">Usage insights — last 30 days</div>
+                  </div>
+                  <div class="mockup__body">
+                    <div class="mock-gov__top">
+                      <div class="mock-gov__stat">
+                        <span class="lbl">Assets indexed</span>
+                        <span class="num">1,847</span>
+                        <span class="delta up">↑ 124 this month</span>
+                      </div>
+                      <div class="mock-gov__stat">
+                        <span class="lbl">Certified</span>
+                        <span class="num">412</span>
+                        <span class="delta up">↑ 38 this quarter</span>
+                      </div>
+                      <div class="mock-gov__stat">
+                        <span class="lbl">Discovery rate</span>
+                        <span class="num">+38%</span>
+                        <span class="delta up">vs last quarter</span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ============================================================
-         06 GOVERNANCE
-         ============================================================ -->
-    <section class="feature-row" id="governance" data-screen-label="06 Governance">
-      <div class="container">
-        <div class="feature-row__grid">
-          <div class="feature-row__copy reveal">
-            <span class="eyebrow">Governance</span>
-            <h2>Governance that enables users. Not one that blocks them</h2>
-            <p class="lead">Most governance programs feel like a brake pedal. Digital Hive treats governance as a navigation aid — workflows that surface trusted analytics, retire stale ones, and trace every metric back to its origin.</p>
-          </div>
-
-          <div class="reveal" aria-hidden="true">
-            <div class="mockup">
-              <div class="mockup__chrome">
-                <div class="mockup__dots"><span></span><span></span><span></span></div>
-                <div class="mockup__url">hive.acme.com / governance</div>
+          <!-- 02 — Dynamic Filtering -->
+          <div class="cap-panel" role="tabpanel" data-panel="filtering" hidden>
+            <div class="cap-panel__grid">
+              <div class="cap-panel__copy">
+                <span class="eyebrow">Dynamic Filtering</span>
+                <h3>Apply context across analytics — without rebuilding reports.</h3>
+                <p class="lead">Cross-platform filtering lets users apply consistent context across dashboards and reports simultaneously — one filter bar, every connected tool.</p>
+                <ul class="cap-list">
+                  <li>Apply filters across multiple BI tools at once</li>
+                  <li>Maintain consistent context across reports</li>
+                  <li>Minimize duplicate dashboard creation</li>
+                </ul>
               </div>
-              <div class="mockup__body">
-                <div class="mock-gov">
-                  <div class="mock-gov__top">
-                    <div class="mock-gov__stat">
-                      <span class="lbl">Certified</span>
-                      <span class="num">412</span>
-                      <span class="delta up">↑ 38 this quarter</span>
-                    </div>
-                    <div class="mock-gov__stat">
-                      <span class="lbl">Pending review</span>
-                      <span class="num">87</span>
-                      <span class="delta down">12 over SLA</span>
-                    </div>
-                    <div class="mock-gov__stat">
-                      <span class="lbl">Adoption</span>
-                      <span class="num">+31%</span>
-                      <span class="delta up">vs. last quarter</span>
-                    </div>
+              <div class="cap-panel__visual">
+                <div class="mockup">
+                  <div class="mockup__chrome">
+                    <div class="mockup__dots"><span></span><span></span><span></span></div>
+                    <div class="mockup__url">app.digitalhive.com · applying context</div>
                   </div>
-                  <div class="mock-gov__chart">
-                    <div class="ttl">Active users by week — last 12 weeks</div>
-                    <div class="mock-gov__bars">
-                      <span class="bar" data-bar-h="32"></span>
-                      <span class="bar" data-bar-h="40"></span>
-                      <span class="bar" data-bar-h="36"></span>
-                      <span class="bar" data-bar-h="48"></span>
-                      <span class="bar" data-bar-h="54"></span>
-                      <span class="bar" data-bar-h="60"></span>
-                      <span class="bar" data-bar-h="58"></span>
-                      <span class="bar" data-bar-h="72"></span>
-                      <span class="bar" data-bar-h="80"></span>
-                      <span class="bar" data-bar-h="78"></span>
-                      <span class="bar is-accent" data-bar-h="88"></span>
-                      <span class="bar is-accent" data-bar-h="96"></span>
+                  <div class="mockup__body">
+                    <div class="mock-filter">
+                      <div class="mock-filter__context">
+                        <span class="mock-filter__context-label">Context applied</span>
+                        <span class="mock-filter__chip">APAC</span>
+                        <span class="mock-filter__chip">Q4 2025</span>
+                        <span class="mock-filter__chip">Finance</span>
+                      </div>
+                      <div class="mock-filter__reports">
+                        <div class="mock-filter__report">
+                          <div class="mock-filter__report-head">
+                            <div class="mock-filter__report-swatch" style="background:#F2C811;color:#1a1a1a;">PBI</div>
+                            <div class="mock-filter__report-name">Revenue Dashboard</div>
+                            <span class="mock-filter__report-badge">3 applied</span>
+                          </div>
+                          <div class="mock-filter__bars">
+                            <div class="mock-filter__bar-col" style="height:38%;background:var(--dh-navy);opacity:0.65;"></div>
+                            <div class="mock-filter__bar-col" style="height:58%;background:var(--dh-navy);opacity:0.8;"></div>
+                            <div class="mock-filter__bar-col" style="height:72%;background:var(--dh-orange);"></div>
+                            <div class="mock-filter__bar-col" style="height:54%;background:var(--dh-navy);opacity:0.7;"></div>
+                            <div class="mock-filter__bar-col" style="height:82%;background:var(--dh-orange);opacity:0.85;"></div>
+                            <div class="mock-filter__bar-col" style="height:48%;background:var(--dh-navy);opacity:0.6;"></div>
+                          </div>
+                        </div>
+                        <div class="mock-filter__report">
+                          <div class="mock-filter__report-head">
+                            <div class="mock-filter__report-swatch" style="background:#1A73E8;">TAB</div>
+                            <div class="mock-filter__report-name">Sales by Region</div>
+                            <span class="mock-filter__report-badge">3 applied</span>
+                          </div>
+                          <div class="mock-filter__bars">
+                            <div class="mock-filter__bar-col" style="height:62%;background:var(--dh-navy);opacity:0.7;"></div>
+                            <div class="mock-filter__bar-col" style="height:44%;background:var(--dh-navy);opacity:0.55;"></div>
+                            <div class="mock-filter__bar-col" style="height:88%;background:var(--dh-orange);"></div>
+                            <div class="mock-filter__bar-col" style="height:66%;background:var(--dh-navy);opacity:0.8;"></div>
+                            <div class="mock-filter__bar-col" style="height:42%;background:var(--dh-yellow);opacity:0.9;"></div>
+                            <div class="mock-filter__bar-col" style="height:74%;background:var(--dh-orange);opacity:0.8;"></div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- 6-item governance feature grid -->
-        <div class="gov-grid">
-          <div class="gov-card reveal">
-            <div class="ico" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-            </div>
-            <div>
-              <h3>Certification workflows</h3>
-              <p>Mark reports as trusted with a full audit trail. Reviewers, expiries, and revocations — all tracked.</p>
+          <!-- 03 — Governance & Certification -->
+          <div class="cap-panel" role="tabpanel" data-panel="governance" hidden>
+            <div class="cap-panel__grid">
+              <div class="cap-panel__copy">
+                <span class="eyebrow">Governance &amp; Certification</span>
+                <h3>Make analytics trustworthy at scale.</h3>
+                <p class="lead">Governance is embedded directly into the analytics experience — giving users immediate clarity on what to trust and why.</p>
+                <ul class="cap-list">
+                  <li>Certification and trust indicators</li>
+                  <li>Ownership and stewardship visibility</li>
+                  <li>Embedded definitions and metadata</li>
+                  <li>Lifecycle tracking (freshness, usage, relevance)</li>
+                </ul>
+              </div>
+              <div class="cap-panel__visual">
+                <div class="mockup">
+                  <div class="mockup__chrome">
+                    <div class="mockup__dots"><span></span><span></span><span></span></div>
+                    <div class="mockup__url">hive.acme.com / governance</div>
+                  </div>
+                  <div class="mockup__body">
+                    <div class="mock-gov">
+                      <div class="mock-gov__top">
+                        <div class="mock-gov__stat">
+                          <span class="lbl">Certified</span>
+                          <span class="num">412</span>
+                          <span class="delta up">↑ 38 this quarter</span>
+                        </div>
+                        <div class="mock-gov__stat">
+                          <span class="lbl">Pending review</span>
+                          <span class="num">87</span>
+                          <span class="delta down">12 over SLA</span>
+                        </div>
+                        <div class="mock-gov__stat">
+                          <span class="lbl">Adoption</span>
+                          <span class="num">+31%</span>
+                          <span class="delta up">vs. last quarter</span>
+                        </div>
+                      </div>
+                      <div class="mock-gov__chart">
+                        <div class="ttl">Active users by week — last 12 weeks</div>
+                        <div class="mock-gov__bars">
+                          <span class="bar" data-bar-h="32"></span>
+                          <span class="bar" data-bar-h="40"></span>
+                          <span class="bar" data-bar-h="36"></span>
+                          <span class="bar" data-bar-h="48"></span>
+                          <span class="bar" data-bar-h="54"></span>
+                          <span class="bar is-accent" data-bar-h="62"></span>
+                          <span class="bar" data-bar-h="58"></span>
+                          <span class="bar is-accent" data-bar-h="70"></span>
+                          <span class="bar" data-bar-h="66"></span>
+                          <span class="bar is-accent" data-bar-h="78"></span>
+                          <span class="bar" data-bar-h="82"></span>
+                          <span class="bar is-accent" data-bar-h="92"></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="gov-card reveal">
-            <div class="ico" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-            </div>
-            <div>
-              <h3>Business glossary &amp; KPI definitions</h3>
-              <p>One version of the truth. Every metric on every dashboard maps to one shared definition.</p>
+          <!-- 04 — AI Recommendations -->
+          <div class="cap-panel" role="tabpanel" data-panel="ai" hidden>
+            <div class="cap-panel__grid">
+              <div class="cap-panel__copy">
+                <span class="eyebrow">AI Recommendations</span>
+                <h3>Guide users to the right insights.</h3>
+                <p class="lead">Using behavior, usage patterns, metadata, and role-based signals, Digital Hive recommends relevant analytics automatically — surfacing the right content at the right moment.</p>
+                <ul class="cap-list">
+                  <li>Recommended content based on activity and role</li>
+                  <li>Trending dashboards and reports across your organization</li>
+                  <li>Surface underused assets with high relevance to the user's context</li>
+                </ul>
+              </div>
+              <div class="cap-panel__visual">
+                <div class="mockup">
+                  <div class="mockup__chrome">
+                    <div class="mockup__dots"><span></span><span></span><span></span></div>
+                    <div class="mockup__url">app.digitalhive.com · recommended for you</div>
+                  </div>
+                  <div class="mockup__body">
+                    <div class="mock-ai">
+                      <span class="mock-ai__section-label">Recommended for you</span>
+                      <div class="mock-ai__card">
+                        <div class="mock-ai__card-swatch" style="background:#F2C811;color:#1a1a1a;">PBI</div>
+                        <div>
+                          <span class="mock-ai__card-name">Q4 Exec Summary — Revenue</span>
+                          <span class="mock-ai__card-meta">Power BI · Finance · Certified</span>
+                        </div>
+                        <div class="mock-ai__score">
+                          <div class="mock-ai__score-ring">98</div>
+                          <span>match</span>
+                        </div>
+                      </div>
+                      <div class="mock-ai__card">
+                        <div class="mock-ai__card-swatch" style="background:#1A73E8;">TAB</div>
+                        <div>
+                          <span class="mock-ai__card-name">APAC Sales Performance</span>
+                          <span class="mock-ai__card-meta">Tableau · Sales Ops · 234 views</span>
+                        </div>
+                        <div class="mock-ai__score">
+                          <div class="mock-ai__score-ring">91</div>
+                          <span>match</span>
+                        </div>
+                      </div>
+                      <div class="mock-ai__card">
+                        <div class="mock-ai__card-swatch" style="background:#009845;">QLK</div>
+                        <div>
+                          <span class="mock-ai__card-name">Customer Retention Analysis</span>
+                          <span class="mock-ai__card-meta">Qlik · Customer Success · Trending</span>
+                        </div>
+                        <div class="mock-ai__score">
+                          <div class="mock-ai__score-ring">88</div>
+                          <span>match</span>
+                        </div>
+                      </div>
+                      <div class="mock-ai__trending">
+                        <span class="mock-ai__trending-tag">Trending</span>
+                        <div class="mock-ai__trending-items">
+                          <span class="mock-ai__trending-item">FY26 Forecast — updated yesterday</span>
+                          <span class="mock-ai__trending-item">Operating Margin Trend — 89 views today</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="gov-card reveal">
-            <div class="ico" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M6 6l1 14a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2l1-14"/></svg>
-            </div>
-            <div>
-              <h3>Lifecycle management</h3>
-              <p>Retire stale assets before they cause confusion. Stale-state detection runs automatically.</p>
+          <!-- 05 — Storyboards -->
+          <div class="cap-panel" role="tabpanel" data-panel="storyboards" hidden>
+            <div class="cap-panel__grid">
+              <div class="cap-panel__copy">
+                <span class="eyebrow">Storyboards</span>
+                <h3>Turn analytics into guided experiences.</h3>
+                <p class="lead">Combine dashboards, reports, documents, and media into structured storyboards that guide users through a coherent analytical narrative — no slide decks, no screenshots, live data throughout.</p>
+                <ul class="cap-list">
+                  <li>Combine content across systems</li>
+                  <li>Add narrative, context, and explanations</li>
+                  <li>Guide users step-by-step through analysis</li>
+                </ul>
+              </div>
+              <div class="cap-panel__visual">
+                <div class="mockup">
+                  <div class="mockup__chrome">
+                    <div class="mockup__dots"><span></span><span></span><span></span></div>
+                    <div class="mockup__url">app.digitalhive.com / storyboards / q4-review</div>
+                  </div>
+                  <div class="mockup__body">
+                    <div class="mock-storyboard">
+                      <div class="mock-storyboard__slide mock-storyboard__slide--active">
+                        <div class="mock-storyboard__step mock-storyboard__step--1">1</div>
+                        <div>
+                          <span class="mock-storyboard__title">Q4 Revenue Overview</span>
+                          <span class="mock-storyboard__desc">Power BI · Revenue by Region · Certified · Live data</span>
+                          <div class="mock-storyboard__preview mock-storyboard__preview--bar"></div>
+                        </div>
+                      </div>
+                      <div class="mock-storyboard__slide mock-storyboard__slide--active">
+                        <div class="mock-storyboard__step mock-storyboard__step--2">2</div>
+                        <div>
+                          <span class="mock-storyboard__title">APAC Performance Deep Dive</span>
+                          <span class="mock-storyboard__desc">Tableau · Regional breakdown · 89 views</span>
+                          <div class="mock-storyboard__preview mock-storyboard__preview--bar"></div>
+                        </div>
+                      </div>
+                      <div class="mock-storyboard__slide">
+                        <div class="mock-storyboard__step mock-storyboard__step--3">3</div>
+                        <div>
+                          <span class="mock-storyboard__title">Analyst Commentary</span>
+                          <span class="mock-storyboard__desc">Document · Finance team · Q4 insights</span>
+                          <div class="mock-storyboard__preview mock-storyboard__preview--table"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="gov-card reveal">
-            <div class="ico" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-            </div>
-            <div>
-              <h3>Usage dashboards</h3>
-              <p>Adoption visibility across every connected tool. See who's using what — and who isn't.</p>
+          <!-- 06 — Branding & Personalization -->
+          <div class="cap-panel" role="tabpanel" data-panel="branding" hidden>
+            <div class="cap-panel__grid">
+              <div class="cap-panel__copy">
+                <span class="eyebrow">Branding &amp; Personalization</span>
+                <h3>Make analytics feel personal.</h3>
+                <p class="lead">Every organization is different. Digital Hive reflects yours — delivering branded, role-based experiences built around how your business actually operates.</p>
+                <ul class="cap-list">
+                  <li>Full branding control (colors, typography, UI)</li>
+                  <li>Configurable layouts and navigation</li>
+                  <li>Role- and team-based experiences</li>
+                  <li>Multi-language support and geo-localization for global deployments</li>
+                </ul>
+                <div class="levels">
+                  <span class="levels__label">Personalization levels</span>
+                  <div class="levels__row">
+                    <span class="levels__tier">Enterprise</span>
+                    <span class="levels__desc">Navigation aligned to business structure</span>
+                  </div>
+                  <div class="levels__row">
+                    <span class="levels__tier">Team</span>
+                    <span class="levels__desc">Curated departmental views</span>
+                  </div>
+                  <div class="levels__row">
+                    <span class="levels__tier">Individual</span>
+                    <span class="levels__desc">Personalized dashboards, favorites, AI recommendations</span>
+                  </div>
+                </div>
+              </div>
+              <div class="cap-panel__visual cap-panel__visual--stack">
+                <!-- Mockup 1: branded portal with role personalization -->
+                <div class="mockup">
+                  <div class="mockup__chrome">
+                    <div class="mockup__dots"><span></span><span></span><span></span></div>
+                    <div class="mockup__url">analytics.acmecorp.com</div>
+                  </div>
+                  <div class="mock-hub">
+                    <div class="mock-hub__nav">
+                      <div class="brand">acme<br>finance</div>
+                      <div class="item is-on">Overview</div>
+                      <div class="item">Revenue</div>
+                      <div class="item">Spend</div>
+                      <div class="item">Forecast</div>
+                    </div>
+                    <div class="mock-hub__main">
+                      <div class="mock-hub__role">
+                        <div class="avatar">JP</div>
+                        <div class="meta">
+                          <strong>Jamila Patel</strong>
+                          <span>Finance · Director</span>
+                        </div>
+                      </div>
+                      <div class="mock-hub__tiles">
+                        <div class="mock-hub__tile">
+                          <span class="platform">Power BI · Certified</span>
+                          <div class="ttl">Q4 revenue by region</div>
+                          <div class="viz"></div>
+                        </div>
+                        <div class="mock-hub__tile">
+                          <span class="platform">Tableau · Certified</span>
+                          <div class="ttl">Operating margin</div>
+                          <div class="viz"></div>
+                        </div>
+                        <div class="mock-hub__tile">
+                          <span class="platform">Cognos · Certified</span>
+                          <div class="ttl">Headcount &amp; payroll</div>
+                          <div class="viz"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Mockup 2: role-based view picker -->
+                <div class="mockup">
+                  <div class="mockup__chrome">
+                    <div class="mockup__dots"><span></span><span></span><span></span></div>
+                    <div class="mockup__url">Role-based views</div>
+                  </div>
+                  <div class="mockup__body">
+                    <div class="mock-roles">
+                      <span class="mock-roles__label">Personalized for</span>
+                      <div class="mock-roles__card mock-roles__card--active">
+                        <div class="mock-roles__avatar" style="background:var(--dh-orange);">JP</div>
+                        <div>
+                          <span class="mock-roles__role">Finance Director</span>
+                          <span class="mock-roles__dept">Enterprise view · 12 pinned reports</span>
+                        </div>
+                      </div>
+                      <div class="mock-roles__card">
+                        <div class="mock-roles__avatar" style="background:#1A73E8;">AK</div>
+                        <div>
+                          <span class="mock-roles__role">Sales Analyst</span>
+                          <span class="mock-roles__dept">Team view · APAC focus</span>
+                        </div>
+                      </div>
+                      <div class="mock-roles__card">
+                        <div class="mock-roles__avatar" style="background:var(--dh-navy);">MR</div>
+                        <div>
+                          <span class="mock-roles__role">Operations Lead</span>
+                          <span class="mock-roles__dept">Individual view · 8 favorites</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="gov-card reveal">
-            <div class="ico" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v1"/></svg>
-            </div>
-            <div>
-              <h3>Access controls</h3>
-              <p>Role-based access inherited from source platforms. Digital Hive never overwrites the rules you already enforce.</p>
+          <!-- 07 — Connectors -->
+          <div class="cap-panel" role="tabpanel" data-panel="connectors" hidden>
+            <div class="cap-panel__grid">
+              <div class="cap-panel__copy">
+                <span class="eyebrow">Connectors</span>
+                <h3>If your team uses it, Digital Hive connects to it.</h3>
+                <p class="lead">BI platforms, AI assistants, document repositories, data sources — Native connectors for every major tool where your analytics actually live. <strong>Metadata only.</strong> Nothing is copied, migrated, or duplicated.</p>
+                <ul class="cap-list">
+                  <li>Every major BI platform — Power BI, Tableau, Qlik, Cognos, Looker &amp; more</li>
+                  <li>AI assistants — ChatGPT, Claude, Microsoft Copilot</li>
+                  <li>Document repositories — SharePoint, OneDrive, Google Drive, Box</li>
+                  <li>Data &amp; platforms — Databricks, Oracle, SAP HANA, Splunk</li>
+                </ul>
+                <div style="margin-top:var(--space-5);">
+                  <a class="btn btn--primary" href="Connectors.html">
+                    See all connectors
+                    <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                  </a>
+                </div>
+              </div>
+              <div class="cap-panel__visual">
+                <div class="mockup">
+                  <div class="mockup__chrome">
+                    <div class="mockup__dots"><span></span><span></span><span></span></div>
+                    <div class="mockup__url">app.digitalhive.com / connectors</div>
+                  </div>
+                  <div class="mockup__body">
+                    <div class="connector-row" style="border-top:none;padding-top:0;margin-bottom:var(--space-3);">
+                      <span class="connector-row__label">BI Platforms</span>
+                      <div class="connector-row__items">
+                        <span class="connector"><span class="swatch" style="background:#F2C811;color:#1a1a1a;">PBI</span> Power BI</span>
+                        <span class="connector"><span class="swatch" style="background:#1A73E8;">TAB</span> Tableau</span>
+                        <span class="connector"><span class="swatch" style="background:#009845;">QLK</span> Qlik</span>
+                        <span class="connector"><span class="swatch" style="background:#1B4693;">LOK</span> Looker</span>
+                        <span class="connector"><span class="swatch" style="background:#193359;">COG</span> Cognos</span>
+                      </div>
+                    </div>
+                    <div class="connector-row" style="border-bottom:none;padding-bottom:0;">
+                      <span class="connector-row__label">Documents &amp; AI</span>
+                      <div class="connector-row__items">
+                        <span class="connector"><span class="swatch" style="background:#0078D4;">SPT</span> SharePoint</span>
+                        <span class="connector"><span class="swatch" style="background:#10A37F;">GPT</span> ChatGPT</span>
+                        <span class="connector"><span class="swatch" style="background:#CC785C;">CLD</span> Claude</span>
+                        <span class="connector"><span class="swatch" style="background:#0078D4;">COP</span> Copilot</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="gov-card reveal">
-            <div class="ico" aria-hidden="true">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M9 6h6a4 4 0 0 1 4 4v5"/><path d="M15 18H9a4 4 0 0 1-4-4V9"/></svg>
+          <!-- 08 — Enterprise Foundation -->
+          <div class="cap-panel cap-panel--wide" role="tabpanel" data-panel="enterprise" hidden>
+            <div class="cap-panel__copy cap-panel__copy--wide">
+              <span class="eyebrow">Enterprise Foundation</span>
+              <h3>Built for enterprise scale, security, and control.</h3>
+              <p class="lead">Digital Hive integrates directly into your existing architecture — respecting security, simplifying administration, and scaling with your environment.</p>
             </div>
-            <div>
-              <h3>Lineage visibility</h3>
-              <p>Trace every metric back to its origin. From dashboard tile to source table — one click.</p>
+
+            <div class="ent-grid">
+              <div class="ent-card">
+                <div class="ent-card__ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7l8-4z"/></svg>
+                </div>
+                <h4>Security &amp; Access</h4>
+                <ul>
+                  <li>Inherits and synchronizes permissions from underlying BI platforms</li>
+                  <li>Enforces row-level and object-level security</li>
+                  <li>Supports access request workflows</li>
+                </ul>
+              </div>
+              <div class="ent-card">
+                <div class="ent-card__ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+                </div>
+                <h4>Authentication</h4>
+                <ul>
+                  <li>SSO, SAML, LDAP</li>
+                  <li>Integration with Okta, Active Directory, and other enterprise identity providers</li>
+                </ul>
+              </div>
+              <div class="ent-card">
+                <div class="ent-card__ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19 12a7 7 0 0 0-.1-1.2l2-1.5-2-3.4-2.3 1a7 7 0 0 0-2-1.2L16 2H8l-.6 2.5a7 7 0 0 0-2 1.2l-2.3-1-2 3.4 2 1.5A7 7 0 0 0 3 12c0 .4 0 .8.1 1.2l-2 1.5 2 3.4 2.3-1a7 7 0 0 0 2 1.2L8 22h8l.6-2.5a7 7 0 0 0 2-1.2l2.3 1 2-3.4-2-1.5c.1-.4.1-.8.1-1.2z"/></svg>
+                </div>
+                <h4>Administration</h4>
+                <ul>
+                  <li>No-code configuration of connectors and environments</li>
+                  <li>Centralized governance and access controls</li>
+                  <li>Customizable user experiences</li>
+                </ul>
+              </div>
+              <div class="ent-card">
+                <div class="ent-card__ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>
+                </div>
+                <h4>High Availability</h4>
+                <ul>
+                  <li>High availability and fault tolerance</li>
+                  <li>Designed for enterprise scale and uptime</li>
+                </ul>
+              </div>
+              <div class="ent-card">
+                <div class="ent-card__ico" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3 8-8"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+                </div>
+                <h4>Auditing</h4>
+                <ul>
+                  <li>Track user activity and content engagement</li>
+                  <li>Visibility into what's being used — and what isn't</li>
+                  <li>Support for compliance and governance reporting</li>
+                </ul>
+              </div>
+              <div class="ent-card ent-card--note">
+                <p>Deploy quickly and scale confidently — without disrupting existing systems.</p>
+              </div>
             </div>
           </div>
-        </div>
-      </div>
+
+        </div><!-- /.explorer__panels -->
+      </div><!-- /.container -->
     </section>
 
     <!-- ============================================================
-         07 CONNECTORS
+         03 FOR THE RECORD (what it is / isn't)
          ============================================================ -->
-    <section class="connectors" id="connectors" data-screen-label="07 Connectors">
-      <div class="container">
-        <div class="connectors__head reveal">
-          <span class="eyebrow">Connectors</span>
-          <h2>If your team uses it, Digital Hive connects to it</h2>
-          <p>Native connectors for every major BI platform, plus the file repositories, databases, and SaaS apps where your analytics actually live.</p>
-        </div>
-
-        <div class="reveal">
-          <div class="connector-row">
-            <div class="connector-row__label">BI Platforms</div>
-            <div class="connector-row__items">
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/powerbi.webp" alt="" /></span>Power BI</span>
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/powerbi.webp" alt="" /></span>Power BI Report Server</span>
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/tableau.png" alt="" /></span>Tableau</span>
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/tableau.png" alt="" /></span>Tableau Cloud</span>
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/microstrategy.webp" alt="" /></span>MicroStrategy</span>
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/qlik.webp" alt="" /></span>Qlik Sense</span>
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/qlik.webp" alt="" /></span>Qlik Cloud</span>
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/qlik.webp" alt="" /></span>QlikView</span>
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/ibm.webp" alt="" /></span>IBM Cognos Analytics</span>
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/ibm.webp" alt="" /></span>IBM Planning Analytics</span>
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/looker.webp" alt="" /></span>Looker</span>
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/spotfire.png" alt="" /></span>Spotfire</span>
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/thoughtspot.webp" alt="" /></span>ThoughtSpot</span>
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/oracle.png" alt="" /></span>Oracle Analytics</span>
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/sap.webp" alt="" /></span>SAP BusinessObjects</span>
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/sap.webp" alt="" /></span>SAP Analytics Cloud</span>
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/gooddata.svg" alt="" /></span>GoodData</span>
-              <span class="connector"><span class="swatch" style="background:#FF9900;font-size:7px;">QS</span>Amazon QuickSight</span>
-              <span class="connector"><span class="swatch" style="background:#0078D4;font-size:6px;">SSRS</span>Microsoft SSRS</span>
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/excel.webp" alt="" /></span>Excel</span>
-            </div>
-          </div>
-
-          <div class="connector-row">
-            <div class="connector-row__label">AI Assistants</div>
-            <div class="connector-row__items">
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/copilot.webp" alt="" /></span>M365 Copilot</span>
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/chatgpt.webp" alt="" /></span>ChatGPT Enterprise</span>
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/claude.png" alt="" /></span>Claude</span>
-              <span class="connector"><span class="swatch" style="background:linear-gradient(135deg,#4285F4,#9B72CB,#D96570);">G</span>Google Gemini</span>
-              <span class="connector"><span class="swatch" style="background:#193359;font-size:7px;">MCP</span>MCP endpoint</span>
-            </div>
-          </div>
-
-          <div class="connector-row">
-            <div class="connector-row__label">Files &amp; Documents</div>
-            <div class="connector-row__items">
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/sharepoint.webp" alt="" /></span>SharePoint</span>
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/googledrive.avif" alt="" /></span>Google Drive</span>
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/onedrive.webp" alt="" /></span>OneDrive</span>
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/box.webp" alt="" /></span>Box</span>
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/youtube.webp" alt="" /></span>YouTube</span>
-              <span class="connector"><span class="swatch" style="background:var(--dh-grey);"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/></svg></span>File System</span>
-            </div>
-          </div>
-
-          <div class="connector-row">
-            <div class="connector-row__label">Data Sources</div>
-            <div class="connector-row__items">
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/databricks.webp" alt="" /></span>Databricks</span>
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/salesforce.webp" alt="" /></span>Salesforce</span>
-              <span class="connector"><span class="swatch swatch--img"><img src="assets/logos/splunk.webp" alt="" /></span>Splunk</span>
-            </div>
-          </div>
-
-          <div class="connector-row">
-            <div class="connector-row__label">Collaboration</div>
-            <div class="connector-row__items">
-              <span class="connector"><span class="swatch" style="background:#7719AA;font-size:7px;">VE</span>Microsoft Viva Engage</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="connectors__footer reveal">
-          <div class="connectors__ask">Don't see your tool? <a href="Contact.html">Ask us →</a></div>
-          <p class="connectors__note">Digital Hive references content in its native platform. Nothing is copied, migrated, or duplicated.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         08 SECURITY
-         ============================================================ -->
-    <section class="security" id="security" data-screen-label="08 Security">
-      <div class="container security__grid">
-        <div class="security__head reveal">
-          <span class="eyebrow" style="color:var(--dh-yellow);">Security</span>
-          <h2>Enterprise security. No new attack surface</h2>
-          <p>Digital Hive is a metadata layer. Reports and data stay where they are. Permissions stay where they are. Authentication uses what you already trust.</p>
-          <div class="security__links">
-            <a href="Contact.html">View Trust Centre
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
-            <a href="Contact.html">Download Security Datasheet
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </a>
-          </div>
-        </div>
-
-        <ul class="security__list reveal">
-          <li>
-            <div class="ico" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8.5-8 9-4.5-.5-8-4-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
-            </div>
-            <div>
-              <span class="ttl">Source security inherited</span>
-              <span class="desc">Permissions defined in each BI tool are respected. Digital Hive never overwrites them.</span>
-            </div>
-          </li>
-          <li>
-            <div class="ico" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14a9 3 0 0 0 18 0V5"/><path d="M3 12a9 3 0 0 0 18 0"/></svg>
-            </div>
-            <div>
-              <span class="ttl">No data movement</span>
-              <span class="desc">Reports and data stay in native platforms. Digital Hive indexes metadata only.</span>
-            </div>
-          </li>
-          <li>
-            <div class="ico" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            </div>
-            <div>
-              <span class="ttl">SSO and MFA</span>
-              <span class="desc">Enterprise authentication via SAML, OIDC, and Active Directory. Sessions, scopes, and audit logs included.</span>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- ============================================================
-         09 WHAT WE ARE NOT
-         ============================================================ -->
-    <section class="notwhat" data-screen-label="09 What we are not">
+    <section class="notwhat" data-screen-label="03 For the record">
       <div class="container">
         <div class="notwhat__head reveal">
           <span class="eyebrow">For the record</span>
-          <h2>Worth saying plainly</h2>
+          <h2>Let's be direct.</h2>
           <p>What Digital Hive is — and just as importantly, what it isn't.</p>
         </div>
 
         <div class="notwhat__grid">
+
           <div class="notwhat__item reveal">
             <div class="notwhat__icon" aria-hidden="true">
               <svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -786,7 +850,7 @@
               </svg>
             </div>
             <span class="label">Not a BI tool</span>
-            <h3>We don't build reports</h3>
+            <h3>We don't build reports.</h3>
             <p>We don't replace Power BI, Tableau, or anything else. Those tools stay.</p>
           </div>
 
@@ -801,7 +865,7 @@
               </svg>
             </div>
             <span class="label">Not a data catalog</span>
-            <h3>Not built for data engineers</h3>
+            <h3>Not built for data engineers.</h3>
             <p>Data catalogs serve people building pipelines. Digital Hive serves the people who consume analytics.</p>
           </div>
 
@@ -816,50 +880,40 @@
               </svg>
             </div>
             <span class="label">Not a migration tool</span>
-            <h3>We don't migrate dashboards</h3>
-            <p>We make migration invisible to users while IT works behind the scenes. Platforms swap underneath; the Hive stays.</p>
+            <h3>We don't migrate dashboards.</h3>
+            <p>Migration happens in the background. Users never feel the disruption — the portal stays consistent while IT works underneath.</p>
           </div>
+
         </div>
       </div>
     </section>
 
     <!-- ============================================================
-         10 BOTTOM CTA — dual-path: demo or pricing
+         04 BOTTOM CTA (matches home page style)
          ============================================================ -->
-    <section class="prod-cta" data-screen-label="10 Bottom CTA">
+    <section class="pr-cta" id="demo" data-screen-label="04 Final CTA">
+      <div class="pr-cta__motif" aria-hidden="true"></div>
       <div class="container">
-        <div class="prod-cta__head reveal">
-          <span class="eyebrow">Ready to start?</span>
-          <h2>Two ways in</h2>
-          <p>Whether you want to see it live or do the research first, we have you covered.</p>
-        </div>
-
-        <div class="prod-cta__grid">
-
-          <!-- Primary path: book a demo -->
-          <div class="prod-cta__card prod-cta__card--dark reveal">
-            <span class="prod-cta__card-eyebrow">See it live</span>
-            <h3>Digital Hive with your own BI stack</h3>
-            <p>30-minute live walkthrough, tailored to the platforms you actually use. Bring your tool list and your questions.</p>
-            <div class="prod-cta__card-actions">
+        <div class="pr-cta__grid">
+          <div class="pr-cta__copy reveal">
+            <span class="pr-cta__eyebrow">Get started</span>
+            <h3>Ready to simplify your analytics experience?</h3>
+            <p>See how Digital Hive unifies analytics, simplifies access, and increases impact across your entire organization.</p>
+            <div class="pr-cta__buttons">
               <a class="btn btn--accent" href="Demo.html">
                 Book a demo
                 <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </a>
+              <a class="pr-cta__btn-ghost" href="Contact.html">Talk to our team</a>
             </div>
           </div>
-
-          <!-- Secondary path: explore pricing -->
-          <div class="prod-cta__card prod-cta__card--light reveal">
-            <span class="prod-cta__card-eyebrow">Do the research</span>
-            <h3>Explore plans and pricing</h3>
-            <p>Transparent, seat-based pricing. Enterprise agreements available. Start a free evaluation on your own timeline.</p>
-            <div class="prod-cta__card-actions">
-              <a class="btn btn--primary" href="Pricing.html">View pricing</a>
-              <a class="btn btn--ghost" href="Contact.html">Talk to sales</a>
+          <div class="pr-cta__art reveal" aria-hidden="true">
+            <div class="pr-cta__hex-stack">
+              <span class="pr-cta__hex pr-cta__hex--1"></span>
+              <span class="pr-cta__hex pr-cta__hex--2"></span>
+              <span class="pr-cta__hex pr-cta__hex--3"></span>
             </div>
           </div>
-
         </div>
       </div>
     </section>
@@ -873,5 +927,39 @@
 
   <script src="scripts/consent.js"></script>
   <script src="scripts/site.js"></script>
+
+  <!-- Platform capabilities tab switcher -->
+  <script>
+  ;(function () {
+    'use strict';
+    var tabBtns = document.querySelectorAll('[data-tab]');
+    var panels  = document.querySelectorAll('[data-panel]');
+
+    function activateTab(name) {
+      tabBtns.forEach(function (btn) {
+        var active = btn.dataset.tab === name;
+        btn.classList.toggle('is-active', active);
+        btn.setAttribute('aria-selected', String(active));
+      });
+      panels.forEach(function (panel) {
+        var active = panel.dataset.panel === name;
+        panel.classList.toggle('is-active', active);
+        panel.hidden = !active;
+      });
+    }
+
+    tabBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () { activateTab(btn.dataset.tab); });
+    });
+
+    // Subnav tab-jump links scroll to #capabilities then switch tab
+    document.querySelectorAll('[data-tab-jump]').forEach(function (link) {
+      link.addEventListener('click', function () {
+        activateTab(link.dataset.tabJump);
+      });
+    });
+  })();
+  </script>
+
 </body>
 </html>
