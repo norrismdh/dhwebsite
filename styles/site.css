@@ -1570,8 +1570,8 @@ button { font-family: inherit; cursor: pointer; }
   margin: 0 auto var(--space-6);
   line-height: 1.55;
 }
-.cta-banner__note {
-  margin: var(--space-6) auto 0;
+.cta-banner p.cta-banner__note {
+  margin: var(--space-4) auto 0;
   font-size: var(--fs-12);
   color: rgba(255,255,255,0.55);
   letter-spacing: var(--tracking-wide);
