@@ -6,9 +6,9 @@
    01 HERO
    ============================================================ */
 .par-hero {
-  padding: 56px 0 40px;
+  padding: 56px 0 32px;
 }
-@media (min-width: 768px) { .par-hero { padding: 80px 0 56px; } }
+@media (min-width: 768px) { .par-hero { padding: 80px 0 48px; } }
 
 .par-hero__inner { max-width: 760px; }
 .par-hero h1 {
@@ -43,15 +43,12 @@
    02 PARTNER TYPES  (overlap the hero base)
    ============================================================ */
 .par-types {
-  padding: 0 0 24px;
-  position: relative;
-  z-index: 2;
+  padding: 48px 0 56px;
 }
 .par-types__grid {
   display: grid;
   gap: var(--space-5);
   grid-template-columns: 1fr;
-  margin-top: -56px;
 }
 @media (min-width: 768px) {
   .par-types__grid { grid-template-columns: repeat(3, 1fr); }
