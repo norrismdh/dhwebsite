@@ -289,7 +289,7 @@
 }
 .uc-group-row__title {
   font-size: clamp(26px, 2.6vw, 34px);
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-semibold);
   color: var(--dh-navy);
   letter-spacing: -0.02em;
   line-height: 1.1;
