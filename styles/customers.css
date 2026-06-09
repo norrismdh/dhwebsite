@@ -123,24 +123,21 @@
 }
 @media (min-width: 768px) { .case-studies { padding: 72px 0; } }
 .case-studies__head {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: var(--space-5);
-  flex-wrap: wrap;
+  max-width: 640px;
   margin-bottom: var(--space-7);
 }
 .case-studies__head h2 {
   font-size: clamp(28px, 3.4vw, 40px);
   letter-spacing: -0.02em;
   color: var(--dh-navy);
-  margin: 0;
+  margin: var(--space-3) 0 0;
   line-height: 1.1;
 }
 .case-studies__head p {
-  margin: 0;
-  font-size: var(--fs-16);
+  margin: var(--space-3) 0 0;
+  font-size: var(--fs-18);
   color: var(--fg-2);
+  line-height: 1.5;
 }
 
 .case-studies__grid {
