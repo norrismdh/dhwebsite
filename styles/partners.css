@@ -178,6 +178,10 @@
   border-bottom: 1px solid var(--border-2);
   min-height: 120px;
 }
+.par-partner__logo-wrap--dark {
+  background: var(--dh-navy);
+  border-bottom-color: transparent;
+}
 .par-partner__logo-wrap img {
   max-height: 52px;
   max-width: 180px;
