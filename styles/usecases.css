@@ -557,7 +557,7 @@
   margin: 0 0 var(--space-2);
   letter-spacing: -0.02em;
   line-height: 1.15;
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-semibold);
 }
 .uc-cta p {
   font-size: var(--fs-16);

@@ -313,7 +313,7 @@
 
 .eula-modal__header h2 {
   font-size: var(--fs-20);
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-semibold);
   color: var(--fg-1);
   margin: 0 0 var(--space-1);
 }

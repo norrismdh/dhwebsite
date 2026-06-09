@@ -268,7 +268,7 @@ body::before {
 
 .admin-panel__head h2 {
   font-size: var(--fs-18);
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-semibold);
   margin: 0;
 }
 

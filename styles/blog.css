@@ -66,7 +66,7 @@
 .blog-paths__head { margin-bottom: var(--space-6); }
 .blog-paths__head h2 {
   font-size: clamp(22px, 3vw, 32px);
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-semibold);
   color: var(--dh-navy);
   margin: var(--space-2) 0 0;
 }
@@ -214,7 +214,7 @@
 .blog-library__head { margin-bottom: var(--space-6); }
 .blog-library__head h2 {
   font-size: clamp(22px, 3vw, 32px);
-  font-weight: var(--fw-bold);
+  font-weight: var(--fw-semibold);
   color: var(--dh-navy);
   margin: var(--space-2) 0 0;
 }

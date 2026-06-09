@@ -293,7 +293,7 @@
 .pillars__head { max-width: 720px; margin-bottom: var(--space-7); }
 .pillars__head h2 {
   font-size: clamp(28px, 3.4vw, 40px);
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-semibold);
   letter-spacing: -0.02em;
   color: var(--dh-navy);
   margin: var(--space-3) 0 var(--space-3);
@@ -365,7 +365,7 @@
 .trusted__head { text-align: center; max-width: 640px; margin: 0 auto var(--space-6); }
 .trusted__head h2 {
   font-size: clamp(26px, 3vw, 34px);
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-semibold);
   letter-spacing: -0.02em;
   color: var(--dh-navy);
   margin: var(--space-3) 0;
@@ -420,7 +420,7 @@
 }
 .direct__head h2 {
   font-size: clamp(26px, 3vw, 34px);
-  font-weight: var(--fw-medium);
+  font-weight: var(--fw-semibold);
   letter-spacing: -0.02em;
   color: var(--dh-navy);
   margin: var(--space-3) 0 var(--space-3);
