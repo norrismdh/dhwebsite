@@ -458,7 +458,6 @@
   margin: var(--space-3) 0 0;
   color: var(--fg-2);
   font-size: var(--fs-18);
-  max-width: 60ch;
   line-height: 1.5;
 }
 
@@ -596,7 +595,7 @@
 }
 .quote__head p {
   color: rgba(255,255,255,0.78);
-  font-size: var(--fs-16);
+  font-size: var(--fs-18);
   margin: 0 0 var(--space-5);
   max-width: 420px;
   line-height: 1.55;
