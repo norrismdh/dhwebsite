@@ -798,8 +798,8 @@
   padding: var(--space-6);
   background: var(--dh-white);
   border: 1px solid var(--border-2);
+  border-bottom: 1px solid var(--border-2); /* restore bottom edge — border-bottom:none from global <a> style kills it */
   border-radius: var(--radius-lg);
-  border-bottom: none;
   transition: border-color var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
 }
 .cs-related-card:hover {
