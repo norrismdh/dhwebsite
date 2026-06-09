@@ -1029,11 +1029,12 @@
    Subnav — corrected sticky top for floating pill nav
    ----------------------------------------------------------- */
 @media (min-width: 768px) {
-  .subnav { top: 100px; }
-  /* Sections need extra scroll-margin to clear pill + subnav */
+  /* Subnav sticks just below full-width fixed nav (84px) */
+  .subnav { top: 88px; }
+  /* scroll-margin: 84px nav + 56px subnav + 12px gap */
   .feature-row,
   .connectors,
-  .security { scroll-margin-top: 160px; }
+  .security { scroll-margin-top: 152px; }
 }
 
 /* -----------------------------------------------------------

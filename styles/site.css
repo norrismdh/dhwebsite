@@ -186,23 +186,21 @@ button { font-family: inherit; cursor: pointer; }
     0 1px 0 rgba(255, 255, 255, 0.8) inset,
     0 8px 28px rgba(25, 51, 89, 0.12);
 }
-/* ---- Desktop: floating pill ---- */
+/* ---- Desktop: full-width fixed bar ---- */
 @media (min-width: 768px) {
   .nav {
     position: fixed;
-    top: 12px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(100% - 32px);
-    max-width: 1200px;
-    border-radius: 12px;
-    border: 1px solid rgba(25, 51, 89, 0.10);
+    top: 0;
+    left: 0;
+    right: 0;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(25, 51, 89, 0.10);
     box-shadow:
       0 1px 0 rgba(255, 255, 255, 0.7) inset,
       0 4px 24px rgba(25, 51, 89, 0.10);
   }
   /* Compensate for nav being removed from document flow */
-  body { padding-top: 108px; }
+  body { padding-top: 88px; }
 }
 .nav::before {
   /* Brand accent strip — navy | orange | yellow | navy */
@@ -221,7 +219,7 @@ button { font-family: inherit; cursor: pointer; }
     var(--dh-navy) 100%);
   opacity: 0.85;
   pointer-events: none;
-  border-radius: 12px 12px 0 0;
+  border-radius: 0;
 }
 .nav__inner {
   display: flex;
