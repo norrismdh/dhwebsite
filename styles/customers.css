@@ -335,19 +335,8 @@
   background: var(--dh-navy);
   color: #fff;
   text-align: center;
-  position: relative;
-  overflow: hidden;
 }
 @media (min-width: 768px) { .cust-cta { padding: 72px 0; } }
-.cust-cta::before {
-  content: "";
-  position: absolute;
-  top: -200px; left: 50%;
-  transform: translateX(-50%);
-  width: 700px; height: 700px;
-  background: radial-gradient(circle, rgba(243,146,53,0.15) 0%, transparent 65%);
-  pointer-events: none;
-}
 .cust-cta .container { position: relative; }
 .cust-cta h2 {
   font-size: clamp(36px, 5vw, 64px);
@@ -367,7 +356,7 @@
   margin: 0 auto var(--space-6);
 }
 .cust-cta__note {
-  margin-top: 72px;
+  margin-top: var(--space-9);
   font-size: var(--fs-12);
   color: rgba(255,255,255,0.55);
   letter-spacing: var(--tracking-wide);
