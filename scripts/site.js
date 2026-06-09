@@ -15,6 +15,18 @@
     const dir  = location.pathname.replace(/\\/g, '/').split('/').slice(0, -1).pop() || '';
     const base = ['use-cases', 'resources', 'vs', 'blog', 'downloads'].includes(dir.toLowerCase()) ? '../' : '';
 
+    // Inject skip-to-main link before the nav (screen readers + keyboard users)
+    if (!document.querySelector('.skip-link')) {
+      // Ensure <main> has id="top" so the skip link target always resolves
+      const mainEl = document.querySelector('main');
+      if (mainEl && !mainEl.id) mainEl.id = 'top';
+      const skip = document.createElement('a');
+      skip.className = 'skip-link';
+      skip.href = '#top';
+      skip.textContent = 'Skip to main content';
+      nav.parentElement.insertBefore(skip, nav);
+    }
+
     // Inject full nav shell so the header is a single source of truth
     nav.innerHTML = `
       <div class="container nav__inner">
@@ -124,7 +136,7 @@
 
       return `
         <li class="nav__item" data-mega="${key}">
-          <a class="nav__trigger${def.active ? ' is-current' : ''}" href="${base}${def.href}" aria-haspopup="true" aria-expanded="false">
+          <a class="nav__trigger${def.active ? ' is-current' : ''}" href="${base}${def.href}" aria-haspopup="true" aria-expanded="false"${def.active ? ' aria-current="page"' : ''}>
             <span>${def.label}</span>
             <svg class="nav__chev" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
           </a>
@@ -150,7 +162,7 @@
       buildTrigger('platform', MEGA.platform),
       buildTrigger('resources', MEGA.resources),
       buildTrigger('company', MEGA.company),
-      `<li class="nav__item"><a class="nav__plain${isPricing ? ' is-current' : ''}" href="${base}Pricing.html">Pricing</a></li>`,
+      `<li class="nav__item"><a class="nav__plain${isPricing ? ' is-current' : ''}" href="${base}Pricing.html"${isPricing ? ' aria-current="page"' : ''}>Pricing</a></li>`,
     ].join('');
 
     // ---- Hover / focus open/close with a short close-delay (lets pointer cross gap) ----
@@ -558,7 +570,11 @@
       });
     };
     filters.forEach(f => f.addEventListener('click', () => {
-      filters.forEach(o => o.classList.toggle('is-on', o === f));
+      filters.forEach(o => {
+        const active = o === f;
+        o.classList.toggle('is-on', active);
+        o.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
       apply(f.dataset.cnFilter);
     }));
   }

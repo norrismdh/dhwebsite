@@ -48,7 +48,7 @@
               </div>
 
               <div class="cn-spoke cn-spoke--1">
-                <div class="cn-spoke__tile"><img src="assets/logos/powerbi.png" alt="" /></div>
+                <div class="cn-spoke__tile"><img src="assets/logos/powerbi.webp" alt="" /></div>
                 <span class="cn-spoke__lbl">Power BI</span>
               </div>
               <div class="cn-spoke cn-spoke--2">
@@ -60,7 +60,7 @@
                 <span class="cn-spoke__lbl">Qlik</span>
               </div>
               <div class="cn-spoke cn-spoke--4">
-                <div class="cn-spoke__tile"><img src="assets/logos/ibm.png" alt="" /></div>
+                <div class="cn-spoke__tile"><img src="assets/logos/ibm.webp" alt="" /></div>
                 <span class="cn-spoke__lbl">Cognos</span>
               </div>
               <div class="cn-spoke cn-spoke--5">
@@ -68,7 +68,7 @@
                 <span class="cn-spoke__lbl">Spotfire</span>
               </div>
               <div class="cn-spoke cn-spoke--6">
-                <div class="cn-spoke__tile"><img src="assets/logos/excel.png" alt="" /></div>
+                <div class="cn-spoke__tile"><img src="assets/logos/excel.webp" alt="" /></div>
                 <span class="cn-spoke__lbl">Excel</span>
               </div>
               <div class="cn-spoke cn-spoke--7">
@@ -76,7 +76,7 @@
                 <span class="cn-spoke__lbl">Looker</span>
               </div>
               <div class="cn-spoke cn-spoke--8">
-                <div class="cn-spoke__tile"><img src="assets/logos/sharepoint.png" alt="" /></div>
+                <div class="cn-spoke__tile"><img src="assets/logos/sharepoint.webp" alt="" /></div>
                 <span class="cn-spoke__lbl">SharePoint</span>
               </div>
             </div>
@@ -96,54 +96,54 @@
 
 </p>
           </div>
-          <div class="cn-filters reveal" role="tablist">
-            <button class="cn-filter is-on" type="button" data-cn-filter="all">All <span class="count">0</span></button>
-            <button class="cn-filter" type="button" data-cn-filter="bi">BI <span class="count">0</span></button>
-            <button class="cn-filter" type="button" data-cn-filter="ai">AI <span class="count">0</span></button>
-            <button class="cn-filter" type="button" data-cn-filter="docs">Documents <span class="count">0</span></button>
-            <button class="cn-filter" type="button" data-cn-filter="data">Data sources <span class="count">0</span></button>
-            <button class="cn-filter" type="button" data-cn-filter="collab">Collaboration <span class="count">0</span></button>
+          <div class="cn-filters reveal" role="group" aria-label="Filter by category">
+            <button class="cn-filter is-on" type="button" data-cn-filter="all" aria-pressed="true">All <span class="count">0</span></button>
+            <button class="cn-filter" type="button" data-cn-filter="bi" aria-pressed="false">BI <span class="count">0</span></button>
+            <button class="cn-filter" type="button" data-cn-filter="ai" aria-pressed="false">AI <span class="count">0</span></button>
+            <button class="cn-filter" type="button" data-cn-filter="docs" aria-pressed="false">Documents <span class="count">0</span></button>
+            <button class="cn-filter" type="button" data-cn-filter="data" aria-pressed="false">Data sources <span class="count">0</span></button>
+            <button class="cn-filter" type="button" data-cn-filter="collab" aria-pressed="false">Collaboration <span class="count">0</span></button>
           </div>
         </div>
 
         <div class="cn-grid reveal" data-connectors>
-          <a class="cn-card" href="#" data-cat="bi">
+          <div class="cn-card" data-cat="bi">
             <div class="cn-card__logo" style="background:#FF9900;color:#fff;font-size:11px;font-weight:700;letter-spacing:-0.5px;">QS</div>
             <p class="cn-card__cat">BI Platform</p>
             <p class="cn-card__name">Amazon QuickSight</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="docs">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/box.png" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="docs">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/box.webp" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">Documents</p>
             <p class="cn-card__name">Box</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="ai">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/chatgpt.webp" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="ai">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/chatgpt.webp" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">AI assistant</p>
             <p class="cn-card__name">ChatGPT Enterprise</p>
             <span class="cn-card__status cn-card__status--soon"><span class="dot"></span>Soon</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="ai">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/claude.png" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="ai">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/claude.png" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">AI assistant</p>
             <p class="cn-card__name">Claude</p>
             <span class="cn-card__status cn-card__status--soon"><span class="dot"></span>Soon</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="data">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/databricks.png" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="data">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/databricks.webp" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">Data platform</p>
             <p class="cn-card__name">Databricks</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="bi">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/excel.png" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="bi">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/excel.webp" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">Spreadsheet</p>
             <p class="cn-card__name">Excel</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="docs">
+          </div>
+          <div class="cn-card" data-cat="docs">
             <div class="cn-card__logo cn-card__logo--img cn-card__logo--glyph" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M3 7a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z" />
@@ -153,175 +153,175 @@
             <p class="cn-card__cat">Documents</p>
             <p class="cn-card__name">File System</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="bi">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/gooddata.svg" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="bi">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/gooddata.svg" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">BI Platform</p>
             <p class="cn-card__name">GoodData</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="docs">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/googledrive.avif" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="docs">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/googledrive.avif" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">Documents</p>
             <p class="cn-card__name">Google Drive</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="ai">
+          </div>
+          <div class="cn-card" data-cat="ai">
             <div class="cn-card__logo" style="background:linear-gradient(135deg,#4285F4 0%,#9B72CB 50%,#D96570 100%);color:#fff;font-size:12px;letter-spacing:-0.5px;">G</div>
             <p class="cn-card__cat">AI assistant</p>
             <p class="cn-card__name">Google Gemini</p>
             <span class="cn-card__status cn-card__status--soon"><span class="dot"></span>Soon</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="bi">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/ibm.png" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="bi">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/ibm.webp" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">BI Platform</p>
             <p class="cn-card__name">IBM Cognos Analytics</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="bi">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/ibm.png" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="bi">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/ibm.webp" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">BI Platform</p>
             <p class="cn-card__name">IBM Planning Analytics</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="bi">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/looker.webp" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="bi">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/looker.webp" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">BI Platform</p>
             <p class="cn-card__name">Looker</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="ai">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/copilot.png" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="ai">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/copilot.webp" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">AI assistant</p>
             <p class="cn-card__name">M365 Copilot</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="ai">
+          </div>
+          <div class="cn-card" data-cat="ai">
             <div class="cn-card__logo" style="background:#193359;color:#fff;font-size:10px;">MCP</div>
             <p class="cn-card__cat">Protocol</p>
             <p class="cn-card__name">MCP endpoint</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="bi">
+          </div>
+          <div class="cn-card" data-cat="bi">
             <div class="cn-card__logo" style="background:#0078D4;color:#fff;font-size:9px;font-weight:700;letter-spacing:-0.5px;">SSRS</div>
             <p class="cn-card__cat">BI Platform</p>
             <p class="cn-card__name">Microsoft SSRS</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="collab">
+          </div>
+          <div class="cn-card" data-cat="collab">
             <div class="cn-card__logo" style="background:#7719AA;color:#fff;font-size:10px;font-weight:700;letter-spacing:-0.5px;">VE</div>
             <p class="cn-card__cat">Collaboration</p>
             <p class="cn-card__name">Microsoft Viva Engage</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="bi">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/microstrategy.png" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="bi">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/microstrategy.webp" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">BI Platform</p>
             <p class="cn-card__name">MicroStrategy</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="docs">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/onedrive.png" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="docs">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/onedrive.webp" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">Documents</p>
             <p class="cn-card__name">OneDrive</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="bi">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/oracle.png" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="bi">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/oracle.png" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">BI Platform</p>
             <p class="cn-card__name">Oracle Analytics</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="bi">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/powerbi.png" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="bi">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/powerbi.webp" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">BI Platform</p>
             <p class="cn-card__name">Power BI</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="bi">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/powerbi.png" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="bi">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/powerbi.webp" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">BI Platform</p>
             <p class="cn-card__name">Power BI Report Server</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="bi">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/qlik.webp" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="bi">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/qlik.webp" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">BI Platform</p>
             <p class="cn-card__name">Qlik Cloud</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="bi">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/qlik.webp" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="bi">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/qlik.webp" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">BI Platform</p>
             <p class="cn-card__name">Qlik Sense</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="bi">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/qlik.webp" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="bi">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/qlik.webp" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">BI Platform</p>
             <p class="cn-card__name">QlikView</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="data">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/salesforce.png" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="data">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/salesforce.webp" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">CRM</p>
             <p class="cn-card__name">Salesforce</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="bi">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/sap.png" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="bi">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/sap.webp" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">BI Platform</p>
             <p class="cn-card__name">SAP Analytics Cloud</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="bi">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/sap.png" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="bi">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/sap.webp" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">BI Platform</p>
             <p class="cn-card__name">SAP BusinessObjects</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="docs">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/sharepoint.png" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="docs">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/sharepoint.webp" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">Documents</p>
             <p class="cn-card__name">SharePoint</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="data">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/splunk.png" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="data">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/splunk.webp" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">Observability</p>
             <p class="cn-card__name">Splunk</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="bi">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/spotfire.png" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="bi">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/spotfire.png" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">BI Platform</p>
             <p class="cn-card__name">Spotfire</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="bi">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/tableau.png" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="bi">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/tableau.png" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">BI Platform</p>
             <p class="cn-card__name">Tableau</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="bi">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/tableau.png" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="bi">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/tableau.png" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">BI Platform</p>
             <p class="cn-card__name">Tableau Cloud</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="bi">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/thoughtspot.png" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="bi">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/thoughtspot.webp" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">BI Platform</p>
             <p class="cn-card__name">ThoughtSpot</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
-          <a class="cn-card" href="#" data-cat="docs">
-            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/youtube.png" alt="" /></div>
+          </div>
+          <div class="cn-card" data-cat="docs">
+            <div class="cn-card__logo cn-card__logo--img"><img src="assets/logos/youtube.webp" alt="" loading="lazy" /></div>
             <p class="cn-card__cat">Video</p>
             <p class="cn-card__name">YouTube</p>
             <span class="cn-card__status"><span class="dot"></span>Live</span>
-          </a>
+          </div>
         </div>
       </div>
     </section>

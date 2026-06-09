@@ -143,6 +143,25 @@ button { font-family: inherit; cursor: pointer; }
 .btn:hover .arrow { transform: translateX(3px); }
 
 /* -----------------------------------------------------------
+   Skip to main content (accessibility)
+   ----------------------------------------------------------- */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-5);
+  background: var(--dh-navy);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  font-size: var(--fs-14);
+  font-weight: var(--fw-bold);
+  text-decoration: none;
+  z-index: 10000;
+  transition: top 120ms var(--ease-out);
+}
+.skip-link:focus { top: 0; }
+
+/* -----------------------------------------------------------
    Navigation - floating frosted bar with clear separation from hero
    ----------------------------------------------------------- */
 .nav {
