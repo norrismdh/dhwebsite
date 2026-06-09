@@ -48,7 +48,7 @@
     const navLinks = nav.querySelector('.nav__links');
     const inPlatform = ['product.html', 'usecases.html', 'connectors.html', 'security.html'].includes(path);
     const inResources = ['resources.html', 'faq.html', 'customers.html', 'blog.html'].includes(path) || dir === 'blog';
-    const inCompany = ['about.html', 'contact.html'].includes(path);
+    const inCompany = ['about.html', 'contact.html', 'partners.html'].includes(path);
 
     // Icon factory — all hex-framed line icons, same visual weight
     const hexIcon = (paths) => `
@@ -115,7 +115,7 @@
         items: [
           { ico: ICO.info,      label: 'About Digital Hive', sub: 'Why we exist',         href: 'About.html' },
           { ico: ICO.users,     label: 'Leadership',         sub: 'The people behind it', href: 'About.html#team' },
-          { ico: ICO.handshake, label: 'Partners',           sub: 'Resellers & ISVs',     href: 'About.html#parent' },
+          { ico: ICO.handshake, label: 'Partners',           sub: 'Resellers & ISVs',     href: 'Partners.html' },
           { ico: ICO.mail,      label: 'Contact us',         sub: 'Get in touch',         href: 'Contact.html' },
         ],
         cta: { label: 'Meet the team', href: 'About.html#team' },

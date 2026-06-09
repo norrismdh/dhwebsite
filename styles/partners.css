@@ -1,0 +1,420 @@
+/* =============================================================
+   Partners page  —  styles/partners.css
+   ============================================================= */
+
+/* ============================================================
+   01 HERO
+   ============================================================ */
+.par-hero {
+  padding: 56px 0 40px;
+}
+@media (min-width: 768px) { .par-hero { padding: 80px 0 56px; } }
+
+.par-hero__inner { max-width: 760px; }
+.par-hero h1 {
+  margin: var(--space-4) 0;
+}
+.par-hero p {
+  font-size: var(--fs-18);
+  color: var(--fg-2);
+  max-width: 600px;
+  margin: 0 0 var(--space-6);
+  line-height: 1.55;
+}
+.par-hero__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+/* Decorative hex clusters — brand palette */
+.par-hex {
+  position: absolute;
+  pointer-events: none;
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+}
+.par-hex--a { width: 80px;  height: 92px;  background: var(--dh-orange); opacity: 0.88; top: 20%; right: 10%; }
+.par-hex--b { width: 52px;  height: 60px;  background: var(--dh-yellow); opacity: 0.85; top: 52%; right: 5%;  }
+.par-hex--c { width: 34px;  height: 40px;  background: var(--dh-navy);   opacity: 0.15; top: 75%; right: 20%; }
+.par-hex--d { width: 26px;  height: 30px;  background: var(--dh-orange); opacity: 0.15; top: 14%; right: 26%; }
+
+/* ============================================================
+   02 PARTNER TYPES  (overlap the hero base)
+   ============================================================ */
+.par-types {
+  padding: 0 0 24px;
+  position: relative;
+  z-index: 2;
+}
+.par-types__grid {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: 1fr;
+  margin-top: -56px;
+}
+@media (min-width: 768px) {
+  .par-types__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.par-type {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  background: #fff;
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 6px 24px rgba(25,51,89,0.05);
+  color: var(--dh-navy);
+  position: relative;
+  transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out);
+}
+.par-type:hover {
+  transform: translateY(-4px);
+  border-color: rgba(25,51,89,0.15);
+  box-shadow: 0 16px 36px rgba(25,51,89,0.10);
+}
+.par-type__hex {
+  width: 52px; height: 60px;
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  display: grid; place-items: center;
+  margin-bottom: var(--space-2);
+  color: #fff;
+}
+.par-type--reseller  .par-type__hex { background: var(--dh-navy); }
+.par-type--tech      .par-type__hex { background: var(--dh-orange); }
+.par-type--strategic .par-type__hex { background: var(--dh-yellow); color: var(--dh-navy); }
+
+.par-type h3 {
+  font-size: var(--fs-20);
+  margin: 0;
+  color: var(--dh-navy);
+}
+.par-type p {
+  margin: 0;
+  font-size: var(--fs-14);
+  color: var(--fg-2);
+  line-height: 1.5;
+}
+.par-type__tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--dh-orange);
+  padding: 3px 8px;
+  background: rgba(243,146,53,0.08);
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(243,146,53,0.2);
+  width: fit-content;
+  margin-top: var(--space-2);
+}
+.par-type--strategic .par-type__tag {
+  color: var(--dh-navy);
+  background: rgba(25,51,89,0.06);
+  border-color: rgba(25,51,89,0.15);
+}
+
+@media (hover: none) {
+  .par-type:hover { transform: none; }
+}
+
+/* ============================================================
+   03 CURRENT PARTNERS  (partner roster)
+   ============================================================ */
+.par-roster {
+  padding: 56px 0;
+  background: var(--bg-1);
+}
+@media (min-width: 768px) { .par-roster { padding: 80px 0; } }
+
+.par-roster__head {
+  margin-bottom: var(--space-7);
+  max-width: 640px;
+}
+.par-roster__head .eyebrow { margin-bottom: var(--space-3); }
+.par-roster__head h2 {
+  font-size: clamp(28px, 3.5vw, 40px);
+  letter-spacing: -0.015em;
+  margin: 0 0 var(--space-4);
+}
+.par-roster__head p {
+  font-size: var(--fs-16);
+  color: var(--fg-2);
+  margin: 0;
+  line-height: 1.55;
+}
+
+.par-roster__grid {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 640px) {
+  .par-roster__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 960px) {
+  .par-roster__grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.par-partner {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+}
+.par-partner:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(25,51,89,0.09);
+}
+
+.par-partner__logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-7) var(--space-6);
+  background: #fff;
+  border-bottom: 1px solid var(--border-2);
+  min-height: 120px;
+}
+.par-partner__logo-wrap img {
+  max-height: 52px;
+  max-width: 180px;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Text fallback when logo image is absent */
+.par-partner__logo-name {
+  font-size: var(--fs-24);
+  font-weight: var(--fw-bold);
+  color: var(--dh-navy);
+  letter-spacing: -0.01em;
+}
+
+.par-partner__body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: var(--space-5) var(--space-6);
+  gap: var(--space-3);
+}
+.par-partner__type {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--dh-orange);
+  padding: 3px 8px;
+  background: rgba(243,146,53,0.08);
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(243,146,53,0.18);
+  width: fit-content;
+}
+.par-partner__name {
+  font-size: var(--fs-18);
+  font-weight: var(--fw-bold);
+  color: var(--dh-navy);
+  margin: 0;
+}
+.par-partner__desc {
+  font-size: var(--fs-14);
+  color: var(--fg-2);
+  line-height: 1.55;
+  margin: 0;
+  flex: 1;
+}
+.par-partner__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: var(--space-3);
+  font-size: var(--fs-13, 13px);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--dh-orange);
+  text-decoration: none;
+}
+.par-partner__link svg {
+  transition: transform var(--dur-base) var(--ease-out);
+}
+.par-partner:hover .par-partner__link svg { transform: translateX(3px); }
+
+@media (hover: none) {
+  .par-partner:hover { transform: none; }
+}
+
+/* ============================================================
+   04 WHY PARTNER  (dark navy band)
+   ============================================================ */
+.par-why {
+  background: var(--dh-navy);
+  color: #fff;
+  padding: 64px 0;
+  position: relative;
+  overflow: hidden;
+}
+@media (min-width: 768px) { .par-why { padding: 80px 0; } }
+
+/* Hex tiling motif — same technique as the How section */
+.par-why::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 52'><polygon points='30,1 59,17 59,35 30,51 1,35 1,17' fill='none' stroke='%23ffffff' stroke-width='0.4' stroke-opacity='0.06'/></svg>");
+  background-repeat: repeat;
+  background-size: 60px 52px;
+  pointer-events: none;
+}
+
+.par-why__head {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto var(--space-8);
+  position: relative;
+}
+.par-why__head .eyebrow { color: var(--dh-yellow); margin-bottom: var(--space-3); }
+.par-why__head h2 {
+  color: #fff;
+  font-size: clamp(28px, 3.5vw, 40px);
+  letter-spacing: -0.015em;
+  margin: 0 0 var(--space-4);
+}
+.par-why__head p {
+  color: rgba(255,255,255,0.7);
+  font-size: var(--fs-16);
+  margin: 0;
+  line-height: 1.55;
+}
+
+.par-why__grid {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: 1fr;
+  position: relative;
+}
+@media (min-width: 560px) {
+  .par-why__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 960px) {
+  .par-why__grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.par-why-card {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  transition: background var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out);
+}
+.par-why-card:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(255,255,255,0.18);
+}
+.par-why-card__ico {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.par-why-card__ico--orange { background: rgba(243,146,53,0.18); color: var(--dh-orange); }
+.par-why-card__ico--yellow { background: rgba(250,180,0,0.18);  color: var(--dh-yellow); }
+.par-why-card__ico--white  { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.85); }
+.par-why-card__ico--teal   { background: rgba(111,208,255,0.18); color: #6FD0FF; }
+
+.par-why-card h3 {
+  font-size: var(--fs-16);
+  font-weight: var(--fw-bold);
+  color: #fff;
+  margin: 0;
+}
+.par-why-card p {
+  font-size: var(--fs-14);
+  color: rgba(255,255,255,0.65);
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* ============================================================
+   05 APPLICATION FORM
+   ============================================================ */
+.par-apply {
+  padding: 64px 0;
+}
+@media (min-width: 768px) { .par-apply { padding: 80px 0; } }
+
+.par-apply__grid {
+  display: grid;
+  gap: var(--space-8);
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+@media (min-width: 960px) {
+  .par-apply__grid { grid-template-columns: 1fr 1.15fr; gap: 80px; }
+}
+
+/* ---- Sidebar ---- */
+.par-apply__side .eyebrow { margin-bottom: var(--space-3); }
+.par-apply__side h2 {
+  font-size: clamp(26px, 3vw, 36px);
+  letter-spacing: -0.015em;
+  margin: 0 0 var(--space-4);
+}
+.par-apply__side > p {
+  font-size: var(--fs-16);
+  color: var(--fg-2);
+  margin: 0 0 var(--space-6);
+  line-height: 1.55;
+}
+
+/* Steps — what happens next */
+.par-steps { display: grid; gap: 0; }
+.par-step {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: var(--space-4);
+  align-items: start;
+  padding: var(--space-4) 0;
+  border-bottom: 1px solid var(--border-2);
+}
+.par-step:last-child { border-bottom: none; }
+.par-step__num {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--dh-navy);
+  color: #fff;
+  font-size: var(--fs-13, 13px);
+  font-weight: var(--fw-bold);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.par-step__title {
+  font-size: var(--fs-15, 15px);
+  font-weight: var(--fw-bold);
+  color: var(--dh-navy);
+  margin: 0 0 3px;
+}
+.par-step__desc {
+  font-size: var(--fs-14);
+  color: var(--fg-2);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ---- Reuse the contact form shell (ct-form classes already in contact.css) ---- */
+/* Add any par-form-specific overrides here */
+.par-form .ct-form__head h3 {
+  font-size: var(--fs-22, 22px);
+}
