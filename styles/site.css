@@ -843,6 +843,7 @@ button { font-family: inherit; cursor: pointer; }
    Problem section - 4 columns, muted
    ----------------------------------------------------------- */
 .problem { background: var(--bg-1); }
+.problem .section-head .eyebrow { color: var(--dh-orange); }
 .problem__grid {
   display: grid;
   gap: var(--space-6);
@@ -890,6 +891,7 @@ button { font-family: inherit; cursor: pointer; }
    Solution section - 2×2 feature cards
    ----------------------------------------------------------- */
 .solution { background: var(--bg-3); }
+.solution .section-head .eyebrow { color: var(--dh-orange); }
 .solution__grid {
   display: grid;
   gap: var(--space-5);
