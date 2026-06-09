@@ -117,7 +117,6 @@
           { ico: ICO.users,     label: 'Leadership',         sub: 'The people behind it', href: 'About.html#team' },
           { ico: ICO.handshake, label: 'Partners',           sub: 'Resellers & ISVs',     href: 'About.html#parent' },
           { ico: ICO.mail,      label: 'Contact us',         sub: 'Get in touch',         href: 'Contact.html' },
-          { ico: ICO.calendar,  label: 'Events',             sub: 'Where to find us',     href: 'Resources.html#events' },
         ],
         cta: { label: 'Meet the team', href: 'About.html#team' },
       },
