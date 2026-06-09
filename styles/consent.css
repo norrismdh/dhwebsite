@@ -18,21 +18,21 @@
   border: 1.5px solid transparent;
   transition: background var(--dur-fast) var(--ease-out),
               color var(--dur-fast) var(--ease-out),
-              border-color var(--dur-fast) var(--ease-out);
+              border-color var(--dur-fast) var(--ease-out),
+              transform var(--dur-fast) var(--ease-out);
   white-space: nowrap;
 }
+.dh-cb:active { transform: scale(0.97); }
 .dh-cb--primary {
   background: var(--dh-navy);
   color: var(--dh-white);
   border-color: var(--dh-navy);
 }
-.dh-cb--primary:hover { background: var(--dh-navy-700); border-color: var(--dh-navy-700); }
 .dh-cb--outline {
   background: transparent;
   color: var(--fg-1);
   border-color: var(--border-1);
 }
-.dh-cb--outline:hover { border-color: var(--dh-navy); }
 .dh-cb--ghost {
   background: transparent;
   color: var(--fg-2);
@@ -40,7 +40,11 @@
   padding-left: var(--space-3);
   padding-right: var(--space-3);
 }
-.dh-cb--ghost:hover { color: var(--fg-1); }
+@media (hover: hover) and (pointer: fine) {
+  .dh-cb--primary:hover { background: var(--dh-navy-700); border-color: var(--dh-navy-700); }
+  .dh-cb--outline:hover { border-color: var(--dh-navy); }
+  .dh-cb--ghost:hover { color: var(--fg-1); }
+}
 
 /* ── Cookie banner ──────────────────────────────────────────── */
 .dh-consent-banner {
@@ -171,9 +175,12 @@
   background: transparent;
   color: var(--fg-2);
   cursor: pointer;
-  transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+  transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
 }
-.dh-cm__close:hover { background: var(--bg-3); color: var(--fg-1); }
+@media (hover: hover) and (pointer: fine) {
+  .dh-cm__close:hover { background: var(--bg-3); color: var(--fg-1); }
+}
+.dh-cm__close:active { transform: scale(0.9); }
 
 .dh-cm__body {
   flex: 1;
@@ -226,8 +233,9 @@
   border-radius: var(--radius-pill);
   background: var(--dh-grey-300);
   position: relative;
-  transition: background var(--dur-base) var(--ease-out);
+  transition: background var(--dur-base) var(--ease-out), transform var(--dur-fast) var(--ease-out);
 }
+.dh-toggle:active .dh-toggle__track { transform: scale(0.92); }
 .dh-toggle__track::after {
   content: '';
   position: absolute;
@@ -238,7 +246,7 @@
   border-radius: 50%;
   background: var(--dh-white);
   box-shadow: var(--shadow-1);
-  transition: transform var(--dur-base) var(--ease-out);
+  transition: transform var(--dur-base) var(--ease-in-out);
 }
 .dh-toggle input:checked + .dh-toggle__track { background: var(--dh-navy); }
 .dh-toggle input:checked + .dh-toggle__track::after { transform: translateX(20px); }
@@ -289,8 +297,9 @@
   text-decoration: none;
   transition: color var(--dur-fast) var(--ease-out);
 }
-.footer__cookie-btn:hover { color: var(--dh-white); }
-.footer__cookie-btn:hover { opacity: 1; }
+@media (hover: hover) and (pointer: fine) {
+  .footer__cookie-btn:hover { color: var(--dh-white); }
+}
 
 /* ── Form consent row ───────────────────────────────────────── */
 .form-consent {
