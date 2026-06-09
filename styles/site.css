@@ -1514,7 +1514,7 @@ button { font-family: inherit; cursor: pointer; }
   position: relative; z-index: 1;
   font-size: var(--fs-16);
 }
-.research__panel .btn { position: relative; z-index: 1; }
+.research__panel .btn { position: relative; z-index: 1; align-self: flex-start; }
 
 /* -----------------------------------------------------------
    Shared CTA eyebrow (dark-bg banner variant — used across
