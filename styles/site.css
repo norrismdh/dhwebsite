@@ -162,32 +162,50 @@ button { font-family: inherit; cursor: pointer; }
 .skip-link:focus { top: 0; }
 
 /* -----------------------------------------------------------
-   Navigation - floating frosted bar with clear separation from hero
+   Navigation — sticky frosted bar (mobile) / floating pill (desktop)
    ----------------------------------------------------------- */
 .nav {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255, 255, 255, 0.78);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid rgba(25, 51, 89, 0.06);
+  border-bottom: 1px solid rgba(25, 51, 89, 0.10);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.6) inset,
-    0 6px 24px rgba(25, 51, 89, 0.05);
+    0 1px 0 rgba(255, 255, 255, 0.7) inset,
+    0 4px 20px rgba(25, 51, 89, 0.08);
   transition: border-color var(--dur-base) var(--ease-out),
               box-shadow var(--dur-base) var(--ease-out),
               background var(--dur-base) var(--ease-out);
 }
 .nav.is-scrolled {
-  background: rgba(255, 255, 255, 0.92);
-  border-bottom-color: rgba(25, 51, 89, 0.1);
+  background: rgba(255, 255, 255, 0.96);
+  border-color: rgba(25, 51, 89, 0.13);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.7) inset,
-    0 8px 24px rgba(25, 51, 89, 0.09);
+    0 1px 0 rgba(255, 255, 255, 0.8) inset,
+    0 8px 28px rgba(25, 51, 89, 0.12);
+}
+/* ---- Desktop: floating pill ---- */
+@media (min-width: 768px) {
+  .nav {
+    position: fixed;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 32px);
+    max-width: 1200px;
+    border-radius: 12px;
+    border: 1px solid rgba(25, 51, 89, 0.10);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.7) inset,
+      0 4px 24px rgba(25, 51, 89, 0.10);
+  }
+  /* Compensate for nav being removed from document flow */
+  body { padding-top: 108px; }
 }
 .nav::before {
-  /* Hairline accent strip at the very top of the page - a quiet brand signal */
+  /* Brand accent strip — navy | orange | yellow | navy */
   content: "";
   position: absolute;
   top: 0; left: 0; right: 0;
@@ -203,6 +221,7 @@ button { font-family: inherit; cursor: pointer; }
     var(--dh-navy) 100%);
   opacity: 0.85;
   pointer-events: none;
+  border-radius: 12px 12px 0 0;
 }
 .nav__inner {
   display: flex;
