@@ -800,11 +800,12 @@
   border: 1px solid var(--border-2);
   border-radius: var(--radius-lg);
   border-bottom: none;
-  transition: border-color var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out);
+  transition: border-color var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
 }
 .cs-related-card:hover {
   border-color: var(--dh-navy);
   box-shadow: 0 8px 24px rgba(25,51,89,0.08);
+  transform: translateY(-2px);
 }
 .cs-related-card .industry {
   font-size: var(--fs-11, 11px);
@@ -887,9 +888,12 @@
   text-decoration: none;
   background: var(--dh-navy);
   color: #fff;
-  transition: background var(--dur-base) var(--ease-out);
+  transition: background var(--dur-base) var(--ease-out), transform 120ms ease-out;
 }
 .cs-btn-primary:hover { background: var(--dh-ink, #0f1f30); color: #fff; }
+.cs-btn-primary:active { transform: scale(0.97); }
+.cs-btn-primary svg { transition: transform 180ms ease-out; }
+.cs-btn-primary:hover svg { transform: translateX(3px); }
 
 .cs-btn-secondary {
   display: inline-flex;
@@ -906,9 +910,10 @@
   text-decoration: none;
   background: transparent;
   color: var(--dh-navy);
-  transition: background var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out);
+  transition: background var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out), transform 120ms ease-out;
 }
 .cs-btn-secondary:hover { background: var(--dh-navy); color: #fff; }
+.cs-btn-secondary:active { transform: scale(0.97); }
 
 .cs-btn-dark-primary {
   display: inline-flex;
@@ -925,9 +930,12 @@
   text-decoration: none;
   background: var(--dh-orange);
   color: #fff;
-  transition: background var(--dur-base) var(--ease-out);
+  transition: background var(--dur-base) var(--ease-out), transform 120ms ease-out;
 }
 .cs-btn-dark-primary:hover { background: #D87A1F; color: #fff; }
+.cs-btn-dark-primary:active { transform: scale(0.97); }
+.cs-btn-dark-primary svg { transition: transform 180ms ease-out; }
+.cs-btn-dark-primary:hover svg { transform: translateX(3px); }
 
 .cs-btn-dark-secondary {
   display: inline-flex;
@@ -944,9 +952,50 @@
   text-decoration: none;
   background: transparent;
   color: #fff;
-  transition: border-color var(--dur-base) var(--ease-out);
+  transition: border-color var(--dur-base) var(--ease-out), transform 120ms ease-out;
 }
 .cs-btn-dark-secondary:hover { border-color: #fff; }
+.cs-btn-dark-secondary:active { transform: scale(0.97); }
+
+/* -----------------------------------------------------------
+   Before / After list item stagger
+   ----------------------------------------------------------- */
+@keyframes csItemIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+.cs-ba.in .cs-before li,
+.cs-ba.in .cs-after li {
+  animation: csItemIn 300ms var(--ease-out, cubic-bezier(0.23,1,0.32,1)) both;
+}
+.cs-ba.in li:nth-child(1) { animation-delay:  80ms; }
+.cs-ba.in li:nth-child(2) { animation-delay: 140ms; }
+.cs-ba.in li:nth-child(3) { animation-delay: 200ms; }
+.cs-ba.in li:nth-child(4) { animation-delay: 260ms; }
+.cs-ba.in li:nth-child(5) { animation-delay: 320ms; }
+.cs-ba.in li:nth-child(6) { animation-delay: 380ms; }
+
+/* Touch devices: no translateY on card/button hover */
+@media (hover: none) {
+  .cs-related-card:hover { transform: none; }
+  .cs-btn-primary:hover svg,
+  .cs-btn-dark-primary:hover svg { transform: none; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  [data-cs-reveal] { transition: opacity 0.2s ease !important; transform: none !important; }
+  [data-cs-reveal].in { opacity: 1 !important; transform: none !important; }
+  .cs-ba.in .cs-before li,
+  .cs-ba.in .cs-after li { animation: none; }
+  .cs-btn-primary:active,
+  .cs-btn-secondary:active,
+  .cs-btn-dark-primary:active,
+  .cs-btn-dark-secondary:active { transform: none; }
+  .cs-btn-primary svg,
+  .cs-btn-dark-primary svg { transition: none; transform: none !important; }
+  .cs-related-card:hover { transform: none; }
+}
 
 /* =============================================================
    Text wordmark (used when a customer has no logo asset)

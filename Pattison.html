@@ -618,17 +618,53 @@
       onScroll();
     }
 
+    // Count-up animation for stat numbers
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function countUp(el) {
+      if (reducedMotion) return;
+      // Find first text node directly inside .val (not inside child spans)
+      let textNode = null, rawText = '';
+      for (const node of el.childNodes) {
+        if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+          textNode = node; rawText = node.textContent.trim(); break;
+        }
+      }
+      if (!textNode || !rawText) return;
+      const hasK = rawText.endsWith('k');
+      const hasM = rawText.endsWith('M');
+      const numStr = (hasK || hasM) ? rawText.slice(0, -1) : rawText;
+      const target = parseFloat(numStr);
+      if (isNaN(target) || target <= 2) return;
+      const decimals = numStr.includes('.') ? numStr.split('.')[1].length : 0;
+      const suffix = hasK ? 'k' : hasM ? 'M' : '';
+      const duration = target >= 100 ? 1400 : target >= 10 ? 1100 : 900;
+      const start = performance.now();
+      (function tick(now) {
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3); // ease-out cubic
+        textNode.textContent = (target * eased).toFixed(decimals) + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      })(start);
+    }
+
     // Reveal on scroll
     const csReveal = new IntersectionObserver((entries) => {
       entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('in'); csReveal.unobserve(e.target); }
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          csReveal.unobserve(e.target);
+          e.target.querySelectorAll('.val').forEach(countUp);
+        }
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
     requestAnimationFrame(() => {
       document.querySelectorAll('[data-cs-reveal]').forEach(el => csReveal.observe(el));
     });
     setTimeout(() => {
-      document.querySelectorAll('[data-cs-reveal]:not(.in)').forEach(el => el.classList.add('in'));
+      document.querySelectorAll('[data-cs-reveal]:not(.in)').forEach(el => {
+        el.classList.add('in');
+        el.querySelectorAll('.val').forEach(countUp);
+      });
     }, 1200);
 
     // TOC scroll-spy
