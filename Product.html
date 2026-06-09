@@ -1,37 +1,45 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
-  <title>Product - Digital Hive</title>
-  <meta name="description" content="An analytics catalog and BI portal built for complex environments. Digital Hive sits above your existing BI tools - indexing, organizing, governing, and surfacing them to the right people." />
+  <title>Product — Digital Hive</title>
+  <meta name="description" content="Digital Hive sits above your BI tools — indexing, governing, and surfacing analytics to the right people. No migration required." />
   <link rel="stylesheet" href="styles/tokens.css" />
   <link rel="stylesheet" href="styles/site.css" />
   <link rel="stylesheet" href="styles/consent.css" />
   <link rel="stylesheet" href="styles/product.css" />
-  <link rel="stylesheet" href="styles/pricing.css" />
 </head>
 <body>
 
   <!-- ============================================================
-       NAVIGATION (shared with Home)
+       NAVIGATION (injected by site.js)
        ============================================================ -->
   <header class="nav" data-screen-label="Navigation"></header>
 
   <main>
 
     <!-- ============================================================
-         1 - PAGE HEADER
+         01 HERO
          ============================================================ -->
     <section class="page-hero hex-hero" data-screen-label="01 Page header">
       <div class="hex-hero__motif" aria-hidden="true"></div>
       <div class="container page-hero__grid">
 
         <div class="reveal">
-          <span class="eyebrow">Product</span>
+          <span class="eyebrow">Product overview</span>
           <h1>The analytics catalog and BI portal built for complex environments</h1>
-          <p class="page-hero__sub">Digital Hive sits above your existing BI tools. It indexes them, organizes them, governs them, and surfaces them to the right people - without touching a single report.</p>
+          <p class="page-hero__sub">Digital Hive sits above your existing BI tools — indexing them, organizing them, governing them, and surfacing them to the right people. Without touching a single report.</p>
+
+          <div class="page-hero__buttons">
+            <a class="btn btn--accent" href="Demo.html">
+              Book a demo
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a class="btn btn--ghost" href="Pricing.html">View pricing</a>
+          </div>
+
           <div class="page-hero__meta">
             <div class="item">
               <span class="num"><span data-count-up="10">10</span>+</span>
@@ -77,7 +85,6 @@
 
             <!-- App body: sidebar + main -->
             <div class="dh-mockup__body">
-
               <aside class="dh-mockup__sidebar">
                 <div class="dh-mockup__sitem dh-mockup__sitem--active">
                   <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
@@ -170,7 +177,6 @@
                   </div>
                 </div>
               </main>
-
             </div><!-- /.dh-mockup__body -->
           </div><!-- /.dh-mockup -->
         </div><!-- /.page-hero__visual -->
@@ -178,7 +184,9 @@
       </div>
     </section>
 
-    <!-- Sentinel - when this passes the viewport top, sub-nav appears -->
+    <!-- ============================================================
+         SENTINEL — when this crosses the viewport top the subnav appears
+         ============================================================ -->
     <div data-subnav-sentinel aria-hidden="true"></div>
 
     <!-- Sticky sub-nav -->
@@ -193,14 +201,98 @@
     </nav>
 
     <!-- ============================================================
-         2 - THE CATALOG
+         02 OUTCOMES — four business benefits at a glance
          ============================================================ -->
-    <section class="feature-row" id="catalog" data-screen-label="02 The catalog">
+    <section class="prod-outcomes" data-screen-label="02 Outcomes">
+      <div class="container">
+        <div class="prod-outcomes__grid">
+
+          <div class="prod-outcome reveal">
+            <div class="prod-outcome__ico" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <span class="prod-outcome__ttl">Find any report, instantly</span>
+            <p class="prod-outcome__desc">One unified search across every connected BI platform. Stop hunting across browser tabs.</p>
+          </div>
+
+          <div class="prod-outcome reveal">
+            <div class="prod-outcome__ico" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <span class="prod-outcome__ttl">Know exactly what to trust</span>
+            <p class="prod-outcome__desc">Certification, ownership, and stale-content detection built in. Users always know the difference.</p>
+          </div>
+
+          <div class="prod-outcome reveal">
+            <div class="prod-outcome__ico" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <span class="prod-outcome__ttl">Right content, right people</span>
+            <p class="prod-outcome__desc">Role-personalized BI Hubs surface the analytics each team needs — without overwhelming them.</p>
+          </div>
+
+          <div class="prod-outcome reveal">
+            <div class="prod-outcome__ico" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+            <span class="prod-outcome__ttl">Adoption that compounds</span>
+            <p class="prod-outcome__desc">Retire stale assets, trace metrics to source, and watch engagement grow — without mandates.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         03 HOW IT WORKS — three-step overview
+         ============================================================ -->
+    <section class="prod-how" data-screen-label="03 How it works">
+      <div class="container">
+        <div class="prod-how__head reveal">
+          <span class="eyebrow">How it works</span>
+          <h2>Up and running in days, not months</h2>
+          <p>No migration. No rebuilding reports. Just connectors pointing at the stack you already have.</p>
+        </div>
+
+        <div class="prod-how__grid">
+
+          <div class="prod-step reveal">
+            <div class="prod-step__num prod-step__num--1">1</div>
+            <div>
+              <h3>Connect your stack</h3>
+              <p>Point Digital Hive at your BI platforms. Connectors harvest reports, dashboards, and metadata automatically — no manual cataloguing required.</p>
+            </div>
+          </div>
+
+          <div class="prod-step reveal">
+            <div class="prod-step__num prod-step__num--2">2</div>
+            <div>
+              <h3>Catalog and govern</h3>
+              <p>Every asset is indexed and searchable from day one. Layer on certification, ownership, lineage, and lifecycle management at your own pace.</p>
+            </div>
+          </div>
+
+          <div class="prod-step reveal">
+            <div class="prod-step__num prod-step__num--3">3</div>
+            <div>
+              <h3>Surface to every audience</h3>
+              <p>Branded BI Hubs give each team a curated home. Universal search covers the rest. Users find what they need — every time.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         04 THE CATALOG
+         ============================================================ -->
+    <section class="feature-row" id="catalog" data-screen-label="04 The catalog">
       <div class="container feature-row__grid">
         <div class="feature-row__copy reveal">
           <span class="eyebrow">The catalog</span>
           <h2>One inventory. Every tool. Zero rebuilding</h2>
-          <p class="lead">Digital Hive indexes reports and dashboards from every connected BI platform. It captures metadata - ownership, certification status, usage data, lineage - and makes every asset searchable in one place.</p>
+          <p class="lead">Digital Hive indexes reports and dashboards from every connected BI platform. It captures metadata — ownership, certification status, usage data, lineage — and makes every asset searchable in one place.</p>
 
           <ul class="feature-list">
             <li>
@@ -209,7 +301,7 @@
               </span>
               <span>
                 <span class="ttl">Automated metadata harvesting</span>
-                <span class="desc">No manual tagging required to get started - connectors pull metadata directly from each source platform.</span>
+                <span class="desc">No manual tagging required to get started — connectors pull metadata directly from each source platform.</span>
               </span>
             </li>
             <li>
@@ -227,7 +319,7 @@
               </span>
               <span>
                 <span class="ttl">Usage telemetry</span>
-                <span class="desc">See what's actually being used, and what isn't. Stale assets surface themselves - retirement becomes obvious.</span>
+                <span class="desc">See what's actually being used, and what isn't. Stale assets surface themselves — retirement becomes obvious.</span>
               </span>
             </li>
           </ul>
@@ -296,13 +388,13 @@
     </section>
 
     <!-- ============================================================
-         3 - THE BI HUB
+         05 THE BI HUB
          ============================================================ -->
-    <section class="feature-row feature-row--muted feature-row--reverse" id="hub" data-screen-label="03 The BI Hub">
+    <section class="feature-row feature-row--muted feature-row--reverse" id="hub" data-screen-label="05 The BI Hub">
       <div class="container feature-row__grid">
         <div class="feature-row__copy reveal">
           <span class="eyebrow">The BI Hub</span>
-          <h2>Analytics organized around how your business works - not which tool built it</h2>
+          <h2>Analytics organized around how your business works — not which tool built it</h2>
           <p class="lead">Most organizations organize analytics by platform. Business users think in functions, teams, and outcomes. The BI Hub delivers analytics through a branded, role-personalized experience. Finance sees finance. Sales sees sales. Executives see what drives strategy.</p>
 
           <ul class="feature-list">
@@ -312,7 +404,7 @@
               </span>
               <span>
                 <span class="ttl">Customizable Hives per team, role, or business unit</span>
-                <span class="desc">Each audience sees a curated home. Same source. Different lens.</span>
+                <span class="desc">Each audience sees a curated home. Same source data. Different lens.</span>
               </span>
             </li>
             <li>
@@ -329,7 +421,7 @@
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
               </span>
               <span>
-                <span class="ttl">Single sign-on - one login, every tool</span>
+                <span class="ttl">Single sign-on — one login, every tool</span>
                 <span class="desc">Users authenticate once. From there, every connected platform opens without re-login.</span>
               </span>
             </li>
@@ -338,7 +430,7 @@
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
               </span>
               <span>
-                <span class="ttl">Branded experience - your logo, your colors</span>
+                <span class="ttl">Branded experience — your logo, your colours</span>
                 <span class="desc">The Hub looks like your company, not ours. White-label down to the favicon.</span>
               </span>
             </li>
@@ -411,15 +503,15 @@
     </section>
 
     <!-- ============================================================
-         4 - GOVERNANCE
+         06 GOVERNANCE
          ============================================================ -->
-    <section class="feature-row" id="governance" data-screen-label="04 Governance">
+    <section class="feature-row" id="governance" data-screen-label="06 Governance">
       <div class="container">
         <div class="feature-row__grid">
           <div class="feature-row__copy reveal">
             <span class="eyebrow">Governance</span>
             <h2>Governance that enables users. Not one that blocks them</h2>
-            <p class="lead">Most governance programs feel like a brake pedal. Digital Hive treats governance as a navigation aid - workflows that surface trusted analytics, retire stale ones, and trace every metric back to its origin.</p>
+            <p class="lead">Most governance programs feel like a brake pedal. Digital Hive treats governance as a navigation aid — workflows that surface trusted analytics, retire stale ones, and trace every metric back to its origin.</p>
           </div>
 
           <div class="reveal" aria-hidden="true">
@@ -448,7 +540,7 @@
                     </div>
                   </div>
                   <div class="mock-gov__chart">
-                    <div class="ttl">Active users by week - last 12 weeks</div>
+                    <div class="ttl">Active users by week — last 12 weeks</div>
                     <div class="mock-gov__bars">
                       <span class="bar" data-bar-h="32"></span>
                       <span class="bar" data-bar-h="40"></span>
@@ -470,7 +562,7 @@
           </div>
         </div>
 
-        <!-- 6-item feature grid -->
+        <!-- 6-item governance feature grid -->
         <div class="gov-grid">
           <div class="gov-card reveal">
             <div class="ico" aria-hidden="true">
@@ -478,7 +570,7 @@
             </div>
             <div>
               <h3>Certification workflows</h3>
-              <p>Mark reports as trusted with an audit trail. Reviewers, expiries, and revocations - all tracked.</p>
+              <p>Mark reports as trusted with a full audit trail. Reviewers, expiries, and revocations — all tracked.</p>
             </div>
           </div>
 
@@ -508,7 +600,7 @@
             </div>
             <div>
               <h3>Usage dashboards</h3>
-              <p>Adoption visibility across every connected tool. See who's using what - and who isn't.</p>
+              <p>Adoption visibility across every connected tool. See who's using what — and who isn't.</p>
             </div>
           </div>
 
@@ -528,7 +620,7 @@
             </div>
             <div>
               <h3>Lineage visibility</h3>
-              <p>Trace every metric back to its origin. From dashboard tile to source table - one click.</p>
+              <p>Trace every metric back to its origin. From dashboard tile to source table — one click.</p>
             </div>
           </div>
         </div>
@@ -536,9 +628,9 @@
     </section>
 
     <!-- ============================================================
-         5 - CONNECTORS
+         07 CONNECTORS
          ============================================================ -->
-    <section class="connectors" id="connectors" data-screen-label="05 Connectors">
+    <section class="connectors" id="connectors" data-screen-label="07 Connectors">
       <div class="container">
         <div class="connectors__head reveal">
           <span class="eyebrow">Connectors</span>
@@ -614,26 +706,26 @@
         </div>
 
         <div class="connectors__footer reveal">
-          <div class="connectors__ask">Don't see your tool? <a href="#ask">Ask us →</a></div>
+          <div class="connectors__ask">Don't see your tool? <a href="Contact.html">Ask us →</a></div>
           <p class="connectors__note">Digital Hive references content in its native platform. Nothing is copied, migrated, or duplicated.</p>
         </div>
       </div>
     </section>
 
     <!-- ============================================================
-         6 - SECURITY
+         08 SECURITY
          ============================================================ -->
-    <section class="security" id="security" data-screen-label="06 Security">
+    <section class="security" id="security" data-screen-label="08 Security">
       <div class="container security__grid">
         <div class="security__head reveal">
           <span class="eyebrow" style="color:var(--dh-yellow);">Security</span>
           <h2>Enterprise security. No new attack surface</h2>
           <p>Digital Hive is a metadata layer. Reports and data stay where they are. Permissions stay where they are. Authentication uses what you already trust.</p>
           <div class="security__links">
-            <a href="#trust">View Trust Center
+            <a href="Contact.html">View Trust Centre
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
-            <a href="#datasheet">Download Security Datasheet
+            <a href="Contact.html">Download Security Datasheet
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
             </a>
           </div>
@@ -672,26 +764,24 @@
     </section>
 
     <!-- ============================================================
-         7 - WHAT WE ARE NOT
+         09 WHAT WE ARE NOT
          ============================================================ -->
-    <section class="notwhat" data-screen-label="07 What we are not">
+    <section class="notwhat" data-screen-label="09 What we are not">
       <div class="container">
         <div class="notwhat__head reveal">
           <span class="eyebrow">For the record</span>
           <h2>Worth saying plainly</h2>
-          <p>What Digital Hive is - and just as importantly, what it isn't.</p>
+          <p>What Digital Hive is — and just as importantly, what it isn't.</p>
         </div>
 
         <div class="notwhat__grid">
           <div class="notwhat__item reveal">
             <div class="notwhat__icon" aria-hidden="true">
               <svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <!-- BI tool: bar chart -->
                 <line x1="14" y1="42" x2="42" y2="42"/>
                 <rect x="16" y="30" width="6" height="12"/>
                 <rect x="25" y="22" width="6" height="20"/>
                 <rect x="34" y="14" width="6" height="28"/>
-                <!-- strikethrough -->
                 <line class="strike" x1="11" y1="46" x2="45" y2="11"/>
               </svg>
             </div>
@@ -703,12 +793,10 @@
           <div class="notwhat__item reveal">
             <div class="notwhat__icon" aria-hidden="true">
               <svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <!-- Database: cylinder -->
                 <ellipse cx="28" cy="16" rx="13" ry="4.5"/>
                 <path d="M15 16v24c0 2.5 5.8 4.5 13 4.5s13-2 13-4.5V16"/>
                 <path d="M15 26c0 2.5 5.8 4.5 13 4.5s13-2 13-4.5"/>
                 <path d="M15 34c0 2.5 5.8 4.5 13 4.5s13-2 13-4.5"/>
-                <!-- strikethrough -->
                 <line class="strike" x1="11" y1="46" x2="45" y2="11"/>
               </svg>
             </div>
@@ -720,12 +808,10 @@
           <div class="notwhat__item reveal">
             <div class="notwhat__icon" aria-hidden="true">
               <svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-                <!-- Migration arrow: two stacked boxes with arrow -->
                 <rect x="10" y="14" width="14" height="14" rx="2"/>
                 <rect x="32" y="28" width="14" height="14" rx="2"/>
                 <path d="M24 21h10a4 4 0 0 1 4 4v3"/>
                 <polyline points="34 25 38 28 42 25"/>
-                <!-- strikethrough -->
                 <line class="strike" x1="11" y1="46" x2="45" y2="11"/>
               </svg>
             </div>
@@ -738,42 +824,54 @@
     </section>
 
     <!-- ============================================================
-         8 - BOTTOM CTA
+         10 BOTTOM CTA — dual-path: demo or pricing
          ============================================================ -->
-    <section class="pr-cta" id="demo" data-screen-label="08 Bottom CTA">
-      <div class="pr-cta__motif" aria-hidden="true"></div>
+    <section class="prod-cta" data-screen-label="10 Bottom CTA">
       <div class="container">
-        <div class="pr-cta__grid">
-          <div class="pr-cta__copy reveal">
-            <span class="pr-cta__eyebrow">Get started</span>
-            <h3 style="font-weight: 500">Ready to see it in action?</h3>
-            <p>30-minute walkthrough using the same BI vendors you use today. Bring your tool list — we'll tailor what we show.</p>
-            <div class="pr-cta__buttons">
+        <div class="prod-cta__head reveal">
+          <span class="eyebrow">Ready to start?</span>
+          <h2>Two ways in</h2>
+          <p>Whether you want to see it live or do the research first, we have you covered.</p>
+        </div>
+
+        <div class="prod-cta__grid">
+
+          <!-- Primary path: book a demo -->
+          <div class="prod-cta__card prod-cta__card--dark reveal">
+            <span class="prod-cta__card-eyebrow">See it live</span>
+            <h3>Digital Hive with your own BI stack</h3>
+            <p>30-minute live walkthrough, tailored to the platforms you actually use. Bring your tool list and your questions.</p>
+            <div class="prod-cta__card-actions">
               <a class="btn btn--accent" href="Demo.html">
                 Book a demo
                 <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </a>
-              <a class="btn btn--ghost-light" href="Contact.html">Contact us</a>
             </div>
           </div>
-          <div class="pr-cta__art" aria-hidden="true">
-            <div class="pr-cta__hex-stack">
-              <span class="pr-cta__hex pr-cta__hex--1"></span>
-              <span class="pr-cta__hex pr-cta__hex--2"></span>
-              <span class="pr-cta__hex pr-cta__hex--3"></span>
+
+          <!-- Secondary path: explore pricing -->
+          <div class="prod-cta__card prod-cta__card--light reveal">
+            <span class="prod-cta__card-eyebrow">Do the research</span>
+            <h3>Explore plans and pricing</h3>
+            <p>Transparent, seat-based pricing. Enterprise agreements available. Start a free evaluation on your own timeline.</p>
+            <div class="prod-cta__card-actions">
+              <a class="btn btn--primary" href="Pricing.html">View pricing</a>
+              <a class="btn btn--ghost" href="Contact.html">Talk to sales</a>
             </div>
           </div>
+
         </div>
       </div>
     </section>
+
   </main>
 
   <!-- ============================================================
-       FOOTER (shared with Home)
+       FOOTER (injected by site.js)
        ============================================================ -->
   <footer class="footer" data-screen-label="Footer"></footer>
 
-    <script src="scripts/consent.js"></script>
+  <script src="scripts/consent.js"></script>
   <script src="scripts/site.js"></script>
 </body>
 </html>
