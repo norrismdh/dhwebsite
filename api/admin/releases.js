@@ -12,20 +12,23 @@
  * ─────────────────────────────────────────────────────────────────────────── */
 
 import { randomBytes }            from 'crypto';
-import { getReleases, saveReleases } from '../_r2.js';
+import { getReleases, saveReleases, getBucketStorageBytes } from '../_r2.js';
 import { requireAdmin }           from '../_auth.js';
 
 // ── GET ───────────────────────────────────────────────────────────────────────
 
 async function handleGet(req, res) {
-  const data = await getReleases();
+  const [data, storageBytes] = await Promise.all([
+    getReleases(),
+    getBucketStorageBytes().catch(() => null), // non-fatal — UI falls back to manifest sum
+  ]);
 
   // Admin view: newest first, all statuses, full fields
   const releases = (data.releases ?? [])
     .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
 
   res.setHeader('Cache-Control', 'no-store');
-  return res.status(200).json({ releases });
+  return res.status(200).json({ releases, storageBytes });
 }
 
 // ── POST ──────────────────────────────────────────────────────────────────────

@@ -19,6 +19,7 @@ import {
   GetObjectCommand,
   PutObjectCommand,
   DeleteObjectCommand,
+  ListObjectsV2Command,
   CreateMultipartUploadCommand,
   UploadPartCommand,
   CompleteMultipartUploadCommand,
@@ -128,6 +129,27 @@ export async function getSignedDownloadUrl(r2Key, filename) {
  */
 export async function deleteFile(r2Key) {
   await client().send(new DeleteObjectCommand({ Bucket: bucket(), Key: r2Key }));
+}
+
+/**
+ * Sum the sizes of every object in the bucket (paginated).
+ * Reflects what Cloudflare counts as storage used.
+ * @returns {Promise<number>} Total bytes
+ */
+export async function getBucketStorageBytes() {
+  let totalBytes = 0;
+  let continuationToken;
+  do {
+    const res = await client().send(new ListObjectsV2Command({
+      Bucket:            bucket(),
+      ContinuationToken: continuationToken,
+    }));
+    for (const obj of res.Contents ?? []) {
+      totalBytes += obj.Size ?? 0;
+    }
+    continuationToken = res.NextContinuationToken;
+  } while (continuationToken);
+  return totalBytes;
 }
 
 // ── Multipart upload (≥ 2 GB files) ──────────────────────────────────────────

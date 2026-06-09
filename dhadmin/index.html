@@ -193,7 +193,7 @@
 
     // ── Render releases table ─────────────────────────────────────────────────
 
-    function renderTable(releases, auth) {
+    function renderTable(releases, auth, storageBytes) {
       const tbody = document.getElementById('release-tbody');
 
       if (!releases.length) {
@@ -229,8 +229,10 @@
       const active       = releases.filter(r => r.enabled).length;
       const allDownloads = releases.reduce((s, r) => s + totalDownloads(r.files), 0);
       const latest       = releases.find(r => r.enabled);
-      const totalBytes   = releases.reduce((s, r) =>
+      // Prefer live bucket size from Cloudflare; fall back to manifest sum if unavailable
+      const manifestBytes = releases.reduce((s, r) =>
         s + Object.values(r.files ?? {}).reduce((fs, f) => fs + (f.sizeBytes ?? 0), 0), 0);
+      const totalBytes = (storageBytes != null) ? storageBytes : manifestBytes;
 
       function formatStorage(bytes) {
         if (!bytes) return '0 MB';
@@ -300,9 +302,9 @@
         if (!res) return; // Token refresh triggered a redirect
 
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const { releases } = await res.json();
+        const { releases, storageBytes } = await res.json();
 
-        renderTable(releases, auth);
+        renderTable(releases, auth, storageBytes);
 
         // Quick enable/disable toggle - event delegation on the tbody
         document.getElementById('release-tbody').addEventListener('click', async (e) => {
