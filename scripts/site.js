@@ -413,7 +413,11 @@
 
     tabs.forEach((tab) => {
       tab.addEventListener('click', () => {
-        tabs.forEach((t) => t.classList.toggle('is-active', t === tab));
+        tabs.forEach((t) => {
+          const active = t === tab;
+          t.classList.toggle('is-active', active);
+          if (t.getAttribute('role') === 'tab') t.setAttribute('aria-selected', active ? 'true' : 'false');
+        });
         apply(tab.dataset.filter);
       });
     });
@@ -475,7 +479,11 @@
     const emptyState = document.querySelector('[data-faq-empty]');
 
     const showCategory = (cat) => {
-      links.forEach(l => l.classList.toggle('is-current', l.dataset.cat === cat));
+      links.forEach(l => {
+        const active = l.dataset.cat === cat;
+        l.classList.toggle('is-current', active);
+        l.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
       panels.forEach(p => p.classList.toggle('is-current', p.dataset.panel === cat));
       if (emptyState) emptyState.classList.remove('is-on');
       if (search) search.value = '';
@@ -670,7 +678,10 @@
     const go = (n) => {
       idx = (n + slides.length) % slides.length;
       slides.forEach((s, i) => s.classList.toggle('is-active', i === idx));
-      dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+      dots.forEach((d, i) => {
+        d.classList.toggle('is-active', i === idx);
+        d.setAttribute('aria-pressed', i === idx ? 'true' : 'false');
+      });
     };
     const start = () => {
       stop();
