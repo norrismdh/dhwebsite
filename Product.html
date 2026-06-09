@@ -218,36 +218,46 @@
           <p>Every capability sits on the same unified layer. Pick a topic to see how it works — nothing here replaces your BI tools, it makes sense of them.</p>
         </div>
 
-        <!-- Selection bar -->
-        <div class="seg reveal" role="tablist" aria-label="Platform capabilities">
-          <button class="seg__btn is-active" role="tab" type="button" data-tab="catalog" aria-selected="true">
-            <span class="seg__num">01</span><span class="seg__lbl">Catalog &amp; Discovery</span>
-          </button>
-          <button class="seg__btn" role="tab" type="button" data-tab="filtering" aria-selected="false">
-            <span class="seg__num">02</span><span class="seg__lbl">Dynamic Filtering</span>
-          </button>
-          <button class="seg__btn" role="tab" type="button" data-tab="governance" aria-selected="false">
-            <span class="seg__num">03</span><span class="seg__lbl">Governance</span>
-          </button>
-          <button class="seg__btn" role="tab" type="button" data-tab="ai" aria-selected="false">
-            <span class="seg__num">04</span><span class="seg__lbl">AI Recommendations</span>
-          </button>
-          <button class="seg__btn" role="tab" type="button" data-tab="storyboards" aria-selected="false">
-            <span class="seg__num">05</span><span class="seg__lbl">Storyboards</span>
-          </button>
-          <button class="seg__btn" role="tab" type="button" data-tab="branding" aria-selected="false">
-            <span class="seg__num">06</span><span class="seg__lbl">Branding</span>
-          </button>
-          <button class="seg__btn" role="tab" type="button" data-tab="connectors" aria-selected="false">
-            <span class="seg__num">07</span><span class="seg__lbl">Connectors</span>
-          </button>
-          <button class="seg__btn" role="tab" type="button" data-tab="enterprise" aria-selected="false">
-            <span class="seg__num">08</span><span class="seg__lbl">Enterprise scale</span>
-          </button>
-        </div>
+        <div class="explorer__layout">
 
-        <!-- Panels -->
-        <div class="explorer__panels">
+          <!-- Left: sticky vertical nav -->
+          <nav class="explorer__nav reveal" role="tablist" aria-label="Platform capabilities">
+            <button class="explorer__nav-btn is-active" role="tab" type="button" data-tab="catalog" aria-selected="true">
+              <span class="explorer__nav-num">01</span>
+              <span class="explorer__nav-lbl">Catalog &amp; Discovery</span>
+            </button>
+            <button class="explorer__nav-btn" role="tab" type="button" data-tab="filtering" aria-selected="false">
+              <span class="explorer__nav-num">02</span>
+              <span class="explorer__nav-lbl">Dynamic Filtering</span>
+            </button>
+            <button class="explorer__nav-btn" role="tab" type="button" data-tab="governance" aria-selected="false">
+              <span class="explorer__nav-num">03</span>
+              <span class="explorer__nav-lbl">Governance</span>
+            </button>
+            <button class="explorer__nav-btn" role="tab" type="button" data-tab="ai" aria-selected="false">
+              <span class="explorer__nav-num">04</span>
+              <span class="explorer__nav-lbl">AI Recommendations</span>
+            </button>
+            <button class="explorer__nav-btn" role="tab" type="button" data-tab="storyboards" aria-selected="false">
+              <span class="explorer__nav-num">05</span>
+              <span class="explorer__nav-lbl">Storyboards</span>
+            </button>
+            <button class="explorer__nav-btn" role="tab" type="button" data-tab="branding" aria-selected="false">
+              <span class="explorer__nav-num">06</span>
+              <span class="explorer__nav-lbl">Branding</span>
+            </button>
+            <button class="explorer__nav-btn" role="tab" type="button" data-tab="connectors" aria-selected="false">
+              <span class="explorer__nav-num">07</span>
+              <span class="explorer__nav-lbl">Connectors</span>
+            </button>
+            <button class="explorer__nav-btn" role="tab" type="button" data-tab="enterprise" aria-selected="false">
+              <span class="explorer__nav-num">08</span>
+              <span class="explorer__nav-lbl">Enterprise scale</span>
+            </button>
+          </nav>
+
+          <!-- Right: panels -->
+          <div class="explorer__panels">
 
           <!-- 01 — Catalog & Discovery -->
           <div class="cap-panel is-active" role="tabpanel" data-panel="catalog">
@@ -822,7 +832,8 @@
             </div>
           </div>
 
-        </div><!-- /.explorer__panels -->
+          </div><!-- /.explorer__panels -->
+        </div><!-- /.explorer__layout -->
       </div><!-- /.container -->
     </section>
 
