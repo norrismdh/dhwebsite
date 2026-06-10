@@ -173,10 +173,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-7) var(--space-6);
+  padding: var(--space-5) var(--space-6);
   background: #fff;
   border-bottom: 1px solid var(--border-2);
-  min-height: 120px;
+  height: 148px;
 }
 .par-partner__logo-wrap--dark {
   background: var(--dh-navy);
