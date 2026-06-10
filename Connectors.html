@@ -39,47 +39,126 @@
             </div>
           </div>
 
-          <div class="reveal" aria-hidden="true">
-            <div class="cn-hub">
-              <svg class="cn-hub__lines" preserveAspectRatio="none"></svg>
+          <div class="cn-hero__art reveal" aria-hidden="true">
+            <svg class="hive-svg" viewBox="0 0 380 350" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="BI tool dashboards converging into a unified Digital Hive analytics portal">
+              <defs>
+                <linearGradient id="hubGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#244271"/>
+                  <stop offset="1" stop-color="#11264A"/>
+                </linearGradient>
+                <filter id="cShadow" x="-25%" y="-25%" width="150%" height="150%">
+                  <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#193359" flood-opacity="0.10"/>
+                </filter>
+                <filter id="hShadow" x="-35%" y="-35%" width="170%" height="170%">
+                  <feDropShadow dx="0" dy="6" stdDeviation="14" flood-color="#193359" flood-opacity="0.28"/>
+                </filter>
+                <radialGradient id="bgGlow" cx="50%" cy="50%" r="45%">
+                  <stop offset="0" stop-color="#F39235" stop-opacity="0.07"/>
+                  <stop offset="1" stop-color="#F39235" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
 
-              <div class="cn-hub__center">
-                <img src="assets/logo-reversed.svg" alt="Digital Hive" />
-              </div>
+              <!-- ambient glow behind hub -->
+              <ellipse cx="190" cy="175" rx="105" ry="90" fill="url(#bgGlow)"/>
 
-              <div class="cn-spoke cn-spoke--1">
-                <div class="cn-spoke__tile"><img src="assets/logos/powerbi.webp" alt="" /></div>
-                <span class="cn-spoke__lbl">Power BI</span>
-              </div>
-              <div class="cn-spoke cn-spoke--2">
-                <div class="cn-spoke__tile"><img src="assets/logos/tableau.png" alt="" /></div>
-                <span class="cn-spoke__lbl">Tableau</span>
-              </div>
-              <div class="cn-spoke cn-spoke--3">
-                <div class="cn-spoke__tile"><img src="assets/logos/qlik.webp" alt="" /></div>
-                <span class="cn-spoke__lbl">Qlik</span>
-              </div>
-              <div class="cn-spoke cn-spoke--4">
-                <div class="cn-spoke__tile"><img src="assets/logos/ibm.webp" alt="" /></div>
-                <span class="cn-spoke__lbl">Cognos</span>
-              </div>
-              <div class="cn-spoke cn-spoke--5">
-                <div class="cn-spoke__tile cn-spoke__tile--wide"><img src="assets/logos/spotfire.png" alt="" /></div>
-                <span class="cn-spoke__lbl">Spotfire</span>
-              </div>
-              <div class="cn-spoke cn-spoke--6">
-                <div class="cn-spoke__tile"><img src="assets/logos/excel.webp" alt="" /></div>
-                <span class="cn-spoke__lbl">Excel</span>
-              </div>
-              <div class="cn-spoke cn-spoke--7">
-                <div class="cn-spoke__tile"><img src="assets/logos/looker.webp" alt="" /></div>
-                <span class="cn-spoke__lbl">Looker</span>
-              </div>
-              <div class="cn-spoke cn-spoke--8">
-                <div class="cn-spoke__tile"><img src="assets/logos/sharepoint.webp" alt="" /></div>
-                <span class="cn-spoke__lbl">SharePoint</span>
-              </div>
-            </div>
+              <!-- flow lines: brand-colored per vendor -->
+              <g fill="none" stroke-width="1.5" stroke-dasharray="5,3">
+                <path d="M 103,75 Q 142,118 166,149"  stroke="#F2C811" opacity="0.9"/>
+                <path d="M 274,62 Q 254,106 214,148"  stroke="#E8762D" opacity="0.9"/>
+                <path d="M 298,165 Q 272,166 210,169" stroke="#52CC74" opacity="0.9"/>
+                <path d="M 277,274 Q 253,244 213,203" stroke="#4285F4" opacity="0.9"/>
+                <path d="M 94,277 Q 130,248 167,202"  stroke="#FF3621" opacity="0.9"/>
+                <path d="M 85,158 Q 112,162 132,163"  stroke="#052FAD" opacity="0.9"/>
+              </g>
+
+              <!-- logo badges at midpoint of each connector -->
+              <g>
+                <circle cx="138" cy="115" r="9" fill="#fff" stroke="#E7ECEF" stroke-width="1"/>
+                <image href="assets/logos/powerbi.webp"    x="131" y="108" width="14" height="14" preserveAspectRatio="xMidYMid meet"/>
+                <circle cx="249" cy="106" r="9" fill="#fff" stroke="#E7ECEF" stroke-width="1"/>
+                <image href="assets/logos/tableau.png"    x="242" y="99"  width="14" height="14" preserveAspectRatio="xMidYMid meet"/>
+                <circle cx="263" cy="167" r="9" fill="#fff" stroke="#E7ECEF" stroke-width="1"/>
+                <image href="assets/logos/qlik.webp"      x="256" y="160" width="14" height="14" preserveAspectRatio="xMidYMid meet"/>
+                <circle cx="249" cy="241" r="9" fill="#fff" stroke="#E7ECEF" stroke-width="1"/>
+                <image href="assets/logos/looker.webp"    x="242" y="234" width="14" height="14" preserveAspectRatio="xMidYMid meet"/>
+                <circle cx="130" cy="244" r="9" fill="#fff" stroke="#E7ECEF" stroke-width="1"/>
+                <image href="assets/logos/databricks.webp" x="123" y="237" width="14" height="14" preserveAspectRatio="xMidYMid meet"/>
+                <circle cx="110" cy="161" r="9" fill="#fff" stroke="#E7ECEF" stroke-width="1"/>
+                <image href="assets/logos/ibm.webp"        x="103" y="154" width="14" height="14" preserveAspectRatio="xMidYMid meet"/>
+              </g>
+
+              <!-- Card 1: Power BI (top-left) -->
+              <g filter="url(#cShadow)">
+                <rect x="28" y="26" width="82" height="58" rx="6" fill="#fff" stroke="#E7ECEF" stroke-width="1"/>
+                <rect x="28" y="26" width="82" height="4" rx="3" fill="#F2C811"/>
+                <text x="36" y="42" fill="#193359" font-family="Montserrat,sans-serif" font-size="7.5" font-weight="700">Power BI</text>
+                <rect x="36" y="50" width="8" height="14" rx="1" fill="#F2C811" opacity="0.9"/>
+                <rect x="47" y="46" width="8" height="18" rx="1" fill="#193359" opacity="0.55"/>
+                <rect x="58" y="49" width="8" height="15" rx="1" fill="#F2C811" opacity="0.65"/>
+                <rect x="69" y="43" width="8" height="21" rx="1" fill="#193359" opacity="0.4"/>
+                <rect x="80" y="47" width="8" height="17" rx="1" fill="#F2C811" opacity="0.5"/>
+                <text x="36" y="79" fill="#A4B2BC" font-family="Montserrat,sans-serif" font-size="6.5">Q4 Revenue</text>
+              </g>
+
+              <!-- Card 2: Tableau (top-right) -->
+              <g filter="url(#cShadow)">
+                <rect x="262" y="16" width="84" height="58" rx="6" fill="#fff" stroke="#E7ECEF" stroke-width="1"/>
+                <rect x="262" y="16" width="84" height="4" rx="3" fill="#E8762D"/>
+                <text x="270" y="32" fill="#193359" font-family="Montserrat,sans-serif" font-size="7.5" font-weight="700">Tableau</text>
+                <path d="M 270,58 L 281,52 L 293,56 L 304,46 L 316,50 L 328,42 L 338,46" stroke="#E8762D" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M 270,58 L 281,52 L 293,56 L 304,46 L 316,50 L 328,42 L 338,46 L 338,66 L 270,66Z" fill="#E8762D" opacity="0.08"/>
+                <text x="270" y="78" fill="#A4B2BC" font-family="Montserrat,sans-serif" font-size="6.5">Cohort Retention</text>
+              </g>
+
+              <!-- Card 3: Qlik (right) -->
+              <g filter="url(#cShadow)">
+                <rect x="298" y="138" width="78" height="54" rx="6" fill="#fff" stroke="#E7ECEF" stroke-width="1"/>
+                <rect x="298" y="138" width="78" height="4" rx="3" fill="#52CC74"/>
+                <text x="306" y="154" fill="#193359" font-family="Montserrat,sans-serif" font-size="7.5" font-weight="700">Qlik</text>
+                <text x="306" y="173" fill="#193359" font-family="Montserrat,sans-serif" font-size="15" font-weight="700">4.2×</text>
+                <text x="342" y="170" fill="#22A06B" font-family="Montserrat,sans-serif" font-size="8.5" font-weight="700">↑12%</text>
+                <text x="306" y="186" fill="#A4B2BC" font-family="Montserrat,sans-serif" font-size="6.5">Inventory Turnover</text>
+              </g>
+
+              <!-- Card 4: Looker (bottom-right) -->
+              <g filter="url(#cShadow)">
+                <rect x="256" y="254" width="84" height="60" rx="6" fill="#fff" stroke="#E7ECEF" stroke-width="1"/>
+                <rect x="256" y="254" width="84" height="4" rx="3" fill="#4285F4"/>
+                <text x="264" y="270" fill="#193359" font-family="Montserrat,sans-serif" font-size="7.5" font-weight="700">Looker</text>
+                <rect x="264" y="277" width="58" height="5" rx="2" fill="#4285F4" opacity="0.80"/>
+                <rect x="264" y="286" width="40" height="5" rx="2" fill="#4285F4" opacity="0.55"/>
+                <rect x="264" y="295" width="50" height="5" rx="2" fill="#4285F4" opacity="0.35"/>
+                <text x="264" y="310" fill="#A4B2BC" font-family="Montserrat,sans-serif" font-size="6.5">Marketing Attribution</text>
+              </g>
+
+              <!-- Card 5: Databricks (bottom-left) -->
+              <g filter="url(#cShadow)">
+                <rect x="16" y="252" width="84" height="60" rx="6" fill="#fff" stroke="#E7ECEF" stroke-width="1"/>
+                <rect x="16" y="252" width="84" height="4" rx="3" fill="#FF3621"/>
+                <text x="24" y="268" fill="#193359" font-family="Montserrat,sans-serif" font-size="7.5" font-weight="700">Databricks</text>
+                <polyline points="24,288 34,282 45,286 56,277 67,281 78,272 89,276 99,269" stroke="#FF3621" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                <text x="24" y="308" fill="#A4B2BC" font-family="Montserrat,sans-serif" font-size="6.5">Pipeline Metrics</text>
+              </g>
+
+              <!-- Card 6: Cognos (left) -->
+              <g filter="url(#cShadow)">
+                <rect x="4" y="126" width="78" height="54" rx="6" fill="#fff" stroke="#E7ECEF" stroke-width="1"/>
+                <rect x="4" y="126" width="78" height="4" rx="3" fill="#052FAD"/>
+                <text x="12" y="142" fill="#193359" font-family="Montserrat,sans-serif" font-size="7.5" font-weight="700">Cognos</text>
+                <circle cx="34" cy="162" r="12" fill="none" stroke="#E7ECEF" stroke-width="4"/>
+                <circle cx="34" cy="162" r="12" fill="none" stroke="#052FAD" stroke-width="4" stroke-dasharray="45 31" stroke-dashoffset="8" opacity="0.8"/>
+                <text x="54" y="159" fill="#193359" font-family="Montserrat,sans-serif" font-size="9.5" font-weight="700">59%</text>
+                <text x="12" y="174" fill="#A4B2BC" font-family="Montserrat,sans-serif" font-size="6.5">Finance Reports</text>
+              </g>
+
+              <!-- Center Hub -->
+              <polygon points="190,97 260,137 260,213 190,253 120,213 120,137" fill="none" stroke="#F39235" stroke-width="1" stroke-opacity="0.18"/>
+              <polygon points="190,108 248,141.5 248,208.5 190,242 132,208.5 132,141.5" fill="url(#hubGrad)" filter="url(#hShadow)"/>
+              <polygon points="190,115 242,145 242,205 190,235 138,205 138,145" fill="none" stroke="#F39235" stroke-width="1.5" stroke-opacity="0.40"/>
+              <polygon points="190,149 200.4,155 200.4,167 190,173 179.6,167 179.6,155" fill="#F39235" opacity="0.88"/>
+              <text x="190" y="188" text-anchor="middle" fill="#ffffff" font-family="Montserrat,sans-serif" font-size="12" font-weight="700" letter-spacing="0.4">Digital Hive</text>
+              <text x="190" y="201" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-family="Montserrat,sans-serif" font-size="7.5" font-weight="500">unified analytics</text>
+            </svg>
           </div>
         </div>
       </div>
