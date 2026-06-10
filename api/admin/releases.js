@@ -18,9 +18,13 @@ import { requireAdmin }           from '../_auth.js';
 // ── GET ───────────────────────────────────────────────────────────────────────
 
 async function handleGet(req, res) {
-  const [data, storageBytes] = await Promise.all([
+  let storageBytes = null;
+  let storageLive  = false;
+  const [data] = await Promise.all([
     getReleases(),
-    getBucketStorageBytes().catch(() => null), // non-fatal — UI falls back to manifest sum
+    getBucketStorageBytes()
+      .then((bytes) => { storageBytes = bytes; storageLive = true; })
+      .catch((err)  => { console.error('getBucketStorageBytes failed:', err.message); }),
   ]);
 
   // Admin view: newest first, all statuses, full fields
@@ -28,7 +32,7 @@ async function handleGet(req, res) {
     .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
 
   res.setHeader('Cache-Control', 'no-store');
-  return res.status(200).json({ releases, storageBytes });
+  return res.status(200).json({ releases, storageBytes, storageLive });
 }
 
 // ── POST ──────────────────────────────────────────────────────────────────────

@@ -193,7 +193,7 @@
 
     // ── Render releases table ─────────────────────────────────────────────────
 
-    function renderTable(releases, auth, storageBytes) {
+    function renderTable(releases, auth, storageBytes, storageLive) {
       const tbody = document.getElementById('release-tbody');
 
       if (!releases.length) {
@@ -273,6 +273,14 @@
         storageNote.textContent   = `${(pct * 100).toFixed(0)}% of 10 GB used`;
         storageNote.style.color   = arcColor;
         storageNote.hidden        = false;
+      } else if (!storageLive) {
+        storageNote.textContent   = '⚠ Estimate only — R2 list unavailable';
+        storageNote.style.color   = 'var(--fg-3)';
+        storageNote.hidden        = false;
+      } else {
+        storageNote.textContent   = `${(pct * 100).toFixed(0)}% of 10 GB used`;
+        storageNote.style.color   = 'var(--fg-3)';
+        storageNote.hidden        = false;
       }
 
       document.getElementById('table-loading').hidden = true;
@@ -302,9 +310,9 @@
         if (!res) return; // Token refresh triggered a redirect
 
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const { releases, storageBytes } = await res.json();
+        const { releases, storageBytes, storageLive } = await res.json();
 
-        renderTable(releases, auth, storageBytes);
+        renderTable(releases, auth, storageBytes, storageLive);
 
         // Quick enable/disable toggle - event delegation on the tbody
         document.getElementById('release-tbody').addEventListener('click', async (e) => {
