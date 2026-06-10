@@ -190,6 +190,13 @@
   display: block;
 }
 
+/* Larger logo overrides for partners whose marks need more room */
+.par-partner__logo-wrap img[src*="motio"],
+.par-partner__logo-wrap img[src*="pmsquare"] {
+  max-height: 80px;
+  max-width: 240px;
+}
+
 /* Text fallback when logo image is absent */
 .par-partner__logo-name {
   font-size: var(--fs-24);
