@@ -83,7 +83,7 @@
         eyebrow: 'The Digital Hive Platform',
         title: 'A unified analytics experience above your existing BI stack.',
         items: [
-          { ico: ICO.grid,      label: 'Platform overview', sub: 'Catalog, BI Hub, governance',      href: 'Product.html' },
+          { ico: ICO.grid,      label: 'Platform overview', sub: 'Catalog, Analytics Hub, governance',      href: 'Product.html' },
           { ico: ICO.plug,      label: 'Connectors',         sub: 'BI, AI, data & document tools',  href: 'Connectors.html' },
           { ico: ICO.layers,    label: 'Use cases',          sub: 'By situation and industry',       href: 'UseCases.html' },
           { ico: ICO.blueprint, label: 'Architecture',       sub: 'Deployment and scale',            href: 'Product.html#security' },
@@ -111,7 +111,7 @@
         href: 'About.html',
         active: inCompany,
         eyebrow: 'Company',
-        title: 'The category-defining analytics catalog for complex enterprises.',
+        title: 'The category-defining analytics hub for complex enterprises.',
         items: [
           { ico: ICO.info,      label: 'About Digital Hive', sub: 'Why we exist',         href: 'About.html' },
           { ico: ICO.users,     label: 'Leadership',         sub: 'The people behind it', href: 'About.html#team' },
@@ -259,7 +259,7 @@
         <div class="footer__top">
           <div class="footer__brand">
             <img src="${base}assets/logo-reversed.svg" alt="Digital Hive" />
-            <p>Where analytics finally make sense. An enterprise analytics catalog.</p>
+            <p>Where analytics finally make sense. An analytics hub.</p>
             <div class="footer__social">
               <a href="https://www.linkedin.com/company/digital-hive-bi-portal" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0H12v2.2h.07c.63-1.2 2.18-2.46 4.49-2.46 4.8 0 5.69 3.16 5.69 7.27V24h-5v-7.2c0-1.72-.03-3.93-2.4-3.93-2.4 0-2.77 1.87-2.77 3.81V24h-5V8z"/></svg></a>
               <a href="https://www.youtube.com/@digitalhive4376" aria-label="YouTube" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.3 3.6-6.3 3.6z"/></svg></a>
@@ -267,7 +267,7 @@
           </div>
           <div class="footer__col"><h3>Product</h3><ul>
             <li><a href="${base}Product.html#catalog">Catalog</a></li>
-            <li><a href="${base}Product.html#hub">BI Hub</a></li>
+            <li><a href="${base}Product.html#hub">Analytics Hub</a></li>
             <li><a href="${base}Product.html#governance">Governance</a></li>
             <li><a href="${base}Connectors.html">Connectors</a></li>
             <li><a href="${base}Pricing.html">Pricing</a></li>
