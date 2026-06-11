@@ -250,3 +250,72 @@
   color: var(--dh-orange);
 }
 
+/* ============================================================
+   Bottom CTA — pr-cta pattern (pricing.css not loaded on this page)
+   ============================================================ */
+.pr-cta {
+  position: relative;
+  overflow: hidden;
+  padding: 36px 0;
+  background: var(--dh-navy);
+  color: #fff;
+}
+@media (min-width: 768px) { .pr-cta { padding: 56px 0; } }
+.pr-cta__motif {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 52'><polygon points='30,1 59,17 59,35 30,51 1,35 1,17' fill='none' stroke='%23ffffff' stroke-width='0.4' stroke-opacity='0.06'/></svg>");
+  background-size: 60px 52px;
+}
+.pr-cta .container { position: relative; z-index: 1; }
+.pr-cta__grid {
+  display: grid;
+  gap: var(--space-6);
+  align-items: center;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 820px) {
+  .pr-cta__grid { grid-template-columns: 1fr auto; gap: 56px; }
+}
+.pr-cta__copy { max-width: 540px; }
+.pr-cta h3 {
+  font-size: clamp(24px, 2.6vw, 36px);
+  color: #fff;
+  margin: 0 0 var(--space-3);
+  letter-spacing: -0.02em;
+  font-weight: var(--fw-bold);
+  line-height: 1.15;
+}
+.pr-cta p {
+  font-size: var(--fs-16);
+  color: rgba(255,255,255,0.78);
+  margin: 0 0 var(--space-5);
+  line-height: 1.55;
+  max-width: 52ch;
+}
+.pr-cta__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+.pr-cta .btn--accent {
+  background: var(--dh-orange);
+  color: #fff;
+  border: 1px solid var(--dh-orange);
+  padding: 12px 22px;
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-16);
+}
+.pr-cta .btn--accent:hover { background: var(--link-hover); border-color: var(--link-hover); }
+.pr-cta .btn--ghost-light {
+  padding: 12px 22px;
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-16);
+  border-radius: var(--radius-sm);
+}
+.pr-cta__art { display: none; }
+@media (min-width: 820px) {
+  .pr-cta__art { display: block; flex-shrink: 0; width: 360px; height: 215px; }
+}
+
