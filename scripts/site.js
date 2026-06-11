@@ -305,6 +305,35 @@
   }
   setupFooter();
 
+  // ---------- Client marquee — single source of truth for all logo strips ----------
+  const CLIENT_NAMES = [
+    'Bank <span class="sub">of</span> America',
+    'Citigroup',
+    'CIBC',
+    'Ford',
+    "Lowe's",
+    'Takeda',
+    'Trinity Health',
+    'Westpac',
+    'PATTISON',
+    'Clarity',
+    'DFS',
+    'Highmark',
+    'Froneri',
+    'University <span class="sub">of</span> Denver',
+  ];
+  function setupClientMarquee() {
+    document.querySelectorAll('[data-client-marquee]').forEach(function (row) {
+      const items = CLIENT_NAMES.map(function (n) {
+        return '<span class="proof__logo">' + n + '</span>';
+      }).join('');
+      row.innerHTML =
+        '<div class="proof__track" aria-hidden="false">' + items + '</div>' +
+        '<div class="proof__track" aria-hidden="true">'  + items + '</div>';
+    });
+  }
+  setupClientMarquee();
+
   // ---------- Sticky nav border on scroll ----------
   const nav = document.querySelector('.nav');
   const onScroll = () => {
