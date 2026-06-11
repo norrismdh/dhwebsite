@@ -252,10 +252,12 @@
               transform var(--dur-base) var(--ease-out),
               box-shadow var(--dur-base) var(--ease-out);
 }
-.res-card:hover {
-  border-color: var(--dh-navy);
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-2);
+@media (hover: hover) {
+  .res-card:hover {
+    border-color: var(--dh-navy);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-2);
+  }
 }
 
 .res-card__thumb {
@@ -363,9 +365,11 @@
   letter-spacing: var(--tracking-caps);
   color: var(--dh-orange);
 }
-.res-card:hover .res-card__cta { color: var(--link-hover); }
+@media (hover: hover) {
+  .res-card:hover .res-card__cta { color: var(--link-hover); }
+  .res-card:hover .res-card__cta .arrow { transform: translateX(4px); }
+}
 .res-card__cta .arrow { transition: transform var(--dur-base) var(--ease-out); }
-.res-card:hover .res-card__cta .arrow { transform: translateX(4px); }
 
 .library__empty {
   display: none;
@@ -416,10 +420,12 @@
   transition: border-color var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
   position: relative;
 }
-.pillar__card:hover {
-  border-color: var(--dh-yellow);
-  box-shadow: 0 1px 0 var(--dh-yellow), var(--shadow-1);
-  transform: translateY(-1px);
+@media (hover: hover) {
+  .pillar__card:hover {
+    border-color: var(--dh-yellow);
+    box-shadow: 0 1px 0 var(--dh-yellow), var(--shadow-1);
+    transform: translateY(-1px);
+  }
 }
 .pillar__card .marker {
   font-size: var(--fs-12);
@@ -453,9 +459,11 @@
   color: var(--dh-navy);
   margin-top: var(--space-3);
 }
-.pillar__card:hover .row { color: var(--dh-orange); }
+@media (hover: hover) {
+  .pillar__card:hover .row { color: var(--dh-orange); }
+  .pillar__card:hover .arrow { transform: translateX(4px); }
+}
 .pillar__card .arrow { transition: transform var(--dur-base) var(--ease-out); }
-.pillar__card:hover .arrow { transform: translateX(4px); }
 
 /* -----------------------------------------------------------
    Comparison pages block
@@ -504,7 +512,9 @@
   color: inherit;
   transition: border-color var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out);
 }
-.compare__card:hover { border-color: var(--dh-navy); transform: translateY(-1px); }
+@media (hover: hover) {
+  .compare__card:hover { border-color: var(--dh-navy); transform: translateY(-1px); }
+}
 
 .compare__brand {
   display: flex;
@@ -543,10 +553,3 @@
 }
 .compare__card .arrow { color: var(--dh-orange); flex-shrink: 0; }
 
-@media (hover: none) {
-  .res-card:hover { transform: none; }
-  .res-card:hover .res-card__cta .arrow { transform: none; }
-  .pillar__card:hover { transform: none; }
-  .pillar__card:hover .arrow { transform: none; }
-  .compare__card:hover { transform: none; }
-}
