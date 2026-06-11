@@ -496,15 +496,7 @@
   overflow: hidden;
 }
 @media (min-width: 768px) { .art-cta { padding: 72px 0; } }
-.art-cta::before {
-  content: "";
-  position: absolute;
-  top: -200px; left: 50%;
-  transform: translateX(-50%);
-  width: 700px; height: 700px;
-  background: radial-gradient(circle, rgba(243,146,53,0.16) 0%, transparent 65%);
-  pointer-events: none;
-}
+
 .art-cta::after {
   content: "";
   position: absolute;
