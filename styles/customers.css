@@ -334,7 +334,6 @@
   padding: 56px 0;
   background: var(--dh-navy);
   color: #fff;
-  text-align: center;
   position: relative;
   overflow: hidden;
 }
@@ -347,34 +346,84 @@
   background-size: 60px 52px;
 }
 @media (min-width: 768px) { .cust-cta { padding: 72px 0; } }
-.cust-cta .container {
-  display: flex;
-  flex-direction: column;
+
+.cust-cta__grid {
+  display: grid;
+  gap: var(--space-8);
   align-items: center;
-  gap: var(--space-6);
+}
+@media (min-width: 860px) {
+  .cust-cta__grid { grid-template-columns: 1fr 340px; gap: 64px; }
+}
+
+.cust-cta__eyebrow {
+  color: var(--dh-orange);
+  margin-bottom: var(--space-3);
 }
 .cust-cta h2 {
-  font-size: clamp(36px, 5vw, 64px);
-  letter-spacing: -0.025em;
+  font-size: clamp(26px, 3.4vw, 44px);
+  letter-spacing: -0.02em;
   color: #fff;
-  margin: 0;
-  line-height: 1.05;
+  margin: 0 0 var(--space-4);
+  line-height: 1.1;
+  max-width: 18ch;
 }
-.cust-cta h2 .accent {
+.cust-cta__copy p {
+  font-size: var(--fs-16);
+  color: rgba(255,255,255,0.72);
+  max-width: 52ch;
+  margin: 0 0 var(--space-6);
+  line-height: 1.6;
+}
+.cust-cta__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+/* Pull-quote card */
+.cust-cta__pullquote {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  position: relative;
+}
+.cust-cta__qmark {
   color: var(--dh-orange);
+  opacity: 0.5;
+  display: block;
+  margin-bottom: var(--space-4);
+}
+.cust-cta__pullquote blockquote {
+  margin: 0;
+  padding: 0;
+}
+.cust-cta__pullquote blockquote p {
+  font-size: var(--fs-15, 15px);
+  color: rgba(255,255,255,0.88);
+  line-height: 1.65;
+  margin: 0 0 var(--space-5);
   font-style: italic;
 }
-.cust-cta p {
-  font-size: var(--fs-18);
-  color: rgba(255,255,255,0.78);
-  max-width: 540px;
-  margin: 0;
+.cust-cta__pullquote blockquote footer {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
-.cust-cta__note {
-  margin-top: var(--space-3);
+.cust-cta__attrib-name {
+  font-size: var(--fs-13, 13px);
+  font-weight: var(--fw-bold);
+  color: #fff;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+.cust-cta__attrib-role {
   font-size: var(--fs-12);
-  color: rgba(255,255,255,0.55);
-  letter-spacing: var(--tracking-wide);
+  color: rgba(255,255,255,0.50);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
 }
 
 @media (hover: none) {
