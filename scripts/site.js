@@ -334,6 +334,23 @@
   }
   setupClientMarquee();
 
+  // ---------- Reading progress bar (article pages only) ----------
+  (function () {
+    if (!document.querySelector('.art-body')) return;
+    var bar = document.createElement('div');
+    bar.id = 'art-progress';
+    bar.setAttribute('role', 'progressbar');
+    bar.setAttribute('aria-label', 'Reading progress');
+    document.body.appendChild(bar);
+    function updateProgress() {
+      var scrolled = window.scrollY;
+      var total = document.documentElement.scrollHeight - window.innerHeight;
+      bar.style.width = (total > 0 ? Math.min(scrolled / total * 100, 100) : 0) + '%';
+    }
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    updateProgress();
+  })();
+
   // ---------- Sticky nav border on scroll ----------
   const nav = document.querySelector('.nav');
   const onScroll = () => {
