@@ -397,11 +397,13 @@
   display: grid;
   gap: var(--space-5);
   grid-template-columns: 1fr;
+  align-items: start;
 }
 @media (min-width: 768px) { .cn-arch__steps { grid-template-columns: repeat(3, 1fr); } }
 
 .cn-arch__step {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: var(--space-3);
 }
 .cn-arch__hex {
@@ -410,7 +412,7 @@
   background: var(--dh-grey-50);
   color: var(--dh-navy);
   display: grid; place-items: center;
-  margin-bottom: var(--space-2);
+  flex-shrink: 0;
 }
 .cn-arch__step h3 { font-size: var(--fs-20); margin: 0; color: var(--dh-navy); }
 .cn-arch__step p { color: var(--fg-2); margin: 0; font-size: var(--fs-15, 15px); line-height: 1.55; }

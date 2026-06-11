@@ -128,7 +128,7 @@
   gap: 6px;
   line-height: var(--lh-snug);
   border-bottom: none;
-  transition: color var(--dur-base) ease;
+  transition: color var(--dur-base) var(--ease-out);
 }
 .blog-path__posts li a::before {
   content: '→';
@@ -179,13 +179,7 @@
   color: var(--dh-orange);
   margin-bottom: var(--space-4);
 }
-.blog-feat__eyebrow::before {
-  content: '';
-  width: 7px; height: 7px;
-  border-radius: 50%;
-  background: var(--dh-orange);
-  flex-shrink: 0;
-}
+.blog-feat__eyebrow::before { content: none; }
 .blog-feat__title {
   font-size: clamp(20px, 3vw, 34px);
   font-weight: var(--fw-bold);

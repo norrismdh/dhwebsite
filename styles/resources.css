@@ -212,6 +212,9 @@
   transition: background var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out);
 }
 .library__tab:hover { color: var(--dh-navy); }
+@media (hover: hover) and (pointer: fine) {
+  .library__tab:active { transform: scale(0.97); }
+}
 .library__tab.is-active {
   background: var(--dh-navy);
   color: #fff;
@@ -258,6 +261,7 @@
     transform: translateY(-2px);
     box-shadow: var(--shadow-2);
   }
+  .res-card:active { transform: scale(0.99); }
 }
 
 .res-card__thumb {
