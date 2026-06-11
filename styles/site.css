@@ -120,6 +120,8 @@ button { font-family: inherit; cursor: pointer; }
   border-color: var(--border-1);
 }
 .btn--ghost:hover { border-color: var(--dh-navy); background: rgba(25, 51, 89, 0.03); }
+.hero .btn--ghost { background: #fff; }
+.hero .btn--ghost:hover { background: #fff; }
 .btn--outline {
   background: transparent;
   color: var(--dh-navy);
