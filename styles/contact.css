@@ -30,77 +30,6 @@
 .ct-hex--c { width: 36px;  height: 42px;  background: var(--dh-navy);   opacity: 0.18; top: 76%; right: 22%; }
 .ct-hex--d { width: 28px;  height: 32px;  background: var(--dh-orange); opacity: 0.18; top: 16%; right: 28%; }
 
-/* ============ Help cards (3 paths) ============ */
-.ct-paths {
-  padding: 0 0 24px;
-  position: relative;
-  z-index: 2;
-}
-.ct-paths__grid {
-  display: grid;
-  gap: var(--space-5);
-  grid-template-columns: 1fr;
-  margin-top: -56px;
-}
-@media (min-width: 768px) {
-  .ct-paths__grid { grid-template-columns: repeat(3, 1fr); }
-}
-
-.ct-path {
-  display: grid;
-  gap: var(--space-3);
-  padding: var(--space-6);
-  background: #fff;
-  border: 1px solid var(--border-2);
-  border-radius: var(--radius-lg);
-  box-shadow: 0 6px 24px rgba(25,51,89,0.05);
-  text-decoration: none;
-  color: var(--dh-navy);
-  border-bottom: none;
-  position: relative;
-  transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out), border-color var(--dur-base) var(--ease-out);
-}
-.ct-path:hover {
-  transform: translateY(-4px);
-  border-color: rgba(25,51,89,0.15);
-  box-shadow: 0 16px 36px rgba(25,51,89,0.10);
-  color: var(--dh-navy);
-}
-.ct-path__hex {
-  width: 56px; height: 64px;
-  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
-  display: grid; place-items: center;
-  margin-bottom: var(--space-3);
-  color: #fff;
-}
-.ct-path--demo .ct-path__hex   { background: var(--dh-navy); }
-.ct-path--sales .ct-path__hex  { background: var(--dh-orange); }
-.ct-path--help .ct-path__hex   { background: var(--dh-yellow); color: var(--dh-navy); }
-.ct-path h3 {
-  font-size: var(--fs-20);
-  margin: 0;
-  color: var(--dh-navy);
-}
-.ct-path p {
-  margin: 0;
-  font-size: var(--fs-14);
-  color: var(--fg-2);
-  line-height: 1.5;
-}
-.ct-path__link {
-  margin-top: var(--space-3);
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: var(--fs-13, 13px);
-  font-weight: var(--fw-bold);
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-caps);
-  color: var(--dh-orange);
-}
-.ct-path__link svg { transition: transform var(--dur-base) var(--ease-out); }
-.ct-path:hover .ct-path__link svg { transform: translateX(3px); }
-
 /* ============ Main contact form + side rail ============ */
 .ct-main { padding: 56px 0; }
 @media (min-width: 768px) { .ct-main { padding: 72px 0; } }
@@ -146,7 +75,9 @@
   place-items: center;
   flex-shrink: 0;
 }
-.ct-route__ico--accent { background: rgba(243,146,53,0.1); color: var(--dh-orange); }
+.ct-route__ico--navy   { background: var(--dh-navy);   color: #fff; }
+.ct-route__ico--orange { background: var(--dh-orange); color: #fff; }
+.ct-route__ico--yellow { background: var(--dh-yellow); color: var(--dh-navy); }
 .ct-route__title {
   font-size: var(--fs-15, 15px);
   font-weight: var(--fw-bold);
