@@ -22,10 +22,9 @@
 
     <!-- ============================================================
          1 - HEADER (condensed, with illustration)
-         Visual: stacked dashboard tiles + hex backdrop suggests
-         "many environments, one view". This is a placeholder
-         illustration built in CSS/HTML so it's easy to swap for
-         a real graphic or photo later.
+         Visual: animated hub-and-spoke network - the Connectors-page
+         Digital Hive hex hub at center, brand-colored dashed flow
+         lines marching toward it, six floating platform chips.
          ============================================================ -->
     <section class="uc-hero hex-hero" data-screen-label="01 Header">
       <div class="hex-hero__motif" aria-hidden="true"></div>
@@ -37,51 +36,68 @@
             <p class="uc-hero__sub">What are you trying to solve? Pick a category below to narrow down to the situations we hear most often.</p>
           </div>
 
-          <div class="uc-art reveal" aria-hidden="true">
-            <span class="uc-art__hex"></span>
-            <span class="uc-art__dot uc-art__dot--o"></span>
-            <span class="uc-art__dot uc-art__dot--y"></span>
-            <span class="uc-art__dot uc-art__dot--n"></span>
+          <div class="uc-net reveal" aria-hidden="true">
+            <svg class="uc-net__svg" viewBox="0 0 520 440" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+              <defs>
+                <linearGradient id="ucHubGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#244271"/>
+                  <stop offset="1" stop-color="#11264A"/>
+                </linearGradient>
+                <filter id="ucHubShadow" x="-35%" y="-35%" width="170%" height="170%">
+                  <feDropShadow dx="0" dy="6" stdDeviation="14" flood-color="#193359" flood-opacity="0.28"/>
+                </filter>
+                <radialGradient id="ucGlow" cx="50%" cy="50%" r="45%">
+                  <stop offset="0" stop-color="#F39235" stop-opacity="0.10"/>
+                  <stop offset="1" stop-color="#F39235" stop-opacity="0"/>
+                </radialGradient>
+              </defs>
 
-            <div class="uc-tile uc-tile--a">
-              <div class="uc-tile__top">Power BI <span class="pill">Certified</span></div>
-              <div class="uc-tile__big">$48.2M</div>
-              <div class="uc-tile__delta">+12.4% YoY</div>
+              <!-- ambient glow behind hub -->
+              <ellipse class="uc-net__glow" cx="260" cy="220" rx="130" ry="110" fill="url(#ucGlow)"/>
+
+              <!-- animated flow lines: brand-colored per vendor (drawn under the hub) -->
+              <g fill="none" stroke-width="1.5" stroke-dasharray="5 7" stroke-linecap="round">
+                <path class="uc-net__line" d="M 260,220 Q 180,140 112,72"  stroke="#F2C811" opacity="0.85"/>
+                <path class="uc-net__line" d="M 260,220 Q 330,140 392,62"  stroke="#E8762D" opacity="0.85"/>
+                <path class="uc-net__line" d="M 260,220 Q 175,219 96,218"  stroke="#052FAD" opacity="0.7"/>
+                <path class="uc-net__line" d="M 260,220 Q 348,216 428,212" stroke="#52CC74" opacity="0.85"/>
+                <path class="uc-net__line" d="M 260,220 Q 190,290 124,352" stroke="#4285F4" opacity="0.85"/>
+                <path class="uc-net__line" d="M 260,220 Q 318,288 368,348" stroke="#FF3621" opacity="0.8"/>
+              </g>
+
+              <!-- center hub: Digital Hive hex (shared with Connectors hero) -->
+              <polygon points="260,142 330,182 330,258 260,298 190,258 190,182" fill="none" stroke="#F39235" stroke-width="1" stroke-opacity="0.18"/>
+              <polygon points="260,153 318,186.5 318,253.5 260,287 202,253.5 202,186.5" fill="url(#ucHubGrad)" filter="url(#ucHubShadow)"/>
+              <polygon points="260,160 312,190 312,250 260,280 208,250 208,190" fill="none" stroke="#F39235" stroke-width="1.5" stroke-opacity="0.40"/>
+              <polygon points="260,194 270.4,200 270.4,212 260,218 249.6,212 249.6,200" fill="#F39235" opacity="0.88"/>
+              <text x="260" y="233" text-anchor="middle" fill="#ffffff" font-family="Montserrat,sans-serif" font-size="12" font-weight="700" letter-spacing="0.4">Digital Hive</text>
+              <text x="260" y="246" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-family="Montserrat,sans-serif" font-size="7.5" font-weight="500">unified analytics</text>
+            </svg>
+
+            <!-- floating platform chips -->
+            <div class="uc-chip uc-chip--pbi">
+              <img src="assets/logos/powerbi.webp" alt="" loading="lazy" />
+              <span><span class="uc-chip__name">Power BI</span><span class="uc-chip__count">4,812 assets</span></span>
             </div>
-
-            <div class="uc-tile uc-tile--c">
-              <div class="uc-tile__top">Tableau</div>
-              <div class="uc-tile__bars">
-                <span style="height:42%"></span>
-                <span style="height:78%"></span>
-                <span style="height:56%"></span>
-                <span style="height:92%"></span>
-                <span style="height:64%"></span>
-              </div>
+            <div class="uc-chip uc-chip--tab">
+              <img src="assets/logos/tableau.png" alt="" loading="lazy" />
+              <span><span class="uc-chip__name">Tableau</span><span class="uc-chip__count">3,107 assets</span></span>
             </div>
-
-            <div class="uc-tile uc-tile--b">
-              <div class="uc-tile__top">Digital Hive <span class="pill" style="background:var(--dh-navy);color:#fff;">Catalog</span></div>
-              <div class="uc-tile__rows">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-              <div class="uc-tile__line">
-                <svg viewBox="0 0 200 40" preserveAspectRatio="none">
-                  <polyline fill="none" stroke="#F39235" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"
-                            points="0,28 28,22 56,30 84,14 112,20 140,8 168,16 200,6" />
-                </svg>
-              </div>
+            <div class="uc-chip uc-chip--cog">
+              <img src="assets/logos/ibm.webp" alt="" loading="lazy" />
+              <span><span class="uc-chip__name">Cognos</span><span class="uc-chip__count">2,940 assets</span></span>
             </div>
-
-            <div class="uc-tile uc-tile--d">
-              <div class="uc-tile__top">Cognos <span class="pill">Live</span></div>
-              <div class="uc-tile__rows">
-                <span></span>
-                <span></span>
-              </div>
+            <div class="uc-chip uc-chip--qlk">
+              <img src="assets/logos/qlik.webp" alt="" loading="lazy" />
+              <span><span class="uc-chip__name">Qlik</span><span class="uc-chip__count">1,566 assets</span></span>
+            </div>
+            <div class="uc-chip uc-chip--lkr">
+              <img src="assets/logos/looker.webp" alt="" loading="lazy" />
+              <span><span class="uc-chip__name">Looker</span><span class="uc-chip__count">988 assets</span></span>
+            </div>
+            <div class="uc-chip uc-chip--dbx">
+              <img src="assets/logos/databricks.webp" alt="" loading="lazy" />
+              <span><span class="uc-chip__name">Databricks</span><span class="uc-chip__count">1,434 assets</span></span>
             </div>
           </div>
         </div>
