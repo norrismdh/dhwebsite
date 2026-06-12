@@ -287,8 +287,10 @@
   border-radius: var(--radius-md);
   padding: var(--space-4) var(--space-5);
   background: var(--bg-1);
-  text-align: left;
+  text-align: center;
 }
+/* Connector boxes carry a group label + chips — those read better left-aligned */
+.arch-box:has(.arch-box__group) { text-align: left; }
 .arch-box strong {
   display: block;
   font-size: var(--fs-14);
