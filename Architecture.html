@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <title>Architecture — Digital Hive</title>
+  <meta name="description" content="One layer above your BI stack. Digital Hive sits across the tools you already own — crawling metadata, indexing everything, and serving one governed, searchable view without moving a single row of data." />
+  <link rel="stylesheet" href="styles/tokens.css" />
+  <link rel="stylesheet" href="styles/site.css" />
+  <link rel="stylesheet" href="styles/consent.css" />
+  <link rel="stylesheet" href="styles/architecture.css" />
+</head>
+<body>
+
+  <!-- NAVIGATION (mega menu injected by site.js) -->
+  <header class="nav" data-screen-label="Navigation"></header>
+
+  <main>
+
+    <!-- ============================================================
+         01 HERO
+         ============================================================ -->
+    <section class="arch-hero hex-hero" data-screen-label="01 Hero">
+      <div class="hex-hero__motif" aria-hidden="true"></div>
+      <div class="container">
+        <div class="arch-hero__inner reveal">
+          <span class="eyebrow">Architecture</span>
+          <h1>One layer above your BI stack.</h1>
+          <p>Digital Hive sits across the tools you already own. It crawls their metadata, indexes everything, and serves one governed, searchable view — without moving a single row of data. Nothing is migrated. Nothing is rebuilt.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         02 DIAGRAM + SIDEBAR
+         ============================================================ -->
+    <section class="arch-main" data-screen-label="02 Architecture diagram">
+      <div class="container">
+        <div class="arch-grid">
+
+          <!-- LEFT: architecture diagram -->
+          <div class="arch-diagram reveal">
+            <div class="arch-diagram__card">
+
+              <!-- YOUR PEOPLE -->
+              <div class="arch-layer">
+                <p class="arch-layer__label">Your people</p>
+                <div class="arch-people">
+                  <span class="arch-pill">Business users</span>
+                  <span class="arch-pill arch-pill--active">Power users</span>
+                  <span class="arch-pill">Admins</span>
+                </div>
+              </div>
+
+              <!-- connector: HTTPS / API -->
+              <div class="arch-connector" aria-hidden="true">
+                <div class="arch-connector__line"></div>
+                <span class="arch-connector__label">HTTPS / API</span>
+                <div class="arch-connector__arrow"></div>
+              </div>
+
+              <!-- PRESENTATION -->
+              <div class="arch-layer">
+                <p class="arch-layer__label">Presentation</p>
+                <div class="arch-boxes arch-boxes--2">
+                  <div class="arch-box">
+                    <strong>Hive portal</strong>
+                    <span>Unified view, mashups, search</span>
+                  </div>
+                  <div class="arch-box">
+                    <strong>Hive designer</strong>
+                    <span>No-code dashboard creation</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- connector -->
+              <div class="arch-connector" aria-hidden="true">
+                <div class="arch-connector__line"></div>
+                <div class="arch-connector__arrow"></div>
+              </div>
+
+              <!-- DIGITAL HIVE SERVER -->
+              <div class="arch-layer">
+                <div class="arch-server">
+                  <div class="arch-server__head">
+                    <strong class="arch-server__name">Digital Hive Server</strong>
+                    <span class="arch-server__sub">application tier</span>
+                  </div>
+                  <div class="arch-server__modules">
+                    <span>Unified search &amp; indexing</span>
+                    <span>Metadata repository</span>
+                    <span>Control center</span>
+                    <span>Connectors engine</span>
+                    <span>Security &amp; SSO</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- connector -->
+              <div class="arch-connector" aria-hidden="true">
+                <div class="arch-connector__line"></div>
+                <div class="arch-connector__arrow"></div>
+              </div>
+
+              <!-- CONNECTORS -->
+              <div class="arch-layer">
+                <p class="arch-layer__label">Connectors</p>
+                <div class="arch-boxes arch-boxes--2">
+                  <div class="arch-box">
+                    <p class="arch-box__group">BI &amp; analytics</p>
+                    <div class="arch-chips">
+                      <span>Cognos Analytics</span>
+                      <span>Planning Analytics</span>
+                      <span>Power BI</span>
+                      <span>Tableau</span>
+                      <span>Qlik</span>
+                    </div>
+                  </div>
+                  <div class="arch-box">
+                    <p class="arch-box__group">Content systems</p>
+                    <div class="arch-chips">
+                      <span>SharePoint</span>
+                      <span>Box</span>
+                      <span>Google Drive</span>
+                      <span>File systems</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- three-column captions with arrows -->
+              <div class="arch-captions" aria-hidden="true">
+                <div class="arch-caption arch-caption--accent">
+                  <p>Crawl metadata<br>No data moves</p>
+                  <div class="arch-caption__arrow"></div>
+                </div>
+                <div class="arch-caption">
+                  <p>Fetch content<br>on demand</p>
+                  <div class="arch-caption__arrow"></div>
+                </div>
+                <div class="arch-caption">
+                  <p>Respect permissions<br>Mapped SSO</p>
+                  <div class="arch-caption__arrow"></div>
+                </div>
+              </div>
+
+              <!-- YOUR EXISTING SYSTEMS -->
+              <div class="arch-layer arch-layer--existing">
+                <p class="arch-layer__label">Your existing systems</p>
+                <div class="arch-boxes arch-boxes--2">
+                  <div class="arch-box arch-box--muted">
+                    <strong>BI &amp; analytics platforms</strong>
+                  </div>
+                  <div class="arch-box arch-box--muted">
+                    <strong>Content repositories</strong>
+                  </div>
+                </div>
+                <p class="arch-layer__note">Everything stays exactly where it is.</p>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- RIGHT: why it works sidebar -->
+          <aside class="arch-why reveal">
+            <p class="arch-why__eyebrow">Why it works</p>
+            <ol class="arch-why__list">
+              <li>
+                <span class="arch-why__num">01</span>
+                <div>
+                  <p class="arch-why__title">Single pane of glass</p>
+                  <p class="arch-why__desc">One governed front door to every BI asset you own.</p>
+                </div>
+              </li>
+              <li>
+                <span class="arch-why__num">02</span>
+                <div>
+                  <p class="arch-why__title">Federated search</p>
+                  <p class="arch-why__desc">Find content across every system from one search bar.</p>
+                </div>
+              </li>
+              <li>
+                <span class="arch-why__num">03</span>
+                <div>
+                  <p class="arch-why__title">Respect permissions</p>
+                  <p class="arch-why__desc">Your existing security model, enforced everywhere.</p>
+                </div>
+              </li>
+              <li>
+                <span class="arch-why__num">04</span>
+                <div>
+                  <p class="arch-why__title">SSO integration</p>
+                  <p class="arch-why__desc">One sign-in carries through to every connected tool.</p>
+                </div>
+              </li>
+              <li>
+                <span class="arch-why__num">05</span>
+                <div>
+                  <p class="arch-why__title">Metadata only</p>
+                  <p class="arch-why__desc">Data stays at the source — Digital Hive never copies it.</p>
+                </div>
+              </li>
+            </ol>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         03 BOTTOM CTA
+         ============================================================ -->
+    <section class="pr-cta" id="demo" data-screen-label="03 Bottom CTA">
+      <div class="pr-cta__motif" aria-hidden="true"></div>
+      <div class="container">
+        <div class="pr-cta__grid">
+          <div class="pr-cta__copy reveal">
+            <span class="pr-cta__eyebrow">Get started</span>
+            <h3>See the architecture in action</h3>
+            <p>A 30-minute walkthrough using your actual BI vendors. No migration pitch, no rip-and-replace pressure.</p>
+            <div class="pr-cta__buttons">
+              <a class="btn btn--accent" href="Demo.html">
+                Book a demo
+                <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+              <a class="btn btn--ghost-light" href="Contact.html">Contact us</a>
+            </div>
+          </div>
+          <div class="pr-cta__art" aria-hidden="true">
+            <svg class="pr-cta__org" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+              <line class="cdao-line" x1="120" y1="120" x2="120" y2="48"  stroke="rgba(255,255,255,0.22)" stroke-width="1.2"/>
+              <line class="cdao-line" x1="120" y1="120" x2="189" y2="98"  stroke="rgba(255,255,255,0.22)" stroke-width="1.2"/>
+              <line class="cdao-line" x1="120" y1="120" x2="162" y2="178" stroke="rgba(255,255,255,0.22)" stroke-width="1.2"/>
+              <line class="cdao-line" x1="120" y1="120" x2="78"  y2="178" stroke="rgba(255,255,255,0.22)" stroke-width="1.2"/>
+              <line class="cdao-line" x1="120" y1="120" x2="51"  y2="98"  stroke="rgba(255,255,255,0.22)" stroke-width="1.2"/>
+              <g transform="translate(120,48)">
+                <circle r="20" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.28)" stroke-width="1.3"/>
+                <circle cy="-5" r="6.5" fill="rgba(255,255,255,0.82)"/>
+                <path d="M-9,11 Q-9,2 0,2 Q9,2 9,11Z" fill="rgba(255,255,255,0.82)"/>
+                <text y="33" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="system-ui,Arial,sans-serif" font-size="9.5">Analytics</text>
+              </g>
+              <g transform="translate(189,98)">
+                <circle r="20" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.28)" stroke-width="1.3"/>
+                <circle cy="-5" r="6.5" fill="rgba(255,255,255,0.82)"/>
+                <path d="M-9,11 Q-9,2 0,2 Q9,2 9,11Z" fill="rgba(255,255,255,0.82)"/>
+                <text y="33" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="system-ui,Arial,sans-serif" font-size="9.5">Data Sci</text>
+              </g>
+              <g transform="translate(162,178)">
+                <circle r="20" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.28)" stroke-width="1.3"/>
+                <circle cy="-5" r="6.5" fill="rgba(255,255,255,0.82)"/>
+                <path d="M-9,11 Q-9,2 0,2 Q9,2 9,11Z" fill="rgba(255,255,255,0.82)"/>
+                <text y="33" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="system-ui,Arial,sans-serif" font-size="9.5">Data Eng</text>
+              </g>
+              <g transform="translate(78,178)">
+                <circle r="20" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.28)" stroke-width="1.3"/>
+                <circle cy="-5" r="6.5" fill="rgba(255,255,255,0.82)"/>
+                <path d="M-9,11 Q-9,2 0,2 Q9,2 9,11Z" fill="rgba(255,255,255,0.82)"/>
+                <text y="33" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="system-ui,Arial,sans-serif" font-size="9.5">Governance</text>
+              </g>
+              <g transform="translate(51,98)">
+                <circle r="20" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.28)" stroke-width="1.3"/>
+                <circle cy="-5" r="6.5" fill="rgba(255,255,255,0.82)"/>
+                <path d="M-9,11 Q-9,2 0,2 Q9,2 9,11Z" fill="rgba(255,255,255,0.82)"/>
+                <text y="33" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="system-ui,Arial,sans-serif" font-size="9.5">AI &amp; ML</text>
+              </g>
+              <g transform="translate(120,120)">
+                <circle r="35" fill="none" stroke="rgba(243,146,53,0.2)" stroke-width="1.5"/>
+                <circle r="30" fill="none" stroke="#F39235" stroke-width="2.5"/>
+                <circle r="25" fill="rgba(25,51,89,0.95)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+                <circle cy="-7" r="8" fill="rgba(255,255,255,0.95)"/>
+                <path d="M-11,13 Q-11,2 0,2 Q11,2 11,13Z" fill="rgba(255,255,255,0.95)"/>
+                <text y="40" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-family="system-ui,Arial,sans-serif" font-size="10" font-weight="700" letter-spacing="0.5">CDAO</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER (shared) -->
+  <footer class="footer" data-screen-label="Footer"></footer>
+
+  <script src="scripts/consent.js"></script>
+  <script src="scripts/site.js"></script>
+
+</body>
+</html>
