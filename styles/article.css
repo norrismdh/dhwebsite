@@ -31,11 +31,9 @@
   border-bottom: 1px solid var(--border-2);
 }
 @media (min-width: 768px) { .art-header { padding: 80px 0 56px; } }
+/* Typography comes from the shared hero-heading rule in site.css;
+   this rule owns layout only. */
 .art-header h1 {
-  font-size: clamp(36px, 5.4vw, 64px);
-  line-height: 1.06;
-  letter-spacing: -0.025em;
-  color: var(--dh-navy);
   margin: var(--space-4) 0 var(--space-5);
   max-width: 22ch;
 }
@@ -206,9 +204,9 @@
 .prose > section + section { margin-top: var(--space-9); }
 
 .prose h2 {
-  font-size: clamp(28px, 3.2vw, 36px);
-  line-height: 1.15;
-  letter-spacing: -0.02em;
+  font-size: clamp(28px, 3.4vw, 40px);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-tight);
   color: var(--dh-navy);
   margin: 0 0 var(--space-5);
   padding-top: var(--space-5);
@@ -232,10 +230,8 @@
 
 .prose h3 {
   font-size: var(--fs-20);
-  letter-spacing: -0.01em;
   color: var(--dh-navy);
   margin: var(--space-6) 0 var(--space-3);
-  font-weight: var(--fw-bold);
 }
 
 .prose p {
