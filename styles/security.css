@@ -224,67 +224,40 @@
   align-items: center;
 }
 
-/* right: visual card */
+/* right: standalone AICPA logo over soft concentric rings */
 .sec-cta__visual {
   position: relative;
-  background: var(--dh-white);
-  border: 1px solid var(--border-1);
-  border-radius: var(--radius-lg);
-  padding: var(--space-5) var(--space-5) var(--space-5);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  box-shadow: var(--shadow-1);
-  min-height: 220px;
-}
-
-/* AICPA SOC chip */
-.sec-cta__badge-chip {
-  position: absolute;
-  top: -1px; right: -1px;
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  padding: 6px 12px 6px 6px;
-  background: var(--dh-white);
-  border: 1px solid var(--border-1);
-  border-radius: 0 var(--radius-lg) 0 var(--radius-lg);
-  font-size: 11px;
-  font-weight: var(--fw-bold);
-  color: var(--dh-navy);
-  letter-spacing: var(--tracking-caps);
-  text-transform: uppercase;
-  box-shadow: var(--shadow-1);
-}
-.sec-cta__aicpa { display: block; flex-shrink: 0; }
-
-/* AICPA logo */
-.sec-cta__logo-wrap {
-  position: relative;
-  margin-top: var(--space-4);
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 260px;
 }
+.sec-cta__visual::before,
+.sec-cta__visual::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  border: 1px solid rgba(25,51,89,0.10);
+  pointer-events: none;
+}
+.sec-cta__visual::before { width: 250px; height: 250px; }
+.sec-cta__visual::after  { width: 320px; height: 320px; border-color: rgba(25,51,89,0.06); }
+
 .sec-cta__logo {
   display: block;
-  width: 140px;
-  height: 140px;
+  width: 180px;
+  height: 180px;
   object-fit: contain;
-  filter: drop-shadow(0 6px 20px rgba(0,100,180,0.20));
+  filter: drop-shadow(0 12px 32px rgba(0,100,180,0.25));
+  position: relative;
+  z-index: 1;
 }
 
-/* lock badge */
-.sec-cta__lock {
-  position: absolute;
-  bottom: -8px; right: -8px;
-  width: 36px; height: 36px;
-  background: var(--dh-navy);
-  border-radius: var(--radius-md);
-  display: grid;
-  place-items: center;
-  color: var(--dh-yellow);
-  box-shadow: 0 4px 12px rgba(25,51,89,0.22);
+/* white background for the secondary action on this strip */
+.sec-cta .btn--outline {
+  background: var(--dh-white);
 }
 
 @media (hover: none) {
