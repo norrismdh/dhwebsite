@@ -189,23 +189,6 @@
       </div>
     </section>
 
-    <!-- Sentinel — crossing the viewport top makes the subnav appear -->
-    <div data-subnav-sentinel aria-hidden="true"></div>
-
-    <!-- Sticky sub-nav: links jump to specific explorer tabs -->
-    <nav class="subnav" data-subnav aria-label="On this page">
-      <div class="container subnav__inner">
-        <a href="#capabilities" data-tab-jump="catalog">Catalog</a>
-        <a href="#capabilities" data-tab-jump="filtering">Filtering</a>
-        <a href="#capabilities" data-tab-jump="governance">Governance</a>
-        <a href="#capabilities" data-tab-jump="ai">AI</a>
-        <a href="#capabilities" data-tab-jump="storyboards">Storyboards</a>
-        <a href="#capabilities" data-tab-jump="branding">Branding</a>
-        <a href="#capabilities" data-tab-jump="connectors">Connectors</a>
-        <a href="#capabilities" data-tab-jump="enterprise">Enterprise</a>
-      </div>
-    </nav>
-
     <!-- ============================================================
          02 PLATFORM CAPABILITIES EXPLORER
          ============================================================ -->
@@ -963,12 +946,15 @@
       btn.addEventListener('click', function () { activateTab(btn.dataset.tab); });
     });
 
-    // Subnav tab-jump links scroll to #capabilities then switch tab
-    document.querySelectorAll('[data-tab-jump]').forEach(function (link) {
-      link.addEventListener('click', function () {
-        activateTab(link.dataset.tabJump);
-      });
-    });
+    // Deep-link support: #catalog, #governance, etc. activate that tab
+    // and scroll to the explorer (used by footer links)
+    var hash = window.location.hash.replace('#', '');
+    var isTab = Array.prototype.some.call(tabBtns, function (b) { return b.dataset.tab === hash; });
+    if (isTab) {
+      activateTab(hash);
+      var explorer = document.getElementById('capabilities');
+      if (explorer) explorer.scrollIntoView();
+    }
   })();
   </script>
 

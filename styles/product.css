@@ -274,70 +274,6 @@
 }
 
 /* -----------------------------------------------------------
-   Sticky sub-nav (appears after hero)
-   ----------------------------------------------------------- */
-.subnav {
-  position: sticky;
-  top: 76px;
-  z-index: 40;
-  background: var(--dh-white);
-  -webkit-backdrop-filter: none;
-  backdrop-filter: none;
-  border-bottom: 1px solid var(--border-1);
-  border-top: 1px solid var(--border-2);
-  box-shadow: 0 4px 16px rgba(25, 51, 89, 0.06);
-  transform: translateY(-100%);
-  opacity: 0;
-  pointer-events: none;
-  transition: transform 180ms var(--ease-out), opacity 180ms var(--ease-out);
-}
-.subnav.is-active {
-  transform: translateY(0);
-  opacity: 1;
-  pointer-events: auto;
-}
-.subnav__inner {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-  height: 56px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.subnav__inner::-webkit-scrollbar { display: none; }
-.subnav a {
-  position: relative;
-  flex-shrink: 0;
-  padding: 18px 4px;
-  margin: 0 10px;
-  font-size: var(--fs-14);
-  font-weight: var(--fw-medium);
-  color: var(--fg-2);
-  border: none;
-  border-radius: 0;
-  transition: color var(--dur-fast) var(--ease-out);
-}
-.subnav a:first-child { margin-left: 0; }
-.subnav a::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0;
-  bottom: 0;
-  height: 3px;
-  background: var(--dh-yellow);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--dur-base) var(--ease-out);
-}
-.subnav a:hover { color: var(--dh-navy); background: transparent; }
-.subnav a.is-current {
-  color: var(--dh-navy);
-  background: transparent;
-  font-weight: var(--fw-bold);
-}
-.subnav a.is-current::after { transform: scaleX(1); }
-
-/* -----------------------------------------------------------
    Alternating feature rows (Catalog, Hub, Governance)
    ----------------------------------------------------------- */
 .feature-row {
@@ -1026,15 +962,13 @@
 }
 
 /* -----------------------------------------------------------
-   Subnav — corrected sticky top for floating pill nav
+   Anchor offsets — clear the fixed nav when jumping to sections
    ----------------------------------------------------------- */
 @media (min-width: 768px) {
-  /* Subnav sticks just below full-width fixed nav (84px) */
-  .subnav { top: 88px; }
-  /* scroll-margin: 84px nav + 56px subnav + 12px gap */
+  /* scroll-margin: 84px nav + 12px gap */
   .feature-row,
   .connectors,
-  .security { scroll-margin-top: 152px; }
+  .security { scroll-margin-top: 96px; }
 }
 
 /* -----------------------------------------------------------
@@ -1380,7 +1314,7 @@
 @media (min-width: 960px) {
   .explorer__nav {
     position: sticky;
-    top: 168px; /* fixed nav (88px) + subnav (56px) + breathing room (24px) */
+    top: 112px; /* fixed nav (88px) + breathing room (24px) */
   }
 }
 

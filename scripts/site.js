@@ -267,7 +267,7 @@
           </div>
           <div class="footer__col"><h3>Product</h3><ul>
             <li><a href="${base}Product.html#catalog">Catalog</a></li>
-            <li><a href="${base}Product.html#hub">Analytics Hub</a></li>
+            <li><a href="${base}Product.html#capabilities">Analytics Hub</a></li>
             <li><a href="${base}Product.html#governance">Governance</a></li>
             <li><a href="${base}Connectors.html">Connectors</a></li>
             <li><a href="${base}Pricing.html">Pricing</a></li>
@@ -482,37 +482,6 @@
       if (label) label.textContent = open ? 'Hide outcomes' : '3 outcomes';
     });
   });
-
-  // ---------- Sticky sub-nav (Product page) ----------
-  const subnav = document.querySelector('[data-subnav]');
-  const subnavSentinel = document.querySelector('[data-subnav-sentinel]');
-  if (subnav && subnavSentinel && 'IntersectionObserver' in window) {
-    const sentinelIO = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        // Show sub-nav once the sentinel (bottom of hero) leaves the top of viewport
-        subnav.classList.toggle('is-active', !entry.isIntersecting && entry.boundingClientRect.top < 0);
-      });
-    }, { threshold: 0, rootMargin: '0px 0px 0px 0px' });
-    sentinelIO.observe(subnavSentinel);
-
-    // Scroll-spy: highlight the current section link
-    const subnavLinks = Array.from(subnav.querySelectorAll('a[href^="#"]'));
-    const sections = subnavLinks
-      .map((a) => document.querySelector(a.getAttribute('href')))
-      .filter(Boolean);
-
-    const spyIO = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.id;
-          subnavLinks.forEach((a) =>
-            a.classList.toggle('is-current', a.getAttribute('href') === '#' + id)
-          );
-        }
-      });
-    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
-    sections.forEach((s) => spyIO.observe(s));
-  }
 
   // ---------- FAQ: categories, accordion, search ----------
   const faqNav = document.querySelector('[data-faq-nav]');

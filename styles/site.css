@@ -1755,6 +1755,34 @@ button { font-family: inherit; cursor: pointer; }
 .footer__bottom a:hover { color: var(--dh-orange); }
 
 /* -----------------------------------------------------------
+   Breadcrumb — shared by use-cases, blog, resources, vs pages
+   ----------------------------------------------------------- */
+.breadcrumb {
+  padding: var(--space-7) 0 0;
+  font-size: var(--fs-14);
+  color: var(--fg-2);
+}
+.breadcrumb ol {
+  list-style: none;
+  margin: 0; padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+.breadcrumb a {
+  color: var(--fg-2);
+  font-weight: var(--fw-medium);
+  border-bottom: none;
+}
+.breadcrumb a:hover { color: var(--dh-orange); }
+.breadcrumb .sep {
+  color: var(--dh-grey-light);
+  font-weight: var(--fw-regular);
+}
+.breadcrumb .current { color: var(--dh-navy); font-weight: var(--fw-bold); }
+
+/* -----------------------------------------------------------
    Scroll-triggered fades
    ----------------------------------------------------------- */
 .reveal {
