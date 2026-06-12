@@ -1,2 +1,16 @@
+# Pre-launch: block all crawling until the new site goes live.
+# At launch, replace the rules below with the "Launch rules" block.
 User-agent: *
 Disallow: /
+
+# ---- Launch rules (swap in at cutover) ----
+# Private/utility paths are blocked; /vs/ comparison pages are on
+# hold and carry meta noindex, so they stay crawlable but unindexed.
+# User-agent: *
+# Disallow: /nda
+# Disallow: /nda-signed
+# Disallow: /thank-you
+# Disallow: /api/
+# Disallow: /dhadmin/
+
+Sitemap: https://www.digitalhive.com/sitemap.xml
