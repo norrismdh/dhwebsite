@@ -15,9 +15,6 @@
 </head>
 <body>
 
-  <!-- Reading progress -->
-  <div class="cs-progress" aria-hidden="true"><div class="cs-progress__bar" id="csProgressBar"></div></div>
-
   <!-- ============================================================
        NAVIGATION (shared)
        ============================================================ -->
@@ -79,7 +76,7 @@
                 </dl>
               </div>
 
-              <span class="eyebrow">Customer story &middot; Marketing &amp; advertising</span>
+              <span class="eyebrow">Customer story &middot; Marketing &amp; Advertising</span>
               <h1>
                 <span class="accent">1.4&nbsp;TB</span> of marketing assets.<br />
                 Found in seconds-not minutes.
@@ -178,7 +175,7 @@
                 <dl>
                   <div class="cs-snap-row"><dt>Customer</dt><dd>PATTISON Outdoor Advertising</dd></div>
                   <div class="cs-snap-row"><dt>Parent</dt><dd>The Jim Pattison Group</dd></div>
-                  <div class="cs-snap-row"><dt>Industry</dt><dd>Out-of-Home advertising</dd></div>
+                  <div class="cs-snap-row"><dt>Industry</dt><dd>Out-of-Home Advertising</dd></div>
                   <div class="cs-snap-row"><dt>Sales offices</dt><dd>25 across Canada</dd></div>
                   <div class="cs-snap-row"><dt>Markets served</dt><dd>200+ coast to coast</dd></div>
                   <div class="cs-snap-row"><dt>Use case</dt><dd>Sales &amp; marketing asset catalog</dd></div>
@@ -574,24 +571,45 @@
         </div>
       </section>
 
-      <!-- ============================================================
-           11 DEMO CTA (navy)
-           ============================================================ -->
-      <section class="cs-section cs-inverse cs-cta" id="demo">
-        <div class="cs-hex-bg"></div>
-        <div class="cs-narrow" style="position:relative;">
-          <span class="eyebrow">Your turn</span>
-          <h2>Where analytics <span class="accent">finally</span> make sense</h2>
-          <div class="cs-cta-row">
-            <a href="Demo.html" class="cs-btn-dark-primary">Book a demo <i data-lucide="arrow-right" style="width:16px;height:16px;display:inline-block;vertical-align:middle;"></i></a>
-            <a href="assets/pattison-case-study.pdf" class="cs-btn-dark-secondary" target="_blank" rel="noopener">Download this case study (PDF)</a>
-          </div>
-          <p class="micro">No commitment. No rip-and-replace pitch.</p>
-        </div>
-      </section>
 
     </div><!-- end doc main -->
   </div><!-- end cs-doc -->
+
+  <!-- ============================================================
+       BOTTOM CTA - shared with /Customers
+       ============================================================ -->
+  <section class="cust-cta" id="demo" data-screen-label="Bottom CTA">
+    <div class="container">
+      <div class="cust-cta__grid reveal">
+
+        <div class="cust-cta__copy">
+          <span class="eyebrow cust-cta__eyebrow">Sound familiar?</span>
+          <h2>If you saw your environment in this story, let&#39;s talk.</h2>
+          <p>Fragmented tools, reports no one can find, users who gave up asking &mdash; these aren&#39;t edge cases. Tell us what you&#39;re dealing with and we&#39;ll show you how it looks resolved, using the BI tools you already have.</p>
+          <div class="cust-cta__buttons">
+            <a class="btn btn--accent" href="Demo.html">
+              Book a demo
+              <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a class="btn btn--ghost-light" href="Contact.html">Contact sales</a>
+          </div>
+        </div>
+
+        <aside class="cust-cta__pullquote" aria-label="Customer quote">
+          <svg class="cust-cta__qmark" width="32" height="24" viewBox="0 0 32 24" aria-hidden="true"><path d="M0 24V14.4C0 6.4 4.8 1.6 14.4 0L16 2.4C10.4 3.6 7.6 6.4 6.4 10.4H12V24H0ZM20 24V14.4C20 6.4 24.8 1.6 34.4 0L36 2.4C30.4 3.6 27.6 6.4 26.4 10.4H32V24H20Z" fill="currentColor"/></svg>
+          <blockquote>
+            <p>&quot;We went from users having no idea where to find their reports to everyone knowing exactly where to go. Adoption didn&#39;t just improve &mdash; it transformed.&quot;</p>
+            <footer>
+              <span class="cust-cta__attrib-name">C.M.</span>
+              <span class="cust-cta__attrib-role">BI Director</span>
+            </footer>
+          </blockquote>
+        </aside>
+
+      </div>
+    </div>
+  </section>
+
 
   <!-- ============================================================
        FOOTER (shared)
@@ -605,18 +623,6 @@
     document.addEventListener('DOMContentLoaded', function() {
       if (window.lucide && window.lucide.createIcons) window.lucide.createIcons();
     });
-
-    // Reading progress bar
-    const csBar = document.getElementById('csProgressBar');
-    if (csBar) {
-      const onScroll = () => {
-        const h = document.documentElement;
-        const max = h.scrollHeight - h.clientHeight;
-        csBar.style.transform = 'scaleX(' + (max > 0 ? h.scrollTop / max : 0) + ')';
-      };
-      document.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    }
 
     // Count-up animation for stat numbers
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;

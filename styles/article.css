@@ -3,27 +3,6 @@
    ============================================================= */
 
 /* -----------------------------------------------------------
-   Reading progress bar — fixed under the nav
-   ----------------------------------------------------------- */
-#art-progress {
-  position: fixed;
-  top: 64px;
-  left: 0;
-  height: 3px;
-  width: 0%;
-  background: var(--dh-orange);
-  z-index: 1000;
-  pointer-events: none;
-  transition: width 80ms linear;
-}
-@media (min-width: 768px) {
-  #art-progress { top: 84px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  #art-progress { transition: none; }
-}
-
-/* -----------------------------------------------------------
    Article header
    ----------------------------------------------------------- */
 .art-header {

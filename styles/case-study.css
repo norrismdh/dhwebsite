@@ -5,25 +5,8 @@
    bottom of this file.
    ============================================================= */
 
-/* -----------------------------------------------------------
-   Reading progress bar
-   ----------------------------------------------------------- */
-.cs-progress {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-  z-index: 200;
-  background: var(--border-2);
-  pointer-events: none;
-}
-.cs-progress__bar {
-  height: 100%;
-  width: 100%;
-  background: var(--dh-orange);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.1s linear;
-}
+/* Reading progress bar comes from the shared #art-progress
+   component (site.css + site.js) — no bespoke bar here. */
 
 /* -----------------------------------------------------------
    Doc layout: sticky TOC + main column
@@ -844,38 +827,103 @@
 }
 
 /* -----------------------------------------------------------
-   Demo CTA (navy)
+   Bottom CTA — cust-cta pattern shared with /Customers
+   (duplicated from customers.css, which isn't loaded here)
    ----------------------------------------------------------- */
-.cs-cta {
-  text-align: center;
+.cust-cta {
   padding: 56px 0;
-}
-@media (min-width: 768px) { .cs-cta { padding: 72px 0; } }
-.cs-cta .eyebrow { display: block; margin-bottom: var(--space-4); }
-.cs-cta h2 {
-  font-size: clamp(28px, 3.6vw, 44px);
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-  margin: 0 0 var(--space-4);
+  background: var(--dh-navy);
   color: #fff;
+  position: relative;
+  overflow: hidden;
 }
-.cs-cta h2 .accent { color: var(--dh-yellow); }
-.cs-cta > .cs-narrow > p {
-  font-size: var(--fs-18);
-  color: rgba(255,255,255,0.78);
+.cust-cta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 52'><polygon points='30,1 59,17 59,35 30,51 1,35 1,17' fill='none' stroke='%23ffffff' stroke-width='0.4' stroke-opacity='0.06'/></svg>");
+  background-size: 60px 52px;
+}
+@media (min-width: 768px) { .cust-cta { padding: 72px 0; } }
+
+.cust-cta__grid {
+  display: grid;
+  gap: var(--space-8);
+  align-items: center;
+}
+@media (min-width: 860px) {
+  .cust-cta__grid { grid-template-columns: 1fr 340px; gap: 64px; }
+}
+
+.cust-cta__eyebrow {
+  color: var(--dh-orange);
+  margin-bottom: var(--space-3);
+}
+.cust-cta h2 {
+  font-size: clamp(26px, 3.4vw, 44px);
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 0 0 var(--space-4);
+  line-height: 1.1;
+  max-width: 18ch;
+}
+.cust-cta__copy p {
+  font-size: var(--fs-16);
+  color: rgba(255,255,255,0.72);
+  max-width: 52ch;
   margin: 0 0 var(--space-6);
+  line-height: 1.6;
 }
-.cs-cta-row {
+.cust-cta__buttons {
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-3);
-  justify-content: center;
+  align-items: center;
+}
+
+/* Pull-quote card */
+.cust-cta__pullquote {
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  position: relative;
+}
+.cust-cta__qmark {
+  color: var(--dh-orange);
+  opacity: 0.5;
+  display: block;
   margin-bottom: var(--space-4);
 }
-.cs-cta .micro {
-  font-size: var(--fs-13, 13px);
-  color: rgba(255,255,255,0.45);
+.cust-cta__pullquote blockquote {
   margin: 0;
+  padding: 0;
+}
+.cust-cta__pullquote blockquote p {
+  font-size: var(--fs-15, 15px);
+  color: rgba(255,255,255,0.88);
+  line-height: 1.65;
+  margin: 0 0 var(--space-5);
+  font-style: italic;
+}
+.cust-cta__pullquote blockquote footer {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.cust-cta__attrib-name {
+  font-size: var(--fs-13, 13px);
+  font-weight: var(--fw-bold);
+  color: #fff;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+.cust-cta__attrib-role {
+  font-size: var(--fs-12);
+  color: rgba(255,255,255,0.50);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
 }
 
 /* Buttons for case study (using site's .btn base + overrides) */

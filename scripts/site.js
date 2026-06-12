@@ -334,9 +334,9 @@
   }
   setupClientMarquee();
 
-  // ---------- Reading progress bar (article pages only) ----------
+  // ---------- Reading progress bar (long-form pages: blog articles + customer stories) ----------
   (function () {
-    if (!document.querySelector('.art-body')) return;
+    if (!document.querySelector('.art-body, .cs-doc')) return;
     var bar = document.createElement('div');
     bar.id = 'art-progress';
     bar.setAttribute('role', 'progressbar');
