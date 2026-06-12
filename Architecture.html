@@ -19,24 +19,94 @@
   <main>
 
     <!-- ============================================================
-         01 HERO
+         01 HERO — text left, layered-stack visual right
          ============================================================ -->
     <section class="arch-hero hex-hero" data-screen-label="01 Hero">
       <div class="hex-hero__motif" aria-hidden="true"></div>
-      <div class="container">
-        <div class="arch-hero__inner reveal">
+      <div class="container arch-hero__grid">
+
+        <div class="reveal">
           <span class="eyebrow">Architecture</span>
           <h1>One layer above your BI stack.</h1>
-          <p>Digital Hive sits across the tools you already own. It crawls their metadata, indexes everything, and serves one governed, searchable view — without moving a single row of data. Nothing is migrated. Nothing is rebuilt.</p>
+          <p class="arch-hero__sub">Digital Hive sits across the tools you already own. It crawls their metadata, indexes everything, and serves one governed, searchable view — without moving a single row of data. Nothing is migrated. Nothing is rebuilt.</p>
+
+          <div class="arch-hero__buttons">
+            <a class="btn btn--accent" href="Demo.html">
+              Book a demo
+              <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+            <a class="btn btn--ghost" href="#diagram">See the full diagram</a>
+          </div>
+
+          <div class="arch-hero__meta">
+            <div class="item">
+              <span class="num">Zero</span>
+              <span class="lbl">rows of data moved</span>
+            </div>
+            <div class="item">
+              <span class="num"><span data-count-up="30">30</span>+</span>
+              <span class="lbl">connectors supported</span>
+            </div>
+            <div class="item">
+              <span class="num">One</span>
+              <span class="lbl">governed front door</span>
+            </div>
+          </div>
         </div>
+
+        <!-- Isometric layered-stack illustration -->
+        <div class="arch-hero__visual reveal" aria-hidden="true">
+          <div class="arch-stack">
+
+            <!-- Layer 1: Digital Hive (top) -->
+            <div class="arch-stack__float arch-stack__float--dh">
+              <div class="arch-stack__plane arch-stack__plane--dh">
+                <div class="arch-stack__search">
+                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.5" y2="16.5"/></svg>
+                  <span>Search everything…</span>
+                </div>
+                <div class="arch-stack__brand">Digital<strong>Hive.</strong></div>
+              </div>
+              <span class="arch-stack__tag arch-stack__tag--dh">Unified layer</span>
+            </div>
+
+            <!-- Layer 2: BI tools -->
+            <div class="arch-stack__float arch-stack__float--bi">
+              <div class="arch-stack__plane arch-stack__plane--tools">
+                <img src="assets/logos/powerbi.webp" alt="" loading="lazy" />
+                <img src="assets/logos/tableau.png" alt="" loading="lazy" />
+                <img src="assets/logos/qlik.webp" alt="" loading="lazy" />
+                <img src="assets/logos/ibm.webp" alt="" loading="lazy" />
+              </div>
+              <span class="arch-stack__tag">Your BI tools</span>
+            </div>
+
+            <!-- Layer 3: Content systems (bottom) -->
+            <div class="arch-stack__float arch-stack__float--content">
+              <div class="arch-stack__plane arch-stack__plane--tools arch-stack__plane--muted">
+                <img src="assets/logos/sharepoint.webp" alt="" loading="lazy" />
+                <img src="assets/logos/box.webp" alt="" loading="lazy" />
+                <img src="assets/logos/googledrive.avif" alt="" loading="lazy" />
+              </div>
+              <span class="arch-stack__tag">Your content systems</span>
+            </div>
+
+          </div>
+        </div>
+
       </div>
     </section>
 
     <!-- ============================================================
          02 DIAGRAM + SIDEBAR
          ============================================================ -->
-    <section class="arch-main" data-screen-label="02 Architecture diagram">
+    <section class="arch-main" id="diagram" data-screen-label="02 Architecture diagram">
       <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">How it works</span>
+          <h2>The full picture</h2>
+          <p>From your people down to the systems you already run — one request path, one security model, no copies.</p>
+        </div>
         <div class="arch-grid">
 
           <!-- LEFT: architecture diagram -->
@@ -232,50 +302,18 @@
             </div>
           </div>
           <div class="pr-cta__art" aria-hidden="true">
-            <svg class="pr-cta__org" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
-              <line class="cdao-line" x1="120" y1="120" x2="120" y2="48"  stroke="rgba(255,255,255,0.22)" stroke-width="1.2"/>
-              <line class="cdao-line" x1="120" y1="120" x2="189" y2="98"  stroke="rgba(255,255,255,0.22)" stroke-width="1.2"/>
-              <line class="cdao-line" x1="120" y1="120" x2="162" y2="178" stroke="rgba(255,255,255,0.22)" stroke-width="1.2"/>
-              <line class="cdao-line" x1="120" y1="120" x2="78"  y2="178" stroke="rgba(255,255,255,0.22)" stroke-width="1.2"/>
-              <line class="cdao-line" x1="120" y1="120" x2="51"  y2="98"  stroke="rgba(255,255,255,0.22)" stroke-width="1.2"/>
-              <g transform="translate(120,48)">
-                <circle r="20" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.28)" stroke-width="1.3"/>
-                <circle cy="-5" r="6.5" fill="rgba(255,255,255,0.82)"/>
-                <path d="M-9,11 Q-9,2 0,2 Q9,2 9,11Z" fill="rgba(255,255,255,0.82)"/>
-                <text y="33" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="system-ui,Arial,sans-serif" font-size="9.5">Analytics</text>
-              </g>
-              <g transform="translate(189,98)">
-                <circle r="20" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.28)" stroke-width="1.3"/>
-                <circle cy="-5" r="6.5" fill="rgba(255,255,255,0.82)"/>
-                <path d="M-9,11 Q-9,2 0,2 Q9,2 9,11Z" fill="rgba(255,255,255,0.82)"/>
-                <text y="33" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="system-ui,Arial,sans-serif" font-size="9.5">Data Sci</text>
-              </g>
-              <g transform="translate(162,178)">
-                <circle r="20" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.28)" stroke-width="1.3"/>
-                <circle cy="-5" r="6.5" fill="rgba(255,255,255,0.82)"/>
-                <path d="M-9,11 Q-9,2 0,2 Q9,2 9,11Z" fill="rgba(255,255,255,0.82)"/>
-                <text y="33" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="system-ui,Arial,sans-serif" font-size="9.5">Data Eng</text>
-              </g>
-              <g transform="translate(78,178)">
-                <circle r="20" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.28)" stroke-width="1.3"/>
-                <circle cy="-5" r="6.5" fill="rgba(255,255,255,0.82)"/>
-                <path d="M-9,11 Q-9,2 0,2 Q9,2 9,11Z" fill="rgba(255,255,255,0.82)"/>
-                <text y="33" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="system-ui,Arial,sans-serif" font-size="9.5">Governance</text>
-              </g>
-              <g transform="translate(51,98)">
-                <circle r="20" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.28)" stroke-width="1.3"/>
-                <circle cy="-5" r="6.5" fill="rgba(255,255,255,0.82)"/>
-                <path d="M-9,11 Q-9,2 0,2 Q9,2 9,11Z" fill="rgba(255,255,255,0.82)"/>
-                <text y="33" text-anchor="middle" fill="rgba(255,255,255,0.7)" font-family="system-ui,Arial,sans-serif" font-size="9.5">AI &amp; ML</text>
-              </g>
-              <g transform="translate(120,120)">
-                <circle r="35" fill="none" stroke="rgba(243,146,53,0.2)" stroke-width="1.5"/>
-                <circle r="30" fill="none" stroke="#F39235" stroke-width="2.5"/>
-                <circle r="25" fill="rgba(25,51,89,0.95)" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-                <circle cy="-7" r="8" fill="rgba(255,255,255,0.95)"/>
-                <path d="M-11,13 Q-11,2 0,2 Q11,2 11,13Z" fill="rgba(255,255,255,0.95)"/>
-                <text y="40" text-anchor="middle" fill="rgba(255,255,255,0.9)" font-family="system-ui,Arial,sans-serif" font-size="10" font-weight="700" letter-spacing="0.5">CDAO</text>
-              </g>
+            <svg class="pr-cta__stack" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+              <!-- connector beam -->
+              <line class="arch-flow" x1="120" y1="78" x2="120" y2="196" stroke="rgba(255,255,255,0.3)" stroke-width="1.4"/>
+              <!-- bottom plane -->
+              <polygon points="120,128 204,166 120,204 36,166" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.22)" stroke-width="1.2"/>
+              <!-- middle plane -->
+              <polygon points="120,84 204,122 120,160 36,122" fill="rgba(255,255,255,0.08)" stroke="rgba(255,255,255,0.32)" stroke-width="1.2"/>
+              <!-- top plane: the Digital Hive layer -->
+              <polygon points="120,36 204,74 120,112 36,74" fill="#F39235" stroke="#F39235" stroke-width="1.2" opacity="0.95"/>
+              <polygon points="120,46 184,74 120,102 56,74" fill="rgba(255,255,255,0.16)"/>
+              <!-- hive mark on top plane -->
+              <polygon points="120,60 133,67 133,81 120,88 107,81 107,67" fill="none" stroke="#fff" stroke-width="2"/>
             </svg>
           </div>
         </div>
