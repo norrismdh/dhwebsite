@@ -73,7 +73,6 @@
   .art-body__grid {
     grid-template-columns: 240px 1fr;
     gap: 96px;
-    align-items: start;
   }
 }
 
@@ -171,6 +170,33 @@
   font-weight: var(--fw-bold);
 }
 .toc__list a.is-current::before { color: var(--dh-orange); }
+
+/* -----------------------------------------------------------
+   TL;DR card — below TOC in sidebar
+   ----------------------------------------------------------- */
+.toc__tldr {
+  margin-top: var(--space-5);
+  background: var(--bg-2);
+  border: 1px solid var(--border-2);
+  border-left: 3px solid var(--dh-orange);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: var(--space-3) var(--space-4);
+}
+.toc__tldr-label {
+  display: block;
+  font-size: 10px;
+  font-weight: var(--fw-bold);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--dh-orange);
+  margin-bottom: var(--space-2);
+}
+.toc__tldr p {
+  font-size: var(--fs-12);
+  line-height: 1.6;
+  color: var(--fg-2);
+  margin: 0;
+}
 
 /* -----------------------------------------------------------
    Prose
