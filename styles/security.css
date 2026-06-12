@@ -258,15 +258,20 @@
 }
 .sec-cta__aicpa { display: block; flex-shrink: 0; }
 
-/* rings SVG */
-.sec-cta__rings-wrap {
+/* AICPA logo */
+.sec-cta__logo-wrap {
   position: relative;
   margin-top: var(--space-4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.sec-cta__rings-svg {
-  width: 160px;
-  height: 160px;
+.sec-cta__logo {
   display: block;
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 20px rgba(0,100,180,0.20));
 }
 
 /* lock badge */
