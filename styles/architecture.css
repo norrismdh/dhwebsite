@@ -199,6 +199,26 @@
   box-shadow: var(--shadow-2);
 }
 
+/* Cascade the layers top-to-bottom once the card scrolls in — the reveal
+   walks the eye down the request flow (People → … → existing systems).
+   The card frame slides in via .arch-diagram.reveal; its rows fill after.
+   The global prefers-reduced-motion block snaps these visible instantly. */
+.arch-diagram__card > * {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 300ms var(--ease-out), transform 300ms var(--ease-out);
+}
+.arch-diagram.is-visible .arch-diagram__card > * { opacity: 1; transform: none; }
+.arch-diagram.is-visible .arch-diagram__card > *:nth-child(1) { transition-delay: 40ms; }
+.arch-diagram.is-visible .arch-diagram__card > *:nth-child(2) { transition-delay: 85ms; }
+.arch-diagram.is-visible .arch-diagram__card > *:nth-child(3) { transition-delay: 130ms; }
+.arch-diagram.is-visible .arch-diagram__card > *:nth-child(4) { transition-delay: 175ms; }
+.arch-diagram.is-visible .arch-diagram__card > *:nth-child(5) { transition-delay: 220ms; }
+.arch-diagram.is-visible .arch-diagram__card > *:nth-child(6) { transition-delay: 265ms; }
+.arch-diagram.is-visible .arch-diagram__card > *:nth-child(7) { transition-delay: 310ms; }
+.arch-diagram.is-visible .arch-diagram__card > *:nth-child(8) { transition-delay: 355ms; }
+.arch-diagram.is-visible .arch-diagram__card > *:nth-child(9) { transition-delay: 400ms; }
+
 /* ---- Generic layer ---- */
 .arch-layer {
   text-align: center;
