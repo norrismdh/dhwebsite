@@ -1759,7 +1759,7 @@ button { font-family: inherit; cursor: pointer; }
 .reveal {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 350ms var(--ease-out), transform 350ms var(--ease-out);
+  transition: opacity 300ms var(--ease-out), transform 300ms var(--ease-out);
 }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 
