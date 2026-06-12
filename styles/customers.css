@@ -148,8 +148,8 @@
 @media (min-width: 768px) { .case-studies__grid { grid-template-columns: repeat(3, 1fr); } }
 
 .case-card {
-  display: grid;
-  grid-template-rows: auto auto 1fr auto;
+  display: flex;
+  flex-direction: column;
   gap: var(--space-4);
   padding: var(--space-6);
   background: var(--dh-white);
@@ -216,7 +216,9 @@
 .case-card__summary {
   font-size: var(--fs-16);
   color: var(--fg-2);
-  margin: 0;
+  /* margin-top:auto pins the description + CTA to the bottom so a
+     shorter headline doesn't pull the text block up — keeps cards aligned */
+  margin: auto 0 0;
   line-height: 1.5;
 }
 .case-card__link {
