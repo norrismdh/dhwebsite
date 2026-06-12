@@ -275,6 +275,11 @@
 .ab2-why-card__desc {
   font-size: var(--fs-14); color: var(--fg-2); line-height: 1.55; margin: 0;
 }
+@media (max-width: 480px) {
+  .ab2-why-card__desc,
+  .cap p,
+  .ab2-person__role { font-size: var(--fs-15); }
+}
 
 /* stagger cards in when the parent reveal fires */
 .ab2-why-cards .ab2-why-card {
@@ -429,7 +434,7 @@
 }
 .ab2-stat__big .unit { color: var(--dh-orange); }
 .ab2-stat__big .small { font-size: 0.5em; vertical-align: super; color: var(--dh-orange); margin-right: 2px; }
-.ab2-stat__label { font-size: var(--fs-14); color: rgba(255,255,255,0.72); margin: 0; line-height: 1.45; max-width: 30ch; }
+.ab2-stat__label { font-size: var(--fs-14); color: rgba(255,255,255,0.85); margin: 0; line-height: 1.45; max-width: 30ch; }
 .ab2-serve__close {
   grid-column: 1 / -1;
   margin: var(--space-7) 0 0;
@@ -593,6 +598,7 @@
 /* .pr-cta__eyebrow — consolidated into site.css */
 .pr-cta h3 {
   font-size: clamp(28px, 3vw, 40px);
+  font-weight: 500;
   color: #fff;
   margin: 0 0 var(--space-3);
   letter-spacing: -0.02em;
