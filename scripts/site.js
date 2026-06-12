@@ -102,7 +102,7 @@
           { ico: ICO.book,     label: 'Resource library', sub: 'Reports, guides, briefs',   href: 'Resources.html' },
           { ico: ICO.users,    label: 'Customer stories', sub: 'Real outcomes, real teams', href: 'Customers.html' },
           { ico: ICO.pencil,   label: 'Blog',             sub: 'Field notes from the team', href: 'Blog.html' },
-          { ico: ICO.shield,   label: 'Trust Center',     sub: 'Security & compliance',     href: 'Security.html' },
+          { ico: ICO.shield,   label: 'Trust Center',     sub: 'Security & compliance',     href: 'https://trust.digitalhive.com/' },
         ],
         cta: { label: 'Open the library', href: 'Resources.html' },
       },
