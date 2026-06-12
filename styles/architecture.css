@@ -172,8 +172,11 @@
   flex-wrap: wrap;
   gap: 6px;
 }
-.arch-chips span {
-  padding: 3px 10px;
+.arch-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px 4px 6px;
   border: 1px solid var(--border-1);
   border-radius: var(--radius-pill);
   font-size: 11px;
@@ -181,6 +184,21 @@
   color: var(--fg-1);
   background: var(--bg-2);
   white-space: nowrap;
+}
+.arch-chip img {
+  width: 14px;
+  height: 14px;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
+}
+.arch-chip--text {
+  padding-left: 8px;
+  color: var(--fg-2);
+}
+.arch-chip--text svg {
+  flex-shrink: 0;
+  color: var(--fg-3);
 }
 
 /* ---- Digital Hive Server tier ---- */

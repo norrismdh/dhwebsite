@@ -46,7 +46,7 @@
       <div class="container mobile-menu" data-mobile-menu></div>`;
 
     const navLinks = nav.querySelector('.nav__links');
-    const inPlatform = ['product.html', 'usecases.html', 'connectors.html', 'security.html'].includes(path);
+    const inPlatform = ['product.html', 'usecases.html', 'connectors.html', 'security.html', 'architecture.html'].includes(path);
     const inResources = ['resources.html', 'faq.html', 'customers.html', 'blog.html'].includes(path) || dir === 'blog';
     const inCompany = ['about.html', 'contact.html', 'partners.html'].includes(path);
 
@@ -86,7 +86,7 @@
           { ico: ICO.grid,      label: 'Platform overview', sub: 'Catalog, Analytics Hub, governance',      href: 'Product.html' },
           { ico: ICO.plug,      label: 'Connectors',         sub: 'BI, AI, data & document tools',  href: 'Connectors.html' },
           { ico: ICO.layers,    label: 'Use cases',          sub: 'By situation and industry',       href: 'UseCases.html' },
-          { ico: ICO.blueprint, label: 'Architecture',       sub: 'Deployment and scale',            href: 'Product.html#security' },
+          { ico: ICO.blueprint, label: 'Architecture',       sub: 'Deployment and scale',            href: 'Architecture.html' },
           { ico: ICO.shield,    label: 'Security',           sub: 'Certifications, compliance, trust', href: 'Security.html' },
         ],
         cta: { label: 'See the full platform', href: 'Product.html' },
