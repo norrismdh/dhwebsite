@@ -565,6 +565,11 @@
   letter-spacing: var(--tracking-wide);
   color: var(--fg-2);
   font-weight: var(--fw-bold);
+  display: block;
+  line-height: 1.3;
+  /* Reserve two lines so a wrapping label ("Pending review") doesn't
+     push its number below the single-line labels — keeps nums aligned */
+  min-height: 2.6em;
 }
 .mock-gov__stat .num {
   font-size: 22px;
