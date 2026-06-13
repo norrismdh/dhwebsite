@@ -341,6 +341,7 @@
   transform: translateY(-2px);
 }
 .uc-card:hover::before { transform: scaleX(1); }
+.uc-card:active { transform: scale(0.99); }
 
 /* group accents */
 .uc-grid[data-group="ux"]      .uc-card { --accent: var(--dh-orange); }

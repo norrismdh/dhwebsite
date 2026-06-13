@@ -165,6 +165,7 @@
   border-color: var(--dh-navy);
   transform: translateY(-2px);
 }
+.case-card:active { transform: scale(0.99); }
 .case-card__logo {
   width: 60%;
   max-width: 140px;
