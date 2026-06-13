@@ -1796,16 +1796,9 @@
 .pr-cta .btn--accent:hover { background: #E0801C; border-color: #E0801C; }
 .pr-cta .btn--accent .arrow { transition: transform var(--dur-base) var(--ease-out); }
 .pr-cta .btn--accent:hover .arrow { transform: translateX(3px); }
-.pr-cta__btn-ghost {
-  background: transparent; color: #fff;
-  border: 1px solid rgba(255,255,255,0.4);
-  padding: 12px 22px; font-weight: var(--fw-bold);
-  border-radius: var(--radius-sm);
-  text-decoration: none; display: inline-flex; align-items: center;
-  transition: border-color var(--dur-base) var(--ease-out),
-              background var(--dur-base) var(--ease-out);
-}
-.pr-cta__btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.06); }
+/* .pr-cta secondary button now uses the shared .btn--ghost-light pill
+   (was .pr-cta__btn-ghost — a square variant inconsistent with every
+   other CTA on the site) */
 .pr-cta__art { display: none; }
 @media (min-width: 720px) {
   .pr-cta__art { display: block; position: relative; width: 160px; height: 160px; }
