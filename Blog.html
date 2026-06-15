@@ -344,6 +344,7 @@
       var ARROW_SM = '<svg class="arrow" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
       var ARROW_LG = '<svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>';
       var posts = window.DH_BLOG_POSTS || [];
+      var catLabels = window.DH_BLOG_CAT_LABELS || {};
 
       /* Featured post — always the first entry */
       var feat = posts[0];
@@ -352,7 +353,7 @@
         if (featEl) {
           featEl.innerHTML =
             '<div class="blog-feat__content">' +
-              '<p class="blog-feat__eyebrow">Latest post &middot; ' + feat.catLabel + '</p>' +
+              '<p class="blog-feat__eyebrow">Latest post &middot; ' + (catLabels[feat.cat] || feat.cat) + '</p>' +
               '<h2 class="blog-feat__title">' + feat.title + '</h2>' +
               '<p class="blog-feat__excerpt">' + feat.excerpt + '</p>' +
               '<div class="blog-feat__meta">' +
@@ -373,7 +374,7 @@
         grid.innerHTML = posts.map(function (p) {
           return '<a class="res-card" data-type="blog" href="blog/' + p.slug + '.html" data-cat="' + p.cat + '">' +
             '<div class="res-card__thumb">' +
-              '<span class="res-card__type-strip"><span class="swatch"></span>' + p.catLabel + '</span>' +
+              '<span class="res-card__type-strip"><span class="swatch"></span>' + (catLabels[p.cat] || p.cat) + '</span>' +
               '<span class="res-card__mark">dh<span class="dot">.</span></span>' +
             '</div>' +
             '<div class="res-card__body">' +
