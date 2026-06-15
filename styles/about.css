@@ -513,6 +513,14 @@
 .ab2-person__avatar--a2 { background: linear-gradient(135deg, #1B345B 0%, #0E1F39 100%); }
 .ab2-person__avatar--a3 { background: linear-gradient(135deg, #3C5A88 0%, #244271 100%); }
 .ab2-person__avatar--a4 { background: linear-gradient(135deg, #2A4673 0%, #14274A 100%); }
+.ab2-person__avatar--photo { object-fit: cover; object-position: center top; padding: 0; }
+.ab2-person__name {
+  font-size: var(--fs-14);
+  font-weight: var(--fw-semibold);
+  color: var(--dh-navy);
+  line-height: 1.3;
+}
+a.ab2-person { text-decoration: none; color: inherit; }
 .ab2-person__role {
   font-size: var(--fs-14);
   font-weight: var(--fw-bold);
