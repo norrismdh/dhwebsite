@@ -310,6 +310,7 @@
 @media (min-width: 720px) { .uc-grid { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1080px) { .uc-grid { grid-template-columns: repeat(3, 1fr); } }
 
+.uc-card[hidden] { display: none; }
 .uc-card {
   position: relative;
   display: flex;
