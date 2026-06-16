@@ -16,6 +16,14 @@ window.DH_BLOG_CAT_LABELS = {
 
 window.DH_BLOG_POSTS = [
   {
+    slug:     "analytics-portal",
+    title:    "Analytics portal: one hub for every BI tool",
+    excerpt:  "An analytics portal gives users one trusted place to find dashboards, reports, and business context across every BI tool they already use. What it is, what it should include, and when you need one.",
+    cat:      "education",
+    date:     "Jun 2026",
+    readTime: "8 min"
+  },
+  {
     slug:     "data-catalogs-are-dead",
     title:    "Data catalogs are dead, and the industry refusal to admit it is costing you",
     excerpt:  "A decade of vendor promises, and most organizations got expensive shelfware. Here's the honest post-mortem the industry keeps refusing to write.",
