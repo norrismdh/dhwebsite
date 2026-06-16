@@ -6,9 +6,6 @@
   "redirects": [
     { "source": "/", "destination": "/Home", "permanent": false }
   ],
-  "routes": [
-    { "src": "/docs(?:/.*)?$", "status": 404 }
-  ],
   "rewrites": [
     { "source": "/downloads/:fileId", "destination": "/api/download/:fileId" }
   ],
