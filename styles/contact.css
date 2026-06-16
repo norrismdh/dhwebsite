@@ -312,7 +312,7 @@
 .pr-cta .btn--accent .arrow { transition: transform var(--dur-base) var(--ease-out); }
 .pr-cta .btn--accent:hover .arrow { transform: translateX(3px); }
 
-/* ----- hex stack motif ----- */
+/* ----- connect-with-us diagram ----- */
 .pr-cta__art {
   display: none;
 }
@@ -320,31 +320,12 @@
   .pr-cta__art {
     display: block;
     position: relative;
-    width: 160px;
-    height: 160px;
+    width: 300px;
+    height: 280px;
+    flex-shrink: 0;
   }
 }
-.pr-cta__hex-stack { position: relative; width: 100%; height: 100%; }
-.pr-cta__hex {
-  position: absolute;
-  width: 100px; height: 115px;
-  clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);
-}
-.pr-cta__hex--1 {
-  top: 0; left: 0;
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-}
-.pr-cta__hex--2 {
-  top: 28px; left: 50px;
-  background: rgba(243,146,53,0.18);
-  width: 90px; height: 104px;
-}
-.pr-cta__hex--3 {
-  top: 56px; left: 8px;
-  background: rgba(250,180,0,0.16);
-  width: 80px; height: 92px;
-}
+.pr-cta__art .cc-diagram { width: 100%; height: 100%; overflow: visible; }
 
 /* ============ Three-card band (reach out / FAQ / support) ============ */
 .ct-cards {
