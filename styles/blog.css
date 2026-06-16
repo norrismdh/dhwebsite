@@ -242,7 +242,7 @@
    (transient hover states are exempt from the contrast rule).
    ----------------------------------------------------------- */
 .blog-library__head .eyebrow {
-  color: var(--dh-navy);
+  color: var(--dh-orange);
 }
 .blog-library .res-card__cta {
   color: var(--dh-navy);
