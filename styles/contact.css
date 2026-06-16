@@ -78,6 +78,18 @@
 .ct-route__ico--navy   { background: var(--dh-navy);   color: #fff; }
 .ct-route__ico--orange { background: var(--dh-orange); color: #fff; }
 .ct-route__ico--yellow { background: var(--dh-yellow); color: var(--dh-navy); }
+.ct-route__num {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--bg-3, #f3f5f8);
+  border: 1.5px solid var(--border-1);
+  color: var(--dh-navy);
+  font-size: var(--fs-14);
+  font-weight: var(--fw-bold);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
 .ct-route__title {
   font-size: var(--fs-15, 15px);
   font-weight: var(--fw-bold);
@@ -124,6 +136,13 @@
   letter-spacing: var(--tracking-caps);
   color: var(--dh-navy);
   font-weight: var(--fw-bold);
+}
+.ct-field__hint {
+  font-size: var(--fs-12);
+  font-weight: var(--fw-normal, 400);
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--fg-2);
 }
 .ct-field input,
 .ct-field textarea,
