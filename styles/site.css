@@ -1632,13 +1632,13 @@ button { font-family: inherit; cursor: pointer; }
 .cta-banner {
   background: var(--dh-navy);
   color: #fff;
-  padding: 36px 0;
+  padding: 56px 0;
   text-align: center;
   position: relative;
   overflow: hidden;
 }
 @media (min-width: 768px) {
-  .cta-banner { padding: 48px 0; }
+  .cta-banner { padding: 72px 0; }
 }
 .cta-banner::before {
   content: "";
