@@ -193,6 +193,12 @@
   color: var(--fg-2);
   font-weight: var(--fw-medium);
 }
+.pr-hero__card-total--contact {
+  font-size: 18px;
+  letter-spacing: 0;
+  color: var(--dh-orange);
+  font-weight: var(--fw-bold);
+}
 
 @media (max-width: 899px) {
   .pr-hero__art { min-height: 320px; max-width: 420px; margin: 0 auto; }
@@ -387,6 +393,7 @@
   color: var(--fg-2);
   font-style: italic;
 }
+.tier--teams .tier__cs-line { color: rgba(255,255,255,0.78); }
 
 .tier__cta {
   display: inline-flex;
