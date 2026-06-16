@@ -902,11 +902,134 @@
             </div>
           </div>
           <div class="pr-cta__art reveal" aria-hidden="true">
-            <div class="pr-cta__hex-stack">
-              <span class="pr-cta__hex pr-cta__hex--1"></span>
-              <span class="pr-cta__hex pr-cta__hex--2"></span>
-              <span class="pr-cta__hex pr-cta__hex--3"></span>
-            </div>
+            <svg class="prod-diagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 450" width="360" height="338">
+              <defs>
+                <style>
+                  .prod-diagram { overflow: visible; }
+                  @keyframes pd-flow { to { stroke-dashoffset: -60; } }
+                  @keyframes pd-dot  { 0%{offset-distance:0%;opacity:0} 10%{opacity:1} 90%{opacity:1} 100%{offset-distance:100%;opacity:0} }
+                  @keyframes pd-glow { 0%,100%{opacity:.55} 50%{opacity:1} }
+                  .pf   { stroke-dasharray:5 8; animation:pd-flow 1.6s linear infinite; }
+                  .pf-b { stroke-dasharray:5 8; animation:pd-flow 2.0s linear infinite .50s; }
+                  .pf-c { stroke-dasharray:5 8; animation:pd-flow 1.8s linear infinite 1.00s; }
+                  .pf-d { stroke-dasharray:5 8; animation:pd-flow 2.2s linear infinite .30s; }
+                  .pf-e { stroke-dasharray:5 8; animation:pd-flow 1.5s linear infinite .70s; }
+                  .pf-m { stroke-dasharray:7 5; animation:pd-flow 1.2s linear infinite; }
+                  .pd-da{ animation:pd-dot 1.6s linear infinite; }
+                  .pd-db{ animation:pd-dot 2.0s linear infinite .50s; }
+                  .pd-dc{ animation:pd-dot 1.8s linear infinite 1.00s; }
+                  .pd-dd{ animation:pd-dot 2.2s linear infinite .30s; }
+                  .pd-de{ animation:pd-dot 1.5s linear infinite .70s; }
+                  .pd-dm{ animation:pd-dot 1.2s linear infinite; }
+                  .pd-hg{ animation:pd-glow 3s ease-in-out infinite; }
+                </style>
+                <clipPath id="pdc1"><circle cx="52" cy="55"  r="21"/></clipPath>
+                <clipPath id="pdc2"><circle cx="52" cy="145" r="21"/></clipPath>
+                <clipPath id="pdc3"><circle cx="52" cy="225" r="21"/></clipPath>
+                <clipPath id="pdc4"><circle cx="52" cy="305" r="21"/></clipPath>
+                <clipPath id="pdc5"><circle cx="52" cy="395" r="21"/></clipPath>
+              </defs>
+
+              <!-- Base path tracks -->
+              <path d="M79,55  C148,55  185,225 192,225" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="1.5"/>
+              <path d="M79,145 C148,145 185,225 192,225" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="1.5"/>
+              <path d="M79,225 L192,225"                  fill="none" stroke="rgba(255,255,255,.10)" stroke-width="1.5"/>
+              <path d="M79,305 C148,305 185,225 192,225" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="1.5"/>
+              <path d="M79,395 C148,395 185,225 192,225" fill="none" stroke="rgba(255,255,255,.10)" stroke-width="1.5"/>
+              <!-- Animated dashed overlays -->
+              <path d="M79,55  C148,55  185,225 192,225" fill="none" stroke="#f39235" stroke-width="1.5" stroke-opacity=".65" class="pf"/>
+              <path d="M79,145 C148,145 185,225 192,225" fill="none" stroke="#fab400" stroke-width="1.5" stroke-opacity=".65" class="pf-b"/>
+              <path d="M79,225 L192,225"                  fill="none" stroke="#f39235" stroke-width="1.5" stroke-opacity=".65" class="pf-c"/>
+              <path d="M79,305 C148,305 185,225 192,225" fill="none" stroke="#fab400" stroke-width="1.5" stroke-opacity=".65" class="pf-d"/>
+              <path d="M79,395 C148,395 185,225 192,225" fill="none" stroke="#f39235" stroke-width="1.5" stroke-opacity=".65" class="pf-e"/>
+              <!-- Travelling dots (tool → hub) -->
+              <circle r="4" fill="#f39235" style="offset-path:path('M79,55 C148,55 185,225 192,225');"  class="pd-da"/>
+              <circle r="4" fill="#fab400" style="offset-path:path('M79,145 C148,145 185,225 192,225');" class="pd-db"/>
+              <circle r="4" fill="#f39235" style="offset-path:path('M79,225 L192,225');"                 class="pd-dc"/>
+              <circle r="4" fill="#fab400" style="offset-path:path('M79,305 C148,305 185,225 192,225');" class="pd-dd"/>
+              <circle r="4" fill="#f39235" style="offset-path:path('M79,395 C148,395 185,225 192,225');" class="pd-de"/>
+
+              <!-- Hub → portal connection (white on dark) -->
+              <line x1="288" y1="225" x2="338" y2="225" stroke="rgba(255,255,255,.18)" stroke-width="2"/>
+              <line x1="288" y1="225" x2="338" y2="225" stroke="rgba(255,255,255,.45)" stroke-width="2" class="pf-m"/>
+              <circle r="5" fill="rgba(255,255,255,.80)" style="offset-path:path('M288,225 L338,225');" class="pd-dm"/>
+
+              <!-- ── Left: BI tool nodes ── -->
+              <circle cx="52" cy="55"  r="27" fill="#fff" stroke="rgba(243,146,53,.50)" stroke-width="1.5"/>
+              <image href="assets/logos/powerbi.webp"   x="31" y="34"  width="42" height="42" clip-path="url(#pdc1)" preserveAspectRatio="xMidYMid meet"/>
+              <text x="52" y="91"  text-anchor="middle" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,.80)" font-weight="600">Power BI</text>
+
+              <circle cx="52" cy="145" r="27" fill="#fff" stroke="rgba(255,255,255,.22)" stroke-width="1.5"/>
+              <image href="assets/logos/tableau.png"     x="31" y="124" width="42" height="42" clip-path="url(#pdc2)" preserveAspectRatio="xMidYMid meet"/>
+              <text x="52" y="181" text-anchor="middle" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,.80)" font-weight="600">Tableau</text>
+
+              <circle cx="52" cy="225" r="27" fill="#fff" stroke="rgba(243,146,53,.50)" stroke-width="1.5"/>
+              <image href="assets/logos/qlik.webp"       x="31" y="204" width="42" height="42" clip-path="url(#pdc3)" preserveAspectRatio="xMidYMid meet"/>
+              <text x="52" y="261" text-anchor="middle" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,.80)" font-weight="600">Qlik</text>
+
+              <circle cx="52" cy="305" r="27" fill="#fff" stroke="rgba(255,255,255,.22)" stroke-width="1.5"/>
+              <image href="assets/logos/databricks.webp" x="31" y="284" width="42" height="42" clip-path="url(#pdc4)" preserveAspectRatio="xMidYMid meet"/>
+              <text x="52" y="341" text-anchor="middle" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,.80)" font-weight="600">Databricks</text>
+
+              <circle cx="52" cy="395" r="27" fill="#fff" stroke="rgba(243,146,53,.50)" stroke-width="1.5"/>
+              <image href="assets/logos/looker.webp"     x="31" y="374" width="42" height="42" clip-path="url(#pdc5)" preserveAspectRatio="xMidYMid meet"/>
+              <text x="52" y="431" text-anchor="middle" font-family="sans-serif" font-size="9" fill="rgba(255,255,255,.80)" font-weight="600">Looker</text>
+
+              <!-- ── Centre: Digital Hive hub ── -->
+              <!-- Outer glow ring -->
+              <polygon points="240,165 292,195 292,255 240,285 188,255 188,195" fill="rgba(243,146,53,.08)" stroke="rgba(243,146,53,.30)" stroke-width="1.5" class="pd-hg"/>
+              <!-- Main hex (white stroke to distinguish from dark bg) -->
+              <polygon points="240,173 285,199 285,251 240,277 195,251 195,199" fill="#193359" stroke="rgba(255,255,255,.28)" stroke-width="1.5"/>
+              <!-- Inner accent -->
+              <polygon points="240,190 270,207 270,243 240,260 210,243 210,207" fill="rgba(243,146,53,.20)"/>
+              <!-- DH mark -->
+              <text x="240" y="235" text-anchor="middle" font-family="sans-serif" font-size="26" font-weight="900" fill="#fff" letter-spacing="-1">DH</text>
+              <!-- Labels (white on dark) -->
+              <text x="240" y="297" text-anchor="middle" font-family="sans-serif" font-size="9.5" font-weight="700" fill="rgba(255,255,255,.90)" letter-spacing="1.5">DIGITAL HIVE</text>
+              <text x="240" y="313" text-anchor="middle" font-family="sans-serif" font-size="8" fill="rgba(255,255,255,.55)">BI Portal &amp; Analytics Hub</text>
+
+              <!-- ── Right: Unified portal panel ── -->
+              <rect x="340" y="65"  width="132" height="295" rx="8" fill="#fff" stroke="rgba(255,255,255,.20)" stroke-width="1" style="filter:drop-shadow(0 6px 18px rgba(0,0,0,.25))"/>
+              <!-- Chrome -->
+              <rect x="340" y="65"  width="132" height="26" rx="8" fill="#f0f2f5"/>
+              <rect x="340" y="79"  width="132" height="12" fill="#f0f2f5"/>
+              <circle cx="353" cy="78" r="4" fill="#f39235"/>
+              <rect x="366" y="72" width="86" height="12" rx="6" fill="#dde1e7"/>
+              <!-- DH nav bar -->
+              <rect x="340" y="91"  width="132" height="22" fill="#193359"/>
+              <text x="352" y="106" font-family="sans-serif" font-size="8" font-weight="900" fill="#fff">Digital<tspan fill="#f39235">Hive</tspan></text>
+              <!-- Search -->
+              <rect x="348" y="119" width="116" height="14" rx="7" fill="#f7f8fa" stroke="rgba(25,51,89,.14)" stroke-width="1"/>
+              <text x="354" y="130" font-family="sans-serif" font-size="6.5" fill="#9aa5b4">Search reports…</text>
+              <!-- Row 1 -->
+              <rect x="348" y="139" width="116" height="32" rx="4" fill="#f7f8fa"/>
+              <image href="assets/logos/powerbi.webp"   x="352" y="144" width="18" height="18" preserveAspectRatio="xMidYMid meet"/>
+              <rect x="376" y="146" width="54" height="6" rx="3" fill="#d5dbe3"/>
+              <rect x="376" y="156" width="36" height="5" rx="2" fill="#e8eaed"/>
+              <!-- Row 2 -->
+              <rect x="348" y="176" width="116" height="32" rx="4" fill="#f7f8fa"/>
+              <image href="assets/logos/tableau.png"     x="352" y="181" width="18" height="18" preserveAspectRatio="xMidYMid meet"/>
+              <rect x="376" y="183" width="46" height="6" rx="3" fill="#d5dbe3"/>
+              <rect x="376" y="193" width="28" height="5" rx="2" fill="#e8eaed"/>
+              <!-- Row 3 -->
+              <rect x="348" y="213" width="116" height="32" rx="4" fill="#f7f8fa"/>
+              <image href="assets/logos/qlik.webp"       x="352" y="218" width="18" height="18" preserveAspectRatio="xMidYMid meet"/>
+              <rect x="376" y="220" width="60" height="6" rx="3" fill="#d5dbe3"/>
+              <rect x="376" y="230" width="42" height="5" rx="2" fill="#e8eaed"/>
+              <!-- Row 4 -->
+              <rect x="348" y="250" width="116" height="32" rx="4" fill="#f7f8fa"/>
+              <image href="assets/logos/databricks.webp" x="352" y="255" width="18" height="18" preserveAspectRatio="xMidYMid meet"/>
+              <rect x="376" y="257" width="50" height="6" rx="3" fill="#d5dbe3"/>
+              <rect x="376" y="267" width="32" height="5" rx="2" fill="#e8eaed"/>
+              <!-- Row 5 -->
+              <rect x="348" y="287" width="116" height="32" rx="4" fill="#f7f8fa"/>
+              <image href="assets/logos/looker.webp"     x="352" y="292" width="18" height="18" preserveAspectRatio="xMidYMid meet"/>
+              <rect x="376" y="294" width="44" height="6" rx="3" fill="#d5dbe3"/>
+              <rect x="376" y="304" width="30" height="5" rx="2" fill="#e8eaed"/>
+              <!-- Footer -->
+              <line x1="348" y1="326" x2="464" y2="326" stroke="rgba(25,51,89,.08)" stroke-width="1"/>
+              <text x="406" y="347" text-anchor="middle" font-family="sans-serif" font-size="7.5" fill="rgba(25,51,89,.40)" font-weight="600">One portal · all your tools</text>
+            </svg>
           </div>
         </div>
       </div>
