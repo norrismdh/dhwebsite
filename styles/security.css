@@ -191,16 +191,27 @@
   padding: 56px 0;
   background: linear-gradient(180deg, #ECF1F6 0%, #F2F5F9 100%);
   border-top: 1px solid var(--border-2);
+  position: relative;
+  overflow: clip;
 }
 @media (min-width: 768px) { .sec-cta { padding: 72px 0; } }
+
+.sec-cta__motif {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 52'><polygon points='30,1 59,17 59,35 30,51 1,35 1,17' fill='none' stroke='%23193359' stroke-width='0.5' stroke-opacity='0.07'/></svg>");
+  background-size: 60px 52px;
+  pointer-events: none;
+}
 
 .sec-cta__inner {
   display: grid;
   gap: var(--space-8);
   align-items: center;
+  position: relative;
 }
 @media (min-width: 900px) {
-  .sec-cta__inner { grid-template-columns: 1fr 280px; gap: 64px; }
+  .sec-cta__inner { grid-template-columns: 1fr 300px; gap: 64px; }
 }
 
 /* left: copy */
@@ -224,35 +235,18 @@
   align-items: center;
 }
 
-/* right: standalone AICPA logo over soft concentric rings */
+/* right: compliance shield graphic */
 .sec-cta__visual {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 260px;
+  min-height: 300px;
 }
-.sec-cta__visual::before,
-.sec-cta__visual::after {
-  content: "";
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  border: 1px solid rgba(25,51,89,0.10);
-  pointer-events: none;
-}
-.sec-cta__visual::before { width: 250px; height: 250px; }
-.sec-cta__visual::after  { width: 320px; height: 320px; border-color: rgba(25,51,89,0.06); }
-
-.sec-cta__logo {
+.sec-cta__visual svg {
   display: block;
-  width: 180px;
-  height: 180px;
-  object-fit: contain;
-  filter: drop-shadow(0 12px 32px rgba(0,100,180,0.25));
-  position: relative;
-  z-index: 1;
+  max-width: 100%;
+  height: auto;
 }
 
 /* white background for the secondary action on this strip */

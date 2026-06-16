@@ -222,6 +222,7 @@
          4 - CTA
          ============================================================ -->
     <section class="sec-cta" data-screen-label="04 CTA">
+      <div class="sec-cta__motif" aria-hidden="true"></div>
       <div class="container">
         <div class="sec-cta__inner reveal">
 
@@ -238,7 +239,72 @@
           </div>
 
           <div class="sec-cta__visual" aria-hidden="true">
-            <img src="assets/logos/aicpa-soc.svg" alt="AICPA SOC for Service Organizations" class="sec-cta__logo" width="180" height="180" />
+            <svg class="scs-graphic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 295" width="280" height="295">
+              <defs>
+                <style>
+                  .scs-graphic { overflow: visible; }
+                  @keyframes scs-glow { 0%,100%{opacity:.20} 50%{opacity:.07} }
+                  @keyframes scs-rise { from{opacity:0;transform:translateY(7px)} to{opacity:1;transform:none} }
+                  @keyframes scs-shield-glow { 0%,100%{opacity:.55} 50%{opacity:1} }
+                  .scs-r1 { animation: scs-glow 3.2s ease-in-out infinite; }
+                  .scs-r2 { animation: scs-glow 3.2s ease-in-out infinite 1.6s; }
+                  .scs-b1 { animation: scs-rise .45s .10s ease-out both; }
+                  .scs-b2 { animation: scs-rise .45s .22s ease-out both; }
+                  .scs-b3 { animation: scs-rise .45s .34s ease-out both; }
+                  .scs-b4 { animation: scs-rise .45s .46s ease-out both; }
+                  .scs-b5 { animation: scs-rise .45s .58s ease-out both; }
+                  .scs-sh { animation: scs-shield-glow 3s ease-in-out infinite; }
+                </style>
+                <clipPath id="scs-clip">
+                  <path d="M20,25 L260,25 L260,225 L140,280 L20,225 Z"/>
+                </clipPath>
+              </defs>
+
+              <!-- Outer pulse rings -->
+              <ellipse cx="140" cy="148" rx="148" ry="145" fill="none" stroke="rgba(243,146,53,0.28)" stroke-width="1.5" class="scs-r1"/>
+              <ellipse cx="140" cy="148" rx="120" ry="118" fill="none" stroke="rgba(25,51,89,0.14)" stroke-width="1" class="scs-r2"/>
+
+              <!-- Shield drop shadow layer -->
+              <path d="M20,25 L260,25 L260,225 L140,280 L20,225 Z"
+                    fill="rgba(25,51,89,0.18)" transform="translate(4,8)" style="filter:blur(12px)"/>
+
+              <!-- Shield body -->
+              <path d="M20,25 L260,25 L260,225 L140,280 L20,225 Z" fill="#193359"/>
+
+              <!-- Shield inner border highlight -->
+              <path d="M24,29 L256,29 L256,222 L140,274 L24,222 Z"
+                    fill="none" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+
+              <!-- Orange header band -->
+              <path d="M20,25 L260,25 L260,64 L20,64 Z" fill="#f39235" clip-path="url(#scs-clip)"/>
+
+              <!-- DH hex mark in header -->
+              <polygon points="140,33 154,41 154,57 140,65 126,57 126,41"
+                       fill="rgba(255,255,255,0.22)" stroke="rgba(255,255,255,0.50)" stroke-width="1"/>
+              <text x="140" y="55" text-anchor="middle" font-family="sans-serif"
+                    font-size="11" font-weight="900" fill="#fff">DH</text>
+
+              <!-- COMPLIANCE STATUS label -->
+              <text x="140" y="84" text-anchor="middle" font-family="sans-serif"
+                    font-size="8" font-weight="700" fill="rgba(255,255,255,0.40)" letter-spacing="3">COMPLIANCE STATUS</text>
+              <line x1="40" y1="92" x2="240" y2="92" stroke="rgba(255,255,255,0.10)" stroke-width="1"/>
+
+              <!-- Row 1: SOC 2 Type II (accent row) -->
+              <rect x="42" y="103" width="196" height="22" rx="11" fill="rgba(243,146,53,0.22)" stroke="rgba(243,146,53,0.45)" stroke-width="1" class="scs-b1"/>
+              <text x="140" y="118" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="600" class="scs-b1"><tspan fill="#f39235">✓  </tspan><tspan fill="#fff">SOC 2 Type II</tspan></text>
+
+              <!-- Row 2: ISO 20243 -->
+              <rect x="42" y="133" width="196" height="22" rx="11" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.14)" stroke-width="1" class="scs-b2"/>
+              <text x="140" y="148" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="600" class="scs-b2"><tspan fill="#f39235">✓  </tspan><tspan fill="#fff">ISO 20243</tspan></text>
+
+              <!-- Row 3: HIPAA Ready -->
+              <rect x="42" y="163" width="196" height="22" rx="11" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.14)" stroke-width="1" class="scs-b3"/>
+              <text x="140" y="178" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="600" class="scs-b3"><tspan fill="#f39235">✓  </tspan><tspan fill="#fff">HIPAA Ready</tspan></text>
+
+              <!-- Row 4: GDPR Ready -->
+              <rect x="42" y="193" width="196" height="22" rx="11" fill="rgba(255,255,255,0.07)" stroke="rgba(255,255,255,0.14)" stroke-width="1" class="scs-b4"/>
+              <text x="140" y="208" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="600" class="scs-b4"><tspan fill="#f39235">✓  </tspan><tspan fill="#fff">GDPR Ready</tspan></text>
+            </svg>
           </div>
 
         </div>
