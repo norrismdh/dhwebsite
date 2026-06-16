@@ -6,6 +6,15 @@
     e.preventDefault();
     clearError(form);
 
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+
+    const emailVal = form.querySelector('#ct-email').value.trim();
+    if (window.dhIsBusinessEmail && !window.dhIsBusinessEmail(emailVal)) {
+      showError(form, window.DH_BUSINESS_EMAIL_MESSAGE);
+      form.querySelector('#ct-email').focus();
+      return;
+    }
+
     const btn = form.querySelector('button[type=submit]');
     const originalHTML = btn.innerHTML;
     btn.disabled = true;
@@ -20,11 +29,14 @@
     const payload = {
       firstName: form.querySelector('#ct-first').value.trim(),
       lastName:  form.querySelector('#ct-last').value.trim(),
-      email:     form.querySelector('#ct-email').value.trim(),
+      email:     emailVal,
       company:   form.querySelector('#ct-company').value.trim(),
+      jobTitle:  form.querySelector('#ct-title').value.trim(),
       role:      form.querySelector('#ct-role').value,
       biTools,
+      topic:     form.querySelector('#ct-topic').value,
       message:   form.querySelector('#ct-msg').value.trim(),
+      leadSource: 'Website Contact',
       utm,
     };
 
