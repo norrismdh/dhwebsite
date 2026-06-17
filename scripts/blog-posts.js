@@ -24,6 +24,14 @@ window.DH_BLOG_POSTS = [
     readTime: "8 min"
   },
   {
+    slug:     "expensive-reports-nobody-can-find",
+    title:    "The most expensive reports in your company are the ones nobody can find",
+    excerpt:  "A report nobody can find has almost the same value as one that never existed. Why so much analytics waste comes from a shortage of visibility, not a shortage of content.",
+    cat:      "strategy",
+    date:     "Jun 2026",
+    readTime: "6 min"
+  },
+  {
     slug:     "data-catalogs-are-dead",
     title:    "Data catalogs are dead, and the industry refusal to admit it is costing you",
     excerpt:  "A decade of vendor promises, and most organizations got expensive shelfware. Here's the honest post-mortem the industry keeps refusing to write.",
