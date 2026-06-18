@@ -7,9 +7,9 @@
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
   <title>Page not found &mdash; Digital Hive</title>
   <meta name="description" content="The page you're looking for doesn't exist. Head back to Digital Hive." />
-  <link rel="stylesheet" href="styles/tokens.css" />
-  <link rel="stylesheet" href="styles/site.css" />
-  <link rel="stylesheet" href="styles/consent.css" />
+  <link rel="stylesheet" href="/styles/tokens.css" />
+  <link rel="stylesheet" href="/styles/site.css" />
+  <link rel="stylesheet" href="/styles/consent.css" />
   <style>
 
     /* ── Shell ───────────────────────────────────────────────────── */
@@ -78,7 +78,7 @@
       animation: nf-fade-up 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0.25s both;
     }
     .nf-title {
-      font-size: clamp(var(--fs-28), 4vw, var(--fs-48));
+      font-size: clamp(var(--fs-28, 28px), 4vw, var(--fs-48, 48px));
       font-weight: var(--fw-bold);
       color: var(--dh-navy);
       letter-spacing: -0.025em;
@@ -154,7 +154,7 @@
 
   <footer class="footer" data-screen-label="Footer"></footer>
 
-  <script src="scripts/consent.js"></script>
-  <script src="scripts/site.js"></script>
+  <script src="/scripts/consent.js"></script>
+  <script src="/scripts/site.js"></script>
 </body>
 </html>
