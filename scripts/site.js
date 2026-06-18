@@ -270,12 +270,12 @@
             <li><a href="${base}Product.html#capabilities">Analytics Hub</a></li>
             <li><a href="${base}Product.html#governance">Governance</a></li>
             <li><a href="${base}Connectors.html">Connectors</a></li>
-            <li><a href="${base}Pricing.html">Pricing</a></li>
           </ul></div>
           <div class="footer__col"><h3>Resources</h3><ul>
             <li><a href="${base}UseCases.html">Use cases</a></li>
-            <li><a href="https://support.digitalhive.com">Support</a></li>
             <li><a href="${base}Customers.html">Customers</a></li>
+            <li><a href="${base}Pricing.html">Pricing</a></li>
+            <li><a href="https://support.digitalhive.com">Support</a></li>
           </ul></div>
           <div class="footer__col"><h3>Company</h3><ul>
             <li><a href="${base}About.html">About</a></li>

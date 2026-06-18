@@ -1723,7 +1723,7 @@ button { font-family: inherit; cursor: pointer; }
 .footer__col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--space-3); }
 .footer__col a {
   color: rgba(255,255,255,0.65);
-  font-size: var(--fs-14);
+  font-size: var(--fs-12);
   border-bottom: none;
 }
 .footer__col a:hover { color: var(--dh-orange); }
