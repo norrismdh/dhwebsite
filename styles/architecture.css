@@ -155,6 +155,8 @@
 
 /* Side labels */
 .arch-stack__tag {
+  position: relative;
+  z-index: 2;
   margin-left: -26px;
   padding: 5px 14px;
   background: var(--dh-white);
