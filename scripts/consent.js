@@ -48,14 +48,35 @@
   }
 
   function applyConsent(prefs) {
-    if (prefs.performance && typeof window._dhInitAnalytics === 'function') {
-      window._dhInitAnalytics();
+    if (prefs.performance) {
+      if (typeof window._dhInitAnalytics === 'function') window._dhInitAnalytics();
+      loadGoogleAnalytics();
     }
     if (prefs.marketing) {
       storeUtm();
       loadLinkedInInsight();
     }
     fillUtmFields();
+  }
+
+  // ── Google Analytics 4 (performance) ─────────────────────────────
+  // Sitewide gtag.js. Loaded only once performance consent is granted
+  // (initial load if already stored, or the moment the banner/modal
+  // accepts it). Idempotent.
+  var GA_MEASUREMENT_ID = 'G-GVSXN997VH';
+  var gaLoaded = false;
+
+  function loadGoogleAnalytics() {
+    if (gaLoaded) return;
+    gaLoaded = true;
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag('js', new Date());
+    window.gtag('config', GA_MEASUREMENT_ID);
   }
 
   // ── LinkedIn Insight Tag (marketing) ─────────────────────────────
