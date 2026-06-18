@@ -388,14 +388,14 @@
    Bottom CTA
    ----------------------------------------------------------- */
 .cmp-cta {
-  padding: 56px 0;
+  padding: 40px 0;
   background: var(--dh-navy);
   color: #fff;
   text-align: center;
   position: relative;
   overflow: hidden;
 }
-@media (min-width: 768px) { .cmp-cta { padding: 72px 0; } }
+@media (min-width: 768px) { .cmp-cta { padding: 56px 0; } }
 .cmp-cta::before {
   content: "";
   position: absolute;

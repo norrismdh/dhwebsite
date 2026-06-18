@@ -510,14 +510,14 @@
    Subtle bottom CTA
    ----------------------------------------------------------- */
 .art-cta {
-  padding: 56px 0;
+  padding: 40px 0;
   background: var(--dh-navy);
   color: #fff;
   text-align: center;
   position: relative;
   overflow: hidden;
 }
-@media (min-width: 768px) { .art-cta { padding: 72px 0; } }
+@media (min-width: 768px) { .art-cta { padding: 56px 0; } }
 
 .art-cta::after {
   content: "";

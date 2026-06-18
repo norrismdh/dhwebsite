@@ -334,7 +334,7 @@
    Bottom CTA - paper, two-line headline
    ----------------------------------------------------------- */
 .cust-cta {
-  padding: 56px 0;
+  padding: 40px 0;
   background: var(--dh-navy);
   color: #fff;
   position: relative;
@@ -348,7 +348,7 @@
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 52'><polygon points='30,1 59,17 59,35 30,51 1,35 1,17' fill='none' stroke='%23ffffff' stroke-width='0.4' stroke-opacity='0.06'/></svg>");
   background-size: 60px 52px;
 }
-@media (min-width: 768px) { .cust-cta { padding: 72px 0; } }
+@media (min-width: 768px) { .cust-cta { padding: 56px 0; } }
 
 .cust-cta__grid {
   display: grid;

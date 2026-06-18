@@ -259,11 +259,11 @@
 .pr-cta {
   position: relative;
   overflow: hidden;
-  padding: 56px 0;
+  padding: 40px 0;
   background: var(--dh-navy);
   color: #fff;
 }
-@media (min-width: 768px) { .pr-cta { padding: 72px 0; } }
+@media (min-width: 768px) { .pr-cta { padding: 56px 0; } }
 .pr-cta__motif {
   position: absolute;
   inset: 0;
