@@ -1071,10 +1071,10 @@
    Repurposes the .cs-tile block as little dashboard cards with
    mini bar/line charts and connected-feed labels.
    ============================================================= */
-.cs-tile.d-navy  { background: linear-gradient(135deg, #193359, #2d5183); }
-.cs-tile.d-orange{ background: linear-gradient(135deg, #f39235, #fab400); }
-.cs-tile.d-steel { background: linear-gradient(135deg, #4a5b6e, #708795); }
-.cs-tile.d-deep  { background: linear-gradient(135deg, #122844, #1f4a7a); }
+.cs-tile.d-navy  { background: var(--cs-tile-navy,   linear-gradient(135deg, #193359, #2d5183)); }
+.cs-tile.d-orange{ background: var(--cs-tile-accent, linear-gradient(135deg, #f39235, #fab400)); }
+.cs-tile.d-steel { background: var(--cs-tile-steel,  linear-gradient(135deg, #4a5b6e, #708795)); }
+.cs-tile.d-deep  { background: var(--cs-tile-deep,   linear-gradient(135deg, #122844, #1f4a7a)); }
 .cs-tile.d-navy, .cs-tile.d-orange, .cs-tile.d-steel, .cs-tile.d-deep {
   aspect-ratio: 4/3;
 }
@@ -1083,13 +1083,13 @@
   font-size: 8px; font-weight: var(--fw-bold); letter-spacing: 0.08em;
   color: rgba(255,255,255,0.92); text-transform: uppercase;
 }
-.cs-tile.d-orange .dash-label { color: rgba(25,51,89,0.85); }
+.cs-tile.d-orange .dash-label { color: var(--cs-accent-label, rgba(25,51,89,0.85)); }
 .cs-tile .mini {
   position: absolute; left: 8px; right: 8px; bottom: 8px;
   display: flex; gap: 3px; align-items: flex-end; height: 30px;
 }
 .cs-tile .mini i { flex: 1; background: rgba(255,255,255,0.55); border-radius: 1px; }
-.cs-tile.d-orange .mini i { background: rgba(25,51,89,0.45); }
+.cs-tile.d-orange .mini i { background: var(--cs-accent-bar, rgba(25,51,89,0.45)); }
 .cs-tile .line {
   position: absolute; left: 8px; right: 8px; bottom: 12px; height: 20px;
   background:
@@ -1107,4 +1107,45 @@
   aspect-ratio: 3/2;
 }
 .cs-cert.live { background: var(--dh-orange); }
+
+/* Themeable cert + search badge inside the portal mock (var-driven so each
+   customer theme below can recolour them without page-level overrides). */
+.cs-portal-mock .cs-cert.live {
+  background: var(--cs-cert-bg, var(--dh-orange));
+  color: var(--cs-cert-color, #fff);
+}
+.cs-portal-mock .cs-portal-search .badge {
+  background: var(--cs-badge-bg, var(--dh-orange));
+  color: var(--cs-badge-color, #fff);
+}
+
+/* =============================================================
+   Per-customer portal-mock themes
+   Set the modifier class on .cs-portal-mock (e.g.
+   class="cs-portal-mock cs-portal-mock--clarity"); these just
+   override the --cs-* custom properties the tiles/cert/badge read.
+   ============================================================= */
+.cs-portal-mock--clarity {
+  /* Clarity brand: black #161717, yellow #FFD200 */
+  --cs-tile-navy:    linear-gradient(135deg, #161717, #3a3b3b);
+  --cs-tile-deep:    linear-gradient(135deg, #0b0b0b, #2a2b2b);
+  --cs-tile-steel:   linear-gradient(135deg, #4a4b4b, #6e6f6f);
+  --cs-tile-accent:  linear-gradient(135deg, #FFD200, #ffe04d);
+  --cs-accent-label: rgba(22,23,23,0.9);
+  --cs-accent-bar:   rgba(22,23,23,0.5);
+  --cs-cert-bg: #FFD200; --cs-cert-color: #161717;
+  --cs-badge-bg: #161717; --cs-badge-color: #FFD200;
+}
+.cs-portal-mock--denver {
+  /* University of Denver brand: DU Crimson #BA0C2F, DU Gold #A89968,
+     Navy Secondary #375060, Dark Grey Secondary #54565B */
+  --cs-tile-navy:    linear-gradient(135deg, #BA0C2F, #8a0a23);
+  --cs-tile-deep:    linear-gradient(135deg, #375060, #2a3d4a);
+  --cs-tile-steel:   linear-gradient(135deg, #54565B, #3f4044);
+  --cs-tile-accent:  linear-gradient(135deg, #A89968, #CCBA8C);
+  --cs-accent-label: rgba(26,26,26,0.9);
+  --cs-accent-bar:   rgba(26,26,26,0.5);
+  --cs-cert-bg: #A89968; --cs-cert-color: #1a1a1a;
+  --cs-badge-bg: #BA0C2F; --cs-badge-color: #fff;
+}
 
