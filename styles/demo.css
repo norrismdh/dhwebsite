@@ -10,6 +10,11 @@
   max-width: 540px;
 }
 
+/* Drop the scheduler down so it sits inline with the laptop graphic */
+@media (min-width: 900px) {
+  .demo-hero .pr-hero__grid { align-items: end; }
+}
+
 /* -----------------------------------------------------------
    Laptop graphic - live demo in progress
    ----------------------------------------------------------- */
