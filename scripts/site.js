@@ -281,15 +281,11 @@
           </ul></div>
           <div class="footer__col"><h3>Company</h3><ul>
             <li><a href="${base}About.html">About</a></li>
-            <li><a href="${base}About.html#team">Leadership</a></li>
             <li><a href="${base}Customers.html">Customers</a></li>
-            <li><a href="${base}Contact.html">Contact</a></li>
-          </ul></div>
-          <div class="footer__col"><h3>Resources</h3><ul>
-            <li><a href="${base}Resources.html">Library</a></li>
-            <li><a href="${base}FAQ.html">FAQ</a></li>
-            <li><a href="${base}Home.html#research">ISG report</a></li>
+            <li><a href="${base}Resources.html">Resources</a></li>
             <li><a href="${base}Blog.html">Blog</a></li>
+            <li><a href="${base}FAQ.html">FAQ</a></li>
+            <li><a href="${base}Contact.html">Contact</a></li>
             <li><a href="https://support.digitalhive.com">Support</a></li>
           </ul></div>
         </div>

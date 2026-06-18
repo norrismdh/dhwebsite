@@ -1687,7 +1687,7 @@ button { font-family: inherit; cursor: pointer; }
   border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 @media (min-width: 768px) {
-  .footer__top { grid-template-columns: 1.6fr repeat(4, 1fr); gap: var(--space-7); }
+  .footer__top { grid-template-columns: 1.6fr repeat(3, 1fr); gap: var(--space-7); }
 }
 .footer__brand img { height: 40px; margin-bottom: var(--space-4); }
 .footer__brand p {
