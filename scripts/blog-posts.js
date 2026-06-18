@@ -32,6 +32,14 @@ window.DH_BLOG_POSTS = [
     readTime: "6 min"
   },
   {
+    slug:     "fantasy-one-tool-enterprise",
+    title:    "The fantasy of the one-tool enterprise",
+    excerpt:  "Reducing four BI tools to one rarely fixes adoption. Why the one-tool enterprise stays a fantasy, and why accessibility matters more than standardization.",
+    cat:      "strategy",
+    date:     "May 2026",
+    readTime: "5 min"
+  },
+  {
     slug:     "data-catalogs-are-dead",
     title:    "Data catalogs are dead, and the industry refusal to admit it is costing you",
     excerpt:  "A decade of vendor promises, and most organizations got expensive shelfware. Here's the honest post-mortem the industry keeps refusing to write.",
