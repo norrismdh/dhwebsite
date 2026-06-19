@@ -287,6 +287,13 @@
         // LinkedIn conversion: report download (fires only with marketing consent)
         if (window.lintrk) window.lintrk('track', { conversion_id: 26852364 });
 
+        // GA4 event: report download (fires only with performance consent)
+        if (window.gtag) window.gtag('event', 'file_download', {
+          file_name:      'ISG-Analytics-Catalog.pdf',
+          file_extension: 'pdf',
+          link_text:      'Download the ISG research report',
+        });
+
         btn.textContent = 'Downloaded';
         msg.textContent = 'Your download has started.';
         form.querySelectorAll('input, select').forEach(el => el.disabled = true);
