@@ -40,6 +40,14 @@ window.DH_BLOG_POSTS = [
     readTime: "5 min"
   },
   {
+    slug:     "one-portal-power-bi-tableau-qlik",
+    title:    "How to create one portal for Power BI, Tableau, Qlik",
+    excerpt:  "The practical way to give Power BI, Tableau, and Qlik one front door: an analytics hub above your existing tools, with no migration and no rebuilding.",
+    cat:      "education",
+    date:     "Apr 2026",
+    readTime: "7 min"
+  },
+  {
     slug:     "data-catalogs-are-dead",
     title:    "Data catalogs are dead, and the industry refusal to admit it is costing you",
     excerpt:  "A decade of vendor promises, and most organizations got expensive shelfware. Here's the honest post-mortem the industry keeps refusing to write.",
