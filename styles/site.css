@@ -797,6 +797,16 @@ button { font-family: inherit; cursor: pointer; }
   80%, 90%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
   100%      { opacity: 0; transform: translate(-50%, -50%) scale(0.96); }
 }
+
+/* Reduced motion: the global reset runs each animation once to its final
+   frame, which for the hub/chips is faded out (opacity:0). Freeze the stage
+   in its assembled, fully-visible state instead. */
+@media (prefers-reduced-motion: reduce) {
+  .consolidator__chip { animation: none; opacity: 1; transform: translate(0, 0) scale(1); }
+  .chip--dbx, .chip--shp { transform: translate(-50%, 0) scale(1); }
+  .consolidator__hub { animation: none; opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
 .hub__chrome {
   display: flex; align-items: center; gap: 8px;
   padding: 10px 12px;
