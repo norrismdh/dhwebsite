@@ -76,7 +76,6 @@ export default async function handler(req, res) {
     });
 
     const leadData = await leadRes.json();
-    console.log('Zoho response:', leadRes.status, JSON.stringify(leadData));
     const result = leadData.data?.[0];
 
     // SUCCESS or DUPLICATE both get the download — existing contacts are welcome too
