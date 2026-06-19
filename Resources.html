@@ -284,6 +284,9 @@
         a.click();
         document.body.removeChild(a);
 
+        // LinkedIn conversion: report download (fires only with marketing consent)
+        if (window.lintrk) window.lintrk('track', { conversion_id: 26852364 });
+
         btn.textContent = 'Downloaded';
         msg.textContent = 'Your download has started.';
         form.querySelectorAll('input, select').forEach(el => el.disabled = true);
