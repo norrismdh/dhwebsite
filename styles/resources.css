@@ -9,11 +9,46 @@
   padding: 56px 0 40px;
   border-bottom: 1px solid var(--border-2);
   background: linear-gradient(180deg, #ECF1F6 0%, #F2F5F9 100%);
+  overflow: hidden;
 }
 @media (min-width: 768px) { .res-hero { padding: 80px 0 56px; } }
+.res-hero__grid {
+  display: grid;
+  gap: var(--space-4) var(--space-7);
+}
+@media (min-width: 960px) {
+  .res-hero__grid { grid-template-columns: 1fr 1.05fr; align-items: end; }
+}
+/* Eyebrow sits above both columns */
+.res-hero__eyebrow {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+}
 .res-hero h1 {
   margin: var(--space-4) 0 0;
   max-width: 18ch;
+}
+.res-hero__sub {
+  font-size: var(--fs-18);
+  color: var(--fg-2);
+  max-width: 480px;
+  line-height: 1.55;
+  margin: var(--space-4) 0 0;
+}
+.res-hero__visual {
+  display: none;
+  align-self: stretch;
+}
+@media (min-width: 960px) {
+  .res-hero__visual { display: flex; align-items: flex-end; justify-content: flex-end; }
+}
+.res-hero__svg {
+  width: 100%;
+  max-width: 440px;
+  max-height: 100%;
+  display: block;
+  filter: drop-shadow(0 8px 32px rgba(25,51,89,0.14)) drop-shadow(0 2px 6px rgba(25,51,89,0.08));
+  border-radius: 10px;
 }
 
 /* -----------------------------------------------------------

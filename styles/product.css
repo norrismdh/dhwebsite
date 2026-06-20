@@ -966,6 +966,10 @@
   margin-top: var(--space-5);
 }
 
+/* Secondary CTA sits on the light hero — give it a solid white fill */
+.page-hero .btn--ghost { background: #fff; }
+.page-hero .btn--ghost:hover { background: #fff; }
+
 /* -----------------------------------------------------------
    Anchor offsets — clear the fixed nav when jumping to sections
    ----------------------------------------------------------- */
