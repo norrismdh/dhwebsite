@@ -31,7 +31,7 @@
     nav.innerHTML = `
       <div class="container nav__inner">
         <a class="nav__logo" href="${base}Home.html" aria-label="Digital Hive home">
-          <img src="${base}assets/logo-colour.svg" alt="Digital Hive" />
+          <img src="${base}assets/logo-colour.svg" alt="Digital Hive" width="349" height="102" />
         </a>
         <nav aria-label="Primary">
           <ul class="nav__links"></ul>
@@ -258,7 +258,7 @@
       <div class="container">
         <div class="footer__top">
           <div class="footer__brand">
-            <img src="${base}assets/logo-reversed.svg" alt="Digital Hive" />
+            <img src="${base}assets/logo-reversed.svg" alt="Digital Hive" width="349" height="102" />
             <p>Where analytics finally make sense. An analytics hub.</p>
             <div class="footer__social">
               <a href="https://www.linkedin.com/company/digital-hive-bi-portal" aria-label="LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM0 8h5v16H0V8zm7.5 0H12v2.2h.07c.63-1.2 2.18-2.46 4.49-2.46 4.8 0 5.69 3.16 5.69 7.27V24h-5v-7.2c0-1.72-.03-3.93-2.4-3.93-2.4 0-2.77 1.87-2.77 3.81V24h-5V8z"/></svg></a>
