@@ -296,6 +296,26 @@
   }
   setupFooter();
 
+  // ---------- Use-case PDF download tracking ----------
+  // Delegated: catches every "Download the use case" link site-wide.
+  // GA4 fires only once performance consent has loaded gtag.
+  function setupDownloadTracking() {
+    document.addEventListener('click', function (e) {
+      const a = e.target.closest('a[download][href*="/assets/use-cases/"]');
+      if (!a) return;
+      if (!window.gtag) return;
+
+      const fileName = (a.getAttribute('href').split('/').pop() || '').split('?')[0];
+
+      window.gtag('event', 'file_download', {
+        file_name:      fileName,
+        file_extension: 'pdf',
+        link_text:      (a.textContent || '').trim(),
+      });
+    });
+  }
+  setupDownloadTracking();
+
   // ---------- Client marquee — single source of truth for all logo strips ----------
   const CLIENT_NAMES = [
     'Bank <span class="sub">of</span> America',
