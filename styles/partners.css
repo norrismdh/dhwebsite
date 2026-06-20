@@ -27,6 +27,9 @@
   gap: var(--space-3);
   align-items: center;
 }
+/* Secondary CTA sits on the light hero — give it a solid white fill */
+.par-hero .btn--outline { background: #fff; }
+.par-hero .btn--outline:hover { background: #fff; }
 
 /* Decorative hex clusters — brand palette */
 .par-hex {

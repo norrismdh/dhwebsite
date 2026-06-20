@@ -40,6 +40,9 @@
   gap: var(--space-3);
   margin-bottom: var(--space-7);
 }
+/* Secondary CTA sits on the light hero — give it a solid white fill */
+.arch-hero .btn--ghost { background: #fff; }
+.arch-hero .btn--ghost:hover { background: #fff; }
 .arch-hero__meta {
   display: flex;
   flex-wrap: wrap;
