@@ -123,8 +123,21 @@ button { font-family: inherit; cursor: pointer; }
   border-color: var(--border-1);
 }
 .btn--ghost:hover { border-color: var(--dh-navy); background: rgba(25, 51, 89, 0.03); }
-.hero .btn--ghost { background: #fff; }
-.hero .btn--ghost:hover { background: #fff; }
+/* Ghost buttons on light, decorated backgrounds (page heroes, 404) take a
+   solid white fill so gradients/motifs behind them don't show through.
+   Single source of truth — page CSS should NOT redefine this per-hero. */
+.hero .btn--ghost,
+.ab2-hero .btn--ghost,
+.arch-hero .btn--ghost,
+.cn-hero .btn--ghost,
+.page-hero .btn--ghost,
+.nf-links .btn--ghost { background: #fff; }
+.hero .btn--ghost:hover,
+.ab2-hero .btn--ghost:hover,
+.arch-hero .btn--ghost:hover,
+.cn-hero .btn--ghost:hover,
+.page-hero .btn--ghost:hover,
+.nf-links .btn--ghost:hover { background: #fff; border-color: var(--dh-navy); }
 .btn--outline {
   background: transparent;
   color: var(--dh-navy);
@@ -1699,7 +1712,7 @@ button { font-family: inherit; cursor: pointer; }
 @media (min-width: 768px) {
   .footer__top { grid-template-columns: 1.6fr repeat(3, 1fr); gap: var(--space-6); }
 }
-.footer__brand img { height: 40px; margin-bottom: var(--space-4); }
+.footer__brand img { height: 40px; width: auto; margin-bottom: var(--space-4); }
 .footer__brand p {
   color: rgba(255,255,255,0.6);
   font-size: var(--fs-14);
@@ -1738,6 +1751,8 @@ button { font-family: inherit; cursor: pointer; }
 }
 .footer__col a:hover { color: var(--dh-orange); }
 @media (max-width: 767px) {
+  .footer__top { grid-template-columns: 1fr 1fr; gap: var(--space-5) var(--space-4); }
+  .footer__brand { grid-column: 1 / -1; }
   .footer__col a {
     min-height: 44px;
     display: flex;

@@ -55,9 +55,7 @@
 }
 @media (min-width: 768px) { .ab2-hero { padding: 80px 0 56px; } }
 
-/* ghost button needs a solid base on the tinted hero */
-.ab2-hero .btn--ghost,
-.ab2-hero .btn--ghost:hover { background: #fff; }
+/* ghost button white-fill on the tinted hero → centralized in site.css */
 
 .ab2-hero__grid {
   display: grid;

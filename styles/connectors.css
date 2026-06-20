@@ -4,9 +4,7 @@
 
 .cn-hero { padding: 56px 0 40px; }
 @media (min-width: 768px) { .cn-hero { padding: 80px 0 56px; } }
-/* Secondary CTA sits on the light hero — give it a solid white fill */
-.cn-hero .btn--ghost { background: #fff; }
-.cn-hero .btn--ghost:hover { background: #fff; }
+/* ghost button white-fill on the light hero → centralized in site.css */
 
 .cn-hero__grid {
   display: grid;
