@@ -148,7 +148,7 @@
       '<div class="dh-consent-banner__inner">' +
         '<div class="dh-consent-banner__text">' +
           '<strong>Cookie preferences</strong>' +
-          '<p>We use cookies to keep the site running. With your consent we also track performance analytics and campaign attribution. <a href="/Privacy.html#cookies" aria-label="Learn more about our cookie policy">Learn more</a>.</p>' +
+          '<p>We use cookies to keep the site running. With your consent we also track performance analytics and campaign attribution. <a href="/Privacy.html#cookies">Learn more about cookies</a>.</p>' +
         '</div>' +
         '<div class="dh-consent-banner__actions">' +
           '<button class="dh-cb dh-cb--ghost" data-consent="manage">Manage</button>' +
