@@ -1636,6 +1636,38 @@ button { font-family: inherit; cursor: pointer; }
 .research__panel .btn { position: relative; z-index: 1; align-self: flex-start; }
 
 /* -----------------------------------------------------------
+   Bottom CTA banner shell (.pr-cta) — shared by Home, Product,
+   About, Architecture, Contact, Pricing. Page CSS keeps only its
+   own h3/p sizing and illustration (.pr-cta__art etc.). Blog uses
+   a variant (narrower copy, later 2-col breakpoint) in blog.css.
+   ----------------------------------------------------------- */
+.pr-cta {
+  position: relative;
+  overflow: hidden;
+  padding: 40px 0;
+  background: var(--dh-navy);
+  color: #fff;
+}
+@media (min-width: 768px) { .pr-cta { padding: 56px 0; } }
+.pr-cta__motif {
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 52'><polygon points='30,1 59,17 59,35 30,51 1,35 1,17' fill='none' stroke='%23ffffff' stroke-width='0.4' stroke-opacity='0.06'/></svg>");
+  background-size: 60px 52px;
+  pointer-events: none;
+}
+.pr-cta .container { position: relative; z-index: 1; }
+.pr-cta__grid {
+  display: grid;
+  gap: var(--space-6);
+  align-items: center;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px) { .pr-cta__grid { grid-template-columns: 1fr auto; gap: 48px; } }
+.pr-cta__copy { max-width: 620px; }
+.pr-cta__buttons { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+/* -----------------------------------------------------------
    Shared CTA eyebrow (dark-bg banner variant — used across
    about.css, faq.css, pricing.css, usecase pages)
    ----------------------------------------------------------- */

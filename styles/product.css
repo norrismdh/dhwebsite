@@ -1759,24 +1759,7 @@
 /* -----------------------------------------------------------
    Bottom CTA — navy panel (pr-cta) matching home page style
    ----------------------------------------------------------- */
-.pr-cta {
-  position: relative; overflow: hidden;
-  padding: 40px 0; background: var(--dh-navy); color: #fff;
-}
-@media (min-width: 768px) { .pr-cta { padding: 56px 0; } }
-.pr-cta__motif {
-  position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 52'><polygon points='30,1 59,17 59,35 30,51 1,35 1,17' fill='none' stroke='%23ffffff' stroke-width='0.4' stroke-opacity='0.06'/></svg>");
-  background-size: 60px 52px;
-  pointer-events: none;
-}
-.pr-cta .container { position: relative; z-index: 1; }
-.pr-cta__grid {
-  display: grid; gap: var(--space-6);
-  align-items: center; grid-template-columns: 1fr;
-}
-@media (min-width: 720px) { .pr-cta__grid { grid-template-columns: 1fr auto; gap: 48px; } }
-.pr-cta__copy { max-width: 620px; }
+/* .pr-cta banner shell → site.css; page keeps its eyebrow/h3/p + art */
 .pr-cta__eyebrow {
   display: inline-block; font-size: 11px; font-weight: var(--fw-bold);
   text-transform: uppercase; letter-spacing: var(--tracking-caps);
@@ -1791,7 +1774,6 @@
   font-size: var(--fs-18); color: rgba(255,255,255,0.78);
   margin: 0 0 var(--space-5); line-height: 1.55; max-width: 56ch;
 }
-.pr-cta__buttons { display: flex; flex-wrap: wrap; gap: var(--space-3); }
 /* .pr-cta .btn--accent inherits the shared .btn--accent (site.css) */
 /* .pr-cta secondary button now uses the shared .btn--ghost-light pill
    (was .pr-cta__btn-ghost — a square variant inconsistent with every
