@@ -475,10 +475,7 @@
   max-width: none;
 }
 .cn-request__buttons { display: flex; flex-wrap: wrap; gap: var(--space-3); }
-.cn-request .btn--accent { background: var(--dh-orange); color: #fff; border-color: var(--dh-orange); }
-.cn-request .btn--accent:hover { background: #E0801C; border-color: #E0801C; }
-.cn-request .btn--accent .arrow { transition: transform var(--dur-base) var(--ease-out); }
-.cn-request .btn--accent:hover .arrow { transform: translateX(3px); }
+/* .cn-request .btn--accent inherits the shared .btn--accent (site.css) */
 
 /* Connector-to-hive SVG art (right column) */
 .cn-request__art { display: none; }

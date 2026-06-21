@@ -341,14 +341,7 @@
   flex-wrap: wrap;
   gap: var(--space-3);
 }
-.ucd-cta .btn--accent {
-  background: var(--dh-orange);
-  color: #fff;
-  border: 1px solid var(--dh-orange);
-}
-.ucd-cta .btn--accent:hover { background: var(--link-hover); border-color: var(--link-hover); }
-.ucd-cta .btn--accent .arrow { transition: transform var(--dur-base) var(--ease-out); }
-.ucd-cta .btn--accent:hover .arrow { transform: translateX(3px); }
+/* .ucd-cta .btn--accent inherits the shared .btn--accent (site.css) */
 /* .btn--ghost-light base → site.css */
 
 /* ----- chaos → order graphic ----- */

@@ -47,20 +47,9 @@
   flex-wrap: wrap;
   gap: var(--space-3);
 }
-.pr-cta .btn--accent {
-  background: var(--dh-orange);
-  color: #fff;
-  border: 1px solid var(--dh-orange);
-}
-.pr-cta .btn--accent:hover { background: var(--link-hover); border-color: var(--link-hover); }
-.pr-cta .btn--accent .arrow { transition: transform var(--dur-base) var(--ease-out); }
-.pr-cta .btn--accent:hover .arrow { transform: translateX(3px); }
-.pr-cta .btn--ghost-light {
-  padding: 12px 22px;
-  font-weight: var(--fw-bold);
-  font-size: var(--fs-16);
-  border-radius: var(--radius-sm);
-}
+/* .pr-cta buttons inherit shared .btn--accent / .btn--ghost-light (site.css);
+   page keeps only the squared secondary-button radius */
+.pr-cta .btn--ghost-light { border-radius: var(--radius-sm); }
 .pr-cta__art { display: none; }
 @media (min-width: 720px) {
 .pr-cta__art { display: block; position: relative; width: 320px; height: 240px; flex-shrink: 0; }

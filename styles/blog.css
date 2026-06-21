@@ -302,20 +302,9 @@
   flex-wrap: wrap;
   gap: var(--space-3);
 }
-.pr-cta .btn--accent {
-  background: var(--dh-orange);
-  color: #fff;
-  border: 1px solid var(--dh-orange);
-  padding: 12px 22px;
-  font-weight: var(--fw-bold);
-  font-size: var(--fs-16);
-}
-.pr-cta .btn--accent:hover { background: var(--link-hover); border-color: var(--link-hover); }
-.pr-cta .btn--ghost-light {
-  padding: 12px 22px;
-  font-weight: var(--fw-bold);
-  font-size: var(--fs-16);
-}
+/* colors/hover inherit shared .btn--accent (site.css); page keeps CTA sizing.
+   .btn--ghost-light sizing now also inherited from base. */
+.pr-cta .btn--accent { padding: 12px 22px; font-weight: var(--fw-bold); font-size: var(--fs-16); }
 .pr-cta__art { display: none; }
 @media (min-width: 820px) {
   .pr-cta__art { display: block; flex-shrink: 0; width: 360px; height: 215px; }

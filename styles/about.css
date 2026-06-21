@@ -641,22 +641,7 @@ a.ab2-person::after {
   max-width: 56ch;
 }
 .pr-cta__buttons { display: flex; flex-wrap: wrap; gap: var(--space-3); }
-.pr-cta .btn--accent {
-  background: var(--dh-orange);
-  color: #fff;
-  border: 1px solid var(--dh-orange);
-}
-@media (hover: hover) {
-  .pr-cta .btn--accent:hover { background: var(--link-hover); border-color: var(--link-hover); }
-  .pr-cta .btn--accent:hover .arrow { transform: translateX(3px); }
-}
-.pr-cta .btn--accent .arrow { transition: transform var(--dur-base) var(--ease-out); }
-/* .btn--ghost-light base → site.css; page-level sizing only */
-.btn--ghost-light {
-  padding: 12px 22px;
-  font-weight: var(--fw-bold);
-  font-size: var(--fs-16);
-}
+/* .pr-cta .btn--accent inherits the shared .btn--accent (site.css) */
 .pr-cta__art { display: none; }
 @media (min-width: 720px) {
   .pr-cta__art { display: flex; align-items: center; justify-content: center; }

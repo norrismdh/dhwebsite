@@ -1792,10 +1792,7 @@
   margin: 0 0 var(--space-5); line-height: 1.55; max-width: 56ch;
 }
 .pr-cta__buttons { display: flex; flex-wrap: wrap; gap: var(--space-3); }
-.pr-cta .btn--accent { background: var(--dh-orange); color: #fff; border: 1px solid var(--dh-orange); }
-.pr-cta .btn--accent:hover { background: #E0801C; border-color: #E0801C; }
-.pr-cta .btn--accent .arrow { transition: transform var(--dur-base) var(--ease-out); }
-.pr-cta .btn--accent:hover .arrow { transform: translateX(3px); }
+/* .pr-cta .btn--accent inherits the shared .btn--accent (site.css) */
 /* .pr-cta secondary button now uses the shared .btn--ghost-light pill
    (was .pr-cta__btn-ghost — a square variant inconsistent with every
    other CTA on the site) */

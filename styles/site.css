@@ -154,6 +154,8 @@ button { font-family: inherit; cursor: pointer; }
   display: inline-flex;
   align-items: center;
   text-decoration: none;
+  padding: 12px 22px;
+  font-size: var(--fs-16);
   transition: border-color var(--dur-base) var(--ease-out), background var(--dur-base) var(--ease-out);
 }
 .btn--ghost-light:hover { border-color: #fff; background: rgba(255,255,255,0.06); }
