@@ -594,7 +594,22 @@ button { font-family: inherit; cursor: pointer; }
   padding-bottom: var(--space-5);
   border-top: 1px solid var(--border-2);
 }
-.mobile-menu.is-open { display: block; }
+.mobile-menu.is-open {
+  display: block;
+  /* Full-screen overlay below the 64px header bar so the page content and
+     footer behind it are covered (not pushed down into view). dvh + a vh
+     fallback because .nav's backdrop-filter makes it the containing block
+     for this fixed child, so bottom:0 can't be used reliably. */
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  height: calc(100vh - 64px);
+  height: calc(100dvh - 64px);
+  overflow-y: auto;
+  background: #fff;
+  z-index: 49;
+}
 .mobile-menu ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-4); }
 .mobile-menu a {
   color: var(--dh-navy);
