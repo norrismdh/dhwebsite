@@ -20,6 +20,262 @@
   <link rel="stylesheet" href="styles/site.css" />
   <link rel="stylesheet" href="styles/consent.css" />
   <link rel="stylesheet" href="styles/faq.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a BI Portal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is a single interface that centralizes access to analytics across multiple systems. It simplifies how users find, access, and use data without switching between tools. It removes the need to remember where reports live or how to navigate different platforms. Instead, analytics are organized in a way that reflects how the business operates  -  not how systems are structured A well-designed portal does more than aggregate links. It organizes, filters, and presents analytics so users can quickly find what they need and understand how to use it"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do organizations implement a BI Portal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Organizations implement BI Portals to reduce the friction between users and analytics. Without one, users often search across multiple tools, rely on bookmarks or shared links, and recreate reports they cannot find. A BI Portal provides a consistent entry point where analytics are easier to discover, access, and reuse The primary benefit is not access  -  it is reducing the time and effort required to get to usable information"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the most important features of a BI Portal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The most important: unified access across every connected tool (users don't need to know where content lives), semantic search by intent rather than file path, native security inheritance (row-level permissions respected automatically), content governance (certified vs. exploratory, with deprecation workflows), and usage analytics (what's being opened, what's ignored, what can be retired) The features that separate a good portal from a great one are SSO across all connected tools, consistent branding, multi-vendor support without allegiance to any single BI vendor, and the ability to surface AI-generated outputs alongside traditional reports in the same front door"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a Unified Analytics Hub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A Unified Analytics Hub indexes every analytical asset across your environment  -  reports, dashboards, metrics, documents, AI outputs  -  in a single searchable, governed layer. Unlike a BI tool that creates content or a data catalog that inventories raw data, an analytics hub organizes and governs the finished intelligence that analysts and business users already produce \"Unified\" is the key word: one catalog, one set of governance rules, one search experience  -  regardless of how many BI tools, teams, or platforms sit behind it"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a Data Catalog and an Analytics Hub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A data catalog (Alation, Collibra, Atlan) manages raw data assets  -  tables, columns, lineage, pipelines. An analytics hub manages finished analytical assets  -  the reports, dashboards, and metrics built on top of that data. Both deal with metadata; they operate at different layers of the stack Most organizations need both: the data catalog answers \"where did this number come from?\" and the analytics hub answers \"which report do I open to see that number, and should I trust it?\" Digital Hive is an analytics hub  -  we don't compete with, and often complement, data catalog vendors already in your environment"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will it replace our existing BI investment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Reports stay in the platform they were built in. Power BI reports stay in Power BI. Tableau dashboards stay in Tableau. Digital Hive references them in a single catalog and surfaces them through a unified Analytics Hub  -  but ownership, edit access, and security never leave the source tool In fact, the opposite: by making content findable and certified, Digital Hive increases the ROI of every BI tool you already own Customers consistently report a 25–40% lift in active users on existing platforms within the first six months. The licenses you've already paid for, getting used by the people who needed them all along"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the Analytics Hub?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The end-user front door. A branded portal where business users search, browse, and open the analytics they need  -  without knowing which BI tool the content lives in. Single sign-on across every connected tool, certified content surfaced first"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What types of content can Digital Hive present?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Reports and dashboards from any connected BI tool. Metrics and KPI definitions from your semantic layers or metric stores. PDFs, briefing documents, and slide decks from SharePoint, Google Drive, Confluence, or Notion. AI-generated analyses and insights from M365 Copilot or your own LLM agents. Everything in the catalog is searchable, certifiable, and openable from the same front door  -  regardless of where it was created or stored"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can users actually edit reports through Digital Hive?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Editing happens in the native tool, with the native permissions and authoring experience. Digital Hive launches the right tool into the right artifact in a click. The catalog itself is read-only by design  -  no shadow versions, no drift"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is this different from other analytics hub vendors?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start with what we don't do  -  that's where most of the daylight is: Beyond that, three things matter in this category and we're built around all three: independence (no allegiance to any BI vendor, ever), experience (the Analytics Hub is a first-class branded portal, not a configuration screen), and depth in messy environments (multi-vendor, mid-migration, post-M&A, multi-tenant, sovereign) Happy to walk you through a side-by-side against whoever else you're evaluating. Send us the shortlist and we'll prep a comparison against your actual must-haves  -  not ours"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there an AI / natural language layer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes  -  semantic search and a Q&A assistant grounded in your indexed catalog metadata only. We deliberately don't train on your content, and the assistant never executes queries against source data"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Where does the catalog data actually live?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Digital Hive stores metadata only  -  titles, owners, descriptions, last-modified, usage. Actual report content stays in its source tool. The metadata index lives in your tenant (SaaS) or your VPC (self-hosted), never co-mingled with other customers"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can we deploy on-prem or in our own cloud account?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes  -  three options. Cloud (SaaS) is the default. Customer-managed runs in your AWS, Azure, or GCP account. On-prem is supported via container images for regulated and air-gapped environments. All three are feature-equivalent"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you support multi-region or sovereign deployments?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. EU, UK, US, Canada, and Australia tenants are available. For data sovereignty mandates (EU-AI Act, FedRAMP-aligned, APRA CPS 234), the customer-managed deployment keeps the index entirely within your boundary"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens if a source BI tool is unavailable?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The catalog stays live and searchable. Users can find content, see metadata, request access  -  they just can't open the report until the source tool returns. Source-tool outages don't propagate to the Hub"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you support analytics governance?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Digital Hive's governance layer lets administrators certify, deprecate, classify, and retire analytics content without moving or rebuilding it. Certified content surfaces first in every search result. Deprecated artifacts remain findable but are flagged. Ownership, access requests, and change history are tracked in the audit log For regulated environments, certification workflows can require dual approval before content is promoted  -  keeping your compliance team in the chain without creating a new system of record"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you handle row-level security across tools?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We inherit it. When a user opens a report from the Hub, the source tool authenticates them with their identity and applies whatever RLS, OLS, or workspace permission already exists. Digital Hive never bypasses native permissions  -  and the catalog itself only shows artifacts a user has been granted access to"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What certifications do you hold?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SOC 2 Type II, ISO 27001, GDPR, HIPAA-ready. Full controls documentation, penetration test summaries, and continuous monitoring evidence are in the Trust Center (NDA required)"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What identity providers do you support?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SAML 2.0 and OIDC out of the box. Tested with Azure AD / Entra, Okta, Ping, OneLogin, and Google Workspace. SCIM provisioning is supported on the Enterprise tier"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you train AI models on our metadata?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Customer metadata is never used to train shared or third-party models. Inference for semantic search and Q&A runs against your tenant only, with retention policies under your control"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the audit trail capture?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every catalog event: who searched what, who opened which report, who certified or retired which artifact. Audit logs are exportable to SIEM (Splunk, Datadog, Elastic) via webhook or scheduled export"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which BI tools do you connect to?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Power BI, Tableau, Qlik (Sense + View), Cognos (every version since 10), Looker, Spotfire, Domo, MicroStrategy, Pyramid, SAP BO, Excel, and SharePoint. Plus a generic webhook connector for in-house tools"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can we connect to AI tools like Copilot or ChatGPT?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes  -  both directions. Surface AI-generated analyses from M365 Copilot or your own LLM agents in the same catalog. And expose your indexed catalog metadata to those agents as a grounded source via our MCP-compatible endpoint"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What about documents  -  PDFs, decks, Confluence pages?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Connectors for SharePoint, Google Drive, Confluence, and Notion bring analytical documents into the same catalog. Useful when the actual decision artifact is a PDF briefing  -  not a dashboard"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long until you support [our tool]?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For listed connectors with active enterprise customers  -  already built. For new platforms with a public API  -  typically <4 weeks for a production-grade connector. Tell us what you need."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is Digital Hive priced?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Digital Hive is priced on a per-user, per-month basis, billed annually. Every user gets the same access  -  there are no tiered user types or restricted seats. Connectors are not charged separately; connect as many tools as you need. If you're deploying Digital Hive externally for your own clients, we also offer a multi-tenant option built for that. See the pricing page for ranges"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you charge per report or per dashboard?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Index unlimited content. We don't punish you for cleaning up your sprawl  -  that's the point"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a free trial or proof of value?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes  -  we offer a special 3-month Proof of Value package at a reduced rate so you can validate the platform against real workloads before committing to an annual term. Success criteria are defined together upfront. No PO required to start"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's included in onboarding?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A dedicated solutions engineer for the first 90 days. Connector setup, SSO wiring, Hub branding, and a structured rollout plan including end-user training assets. You won't be alone in a support portal"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What support tiers do you offer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Standard (12×5, 4-hour critical SLA) and Premium (24×7, 1-hour critical SLA with a named CSM). Both include free upgrades for the life of the contract"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often do you release new features?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Continuous on SaaS; quarterly stable releases for customer-managed deployments. Roadmap reviews twice a year with named-account customers"
+      }
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 
