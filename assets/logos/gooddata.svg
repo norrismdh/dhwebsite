@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
-  <!-- Outer arc: C-shape, gap at upper-right (12 o'clock to 2 o'clock) -->
-  <path d="M 85 30 A 40 40 0 1 1 50 10" stroke="#1a1a1a" stroke-width="9" stroke-linecap="round"/>
-  <!-- d: vertical stem -->
-  <line x1="36" y1="16" x2="36" y2="74" stroke="#1a1a1a" stroke-width="9" stroke-linecap="round"/>
-  <!-- d: bowl -->
-  <circle cx="52" cy="58" r="16" stroke="#1a1a1a" stroke-width="9"/>
-</svg>
