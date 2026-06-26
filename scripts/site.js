@@ -238,10 +238,7 @@
         ${mob(MEGA.company)}
         <section class="mobile-menu__group">
           <ul><li><a href="${base}Pricing.html">Pricing</a></li></ul>
-        </section>
-        <div class="mobile-menu__cta">
-          <a class="btn btn--accent" href="${base}Demo.html">Book a demo</a>
-        </div>`;
+        </section>`;
     }
   }
   setupMegaMenu();
