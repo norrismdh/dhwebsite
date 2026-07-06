@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "serve .",
+    "nav": "node scripts/build-nav.mjs",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
   },
