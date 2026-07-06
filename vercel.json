@@ -4,7 +4,12 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/", "destination": "/Home", "permanent": true }
+    { "source": "/Home", "destination": "/", "permanent": true },
+    { "source": "/Home.html", "destination": "/", "permanent": true },
+    { "source": "/solutions", "destination": "/Product", "permanent": true },
+    { "source": "/solutions/:path*", "destination": "/Product", "permanent": true },
+    { "source": "/data-literacy", "destination": "/Resources", "permanent": true },
+    { "source": "/data-literacy/:path*", "destination": "/Resources", "permanent": true }
   ],
   "rewrites": [
     { "source": "/downloads/:fileId", "destination": "/api/download/:fileId" }

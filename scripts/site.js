@@ -11,7 +11,7 @@
     if (!nav) return;
 
     // Current page detection + subdirectory base path
-    const path = (location.pathname.split('/').pop() || 'Home.html').toLowerCase();
+    const path = (location.pathname.split('/').pop() || 'home').toLowerCase().replace(/\.html$/, '');
     const dir  = location.pathname.replace(/\\/g, '/').split('/').slice(0, -1).pop() || '';
     const base = ['use-cases', 'resources', 'vs', 'blog', 'downloads'].includes(dir.toLowerCase()) ? '../' : '';
 
@@ -30,14 +30,14 @@
     // Inject full nav shell so the header is a single source of truth
     nav.innerHTML = `
       <div class="container nav__inner">
-        <a class="nav__logo" href="${base}Home.html" aria-label="Digital Hive home">
+        <a class="nav__logo" href="/" aria-label="Digital Hive home">
           <img src="${base}assets/logo-colour.svg" alt="Digital Hive" width="349" height="102" />
         </a>
         <nav aria-label="Primary">
           <ul class="nav__links"></ul>
         </nav>
         <div class="nav__cta">
-          <a class="btn btn--primary" href="${base}Demo.html">Book a demo</a>
+          <a class="btn btn--primary" href="${base}Demo">Book a demo</a>
           <button type="button" class="nav__toggle" data-mobile-toggle aria-label="Open menu" aria-expanded="false">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
           </button>
@@ -46,9 +46,9 @@
       <div class="container mobile-menu" data-mobile-menu></div>`;
 
     const navLinks = nav.querySelector('.nav__links');
-    const inPlatform = ['product.html', 'usecases.html', 'connectors.html', 'security.html', 'architecture.html'].includes(path);
-    const inResources = ['resources.html', 'faq.html', 'customers.html', 'blog.html'].includes(path) || dir === 'blog';
-    const inCompany = ['about.html', 'contact.html', 'partners.html'].includes(path);
+    const inPlatform = ['product', 'usecases', 'connectors', 'security', 'architecture'].includes(path);
+    const inResources = ['resources', 'faq', 'customers', 'blog'].includes(path) || dir === 'blog';
+    const inCompany = ['about', 'contact', 'partners'].includes(path);
 
     // Icon factory — all hex-framed line icons, same visual weight
     const hexIcon = (paths) => `
@@ -78,47 +78,47 @@
     const MEGA = {
       platform: {
         label: 'Platform',
-        href: 'Product.html',
-        active: inPlatform || path === 'home.html' || path === '',
+        href: 'Product',
+        active: inPlatform || path === 'home' || path === '',
         eyebrow: 'The Digital Hive Platform',
         title: 'A unified analytics experience above your existing BI stack.',
         items: [
-          { ico: ICO.grid,      label: 'Platform overview', sub: 'Catalog, Analytics Hub, governance',      href: 'Product.html' },
-          { ico: ICO.plug,      label: 'Connectors',         sub: 'BI, AI, data & document tools',  href: 'Connectors.html' },
-          { ico: ICO.layers,    label: 'Use cases',          sub: 'By situation and industry',       href: 'UseCases.html' },
-          { ico: ICO.blueprint, label: 'Architecture',       sub: 'Deployment and scale',            href: 'Architecture.html' },
-          { ico: ICO.shield,    label: 'Security',           sub: 'Certifications, compliance, trust', href: 'Security.html' },
+          { ico: ICO.grid,      label: 'Platform overview', sub: 'Catalog, Analytics Hub, governance',      href: 'Product' },
+          { ico: ICO.plug,      label: 'Connectors',         sub: 'BI, AI, data & document tools',  href: 'Connectors' },
+          { ico: ICO.layers,    label: 'Use cases',          sub: 'By situation and industry',       href: 'UseCases' },
+          { ico: ICO.blueprint, label: 'Architecture',       sub: 'Deployment and scale',            href: 'Architecture' },
+          { ico: ICO.shield,    label: 'Security',           sub: 'Certifications, compliance, trust', href: 'Security' },
         ],
-        cta: { label: 'See the full platform', href: 'Product.html' },
+        cta: { label: 'See the full platform', href: 'Product' },
       },
       resources: {
         label: 'Resources',
-        href: 'Resources.html',
+        href: 'Resources',
         active: inResources,
         eyebrow: 'Learn',
         title: 'Independent research, working definitions, honest comparisons.',
         items: [
-          { ico: ICO.question, label: 'FAQ',              sub: 'Common questions answered', href: 'FAQ.html' },
-          { ico: ICO.book,     label: 'Resource library', sub: 'Reports, guides, briefs',   href: 'Resources.html' },
-          { ico: ICO.users,    label: 'Customer stories', sub: 'Real outcomes, real teams', href: 'Customers.html' },
-          { ico: ICO.pencil,   label: 'Blog',             sub: 'Field notes from the team', href: 'Blog.html' },
+          { ico: ICO.question, label: 'FAQ',              sub: 'Common questions answered', href: 'FAQ' },
+          { ico: ICO.book,     label: 'Resource library', sub: 'Reports, guides, briefs',   href: 'Resources' },
+          { ico: ICO.users,    label: 'Customer stories', sub: 'Real outcomes, real teams', href: 'Customers' },
+          { ico: ICO.pencil,   label: 'Blog',             sub: 'Field notes from the team', href: 'Blog' },
           { ico: ICO.shield,   label: 'Trust Center',     sub: 'Security & compliance',     href: 'https://trust.digitalhive.com/' },
         ],
-        cta: { label: 'Open the library', href: 'Resources.html' },
+        cta: { label: 'Open the library', href: 'Resources' },
       },
       company: {
         label: 'Company',
-        href: 'About.html',
+        href: 'About',
         active: inCompany,
         eyebrow: 'Company',
         title: 'The category-defining analytics hub for complex enterprises.',
         items: [
-          { ico: ICO.info,      label: 'About Digital Hive', sub: 'Why we exist',         href: 'About.html' },
-          { ico: ICO.users,     label: 'Leadership',         sub: 'The people behind it', href: 'About.html#team' },
-          { ico: ICO.handshake, label: 'Partners',           sub: 'Resellers & ISVs',     href: 'Partners.html' },
-          { ico: ICO.mail,      label: 'Contact us',         sub: 'Get in touch',         href: 'Contact.html' },
+          { ico: ICO.info,      label: 'About Digital Hive', sub: 'Why we exist',         href: 'About' },
+          { ico: ICO.users,     label: 'Leadership',         sub: 'The people behind it', href: 'About#team' },
+          { ico: ICO.handshake, label: 'Partners',           sub: 'Resellers & ISVs',     href: 'Partners' },
+          { ico: ICO.mail,      label: 'Contact us',         sub: 'Get in touch',         href: 'Contact' },
         ],
-        cta: { label: 'Meet the team', href: 'About.html#team' },
+        cta: { label: 'Meet the team', href: 'About#team' },
       },
     };
 
@@ -156,12 +156,12 @@
         </li>`;
     };
 
-    const isPricing = path === 'pricing.html';
+    const isPricing = path === 'pricing';
     navLinks.innerHTML = [
       buildTrigger('platform', MEGA.platform),
       buildTrigger('resources', MEGA.resources),
       buildTrigger('company', MEGA.company),
-      `<li class="nav__item"><a class="nav__plain${isPricing ? ' is-current' : ''}" href="${base}Pricing.html"${isPricing ? ' aria-current="page"' : ''}>Pricing</a></li>`,
+      `<li class="nav__item"><a class="nav__plain${isPricing ? ' is-current' : ''}" href="${base}Pricing"${isPricing ? ' aria-current="page"' : ''}>Pricing</a></li>`,
     ].join('');
 
     // ---- Hover / focus open/close with a short close-delay (lets pointer cross gap) ----
@@ -237,7 +237,7 @@
         ${mob(MEGA.resources)}
         ${mob(MEGA.company)}
         <section class="mobile-menu__group">
-          <ul><li><a href="${base}Pricing.html">Pricing</a></li></ul>
+          <ul><li><a href="${base}Pricing">Pricing</a></li></ul>
         </section>`;
     }
   }
@@ -263,29 +263,29 @@
             </div>
           </div>
           <div class="footer__col"><h3>Product</h3><ul>
-            <li><a href="${base}Product.html#catalog">Catalog</a></li>
-            <li><a href="${base}Product.html#capabilities">Analytics Hub</a></li>
-            <li><a href="${base}Product.html#governance">Governance</a></li>
-            <li><a href="${base}Connectors.html">Connectors</a></li>
+            <li><a href="${base}Product#catalog">Catalog</a></li>
+            <li><a href="${base}Product#capabilities">Analytics Hub</a></li>
+            <li><a href="${base}Product#governance">Governance</a></li>
+            <li><a href="${base}Connectors">Connectors</a></li>
           </ul></div>
           <div class="footer__col"><h3>Resources</h3><ul>
-            <li><a href="${base}UseCases.html">Use cases</a></li>
-            <li><a href="${base}Customers.html">Customers</a></li>
-            <li><a href="${base}Pricing.html">Pricing</a></li>
+            <li><a href="${base}UseCases">Use cases</a></li>
+            <li><a href="${base}Customers">Customers</a></li>
+            <li><a href="${base}Pricing">Pricing</a></li>
             <li><a href="https://support.digitalhive.com">Support</a></li>
           </ul></div>
           <div class="footer__col"><h3>Company</h3><ul>
-            <li><a href="${base}About.html">About</a></li>
-            <li><a href="${base}Blog.html">Blog</a></li>
-            <li><a href="${base}FAQ.html">FAQ</a></li>
-            <li><a href="${base}Contact.html">Contact</a></li>
+            <li><a href="${base}About">About</a></li>
+            <li><a href="${base}Blog">Blog</a></li>
+            <li><a href="${base}FAQ">FAQ</a></li>
+            <li><a href="${base}Contact">Contact</a></li>
           </ul></div>
         </div>
         <div class="footer__bottom">
           <span>&copy; 2026 Digital Hive</span>
           <ul>
-            <li><a href="${base}Privacy.html">Privacy</a></li>
-            <li><a href="${base}Terms.html">Terms</a></li>
+            <li><a href="${base}Privacy">Privacy</a></li>
+            <li><a href="${base}Terms">Terms</a></li>
             <li><a href="https://trust.digitalhive.com/" target="_blank" rel="noopener">Trust center</a></li>
           </ul>
         </div>

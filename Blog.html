@@ -185,9 +185,9 @@
             <h3 class="blog-path__title">Understand what an analytics hub actually is</h3>
             <p class="blog-path__desc">If you're new to the analytics hub category, start here. These posts cover the fundamentals, what it is, what it isn't, and why the distinction matters for organizations running multiple BI tools.</p>
             <ul class="blog-path__posts">
-              <li><a href="blog/analytics-data-metrics-cheatsheet.html">Analytics hubs, data catalogs &amp; metrics stores: a plain-language cheat sheet</a></li>
-              <li><a href="blog/ultimate-guide-analytics-catalogs.html">Your complete guide to analytics hubs</a></li>
-              <li><a href="blog/top-5-analytics-catalog-benefits.html">The top 5 benefits of analytics hubs you need to know</a></li>
+              <li><a href="blog/analytics-data-metrics-cheatsheet">Analytics hubs, data catalogs &amp; metrics stores: a plain-language cheat sheet</a></li>
+              <li><a href="blog/ultimate-guide-analytics-catalogs">Your complete guide to analytics hubs</a></li>
+              <li><a href="blog/top-5-analytics-catalog-benefits">The top 5 benefits of analytics hubs you need to know</a></li>
             </ul>
           </div>
 
@@ -196,9 +196,9 @@
             <h3 class="blog-path__title">Question whether consolidation is actually the answer</h3>
             <p class="blog-path__desc">Most BI leaders have been pushed toward standardizing on a single platform. These posts lay out why that thinking is wrong, and what to do instead, without disrupting the teams that depend on today's tools.</p>
             <ul class="blog-path__posts">
-              <li><a href="blog/how-many-bi-tools.html">How many BI tools does your organization actually need?</a></li>
-              <li><a href="blog/era-of-bi-standardisation-over.html">The era of BI standardization is over</a></li>
-              <li><a href="blog/future-analytics-unified-tools.html">The future of analytics is unified, not standardized</a></li>
+              <li><a href="blog/how-many-bi-tools">How many BI tools does your organization actually need?</a></li>
+              <li><a href="blog/era-of-bi-standardisation-over">The era of BI standardization is over</a></li>
+              <li><a href="blog/future-analytics-unified-tools">The future of analytics is unified, not standardized</a></li>
             </ul>
           </div>
 
@@ -207,9 +207,9 @@
             <h3 class="blog-path__title">Arm yourself before the stakeholder conversation</h3>
             <p class="blog-path__desc">When you need to justify investment, frame the problem to leadership, or articulate why the current state costs more than it looks, these are the posts to read first.</p>
             <ul class="blog-path__posts">
-              <li><a href="blog/10-statistics-cdao-2024.html">10 key statistics every Chief Data Analytics Officer should know</a></li>
-              <li><a href="blog/data-catalogs-are-dead.html">Data catalogs are dead, and the industry refusal to admit it is costing you</a></li>
-              <li><a href="blog/analytics-catalogs-actually-useful.html">Analytics hubs: actually useful, or just another checkbox?</a></li>
+              <li><a href="blog/10-statistics-cdao-2024">10 key statistics every Chief Data Analytics Officer should know</a></li>
+              <li><a href="blog/data-catalogs-are-dead">Data catalogs are dead, and the industry refusal to admit it is costing you</a></li>
+              <li><a href="blog/analytics-catalogs-actually-useful">Analytics hubs: actually useful, or just another checkbox?</a></li>
             </ul>
           </div>
 
@@ -262,11 +262,11 @@
             <h3>See the platform behind the thinking</h3>
             <p>Built for the environments you've been reading about. No rip-and-replace required.</p>
             <div class="pr-cta__buttons">
-              <a class="btn btn--accent" href="Demo.html">
+              <a class="btn btn--accent" href="Demo">
                 Book a demo
                 <svg class="arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </a>
-              <a class="btn btn--ghost-light" href="Product.html">Explore the platform</a>
+              <a class="btn btn--ghost-light" href="Product">Explore the platform</a>
             </div>
           </div>
           <div class="pr-cta__art" aria-hidden="true">
@@ -373,7 +373,7 @@
               '</div>' +
             '</div>' +
             '<div class="blog-feat__cta">' +
-              '<a class="btn btn--ghost-light" href="blog/' + feat.slug + '.html">Read the post ' + ARROW_LG + '</a>' +
+              '<a class="btn btn--ghost-light" href="blog/' + feat.slug + '">Read the post ' + ARROW_LG + '</a>' +
             '</div>';
         }
       }
@@ -382,7 +382,7 @@
       var grid = document.querySelector('[data-blog-grid]');
       if (grid) {
         grid.innerHTML = posts.map(function (p) {
-          return '<a class="res-card" data-type="blog" href="blog/' + p.slug + '.html" data-cat="' + p.cat + '">' +
+          return '<a class="res-card" data-type="blog" href="blog/' + p.slug + '" data-cat="' + p.cat + '">' +
             '<div class="res-card__thumb">' +
               '<span class="res-card__type-strip"><span class="swatch"></span>' + (catLabels[p.cat] || p.cat) + '</span>' +
               '<span class="res-card__mark">dh<span class="dot">.</span></span>' +
