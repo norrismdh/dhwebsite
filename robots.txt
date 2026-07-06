@@ -1,9 +1,9 @@
-# Live. Private/utility paths are blocked; /vs/ comparison pages are on
-# hold and carry meta noindex, so they stay crawlable but unindexed.
+# Live. /api and /dhadmin are app/admin endpoints — blocked from crawling.
+# /nda, /nda-signed, /thank-you and /vs/* carry meta noindex and are left
+# crawlable on purpose, so Google can read the noindex and keep them out of
+# the index. (A robots Disallow would hide the noindex and risk them showing
+# as URL-only results when linked externally.)
 User-agent: *
-Disallow: /nda
-Disallow: /nda-signed
-Disallow: /thank-you
 Disallow: /api/
 Disallow: /dhadmin/
 

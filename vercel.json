@@ -9,7 +9,28 @@
     { "source": "/solutions", "destination": "/Product", "permanent": true },
     { "source": "/solutions/:path*", "destination": "/Product", "permanent": true },
     { "source": "/data-literacy", "destination": "/Resources", "permanent": true },
-    { "source": "/data-literacy/:path*", "destination": "/Resources", "permanent": true }
+    { "source": "/data-literacy/:path*", "destination": "/Resources", "permanent": true },
+
+    { "source": "/about", "destination": "/About", "permanent": true },
+    { "source": "/architecture", "destination": "/Architecture", "permanent": true },
+    { "source": "/blog", "destination": "/Blog", "permanent": true },
+    { "source": "/clarity", "destination": "/Clarity", "permanent": true },
+    { "source": "/connectors", "destination": "/Connectors", "permanent": true },
+    { "source": "/contact", "destination": "/Contact", "permanent": true },
+    { "source": "/customers", "destination": "/Customers", "permanent": true },
+    { "source": "/demo", "destination": "/Demo", "permanent": true },
+    { "source": "/denver", "destination": "/Denver", "permanent": true },
+    { "source": "/faq", "destination": "/FAQ", "permanent": true },
+    { "source": "/partners", "destination": "/Partners", "permanent": true },
+    { "source": "/pattison", "destination": "/Pattison", "permanent": true },
+    { "source": "/pricing", "destination": "/Pricing", "permanent": true },
+    { "source": "/privacy", "destination": "/Privacy", "permanent": true },
+    { "source": "/product", "destination": "/Product", "permanent": true },
+    { "source": "/resources", "destination": "/Resources", "permanent": true },
+    { "source": "/security", "destination": "/Security", "permanent": true },
+    { "source": "/terms", "destination": "/Terms", "permanent": true },
+    { "source": "/usecases", "destination": "/UseCases", "permanent": true },
+    { "source": "/use-cases", "destination": "/UseCases", "permanent": true }
   ],
   "rewrites": [
     { "source": "/downloads/:fileId", "destination": "/api/download/:fileId" }
