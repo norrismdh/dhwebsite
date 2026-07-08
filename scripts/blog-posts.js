@@ -16,6 +16,14 @@ window.DH_BLOG_CAT_LABELS = {
 
 window.DH_BLOG_POSTS = [
   {
+    slug:     "bi-standardization-runs-late",
+    title:    "Why BI standardization projects run years late",
+    excerpt:  "Standardization keeps getting sold as a finish line, but it behaves like a treadmill. The sunk-cost anatomy of a program that never closes, and what to fix instead.",
+    cat:      "strategy",
+    date:     "Jul 2026",
+    readTime: "5 min"
+  },
+  {
     slug:     "analytics-portal",
     title:    "Analytics portal: one hub for every BI tool",
     excerpt:  "An analytics portal gives users one trusted place to find dashboards, reports, and business context across every BI tool they already use. What it is, what it should include, and when you need one.",
