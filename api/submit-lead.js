@@ -84,6 +84,7 @@ export default async function handler(req, res) {
           Company:     company   ?? '',
           Title:       role      ?? '',
           Lead_Source: leadSource ?? (utm?.utm_source ? `Website - ${utm.utm_source}` : 'Website Contact'),
+          Lead_Status: 'New Suspect',
           Description: description,
         }],
       }),

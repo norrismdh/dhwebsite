@@ -70,6 +70,7 @@ export default async function handler(req, res) {
           Company:     company   ?? '',
           Title:       role      ?? '',
           Lead_Source: 'ISG Download',
+          Lead_Status: 'New Suspect',
           Description: 'Downloaded the ISG Analytics Catalog report from the website.',
         }],
       }),
