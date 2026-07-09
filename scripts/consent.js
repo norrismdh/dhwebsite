@@ -30,12 +30,26 @@
   }
 
   // ── Consent state ────────────────────────────────────────────────
-  var DEFAULTS = { v: 1, necessary: true, functional: true, performance: false, marketing: false };
+  // Bump CONSENT_VERSION whenever a change materially expands what a bucket
+  // does (e.g. adding a new vendor). Stored consent with an older version is
+  // treated as absent, so the banner re-appears and everyone re-consents.
+  // v2: Apollo website tracker (a new third-party vendor, company-level
+  //     visitor identification) added to the marketing bucket.
+  var CONSENT_VERSION = 2;
+  var DEFAULTS = { v: CONSENT_VERSION, necessary: true, functional: true, performance: false, marketing: false };
 
   function loadConsent() {
     var raw = getCookie(CONSENT_COOKIE);
     if (!raw) return null;
-    try { return JSON.parse(raw); } catch (e) { return null; }
+    try {
+      var parsed = JSON.parse(raw);
+      // Consent stored under an older version predates a material change to
+      // what a bucket does — treat it as absent so the visitor re-consents.
+      // This must be enforced here (not just in init) so the preference modal
+      // doesn't pre-tick stale opt-ins on re-consent.
+      if (!parsed || parsed.v !== CONSENT_VERSION) return null;
+      return parsed;
+    } catch (e) { return null; }
   }
 
   function saveConsent(prefs) {
@@ -55,6 +69,7 @@
     if (prefs.marketing) {
       storeUtm();
       loadLinkedInInsight();
+      loadApollo();
     }
     fillUtmFields();
   }
@@ -104,6 +119,30 @@
     s.parentNode.insertBefore(b, s);
   }
 
+  // ── Apollo website tracker (marketing) ───────────────────────────
+  // Identifies the organization (company) a business visitor belongs to, for
+  // sales/attribution. Person-level identification is intentionally NOT
+  // enabled — that is an Apollo dashboard setting, not a code change; the
+  // script is identical either way. Loaded only once marketing consent is
+  // granted (initial load if already stored, or the moment the banner/modal
+  // accepts it). Idempotent.
+  var APOLLO_APP_ID = '69d68395f876c7001d18bf43';
+  var apolloLoaded = false;
+
+  function loadApollo() {
+    if (apolloLoaded) return;
+    apolloLoaded = true;
+    var nocache = Math.random().toString(36).substring(7);
+    var o = document.createElement('script');
+    o.src = 'https://assets.apollo.io/micro/website-tracker/tracker.iife.js?nocache=' + nocache;
+    o.async = true;
+    o.defer = true;
+    o.onload = function () {
+      window.trackingFunctions.onLoad({ appId: APOLLO_APP_ID });
+    };
+    document.head.appendChild(o);
+  }
+
   // ── UTM storage ──────────────────────────────────────────────────
   function storeUtm() {
     var existing = {};
@@ -148,7 +187,7 @@
       '<div class="dh-consent-banner__inner">' +
         '<div class="dh-consent-banner__text">' +
           '<strong>Cookie preferences</strong>' +
-          '<p>We use cookies to keep the site running. With your consent we also track performance analytics and campaign attribution. <a href="/Privacy.html#cookies">Learn more about cookies</a>.</p>' +
+          '<p>We use cookies to keep the site running. With your consent we also track performance analytics and, for marketing, measure campaigns and identify which companies visit our site. <a href="/Privacy.html#cookies">Learn more about cookies</a>.</p>' +
         '</div>' +
         '<div class="dh-consent-banner__actions">' +
           '<button class="dh-cb dh-cb--ghost" data-consent="manage">Manage</button>' +
@@ -162,11 +201,11 @@
     });
 
     banner.querySelector('[data-consent="accept"]').addEventListener('click', function () {
-      saveConsent({ v: 1, necessary: true, functional: true, performance: true, marketing: true });
+      saveConsent({ v: CONSENT_VERSION, necessary: true, functional: true, performance: true, marketing: true });
       hideBanner();
     });
     banner.querySelector('[data-consent="reject"]').addEventListener('click', function () {
-      saveConsent({ v: 1, necessary: true, functional: true, performance: false, marketing: false });
+      saveConsent({ v: CONSENT_VERSION, necessary: true, functional: true, performance: false, marketing: false });
       hideBanner();
     });
     banner.querySelector('[data-consent="manage"]').addEventListener('click', function () {
@@ -229,7 +268,7 @@
           toggle('necessary',   'Strictly necessary',        'Required for navigation, form submission, and security. Always active.',                                        true,              true)  +
           toggle('functional',  'Functional',                'Remembers your cookie choice so we don\'t ask again for 12 months.',                                           prefs.functional,  false) +
           toggle('performance', 'Performance & analytics',   'Helps us understand how visitors use the site (e.g. Google Analytics). No personal data sold or shared.',      prefs.performance, false) +
-          toggle('marketing',   'Marketing & attribution',   'Stores campaign parameters (UTM tags) so we can measure which channels brought you here. No ad retargeting.',  prefs.marketing,   false) +
+          toggle('marketing',   'Marketing & attribution',   'Measures which campaigns and channels bring you here (UTM tags, LinkedIn) and, via Apollo, identifies the company a business visitor belongs to.',  prefs.marketing,   false) +
         '</div>' +
         '<div class="dh-cm__foot">' +
           '<a href="/Privacy.html#cookies" class="dh-cm__policy-link">Privacy Policy</a>' +
@@ -265,11 +304,11 @@
       if (e.key === 'Escape') closeModal();
     });
     modal.querySelector('[data-cm-reject]').addEventListener('click', function () {
-      saveConsent({ v: 1, necessary: true, functional: true, performance: false, marketing: false });
+      saveConsent({ v: CONSENT_VERSION, necessary: true, functional: true, performance: false, marketing: false });
       closeModal();
     });
     modal.querySelector('[data-cm-save]').addEventListener('click', function () {
-      var updated = { v: 1, necessary: true, functional: true, performance: false, marketing: false };
+      var updated = { v: CONSENT_VERSION, necessary: true, functional: true, performance: false, marketing: false };
       modal.querySelectorAll('input[type="checkbox"]:not([disabled])').forEach(function (cb) {
         updated[cb.name] = cb.checked;
       });
@@ -297,6 +336,8 @@
 
   // ── Init ─────────────────────────────────────────────────────────
   function init() {
+    // loadConsent() returns null for absent OR version-stale consent, so a
+    // stored-but-outdated choice falls through to the banner (re-consent).
     var stored = loadConsent();
     window.DH_CONSENT = stored || Object.assign({}, DEFAULTS);
     window.DH_openConsentModal = openModal;
