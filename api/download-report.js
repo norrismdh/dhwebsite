@@ -68,7 +68,7 @@ export default async function handler(req, res) {
           Last_Name:   lastName,
           Email:       email,
           Company:     company   ?? '',
-          Title:       role      ?? '',
+          Designation: role      ?? '',
           Lead_Source: 'ISG Download',
           Lead_Status: 'New Suspect',
           Description: 'Downloaded the ISG Analytics Catalog report from the website.',

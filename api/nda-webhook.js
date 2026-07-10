@@ -201,7 +201,7 @@ export default async function handler(req, res) {
             Last_Name:   lastName,
             Email:       recipientEmail,
             Company:     company,
-            Title:       title ?? '',
+            Designation: title ?? '',
             Lead_Source: 'NDA Portal',
             Description: ndaBlock,
           }],

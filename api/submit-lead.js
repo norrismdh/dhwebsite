@@ -77,9 +77,10 @@ export default async function handler(req, res) {
       UTM_LABELS[k] ??
       k.replace(/^utm_/, '').replace(/[_-]+/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 
-    // The lead's job title maps to the native Title field. Fall back to the
-    // role category so forms that only capture a role (e.g. pricing) still
-    // populate Title as before.
+    // The lead's job title maps to the native "Title" field, whose Zoho Leads
+    // API name is Designation (NOT "Title" — that key is silently dropped).
+    // Fall back to the role category so forms that only capture a role (e.g.
+    // pricing) still populate it.
     const leadTitle = (jobTitle && jobTitle.trim()) || role || '';
 
     // Build the Description as labelled sections, top to bottom, skipping any that are empty.
@@ -118,7 +119,7 @@ export default async function handler(req, res) {
           Email:       email,
           Company:     company   ?? '',
           Website:     normalizedWebsite,
-          Title:       leadTitle,
+          Designation: leadTitle,
           Lead_Source: leadSource ?? (utm?.utm_source ? `Website - ${utm.utm_source}` : 'Website Contact'),
           Lead_Status: 'New Suspect',
           Description: description,
