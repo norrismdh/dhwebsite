@@ -44,7 +44,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { firstName, lastName, email, company, role, biTools, message, leadSource, utm } = req.body ?? {};
+  const { firstName, lastName, email, company, role, biTools, website, partnerType, region, message, leadSource, utm } = req.body ?? {};
 
   if (!email) {
     return res.status(400).json({ error: 'Email is required' });
@@ -56,19 +56,38 @@ export default async function handler(req, res) {
   try {
     const accessToken = await getAccessToken();
 
-    const biList = Array.isArray(biTools) && biTools.length
-      ? `BI Stack: ${biTools.join(', ')}\n\n`
-      : '';
+    // Human-friendly labels for the raw utm_* keys the tracker sends.
+    const UTM_LABELS = {
+      utm_source:   'Source',
+      utm_medium:   'Medium',
+      utm_campaign: 'Campaign',
+      utm_term:     'Term',
+      utm_content:  'Content',
+      gclid:        'Google Click ID',
+    };
+    const humanizeKey = (k) =>
+      UTM_LABELS[k] ??
+      k.replace(/^utm_/, '').replace(/[_-]+/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+
+    // Build the Description as labelled sections, top to bottom, skipping any that are empty.
+    const detailLines = [
+      Array.isArray(biTools) && biTools.length && `BI stack: ${biTools.join(', ')}`,
+      partnerType && `Partnership type: ${partnerType}`,
+      region      && `Primary region: ${region}`,
+    ].filter(Boolean);
 
     const utmLines = utm && typeof utm === 'object'
       ? Object.entries(utm)
           .filter(([, v]) => v)
-          .map(([k, v]) => `${k}: ${v}`)
-          .join('\n')
-      : '';
-    const utmBlock = utmLines ? `\n\nCampaign attribution:\n${utmLines}` : '';
+          .map(([k, v]) => `  ${humanizeKey(k)}: ${v}`)
+      : [];
 
-    const description = `${biList}${message ?? ''}${utmBlock}`.trim();
+    const sections = [];
+    if (detailLines.length)     sections.push(detailLines.join('\n'));
+    if (message && message.trim()) sections.push(`Message:\n${message.trim()}`);
+    if (utmLines.length)        sections.push(`Campaign attribution:\n${utmLines.join('\n')}`);
+
+    const description = sections.join('\n\n');
 
     const leadRes = await fetch('https://www.zohoapis.com/crm/v2/Leads', {
       method: 'POST',
@@ -82,6 +101,7 @@ export default async function handler(req, res) {
           Last_Name:   lastName  || email.split('@')[0],
           Email:       email,
           Company:     company   ?? '',
+          Website:     website   ?? '',
           Title:       role      ?? '',
           Lead_Source: leadSource ?? (utm?.utm_source ? `Website - ${utm.utm_source}` : 'Website Contact'),
           Lead_Status: 'New Suspect',
