@@ -44,7 +44,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { firstName, lastName, email, company, role, biTools, website, partnerType, region, message, leadSource, utm } = req.body ?? {};
+  const { firstName, lastName, email, company, jobTitle, role, topic, biTools, website, partnerType, region, message, leadSource, utm } = req.body ?? {};
 
   if (!email) {
     return res.status(400).json({ error: 'Email is required' });
@@ -52,6 +52,14 @@ export default async function handler(req, res) {
   if (!isBusinessEmail(email)) {
     return res.status(400).json({ error: BUSINESS_EMAIL_MESSAGE });
   }
+
+  // Accept a bare domain (e.g. "yourfirm.com") and add a scheme so the CRM
+  // stores a clickable URL.
+  const normalizedWebsite = (() => {
+    const w = (website ?? '').trim();
+    if (!w) return '';
+    return /^https?:\/\//i.test(w) ? w : `https://${w}`;
+  })();
 
   try {
     const accessToken = await getAccessToken();
@@ -69,8 +77,16 @@ export default async function handler(req, res) {
       UTM_LABELS[k] ??
       k.replace(/^utm_/, '').replace(/[_-]+/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
 
+    // The lead's job title maps to the native Title field. Fall back to the
+    // role category so forms that only capture a role (e.g. pricing) still
+    // populate Title as before.
+    const leadTitle = (jobTitle && jobTitle.trim()) || role || '';
+
     // Build the Description as labelled sections, top to bottom, skipping any that are empty.
+    // Include Role only when it isn't already serving as the Title, to avoid duplication.
     const detailLines = [
+      role && role !== leadTitle && `Role: ${role}`,
+      topic && `Enquiry topic: ${topic}`,
       Array.isArray(biTools) && biTools.length && `BI stack: ${biTools.join(', ')}`,
       partnerType && `Partnership type: ${partnerType}`,
       region      && `Primary region: ${region}`,
@@ -101,8 +117,8 @@ export default async function handler(req, res) {
           Last_Name:   lastName  || email.split('@')[0],
           Email:       email,
           Company:     company   ?? '',
-          Website:     website   ?? '',
-          Title:       role      ?? '',
+          Website:     normalizedWebsite,
+          Title:       leadTitle,
           Lead_Source: leadSource ?? (utm?.utm_source ? `Website - ${utm.utm_source}` : 'Website Contact'),
           Lead_Status: 'New Suspect',
           Description: description,
