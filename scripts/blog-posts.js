@@ -16,6 +16,14 @@ window.DH_BLOG_CAT_LABELS = {
 
 window.DH_BLOG_POSTS = [
   {
+    slug:     "multi-vendor-stack-not-failure",
+    title:    "The multi-vendor stack is not a failure state",
+    excerpt:  "Consolidation isn't stalling because you planned badly. It's stalling because it shouldn't finish. The operating model for running a multi-vendor BI stack on purpose.",
+    cat:      "strategy",
+    date:     "Jul 2026",
+    readTime: "6 min"
+  },
+  {
     slug:     "bi-standardization-runs-late",
     title:    "Why BI standardization projects run years late",
     excerpt:  "Standardization keeps getting sold as a finish line, but it behaves like a treadmill. The sunk-cost anatomy of a program that never closes, and what to fix instead.",
