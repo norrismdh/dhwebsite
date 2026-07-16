@@ -107,7 +107,10 @@ export async function requireAdmin(req, res) {
   try {
     return await verifyAdminToken(req);
   } catch (err) {
-    res.status(401).json({ error: 'Unauthorized', detail: err.message });
+    // Log the specific reason server-side; return a generic message so we don't
+    // disclose config (allow-list membership, missing env vars) to the client.
+    console.warn('Admin auth failed:', err.message);
+    res.status(401).json({ error: 'Unauthorized' });
     return null;
   }
 }
