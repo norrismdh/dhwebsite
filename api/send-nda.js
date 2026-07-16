@@ -78,7 +78,9 @@ export default async function handler(req, res) {
       process.env.SITE_URL ||
       (process.env.VERCEL_PROJECT_PRODUCTION_URL && `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`) ||
       `https://${process.env.VERCEL_URL}`;
-    const redirectUrl = `${baseUrl}/nda-signed.html?name=${encodeURIComponent(firstName)}&email=${encodeURIComponent(email.trim())}`;
+    // Only the first name goes in the URL (for the greeting). The email is
+    // intentionally omitted — it's PII and would leak into history/referrer/logs.
+    const redirectUrl = `${baseUrl}/nda-signed.html?name=${encodeURIComponent(firstName)}`;
 
     // Fetch the template's action_id (required by Zoho Sign API, cached after first call)
     const templateActionId = await getTemplateActionId(token);
