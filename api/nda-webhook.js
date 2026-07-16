@@ -1,3 +1,17 @@
+import { timingSafeEqual } from 'crypto';
+
+// Shared-secret gate. Zoho Sign sends no HMAC signature, so the webhook is
+// authenticated by a secret only Zoho and this function know — passed either as
+// a ?token= query param or an X-Webhook-Secret header. Constant-time compared.
+function validSecret(req) {
+  const expected = process.env.NDA_WEBHOOK_SECRET || '';
+  const provided = req.query?.token || req.headers['x-webhook-secret'] || '';
+  if (!expected || !provided) return false;
+  const a = Buffer.from(String(provided));
+  const b = Buffer.from(expected);
+  return a.length === b.length && timingSafeEqual(a, b);
+}
+
 let cachedCrmToken    = null;
 let crmTokenExpiresAt = 0;
 
@@ -81,6 +95,10 @@ async function fetchRequestFields(requestId) {
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+
+  // Reject anyone who doesn't present the shared secret — the payload is
+  // otherwise fully attacker-controllable and writes to Zoho CRM.
+  if (!validSecret(req)) return res.status(401).json({ error: 'Unauthorized' });
 
   // NOTE: do all work BEFORE responding. On Vercel the function can freeze once the
   // response is sent, so awaited CRM calls after res.send() may never run.
