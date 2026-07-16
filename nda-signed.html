@@ -457,9 +457,18 @@
       const email  = params.get('email');
       const desc   = document.getElementById('ty-desc');
       if (name || email) {
-        const to = email ? ` to <strong>${email}</strong>` : '';
-        const hi = name  ? `Thanks, ${name}. ` : '';
-        desc.innerHTML = `${hi}Your signed NDA has been sent${to}. Someone from Digital Hive will be in touch shortly.`;
+        // Build with text nodes — never innerHTML — so name/email from the URL
+        // can't inject markup (reflected XSS).
+        desc.textContent = '';
+        if (name) desc.append(`Thanks, ${name}. `);
+        desc.append('Your signed NDA has been sent');
+        if (email) {
+          desc.append(' to ');
+          const strong = document.createElement('strong');
+          strong.textContent = email;
+          desc.append(strong);
+        }
+        desc.append('. Someone from Digital Hive will be in touch shortly.');
       }
 
       // Countdown ring
