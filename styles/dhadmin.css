@@ -210,7 +210,9 @@ body::before {
    ----------------------------------------------------------- */
 .admin-stats {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  /* auto-fit (not auto-fill) so the cards stretch to fill the row instead of
+     leaving empty phantom tracks — no "missing card" gap on the right */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: var(--space-5);
   margin-bottom: var(--space-7);
 }
@@ -312,6 +314,16 @@ body::before {
 
 .admin-table tbody tr:last-child td {
   border-bottom: none;
+}
+
+/* Row action buttons — kept on a single line, aligned to the right edge.
+   The table wrapper scrolls horizontally on narrow screens, so no wrap. */
+.admin-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-2);
+  white-space: nowrap;
 }
 
 /* -----------------------------------------------------------

@@ -74,7 +74,7 @@
           </div>
           <div class="admin-stat-card">
             <div class="admin-stat-card__label">Latest version</div>
-            <div class="admin-stat-card__value" id="stat-latest" style="font-size:var(--fs-20)">-</div>
+            <div class="admin-stat-card__value" id="stat-latest">-</div>
           </div>
           <div class="admin-stat-card">
             <div class="admin-stat-card__label">Storage used</div>
@@ -191,6 +191,19 @@
       return Object.values(files ?? {}).reduce((sum, f) => sum + (f.downloadCount ?? 0), 0);
     }
 
+    // Compare two version strings numerically, segment by segment
+    // ("2.10.0" > "2.9.0"). Non-numeric separators (. - +) are treated alike.
+    function compareVersions(a, b) {
+      const pa = String(a).split(/[.\-+]/).map(n => parseInt(n, 10) || 0);
+      const pb = String(b).split(/[.\-+]/).map(n => parseInt(n, 10) || 0);
+      const len = Math.max(pa.length, pb.length);
+      for (let i = 0; i < len; i++) {
+        const diff = (pa[i] ?? 0) - (pb[i] ?? 0);
+        if (diff !== 0) return diff;
+      }
+      return 0;
+    }
+
     // ── Render releases table ─────────────────────────────────────────────────
 
     function renderTable(releases, auth, storageBytes, storageLive) {
@@ -210,7 +223,7 @@
           <td style="color:var(--fg-3)">${formatDate(r.publishedAt)}</td>
           <td style="color:var(--fg-2)">${totalDownloads(r.files)}</td>
           <td>${statusHtml(r.enabled)}</td>
-          <td style="display:flex;gap:var(--space-2);flex-wrap:wrap">
+          <td class="admin-actions">
             <button class="btn btn--ghost admin-toggle-btn"
               data-id="${r.id}" data-enabled="${r.enabled}"
               style="padding:6px 14px;font-size:var(--fs-12)">
@@ -228,7 +241,10 @@
       // Populate stat cards
       const active       = releases.filter(r => r.enabled).length;
       const allDownloads = releases.reduce((s, r) => s + totalDownloads(r.files), 0);
-      const latest       = releases.find(r => r.enabled);
+      // Highest enabled version number — not whichever was uploaded most recently
+      const latest       = releases
+        .filter(r => r.enabled)
+        .reduce((max, r) => (max && compareVersions(max.version, r.version) >= 0 ? max : r), null);
       // Prefer live bucket size from Cloudflare; fall back to manifest sum if unavailable
       const manifestBytes = releases.reduce((s, r) =>
         s + Object.values(r.files ?? {}).reduce((fs, f) => fs + (f.sizeBytes ?? 0), 0), 0);
@@ -263,14 +279,12 @@
       storageValueEl.textContent   = formatStorage(totalBytes);
       storageValueEl.style.color   = pct >= 0.8 ? arcColor : 'var(--fg-1)';
 
-      // Warning note below the donut
+      // Note below the donut — only shown when it carries information the
+      // donut itself doesn't (over-limit cost warning, or estimate caveat).
+      // The routine "X% used" is dropped: the ring + centre label already say it.
       const storageNote = document.getElementById('stat-storage-note');
       if (pct >= 1) {
-        storageNote.textContent   = '⚠ Over 10 GB - extra R2 costs apply.';
-        storageNote.style.color   = arcColor;
-        storageNote.hidden        = false;
-      } else if (pct >= 0.8) {
-        storageNote.textContent   = `${(pct * 100).toFixed(0)}% of 10 GB used`;
+        storageNote.textContent   = '⚠ Over 10 GB - extra R2 costs apply';
         storageNote.style.color   = arcColor;
         storageNote.hidden        = false;
       } else if (!storageLive) {
@@ -278,9 +292,7 @@
         storageNote.style.color   = 'var(--fg-3)';
         storageNote.hidden        = false;
       } else {
-        storageNote.textContent   = `${(pct * 100).toFixed(0)}% of 10 GB used`;
-        storageNote.style.color   = 'var(--fg-3)';
-        storageNote.hidden        = false;
+        storageNote.hidden        = true;
       }
 
       document.getElementById('table-loading').hidden = true;
