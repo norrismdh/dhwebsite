@@ -165,6 +165,17 @@
     </div>
   </div>
 
+  <!-- ============================================================
+       RELEASE-NOTES HOVER PREVIEW  (floating card, filled by JS)
+       ============================================================ -->
+  <div id="notes-popover" class="notes-popover" role="tooltip" aria-hidden="true">
+    <div class="notes-popover__head" id="notes-popover-head"></div>
+    <div class="notes-popover__body" id="notes-popover-body"></div>
+  </div>
+
+  <!-- marked: markdown renderer for the release-notes preview (pinned major) -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@14/marked.min.js"></script>
+
   <!-- MSAL is imported directly inside dhadmin.js (ES module) - no CDN tag needed -->
   <script type="module">
     import { initAdmin, adminFetch } from '../scripts/dhadmin.js';
@@ -204,6 +215,22 @@
       return 0;
     }
 
+    // Render release-notes markdown → HTML (reuses marked; safe fallback if absent)
+    function renderNotes(md) {
+      if (!md) return '';
+      if (typeof window.marked !== 'undefined') {
+        return window.marked.parse(md, { breaks: true, gfm: true });
+      }
+      const esc = String(md).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      return `<pre style="white-space:pre-wrap;font-family:inherit;margin:0">${esc}</pre>`;
+    }
+
+    // Small "has notes" glyph shown in the Title cell — the hover-preview affordance
+    const NOTES_ICON = `<svg class="admin-notes-hint" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="14" y2="17"/></svg>`;
+
+    // release id → raw notes markdown, populated by renderTable, read on hover
+    const notesById = {};
+
     // ── Render releases table ─────────────────────────────────────────────────
 
     function renderTable(releases, auth, storageBytes, storageLive) {
@@ -215,11 +242,13 @@
         return;
       }
 
+      releases.forEach(r => { notesById[r.id] = (r.notes ?? '').trim(); });
+
       tbody.innerHTML = releases.map(r => `
         <tr data-id="${r.id}">
           <td>${badgeHtml(r.type)}</td>
           <td style="font-weight:var(--fw-bold)">v${r.version}</td>
-          <td>${r.title}</td>
+          <td>${r.title}${notesById[r.id] ? NOTES_ICON : ''}</td>
           <td style="color:var(--fg-3)">${formatDate(r.publishedAt)}</td>
           <td style="color:var(--fg-2)">${totalDownloads(r.files)}</td>
           <td>${statusHtml(r.enabled)}</td>
@@ -299,6 +328,95 @@
       document.getElementById('table-wrap').hidden    = false;
     }
 
+    // ── Release-notes hover preview ────────────────────────────────────────────
+    // Shows a floating card of rendered notes anchored to the hovered row.
+    // pointer-events:none → pure preview, no hover-gap flicker to bridge.
+    function setupNotesPreview() {
+      // Hover-only: skip entirely on touch / coarse pointers
+      if (!window.matchMedia?.('(hover: hover)').matches) return { hide() {} };
+
+      const tbody = document.getElementById('release-tbody');
+      const pop   = document.getElementById('notes-popover');
+      const head  = document.getElementById('notes-popover-head');
+      const body  = document.getElementById('notes-popover-body');
+
+      const OPEN_DELAY  = 150; // wait before the first preview (no flicker while sweeping rows)
+      const CLOSE_DELAY = 120; // grace period so moving between rows doesn't flash it shut
+
+      let currentRow = null, anchorRow = null;
+      let openTimer = null, closeTimer = null;
+      let isOpen = false;
+
+      function positionPopover(row) {
+        const GAP = 8, M = 16;
+        const rect = row.getBoundingClientRect();
+        const w = pop.offsetWidth, h = pop.offsetHeight;
+        const vw = window.innerWidth, vh = window.innerHeight;
+
+        const left = Math.min(Math.max(rect.left, M), vw - w - M);
+        let top = rect.bottom + GAP, placement = 'bottom';
+        if (top + h > vh - M) {                         // no room below → flip above
+          const above = rect.top - GAP - h;
+          if (above >= M) { top = above; placement = 'top'; }
+          else { top = Math.max(M, vh - h - M); }       // pin within viewport
+        }
+        pop.style.left = `${Math.round(left)}px`;
+        pop.style.top  = `${Math.round(top)}px`;
+        pop.dataset.placement = placement;
+      }
+
+      function showFor(row) {
+        const notes = notesById[row.dataset.id];
+        if (!notes) { hide(); return; }
+        const version = row.querySelector('td:nth-child(2)')?.textContent.trim() ?? '';
+        head.textContent = version ? `${version} · Release notes` : 'Release notes';
+        body.innerHTML = renderNotes(notes);
+        anchorRow = row;
+        positionPopover(row);                            // element has layout even while hidden
+        body.toggleAttribute('data-truncated', body.scrollHeight > body.clientHeight + 1);
+        pop.classList.add('is-open');
+        pop.setAttribute('aria-hidden', 'false');
+        isOpen = true;
+      }
+
+      function hide() {
+        pop.classList.remove('is-open');
+        pop.setAttribute('aria-hidden', 'true');
+        isOpen = false;
+        currentRow = null;
+        anchorRow = null;
+      }
+
+      function onRowEnter(row) {
+        clearTimeout(closeTimer);
+        clearTimeout(openTimer);
+        currentRow = row;
+        const notes = notesById[row.dataset.id];
+        if (!notes) { if (isOpen) hide(); return; }      // rows without notes dismiss the card
+        if (isOpen) showFor(row);                         // already warm → retarget instantly
+        else openTimer = setTimeout(() => { if (currentRow === row) showFor(row); }, OPEN_DELAY);
+      }
+
+      tbody.addEventListener('mouseover', (e) => {
+        const row = e.target.closest('tr');
+        if (!row || row === currentRow) return;
+        onRowEnter(row);
+      });
+      tbody.addEventListener('mouseleave', () => {
+        clearTimeout(openTimer);
+        currentRow = null;
+        if (isOpen) closeTimer = setTimeout(hide, CLOSE_DELAY);
+      });
+
+      // Keep the card glued to its row while scrolling; Escape dismisses.
+      const reflow = () => { if (isOpen && anchorRow) positionPopover(anchorRow); };
+      window.addEventListener('scroll', reflow, { passive: true });
+      window.addEventListener('resize', reflow);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && isOpen) hide(); });
+
+      return { hide };
+    }
+
     // ── Main ──────────────────────────────────────────────────────────────────
     // Wrapped in an async function so `return` is valid (top-level return is
     // illegal in ES modules).
@@ -325,6 +443,9 @@
         const { releases, storageBytes, storageLive } = await res.json();
 
         renderTable(releases, auth, storageBytes, storageLive);
+
+        // Release-notes hover preview (floating card anchored to each row)
+        const notesPreview = setupNotesPreview();
 
         // Quick enable/disable toggle - event delegation on the tbody
         document.getElementById('release-tbody').addEventListener('click', async (e) => {
@@ -363,6 +484,7 @@
         let pendingDeleteId = null;
 
         function openDeleteModal(id, version) {
+          notesPreview.hide();
           pendingDeleteId = id;
           modalVersionHint.textContent = `v${version}`;
           modalConfirmInput.value = '';

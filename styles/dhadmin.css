@@ -797,6 +797,132 @@ body::before {
 }
 
 /* -----------------------------------------------------------
+   Release-notes hover preview  (dashboard table)
+   ----------------------------------------------------------- */
+
+/* "Has notes" affordance in the Title cell */
+.admin-notes-hint {
+  display: inline-block;
+  vertical-align: -1px;
+  margin-left: var(--space-2);
+  color: var(--fg-3);
+  opacity: 0.65;
+  transition: color var(--dur-fast) var(--ease-out),
+              opacity var(--dur-fast) var(--ease-out);
+}
+
+.admin-table tbody tr:hover .admin-notes-hint {
+  color: var(--dh-navy);
+  opacity: 1;
+}
+
+/* Floating preview card */
+.notes-popover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 400;                       /* above content, below the delete modal (500) */
+  width: min(420px, calc(100vw - 32px));
+  background: var(--bg-2);
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-3);
+  overflow: hidden;
+  pointer-events: none;               /* pure preview — never steals the pointer */
+  opacity: 0;
+  visibility: hidden;
+  --enter-y: 6px;
+  transform: translateY(var(--enter-y)) scale(0.98);  /* never from 0 */
+  transform-origin: top left;         /* grows from the row edge it anchors to */
+  transition: opacity 160ms var(--ease-out),
+              transform 160ms var(--ease-out),
+              visibility 0s linear 160ms;
+}
+
+.notes-popover.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  transition: opacity 160ms var(--ease-out),
+              transform 160ms var(--ease-out),
+              visibility 0s;
+}
+
+/* Flipped above the row → grow upward from the bottom edge */
+.notes-popover[data-placement="top"] {
+  --enter-y: -6px;
+  transform-origin: bottom left;
+}
+
+.notes-popover__head {
+  padding: var(--space-3) var(--space-5);
+  border-bottom: 1px solid var(--border-2);
+  background: var(--bg-3);
+  font-size: var(--fs-12);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--fg-3);
+}
+
+.notes-popover__body {
+  position: relative;
+  max-height: 300px;
+  overflow: hidden;
+  padding: var(--space-5);
+  color: var(--fg-2);
+  font-size: var(--fs-14);
+  line-height: var(--lh-loose);
+}
+
+/* Fade the bottom edge when the notes overflow the preview height */
+.notes-popover__body[data-truncated]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 44px;
+  background: linear-gradient(to bottom, transparent, var(--bg-2));
+}
+
+/* Markdown typography — mirrors .dl-card__notes so the preview reads like the
+   public downloads page, tightened for the smaller popover. */
+.notes-popover__body > *:first-child { margin-top: 0; }
+.notes-popover__body > *:last-child  { margin-bottom: 0; }
+
+.notes-popover__body h1,
+.notes-popover__body h2,
+.notes-popover__body h3,
+.notes-popover__body h4 {
+  color: var(--fg-1);
+  margin: var(--space-4) 0 var(--space-2);
+  font-size: var(--fs-14);
+  font-weight: var(--fw-bold);
+}
+
+.notes-popover__body h1:first-child,
+.notes-popover__body h2:first-child,
+.notes-popover__body h3:first-child { margin-top: 0; }
+
+.notes-popover__body p  { margin: 0 0 var(--space-3); }
+.notes-popover__body ul,
+.notes-popover__body ol { padding-left: var(--space-5); margin: 0 0 var(--space-3); }
+.notes-popover__body li { margin-bottom: var(--space-1); }
+.notes-popover__body code { font-size: var(--fs-12); }
+.notes-popover__body a  { color: var(--link); }
+
+@media (prefers-reduced-motion: reduce) {
+  .notes-popover         { transform: none; transition: opacity 120ms linear, visibility 0s linear 120ms; }
+  .notes-popover.is-open { transform: none; transition: opacity 120ms linear, visibility 0s; }
+}
+
+/* Coarse pointers can't hover — the JS preview is skipped, so drop the affordance */
+@media (hover: none) {
+  .admin-notes-hint { display: none; }
+}
+
+/* -----------------------------------------------------------
    Responsive
    ----------------------------------------------------------- */
 @media (max-width: 768px) {
