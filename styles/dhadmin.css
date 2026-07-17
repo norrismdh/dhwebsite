@@ -822,7 +822,11 @@ body::before {
   top: 0;
   left: 0;
   z-index: 400;                       /* above content, below the delete modal (500) */
-  width: min(420px, calc(100vw - 32px));
+  /* Size to content: compact for a one-line note, growing only up to the
+     max width for long notes — no oversized box around sparse content. */
+  width: max-content;
+  min-width: 220px;
+  max-width: min(400px, calc(100vw - 32px));
   background: var(--bg-2);
   border: 1px solid var(--border-2);
   border-radius: var(--radius-lg);
@@ -869,10 +873,11 @@ body::before {
   position: relative;
   max-height: 300px;
   overflow: hidden;
-  padding: var(--space-5);
+  padding: var(--space-4) var(--space-5);
   color: var(--fg-2);
   font-size: var(--fs-14);
   line-height: var(--lh-loose);
+  overflow-wrap: anywhere;            /* long URLs wrap cleanly instead of breaking mid-word */
 }
 
 /* Fade the bottom edge when the notes overflow the preview height */
@@ -910,7 +915,7 @@ body::before {
 .notes-popover__body ol { padding-left: var(--space-5); margin: 0 0 var(--space-3); }
 .notes-popover__body li { margin-bottom: var(--space-1); }
 .notes-popover__body code { font-size: var(--fs-12); }
-.notes-popover__body a  { color: var(--link); }
+.notes-popover__body a  { color: var(--link); overflow-wrap: anywhere; }
 
 @media (prefers-reduced-motion: reduce) {
   .notes-popover         { transform: none; transition: opacity 120ms linear, visibility 0s linear 120ms; }
