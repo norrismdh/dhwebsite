@@ -1119,6 +1119,15 @@ button { font-family: inherit; cursor: pointer; }
   margin-bottom: var(--space-5);
   transition: background var(--dur-slow) var(--ease-out);
 }
+/* orange rim overlay - sits under the dark fill so it shows only as the hex edge */
+.step__hex::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  background: linear-gradient(180deg, var(--dh-orange) 0%, #d97a1e 100%);
+  opacity: 0;
+}
 .step__hex::after {
   content: "";
   position: absolute;
@@ -1156,6 +1165,33 @@ button { font-family: inherit; cursor: pointer; }
   line-height: 1.55;
 }
 
+/* traveling highlight - each hexagon lifts with an orange rim + glow in
+   sequence (01 -> 02 -> 03), then loops. Motion-safe only. */
+@media (prefers-reduced-motion: no-preference) {
+  .step__hex        { animation: stepHexLift 6s var(--ease-out) infinite; }
+  .step__hex::before { animation: stepHexRim  6s var(--ease-out) infinite; }
+
+  .step:nth-child(2) .step__hex,
+  .step:nth-child(2) .step__hex::before { animation-delay: 2s; }
+
+  .step:nth-child(3) .step__hex,
+  .step:nth-child(3) .step__hex::before { animation-delay: 4s; }
+}
+@keyframes stepHexLift {
+  0%, 30%, 100% {
+    transform: translateY(0);
+    filter: drop-shadow(0 0 0 rgba(0,0,0,0)) drop-shadow(0 0 0 rgba(243,146,53,0));
+  }
+  15% {
+    transform: translateY(-6px);
+    filter: drop-shadow(0 12px 22px rgba(0,0,0,0.4)) drop-shadow(0 0 14px rgba(243,146,53,0.55));
+  }
+}
+@keyframes stepHexRim {
+  0%, 30%, 100% { opacity: 0; }
+  15%           { opacity: 1; }
+}
+
 /* desktop: connector lines between steps */
 .step__connect {
   display: none;
@@ -1169,8 +1205,36 @@ button { font-family: inherit; cursor: pointer; }
     width: calc(100% - 160px);
     height: 1px;
     background: repeating-linear-gradient(to right, rgba(255,255,255,0.25) 0 4px, transparent 4px 10px);
+    overflow: visible;
   }
   .step:last-child .step__connect { display: none; }
+
+  /* a glowing pulse that travels along the connector, drawing a trail as it
+     goes - fires as the highlight leaves one hex and arrives at the next */
+  .step__connect::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -22%;
+    width: 22%;
+    height: 3px;
+    transform: translateY(-50%);
+    border-radius: 3px;
+    background: linear-gradient(to right, rgba(243,146,53,0), var(--dh-orange));
+    box-shadow: 0 0 9px 1px rgba(243,146,53,0.7);
+    opacity: 0;
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .step__connect::before { animation: stepConnectTravel 6s var(--ease-out) infinite; }
+    .step:nth-child(2) .step__connect::before { animation-delay: 2s; }
+  }
+}
+@keyframes stepConnectTravel {
+  0%, 15%   { left: -22%; opacity: 0; }
+  19%       { opacity: 1; }
+  44%       { opacity: 1; }
+  48%       { left: 100%; opacity: 0; }
+  100%      { left: 100%; opacity: 0; }
 }
 /* mobile: vertical connector line between stacked hexagons */
 @media (max-width: 767px) {
