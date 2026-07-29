@@ -274,30 +274,29 @@
 
   <main>
 
-    <!-- Breadcrumb -->
-    <nav class="breadcrumb" aria-label="Breadcrumb">
-      <div class="container">
-        <ol>
-          <li><a href="../Resources">Resources</a></li>
-          <li aria-hidden="true" class="sep">/</li>
-          <li><a href="../Resources">Comparisons</a></li>
-          <li aria-hidden="true" class="sep">/</li>
-          <li class="current">Digital Hive vs ZenOptics</li>
-        </ol>
-      </div>
-    </nav>
-
     <!-- ============================================================
          1 - HEADER
          ============================================================ -->
-    <section class="cmp-hero" data-screen-label="01 Header">
-      <div class="container reveal">
+    <section class="cmp-hero hex-hero" data-screen-label="01 Header">
+      <div class="hex-hero__motif" aria-hidden="true"></div>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <div class="container">
+          <ol>
+            <li><a href="../Resources">Resources</a></li>
+            <li aria-hidden="true" class="sep">/</li>
+            <li><a href="../Resources">Comparisons</a></li>
+            <li aria-hidden="true" class="sep">/</li>
+            <li class="current">Digital Hive vs ZenOptics</li>
+          </ol>
+        </div>
+      </nav>
+      <div class="container cmp-hero__inner reveal">
         <span class="cmp-hero__tag">
           <span class="vs" aria-hidden="true">VS</span>
           Honest comparison
         </span>
         <h1>Digital Hive vs ZenOptics: an honest comparison</h1>
-        <p>Both products serve similar needs. Here's what's different - and where each fits best</p>
+        <p class="cmp-hero__sub">Both products live above your BI tools. Here's what's actually different - and where each fits best</p>
       </div>
     </section>
 
@@ -321,11 +320,11 @@
               </div>
             </div>
             <ul>
-              <li>Experience-first analytics hub</li>
               <li>Analytics Hub - branded, role-personalized portal</li>
-              <li>Enterprise-grade security and audit trails</li>
-              <li>Zero data movement - metadata-only indexing</li>
-              <li>Deep migration and M&amp;A use-case documentation</li>
+              <li>Zero data movement - metadata-only, live passthrough</li>
+              <li>AI-powered search and AI-powered analytics, today</li>
+              <li>Trust signals surface automatically - no manual certification gate</li>
+              <li>Robust roadmap - shared in depth under NDA</li>
             </ul>
           </div>
 
@@ -342,10 +341,10 @@
               </div>
             </div>
             <ul>
-              <li>Atlas - analytics system of record</li>
-              <li>Nexus - AI context layer</li>
-              <li>Maestro - analytics workflow automation</li>
-              <li>Strong governance and KPI standardization</li>
+              <li>Atlas - analytics catalog, portal &amp; governance</li>
+              <li>Nexus - AI context layer feeding external copilots</li>
+              <li>Maestro - governed workflow automation</li>
+              <li>Steward-certified content and KPI standardization</li>
             </ul>
           </div>
         </div>
@@ -375,47 +374,47 @@
               <tr>
                 <td>Primary positioning</td>
                 <td class="self">Analytics Hub &amp; BI Portal</td>
-                <td class="other">Analytics hub &amp; decision-intelligence platform</td>
+                <td class="other">Decision-intelligence platform - catalog, portal, governance, AI</td>
+              </tr>
+              <tr>
+                <td>Data handling</td>
+                <td class="self">Metadata-only - no data movement, live passthrough</td>
+                <td class="other">Metadata-first, but caches rendered thumbnail snapshots</td>
+              </tr>
+              <tr>
+                <td>AI capabilities</td>
+                <td class="self">AI-powered search + AI-powered analytics, today</td>
+                <td class="other">Nexus context layer feeding external copilots; Maestro workflows</td>
+              </tr>
+              <tr>
+                <td>Content certification</td>
+                <td class="self">Trust signals surface automatically</td>
+                <td class="other">Manual steward certification &amp; ongoing curation</td>
               </tr>
               <tr>
                 <td>Core strength</td>
                 <td class="self">Discovery, adoption, experience layer</td>
-                <td class="other">Catalog + AI workflows + governance</td>
-              </tr>
-              <tr>
-                <td>AI capabilities</td>
-                <td class="self">On roadmap</td>
-                <td class="other">Atlas + Nexus (context) + Maestro (workflows)</td>
+                <td class="other">Catalog + governance + AI workflow automation</td>
               </tr>
               <tr>
                 <td>BI connectors</td>
                 <td class="self">20+ platforms and document sources</td>
-                <td class="other">Similar connector breadth</td>
-              </tr>
-              <tr>
-                <td>Multi-tenant support</td>
-                <td class="self">Yes - customized Hives per audience</td>
-                <td class="other">Yes - portal customization</td>
+                <td class="other">20+ platforms, no agents or custom code</td>
               </tr>
               <tr>
                 <td>Deployment</td>
                 <td class="self">Cloud SaaS, self-hosted</td>
-                <td class="other">Cloud SaaS</td>
-              </tr>
-              <tr>
-                <td>Independence</td>
-                <td class="self">Vendor-neutral - no BI platform allegiance</td>
-                <td class="other">Vendor-neutral</td>
+                <td class="other">Cloud SaaS, on-premises</td>
               </tr>
               <tr>
                 <td>Best fit</td>
                 <td class="self">Multi-vendor, migration, M&amp;A, data sovereignty</td>
-                <td class="other">Governance, KPI standardization, AI workflows</td>
+                <td class="other">Regulated report sprawl, KPI standardization, AI workflows</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p class="cmp-table-section__note">Based on publicly available product documentation as of May 2026. We update this page when either product ships a material change</p>
+        <p class="cmp-table-section__note">Based on publicly available product documentation as of July 2026. We update this page when either product ships a material change</p>
       </div>
     </section>
 
@@ -431,16 +430,16 @@
 
         <ul class="leads__list">
           <li class="lead-item reveal">
-            <h3>Enterprise procurement readiness</h3>
-            <p>SOC 2 Type II, ISO 27001, and HIPAA-ready out of the box. The security questionnaire is short because the architecture is simple: metadata-only indexing, native auth passthrough, no data movement. Less proof-of-life work for your procurement and architecture teams</p>
+            <h3>We never touch your data</h3>
+            <p>Digital Hive indexes metadata and passes users through to the live report - your data is never copied or moved into the platform. ZenOptics still harvests and stores rendered thumbnail snapshots and metadata. Staying metadata-only keeps data sovereignty intact and the security questionnaire short: native auth passthrough, no data movement</p>
           </li>
           <li class="lead-item reveal">
-            <h3>Experience layer</h3>
-            <p>Branded, role-personalized Analytics Hubs are first-class - not a configuration screen bolted onto a catalog. Finance lands on finance. Sales lands on sales. External clients see their own portal. One deployment serves them all</p>
+            <h3>AI-powered search and analytics, today</h3>
+            <p>AI search runs across every connected tool, and AI-powered analytics is built in - not a context layer that exists to feed someone else's copilot. It ships now, and the deeper roadmap is shared in full under NDA</p>
           </li>
           <li class="lead-item reveal">
-            <h3>Migration and M&amp;A depth</h3>
-            <p>The product was built around situations where the underlying analytics stack is moving - platform migrations, post-acquisition integrations, parallel environments. Documentation, use cases, and customer references concentrate here</p>
+            <h3>Adoption without the governance tax</h3>
+            <p>Certified, trusted content surfaces by default. There's no standing team of stewards manually certifying, deprecating, and re-curating every asset before users are allowed to trust it - the experience does that work for you</p>
           </li>
         </ul>
       </div>
@@ -458,16 +457,12 @@
 
         <ul class="leads__list">
           <li class="lead-item reveal">
-            <h3>AI-driven workflow automation alongside the catalog</h3>
-            <p>If embedded AI workflows (Nexus context, Maestro automation) are a primary buying criterion - not a roadmap nice-to-have - ZenOptics is shipping more breadth there today</p>
+            <h3>Governed AI workflow automation</h3>
+            <p>If agentic, governed execution - Maestro and ZIVA turning insights into automated, auditable workflows - is a primary buying criterion today, ZenOptics ships more breadth there than our search-and-analytics AI</p>
           </li>
           <li class="lead-item reveal">
             <h3>Heavy KPI standardization across tools</h3>
-            <p>Teams whose top problem is reconciling conflicting metric definitions across a wide BI estate, with cross-tool glossary management as the core workflow, tend to find ZenOptics' governance-first framing closer to their pain</p>
-          </li>
-          <li class="lead-item reveal">
-            <h3>Cloud-only environments that don't need on-premises</h3>
-            <p>If self-hosted deployment isn't on your requirement list and you want a cloud SaaS-first vendor, the comparison narrows considerably and either product is defensible</p>
+            <p>Teams whose top problem is reconciling conflicting metric definitions across a wide BI estate, with cross-tool glossary curation as the core workflow, tend to find ZenOptics' steward-driven, governance-first framing closer to their pain</p>
           </li>
         </ul>
       </div>
