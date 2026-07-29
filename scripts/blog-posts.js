@@ -16,6 +16,14 @@ window.DH_BLOG_CAT_LABELS = {
 
 window.DH_BLOG_POSTS = [
   {
+    slug:     "the-use-case-for-usage",
+    title:    "The use case for usage: know what's actually being used",
+    excerpt:  "You can list every BI license you pay for, but not which reports drive decisions. Why usage intelligence, not vendor activity metrics, is how you defend analytics spend and govern well.",
+    cat:      "strategy",
+    date:     "Jul 2026",
+    readTime: "7 min"
+  },
+  {
     slug:     "multi-vendor-stack-not-failure",
     title:    "The multi-vendor stack is not a failure state",
     excerpt:  "Consolidation isn't stalling because you planned badly. It's stalling because it shouldn't finish. The operating model for running a multi-vendor BI stack on purpose.",
