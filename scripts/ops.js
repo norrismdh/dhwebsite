@@ -378,8 +378,10 @@ async function main() {
 
         if (res.status === 503) {
           const body = await res.json().catch(() => ({}));
-          showState(`<strong>CRM reporting isn't configured yet.</strong><br>${esc(body.error || 'Set the Zoho reporting token.')}<br>Add a read-scoped <code>ZOHO_REPORTING_REFRESH_TOKEN</code> in Vercel, then refresh.`, 'error');
+          // Render the empty shell first — renderAll() resets the state banner,
+          // so the config message must be set AFTER it or it gets wiped.
           renderAll(emptyData(period), period);
+          showState(`<strong>CRM reporting isn't configured yet.</strong><br>${esc(body.error || 'Set the Zoho reporting token.')}<br>Add a read-scoped <code>ZOHO_REPORTING_REFRESH_TOKEN</code> in Vercel, then refresh.`, 'error');
           return;
         }
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -387,6 +389,7 @@ async function main() {
       }
     } catch (err) {
       console.error('[ops]', err);
+      renderAll(emptyData(period), period);
       showState(`Couldn't load CRM data (${esc(err.message)}). Please try Refresh again.`, 'error');
     } finally {
       refreshBtn.disabled = false;
