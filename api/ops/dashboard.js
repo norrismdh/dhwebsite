@@ -55,8 +55,9 @@ async function getAccessToken() {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams({
-      client_id:     process.env.ZOHO_CLIENT_ID,
-      client_secret: process.env.ZOHO_CLIENT_SECRET,
+      // Prefer a dedicated read-only reporting client; fall back to the shared one.
+      client_id:     process.env.ZOHO_REPORTING_CLIENT_ID     || process.env.ZOHO_CLIENT_ID,
+      client_secret: process.env.ZOHO_REPORTING_CLIENT_SECRET || process.env.ZOHO_CLIENT_SECRET,
       refresh_token: process.env.ZOHO_REPORTING_REFRESH_TOKEN,
       grant_type:    'refresh_token',
     }),
