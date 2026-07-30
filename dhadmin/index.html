@@ -39,6 +39,11 @@
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="5" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="3" y="12" width="7" height="9" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/></svg>
             Releases
           </a>
+          <!-- Ops tab: hidden by default, revealed only for users on the ops allow-list -->
+          <a href="/ops" class="admin-nav__item" id="nav-ops" hidden>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            Ops
+          </a>
         </nav>
 
         <div class="admin-topbar__user">
@@ -434,6 +439,12 @@
         // Populate user info and sign-out action
         document.getElementById('admin-user-email').textContent = auth.account.username;
         document.getElementById('admin-signout').addEventListener('click', () => auth.signOut());
+
+        // Reveal the Ops tab only for users on the ops allow-list (server-checked,
+        // so the allow-list itself is never exposed to the client).
+        adminFetch('/api/ops/access', auth)
+          .then((r) => { if (r && r.ok) document.getElementById('nav-ops').hidden = false; })
+          .catch(() => { /* not on the ops list — leave the tab hidden */ });
 
         // Load releases from the admin API
         const res = await adminFetch('/api/admin/releases', auth);
