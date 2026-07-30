@@ -210,7 +210,7 @@ const FOOTER_RE = /(<footer class="footer"[^>]*>)[\s\S]*?(<\/footer>)/;
 
 function collectHtml(dir, out = []) {
   for (const name of readdirSync(dir)) {
-    if (name === 'node_modules' || name === 'dhadmin' || name === '.git') continue;
+    if (name === 'node_modules' || name === 'dhadmin' || name === 'ops' || name === '.git') continue;
     const full = join(dir, name);
     const st = statSync(full);
     if (st.isDirectory()) collectHtml(full, out);
