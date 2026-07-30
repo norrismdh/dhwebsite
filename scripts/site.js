@@ -420,36 +420,6 @@
     }));
   }
 
-  // ---------- Connectors hub: draw lines from center to each spoke ----------
-  const hub = document.querySelector('.cn-hub__lines');
-  if (hub) {
-    const draw = () => {
-      const stage = hub.closest('.cn-hub');
-      if (!stage) return;
-      const rect = stage.getBoundingClientRect();
-      const cx = rect.width / 2;
-      const cy = rect.height / 2;
-      hub.setAttribute('viewBox', `0 0 ${rect.width} ${rect.height}`);
-      hub.innerHTML = '';
-      stage.querySelectorAll('.cn-spoke').forEach(spoke => {
-        const sr = spoke.getBoundingClientRect();
-        const sx = sr.left - rect.left + sr.width / 2;
-        const sy = sr.top - rect.top + sr.height / 2;
-        const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-        // Draw spoke -> center so a positive stroke-dashoffset animation
-        // makes the dashes flow inward toward Digital Hive.
-        line.setAttribute('x1', sx);
-        line.setAttribute('y1', sy);
-        line.setAttribute('x2', cx);
-        line.setAttribute('y2', cy);
-        hub.appendChild(line);
-      });
-    };
-    draw();
-    window.addEventListener('resize', draw);
-    setTimeout(draw, 100);
-  }
-
   // ---------- Count-up animation ----------
   const countEls = document.querySelectorAll('[data-count-up]');
   if (countEls.length && 'IntersectionObserver' in window) {
@@ -489,7 +459,8 @@
         if (entry.isIntersecting) {
           entry.target.querySelectorAll('.bar').forEach((bar, i) => {
             const pct = parseFloat(bar.dataset.barH) || 0;
-            setTimeout(() => { bar.style.height = pct + '%'; }, i * 45);
+            bar.style.height = pct + '%';
+            setTimeout(() => { bar.classList.add('is-grown'); }, i * 45);
           });
           barIO.unobserve(entry.target);
         }

@@ -1215,10 +1215,10 @@ button { font-family: inherit; cursor: pointer; }
     content: "";
     position: absolute;
     top: 50%;
-    left: -22%;
+    left: 0;
     width: 22%;
     height: 3px;
-    transform: translateY(-50%);
+    transform: translate(-100%, -50%);
     border-radius: 3px;
     background: linear-gradient(to right, rgba(243,146,53,0), var(--dh-orange));
     box-shadow: 0 0 9px 1px rgba(243,146,53,0.7);
@@ -1230,11 +1230,11 @@ button { font-family: inherit; cursor: pointer; }
   }
 }
 @keyframes stepConnectTravel {
-  0%, 15%   { left: -22%; opacity: 0; }
+  0%, 15%   { transform: translate(-100%, -50%); opacity: 0; }
   19%       { opacity: 1; }
   44%       { opacity: 1; }
-  48%       { left: 100%; opacity: 0; }
-  100%      { left: 100%; opacity: 0; }
+  48%       { transform: translate(455%, -50%); opacity: 0; }
+  100%      { transform: translate(455%, -50%); opacity: 0; }
 }
 /* mobile: vertical connector line between stacked hexagons */
 @media (max-width: 767px) {

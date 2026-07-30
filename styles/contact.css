@@ -169,7 +169,9 @@
   font-weight: var(--fw-medium);
   color: var(--dh-navy);
   cursor: pointer;
-  transition: all var(--dur-fast) var(--ease-out);
+  transition: background var(--dur-fast) var(--ease-out),
+              border-color var(--dur-fast) var(--ease-out),
+              color var(--dur-fast) var(--ease-out);
   user-select: none;
 }
 .ct-chip input { display: none; }
