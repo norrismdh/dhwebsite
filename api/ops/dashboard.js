@@ -467,6 +467,8 @@ export default async function handler(req, res) {
     });
   } catch (err) {
     console.error('ops/dashboard error:', err.message);
-    return res.status(502).json({ error: 'Could not load CRM data. Please try again.' });
+    // Endpoint is auth-gated to the ops allow-list, so it's safe to surface the
+    // underlying Zoho error to the (authorised) caller for diagnosis.
+    return res.status(502).json({ error: 'Could not load CRM data.', detail: err.message });
   }
 }

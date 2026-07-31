@@ -384,7 +384,10 @@ async function main() {
           showState(`<strong>CRM reporting isn't configured yet.</strong><br>${esc(body.error || 'Set the Zoho reporting token.')}<br>Add a read-scoped <code>ZOHO_REPORTING_REFRESH_TOKEN</code> in Vercel, then refresh.`, 'error');
           return;
         }
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        if (!res.ok) {
+          const body = await res.json().catch(() => ({}));
+          throw new Error(body.detail || body.error || `HTTP ${res.status}`);
+        }
         renderAll(await res.json(), period);
       }
     } catch (err) {
