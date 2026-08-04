@@ -10,7 +10,13 @@
  * ─────────────────────────────────────────────────────────────────────────── */
 
 import { initOps, opsFetch } from './dhops.js';
-import { comboChart, stackedChart, attachChartTooltip, NAVY, ORANGE } from './ops-charts.js';
+import { comboChart, stackedChart, attachChartTooltip, chartBox, NAVY, ORANGE } from './ops-charts.js';
+
+// Trend charts are the tallest thing in their row; give them real height so the
+// panel isn't mostly empty space. KB carries stat cells above its chart, so it
+// gets a shorter one to keep the two panels roughly level.
+const TREND_H = 260;
+const KB_H = 200;
 
 const YELLOW = '#FAB400';
 
@@ -96,7 +102,12 @@ function renderKb(kb) {
   const kbTrend = kb.trend;
   const contributors = kbTrend?.contributors ?? [];
   const chart = (months.length && contributors.length)
-    ? stackedChart({ months, keys: contributors, series: kbTrend.series, label: 'Articles created per month by contributor' })
+    ? stackedChart({
+        months, keys: contributors, series: kbTrend.series,
+        line: kbTrend.prevTotal,   // last year's monthly totals, no analyst split
+        label: 'Articles created per month by contributor, with last year overlaid',
+        box: chartBox(el, { height: KB_H }),
+      })
     : `<p class="ops-note">No per-contributor article history available</p>`;
 
   el.innerHTML = `
@@ -161,7 +172,11 @@ function renderTrend() {
       ${momDelta(latest, prevMonth)}
       ${yoy}
     </div>
-    ${comboChart({ months, bars: vals, line: prevVals, label: 'Tickets per month with last year overlaid' })}`;
+    ${comboChart({
+      months, bars: vals, line: prevVals,
+      label: 'Tickets per month with last year overlaid',
+      box: chartBox(body, { height: TREND_H }),
+    })}`;
 }
 
 function renderLeaderboard(rows, summary) {
@@ -194,6 +209,11 @@ function renderAll(data, period) {
   renderBars($('ops-by-priority'), toBars(data.byPriority ?? [], 'priority'), ORANGE);
   renderBars($('ops-by-channel'), toBars(data.byChannel ?? [], 'channel'), YELLOW);
   renderLeaderboard(data.leaderboard ?? [], data.analystSummary);
+
+  // Make the charted window explicit — it follows the period selector
+  const span = data.trend?.spanLabel ?? '';
+  $('ops-trend-span').textContent = span;
+  $('ops-kb-span').textContent = span;
 
   // Charts are rebuilt above, so (re)wire their tooltips
   attachChartTooltip($('ops-tickets-trend'));

@@ -23,17 +23,50 @@ const CHART = { w: 640, h: 190, padX: 10, padTop: 26, padBottom: 24 };
 
 const fmtInt = (n) => (n ?? 0).toLocaleString('en-US');
 
+/**
+ * Measure a container so charts can be drawn at 1 SVG unit = 1 CSS pixel.
+ * Without this the viewBox has to be stretched to fit, which distorts the
+ * label text; sizing to the container keeps text crisp AND lets the chart use
+ * the full height it has been given.
+ */
+export function chartBox(el, { height } = {}) {
+  // clientWidth includes padding, but the SVG renders at 100% of the CONTENT
+  // box — using the padded width would squash the viewBox horizontally and
+  // distort the label text, so subtract the padding.
+  let w = el?.clientWidth || 0;
+  if (el) {
+    const cs = getComputedStyle(el);
+    w -= (parseFloat(cs.paddingLeft) || 0) + (parseFloat(cs.paddingRight) || 0);
+  }
+  return {
+    w: Math.max(Math.round(w), 280),
+    h: Math.max(Math.round(height || CHART.h), 120),
+  };
+}
+
 function esc(s) {
   return String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 }
 
 /** Shared geometry for a categorical chart with `n` slots. */
-function chartGeom(n) {
-  const { w, h, padX, padTop, padBottom } = CHART;
+function chartGeom(n, box) {
+  const { padX, padTop, padBottom } = CHART;
+  const w = box?.w ?? CHART.w;
+  const h = box?.h ?? CHART.h;
   const plotW = w - padX * 2;
   const plotH = h - padTop - padBottom;
   const slot = plotW / Math.max(n, 1);
   return { w, h, padX, padTop, plotH, slot, centre: (i) => padX + slot * (i + 0.5) };
+}
+
+/** A line + dots overlay for a comparison series (e.g. same months last year). */
+function overlayLine(months, g, values, y) {
+  if (!values.some((v) => v > 0)) return '';
+  const pts = months.map((m, i) => `${g.centre(i).toFixed(1)},${y(values[i]).toFixed(1)}`).join(' ');
+  return `<polyline class="ops-chart__line" style="--i:${months.length}" points="${pts}" fill="none"
+      stroke="${ORANGE}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+    ${months.map((m, i) => `<circle class="ops-chart__dot" style="--i:${i}" cx="${g.centre(i).toFixed(1)}"
+      cy="${y(values[i]).toFixed(1)}" r="3" fill="var(--bg-2)" stroke="${ORANGE}" stroke-width="2" />`).join('')}`;
 }
 
 function monthLabels(months, g) {
@@ -71,8 +104,8 @@ function hitSlots(months, g, rowsFor) {
  * @param {{months: Array<{label:string,year:number}>, bars:number[], line:number[], label:string}} o
  * @returns {string} SVG + legend markup
  */
-export function comboChart({ months, bars, line, label }) {
-  const g = chartGeom(months.length);
+export function comboChart({ months, bars, line, label, box }) {
+  const g = chartGeom(months.length, box);
   const safeBars = months.map((_, i) => Number(bars?.[i]) || 0);
   const safeLine = months.map((_, i) => Number(line?.[i]) || 0);
   const max = Math.max(...safeBars, ...safeLine, 1);
@@ -91,13 +124,7 @@ export function comboChart({ months, bars, line, label }) {
     : '').join('');
 
   const hasLine = safeLine.some((v) => v > 0);
-  const pts = months.map((m, i) => `${g.centre(i).toFixed(1)},${y(safeLine[i]).toFixed(1)}`).join(' ');
-  const lineEls = hasLine
-    ? `<polyline class="ops-chart__line" style="--i:${months.length}" points="${pts}" fill="none" stroke="${ORANGE}" stroke-width="2"
-         stroke-linejoin="round" stroke-linecap="round" />
-       ${months.map((m, i) => `<circle class="ops-chart__dot" style="--i:${i}" cx="${g.centre(i).toFixed(1)}" cy="${y(safeLine[i]).toFixed(1)}" r="3"
-         fill="var(--bg-2)" stroke="${ORANGE}" stroke-width="2" />`).join('')}`
-    : '';
+  const lineEls = overlayLine(months, g, safeLine, y);
 
   const hits = hitSlots(months, g, (i) => [
     { name: 'This period', value: fmtInt(safeBars[i]), color: NAVY },
@@ -105,7 +132,7 @@ export function comboChart({ months, bars, line, label }) {
   ]);
 
   return `
-    <svg class="ops-chart" viewBox="0 0 ${g.w} ${g.h}" role="img" aria-label="${esc(label)}" preserveAspectRatio="xMidYMid meet">
+    <svg class="ops-chart" style="height:${g.h}px" viewBox="0 0 ${g.w} ${g.h}" role="img" aria-label="${esc(label)}">
       ${baseline(g)}${barEls}${valEls}${lineEls}${monthLabels(months, g)}${hits}
     </svg>
     <div class="ops-legend-row">
@@ -120,11 +147,14 @@ export function comboChart({ months, bars, line, label }) {
  * @param {{months: Array<{label:string,year:number}>, keys:string[], series:Record<string,number[]>, label:string}} o
  * @returns {string} SVG + legend markup
  */
-export function stackedChart({ months, keys, series, label }) {
-  const g = chartGeom(months.length);
+export function stackedChart({ months, keys, series, label, box, line }) {
+  const g = chartGeom(months.length, box);
   const at = (k, i) => Number(series?.[k]?.[i]) || 0;
   const totals = months.map((_, i) => keys.reduce((s, k) => s + at(k, i), 0));
-  const max = Math.max(...totals, 1);
+  // The comparison line shares the stack's scale, so it must be in the max
+  const safeLine = months.map((_, i) => Number(line?.[i]) || 0);
+  const max = Math.max(...totals, ...safeLine, 1);
+  const yFor = (v) => g.padTop + g.plotH * (1 - v / max);
   const barW = Math.min(g.slot * 0.55, 34);
 
   const stacks = months.map((m, i) => {
@@ -149,17 +179,22 @@ export function stackedChart({ months, keys, series, label }) {
 
   // Tooltip lists EVERY contributor for the month, with their actual counts —
   // including the ones who wrote nothing, so absence is visible too.
+  const hasLine = safeLine.some((v) => v > 0);
+  const lineEls = overlayLine(months, g, safeLine, yFor);
+
   const hits = hitSlots(months, g, (i) => [
     ...keys.map((k, ki) => ({ name: k, value: fmtInt(at(k, i)), color: PALETTE[ki % PALETTE.length], muted: at(k, i) === 0 })),
     { name: 'Total', value: fmtInt(totals[i]), total: true },
+    ...(hasLine ? [{ name: 'Same month last year', value: fmtInt(safeLine[i]), color: ORANGE }] : []),
   ]);
 
   return `
-    <svg class="ops-chart" viewBox="0 0 ${g.w} ${g.h}" role="img" aria-label="${esc(label)}" preserveAspectRatio="xMidYMid meet">
-      ${baseline(g)}${stacks}${monthLabels(months, g)}${hits}
+    <svg class="ops-chart" style="height:${g.h}px" viewBox="0 0 ${g.w} ${g.h}" role="img" aria-label="${esc(label)}">
+      ${baseline(g)}${stacks}${lineEls}${monthLabels(months, g)}${hits}
     </svg>
     <div class="ops-legend-row">
       ${keys.map((k, ki) => `<span class="ops-legend-key"><span class="ops-legend-key__bar" style="background:${PALETTE[ki % PALETTE.length]}"></span>${esc(k)}</span>`).join('')}
+      ${hasLine ? `<span class="ops-legend-key"><span class="ops-legend-key__line" style="background:${ORANGE}"></span>Same period last year</span>` : ''}
     </div>`;
 }
 

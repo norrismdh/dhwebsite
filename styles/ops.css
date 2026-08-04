@@ -403,11 +403,21 @@
    SVG charts (combo bars + line, stacked contributors)
    Hand-rolled — no charting library, keeping pages self-contained.
    ----------------------------------------------------------- */
+/* Height comes from an inline style: the chart is drawn at 1 SVG unit = 1 CSS
+   pixel (see chartBox) so text stays crisp and it fills the height given. */
 .ops-chart {
   display: block;
   width: 100%;
-  height: 190px;
   overflow: visible;
+}
+
+/* Charted window, e.g. "Q3 2026" — sits beside the panel title */
+.ops-span {
+  font-size: var(--fs-12);
+  font-weight: var(--fw-regular);
+  color: var(--fg-3);
+  margin-left: var(--space-2);
+  white-space: nowrap;
 }
 
 .ops-chart__axis { stroke: var(--border-1); stroke-width: 1; }

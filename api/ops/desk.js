@@ -30,8 +30,6 @@ const KB_PAGE    = 50;    // …but /articles caps at 50
 const MAX_PAGES  = 30;    // safety cap → ~3000 tickets per sweep
 const FR_MAX     = 40;    // max tickets probed for first-response (1 API call each)
 
-// How many trailing calendar months the MoM trend spans, per period.
-const TREND_MONTHS = { month: 6, quarter: 12, year: 12 };
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 // ── Desk access token ───────────────────────────────────────────────────────
@@ -153,32 +151,49 @@ function windows(period) {
 }
 
 /**
- * Trailing `n` month buckets (oldest → current).
- * `startMs` is the first bucket's start; `histStartMs` reaches a further 12
- * months back so the same-period-last-year comparison line can be computed.
- * Each bucket also carries `prevKey` — the same month one year earlier.
+ * Month buckets for the trend charts, aligned to the SELECTED period so the
+ * date filter actually drives them:
+ *   quarter → the current quarter's months, up to this month (Jul–Aug for Q3)
+ *   year    → January through this month (year to date)
+ *   month   → this month plus 5 trailing, since a single bar is not a trend
+ *             (labelled "last 6 months" so the wider window is explicit)
+ *
+ * `histStartMs` reaches a year before the first bucket so the same-month-last-
+ * year comparison can be computed. Each bucket carries `prevKey` for that.
  */
-function trendBuckets(n) {
+function trendBuckets(period) {
   const now = new Date();
   const { y, m } = tzParts(now);
-  const monthStart = (p) => new Date(`${p.y}-${String(p.m).padStart(2, '0')}-01T00:00:00`).getTime();
+  const pad2 = (n) => String(n).padStart(2, '0');
+  const monthStart = (yy, mm) => new Date(`${yy}-${pad2(mm)}-01T00:00:00`).getTime();
 
-  const buckets = [];
-  for (let i = n - 1; i >= 0; i--) {
-    const b = minusMonths(y, m, i);
-    const p = { y: b.y - 1, m: b.m };
-    buckets.push({
-      key: `${b.y}-${String(b.m).padStart(2, '0')}`,
-      prevKey: `${p.y}-${String(p.m).padStart(2, '0')}`,
-      label: MONTHS[b.m - 1],
-      year: b.y,
-    });
+  let list = [];
+  let spanLabel;
+  if (period === 'year') {
+    for (let mm = 1; mm <= m; mm++) list.push({ y, m: mm });
+    spanLabel = `${y} year to date`;
+  } else if (period === 'quarter') {
+    const qStart = m - ((m - 1) % 3);
+    for (let mm = qStart; mm <= m; mm++) list.push({ y, m: mm });
+    spanLabel = `Q${Math.floor((m - 1) / 3) + 1} ${y}`;
+  } else {
+    for (let i = 5; i >= 0; i--) list.push(minusMonths(y, m, i));
+    spanLabel = 'Last 6 months';
   }
 
+  const buckets = list.map((b) => ({
+    key: `${b.y}-${pad2(b.m)}`,
+    prevKey: `${b.y - 1}-${pad2(b.m)}`,
+    label: MONTHS[b.m - 1],
+    year: b.y,
+  }));
+
+  const first = list[0];
   return {
     buckets,
-    startMs: monthStart(minusMonths(y, m, n - 1)),
-    histStartMs: monthStart(minusMonths(y, m, n - 1 + 12)),
+    spanLabel,
+    startMs: monthStart(first.y, first.m),
+    histStartMs: monthStart(first.y - 1, first.m),
   };
 }
 
@@ -267,7 +282,7 @@ export default async function handler(req, res) {
 
   const period = ['month', 'quarter', 'year'].includes(req.query.period) ? req.query.period : 'month';
   const w = windows(period);
-  const tb = trendBuckets(TREND_MONTHS[period] ?? 6);
+  const tb = trendBuckets(period);
   const notes = [];
 
   try {
@@ -467,13 +482,19 @@ export default async function handler(req, res) {
         cell.set(name, (cell.get(name) ?? 0) + 1);
         kbMonthly.set(k, cell);
       }
+      // Previous-year comparison is a single total per month — no per-analyst
+      // breakdown needed for the overlay line.
+      const kbPrevTotal = blank();
       tb.buckets.forEach((b, i) => {
         const cell = kbMonthly.get(b.key);
-        if (!cell) return;
-        for (const [name, n] of cell) {
-          (kbSeries[name] ??= blank())[i] += n;
-          kbTotal[i] += n;
+        if (cell) {
+          for (const [name, n] of cell) {
+            (kbSeries[name] ??= blank())[i] += n;
+            kbTotal[i] += n;
+          }
         }
+        const prev = kbMonthly.get(b.prevKey);
+        if (prev) for (const [, n] of prev) kbPrevTotal[i] += n;
       });
       const kbContributors = Object.keys(kbSeries)
         .sort((a, b) => kbSeries[b].reduce((s, n) => s + n, 0) - kbSeries[a].reduce((s, n) => s + n, 0));
@@ -485,7 +506,7 @@ export default async function handler(req, res) {
         drafts:            arts.rows.filter((a) => !isPub(a)).length,
         byStatus:          tallyBy(arts.rows, (a) => a.status).map((x) => ({ status: x.label, count: x.count })),
         byAnalyst:         [...kbBoard.values()].sort((a, b) => b.authored - a.authored || b.published - a.published),
-        trend:             { contributors: kbContributors, series: kbSeries, total: kbTotal },
+        trend:             { contributors: kbContributors, series: kbSeries, total: kbTotal, prevTotal: kbPrevTotal },
       };
     } catch (e) {
       notes.push(`Knowledge base unavailable (${e.message})`);
@@ -505,7 +526,7 @@ export default async function handler(req, res) {
       byStatus:   tallyBy(newCur, (t) => t.status).map((x) => ({ status: x.label, count: x.count })),
       byPriority: tallyBy(newCur, (t) => t.priority).map((x) => ({ priority: x.label, count: x.count })),
       byChannel:  tallyBy(newCur, (t) => t.channel).map((x) => ({ channel: x.label, count: x.count })),
-      trend: { months: tb.buckets, tickets: { categories, series, total, prevSeries, prevTotal } },
+      trend: { months: tb.buckets, spanLabel: tb.spanLabel, tickets: { categories, series, total, prevSeries, prevTotal } },
       leaderboard,
       analystSummary: {
         analysts: analystCount,
