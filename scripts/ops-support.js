@@ -119,7 +119,7 @@ function renderKb(kb) {
         <div class="ops-activity__cell"><div class="ops-activity__num">${fmtInt(kb.publishedInPeriod)}</div><div class="ops-activity__lbl">Published</div></div>
         <div class="ops-activity__cell"><div class="ops-activity__num">${fmtInt(kb.drafts)}</div><div class="ops-activity__lbl">Drafts</div></div>
       </div>
-      <p class="ops-chart-lead__caption">${esc(spanLabel())} · created, published, drafts</p>
+      <p class="ops-chart-lead__caption">${esc(spanLabel())} · published can exceed created (older drafts going live)</p>
     </div>
     ${chart}`;
 }

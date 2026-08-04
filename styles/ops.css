@@ -201,9 +201,11 @@
 .ops-grid > .admin-panel > .admin-panel__head .ops-filter { flex: 0 0 auto; }
 .ops-grid > .admin-panel > .admin-panel__head .ops-select { max-width: 128px; }
 
-/* The block between the header and the plot */
+/* The block between the header and the plot. Tall enough for the biggest
+   variant (three stat cells + a two-line caption) so every panel's plot starts
+   at the same y. */
 .ops-chart-lead {
-  min-height: 118px;
+  min-height: 136px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -218,6 +220,11 @@
   color: var(--fg-3);
   margin: var(--space-2) 0 0;
   line-height: var(--lh-base);
+  /* Never a third line — that would push this panel's plot out of line */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* Inside a lead block these lose their own spacing — the block owns it */
@@ -597,12 +604,27 @@
 
 .ops-tip__empty { font-size: var(--fs-12); color: var(--fg-3); }
 
-/* Legend under a chart */
+/* Benchmark bar (e.g. last year) sitting behind a stack */
+.ops-chart__ghost {
+  fill: var(--fg-3);
+  opacity: 0.18;
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: ops-grow-y var(--dur-slow) var(--ease-out) backwards;
+  animation-delay: calc(var(--i, 0) * 35ms);
+}
+
+/* Legend under a chart. Reserves two rows so panels whose legends wrap stay
+   level with those that don't — otherwise the row bottoms diverge. */
 .ops-legend-row {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-4);
+  align-content: flex-start;
+  gap: var(--space-2) var(--space-4);
   margin-top: var(--space-4);
+  /* Two rows — a contributor legend needs them, and a one-row legend padding to
+     match keeps the panel bottoms level. */
+  min-height: 70px;
 }
 
 .ops-legend-key {
@@ -615,6 +637,19 @@
 
 .ops-legend-key__bar  { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
 .ops-legend-key__line { width: 14px; height: 2px;  border-radius: 2px; flex-shrink: 0; }
+
+/* Matches the dashed comparison line on the chart */
+.ops-legend-key__line--dash {
+  background: none !important;
+  height: 0;
+  border-top: 2px dashed var(--fg-3);
+}
+
+/* Matches the on-chart benchmark bar */
+.ops-legend-key__ghost { background: var(--fg-3); opacity: 0.28; }
+
+/* Axis caveats and similar asides — present but not competing with the keys */
+.ops-legend-key--muted { color: var(--fg-3); font-style: italic; }
 
 /* -----------------------------------------------------------
    Client health pills (Clients tab)
