@@ -249,7 +249,6 @@
    variant (three stat cells + a two-line caption) so every panel's plot starts
    at the same y. */
 .ops-chart-lead {
-  min-height: 136px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -276,10 +275,13 @@
 .ops-chart-lead .ops-activity { margin-bottom: 0; }
 .ops-chart-lead .ops-note { margin-top: var(--space-2); }
 
-/* A full-width panel has no sibling to line up with, so it doesn't need the
-   reserved lead/legend space that keeps a row level. */
-.ops-panel-full .ops-chart-lead,
-.ops-panel-full .ops-legend-row { min-height: 0; }
+/* Opt-in levelling, for a row whose panels differ in SHAPE — three stat cells
+   beside a single figure, or a five-key legend beside a two-key one. Reserving
+   that space everywhere padded panels that were already identical: the two trend
+   cards each carried ~120px of dead space, half of it above the figure because
+   the lead is centred. Only add this class where the shapes actually differ. */
+.ops-grid--level .ops-chart-lead { min-height: 136px; }
+.ops-grid--level .ops-legend-row { min-height: 70px; }
 
 /* -----------------------------------------------------------
    Trend panels — filter select, MoM indicator, column chart
@@ -634,9 +636,6 @@
   align-content: flex-start;
   gap: var(--space-2) var(--space-4);
   margin-top: var(--space-4);
-  /* Two rows — a contributor legend needs them, and a one-row legend padding to
-     match keeps the panel bottoms level. */
-  min-height: 70px;
 }
 
 .ops-legend-key {
