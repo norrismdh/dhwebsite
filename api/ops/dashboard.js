@@ -130,6 +130,22 @@ const pad = (n) => String(n).padStart(2, '0');
 const dateStr = (y, m, d) => `${y}-${pad(m)}-${pad(d)}`;
 const midnightISO = (y, m, d, off) => `${y}-${pad(m)}-${pad(d)}T00:00:00${off}`;
 
+/**
+ * Format an instant as a Zoho-COQL-safe datetime in America/Toronto:
+ * `YYYY-MM-DDTHH:MM:SS±HH:MM`. COQL rejects JS's `.toISOString()` output
+ * ("...T00:00:00.000Z") — it wants an offset and no milliseconds.
+ */
+function zohoDateTime(instant) {
+  const p = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'America/Toronto', year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false,
+  }).formatToParts(instant);
+  const g = (t) => p.find((x) => x.type === t).value;
+  let hh = g('hour');
+  if (hh === '24') hh = '00'; // some ICU builds emit 24 for midnight
+  return `${g('year')}-${g('month')}-${g('day')}T${hh}:${g('minute')}:${g('second')}${tzOffset(instant)}`;
+}
+
 function minusMonths(y, m, n) {
   const idx = y * 12 + (m - 1) - n;
   return { y: Math.floor(idx / 12), m: (idx % 12) + 1 };
@@ -174,12 +190,12 @@ function windows(period) {
     off,
     cur: {
       startMs: curStartMs, endMs: nowMs,
-      fromISO: midnightISO(curStart.y, curStart.m, curStart.d, off), toISO: now.toISOString(),
+      fromISO: midnightISO(curStart.y, curStart.m, curStart.d, off), toISO: zohoDateTime(now),
       fromDate: dateStr(curStart.y, curStart.m, curStart.d), toDate: dateStr(nowD.y, nowD.m, nowD.d),
     },
     prev: {
       startMs: prevStartMs, endMs: prevEndMs,
-      fromISO: midnightISO(prevStart.y, prevStart.m, prevStart.d, off), toISO: new Date(prevEndMs).toISOString(),
+      fromISO: midnightISO(prevStart.y, prevStart.m, prevStart.d, off), toISO: zohoDateTime(new Date(prevEndMs)),
       fromDate: dateStr(prevStart.y, prevStart.m, prevStart.d), toDate: dateStr(prevEndD.y, prevEndD.m, prevEndD.d),
     },
   };
@@ -202,7 +218,7 @@ function trendBuckets(n) {
   return {
     buckets,
     startISO: midnightISO(first.y, first.m, 1, off),
-    endISO: now.toISOString(),
+    endISO: zohoDateTime(now),
   };
 }
 
