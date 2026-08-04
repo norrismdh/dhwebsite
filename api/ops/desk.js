@@ -388,12 +388,36 @@ export default async function handler(req, res) {
       );
       const isPub = (a) => String(a.status ?? '').toLowerCase() === 'published';
       const pubAt = (a) => ms(a.publishedTime) ?? ms(a.modifiedTime) ?? ms(a.createdTime);
+
+      // Author attribution — Desk exposes this under different keys by setup.
+      const authorOf = (a) => {
+        const id = a.author?.id ?? a.authorId ?? a.createdBy?.id ?? a.ownerId;
+        const named = a.author?.name
+          ?? [a.author?.firstName, a.author?.lastName].filter(Boolean).join(' ').trim()
+          ?? null;
+        return { id: id != null ? String(id) : null, name: named || (id != null ? nameFor(id) : 'Unknown') };
+      };
+
+      // Per-analyst KB counts (all-time authored, plus this period's activity)
+      const kbBoard = new Map();
+      for (const a of arts.rows) {
+        const { id, name } = authorOf(a);
+        const key = id ?? name;
+        const row = kbBoard.get(key) ?? { name, authored: 0, published: 0, createdInPeriod: 0, publishedInPeriod: 0 };
+        row.authored += 1;
+        if (isPub(a)) row.published += 1;
+        if (inWin(ms(a.createdTime), w.cur)) row.createdInPeriod += 1;
+        if (isPub(a) && inWin(pubAt(a), w.cur)) row.publishedInPeriod += 1;
+        kbBoard.set(key, row);
+      }
+
       kb = {
         createdInPeriod:   arts.rows.filter((a) => inWin(ms(a.createdTime), w.cur)).length,
         publishedInPeriod: arts.rows.filter((a) => isPub(a) && inWin(pubAt(a), w.cur)).length,
         totalPublished:    arts.rows.filter(isPub).length,
         drafts:            arts.rows.filter((a) => !isPub(a)).length,
         byStatus:          tallyBy(arts.rows, (a) => a.status).map((x) => ({ status: x.label, count: x.count })),
+        byAnalyst:         [...kbBoard.values()].sort((a, b) => b.authored - a.authored || b.published - a.published),
       };
     } catch (e) {
       notes.push(`Knowledge base unavailable (${e.message})`);

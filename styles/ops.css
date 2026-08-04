@@ -349,6 +349,30 @@
   margin-top: var(--space-2);
 }
 
+/* -----------------------------------------------------------
+   Client health pills (Clients tab)
+   ----------------------------------------------------------- */
+.ops-health {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-12);
+  font-weight: var(--fw-bold);
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+.ops-health--healthy { background: rgba(46, 139, 87, 0.12);  color: var(--success); }
+.ops-health--warning { background: rgba(250, 180, 0, 0.16);  color: #8a6100; }
+.ops-health--risk    { background: rgba(192, 57, 43, 0.10);  color: var(--danger); }
+.ops-health--unknown { background: var(--bg-3);              color: var(--fg-3); }
+
+/* KPI value tones (Clients summary) */
+.ops-kpi__value--up   { color: var(--success); }
+.ops-kpi__value--warn { color: #8a6100; }
+.ops-kpi__value--down { color: var(--danger); }
+
 /* Numeric table cells align right for quick scanning */
 .ops-num { text-align: right; font-variant-numeric: tabular-nums; }
 

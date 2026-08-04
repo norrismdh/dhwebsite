@@ -91,13 +91,39 @@ const toBars = (rows, key) => rows.map((r) => ({ label: r[key], primary: fmtInt(
 function renderKb(kb) {
   const el = $('ops-kb');
   if (!kb) { el.innerHTML = `<p class="ops-empty">Knowledge base data unavailable</p>`; return; }
+
+  const board = kb.byAnalyst ?? [];
+  const byAnalyst = board.length
+    ? `<div class="admin-table-wrap" style="margin-top:var(--space-5)">
+        <table class="admin-table" aria-label="Knowledge base articles by analyst">
+          <thead>
+            <tr>
+              <th>Analyst</th>
+              <th class="ops-num">Created</th>
+              <th class="ops-num">Published</th>
+              <th class="ops-num">Authored</th>
+            </tr>
+          </thead>
+          <tbody>${board.map((r) => `
+            <tr>
+              <td style="font-weight:var(--fw-medium)">${esc(r.name)}</td>
+              <td class="ops-num">${fmtInt(r.createdInPeriod)}</td>
+              <td class="ops-num">${fmtInt(r.publishedInPeriod)}</td>
+              <td class="ops-num">${fmtInt(r.authored)}</td>
+            </tr>`).join('')}
+          </tbody>
+        </table>
+      </div>`
+    : `<p class="ops-note">No per-analyst attribution available</p>`;
+
   el.innerHTML = `
     <div class="ops-activity">
       <div class="ops-activity__cell"><div class="ops-activity__num">${fmtInt(kb.createdInPeriod)}</div><div class="ops-activity__lbl">Created</div></div>
       <div class="ops-activity__cell"><div class="ops-activity__num">${fmtInt(kb.publishedInPeriod)}</div><div class="ops-activity__lbl">Published</div></div>
       <div class="ops-activity__cell"><div class="ops-activity__num">${fmtInt(kb.drafts)}</div><div class="ops-activity__lbl">Drafts</div></div>
     </div>
-    <p class="ops-note">${fmtInt(kb.totalPublished)} published articles in total</p>`;
+    <p class="ops-note">${fmtInt(kb.totalPublished)} published articles in total · Created/Published are this period, Authored is all time</p>
+    ${byAnalyst}`;
 }
 
 // ── Trend ───────────────────────────────────────────────────────────────────
@@ -243,6 +269,11 @@ function demoData(period) {
     kb: {
       createdInPeriod: 4 * scale, publishedInPeriod: 3 * scale, totalPublished: 42, drafts: 7,
       byStatus: [{ status: 'Published', count: 42 }, { status: 'Draft', count: 7 }],
+      byAnalyst: [
+        { name: 'Support Analyst A', authored: 24, published: 22, createdInPeriod: 2 * scale, publishedInPeriod: 2 * scale },
+        { name: 'Support Analyst B', authored: 15, published: 14, createdInPeriod: 2 * scale, publishedInPeriod: 1 * scale },
+        { name: 'Support Analyst C', authored: 10, published: 6, createdInPeriod: 0, publishedInPeriod: 0 },
+      ],
     },
     meta: { notes: [] },
   };

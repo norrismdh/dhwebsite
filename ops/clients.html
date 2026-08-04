@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
-  <title>Support - Ops - Digital Hive</title>
+  <title>Client health - Ops - Digital Hive</title>
   <!-- No marketing nav/footer on ops pages - ops has its own chrome -->
   <link rel="stylesheet" href="../styles/tokens.css" />
   <link rel="stylesheet" href="../styles/site.css" />
@@ -41,11 +41,11 @@
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
             Dashboard
           </a>
-          <a href="/ops/support" class="admin-nav__item is-active" aria-current="page">
+          <a href="/ops/support" class="admin-nav__item">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
             Support
           </a>
-          <a href="/ops/clients" class="admin-nav__item">
+          <a href="/ops/clients" class="admin-nav__item is-active" aria-current="page">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
             Clients
           </a>
@@ -65,15 +65,9 @@
 
         <!-- Page header -->
         <div class="admin-page-head">
-          <h1>Support <span id="ops-demo-badge" class="ops-badge" hidden>Demo data</span></h1>
+          <h1>Client health <span id="ops-demo-badge" class="ops-badge" hidden>Demo data</span></h1>
 
           <div class="ops-controls">
-            <div class="ops-period" id="ops-period" role="group" aria-label="Reporting period">
-              <button type="button" class="ops-period__btn is-active" data-period="month">This month</button>
-              <button type="button" class="ops-period__btn" data-period="quarter">This quarter</button>
-              <button type="button" class="ops-period__btn" data-period="year">Year to date</button>
-            </div>
-
             <button type="button" id="ops-refresh" class="btn btn--primary ops-refresh">
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M23 4v6h-6"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
               Refresh data
@@ -83,67 +77,36 @@
           </div>
         </div>
 
+        <!-- How health is derived -->
+        <p class="ops-note" id="ops-method" style="margin-top:calc(-1 * var(--space-4));margin-bottom:var(--space-6)"></p>
+
         <!-- Config / error state (hidden unless needed) -->
         <div id="ops-state" class="ops-state" hidden></div>
 
-        <!-- KPI row (populated by JS) -->
+        <!-- Summary KPIs (populated by JS) -->
         <div class="admin-stats" id="ops-kpis" aria-live="polite"></div>
 
-        <!-- Ticket trend + analyst workload -->
-        <div class="ops-grid">
-          <div class="admin-panel">
-            <div class="admin-panel__head">
-              <h2>Ticket trend</h2>
-              <label class="ops-filter">
-                <span class="sr-only">Filter ticket trend by status</span>
-                <select id="ops-tickets-filter" class="ops-select" aria-label="Filter ticket trend by status"></select>
-              </label>
-            </div>
-            <div class="admin-panel__body" id="ops-tickets-trend"></div>
-          </div>
-
-          <div class="admin-panel">
-            <div class="admin-panel__head"><h2>Knowledge base</h2></div>
-            <div class="admin-panel__body" id="ops-kb"></div>
-          </div>
-        </div>
-
-        <!-- Breakdowns -->
-        <div class="ops-grid">
-          <div class="admin-panel">
-            <div class="admin-panel__head"><h2>Tickets by status</h2></div>
-            <div class="admin-panel__body" id="ops-by-status"></div>
-          </div>
-
-          <div class="admin-panel">
-            <div class="admin-panel__head"><h2>Tickets by priority</h2></div>
-            <div class="admin-panel__body" id="ops-by-priority"></div>
-          </div>
-
-          <div class="admin-panel">
-            <div class="admin-panel__head"><h2>Tickets by channel</h2></div>
-            <div class="admin-panel__body" id="ops-by-channel"></div>
-          </div>
-        </div>
-
-        <!-- Analyst leaderboard -->
+        <!-- Client table -->
         <div class="admin-panel ops-panel-full">
           <div class="admin-panel__head">
-            <h2>Analyst workload</h2>
-            <span id="ops-analyst-summary" class="ops-updated"></span>
+            <h2>Clients</h2>
+            <span id="ops-client-count" class="ops-updated"></span>
           </div>
           <div class="admin-table-wrap">
-            <table class="admin-table" aria-label="Analyst workload">
+            <table class="admin-table" aria-label="Client health">
               <thead>
                 <tr>
-                  <th>Analyst</th>
-                  <th class="ops-num">Tickets taken</th>
-                  <th class="ops-num">Resolved</th>
-                  <th class="ops-num">Open</th>
-                  <th class="ops-num">Avg resolution</th>
+                  <th>Client</th>
+                  <th>Health</th>
+                  <th>Last contact</th>
+                  <th>Via</th>
+                  <th>Owner</th>
+                  <th class="ops-num">Open tickets</th>
+                  <th>Next renewal</th>
+                  <th class="ops-num">Lifetime value</th>
                 </tr>
               </thead>
-              <tbody id="ops-leaderboard"></tbody>
+              <tbody id="ops-clients"></tbody>
             </table>
           </div>
         </div>
@@ -153,7 +116,7 @@
 
   </div><!-- /ops-app -->
 
-  <script type="module" src="../scripts/ops-support.js"></script>
+  <script type="module" src="../scripts/ops-clients.js"></script>
 
 </body>
 </html>
