@@ -25,8 +25,10 @@ import { requireOps } from '../_auth.js';
 
 const DESK_API   = 'https://desk.zoho.com/api/v1';
 const ZOHO_OAUTH = 'https://accounts.zoho.com/oauth/v2/token';
-const PAGE_SIZE  = 99;    // Desk caps `limit` at 99
+const PAGE_SIZE  = 99;    // Desk caps `limit` at 99 for /tickets and /agents
+const KB_PAGE    = 50;    // …but /articles caps at 50
 const MAX_PAGES  = 30;    // safety cap → ~3000 tickets per sweep
+const FR_MAX     = 40;    // max tickets probed for first-response (1 API call each)
 
 // How many trailing calendar months the MoM trend spans, per period.
 const TREND_MONTHS = { month: 6, quarter: 12, year: 12 };
@@ -90,12 +92,13 @@ async function deskGet(path, token) {
 /**
  * Page a Desk list endpoint. `stop(row)` may return true to end paging early
  * (used with sortBy=-createdTime to stop once rows predate the window).
- * `pathFor(from)` builds the path for a given 1-based offset.
+ * `pathFor(from, size)` builds the path for a given 1-based offset + page size.
+ * Page size differs per endpoint (tickets/agents 99, articles 50).
  */
-async function deskPage(pathFor, token, stop) {
+async function deskPage(pathFor, token, { stop, pageSize = PAGE_SIZE } = {}) {
   const rows = [];
   for (let page = 0; page < MAX_PAGES; page++) {
-    const json = await deskGet(pathFor(page * PAGE_SIZE + 1), token);
+    const json = await deskGet(pathFor(page * pageSize + 1, pageSize), token);
     const batch = json.data ?? [];
     if (!batch.length) return { rows, capped: false };
 
@@ -103,7 +106,7 @@ async function deskPage(pathFor, token, stop) {
       if (stop && stop(row)) return { rows, capped: false };
       rows.push(row);
     }
-    if (batch.length < PAGE_SIZE) return { rows, capped: false };
+    if (batch.length < pageSize) return { rows, capped: false };
   }
   return { rows, capped: true };
 }
@@ -200,13 +203,35 @@ function isOpen(t) {
   return !(s === 'closed' || s === 'resolved' || s === 'merged' || s === 'spam');
 }
 
-/** First-response time in ms, if Desk exposes it on the ticket. */
-function firstResponseMs(t) {
+/** First-response time in ms straight off the ticket, when the plan exposes it. */
+function firstResponseMsFromTicket(t) {
   const created = ms(t.createdTime);
   const fr = ms(t.firstResponseTime) ?? ms(t.customFields?.firstResponseTime);
   if (created == null || fr == null) return null;
   const d = fr - created;
   return d >= 0 ? d : null;
+}
+
+/**
+ * First-response time via the ticket's threads: the first outbound (agent)
+ * thread after creation. Desk's ticket list doesn't expose first-response time
+ * on all plans, so this is the fallback — one extra API call per ticket, which
+ * is fine at this org's volumes and is capped by FR_MAX.
+ */
+async function firstResponseMsFromThreads(ticket, token) {
+  const created = ms(ticket.createdTime);
+  if (created == null) return null;
+
+  const json = await deskGet(`/tickets/${ticket.id}/threads?limit=50`, token);
+  const threads = json.data ?? [];
+
+  const replies = threads
+    .filter((th) => String(th.direction ?? '').toLowerCase() === 'out')
+    .map((th) => ms(th.createdTime))
+    .filter((t) => t != null && t >= created);
+
+  if (!replies.length) return null;
+  return Math.min(...replies) - created;
 }
 
 // ── Handler ─────────────────────────────────────────────────────────────────
@@ -236,9 +261,9 @@ export default async function handler(req, res) {
 
     // ── Created-tickets sweep: newest first, stop once older than the trend window
     const created = await deskPage(
-      (from) => `/tickets?from=${from}&limit=${PAGE_SIZE}&sortBy=-createdTime`,
+      (from, size) => `/tickets?from=${from}&limit=${size}&sortBy=-createdTime`,
       token,
-      (t) => { const c = ms(t.createdTime); return c != null && c < tb.startMs; },
+      { stop: (t) => { const c = ms(t.createdTime); return c != null && c < tb.startMs; } },
     );
     if (created.capped) notes.push(`Ticket history truncated at ${MAX_PAGES * PAGE_SIZE} rows`);
     const tickets = created.rows;
@@ -247,7 +272,7 @@ export default async function handler(req, res) {
     let openTickets = [];
     try {
       const open = await deskPage(
-        (from) => `/tickets?from=${from}&limit=${PAGE_SIZE}&status=Open&sortBy=-createdTime`,
+        (from, size) => `/tickets?from=${from}&limit=${size}&status=Open&sortBy=-createdTime`,
         token,
       );
       openTickets = open.rows;
@@ -285,13 +310,33 @@ export default async function handler(req, res) {
     const resHours = resolvedCur
       .map((t) => { const c = ms(t.createdTime), r = resolvedAt(t); return (c != null && r != null && r >= c) ? (r - c) / 36e5 : null; })
       .filter((n) => n != null);
-    const frHours = newCur.map(firstResponseMs).filter((n) => n != null).map((n) => n / 36e5);
-
     const resHoursPrev = resolvedPrev
       .map((t) => { const c = ms(t.createdTime), r = resolvedAt(t); return (c != null && r != null && r >= c) ? (r - c) / 36e5 : null; })
       .filter((n) => n != null);
 
-    if (!frHours.length && newCur.length) notes.push('First-response time not exposed by this Desk plan');
+    // First response: prefer the ticket field; otherwise derive from threads
+    // (one call per ticket, capped — Desk doesn't expose it on all plans).
+    let frHours = newCur.map(firstResponseMsFromTicket).filter((n) => n != null).map((n) => n / 36e5);
+    if (!frHours.length && newCur.length) {
+      const probe = newCur.slice(0, FR_MAX);
+      try {
+        // Small batches rather than one big burst — keeps us clear of Desk rate limits.
+        const derived = [];
+        for (let i = 0; i < probe.length; i += 5) {
+          const batch = await Promise.all(probe.slice(i, i + 5).map(async (t) => {
+            try { return await firstResponseMsFromThreads(t, token); } catch { return null; }
+          }));
+          derived.push(...batch);
+        }
+        frHours = derived.filter((n) => n != null).map((n) => n / 36e5);
+        if (newCur.length > FR_MAX) {
+          notes.push(`First response sampled from the ${FR_MAX} most recent tickets`);
+        }
+        if (!frHours.length) notes.push('No agent replies found to measure first response');
+      } catch (e) {
+        notes.push(`First-response time unavailable (${e.message})`);
+      }
+    }
 
     // ── MoM trend (by status)
     const monthIdx = new Map(tb.buckets.map((b, i) => [b.key, i]));
@@ -336,7 +381,11 @@ export default async function handler(req, res) {
     // ── Knowledge base (guarded — a KB failure must not sink tickets metrics)
     let kb = null;
     try {
-      const arts = await deskPage((from) => `/articles?from=${from}&limit=${PAGE_SIZE}&sortBy=-createdTime`, token);
+      const arts = await deskPage(
+        (from, size) => `/articles?from=${from}&limit=${size}&sortBy=-createdTime`,
+        token,
+        { pageSize: KB_PAGE },   // /articles caps limit at 50
+      );
       const isPub = (a) => String(a.status ?? '').toLowerCase() === 'published';
       const pubAt = (a) => ms(a.publishedTime) ?? ms(a.modifiedTime) ?? ms(a.createdTime);
       kb = {
