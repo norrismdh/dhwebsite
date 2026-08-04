@@ -15,12 +15,16 @@
   flex-wrap: wrap;
 }
 
+/* Sized to sit level with the Refresh pill (.btn): 13px padding + 14px bold
+   text + 1px border. The 4px inner padding and border here are subtracted from
+   the segment padding below so the overall heights match. */
 .ops-period {
   display: inline-flex;
+  align-items: center;
   background: var(--bg-2);
   border: 1px solid var(--border-1);
   border-radius: var(--radius-pill);
-  padding: 3px;
+  padding: 4px;
   gap: 2px;
 }
 
@@ -30,9 +34,10 @@
   background: transparent;
   color: var(--fg-2);
   font-family: inherit;
-  font-size: var(--fs-12);
+  font-size: var(--fs-14);
   font-weight: var(--fw-bold);
-  padding: 6px var(--space-4);
+  letter-spacing: 0.01em;
+  padding: 9px var(--space-4);
   border-radius: var(--radius-pill);
   cursor: pointer;
   white-space: nowrap;
@@ -612,4 +617,21 @@
 
 @media (max-width: 560px) {
   .ops-activity { grid-template-columns: 1fr; }
+}
+
+/* Four segments at pill size are wider than a phone, so let them wrap into
+   rows rather than pushing the page into horizontal scroll. */
+@media (max-width: 720px) {
+  .ops-period {
+    flex-wrap: wrap;
+    border-radius: var(--radius-lg);
+    width: 100%;
+  }
+
+  .ops-period__btn {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
+  .ops-refresh { flex: 1 1 auto; justify-content: center; }
 }

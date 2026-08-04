@@ -20,7 +20,7 @@ const KB_H = 200;
 
 const YELLOW = '#FAB400';
 
-const PERIOD_PREV = { month: 'last month', quarter: 'last quarter', year: 'last year' };
+const PERIOD_PREV = { month: 'last month', quarter: 'last quarter', year: 'last year', rolling12: 'previous 12 months' };
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 let currentData = null;
@@ -329,7 +329,7 @@ function emptyData(period) {
 async function main() {
   const params = new URLSearchParams(window.location.search);
   const isDemo = params.get('demo') === '1';
-  let period = ['month', 'quarter', 'year'].includes(params.get('period')) ? params.get('period') : 'month';
+  let period = ['month', 'quarter', 'year', 'rolling12'].includes(params.get('period')) ? params.get('period') : 'month';
   let auth = null;
 
   function setPeriodButtons() {

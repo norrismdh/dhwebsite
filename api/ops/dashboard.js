@@ -1,5 +1,5 @@
 /* ─── DH OPS MODULE ──────────────────────────────────────────────────────────
- * GET /api/ops/dashboard?period=month|quarter|year
+ * GET /api/ops/dashboard?period=month|quarter|year|rolling12
  *
  * Sales activity dashboard data for the /ops section. Gated by requireOps
  * (OPS_ALLOWED_EMAILS). Reads the Zoho CRM with a READ-scoped refresh token and
@@ -30,8 +30,6 @@ const ZOHO_OAUTH = 'https://accounts.zoho.com/oauth/v2/token';
 const PAGE_SIZE  = 200;      // Zoho COQL hard cap per call
 const MAX_PAGES  = 25;       // safety cap → 5000 rows per dataset
 
-// How many trailing calendar months the month-over-month trend spans, per period.
-const TREND_MONTHS = { month: 6, quarter: 12, year: 12 };
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 // Fallback stage classification if the live picklist metadata can't be read.
@@ -163,7 +161,13 @@ function windows(period) {
   const { y, m } = tzParts(now);
 
   let curStart, prevStart;
-  if (period === 'year') {
+  if (period === 'rolling12') {
+    // Trailing 12 months from the start of the month 11 months back, compared
+    // with the 12 months before that.
+    const s = minusMonths(y, m, 11);
+    curStart  = { y: s.y, m: s.m, d: 1 };
+    prevStart = { y: s.y - 1, m: s.m, d: 1 };
+  } else if (period === 'year') {
     curStart  = { y, m: 1, d: 1 };
     prevStart = { y: y - 1, m: 1, d: 1 };
   } else if (period === 'quarter') {
@@ -202,21 +206,41 @@ function windows(period) {
 }
 
 /**
- * Trailing `n` calendar-month buckets (oldest → current), in America/Toronto.
+ * Month buckets for the trend charts, aligned to the SELECTED period so the
+ * date filter actually drives them:
+ *   quarter    → the current quarter's months, up to this month
+ *   year       → January through this month (year to date)
+ *   rolling12  → the trailing 12 months
+ *   month      → this month plus 5 trailing, since one bar is not a trend
  * Returns the buckets plus the ISO span [firstMonthStart, now] for querying.
  */
-function trendBuckets(n) {
+function trendBuckets(period) {
   const now = new Date();
   const off = tzOffset(now);
   const { y, m } = tzParts(now);
-  const buckets = [];
-  for (let i = n - 1; i >= 0; i--) {
-    const b = minusMonths(y, m, i);
-    buckets.push({ key: `${b.y}-${pad(b.m)}`, label: MONTHS[b.m - 1], year: b.y });
+
+  let list = [];
+  let spanLabel;
+  if (period === 'year') {
+    for (let mm = 1; mm <= m; mm++) list.push({ y, m: mm });
+    spanLabel = `${y} year to date`;
+  } else if (period === 'quarter') {
+    const qStart = m - ((m - 1) % 3);
+    for (let mm = qStart; mm <= m; mm++) list.push({ y, m: mm });
+    spanLabel = `Q${Math.floor((m - 1) / 3) + 1} ${y}`;
+  } else if (period === 'rolling12') {
+    for (let i = 11; i >= 0; i--) list.push(minusMonths(y, m, i));
+    spanLabel = 'Last 12 months';
+  } else {
+    for (let i = 5; i >= 0; i--) list.push(minusMonths(y, m, i));
+    spanLabel = 'Last 6 months';
   }
-  const first = minusMonths(y, m, n - 1);
+
+  const buckets = list.map((b) => ({ key: `${b.y}-${pad(b.m)}`, label: MONTHS[b.m - 1], year: b.y }));
+  const first = list[0];
   return {
     buckets,
+    spanLabel,
     startISO: midnightISO(first.y, first.m, 1, off),
     endISO: zohoDateTime(now),
   };
@@ -293,9 +317,9 @@ export default async function handler(req, res) {
     });
   }
 
-  const period = ['month', 'quarter', 'year'].includes(req.query.period) ? req.query.period : 'month';
+  const period = ['month', 'quarter', 'year', 'rolling12'].includes(req.query.period) ? req.query.period : 'month';
   const w = windows(period);
-  const tb = trendBuckets(TREND_MONTHS[period] ?? 6);
+  const tb = trendBuckets(period);
   const notes = [];
   let capped = false;
 
@@ -453,6 +477,7 @@ export default async function handler(req, res) {
 
     const trend = {
       months: tb.buckets.map((b) => ({ key: b.key, label: b.label, year: b.year })),
+      spanLabel: tb.spanLabel,
       leads: buildTrend(leadTrendRows, (r) => r.Lead_Status, (r) => r.Created_Time),
       deals: buildTrend(allDeals, (d) => d.Stage, (d) => d.Created_Time),
     };

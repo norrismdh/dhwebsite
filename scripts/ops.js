@@ -17,7 +17,7 @@ const PALETTE = ['#193359', '#F39235', '#FAB400', '#3C5A88', '#708795', '#FFCF00
 const NAVY   = '#193359';
 const ORANGE = '#F39235';
 
-const PERIOD_PREV = { month: 'last month', quarter: 'last quarter', year: 'last year' };
+const PERIOD_PREV = { month: 'last month', quarter: 'last quarter', year: 'last year', rolling12: 'previous 12 months' };
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const TREND_COLOR = { leads: NAVY, deals: ORANGE };
 
@@ -353,7 +353,7 @@ function demoData(period) {
 async function main() {
   const params = new URLSearchParams(window.location.search);
   const isDemo = params.get('demo') === '1';
-  let period = ['month', 'quarter', 'year'].includes(params.get('period')) ? params.get('period') : 'month';
+  let period = ['month', 'quarter', 'year', 'rolling12'].includes(params.get('period')) ? params.get('period') : 'month';
   let auth = null;
 
   function setPeriodButtons() {

@@ -1,5 +1,5 @@
 /* ─── DH OPS MODULE ──────────────────────────────────────────────────────────
- * GET /api/ops/desk?period=month|quarter|year
+ * GET /api/ops/desk?period=month|quarter|year|rolling12
  *
  * Support metrics for the /ops Support tab, read from Zoho Desk. Gated by
  * requireOps (OPS_ALLOWED_EMAILS). Returns one aggregated JSON payload.
@@ -130,7 +130,11 @@ function windows(period) {
   const { y, m } = tzParts(now);
 
   let cur, prev;
-  if (period === 'year') {
+  if (period === 'rolling12') {
+    // Trailing 12 months, compared with the 12 months before that
+    const s = minusMonths(y, m, 11);
+    cur = { y: s.y, m: s.m }; prev = { y: s.y - 1, m: s.m };
+  } else if (period === 'year') {
     cur = { y, m: 1 }; prev = { y: y - 1, m: 1 };
   } else if (period === 'quarter') {
     const qm = m - ((m - 1) % 3);
@@ -153,10 +157,11 @@ function windows(period) {
 /**
  * Month buckets for the trend charts, aligned to the SELECTED period so the
  * date filter actually drives them:
- *   quarter → the current quarter's months, up to this month (Jul–Aug for Q3)
- *   year    → January through this month (year to date)
- *   month   → this month plus 5 trailing, since a single bar is not a trend
- *             (labelled "last 6 months" so the wider window is explicit)
+ *   quarter   → the current quarter's months, up to this month (Jul–Aug for Q3)
+ *   year      → January through this month (year to date)
+ *   rolling12 → the trailing 12 months
+ *   month     → this month plus 5 trailing, since a single bar is not a trend
+ *               (labelled "last 6 months" so the wider window is explicit)
  *
  * `histStartMs` reaches a year before the first bucket so the same-month-last-
  * year comparison can be computed. Each bucket carries `prevKey` for that.
@@ -176,6 +181,9 @@ function trendBuckets(period) {
     const qStart = m - ((m - 1) % 3);
     for (let mm = qStart; mm <= m; mm++) list.push({ y, m: mm });
     spanLabel = `Q${Math.floor((m - 1) / 3) + 1} ${y}`;
+  } else if (period === 'rolling12') {
+    for (let i = 11; i >= 0; i--) list.push(minusMonths(y, m, i));
+    spanLabel = 'Last 12 months';
   } else {
     for (let i = 5; i >= 0; i--) list.push(minusMonths(y, m, i));
     spanLabel = 'Last 6 months';
@@ -280,7 +288,7 @@ export default async function handler(req, res) {
     });
   }
 
-  const period = ['month', 'quarter', 'year'].includes(req.query.period) ? req.query.period : 'month';
+  const period = ['month', 'quarter', 'year', 'rolling12'].includes(req.query.period) ? req.query.period : 'month';
   const w = windows(period);
   const tb = trendBuckets(period);
   const notes = [];
