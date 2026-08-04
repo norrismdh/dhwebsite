@@ -152,19 +152,33 @@ function windows(period) {
   };
 }
 
-/** Trailing `n` month buckets (oldest → current) + the window start in ms. */
+/**
+ * Trailing `n` month buckets (oldest → current).
+ * `startMs` is the first bucket's start; `histStartMs` reaches a further 12
+ * months back so the same-period-last-year comparison line can be computed.
+ * Each bucket also carries `prevKey` — the same month one year earlier.
+ */
 function trendBuckets(n) {
   const now = new Date();
   const { y, m } = tzParts(now);
+  const monthStart = (p) => new Date(`${p.y}-${String(p.m).padStart(2, '0')}-01T00:00:00`).getTime();
+
   const buckets = [];
   for (let i = n - 1; i >= 0; i--) {
     const b = minusMonths(y, m, i);
-    buckets.push({ key: `${b.y}-${String(b.m).padStart(2, '0')}`, label: MONTHS[b.m - 1], year: b.y });
+    const p = { y: b.y - 1, m: b.m };
+    buckets.push({
+      key: `${b.y}-${String(b.m).padStart(2, '0')}`,
+      prevKey: `${p.y}-${String(p.m).padStart(2, '0')}`,
+      label: MONTHS[b.m - 1],
+      year: b.y,
+    });
   }
-  const first = minusMonths(y, m, n - 1);
+
   return {
     buckets,
-    startMs: new Date(`${first.y}-${String(first.m).padStart(2, '0')}-01T00:00:00`).getTime(),
+    startMs: monthStart(minusMonths(y, m, n - 1)),
+    histStartMs: monthStart(minusMonths(y, m, n - 1 + 12)),
   };
 }
 
@@ -263,7 +277,8 @@ export default async function handler(req, res) {
     const created = await deskPage(
       (from, size) => `/tickets?from=${from}&limit=${size}&sortBy=-createdTime`,
       token,
-      { stop: (t) => { const c = ms(t.createdTime); return c != null && c < tb.startMs; } },
+      // Reach 12 months past the trend window so the previous-year line can be built
+      { stop: (t) => { const c = ms(t.createdTime); return c != null && c < tb.histStartMs; } },
     );
     if (created.capped) notes.push(`Ticket history truncated at ${MAX_PAGES * PAGE_SIZE} rows`);
     const tickets = created.rows;
@@ -338,22 +353,44 @@ export default async function handler(req, res) {
       }
     }
 
-    // ── MoM trend (by status)
-    const monthIdx = new Map(tb.buckets.map((b, i) => [b.key, i]));
+    // ── MoM trend: bars = these months, line = same months last year ────────
     const blank = () => new Array(tb.buckets.length).fill(0);
     const keyOf = (t) => { const p = tzParts(new Date(t)); return `${p.y}-${String(p.m).padStart(2, '0')}`; };
 
-    const series = {}, total = blank();
+    // Count every ticket into monthKey → { total, byStatus } (18–24 months deep),
+    // then read off the current and previous-year keys per bucket.
+    const monthly = new Map();
+    const statusesSeen = new Set();
     for (const t of tickets) {
       const c = ms(t.createdTime);
       if (c == null) continue;
-      const idx = monthIdx.get(keyOf(c));
-      if (idx == null) continue;
+      const k = keyOf(c);
+      const cell = monthly.get(k) ?? { total: 0, byStatus: new Map() };
       const cat = String(t.status ?? 'Unspecified').trim() || 'Unspecified';
-      (series[cat] ??= blank())[idx] += 1;
-      total[idx] += 1;
+      cell.total += 1;
+      cell.byStatus.set(cat, (cell.byStatus.get(cat) ?? 0) + 1);
+      monthly.set(k, cell);
+      statusesSeen.add(cat);
     }
-    const categories = Object.keys(series)
+
+    const total = blank(), prevTotal = blank();
+    const series = {}, prevSeries = {};
+    for (const cat of statusesSeen) { series[cat] = blank(); prevSeries[cat] = blank(); }
+
+    tb.buckets.forEach((b, i) => {
+      const cur = monthly.get(b.key);
+      if (cur) {
+        total[i] = cur.total;
+        for (const [cat, n] of cur.byStatus) series[cat][i] = n;
+      }
+      const prev = monthly.get(b.prevKey);
+      if (prev) {
+        prevTotal[i] = prev.total;
+        for (const [cat, n] of prev.byStatus) if (prevSeries[cat]) prevSeries[cat][i] = n;
+      }
+    });
+
+    const categories = [...statusesSeen]
       .sort((a, b) => series[b].reduce((s, n) => s + n, 0) - series[a].reduce((s, n) => s + n, 0));
 
     // ── Analyst leaderboard
@@ -373,10 +410,15 @@ export default async function handler(req, res) {
     for (const t of openTickets) seed(t.assigneeId).open += 1;
     const leaderboard = [...board.values()]
       .map((b) => { b.avgResolutionHours = avg(b._res); delete b._res; return b; })
-      .filter((b) => b.taken || b.resolved || b.open)
+      // Period-scoped: open backlog is an all-time snapshot, so an analyst with
+      // only stale open tickets (e.g. someone who has since left) must NOT show
+      // up in every period. Requires activity within the selected period.
+      .filter((b) => b.taken || b.resolved)
       .sort((a, b) => b.taken - a.taken || b.resolved - a.resolved);
 
-    const analystCount = activeAgents || leaderboard.length;
+    // Average over analysts who actually handled tickets this period, not the
+    // whole agent roster — otherwise the average is diluted by inactive agents.
+    const analystCount = leaderboard.length;
 
     // ── Knowledge base (guarded — a KB failure must not sink tickets metrics)
     let kb = null;
@@ -411,6 +453,31 @@ export default async function handler(req, res) {
         kbBoard.set(key, row);
       }
 
+      // Per-analyst articles created per month, on the same buckets as the ticket
+      // trend — drives the stacked contributor chart.
+      const kbSeries = {};
+      const kbTotal = blank();
+      const kbMonthly = new Map(); // monthKey → Map(author → count)
+      for (const a of arts.rows) {
+        const c = ms(a.createdTime);
+        if (c == null) continue;
+        const k = keyOf(c);
+        const { name } = authorOf(a);
+        const cell = kbMonthly.get(k) ?? new Map();
+        cell.set(name, (cell.get(name) ?? 0) + 1);
+        kbMonthly.set(k, cell);
+      }
+      tb.buckets.forEach((b, i) => {
+        const cell = kbMonthly.get(b.key);
+        if (!cell) return;
+        for (const [name, n] of cell) {
+          (kbSeries[name] ??= blank())[i] += n;
+          kbTotal[i] += n;
+        }
+      });
+      const kbContributors = Object.keys(kbSeries)
+        .sort((a, b) => kbSeries[b].reduce((s, n) => s + n, 0) - kbSeries[a].reduce((s, n) => s + n, 0));
+
       kb = {
         createdInPeriod:   arts.rows.filter((a) => inWin(ms(a.createdTime), w.cur)).length,
         publishedInPeriod: arts.rows.filter((a) => isPub(a) && inWin(pubAt(a), w.cur)).length,
@@ -418,6 +485,7 @@ export default async function handler(req, res) {
         drafts:            arts.rows.filter((a) => !isPub(a)).length,
         byStatus:          tallyBy(arts.rows, (a) => a.status).map((x) => ({ status: x.label, count: x.count })),
         byAnalyst:         [...kbBoard.values()].sort((a, b) => b.authored - a.authored || b.published - a.published),
+        trend:             { contributors: kbContributors, series: kbSeries, total: kbTotal },
       };
     } catch (e) {
       notes.push(`Knowledge base unavailable (${e.message})`);
@@ -437,10 +505,11 @@ export default async function handler(req, res) {
       byStatus:   tallyBy(newCur, (t) => t.status).map((x) => ({ status: x.label, count: x.count })),
       byPriority: tallyBy(newCur, (t) => t.priority).map((x) => ({ priority: x.label, count: x.count })),
       byChannel:  tallyBy(newCur, (t) => t.channel).map((x) => ({ channel: x.label, count: x.count })),
-      trend: { months: tb.buckets, tickets: { categories, series, total } },
+      trend: { months: tb.buckets, tickets: { categories, series, total, prevSeries, prevTotal } },
       leaderboard,
       analystSummary: {
         analysts: analystCount,
+        agentsTotal: activeAgents,
         avgTicketsPerAnalyst: analystCount ? newCur.length / analystCount : null,
       },
       kb,

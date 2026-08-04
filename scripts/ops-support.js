@@ -10,10 +10,8 @@
  * ─────────────────────────────────────────────────────────────────────────── */
 
 import { initOps, opsFetch } from './dhops.js';
+import { comboChart, stackedChart, NAVY, ORANGE } from './ops-charts.js';
 
-const PALETTE = ['#193359', '#F39235', '#FAB400', '#3C5A88', '#708795', '#FFCF00', '#A4B2BC', '#0E1F39'];
-const NAVY   = '#193359';
-const ORANGE = '#F39235';
 const YELLOW = '#FAB400';
 
 const PERIOD_PREV = { month: 'last month', quarter: 'last quarter', year: 'last year' };
@@ -92,29 +90,14 @@ function renderKb(kb) {
   const el = $('ops-kb');
   if (!kb) { el.innerHTML = `<p class="ops-empty">Knowledge base data unavailable</p>`; return; }
 
-  const board = kb.byAnalyst ?? [];
-  const byAnalyst = board.length
-    ? `<div class="admin-table-wrap" style="margin-top:var(--space-5)">
-        <table class="admin-table" aria-label="Knowledge base articles by analyst">
-          <thead>
-            <tr>
-              <th>Analyst</th>
-              <th class="ops-num">Created</th>
-              <th class="ops-num">Published</th>
-              <th class="ops-num">Authored</th>
-            </tr>
-          </thead>
-          <tbody>${board.map((r) => `
-            <tr>
-              <td style="font-weight:var(--fw-medium)">${esc(r.name)}</td>
-              <td class="ops-num">${fmtInt(r.createdInPeriod)}</td>
-              <td class="ops-num">${fmtInt(r.publishedInPeriod)}</td>
-              <td class="ops-num">${fmtInt(r.authored)}</td>
-            </tr>`).join('')}
-          </tbody>
-        </table>
-      </div>`
-    : `<p class="ops-note">No per-analyst attribution available</p>`;
+  // Contributors over time — a stacked chart reads better than a flat list at
+  // this headcount, and shows who wrote what, when.
+  const months = currentData?.trend?.months ?? [];
+  const kbTrend = kb.trend;
+  const contributors = kbTrend?.contributors ?? [];
+  const chart = (months.length && contributors.length)
+    ? stackedChart({ months, keys: contributors, series: kbTrend.series, label: 'Articles created per month by contributor' })
+    : `<p class="ops-note">No per-contributor article history available</p>`;
 
   el.innerHTML = `
     <div class="ops-activity">
@@ -122,8 +105,8 @@ function renderKb(kb) {
       <div class="ops-activity__cell"><div class="ops-activity__num">${fmtInt(kb.publishedInPeriod)}</div><div class="ops-activity__lbl">Published</div></div>
       <div class="ops-activity__cell"><div class="ops-activity__num">${fmtInt(kb.drafts)}</div><div class="ops-activity__lbl">Drafts</div></div>
     </div>
-    <p class="ops-note">${fmtInt(kb.totalPublished)} published articles in total · Created/Published are this period, Authored is all time</p>
-    ${byAnalyst}`;
+    <p class="ops-note">${fmtInt(kb.totalPublished)} published articles in total · Articles created per month by contributor</p>
+    ${chart}`;
 }
 
 // ── Trend ───────────────────────────────────────────────────────────────────
@@ -155,24 +138,30 @@ function renderTrend() {
 
   const part = t.tickets;
   const sel = $('ops-tickets-filter').value || 'all';
-  const vals = sel === 'all' ? part.total : (part.series[sel] || months.map(() => 0));
-  const max = Math.max(...vals, 1);
-  const latest = vals[vals.length - 1] ?? 0;
-  const prev = vals.length > 1 ? vals[vals.length - 2] : null;
+  const zeros = months.map(() => 0);
+  const vals = sel === 'all' ? part.total : (part.series?.[sel] || zeros);
+  const prevVals = sel === 'all' ? (part.prevTotal || zeros) : (part.prevSeries?.[sel] || zeros);
 
-  const cols = months.map((m, i) => {
-    const h = ((vals[i] / max) * 100).toFixed(1);
-    const isCur = i === months.length - 1;
-    return `<div class="ops-col ${isCur ? 'is-current' : ''}" title="${esc(m.label)} ${m.year}: ${fmtInt(vals[i])}">
-      <div class="ops-col__val">${fmtInt(vals[i])}</div>
-      <div class="ops-col__track"><div class="ops-col__bar" style="height:${h}%;background:${NAVY}"></div></div>
-      <div class="ops-col__lbl">${esc(m.label)}</div>
-    </div>`;
-  }).join('');
+  const latest = vals[vals.length - 1] ?? 0;
+  const prevMonth = vals.length > 1 ? vals[vals.length - 2] : null;
+  const lastYear = prevVals[prevVals.length - 1] ?? 0;
+
+  const yoy = lastYear
+    ? (() => {
+        const d = (latest - lastYear) / lastYear;
+        const cls = d === 0 ? 'flat' : d > 0 ? 'up' : 'down';
+        const arrow = d === 0 ? '' : d > 0 ? '▲' : '▼';
+        return `<span class="ops-mom__delta ops-mom__delta--${cls}">${arrow} ${Math.abs(d * 100).toFixed(1)}% <small>vs last year</small></span>`;
+      })()
+    : '';
 
   body.innerHTML = `
-    <div class="ops-mom"><span class="ops-mom__num">${fmtInt(latest)}</span>${momDelta(latest, prev)}</div>
-    <div class="ops-columns">${cols}</div>`;
+    <div class="ops-mom">
+      <span class="ops-mom__num">${fmtInt(latest)}</span>
+      ${momDelta(latest, prevMonth)}
+      ${yoy}
+    </div>
+    ${comboChart({ months, bars: vals, line: prevVals, label: 'Tickets per month with last year overlaid' })}`;
 }
 
 function renderLeaderboard(rows, summary) {
@@ -235,7 +224,8 @@ function trendMonths(n) {
   const now = new Date(), out = [];
   for (let i = n - 1; i >= 0; i--) {
     const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
-    out.push({ key: `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}`, label: MONTHS[d.getMonth()], year: d.getFullYear() });
+    const y = d.getFullYear(), mm = String(d.getMonth() + 1).padStart(2, '0');
+    out.push({ key: `${y}-${mm}`, prevKey: `${y - 1}-${mm}`, label: MONTHS[d.getMonth()], year: y });
   }
   return out;
 }
@@ -246,6 +236,15 @@ function demoData(period) {
   const open = months.map((_, i) => 6 + ((i * 5) % 7));
   const closed = months.map((_, i) => 14 + ((i * 3) % 9));
   const total = months.map((_, i) => open[i] + closed[i]);
+  // Same months a year earlier — the comparison line
+  const prevOpen = months.map((_, i) => 4 + ((i * 3) % 5));
+  const prevClosed = months.map((_, i) => 11 + ((i * 4) % 7));
+  const prevTotal = months.map((_, i) => prevOpen[i] + prevClosed[i]);
+  // Four KB contributors, monthly output
+  const kbNames = ['Nicole', 'Louis', 'Priya', 'Sam'];
+  const kbSeries = {};
+  kbNames.forEach((n, ni) => { kbSeries[n] = months.map((_, i) => Math.max(0, (i + ni) % 4 === 0 ? 0 : ((i * (ni + 2)) % 3))); });
+  const kbTotal = months.map((_, i) => kbNames.reduce((s, n) => s + kbSeries[n][i], 0));
   return {
     period, generatedAt: new Date().toISOString(),
     kpis: {
@@ -259,7 +258,14 @@ function demoData(period) {
     byStatus:   [{ status: 'Closed', count: 31 * scale }, { status: 'Open', count: 9 * scale }, { status: 'On Hold', count: 3 * scale }],
     byPriority: [{ priority: 'Medium', count: 18 * scale }, { priority: 'High', count: 9 * scale }, { priority: 'Low', count: 5 * scale }, { priority: 'Urgent', count: 2 * scale }],
     byChannel:  [{ channel: 'Email', count: 24 * scale }, { channel: 'Web', count: 8 * scale }, { channel: 'Phone', count: 2 * scale }],
-    trend: { months, tickets: { categories: ['Closed', 'Open'], series: { Closed: closed, Open: open }, total } },
+    trend: {
+      months,
+      tickets: {
+        categories: ['Closed', 'Open'],
+        series: { Closed: closed, Open: open }, total,
+        prevSeries: { Closed: prevClosed, Open: prevOpen }, prevTotal,
+      },
+    },
     leaderboard: [
       { agentId: '1', name: 'Support Analyst A', taken: 15 * scale, resolved: 14 * scale, open: 5, avgResolutionHours: 16.2 },
       { agentId: '2', name: 'Support Analyst B', taken: 12 * scale, resolved: 11 * scale, open: 4, avgResolutionHours: 21.8 },
@@ -274,6 +280,7 @@ function demoData(period) {
         { name: 'Support Analyst B', authored: 15, published: 14, createdInPeriod: 2 * scale, publishedInPeriod: 1 * scale },
         { name: 'Support Analyst C', authored: 10, published: 6, createdInPeriod: 0, publishedInPeriod: 0 },
       ],
+      trend: { contributors: kbNames, series: kbSeries, total: kbTotal },
     },
     meta: { notes: [] },
   };

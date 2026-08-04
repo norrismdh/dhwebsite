@@ -359,6 +359,53 @@
 }
 
 /* -----------------------------------------------------------
+   SVG charts (combo bars + line, stacked contributors)
+   Hand-rolled — no charting library, keeping pages self-contained.
+   ----------------------------------------------------------- */
+.ops-chart {
+  display: block;
+  width: 100%;
+  height: 190px;
+  overflow: visible;
+}
+
+.ops-chart__axis { stroke: var(--border-1); stroke-width: 1; }
+
+.ops-chart__val {
+  font-size: 11px;
+  font-weight: var(--fw-bold);
+  fill: var(--fg-2);
+  font-family: var(--font-sans);
+}
+
+.ops-chart__lbl {
+  font-size: 11px;
+  fill: var(--fg-3);
+  font-family: var(--font-sans);
+}
+
+.ops-chart__lbl.is-current { fill: var(--fg-1); font-weight: var(--fw-bold); }
+
+/* Legend under a chart */
+.ops-legend-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.ops-legend-key {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-12);
+  color: var(--fg-2);
+}
+
+.ops-legend-key__bar  { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+.ops-legend-key__line { width: 14px; height: 2px;  border-radius: 2px; flex-shrink: 0; }
+
+/* -----------------------------------------------------------
    Client health pills (Clients tab)
    ----------------------------------------------------------- */
 .ops-health {
