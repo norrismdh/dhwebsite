@@ -371,7 +371,10 @@ async function main() {
 
   function setPeriodButtons() {
     document.querySelectorAll('.ops-period__btn').forEach((b) => {
-      b.classList.toggle('is-active', b.dataset.period === period);
+      const on = b.dataset.period === period;
+      b.classList.toggle('is-active', on);
+      // Colour alone doesn't tell a screen reader which period is selected
+      b.setAttribute('aria-pressed', String(on));
     });
   }
 

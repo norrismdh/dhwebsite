@@ -232,6 +232,11 @@
 .ops-chart-lead .ops-activity { margin-bottom: 0; }
 .ops-chart-lead .ops-note { margin-top: var(--space-2); }
 
+/* A full-width panel has no sibling to line up with, so it doesn't need the
+   reserved lead/legend space that keeps a row level. */
+.ops-panel-full .ops-chart-lead,
+.ops-panel-full .ops-legend-row { min-height: 0; }
+
 /* -----------------------------------------------------------
    Trend panels — filter select, MoM indicator, column chart
    ----------------------------------------------------------- */
@@ -275,43 +280,6 @@
 .ops-mom__delta--up   { color: var(--success); }
 .ops-mom__delta--down { color: var(--danger); }
 .ops-mom__delta--flat { color: var(--fg-3); }
-
-.ops-columns {
-  display: flex;
-  align-items: stretch;
-  gap: var(--space-2);
-}
-
-.ops-col {
-  flex: 1 1 0;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
-
-.ops-col__val { font-size: var(--fs-12); font-weight: var(--fw-bold); color: var(--fg-2); }
-
-.ops-col__track {
-  width: 100%;
-  height: 120px;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-}
-
-.ops-col__bar {
-  width: 66%;
-  min-height: 2px;
-  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-  transform-origin: bottom;
-  transition: height var(--dur-slow) var(--ease-out);
-}
-
-.ops-col__lbl { font-size: var(--fs-11); color: var(--fg-3); white-space: nowrap; }
-.ops-col.is-current .ops-col__lbl { color: var(--fg-1); font-weight: var(--fw-bold); }
-.ops-col.is-current .ops-col__val { color: var(--fg-1); }
 
 /* -----------------------------------------------------------
    Horizontal bar list (pipeline by stage · leads by source)
@@ -685,7 +653,6 @@
    ----------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   .ops-bar__fill,
-  .ops-col__bar,
   .ops-donut__seg,
   .ops-refresh svg { transition: none; animation: none; }
 

@@ -69,10 +69,10 @@
 
           <div class="ops-controls">
             <div class="ops-period" id="ops-period" role="group" aria-label="Reporting period">
-              <button type="button" class="ops-period__btn is-active" data-period="month">This month</button>
-              <button type="button" class="ops-period__btn" data-period="quarter">This quarter</button>
-              <button type="button" class="ops-period__btn" data-period="year">Year to date</button>
-              <button type="button" class="ops-period__btn" data-period="rolling12">Last 12 months</button>
+              <button type="button" aria-pressed="true" class="ops-period__btn is-active" data-period="month">This month</button>
+              <button type="button" aria-pressed="false" class="ops-period__btn" data-period="quarter">This quarter</button>
+              <button type="button" aria-pressed="false" class="ops-period__btn" data-period="year">Year to date</button>
+              <button type="button" aria-pressed="false" class="ops-period__btn" data-period="rolling12">Last 12 months</button>
             </div>
 
             <button type="button" id="ops-refresh" class="btn btn--primary ops-refresh">
@@ -85,7 +85,7 @@
         </div>
 
         <!-- Config / error state (hidden unless needed) -->
-        <div id="ops-state" class="ops-state" hidden></div>
+        <div id="ops-state" class="ops-state" role="status" aria-live="polite" hidden></div>
 
         <!-- KPI row (populated by JS) -->
         <div class="admin-stats" id="ops-kpis" aria-live="polite"></div>
@@ -108,10 +108,13 @@
             <div class="admin-panel__body" id="ops-kb"></div>
           </div>
 
-          <div class="admin-panel">
-            <div class="admin-panel__head"><h2>Knowledge base growth</h2></div>
-            <div class="admin-panel__body" id="ops-kb-growth"></div>
-          </div>
+        </div>
+
+        <!-- Cumulative library size — full width, since a long trend line reads
+             better wide than squeezed into a third of the row -->
+        <div class="admin-panel ops-panel-full">
+          <div class="admin-panel__head"><h2>Knowledge base growth</h2></div>
+          <div class="admin-panel__body" id="ops-kb-growth"></div>
         </div>
 
         <!-- Breakdowns -->

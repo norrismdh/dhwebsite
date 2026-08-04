@@ -11,15 +11,13 @@
  * ─────────────────────────────────────────────────────────────────────────── */
 
 import { initOps, opsFetch } from './dhops.js';
+import { comboChart, attachChartTooltip, chartBox, PALETTE, NAVY, ORANGE } from './ops-charts.js';
 
-// Categorical palette (brand tokens, resolved to hex for SVG fills)
-const PALETTE = ['#193359', '#F39235', '#FAB400', '#3C5A88', '#708795', '#FFCF00', '#A4B2BC', '#0E1F39'];
-const NAVY   = '#193359';
-const ORANGE = '#F39235';
+// Matches the Support tab so the two pages' trend panels are the same object
+const CHART_H = 240;
 
 const PERIOD_PREV = { month: 'last month', quarter: 'last quarter', year: 'last year', rolling12: 'previous 12 months' };
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-const TREND_COLOR = { leads: NAVY, deals: ORANGE };
 
 // Last payload rendered — lets the trend filters re-render without a refetch.
 let currentData = null;
@@ -203,7 +201,7 @@ function populateFilter(kind) {
   el.value = prev && [...el.options].some((o) => o.value === prev) ? prev : 'all';
 }
 
-/** Render one trend column chart for the currently selected filter value. */
+/** Render one trend chart for the currently selected filter value. */
 function renderTrend(kind) {
   const t = currentData?.trend;
   const body = $(kind === 'leads' ? 'ops-leads-trend' : 'ops-deals-trend');
@@ -212,28 +210,24 @@ function renderTrend(kind) {
 
   const part = t[kind];
   const sel = $(kind === 'leads' ? 'ops-leads-filter' : 'ops-deals-filter').value || 'all';
-  const vals = sel === 'all' ? part.total : (part.series[sel] || months.map(() => 0));
-  const color = TREND_COLOR[kind];
-  const max = Math.max(...vals, 1);
+  const zeros = months.map(() => 0);
+  const vals = sel === 'all' ? part.total : (part.series?.[sel] || zeros);
   const latest = vals[vals.length - 1] ?? 0;
   const prev = vals.length > 1 ? vals[vals.length - 2] : null;
 
-  const cols = months.map((m, i) => {
-    const h = ((vals[i] / max) * 100).toFixed(1);
-    const isCur = i === months.length - 1;
-    return `<div class="ops-col ${isCur ? 'is-current' : ''}" title="${esc(m.label)} ${m.year}: ${fmtInt(vals[i])}">
-      <div class="ops-col__val">${fmtInt(vals[i])}</div>
-      <div class="ops-col__track"><div class="ops-col__bar" style="height:${h}%;background:${color}"></div></div>
-      <div class="ops-col__lbl">${esc(m.label)}</div>
-    </div>`;
-  }).join('');
-
   body.innerHTML = `
-    <div class="ops-mom">
-      <span class="ops-mom__num">${fmtInt(latest)}</span>
-      ${momDelta(latest, prev)}
+    <div class="ops-chart-lead">
+      <div class="ops-mom">
+        <span class="ops-mom__num">${fmtInt(latest)}</span>
+        ${momDelta(latest, prev)}
+      </div>
+      <p class="ops-chart-lead__caption">${esc(t.spanLabel ?? '')}</p>
     </div>
-    <div class="ops-columns">${cols}</div>`;
+    ${comboChart({
+      months, bars: vals,
+      label: `${kind === 'leads' ? 'Leads' : 'Deals'} per month`,
+      box: chartBox(body, { height: CHART_H }),
+    })}`;
 }
 
 function renderTrends() {
@@ -241,6 +235,9 @@ function renderTrends() {
   populateFilter('deals');
   renderTrend('leads');
   renderTrend('deals');
+  // Charts are rebuilt above, so (re)wire their tooltips
+  attachChartTooltip($('ops-leads-trend'));
+  attachChartTooltip($('ops-deals-trend'));
 }
 
 function renderAll(data, period) {
@@ -358,7 +355,10 @@ async function main() {
 
   function setPeriodButtons() {
     document.querySelectorAll('.ops-period__btn').forEach((b) => {
-      b.classList.toggle('is-active', b.dataset.period === period);
+      const on = b.dataset.period === period;
+      b.classList.toggle('is-active', on);
+      // Colour alone doesn't tell a screen reader which period is selected
+      b.setAttribute('aria-pressed', String(on));
     });
   }
 
