@@ -427,14 +427,22 @@ export default async function handler(req, res) {
     // ── Leaderboard (per rep) ───────────────────────────────────────────────
     const board = new Map();
     const seed = (id) => {
-      if (!board.has(id)) board.set(id, { ownerId: id, name: nameFor(id), revenueWon: 0, dealsWon: 0, openPipeline: 0, activities: 0 });
+      if (!board.has(id)) {
+        board.set(id, {
+          ownerId: id, name: nameFor(id),
+          revenueWon: 0, dealsWon: 0, openPipeline: 0,
+          // Key activities kept separate as well as totalled, so it's visible
+          // who leads each one rather than only who logged the most overall
+          calls: 0, meetings: 0, tasks: 0, activities: 0,
+        });
+      }
       return board.get(id);
     };
     for (const d of wonCur)    { const b = seed(ownerId(d)); b.revenueWon += num(d.Amount); b.dealsWon += 1; }
     for (const d of openDeals) { seed(ownerId(d)).openPipeline += num(d.Amount); }
-    for (const r of callsCur)      seed(ownerId(r)).activities += 1;
-    for (const r of eventsCur)     seed(ownerId(r)).activities += 1;
-    for (const r of tasksCurDone)  seed(ownerId(r)).activities += 1;
+    for (const r of callsCur)     { const b = seed(ownerId(r)); b.calls    += 1; b.activities += 1; }
+    for (const r of eventsCur)    { const b = seed(ownerId(r)); b.meetings += 1; b.activities += 1; }
+    for (const r of tasksCurDone) { const b = seed(ownerId(r)); b.tasks    += 1; b.activities += 1; }
     const leaderboard = [...board.values()]
       .filter((b) => b.revenueWon || b.openPipeline || b.activities)
       .sort((a, b) => b.revenueWon - a.revenueWon || b.openPipeline - a.openPipeline);

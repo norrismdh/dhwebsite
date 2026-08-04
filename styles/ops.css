@@ -676,6 +676,13 @@
 /* Numeric table cells align right for quick scanning */
 .ops-num { text-align: right; font-variant-numeric: tabular-nums; }
 
+/* Column leader. Paired with a visually-hidden "(highest)" in the markup, so the
+   meaning survives without colour or weight perception. */
+.ops-lead {
+  font-weight: var(--fw-bold);
+  color: var(--dh-navy);
+}
+
 .ops-empty { color: var(--fg-3); font-size: var(--fs-14); margin: 0; }
 
 /* -----------------------------------------------------------

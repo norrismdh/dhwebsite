@@ -153,15 +153,60 @@ function renderActivity(a) {
 
 function renderLeaderboard(rows) {
   const tb = $('ops-leaderboard');
-  if (!rows.length) { tb.innerHTML = `<tr><td colspan="5" class="ops-empty">No activity in this period</td></tr>`; return; }
+  const COLS = 8;
+  if (!rows.length) {
+    tb.innerHTML = `<tr><td colspan="${COLS}" class="ops-empty">No activity in this period</td></tr>`;
+    $('ops-leaders').textContent = '';
+    return;
+  }
+
+  // Highest value per column, so the leader is visible whatever the sort order.
+  // Only counts a leader when someone is actually ahead — an all-zero column, or
+  // a tie, would otherwise decorate rows arbitrarily.
+  const leaderIn = (key) => {
+    const max = Math.max(...rows.map((r) => r[key] ?? 0));
+    if (!max) return null;
+    const top = rows.filter((r) => (r[key] ?? 0) === max);
+    return top.length === 1 ? top[0] : null;
+  };
+
+  const leads = {
+    revenueWon: leaderIn('revenueWon'), dealsWon: leaderIn('dealsWon'),
+    openPipeline: leaderIn('openPipeline'), calls: leaderIn('calls'),
+    meetings: leaderIn('meetings'), tasks: leaderIn('tasks'),
+    activities: leaderIn('activities'),
+  };
+
+  /* Bold plus a visually-hidden "highest" — weight alone is a weak signal and
+     colour alone would fail anyone who can't distinguish it. */
+  const cell = (r, key, text) => {
+    const isLead = leads[key] === r;
+    return `<td class="ops-num${isLead ? ' ops-lead' : ''}">${text}${
+      isLead ? '<span class="sr-only"> (highest)</span>' : ''}</td>`;
+  };
+
   tb.innerHTML = rows.map((r, i) => `
     <tr class="ops-row-in" style="--i:${i}">
       <td style="font-weight:var(--fw-medium)">${esc(r.name)}</td>
-      <td class="ops-num">${fmtMoney(r.revenueWon)}</td>
-      <td class="ops-num">${fmtInt(r.dealsWon)}</td>
-      <td class="ops-num">${fmtMoney(r.openPipeline)}</td>
-      <td class="ops-num">${fmtInt(r.activities)}</td>
+      ${cell(r, 'revenueWon', fmtMoney(r.revenueWon))}
+      ${cell(r, 'dealsWon', fmtInt(r.dealsWon))}
+      ${cell(r, 'openPipeline', fmtMoney(r.openPipeline))}
+      ${cell(r, 'calls', fmtInt(r.calls))}
+      ${cell(r, 'meetings', fmtInt(r.meetings))}
+      ${cell(r, 'tasks', fmtInt(r.tasks))}
+      ${cell(r, 'activities', fmtInt(r.activities))}
     </tr>`).join('');
+
+  // Plain-language summary of who leads each key activity
+  const firstName = (n) => String(n ?? '').split(' ')[0];
+  const summary = [
+    ['Calls', leads.calls, 'calls'],
+    ['Meetings', leads.meetings, 'meetings'],
+    ['Tasks', leads.tasks, 'tasks'],
+  ].filter(([, who]) => who)
+   .map(([label, who, key]) => `${label}: ${esc(firstName(who.name))} (${fmtInt(who[key])})`);
+
+  $('ops-leaders').textContent = summary.length ? `Leading — ${summary.join(' · ')}` : '';
 }
 
 function renderClosing(rows) {
@@ -331,9 +376,9 @@ function demoData(period) {
     ],
     activityBreakdown: { calls: 18 * scale, meetings: 6 * scale, tasks: 18 * scale },
     leaderboard: [
-      { name: 'Scott Masson', revenueWon: 38_036, dealsWon: 2, openPipeline: 312_540, activities: 12 },
-      { name: 'Gonzalo Mendez', revenueWon: 0, dealsWon: 0, openPipeline: 0, activities: 21 },
-      { name: 'Doug Bonanno', revenueWon: 26_036, dealsWon: 1, openPipeline: 174_000, activities: 9 },
+      { name: 'Scott Masson',   revenueWon: 38_036, dealsWon: 2, openPipeline: 312_540, calls: 4,  meetings: 3, tasks: 5,  activities: 12 },
+      { name: 'Gonzalo Mendez', revenueWon: 0,      dealsWon: 0, openPipeline: 0,       calls: 14, meetings: 1, tasks: 6,  activities: 21 },
+      { name: 'Doug Bonanno',   revenueWon: 26_036, dealsWon: 1, openPipeline: 174_000, calls: 2,  meetings: 5, tasks: 2,  activities: 9 },
     ],
     closingSoon: [
       { name: 'RCMP - Motio CI 2026 Renewal', stage: 'Renewal', owner: 'Scott Masson', closingDate: '2026-08-15', amount: 152_133 },
