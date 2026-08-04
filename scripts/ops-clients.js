@@ -53,8 +53,8 @@ function renderKpis(s, thresholds) {
   ];
   if (s.unknown) cards.push({ label: 'No contact', value: fmtInt(s.unknown), sub: 'nothing on record' });
 
-  $('ops-kpis').innerHTML = cards.map((c) => `
-    <div class="admin-stat-card ops-kpi">
+  $('ops-kpis').innerHTML = cards.map((c, i) => `
+    <div class="admin-stat-card ops-kpi" style="--i:${i}">
       <div class="admin-stat-card__label">${c.label}</div>
       <div class="ops-kpi__value${c.tone ? ` ops-kpi__value--${c.tone}` : ''}">${c.value}</div>
       <span class="ops-kpi__delta ops-kpi__delta--flat"><small>${esc(c.sub)}</small></span>
@@ -71,12 +71,12 @@ function renderClients(rows) {
     tb.innerHTML = `<tr><td colspan="8" class="ops-empty">No clients found (no won deals)</td></tr>`;
     return;
   }
-  tb.innerHTML = rows.map((c) => {
+  tb.innerHTML = rows.map((c, i) => {
     const via = c.lastContactKind
       ? `${VIA_LABEL[c.lastContactKind] ?? c.lastContactKind}${c.lastContactLabel ? `<br><small style="color:var(--fg-3)">${esc(c.lastContactLabel)}</small>` : ''}`
       : '—';
     return `
-    <tr>
+    <tr class="ops-row-in" style="--i:${i}">
       <td style="font-weight:var(--fw-medium)">${esc(c.name)}${c.nameFromDeal ? `<br><small style="color:var(--fg-3);font-weight:var(--fw-regular)">named from deal</small>` : ''}</td>
       <td>${healthPill(c.health)}</td>
       <td>${fmtDate(c.lastContactAt)}${c.daysSince != null ? `<br><small style="color:var(--fg-3)">${fmtAgo(c.daysSince)}</small>` : ''}</td>

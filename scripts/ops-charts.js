@@ -6,7 +6,12 @@
  * match the hand-rolled donut already used on the CRM dashboard.
  * Styling hooks live in styles/ops.css (.ops-chart*, .ops-legend-*).
  *
- * Exports: PALETTE, NAVY, ORANGE, comboChart, stackedChart
+ * Charts carry per-slot hover targets with a JSON breakdown, which
+ * attachChartTooltip() turns into a styled tooltip. Native SVG <title> is not
+ * used: it is slow to appear, unstyleable, and can only show a single line, so
+ * it cannot list every contributor behind a stacked bar.
+ *
+ * Exports: PALETTE, NAVY, ORANGE, comboChart, stackedChart, attachChartTooltip
  * ─────────────────────────────────────────────────────────────────────────── */
 
 // Categorical palette (brand tokens resolved to hex for SVG fills)
@@ -40,6 +45,26 @@ const baseline = (g) =>
   `<line x1="${g.padX}" y1="${g.padTop + g.plotH}" x2="${g.w - g.padX}" y2="${g.padTop + g.plotH}" class="ops-chart__axis" />`;
 
 /**
+ * Full-height, invisible hover target per slot. `rows` is the breakdown shown in
+ * the tooltip: [{ name, value, color }]. Stored as JSON on the element so the
+ * tooltip needs no closure over chart state.
+ */
+function hitSlots(months, g, rowsFor) {
+  return months.map((m, i) => {
+    const payload = {
+      title: `${m.label} ${m.year}`,
+      rows: rowsFor(i),
+    };
+    return `<g class="ops-chart__slot" data-slot="${i}" data-tip="${esc(JSON.stringify(payload))}">
+      <rect class="ops-chart__hit-bg" x="${(g.padX + g.slot * i).toFixed(1)}" y="${g.padTop}"
+            width="${g.slot.toFixed(1)}" height="${g.plotH}" rx="3" />
+      <rect class="ops-chart__hit" x="${(g.padX + g.slot * i).toFixed(1)}" y="${g.padTop}"
+            width="${g.slot.toFixed(1)}" height="${g.plotH}" />
+    </g>`;
+  }).join('');
+}
+
+/**
  * Bars for the selected period with a line overlaid for the same period a year
  * earlier. One SVG, so the line lands exactly on the bar centres.
  *
@@ -56,27 +81,32 @@ export function comboChart({ months, bars, line, label }) {
 
   const barEls = months.map((m, i) => {
     const vy = y(safeBars[i]);
-    return `<rect x="${(g.centre(i) - barW / 2).toFixed(1)}" y="${vy.toFixed(1)}"
+    return `<rect class="ops-chart__bar" style="--i:${i}" x="${(g.centre(i) - barW / 2).toFixed(1)}" y="${vy.toFixed(1)}"
       width="${barW.toFixed(1)}" height="${(g.padTop + g.plotH - vy).toFixed(1)}"
-      rx="3" fill="${NAVY}"><title>${esc(m.label)} ${m.year}: ${fmtInt(safeBars[i])}</title></rect>`;
+      rx="3" fill="${NAVY}" />`;
   }).join('');
 
   const valEls = months.map((m, i) => safeBars[i]
-    ? `<text x="${g.centre(i).toFixed(1)}" y="${(y(safeBars[i]) - 6).toFixed(1)}" text-anchor="middle" class="ops-chart__val">${fmtInt(safeBars[i])}</text>`
+    ? `<text class="ops-chart__val" style="--i:${i}" x="${g.centre(i).toFixed(1)}" y="${(y(safeBars[i]) - 6).toFixed(1)}" text-anchor="middle">${fmtInt(safeBars[i])}</text>`
     : '').join('');
 
   const hasLine = safeLine.some((v) => v > 0);
   const pts = months.map((m, i) => `${g.centre(i).toFixed(1)},${y(safeLine[i]).toFixed(1)}`).join(' ');
   const lineEls = hasLine
-    ? `<polyline points="${pts}" fill="none" stroke="${ORANGE}" stroke-width="2"
+    ? `<polyline class="ops-chart__line" style="--i:${months.length}" points="${pts}" fill="none" stroke="${ORANGE}" stroke-width="2"
          stroke-linejoin="round" stroke-linecap="round" />
-       ${months.map((m, i) => `<circle cx="${g.centre(i).toFixed(1)}" cy="${y(safeLine[i]).toFixed(1)}" r="3"
-         fill="var(--bg-2)" stroke="${ORANGE}" stroke-width="2"><title>${esc(m.label)} ${m.year - 1}: ${fmtInt(safeLine[i])}</title></circle>`).join('')}`
+       ${months.map((m, i) => `<circle class="ops-chart__dot" style="--i:${i}" cx="${g.centre(i).toFixed(1)}" cy="${y(safeLine[i]).toFixed(1)}" r="3"
+         fill="var(--bg-2)" stroke="${ORANGE}" stroke-width="2" />`).join('')}`
     : '';
 
+  const hits = hitSlots(months, g, (i) => [
+    { name: 'This period', value: fmtInt(safeBars[i]), color: NAVY },
+    ...(hasLine ? [{ name: 'Same month last year', value: fmtInt(safeLine[i]), color: ORANGE }] : []),
+  ]);
+
   return `
-    <svg class="ops-chart" viewBox="0 0 ${g.w} ${g.h}" role="img" aria-label="${esc(label)}" preserveAspectRatio="none">
-      ${baseline(g)}${barEls}${valEls}${lineEls}${monthLabels(months, g)}
+    <svg class="ops-chart" viewBox="0 0 ${g.w} ${g.h}" role="img" aria-label="${esc(label)}" preserveAspectRatio="xMidYMid meet">
+      ${baseline(g)}${barEls}${valEls}${lineEls}${monthLabels(months, g)}${hits}
     </svg>
     <div class="ops-legend-row">
       <span class="ops-legend-key"><span class="ops-legend-key__bar" style="background:${NAVY}"></span>This period</span>
@@ -99,6 +129,8 @@ export function stackedChart({ months, keys, series, label }) {
 
   const stacks = months.map((m, i) => {
     let acc = 0;
+    // Each month's stack is one group so it grows from the baseline as a unit,
+    // rather than each segment scaling independently and tearing apart.
     const segs = keys.map((k, ki) => {
       const v = at(k, i);
       if (!v) return '';
@@ -107,19 +139,106 @@ export function stackedChart({ months, keys, series, label }) {
       acc += hPx;
       return `<rect x="${(g.centre(i) - barW / 2).toFixed(1)}" y="${yTop.toFixed(1)}"
         width="${barW.toFixed(1)}" height="${hPx.toFixed(1)}"
-        fill="${PALETTE[ki % PALETTE.length]}"><title>${esc(k)} — ${esc(m.label)} ${m.year}: ${fmtInt(v)}</title></rect>`;
+        fill="${PALETTE[ki % PALETTE.length]}" />`;
     }).join('');
     const totalLbl = totals[i]
-      ? `<text x="${g.centre(i).toFixed(1)}" y="${(g.padTop + g.plotH - acc - 6).toFixed(1)}" text-anchor="middle" class="ops-chart__val">${fmtInt(totals[i])}</text>`
+      ? `<text class="ops-chart__val" style="--i:${i}" x="${g.centre(i).toFixed(1)}" y="${(g.padTop + g.plotH - acc - 6).toFixed(1)}" text-anchor="middle">${fmtInt(totals[i])}</text>`
       : '';
-    return segs + totalLbl;
+    return `<g class="ops-chart__bar" style="--i:${i}">${segs}</g>${totalLbl}`;
   }).join('');
 
+  // Tooltip lists EVERY contributor for the month, with their actual counts —
+  // including the ones who wrote nothing, so absence is visible too.
+  const hits = hitSlots(months, g, (i) => [
+    ...keys.map((k, ki) => ({ name: k, value: fmtInt(at(k, i)), color: PALETTE[ki % PALETTE.length], muted: at(k, i) === 0 })),
+    { name: 'Total', value: fmtInt(totals[i]), total: true },
+  ]);
+
   return `
-    <svg class="ops-chart" viewBox="0 0 ${g.w} ${g.h}" role="img" aria-label="${esc(label)}" preserveAspectRatio="none">
-      ${baseline(g)}${stacks}${monthLabels(months, g)}
+    <svg class="ops-chart" viewBox="0 0 ${g.w} ${g.h}" role="img" aria-label="${esc(label)}" preserveAspectRatio="xMidYMid meet">
+      ${baseline(g)}${stacks}${monthLabels(months, g)}${hits}
     </svg>
     <div class="ops-legend-row">
       ${keys.map((k, ki) => `<span class="ops-legend-key"><span class="ops-legend-key__bar" style="background:${PALETTE[ki % PALETTE.length]}"></span>${esc(k)}</span>`).join('')}
     </div>`;
+}
+
+// ── Tooltip ─────────────────────────────────────────────────────────────────
+
+let tipEl = null;
+let hideTimer = null;
+
+function ensureTip() {
+  if (tipEl) return tipEl;
+  tipEl = document.createElement('div');
+  tipEl.className = 'ops-tip';
+  tipEl.setAttribute('role', 'tooltip');
+  document.body.appendChild(tipEl);
+  return tipEl;
+}
+
+function tipHtml({ title, rows }) {
+  const body = (rows ?? []).map((r) => `
+    <div class="ops-tip__row${r.total ? ' ops-tip__total' : ''}" ${r.muted ? 'style="opacity:.55"' : ''}>
+      ${r.color ? `<span class="ops-tip__dot" style="background:${r.color}"></span>` : '<span style="width:8px"></span>'}
+      <span class="ops-tip__name">${esc(r.name)}</span>
+      <span class="ops-tip__val">${esc(r.value)}</span>
+    </div>`).join('');
+  return `<div class="ops-tip__head">${esc(title)}</div>${body || '<div class="ops-tip__empty">No data</div>'}`;
+}
+
+/** Position above the hovered slot, clamped into the viewport. */
+function placeTip(tip, rect) {
+  const GAP = 10, M = 8;
+  const w = tip.offsetWidth, h = tip.offsetHeight;
+  let left = rect.left + rect.width / 2 - w / 2;
+  left = Math.min(Math.max(left, M), window.innerWidth - w - M);
+  let top = rect.top - h - GAP;
+  if (top < M) top = rect.bottom + GAP;          // no room above → flip below
+  tip.style.transform = '';                       // let the class drive it
+  tip.style.left = `${Math.round(left)}px`;
+  tip.style.top = `${Math.round(top)}px`;
+}
+
+/**
+ * Wire chart tooltips inside `root`. Idempotent per render: call it after
+ * replacing innerHTML. Hovering a month shows its full breakdown; moving to an
+ * adjacent month retargets instantly (no re-animation), which keeps sweeping
+ * across a chart feeling immediate rather than stuttery.
+ */
+export function attachChartTooltip(root) {
+  if (!root) return;
+  // Hover-only affordance: coarse pointers get the numbers printed on the chart.
+  if (!window.matchMedia?.('(hover: hover)').matches) return;
+
+  const tip = ensureTip();
+  let current = null;
+
+  root.addEventListener('mouseover', (e) => {
+    const slot = e.target.closest?.('.ops-chart__slot');
+    if (!slot || slot === current) return;
+
+    let payload;
+    try { payload = JSON.parse(slot.dataset.tip); } catch { return; }
+
+    const wasOpen = tip.classList.contains('is-open');
+    current?.classList.remove('is-hovered');
+    slot.classList.add('is-hovered');
+    current = slot;
+
+    clearTimeout(hideTimer);
+    tip.classList.toggle('is-instant', wasOpen);
+    tip.innerHTML = tipHtml(payload);
+    placeTip(tip, slot.getBoundingClientRect());
+    tip.classList.add('is-open');
+  });
+
+  root.addEventListener('mouseleave', () => {
+    current?.classList.remove('is-hovered');
+    current = null;
+    // Small grace period so moving between charts doesn't flash it shut
+    hideTimer = setTimeout(() => {
+      tip.classList.remove('is-open', 'is-instant');
+    }, 80);
+  });
 }

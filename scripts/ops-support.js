@@ -10,7 +10,7 @@
  * ─────────────────────────────────────────────────────────────────────────── */
 
 import { initOps, opsFetch } from './dhops.js';
-import { comboChart, stackedChart, NAVY, ORANGE } from './ops-charts.js';
+import { comboChart, stackedChart, attachChartTooltip, NAVY, ORANGE } from './ops-charts.js';
 
 const YELLOW = '#FAB400';
 
@@ -61,8 +61,8 @@ function renderKpis(k, period) {
     { label: 'Avg first response', value: fmtDuration(k.firstResponseHours?.value), delta: flat('this period') },
     { label: 'Avg resolution',   value: fmtDuration(k.resolutionHours?.value), delta: deltaHtml(k.resolutionHours?.delta, period, true) },
   ];
-  $('ops-kpis').innerHTML = cards.map((c) => `
-    <div class="admin-stat-card ops-kpi">
+  $('ops-kpis').innerHTML = cards.map((c, i) => `
+    <div class="admin-stat-card ops-kpi" style="--i:${i}">
       <div class="admin-stat-card__label">${c.label}</div>
       <div class="ops-kpi__value">${c.value}</div>
       ${c.delta}
@@ -169,8 +169,8 @@ function renderLeaderboard(rows, summary) {
   if (!rows.length) {
     tb.innerHTML = `<tr><td colspan="5" class="ops-empty">No analyst activity in this period</td></tr>`;
   } else {
-    tb.innerHTML = rows.map((r) => `
-      <tr>
+    tb.innerHTML = rows.map((r, i) => `
+      <tr class="ops-row-in" style="--i:${i}">
         <td style="font-weight:var(--fw-medium)">${esc(r.name)}</td>
         <td class="ops-num">${fmtInt(r.taken)}</td>
         <td class="ops-num">${fmtInt(r.resolved)}</td>
@@ -194,6 +194,10 @@ function renderAll(data, period) {
   renderBars($('ops-by-priority'), toBars(data.byPriority ?? [], 'priority'), ORANGE);
   renderBars($('ops-by-channel'), toBars(data.byChannel ?? [], 'channel'), YELLOW);
   renderLeaderboard(data.leaderboard ?? [], data.analystSummary);
+
+  // Charts are rebuilt above, so (re)wire their tooltips
+  attachChartTooltip($('ops-tickets-trend'));
+  attachChartTooltip($('ops-kb'));
 
   const when = data.generatedAt ? new Date(data.generatedAt) : new Date();
   $('ops-updated').textContent = `Updated ${when.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}`;

@@ -37,10 +37,14 @@
   cursor: pointer;
   white-space: nowrap;
   transition: background var(--dur-fast) var(--ease-out),
-              color var(--dur-fast) var(--ease-out);
+              color var(--dur-fast) var(--ease-out),
+              transform var(--dur-fast) var(--ease-out);
 }
 
 .ops-period__btn:hover { color: var(--fg-1); }
+
+/* Pressable, so it must feel pressed */
+.ops-period__btn:active { transform: scale(0.97); }
 
 .ops-period__btn.is-active {
   background: var(--dh-navy);
@@ -53,8 +57,8 @@
   gap: var(--space-2);
 }
 
-.ops-refresh svg { transition: transform var(--dur-slow) var(--ease-out); }
-.ops-refresh.is-loading svg { animation: admin-spin 0.75s linear infinite; }
+/* A touch faster than the shell spinner — quicker spin reads as quicker load */
+.ops-refresh.is-loading svg { animation: admin-spin 0.6s linear infinite; }
 .ops-refresh:disabled { opacity: 0.6; cursor: default; }
 
 .ops-updated {
@@ -359,6 +363,43 @@
 }
 
 /* -----------------------------------------------------------
+   Mount animations
+   These panels are rebuilt with innerHTML on every load, so the
+   elements are NEW each time — a `transition` would never fire
+   (there is no previous value to animate from). Keyframe
+   animations do run on freshly inserted elements, so mount
+   motion uses @keyframes; hover/press states use transitions.
+   Stagger comes from an inline `--i` index set by the renderer.
+   ----------------------------------------------------------- */
+@keyframes ops-rise {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ops-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Horizontal bars grow from their left edge */
+@keyframes ops-grow-x {
+  from { transform: scaleX(0); }
+}
+
+/* SVG bars grow up from the baseline (needs fill-box origin) */
+@keyframes ops-grow-y {
+  from { transform: scaleY(0); }
+}
+
+/* KPI cards and table rows: subtle staggered rise so refreshed data
+   doesn't snap into place all at once */
+.ops-kpi,
+.ops-row-in {
+  animation: ops-rise var(--dur-base) var(--ease-out) backwards;
+  animation-delay: calc(var(--i, 0) * 35ms);
+}
+
+/* -----------------------------------------------------------
    SVG charts (combo bars + line, stacked contributors)
    Hand-rolled — no charting library, keeping pages self-contained.
    ----------------------------------------------------------- */
@@ -385,6 +426,100 @@
 }
 
 .ops-chart__lbl.is-current { fill: var(--fg-1); font-weight: var(--fw-bold); }
+
+/* Bars rise from the baseline, staggered left to right */
+.ops-chart__bar {
+  transform-box: fill-box;
+  transform-origin: bottom;
+  animation: ops-grow-y var(--dur-slow) var(--ease-out) backwards;
+  animation-delay: calc(var(--i, 0) * 35ms);
+}
+
+/* Value labels and the comparison line arrive after the bars they describe */
+.ops-chart__val,
+.ops-chart__line,
+.ops-chart__dot {
+  animation: ops-fade var(--dur-base) var(--ease-out) backwards;
+  animation-delay: calc(120ms + var(--i, 0) * 35ms);
+}
+
+/* Invisible per-month hover targets drive the tooltip */
+.ops-chart__hit { fill: transparent; }
+
+.ops-chart__hit-bg {
+  fill: var(--fg-1);
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-out);
+  pointer-events: none;
+}
+
+.ops-chart__slot.is-hovered .ops-chart__hit-bg { opacity: 0.04; }
+
+/* -----------------------------------------------------------
+   Chart tooltip — custom (native SVG <title> is slow, unstyled
+   and can only show one line, so it can't list contributors)
+   ----------------------------------------------------------- */
+.ops-tip {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 400;
+  min-width: 150px;
+  max-width: min(280px, calc(100vw - 32px));
+  background: var(--bg-2);
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-3);
+  padding: var(--space-3) var(--space-4);
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(4px) scale(0.97);
+  transform-origin: bottom center;
+  transition: opacity 140ms var(--ease-out),
+              transform 140ms var(--ease-out),
+              visibility 0s linear 140ms;
+}
+
+.ops-tip.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  transition: opacity 140ms var(--ease-out),
+              transform 140ms var(--ease-out),
+              visibility 0s;
+}
+
+/* Already open: retarget instantly, no re-animation on the next bar */
+.ops-tip.is-instant { transition-duration: 0ms; }
+
+.ops-tip__head {
+  font-size: var(--fs-12);
+  font-weight: var(--fw-bold);
+  color: var(--fg-1);
+  margin-bottom: var(--space-2);
+}
+
+.ops-tip__row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--fs-12);
+  color: var(--fg-2);
+  line-height: 1.7;
+}
+
+.ops-tip__dot { width: 8px; height: 8px; border-radius: 2px; flex-shrink: 0; }
+.ops-tip__name { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ops-tip__val { font-weight: var(--fw-bold); color: var(--fg-1); font-variant-numeric: tabular-nums; }
+
+.ops-tip__total {
+  margin-top: var(--space-2);
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--border-2);
+}
+
+.ops-tip__empty { font-size: var(--fs-12); color: var(--fg-3); }
 
 /* Legend under a chart */
 .ops-legend-row {
@@ -442,6 +577,27 @@
   .ops-col__bar,
   .ops-donut__seg,
   .ops-refresh svg { transition: none; animation: none; }
+
+  /* Reduced motion means gentler, not none: keep the opacity fades that signal
+     "this content just changed", drop every positional/scale movement. */
+  .ops-kpi,
+  .ops-row-in,
+  .ops-chart__val,
+  .ops-chart__line,
+  .ops-chart__dot {
+    animation: ops-fade var(--dur-fast) linear backwards;
+    animation-delay: 0ms;
+  }
+
+  .ops-chart__bar { animation: none; }
+
+  .ops-period__btn:active { transform: none; }
+
+  .ops-tip,
+  .ops-tip.is-open {
+    transform: none;
+    transition: opacity 100ms linear, visibility 0s;
+  }
 }
 
 @media (max-width: 560px) {

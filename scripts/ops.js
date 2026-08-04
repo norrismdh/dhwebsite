@@ -69,8 +69,8 @@ function renderKpis(k, period) {
     { label: 'Open pipeline',  value: fmtMoneyK(k.openPipeline.value), delta: `<span class="ops-kpi__delta ops-kpi__delta--flat"><small>current snapshot</small></span>` },
     { label: 'Activities',     value: fmtInt(k.activities.value),      delta: deltaHtml(k.activities.delta, period) },
   ];
-  $('ops-kpis').innerHTML = cards.map((c) => `
-    <div class="admin-stat-card ops-kpi">
+  $('ops-kpis').innerHTML = cards.map((c, i) => `
+    <div class="admin-stat-card ops-kpi" style="--i:${i}">
       <div class="admin-stat-card__label">${c.label}</div>
       <div class="ops-kpi__value">${c.value}</div>
       ${c.delta}
@@ -156,8 +156,8 @@ function renderActivity(a) {
 function renderLeaderboard(rows) {
   const tb = $('ops-leaderboard');
   if (!rows.length) { tb.innerHTML = `<tr><td colspan="5" class="ops-empty">No activity in this period</td></tr>`; return; }
-  tb.innerHTML = rows.map((r) => `
-    <tr>
+  tb.innerHTML = rows.map((r, i) => `
+    <tr class="ops-row-in" style="--i:${i}">
       <td style="font-weight:var(--fw-medium)">${esc(r.name)}</td>
       <td class="ops-num">${fmtMoney(r.revenueWon)}</td>
       <td class="ops-num">${fmtInt(r.dealsWon)}</td>
@@ -169,8 +169,8 @@ function renderLeaderboard(rows) {
 function renderClosing(rows) {
   const tb = $('ops-closing');
   if (!rows.length) { tb.innerHTML = `<tr><td colspan="5" class="ops-empty">No open deals with a closing date</td></tr>`; return; }
-  tb.innerHTML = rows.map((r) => `
-    <tr>
+  tb.innerHTML = rows.map((r, i) => `
+    <tr class="ops-row-in" style="--i:${i}">
       <td style="font-weight:var(--fw-medium)">${esc(r.name)}</td>
       <td style="color:var(--fg-2)">${esc(r.stage)}</td>
       <td style="color:var(--fg-2)">${esc(r.owner)}</td>
