@@ -277,3 +277,56 @@ export function attachChartTooltip(root) {
     }, 80);
   });
 }
+
+/**
+ * A single cumulative line (e.g. knowledge-base library size per month).
+ * Separate from comboChart because a running total lives on a different scale
+ * from the monthly bars — plotting them together would need a hidden second
+ * axis, which misleads more than it informs.
+ *
+ * @param {{months: Array<{label:string,year:number}>, values:number[], label:string, box?:object, color?:string}} o
+ * @returns {string} SVG + legend markup
+ */
+export function lineChart({ months, values, label, box, color = NAVY, seriesName = 'Total' }) {
+  const g = chartGeom(months.length, box);
+  const safe = months.map((_, i) => Number(values?.[i]) || 0);
+  const max = Math.max(...safe, 1);
+  const y = (v) => g.padTop + g.plotH * (1 - v / max);
+
+  const pts = months.map((m, i) => `${g.centre(i).toFixed(1)},${y(safe[i]).toFixed(1)}`).join(' ');
+  // Soft fill under the line so growth reads as accumulation, not just a path
+  const area = `${g.centre(0).toFixed(1)},${(g.padTop + g.plotH).toFixed(1)} ${pts} ` +
+               `${g.centre(months.length - 1).toFixed(1)},${(g.padTop + g.plotH).toFixed(1)}`;
+
+  const dots = months.map((m, i) => `<circle class="ops-chart__dot" style="--i:${i}"
+    cx="${g.centre(i).toFixed(1)}" cy="${y(safe[i]).toFixed(1)}" r="3.5"
+    fill="var(--bg-2)" stroke="${color}" stroke-width="2" />`).join('');
+
+  // Label the ends plus any month where the total actually moved
+  const vals = months.map((m, i) => {
+    const changed = i === 0 || i === months.length - 1 || safe[i] !== safe[i - 1];
+    if (!changed) return '';
+    return `<text class="ops-chart__val" style="--i:${i}" x="${g.centre(i).toFixed(1)}"
+      y="${(y(safe[i]) - 9).toFixed(1)}" text-anchor="middle">${fmtInt(safe[i])}</text>`;
+  }).join('');
+
+  const hits = hitSlots(months, g, (i) => {
+    const delta = i > 0 ? safe[i] - safe[i - 1] : null;
+    return [
+      { name: seriesName, value: fmtInt(safe[i]), color },
+      ...(delta != null ? [{ name: 'Added this month', value: (delta > 0 ? '+' : '') + fmtInt(delta), muted: delta === 0 }] : []),
+    ];
+  });
+
+  return `
+    <svg class="ops-chart" style="height:${g.h}px" viewBox="0 0 ${g.w} ${g.h}" role="img" aria-label="${esc(label)}">
+      ${baseline(g)}
+      <polygon class="ops-chart__area" points="${area}" fill="${color}" />
+      <polyline class="ops-chart__line" style="--i:${months.length}" points="${pts}" fill="none"
+        stroke="${color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" />
+      ${dots}${vals}${monthLabels(months, g)}${hits}
+    </svg>
+    <div class="ops-legend-row">
+      <span class="ops-legend-key"><span class="ops-legend-key__line" style="background:${color}"></span>${esc(seriesName)}</span>
+    </div>`;
+}

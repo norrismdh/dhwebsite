@@ -10,13 +10,12 @@
  * ─────────────────────────────────────────────────────────────────────────── */
 
 import { initOps, opsFetch } from './dhops.js';
-import { comboChart, stackedChart, attachChartTooltip, chartBox, NAVY, ORANGE } from './ops-charts.js';
+import { comboChart, stackedChart, lineChart, attachChartTooltip, chartBox, NAVY, ORANGE } from './ops-charts.js';
 
-// Trend charts are the tallest thing in their row; give them real height so the
-// panel isn't mostly empty space. KB carries stat cells above its chart, so it
-// gets a shorter one to keep the two panels roughly level.
-const TREND_H = 260;
-const KB_H = 200;
+// One plot height across the row so the charts share a baseline and their
+// legends land on the same line (see .ops-chart-lead in ops.css for the
+// matching rule on the block above each plot).
+const CHART_H = 240;
 
 const YELLOW = '#FAB400';
 
@@ -24,6 +23,9 @@ const PERIOD_PREV = { month: 'last month', quarter: 'last quarter', year: 'last 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 let currentData = null;
+
+/** The charted window, e.g. "Q3 2026" — captioned under each chart's lead. */
+const spanLabel = () => currentData?.trend?.spanLabel ?? '';
 
 // ── Formatters ──────────────────────────────────────────────────────────────
 const fmtInt = (n) => (n ?? 0).toLocaleString('en-US');
@@ -106,18 +108,52 @@ function renderKb(kb) {
         months, keys: contributors, series: kbTrend.series,
         line: kbTrend.prevTotal,   // last year's monthly totals, no analyst split
         label: 'Articles created per month by contributor, with last year overlaid',
-        box: chartBox(el, { height: KB_H }),
+        box: chartBox(el, { height: CHART_H }),
       })
     : `<p class="ops-note">No per-contributor article history available</p>`;
 
   el.innerHTML = `
-    <div class="ops-activity">
-      <div class="ops-activity__cell"><div class="ops-activity__num">${fmtInt(kb.createdInPeriod)}</div><div class="ops-activity__lbl">Created</div></div>
-      <div class="ops-activity__cell"><div class="ops-activity__num">${fmtInt(kb.publishedInPeriod)}</div><div class="ops-activity__lbl">Published</div></div>
-      <div class="ops-activity__cell"><div class="ops-activity__num">${fmtInt(kb.drafts)}</div><div class="ops-activity__lbl">Drafts</div></div>
+    <div class="ops-chart-lead">
+      <div class="ops-activity">
+        <div class="ops-activity__cell"><div class="ops-activity__num">${fmtInt(kb.createdInPeriod)}</div><div class="ops-activity__lbl">Created</div></div>
+        <div class="ops-activity__cell"><div class="ops-activity__num">${fmtInt(kb.publishedInPeriod)}</div><div class="ops-activity__lbl">Published</div></div>
+        <div class="ops-activity__cell"><div class="ops-activity__num">${fmtInt(kb.drafts)}</div><div class="ops-activity__lbl">Drafts</div></div>
+      </div>
+      <p class="ops-chart-lead__caption">${esc(spanLabel())} · created, published, drafts</p>
     </div>
-    <p class="ops-note">${fmtInt(kb.totalPublished)} published articles in total · Articles created per month by contributor</p>
     ${chart}`;
+}
+
+/** Cumulative library size — the number that should climb month over month. */
+function renderKbGrowth(kb) {
+  const el = $('ops-kb-growth');
+  const months = currentData?.trend?.months ?? [];
+  const series = kb?.trend?.cumulative;
+
+  if (!kb || !months.length || !series?.length) {
+    el.innerHTML = `<p class="ops-empty">Knowledge base data unavailable</p>`;
+    return;
+  }
+
+  const latest = series[series.length - 1] ?? 0;
+  const first = series[0] ?? 0;
+  const added = latest - first;
+
+  el.innerHTML = `
+    <div class="ops-chart-lead">
+      <div class="ops-mom">
+        <span class="ops-mom__num">${fmtInt(latest)}</span>
+        <span class="ops-mom__delta ops-mom__delta--${added > 0 ? 'up' : 'flat'}">
+          ${added > 0 ? '▲' : ''} ${added > 0 ? `+${fmtInt(added)}` : 'no change'} <small>over this window</small>
+        </span>
+      </div>
+      <p class="ops-chart-lead__caption">${esc(spanLabel())} · ${fmtInt(kb.totalPublished)} published of ${fmtInt(latest)}</p>
+    </div>
+    ${lineChart({
+      months, values: series, seriesName: 'Total articles',
+      label: 'Total knowledge base articles by month',
+      box: chartBox(el, { height: CHART_H }),
+    })}`;
 }
 
 // ── Trend ───────────────────────────────────────────────────────────────────
@@ -167,15 +203,18 @@ function renderTrend() {
     : '';
 
   body.innerHTML = `
-    <div class="ops-mom">
-      <span class="ops-mom__num">${fmtInt(latest)}</span>
-      ${momDelta(latest, prevMonth)}
-      ${yoy}
+    <div class="ops-chart-lead">
+      <div class="ops-mom">
+        <span class="ops-mom__num">${fmtInt(latest)}</span>
+        ${momDelta(latest, prevMonth)}
+      </div>
+      ${yoy ? `<div class="ops-mom">${yoy}</div>` : ''}
+      <p class="ops-chart-lead__caption">${esc(spanLabel())}</p>
     </div>
     ${comboChart({
       months, bars: vals, line: prevVals,
       label: 'Tickets per month with last year overlaid',
-      box: chartBox(body, { height: TREND_H }),
+      box: chartBox(body, { height: CHART_H }),
     })}`;
 }
 
@@ -205,19 +244,17 @@ function renderAll(data, period) {
   populateFilter();
   renderTrend();
   renderKb(data.kb);
+  renderKbGrowth(data.kb);
   renderBars($('ops-by-status'), toBars(data.byStatus ?? [], 'status'), NAVY);
   renderBars($('ops-by-priority'), toBars(data.byPriority ?? [], 'priority'), ORANGE);
   renderBars($('ops-by-channel'), toBars(data.byChannel ?? [], 'channel'), YELLOW);
   renderLeaderboard(data.leaderboard ?? [], data.analystSummary);
 
   // Make the charted window explicit — it follows the period selector
-  const span = data.trend?.spanLabel ?? '';
-  $('ops-trend-span').textContent = span;
-  $('ops-kb-span').textContent = span;
-
   // Charts are rebuilt above, so (re)wire their tooltips
   attachChartTooltip($('ops-tickets-trend'));
   attachChartTooltip($('ops-kb'));
+  attachChartTooltip($('ops-kb-growth'));
 
   const when = data.generatedAt ? new Date(data.generatedAt) : new Date();
   $('ops-updated').textContent = `Updated ${when.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}`;
@@ -236,7 +273,7 @@ function showState(html, kind) {
 
 function showLoading() {
   const ph = `<p class="ops-empty">Loading&hellip;</p>`;
-  ['ops-tickets-trend', 'ops-kb', 'ops-by-status', 'ops-by-priority', 'ops-by-channel'].forEach((id) => { $(id).innerHTML = ph; });
+  ['ops-tickets-trend', 'ops-kb', 'ops-kb-growth', 'ops-by-status', 'ops-by-priority', 'ops-by-channel'].forEach((id) => { $(id).innerHTML = ph; });
   $('ops-leaderboard').innerHTML = `<tr><td colspan="5" class="ops-empty">Loading&hellip;</td></tr>`;
   $('ops-updated').textContent = 'Updating…';
   $('ops-analyst-summary').textContent = '';

@@ -171,6 +171,61 @@
 .ops-panel-full { margin-bottom: var(--space-5); }
 
 /* -----------------------------------------------------------
+   Chart panel alignment
+   Panels in a row must read as one row: the header divider at
+   the same y, the plots on the same baseline, and the legends
+   on the same line. Three things make that true —
+     1. equal header height (one panel has a filter <select>,
+        which would otherwise push its divider down),
+     2. equal "lead" height above the plot (a KPI number in one
+        panel, three stat cells in another),
+     3. equal plot height (set by the renderer).
+   ----------------------------------------------------------- */
+.ops-grid > .admin-panel > .admin-panel__head {
+  /* Matches a head containing the status <select> (48px padding + 28px control),
+     so panels with a title only sit at the same height and the dividers line up */
+  min-height: 76px;
+}
+
+/* In a narrow column the title would wrap beside the filter and push that
+   panel's divider down, so keep it to one line — taking the free space, and
+   truncating only if there genuinely isn't enough. */
+.ops-grid > .admin-panel > .admin-panel__head h2 {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ops-grid > .admin-panel > .admin-panel__head .ops-filter { flex: 0 0 auto; }
+.ops-grid > .admin-panel > .admin-panel__head .ops-select { max-width: 128px; }
+
+/* The block between the header and the plot */
+.ops-chart-lead {
+  min-height: 118px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: var(--space-4);
+}
+
+/* The charted window, e.g. "Q3 2026". Lives here rather than in the panel head
+   because the head has no room beside the filter — longer labels such as
+   "Last 6 months" were being truncated. */
+.ops-chart-lead__caption {
+  font-size: var(--fs-12);
+  color: var(--fg-3);
+  margin: var(--space-2) 0 0;
+  line-height: var(--lh-base);
+}
+
+/* Inside a lead block these lose their own spacing — the block owns it */
+.ops-chart-lead .ops-mom,
+.ops-chart-lead .ops-activity { margin-bottom: 0; }
+.ops-chart-lead .ops-note { margin-top: var(--space-2); }
+
+/* -----------------------------------------------------------
    Trend panels — filter select, MoM indicator, column chart
    ----------------------------------------------------------- */
 .ops-select {
@@ -426,6 +481,12 @@
 }
 
 .ops-chart__axis { stroke: var(--border-1); stroke-width: 1; }
+
+/* Soft fill under a cumulative line so growth reads as accumulation */
+.ops-chart__area {
+  opacity: 0.10;
+  animation: ops-fade var(--dur-slow) var(--ease-out) backwards;
+}
 
 .ops-chart__val {
   font-size: 11px;

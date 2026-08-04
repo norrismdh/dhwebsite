@@ -507,6 +507,23 @@ export default async function handler(req, res) {
       const kbContributors = Object.keys(kbSeries)
         .sort((a, b) => kbSeries[b].reduce((s, n) => s + n, 0) - kbSeries[a].reduce((s, n) => s + n, 0));
 
+      // Library size at the END of each bucket month — counted over ALL articles,
+      // not just those in the window, so the running total is the real total and
+      // rises over time rather than restarting at the window edge.
+      const monthEndMs = tb.buckets.map((b) => {
+        const [by, bm] = b.key.split('-').map(Number);
+        const next = bm === 12 ? { y: by + 1, m: 1 } : { y: by, m: bm + 1 };
+        return new Date(`${next.y}-${String(next.m).padStart(2, '0')}-01T00:00:00`).getTime();
+      });
+      const kbCumulative = monthEndMs.map((endMs) =>
+        arts.rows.filter((a) => { const c = ms(a.createdTime); return c != null && c < endMs; }).length);
+      const kbCumulativePublished = monthEndMs.map((endMs) =>
+        arts.rows.filter((a) => {
+          if (!isPub(a)) return false;
+          const p = pubAt(a);
+          return p != null && p < endMs;
+        }).length);
+
       kb = {
         createdInPeriod:   arts.rows.filter((a) => inWin(ms(a.createdTime), w.cur)).length,
         publishedInPeriod: arts.rows.filter((a) => isPub(a) && inWin(pubAt(a), w.cur)).length,
@@ -514,7 +531,8 @@ export default async function handler(req, res) {
         drafts:            arts.rows.filter((a) => !isPub(a)).length,
         byStatus:          tallyBy(arts.rows, (a) => a.status).map((x) => ({ status: x.label, count: x.count })),
         byAnalyst:         [...kbBoard.values()].sort((a, b) => b.authored - a.authored || b.published - a.published),
-        trend:             { contributors: kbContributors, series: kbSeries, total: kbTotal, prevTotal: kbPrevTotal },
+        trend:             { contributors: kbContributors, series: kbSeries, total: kbTotal, prevTotal: kbPrevTotal,
+                             cumulative: kbCumulative, cumulativePublished: kbCumulativePublished },
       };
     } catch (e) {
       notes.push(`Knowledge base unavailable (${e.message})`);
