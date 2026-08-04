@@ -234,7 +234,7 @@ function renderLeaderboard(rows, summary) {
   }
   const s = summary ?? {};
   $('ops-analyst-summary').textContent = s.avgTicketsPerAnalyst != null
-    ? `${s.avgTicketsPerAnalyst.toFixed(1)} tickets per analyst · ${fmtInt(s.analysts)} analysts`
+    ? `${s.avgTicketsPerAnalyst.toFixed(1)} tickets per analyst · ${fmtInt(s.analysts)} analysts · resolved credited to whoever closed the ticket`
     : '';
 }
 

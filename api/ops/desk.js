@@ -30,6 +30,12 @@ const KB_PAGE    = 50;    // …but /articles caps at 50
 const MAX_PAGES  = 30;    // safety cap → ~3000 tickets per sweep
 const FR_MAX     = 40;    // max tickets probed for first-response (1 API call each)
 
+/* Hard ceiling on how far back any ticket sweep reaches. The widest view is
+ * "last 12 months" compared against the same 12 months a year earlier, which is
+ * exactly a 24-month query — nothing on this page can use anything older, so
+ * there is no reason to page through it. */
+const MAX_HISTORY_MONTHS = 24;
+
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 // ── Desk access token ───────────────────────────────────────────────────────
@@ -291,6 +297,15 @@ export default async function handler(req, res) {
   const period = ['month', 'quarter', 'year', 'rolling12'].includes(req.query.period) ? req.query.period : 'year';
   const w = windows(period);
   const tb = trendBuckets(period);
+
+  // Start of the month MAX_HISTORY_MONTHS-1 back — the oldest ticket any sweep
+  // may reach. Applies to open tickets too, which previously had no age bound.
+  const historyFloorMs = (() => {
+    const { y, m } = tzParts(new Date());
+    const f = minusMonths(y, m, MAX_HISTORY_MONTHS - 1);
+    return new Date(`${f.y}-${String(f.m).padStart(2, '0')}-01T00:00:00`).getTime();
+  })();
+
   const notes = [];
 
   try {
@@ -300,8 +315,12 @@ export default async function handler(req, res) {
     const created = await deskPage(
       (from, size) => `/tickets?from=${from}&limit=${size}&sortBy=-createdTime`,
       token,
-      // Reach 12 months past the trend window so the previous-year line can be built
-      { stop: (t) => { const c = ms(t.createdTime); return c != null && c < tb.histStartMs; } },
+      // Reach 12 months past the trend window for the previous-year line, but
+      // never past the 24-month ceiling
+      { stop: (t) => {
+          const c = ms(t.createdTime);
+          return c != null && c < Math.max(tb.histStartMs, historyFloorMs);
+        } },
     );
     if (created.capped) notes.push(`Ticket history truncated at ${MAX_PAGES * PAGE_SIZE} rows`);
     const tickets = created.rows;
@@ -312,6 +331,9 @@ export default async function handler(req, res) {
       const open = await deskPage(
         (from, size) => `/tickets?from=${from}&limit=${size}&status=Open&sortBy=-createdTime`,
         token,
+        // Same 24-month ceiling. This sweep previously had no age bound, so a
+        // ticket left open for years still counted toward backlog and overdue.
+        { stop: (t) => { const c = ms(t.createdTime); return c != null && c < historyFloorMs; } },
       );
       openTickets = open.rows;
     } catch (e) {
@@ -423,9 +445,22 @@ export default async function handler(req, res) {
       if (!board.has(k)) board.set(k, { agentId: k, name: nameFor(id), taken: 0, resolved: 0, open: 0, avgResolutionHours: null, _res: [] });
       return board.get(k);
     };
+    /* Credit a resolution to whoever actually closed the ticket, not to whoever
+       it happens to still be assigned to. Desk has no closedBy field — its own
+       guidance is to use modifiedBy, which for a closed ticket is the agent who
+       closed it. Without this, an old ticket still owned by a departed agent and
+       later closed by someone else credited the departed agent, putting them in
+       the workload table for a period they did no work in. Falls back to the
+       assignee when modifiedBy is absent. */
+    const resolverOf = (t) => {
+      const mb = t.modifiedBy;
+      const id = (mb && typeof mb === 'object') ? (mb.id ?? mb.agentId) : mb;
+      return id ?? t.assigneeId;
+    };
+
     for (const t of newCur) seed(t.assigneeId).taken += 1;
     for (const t of resolvedCur) {
-      const b = seed(t.assigneeId);
+      const b = seed(resolverOf(t));
       b.resolved += 1;
       const c = ms(t.createdTime), r = resolvedAt(t);
       if (c != null && r != null && r >= c) b._res.push((r - c) / 36e5);
@@ -446,6 +481,12 @@ export default async function handler(req, res) {
     // ── Knowledge base (guarded — a KB failure must not sink tickets metrics)
     let kb = null;
     try {
+      /* Deliberately NOT bounded to MAX_HISTORY_MONTHS: the growth chart plots
+         total library size, so it has to count every article ever written or the
+         running total would restart at the 24-month floor and understate the
+         library. Only a few hundred articles exist, so this is a handful of
+         pages — unlike tickets, where the bound matters. Contributors are still
+         scoped to the charted months. */
       const arts = await deskPage(
         (from, size) => `/articles?from=${from}&limit=${size}&sortBy=-createdTime`,
         token,
@@ -560,7 +601,7 @@ export default async function handler(req, res) {
         avgTicketsPerAnalyst: analystCount ? newCur.length / analystCount : null,
       },
       kb,
-      meta: { notes },
+      meta: { notes, historyMonths: MAX_HISTORY_MONTHS },
     });
   } catch (err) {
     console.error('ops/desk error:', err.message);
