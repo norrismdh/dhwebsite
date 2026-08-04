@@ -350,7 +350,9 @@ function demoData(period) {
 async function main() {
   const params = new URLSearchParams(window.location.search);
   const isDemo = params.get('demo') === '1';
-  let period = ['month', 'quarter', 'year', 'rolling12'].includes(params.get('period')) ? params.get('period') : 'month';
+  // Year to date by default: a single month is a narrow read of pipeline, and it
+  // matches the Support tab's default. "This month" stays available.
+  let period = ['month', 'quarter', 'year', 'rolling12'].includes(params.get('period')) ? params.get('period') : 'year';
   let auth = null;
 
   function setPeriodButtons() {
