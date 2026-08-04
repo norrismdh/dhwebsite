@@ -115,8 +115,11 @@
           </div>
         </div>
 
-        <!-- Charts grid -->
-        <div class="ops-grid">
+        <!-- Two per row rather than auto-fitting four, which left an orphan on a
+             row of its own. Paired so each row holds panels of similar natural
+             height — otherwise the short one stretches to its tall neighbour and
+             carries a large void. Deals + work logged first, funnel detail after. -->
+        <div class="ops-grid ops-grid--2">
           <div class="admin-panel">
             <div class="admin-panel__head"><h2>Open pipeline by stage</h2></div>
             <div class="admin-panel__body" id="ops-pipeline"></div>
@@ -126,7 +129,9 @@
             <div class="admin-panel__head"><h2>Activity logged</h2></div>
             <div class="admin-panel__body" id="ops-activity"></div>
           </div>
+        </div>
 
+        <div class="ops-grid ops-grid--2">
           <div class="admin-panel">
             <div class="admin-panel__head"><h2>New leads by source</h2></div>
             <div class="admin-panel__body" id="ops-sources"></div>

@@ -168,6 +168,20 @@
   margin-bottom: var(--space-5);
 }
 
+/* Exactly two columns at desktop, one below ~880px. Used where four panels of
+   very different heights would otherwise auto-fit to three and orphan the
+   fourth; pair panels of similar height into each row instead. */
+.ops-grid--2 { grid-template-columns: repeat(auto-fit, minmax(420px, 1fr)); }
+
+/* Grid rows stretch panels to the tallest in the row. Let the body take that
+   extra height so a short one can centre its content — the spare space then
+   reads as padding rather than a gap under the content. A donut is the case
+   that benefits; ranked bar lists and stat rows stay top-aligned, which is
+   what you expect of a list. */
+.ops-grid--2 > .admin-panel { display: flex; flex-direction: column; }
+.ops-grid--2 > .admin-panel > .admin-panel__body { flex: 1 1 auto; }
+.ops-grid--2 .ops-donut-wrap { height: 100%; justify-content: center; }
+
 .ops-panel-full { margin-bottom: var(--space-5); }
 
 /* -----------------------------------------------------------
