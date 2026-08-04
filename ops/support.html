@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
-  <title>CRM activity - Ops - Digital Hive</title>
+  <title>Support - Ops - Digital Hive</title>
   <!-- No marketing nav/footer on ops pages - ops has its own chrome -->
   <link rel="stylesheet" href="../styles/tokens.css" />
   <link rel="stylesheet" href="../styles/site.css" />
@@ -37,11 +37,11 @@
         </div>
 
         <nav class="admin-nav" aria-label="Ops">
-          <a href="/ops" class="admin-nav__item is-active" aria-current="page">
+          <a href="/ops" class="admin-nav__item">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
             Dashboard
           </a>
-          <a href="/ops/support" class="admin-nav__item">
+          <a href="/ops/support" class="admin-nav__item is-active" aria-current="page">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
             Support
           </a>
@@ -61,7 +61,7 @@
 
         <!-- Page header -->
         <div class="admin-page-head">
-          <h1>CRM activity <span id="ops-demo-badge" class="ops-badge" hidden>Demo data</span></h1>
+          <h1>Support <span id="ops-demo-badge" class="ops-badge" hidden>Demo data</span></h1>
 
           <div class="ops-controls">
             <div class="ops-period" id="ops-period" role="group" aria-label="Reporting period">
@@ -85,88 +85,61 @@
         <!-- KPI row (populated by JS) -->
         <div class="admin-stats" id="ops-kpis" aria-live="polite"></div>
 
-        <!-- Month-over-month trends -->
+        <!-- Ticket trend + analyst workload -->
         <div class="ops-grid">
           <div class="admin-panel">
             <div class="admin-panel__head">
-              <h2>Leads trend</h2>
+              <h2>Ticket trend</h2>
               <label class="ops-filter">
-                <span class="sr-only">Filter leads trend by status</span>
-                <select id="ops-leads-filter" class="ops-select" aria-label="Filter leads trend by status"></select>
+                <span class="sr-only">Filter ticket trend by status</span>
+                <select id="ops-tickets-filter" class="ops-select" aria-label="Filter ticket trend by status"></select>
               </label>
             </div>
-            <div class="admin-panel__body" id="ops-leads-trend"></div>
+            <div class="admin-panel__body" id="ops-tickets-trend"></div>
           </div>
 
           <div class="admin-panel">
-            <div class="admin-panel__head">
-              <h2>Deals trend</h2>
-              <label class="ops-filter">
-                <span class="sr-only">Filter deals trend by stage</span>
-                <select id="ops-deals-filter" class="ops-select" aria-label="Filter deals trend by stage"></select>
-              </label>
-            </div>
-            <div class="admin-panel__body" id="ops-deals-trend"></div>
+            <div class="admin-panel__head"><h2>Knowledge base</h2></div>
+            <div class="admin-panel__body" id="ops-kb"></div>
           </div>
         </div>
 
-        <!-- Charts grid -->
+        <!-- Breakdowns -->
         <div class="ops-grid">
           <div class="admin-panel">
-            <div class="admin-panel__head"><h2>Open pipeline by stage</h2></div>
-            <div class="admin-panel__body" id="ops-pipeline"></div>
+            <div class="admin-panel__head"><h2>Tickets by status</h2></div>
+            <div class="admin-panel__body" id="ops-by-status"></div>
           </div>
 
           <div class="admin-panel">
-            <div class="admin-panel__head"><h2>Activity logged</h2></div>
-            <div class="admin-panel__body" id="ops-activity"></div>
+            <div class="admin-panel__head"><h2>Tickets by priority</h2></div>
+            <div class="admin-panel__body" id="ops-by-priority"></div>
           </div>
 
           <div class="admin-panel">
-            <div class="admin-panel__head"><h2>New leads by source</h2></div>
-            <div class="admin-panel__body" id="ops-sources"></div>
-          </div>
-
-          <div class="admin-panel">
-            <div class="admin-panel__head"><h2>New leads by status</h2></div>
-            <div class="admin-panel__body" id="ops-statuses"></div>
+            <div class="admin-panel__head"><h2>Tickets by channel</h2></div>
+            <div class="admin-panel__body" id="ops-by-channel"></div>
           </div>
         </div>
 
-        <!-- Rep leaderboard -->
+        <!-- Analyst leaderboard -->
         <div class="admin-panel ops-panel-full">
-          <div class="admin-panel__head"><h2>Rep leaderboard</h2></div>
+          <div class="admin-panel__head">
+            <h2>Analyst workload</h2>
+            <span id="ops-analyst-summary" class="ops-updated"></span>
+          </div>
           <div class="admin-table-wrap">
-            <table class="admin-table" aria-label="Rep leaderboard">
+            <table class="admin-table" aria-label="Analyst workload">
               <thead>
                 <tr>
-                  <th>Rep</th>
-                  <th class="ops-num">Revenue won</th>
-                  <th class="ops-num">Deals won</th>
-                  <th class="ops-num">Open pipeline</th>
-                  <th class="ops-num">Activities</th>
+                  <th>Analyst</th>
+                  <th class="ops-num">Tickets taken</th>
+                  <th class="ops-num">Resolved</th>
+                  <th class="ops-num">Open</th>
+                  <th class="ops-num">Avg resolution</th>
                 </tr>
               </thead>
               <tbody id="ops-leaderboard"></tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- Deals closing soon -->
-        <div class="admin-panel ops-panel-full">
-          <div class="admin-panel__head"><h2>Deals closing soon</h2></div>
-          <div class="admin-table-wrap">
-            <table class="admin-table" aria-label="Deals closing soon">
-              <thead>
-                <tr>
-                  <th>Deal</th>
-                  <th>Stage</th>
-                  <th>Owner</th>
-                  <th>Closing date</th>
-                  <th class="ops-num">Amount</th>
-                </tr>
-              </thead>
-              <tbody id="ops-closing"></tbody>
             </table>
           </div>
         </div>
@@ -176,7 +149,7 @@
 
   </div><!-- /ops-app -->
 
-  <script type="module" src="../scripts/ops.js"></script>
+  <script type="module" src="../scripts/ops-support.js"></script>
 
 </body>
 </html>
