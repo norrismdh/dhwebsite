@@ -366,7 +366,9 @@ function emptyData(period) {
 async function main() {
   const params = new URLSearchParams(window.location.search);
   const isDemo = params.get('demo') === '1';
-  let period = ['month', 'quarter', 'year', 'rolling12'].includes(params.get('period')) ? params.get('period') : 'month';
+  // Defaults to year to date: a single month of support volume is too sparse to
+  // read, which is why "this month" isn't offered here.
+  let period = ['month', 'quarter', 'year', 'rolling12'].includes(params.get('period')) ? params.get('period') : 'year';
   let auth = null;
 
   function setPeriodButtons() {

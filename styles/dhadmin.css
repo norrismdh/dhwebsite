@@ -275,7 +275,8 @@ body::before {
   gap: var(--space-4);
 }
 
-.admin-panel__head h2 {
+.admin-panel__head h2,
+.admin-panel__head h3 {
   font-size: var(--fs-18);
   font-weight: var(--fw-semibold);
   margin: 0;

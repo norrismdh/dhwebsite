@@ -288,7 +288,7 @@ export default async function handler(req, res) {
     });
   }
 
-  const period = ['month', 'quarter', 'year', 'rolling12'].includes(req.query.period) ? req.query.period : 'month';
+  const period = ['month', 'quarter', 'year', 'rolling12'].includes(req.query.period) ? req.query.period : 'year';
   const w = windows(period);
   const tb = trendBuckets(period);
   const notes = [];

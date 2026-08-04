@@ -171,6 +171,35 @@
 .ops-panel-full { margin-bottom: var(--space-5); }
 
 /* -----------------------------------------------------------
+   Section grouping (e.g. Tickets / Knowledge base)
+   Built from existing tokens — same type scale and rule weight
+   as the rest of the admin chrome, no new visual language.
+   ----------------------------------------------------------- */
+.ops-section-block + .ops-section-block { margin-top: var(--space-8); }
+
+.ops-section {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-3);
+  border-bottom: 1px solid var(--border-1);
+}
+
+.ops-section h2 {
+  font-size: var(--fs-24);
+  font-weight: var(--fw-semibold);
+  margin: 0;
+}
+
+.ops-section__note {
+  font-size: var(--fs-12);
+  color: var(--fg-3);
+}
+
+/* -----------------------------------------------------------
    Chart panel alignment
    Panels in a row must read as one row: the header divider at
    the same y, the plots on the same baseline, and the legends
@@ -190,7 +219,8 @@
 /* In a narrow column the title would wrap beside the filter and push that
    panel's divider down, so keep it to one line — taking the free space, and
    truncating only if there genuinely isn't enough. */
-.ops-grid > .admin-panel > .admin-panel__head h2 {
+.ops-grid > .admin-panel > .admin-panel__head h2,
+.ops-grid > .admin-panel > .admin-panel__head h3 {
   flex: 1 1 auto;
   min-width: 0;
   white-space: nowrap;
