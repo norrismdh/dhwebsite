@@ -16,6 +16,13 @@
    ----------------------------------------------------------- */
 body {
   background: var(--bg-3);  /* Muted grey — not the warm paper bg */
+
+  /* site.css reserves 88px at the top for the marketing nav, which is fixed and
+     therefore out of flow. Gated areas load site.css for its primitives
+     (.btn, .container, type scale) but have their own sticky top bar instead of
+     that nav, so the reservation is dead space above the bar. This declaration
+     comes after site.css, so it wins on source order — no !important needed. */
+  padding-top: 0;
 }
 
 body::before {
