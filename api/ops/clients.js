@@ -223,7 +223,10 @@ export default async function handler(req, res) {
       const id = d.Account_Name.id;
       const rec = clients.get(id) ?? {
         accountId: id,
-        name: d.Account_Name.name,
+        // Lookup sub-fields can come back null (inactive user, or a module this
+        // token can't read), so keep the ids and resolve names separately below.
+        name: d.Account_Name.name ?? null,
+        ownerId: d.Owner?.id ?? null,
         owner: d.Owner?.name ?? null,
         lifetimeValue: 0,
         dealsWon: 0,
@@ -243,7 +246,43 @@ export default async function handler(req, res) {
       }
       // Prefer the most recent deal's owner as the account owner
       if (d.Owner?.name) rec.owner = rec.owner ?? d.Owner.name;
+      if (d.Owner?.id) rec.ownerId = rec.ownerId ?? d.Owner.id;
+      if (d.Account_Name.name) rec.name = rec.name ?? d.Account_Name.name;
       clients.set(id, rec);
+    }
+
+    // ── Resolve owner names via /users (covers inactive/deleted owners) ──────
+    try {
+      const uRes = await fetch(`${CRM_API}/users?type=AllUsers&per_page=200`, {
+        headers: { Authorization: `Zoho-oauthtoken ${crmToken}` },
+      });
+      const uJson = await uRes.json();
+      const userMap = new Map();
+      for (const u of uJson.users ?? []) {
+        userMap.set(String(u.id), u.full_name || `${u.first_name ?? ''} ${u.last_name ?? ''}`.trim());
+      }
+      for (const rec of clients.values()) {
+        if (!rec.owner && rec.ownerId) rec.owner = userMap.get(String(rec.ownerId)) ?? null;
+      }
+    } catch { notes.push('Owner names unavailable'); }
+
+    // ── Resolve any missing account names ───────────────────────────────────
+    // COQL returns the Account_Name lookup without its `name` when the token
+    // can't read the Accounts module, so fetch names directly if needed.
+    if ([...clients.values()].some((r) => !r.name)) {
+      try {
+        const accts = await coqlAll('select Account_Name from Accounts where id is not null', crmToken);
+        const acctMap = new Map(accts.map((a) => [String(a.id), a.Account_Name]));
+        for (const rec of clients.values()) {
+          if (!rec.name) rec.name = acctMap.get(String(rec.accountId)) ?? null;
+        }
+      } catch {
+        notes.push('Account names unavailable — add ZohoCRM.modules.accounts.READ to the reporting token');
+      }
+      // Last resort: label by the client's most recent deal so rows stay identifiable
+      for (const rec of clients.values()) {
+        if (!rec.name) { rec.name = rec.lastWonName || `Account ${rec.accountId}`; rec.nameFromDeal = true; }
+      }
     }
 
     // Open deals → next renewal / open pipeline for those clients
@@ -352,7 +391,11 @@ export default async function handler(req, res) {
 
         if (!deskLinked) notes.push('No Desk accounts matched a client by name — ticket activity not attributed');
       } catch (e) {
-        notes.push(`Desk ticket activity unavailable (${e.message})`);
+        // /accounts sits under Desk's contacts scope — name it so the fix is obvious
+        const scopeIssue = /scope/i.test(e.message);
+        notes.push(scopeIssue
+          ? 'Desk ticket activity unavailable — add Desk.contacts.READ to the Desk token (needed for /accounts)'
+          : `Desk ticket activity unavailable (${e.message})`);
       }
     }
 
@@ -372,6 +415,7 @@ export default async function handler(req, res) {
       return {
         accountId: rec.accountId,
         name: rec.name,
+        nameFromDeal: Boolean(rec.nameFromDeal),
         owner: rec.owner,
         lifetimeValue: rec.lifetimeValue,
         dealsWon: rec.dealsWon,

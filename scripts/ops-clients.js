@@ -77,7 +77,7 @@ function renderClients(rows) {
       : '—';
     return `
     <tr>
-      <td style="font-weight:var(--fw-medium)">${esc(c.name)}</td>
+      <td style="font-weight:var(--fw-medium)">${esc(c.name)}${c.nameFromDeal ? `<br><small style="color:var(--fg-3);font-weight:var(--fw-regular)">named from deal</small>` : ''}</td>
       <td>${healthPill(c.health)}</td>
       <td>${fmtDate(c.lastContactAt)}${c.daysSince != null ? `<br><small style="color:var(--fg-3)">${fmtAgo(c.daysSince)}</small>` : ''}</td>
       <td style="color:var(--fg-2)">${via}</td>
@@ -121,7 +121,7 @@ function showState(html, kind) {
 
 function showLoading() {
   $('ops-clients').innerHTML = `<tr><td colspan="8" class="ops-empty">Loading&hellip;</td></tr>`;
-  $('ops-updated').textContent = '';
+  $('ops-updated').textContent = 'Updating…';
   $('ops-client-count').textContent = '';
 }
 

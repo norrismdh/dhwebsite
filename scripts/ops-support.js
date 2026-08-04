@@ -225,7 +225,7 @@ function showLoading() {
   const ph = `<p class="ops-empty">Loading&hellip;</p>`;
   ['ops-tickets-trend', 'ops-kb', 'ops-by-status', 'ops-by-priority', 'ops-by-channel'].forEach((id) => { $(id).innerHTML = ph; });
   $('ops-leaderboard').innerHTML = `<tr><td colspan="5" class="ops-empty">Loading&hellip;</td></tr>`;
-  $('ops-updated').textContent = '';
+  $('ops-updated').textContent = 'Updating…';
   $('ops-analyst-summary').textContent = '';
 }
 

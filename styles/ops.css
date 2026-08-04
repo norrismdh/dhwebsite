@@ -63,6 +63,15 @@
   white-space: nowrap;
 }
 
+/* Header timestamp: reserve a fixed slot so the text appearing/changing never
+   shifts the Refresh button. Always renders something (— when never loaded). */
+.ops-stamp {
+  display: inline-block;
+  /* Wide enough for the longest state ("Updated 12:52 PM") so nothing reflows */
+  min-width: 132px;
+  text-align: left;
+}
+
 .ops-badge {
   display: inline-block;
   padding: 3px 10px;

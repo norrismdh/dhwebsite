@@ -276,7 +276,7 @@ function showLoading() {
   ['ops-leads-trend', 'ops-deals-trend', 'ops-pipeline', 'ops-activity', 'ops-sources', 'ops-statuses'].forEach((id) => { $(id).innerHTML = ph; });
   $('ops-leaderboard').innerHTML = `<tr><td colspan="5" class="ops-empty">Loading&hellip;</td></tr>`;
   $('ops-closing').innerHTML = `<tr><td colspan="5" class="ops-empty">Loading&hellip;</td></tr>`;
-  $('ops-updated').textContent = '';
+  $('ops-updated').textContent = 'Updating…';
 }
 
 // ── Demo data (design review only) ──────────────────────────────────────────
