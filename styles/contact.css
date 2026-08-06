@@ -81,7 +81,7 @@
   display: grid; place-items: center;
   transition: background var(--dur-base) var(--ease-out), color var(--dur-base) var(--ease-out);
 }
-.ct-help-item:nth-child(even) .ct-help-item__ico { color: var(--dh-orange); }
+.ct-help-item:nth-child(even) .ct-help-item__ico { color: var(--fg-accent); }
 .ct-help-item__title {
   font-size: var(--fs-16);
   font-weight: var(--fw-bold);
@@ -123,7 +123,11 @@
 }
 @media (min-width: 640px) { .ct-row--2 { grid-template-columns: 1fr 1fr; } }
 .ct-field { display: grid; gap: 6px; }
-.ct-field label {
+/* .ct-grouplabel names a group of checkboxes via aria-labelledby. It can't be
+   a <label> - a label with no associated control is inert, and screen readers
+   announced the ten tool chips with no group name. */
+.ct-field label,
+.ct-field .ct-grouplabel {
   font-size: var(--fs-12);
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
@@ -174,8 +178,32 @@
               color var(--dur-fast) var(--ease-out);
   user-select: none;
 }
-.ct-chip input { display: none; }
+/* Visually hidden but still focusable and still in the accessibility tree.
+   `display: none` (the previous value) drops an input from BOTH the focus
+   order and the a11y tree, which left these ten checkboxes unreachable by
+   keyboard and silent to screen readers - a WCAG 2.1.1 (Level A) failure. */
+.ct-chip input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
 .ct-chip:hover { border-color: var(--dh-navy); }
+/* The input is visually hidden, so the focus ring has to live on the label. */
+.ct-chip:has(input:focus-visible) {
+  outline: 2px solid var(--dh-orange);
+  outline-offset: 2px;
+}
+/* Touch devices only - keeps the compact chip density on pointer devices
+   while giving fingers the full 44px target. */
+@media (pointer: coarse) {
+  .ct-chip { min-height: 44px; padding-top: 12px; padding-bottom: 12px; }
+}
 .ct-chip.is-on,
 .ct-chip:has(input:checked) {
   background: var(--dh-navy);
@@ -246,7 +274,7 @@
   line-height: 1.5;
 }
 .ct-consent a { color: var(--dh-navy); border-bottom: 1px solid var(--border-1); }
-.ct-consent a:hover { color: var(--dh-orange); border-color: var(--dh-orange); }
+.ct-consent a:hover { color: var(--fg-accent); border-color: var(--dh-orange); }
 
 /* ============ Book a demo CTA band ============ */
 /* .pr-cta banner shell → site.css; page keeps its eyebrow/h3/p + art */
@@ -361,7 +389,7 @@
   font-weight: var(--fw-bold);
   color: var(--dh-navy);
 }
-.ct-card__action svg { color: var(--dh-orange); transition: transform var(--dur-base) var(--ease-out); }
+.ct-card__action svg { color: var(--fg-accent); transition: transform var(--dur-base) var(--ease-out); }
 .ct-card:hover .ct-card__action svg,
 .ct-card__action a:hover svg { transform: translate(2px, -2px); }
 .ct-card__action a {
@@ -371,10 +399,10 @@
   align-items: center;
   gap: 8px;
 }
-.ct-card__action a:hover { color: var(--dh-orange); }
+.ct-card__action a:hover { color: var(--fg-accent); }
 /* Hovering anywhere on a card turns its bottom link/action orange */
 .ct-card:hover .ct-card__action,
-.ct-card:hover .ct-card__action a { color: var(--dh-orange); }
+.ct-card:hover .ct-card__action a { color: var(--fg-accent); }
 
 /* Form error message */
 .ct-form__error {

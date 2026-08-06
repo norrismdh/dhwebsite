@@ -133,7 +133,7 @@
   letter-spacing: 0.01em;
 }
 .arch-stack__brand strong {
-  color: var(--dh-orange);
+  color: var(--fg-accent);
   font-weight: var(--fw-bold);
 }
 
@@ -174,7 +174,7 @@
 .arch-stack__tag--dh {
   background: var(--dh-orange);
   border-color: var(--dh-orange);
-  color: #fff;
+  color: var(--dh-navy);
 }
 
 /* ---- Main section ---- */
@@ -443,7 +443,7 @@
   line-height: 1.45;
 }
 .arch-caption--accent p {
-  color: var(--dh-orange);
+  color: var(--fg-accent);
 }
 .arch-caption__arrow {
   width: 1px;
@@ -495,7 +495,7 @@
 .arch-why__num {
   font-size: var(--fs-12);
   font-weight: var(--fw-bold);
-  color: var(--dh-orange);
+  color: var(--fg-accent);
   letter-spacing: 0.04em;
   padding-top: 2px;
 }

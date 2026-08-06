@@ -78,7 +78,7 @@
 /* -----------------------------------------------------------
    Certifications grid
    ----------------------------------------------------------- */
-.sec-certs .section-head .eyebrow { color: var(--dh-orange); }
+.sec-certs .section-head .eyebrow { color: var(--fg-accent-label); }
 
 .sec-certs {
   padding: 56px 0;
@@ -132,7 +132,7 @@
               background var(--dur-base) var(--ease-out);
 }
 .sec-cert:hover .sec-cert__icon {
-  color: var(--dh-orange);
+  color: var(--fg-accent);
   background: rgba(243, 146, 53, 0.1);
 }
 
@@ -180,7 +180,7 @@
   border-bottom: none;
   margin-top: var(--space-2);
 }
-.sec-cert__link:hover { color: var(--dh-orange); }
+.sec-cert__link:hover { color: var(--fg-accent); }
 .sec-cert__link svg { transition: transform var(--dur-fast) var(--ease-out); }
 .sec-cert__link:hover svg { transform: translateX(3px); }
 
@@ -189,7 +189,7 @@
    ----------------------------------------------------------- */
 .sec-cta {
   padding: 40px 0;
-  background: linear-gradient(180deg, #ECF1F6 0%, #F2F5F9 100%);
+  background: var(--gradient-hero);
   border-top: 1px solid var(--border-2);
   position: relative;
   overflow: clip;

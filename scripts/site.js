@@ -160,11 +160,16 @@
     bar.id = 'art-progress';
     bar.setAttribute('role', 'progressbar');
     bar.setAttribute('aria-label', 'Reading progress');
+    bar.setAttribute('aria-valuemin', '0');
+    bar.setAttribute('aria-valuemax', '100');
     document.body.appendChild(bar);
     function updateProgress() {
       var scrolled = window.scrollY;
       var total = document.documentElement.scrollHeight - window.innerHeight;
-      bar.style.width = (total > 0 ? Math.min(scrolled / total * 100, 100) : 0) + '%';
+      var pct = total > 0 ? Math.min(scrolled / total, 1) : 0;
+      // scaleX rather than width: composited, no layout on each scroll frame.
+      bar.style.transform = 'scaleX(' + pct + ')';
+      bar.setAttribute('aria-valuenow', Math.round(pct * 100));
     }
     window.addEventListener('scroll', updateProgress, { passive: true });
     updateProgress();

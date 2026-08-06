@@ -35,7 +35,7 @@
   padding: 8px 10px;
 }
 .art-slot__tag b {
-  color: var(--dh-orange);
+  color: var(--fg-accent);
   font-weight: var(--fw-bold);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
@@ -50,7 +50,7 @@
   position: relative;
   overflow: hidden;
   border-bottom: 1px solid var(--border-2);
-  background: linear-gradient(180deg, #ECF1F6 0%, #F2F5F9 100%);
+  background: var(--gradient-hero);
   padding: 56px 0 40px;
 }
 @media (min-width: 768px) { .ab2-hero { padding: 80px 0 56px; } }
@@ -136,7 +136,7 @@
   margin-top: var(--space-4);
   font-family: var(--font-mono);
   font-size: 11px;
-  color: var(--dh-orange);
+  color: var(--fg-accent);
 }
 
 /* -----------------------------------------------------------
@@ -173,7 +173,7 @@
   color: var(--dh-navy);
   margin: 0 0 var(--space-5);
 }
-.ab2-observation__statement .accent { color: var(--dh-orange); }
+.ab2-observation__statement .accent { color: var(--fg-accent); }
 
 .ab2-observation__body {
   font-size: var(--fs-16);
@@ -191,7 +191,7 @@
   line-height: 1.6;
 }
 .ab2-observation__callout .accent {
-  color: var(--dh-orange);
+  color: var(--fg-accent);
   font-weight: var(--fw-semibold);
 }
 
@@ -360,7 +360,7 @@
   font-weight: var(--fw-medium);
   text-wrap: balance;
 }
-.ab2-do__close .accent { color: var(--dh-orange); }
+.ab2-do__close .accent { color: var(--fg-accent); }
 
 /* -----------------------------------------------------------
    5 — WHO WE SERVE + BY THE NUMBERS (dark navy band)
@@ -430,8 +430,8 @@
   line-height: 1;
   margin: 0;
 }
-.ab2-stat__big .unit { color: var(--dh-orange); }
-.ab2-stat__big .small { font-size: 0.5em; vertical-align: super; color: var(--dh-orange); margin-right: 2px; }
+.ab2-stat__big .unit { color: var(--fg-accent); }
+.ab2-stat__big .small { font-size: 0.5em; vertical-align: super; color: var(--fg-accent); margin-right: 2px; }
 .ab2-stat__label { font-size: var(--fs-14); color: rgba(255,255,255,0.85); margin: 0; line-height: 1.45; max-width: 30ch; }
 .ab2-serve__close {
   grid-column: 1 / -1;
@@ -507,9 +507,11 @@
   font-weight: var(--fw-bold);
   font-size: var(--fs-18);
 }
-.ab2-person__avatar--a1 { background: linear-gradient(135deg, #244271 0%, #193359 100%); }
-.ab2-person__avatar--a2 { background: linear-gradient(135deg, #1B345B 0%, #0E1F39 100%); }
-.ab2-person__avatar--a3 { background: linear-gradient(135deg, #3C5A88 0%, #244271 100%); }
+/* Avatar fallback fills, drawn from the navy ramp so they follow the palette.
+   a4's two stops are decorative in-betweens with no token equivalent. */
+.ab2-person__avatar--a1 { background: linear-gradient(135deg, var(--dh-navy-700) 0%, var(--dh-navy) 100%); }
+.ab2-person__avatar--a2 { background: linear-gradient(135deg, var(--dh-navy-600) 0%, var(--dh-ink) 100%); }
+.ab2-person__avatar--a3 { background: linear-gradient(135deg, var(--dh-navy-500) 0%, var(--dh-navy-700) 100%); }
 .ab2-person__avatar--a4 { background: linear-gradient(135deg, #2A4673 0%, #14274A 100%); }
 .ab2-person__avatar--photo { object-fit: cover; object-position: center top; padding: 0; }
 .ab2-person__name {
@@ -557,7 +559,7 @@ a.ab2-person::after {
   padding: 36px 0;
 }
 @media (min-width: 768px) { .ab2-close { padding: 48px 0; } }
-.ab2-close .eyebrow { color: var(--dh-orange); }
+.ab2-close .eyebrow { color: var(--fg-accent-label); }
 .ab2-belief {
   font-size: clamp(28px, 4vw, 46px);
   font-weight: var(--fw-bold);
@@ -568,7 +570,7 @@ a.ab2-person::after {
   max-width: 16ch;
   text-wrap: balance;
 }
-.ab2-belief .accent { color: var(--dh-orange); }
+.ab2-belief .accent { color: var(--fg-accent); }
 .ab2-tenets {
   display: grid; gap: var(--space-4);
   grid-template-columns: 1fr;
@@ -585,7 +587,7 @@ a.ab2-person::after {
 .ab2-tenet .neg {
   font-size: var(--fs-14);
   font-weight: var(--fw-bold);
-  color: var(--dh-grey);
+  color: var(--fg-3);
   text-decoration: line-through;
   text-decoration-color: var(--dh-grey-light);
   margin: 0 0 var(--space-2);

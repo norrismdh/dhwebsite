@@ -8,7 +8,7 @@
 .res-hero {
   padding: 56px 0 40px;
   border-bottom: 1px solid var(--border-2);
-  background: linear-gradient(180deg, #ECF1F6 0%, #F2F5F9 100%);
+  background: var(--gradient-hero);
   overflow: hidden;
 }
 @media (min-width: 768px) { .res-hero { padding: 80px 0 56px; } }
@@ -138,7 +138,7 @@
   display: grid; place-items: center;
   background: var(--bg-3);
   border-radius: var(--radius-sm);
-  color: var(--dh-orange);
+  color: var(--fg-accent);
 }
 .feat__form h3 {
   font-size: var(--fs-24);
@@ -325,11 +325,11 @@
   letter-spacing: -0.04em;
   font-style: italic;
 }
-.res-card__mark .dot { color: var(--dh-orange); }
+.res-card__mark .dot { color: var(--fg-accent); }
 
 /* Type-specific accent strip & background variation */
-.res-card[data-type="whitepaper"] .res-card__thumb { background: linear-gradient(135deg, #1B345B 0%, #0E1F39 100%); }
-.res-card[data-type="webinar"] .res-card__thumb { background: linear-gradient(135deg, #244271 0%, #193359 100%); }
+.res-card[data-type="whitepaper"] .res-card__thumb { background: linear-gradient(135deg, var(--dh-navy-600) 0%, var(--dh-ink) 100%); }
+.res-card[data-type="webinar"] .res-card__thumb { background: linear-gradient(135deg, var(--dh-navy-700) 0%, var(--dh-navy) 100%); }
 .res-card[data-type="blog"] .res-card__thumb { aspect-ratio: 16 / 6; background: linear-gradient(135deg, #C8D9EE 0%, #A8C0DE 100%); }
 .res-card[data-type="blog"] .res-card__mark { font-size: 40px; }
 .res-card[data-type="blog"] .res-card__thumb::after {
@@ -403,7 +403,7 @@
   font-weight: var(--fw-bold);
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
-  color: var(--dh-orange);
+  color: var(--fg-accent);
 }
 @media (hover: hover) {
   .res-card:hover .res-card__cta { color: var(--link-hover); }
@@ -500,7 +500,7 @@
   margin-top: var(--space-3);
 }
 @media (hover: hover) {
-  .pillar__card:hover .row { color: var(--dh-orange); }
+  .pillar__card:hover .row { color: var(--fg-accent); }
   .pillar__card:hover .arrow { transform: translateX(4px); }
 }
 .pillar__card .arrow { transition: transform var(--dur-base) var(--ease-out); }
@@ -591,5 +591,5 @@
   letter-spacing: var(--tracking-wide);
   color: var(--fg-2);
 }
-.compare__card .arrow { color: var(--dh-orange); flex-shrink: 0; }
+.compare__card .arrow { color: var(--fg-accent); flex-shrink: 0; }
 

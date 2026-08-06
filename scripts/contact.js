@@ -8,10 +8,11 @@
 
     if (!form.checkValidity()) { form.reportValidity(); return; }
 
-    const emailVal = form.querySelector('#ct-email').value.trim();
+    const emailField = form.querySelector('#ct-email');
+    const emailVal = emailField.value.trim();
     if (window.dhIsBusinessEmail && !window.dhIsBusinessEmail(emailVal)) {
-      showError(form, window.DH_BUSINESS_EMAIL_MESSAGE);
-      form.querySelector('#ct-email').focus();
+      showError(form, window.DH_BUSINESS_EMAIL_MESSAGE, emailField);
+      emailField.focus();
       return;
     }
 
@@ -62,17 +63,30 @@
     btn.innerHTML = originalHTML;
   });
 
-  function showError(form, message) {
+  function showError(form, message, field) {
     let el = form.querySelector('.ct-form__error');
     if (!el) {
       el = document.createElement('p');
       el.className = 'ct-form__error';
+      el.id = 'ct-form-error';
+      // role=alert so the message is announced the moment it appears. Without
+      // it the only cue a screen-reader user gets is focus jumping to a field,
+      // with no explanation of what went wrong.
+      el.setAttribute('role', 'alert');
       form.querySelector('.ct-submit').prepend(el);
     }
     el.textContent = message;
+    if (field) {
+      field.setAttribute('aria-invalid', 'true');
+      field.setAttribute('aria-describedby', el.id);
+    }
   }
 
   function clearError(form) {
     form.querySelector('.ct-form__error')?.remove();
+    form.querySelectorAll('[aria-invalid="true"]').forEach(function (el) {
+      el.removeAttribute('aria-invalid');
+      el.removeAttribute('aria-describedby');
+    });
   }
 })();

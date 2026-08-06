@@ -350,7 +350,7 @@ body::before {
 }
 
 .dl-badge--release { background: var(--dh-navy);   color: var(--dh-white); }
-.dl-badge--update  { background: var(--dh-orange);  color: var(--dh-white); }
+.dl-badge--update  { background: var(--dh-orange);  color: var(--dh-navy); }
 .dl-badge--hotfix  { background: var(--dh-yellow);  color: var(--dh-navy);  }
 
 /* -----------------------------------------------------------

@@ -146,7 +146,7 @@
   border-left-color: var(--dh-orange);
   font-weight: var(--fw-bold);
 }
-.toc__list a.is-current::before { color: var(--dh-orange); }
+.toc__list a.is-current::before { color: var(--fg-accent); }
 
 /* -----------------------------------------------------------
    TL;DR card — below TOC in sidebar
@@ -165,7 +165,7 @@
   font-weight: var(--fw-bold);
   letter-spacing: var(--tracking-caps);
   text-transform: uppercase;
-  color: var(--dh-orange);
+  color: var(--fg-accent);
   margin-bottom: var(--space-2);
 }
 .toc__tldr p {
@@ -201,7 +201,7 @@
   font-weight: var(--fw-bold);
   font-variant-numeric: tabular-nums;
   letter-spacing: var(--tracking-wide);
-  color: var(--dh-orange);
+  color: var(--fg-accent);
   font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   align-self: start;
   margin-top: 8px;
@@ -231,7 +231,7 @@
 }
 
 .prose a {
-  color: var(--dh-orange);
+  color: var(--fg-accent);
   font-weight: var(--fw-medium);
   text-decoration: none;
   border-bottom: 1px solid rgba(243, 146, 53, 0.45);
@@ -258,7 +258,7 @@
   position: absolute;
   left: 0;
   top: 6px;
-  color: var(--dh-orange);
+  color: var(--fg-accent);
   font-weight: var(--fw-bold);
   font-size: var(--fs-20);
   line-height: 1.55;
@@ -272,7 +272,7 @@
   top: 8px;
   font-size: 14px;
   font-weight: var(--fw-bold);
-  color: var(--dh-orange);
+  color: var(--fg-accent);
   font-variant-numeric: tabular-nums;
   font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   letter-spacing: var(--tracking-wide);
@@ -409,7 +409,7 @@
 }
 .prose details summary::-webkit-details-marker { display: none; }
 @media (hover: hover) and (pointer: fine) {
-  .prose details summary:hover { color: var(--dh-orange); }
+  .prose details summary:hover { color: var(--fg-accent); }
 }
 .prose details summary:active { transform: scale(0.99); }
 .prose details summary::after {
@@ -417,7 +417,7 @@
   font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   font-size: 22px;
   font-weight: var(--fw-bold);
-  color: var(--dh-orange);
+  color: var(--fg-accent);
   flex-shrink: 0;
   transition: transform var(--dur-base) var(--ease-out);
 }
@@ -501,7 +501,7 @@
   transition: color var(--dur-fast) var(--ease-out);
 }
 @media (hover: hover) and (pointer: fine) {
-  .related-card:hover .arrow-row { color: var(--dh-orange); }
+  .related-card:hover .arrow-row { color: var(--fg-accent); }
 }
 .related-card .arrow { transition: transform var(--dur-base) var(--ease-out); }
 .related-card:hover .arrow { transform: translateX(4px); }

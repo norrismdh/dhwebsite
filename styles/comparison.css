@@ -150,7 +150,7 @@
 }
 .summary__card li::before {
   content: "-";
-  color: var(--dh-orange);
+  color: var(--fg-accent);
   font-weight: var(--fw-bold);
   font-size: var(--fs-20);
   line-height: 1.3;
@@ -261,7 +261,7 @@
 .leads--alt { background: var(--bg-3); border-top: 1px solid var(--border-2); border-bottom: 1px solid var(--border-2); }
 
 .leads__head { max-width: 720px; margin-bottom: var(--space-7); }
-.leads__head .eyebrow { color: var(--fg-accent); }
+.leads__head .eyebrow { color: var(--fg-accent-label); }
 .leads--alt .leads__head .eyebrow { color: var(--fg-2); }
 .leads__head h2 {
   font-size: clamp(28px, 3.4vw, 40px);

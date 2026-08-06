@@ -102,7 +102,7 @@
   font-weight: var(--fw-bold);
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
-  color: var(--dh-orange);
+  color: var(--fg-accent);
   padding: 3px 8px;
   background: rgba(243,146,53,0.08);
   border-radius: var(--radius-pill);
@@ -221,7 +221,7 @@
   font-weight: var(--fw-bold);
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
-  color: var(--dh-orange);
+  color: var(--fg-accent);
   padding: 3px 8px;
   background: rgba(243,146,53,0.08);
   border-radius: var(--radius-pill);
@@ -250,7 +250,7 @@
   font-weight: var(--fw-bold);
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
-  color: var(--dh-orange);
+  color: var(--fg-accent);
   text-decoration: none;
 }
 .par-partner__link svg {
@@ -339,7 +339,7 @@
   place-items: center;
   flex-shrink: 0;
 }
-.par-why-card__ico--orange { background: rgba(243,146,53,0.18); color: var(--dh-orange); }
+.par-why-card__ico--orange { background: rgba(243,146,53,0.18); color: var(--fg-accent); }
 .par-why-card__ico--yellow { background: rgba(250,180,0,0.18);  color: var(--dh-yellow); }
 .par-why-card__ico--white  { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.85); }
 .par-why-card__ico--teal   { background: rgba(111,208,255,0.18); color: #6FD0FF; }

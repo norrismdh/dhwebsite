@@ -132,13 +132,13 @@
 }
 .blog-path__posts li a::before {
   content: '→';
-  color: var(--dh-orange);
+  color: var(--fg-accent);
   flex-shrink: 0;
   font-size: 11px;
   margin-top: 1px;
 }
 @media (hover: hover) {
-  .blog-path__posts li a:hover { color: var(--dh-orange); }
+  .blog-path__posts li a:hover { color: var(--fg-accent); }
   .blog-path:hover {
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(25,51,89,0.10);
@@ -176,7 +176,7 @@
   font-weight: var(--fw-bold);
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
-  color: var(--dh-orange);
+  color: var(--fg-accent);
   margin-bottom: var(--space-4);
 }
 .blog-feat__eyebrow::before { content: none; }
@@ -242,14 +242,14 @@
    (transient hover states are exempt from the contrast rule).
    ----------------------------------------------------------- */
 .blog-library__head .eyebrow {
-  color: var(--dh-orange);
+  color: var(--fg-accent);
 }
 .blog-library .res-card__cta {
   color: var(--dh-navy);
 }
 @media (hover: hover) {
   .blog-library .res-card:hover .res-card__cta {
-    color: var(--dh-orange);
+    color: var(--fg-accent);
   }
 }
 

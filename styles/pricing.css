@@ -111,7 +111,7 @@
   font-weight: var(--fw-bold);
   text-transform: uppercase;
   letter-spacing: var(--tracking-caps);
-  color: var(--dh-orange);
+  color: var(--fg-accent);
   background: rgba(243,146,53,0.10);
   padding: 4px 8px;
   border-radius: var(--radius-pill);
@@ -196,7 +196,7 @@
 .pr-hero__card-total--contact {
   font-size: 18px;
   letter-spacing: 0;
-  color: var(--dh-orange);
+  color: var(--fg-accent);
   font-weight: var(--fw-bold);
 }
 
@@ -312,7 +312,7 @@
   position: absolute;
   top: -10px; left: var(--space-5);
   background: var(--dh-orange);
-  color: #fff;
+  color: var(--dh-navy);
   font-size: var(--fs-12);
   font-weight: var(--fw-bold);
   text-transform: uppercase;
@@ -340,7 +340,7 @@
   font-weight: var(--fw-medium);
 }
 .tier--teams .tier__kind { color: rgba(255,255,255,0.72); }
-.tier__kind--accent { color: var(--dh-orange); font-weight: var(--fw-bold); }
+.tier__kind--accent { color: var(--fg-accent); font-weight: var(--fw-bold); }
 
 .tier__audience {
   font-size: 15px;
@@ -417,7 +417,7 @@
 .tier__cta--primary {
   background: var(--dh-orange);
   border-color: var(--dh-orange);
-  color: #fff;
+  color: var(--dh-navy);
 }
 .tier__cta--primary:hover { background: var(--link-hover); border-color: var(--link-hover); color: #fff; }
 .tier__cta .arrow { transition: transform var(--dur-base) var(--ease-out); }
@@ -441,7 +441,7 @@
   font-style: italic;
   line-height: 1.4;
 }
-.tiers__footnote sup { color: var(--dh-orange); font-weight: var(--fw-bold); font-style: normal; }
+.tiers__footnote sup { color: var(--fg-accent); font-weight: var(--fw-bold); font-style: normal; }
 
 /* -----------------------------------------------------------
    What's included - single unified checklist card
@@ -555,7 +555,7 @@
   margin-top: var(--space-5);
   font-size: var(--fs-16);
   font-weight: var(--fw-bold);
-  color: var(--dh-orange);
+  color: var(--fg-accent);
   text-decoration: none;
   padding-bottom: 4px;
   border-bottom: 1.5px solid var(--dh-orange);
@@ -751,7 +751,7 @@
   transition: color var(--dur-fast) var(--ease-out);
 }
 .faq__item > summary::-webkit-details-marker { display: none; }
-.faq__item > summary:hover { color: var(--dh-orange); }
+.faq__item > summary:hover { color: var(--fg-accent); }
 .faq__plus {
   flex-shrink: 0;
   position: relative;

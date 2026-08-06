@@ -13,7 +13,7 @@
   overflow: hidden;
   padding: 32px 0 24px;
   border-bottom: 1px solid var(--border-2);
-  background: linear-gradient(180deg, #ECF1F6 0%, #F2F5F9 100%);
+  background: var(--gradient-hero);
 }
 @media (min-width: 768px) { .uc-hero { padding: 48px 0 32px; } }
 
@@ -354,7 +354,7 @@
   font-weight: var(--fw-bold);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--dh-orange);
+  color: var(--fg-accent);
   margin-bottom: 14px;
   display: inline-block;
 }
@@ -410,7 +410,7 @@
 .uc-card__outcomes .check {
   width: 18px; height: 18px;
   display: grid; place-items: center;
-  color: var(--dh-orange);
+  color: var(--fg-accent);
   margin-top: 1px;
 }
 
@@ -427,7 +427,7 @@
   border-bottom: none;
 }
 .uc-card__link .arrow { transition: transform var(--dur-base) var(--ease-out); }
-.uc-card:hover .uc-card__link { color: var(--dh-orange); }
+.uc-card:hover .uc-card__link { color: var(--fg-accent); }
 .uc-card:hover .uc-card__link .arrow { transform: translateX(6px); }
 
 /* hide / show animation when switching groups */
@@ -498,7 +498,7 @@
   font-weight: var(--fw-medium);
   padding: 0 4px;
 }
-.uc-compare__card .arrow { color: var(--dh-orange); flex-shrink: 0; }
+.uc-compare__card .arrow { color: var(--fg-accent); flex-shrink: 0; }
 
 /* -----------------------------------------------------------
    Bottom CTA - compact navy panel with small chaos→order graphic
@@ -534,7 +534,7 @@
 
 .uc-cta__copy { max-width: 620px; }
 /* .uc-cta__eyebrow — consolidated into site.css */
-.uc-cta__eyebrow { color: var(--dh-orange); }
+.uc-cta__eyebrow { color: var(--fg-accent); }
 .uc-cta h2 {
   font-size: clamp(22px, 2.4vw, 30px);
   color: #fff;

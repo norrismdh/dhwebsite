@@ -230,7 +230,7 @@
   transition: color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
 }
 @media (hover: hover) and (pointer: fine) {
-  .faq-item__q:hover { color: var(--dh-orange); }
+  .faq-item__q:hover { color: var(--fg-accent); }
 }
 .faq-item__q:active { transform: scale(0.99); }
 .faq-item__chev {
@@ -244,7 +244,7 @@
 }
 .faq-item.is-open .faq-item__chev {
   background: var(--dh-orange);
-  color: #fff;
+  color: var(--dh-navy);
 }
 .faq-item__chev svg { transition: transform var(--dur-base) var(--ease-in-out); }
 .faq-item.is-open .faq-item__chev svg { transform: rotate(180deg); }
@@ -273,7 +273,7 @@
 }
 .faq-item__a-inner p { margin: 0 0 var(--space-3); }
 .faq-item__a-inner p:last-child { margin-bottom: 0; }
-.faq-item__a-inner a { color: var(--dh-orange); border-bottom: 1px solid currentColor; }
+.faq-item__a-inner a { color: var(--fg-accent); border-bottom: 1px solid currentColor; }
 .faq-item__a-inner ul { padding-left: 18px; margin: var(--space-3) 0; }
 .faq-item__a-inner li { margin-bottom: 6px; }
 .faq-item__a-inner code {
@@ -321,7 +321,7 @@
 }
 .ucd-cta__copy { max-width: 620px; }
 /* .ucd-cta__eyebrow — consolidated into site.css */
-.ucd-cta__eyebrow { color: var(--dh-orange); }
+.ucd-cta__eyebrow { color: var(--fg-accent); }
 .ucd-cta h3 {
   font-size: clamp(24px, 2.6vw, 34px);
   color: #fff;

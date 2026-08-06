@@ -60,6 +60,53 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--fg-on-dark);
 }
 
+/* -----------------------------------------------------------
+   Dark-ground token overrides
+
+   --fg-3 is tuned for light grounds (#5C707C); on navy it is unreadable, so
+   navy-grounded containers swap in the light neutral, which reads at 5.83:1.
+   Setting a custom property on a container that holds no such text is a
+   harmless no-op, so this list can stay broad.
+   ----------------------------------------------------------- */
+.section--dark,
+.cta-banner,
+.footer,
+.how,
+.metrics,
+.research__panel,
+.hub__hbar--b,
+.skip-link,
+.btn--primary,
+.ab2-serve,
+.arch-server,
+.art-cta,
+.def,
+.blog-feat__inner,
+.cs-inverse,
+.cust-cta,
+.cmp-cta,
+.cn-request,
+.ucd-cta,
+.uc-cta,
+.pr-cta,
+.par-why,
+.quote,
+.tier--teams,
+.security,
+.sec-hero__visual,
+.feat,
+.prod-cta__card--dark,
+.ent-card--note,
+.mock-hub__nav,
+.res-card__thumb,
+.tm-card__tier--enterprise,
+.admin-topbar {
+  --fg-3: var(--dh-grey-light);
+  /* The deepened eyebrow is tuned for light grounds; on navy it muddies, so
+     dark containers go back to the brand orange (5.41:1 there). */
+  --fg-accent-label: var(--dh-orange);
+}
+
 .section-head { max-width: 720px; margin-bottom: var(--space-6); }
 .section-head h2 { margin-bottom: var(--space-3); }
 .section-head p { color: var(--fg-2); font-size: var(--fs-18); margin: 0; }
@@ -89,6 +136,9 @@ button { font-family: inherit; cursor: pointer; }
 }
 .btn:hover { text-decoration: none; }
 .btn:active { transform: scale(0.97); }
+/* 13px padding + a 14px label lands at ~43px; this pins it over the 44px
+   platform minimum without changing the visual proportions. */
+.btn { min-height: 44px; }
 .btn--primary {
   background: var(--dh-navy);
   color: var(--dh-white);
@@ -105,17 +155,20 @@ button { font-family: inherit; cursor: pointer; }
     inset 0 1px 0 rgba(255, 255, 255, 0.1),
     0 8px 22px rgba(25, 51, 89, 0.26);
 }
+/* Label is navy, not white: white on the brand orange is only 2.34:1 and
+   fails AA at this size (14px bold is not "large text"). Navy on the same
+   orange clears it at 5.41:1, so the brand fill survives untouched. */
 .btn--accent {
   background: var(--dh-orange);
-  color: var(--dh-white);
+  color: var(--dh-navy);
   border-color: var(--dh-orange);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28);
 }
 .btn--accent:hover {
-  background: var(--link-hover);
-  border-color: var(--link-hover);
-  color: var(--dh-white);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+  background: var(--dh-orange-hover);
+  border-color: var(--dh-orange-hover);
+  color: var(--dh-navy);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28);
 }
 .btn--ghost {
   background: transparent;
@@ -190,11 +243,15 @@ button { font-family: inherit; cursor: pointer; }
   top: 64px;
   left: 0;
   height: 3px;
-  width: 0%;
+  width: 100%;
   background: var(--dh-orange);
   z-index: 1000;
   pointer-events: none;
-  transition: width 80ms linear;
+  /* Full width, scaled from the left edge. Transitioning `width` forced a
+     layout pass on every scroll frame; scaleX is composited. */
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 80ms linear;
 }
 @media (min-width: 768px) {
   #art-progress { top: 84px; }
@@ -211,8 +268,13 @@ button { font-family: inherit; cursor: pointer; }
   top: 0;
   z-index: 50;
   background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  /* Was blur(20px) saturate(180%). The bar repaints on every scroll frame on
+     every page, and at 0.88 opacity over the paper ground the extra radius and
+     saturation were not visible - this keeps the frosted read at roughly a
+     third of the filter cost. The property itself stays, because .nav relies
+     on it to form a containing block (see .mega__panel below). */
+  backdrop-filter: blur(12px) saturate(140%);
+  -webkit-backdrop-filter: blur(12px) saturate(140%);
   border-bottom: 1px solid rgba(25, 51, 89, 0.10);
   box-shadow:
     0 1px 0 rgba(255, 255, 255, 0.7) inset,
@@ -303,7 +365,7 @@ button { font-family: inherit; cursor: pointer; }
   transform-origin: left center;
   transition: transform var(--dur-base) var(--ease-out);
 }
-.nav__links a:not(.nav__trigger):hover { color: var(--dh-orange); }
+.nav__links a:not(.nav__trigger):hover { color: var(--fg-accent); }
 .nav__links a:not(.nav__trigger):hover::after,
 .nav__links a[aria-current="page"]::after { transform: scaleX(1); }
 .nav__links a[aria-current="page"] { color: var(--dh-navy); font-weight: var(--fw-bold); }
@@ -318,7 +380,7 @@ button { font-family: inherit; cursor: pointer; }
   overflow: hidden;
   /* Gradient stays tinted at the bottom so it never matches the
      paper-colored sections that follow it. */
-  background: linear-gradient(180deg, #ECF1F6 0%, #F2F5F9 100%);
+  background: var(--gradient-hero);
 }
 .hex-hero__motif {
   position: absolute;
@@ -387,7 +449,7 @@ button { font-family: inherit; cursor: pointer; }
   transition: transform var(--dur-base) var(--ease-out);
 }
 .nav__item.is-open .nav__trigger,
-.nav__trigger:hover { color: var(--dh-orange); }
+.nav__trigger:hover { color: var(--fg-accent); }
 .nav__item.is-open .nav__trigger::after,
 .nav__trigger:hover::after,
 .nav__trigger.is-current::after { transform: scaleX(1); }
@@ -416,7 +478,7 @@ button { font-family: inherit; cursor: pointer; }
   transform-origin: left center;
   transition: transform var(--dur-base) var(--ease-out);
 }
-.nav__plain:hover { color: var(--dh-orange); }
+.nav__plain:hover { color: var(--fg-accent); }
 .nav__plain:hover::after,
 .nav__plain.is-current::after { transform: scaleX(1); }
 
@@ -490,7 +552,7 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--dh-navy);
   border-bottom: none;
 }
-.mega__cta:hover { color: var(--dh-orange); }
+.mega__cta:hover { color: var(--fg-accent); }
 .mega__cta svg { transition: transform var(--dur-base) var(--ease-out); }
 .mega__cta:hover svg { transform: translateX(3px); }
 
@@ -511,7 +573,7 @@ button { font-family: inherit; cursor: pointer; }
   transition: background var(--dur-fast) var(--ease-out);
 }
 .mega__item:hover { background: rgba(243, 146, 53, 0.07); color: var(--dh-navy); }
-.mega__item:hover .mega__ico { color: var(--dh-orange); }
+.mega__item:hover .mega__ico { color: var(--fg-accent); }
 .mega__item:hover .mega__glyph { transform: scale(1.05); }
 
 .mega__ico {
@@ -645,7 +707,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 
 .hero h1 { margin: 0 0 var(--space-5); }
-.hero h1 .accent { color: var(--dh-orange); font-style: italic; }
+.hero h1 .accent { color: var(--fg-accent); font-style: italic; }
 
 /* Shared hero heading — every page hero renders identically.
    Page-specific *-hero rules own only layout (margin, max-width). */
@@ -808,9 +870,12 @@ button { font-family: inherit; cursor: pointer; }
   transform: translate(-50%, -50%) scale(0.92);
   background: var(--dh-white);
   border: 1px solid var(--border-1);
-  border-top: 3px solid var(--dh-orange);
   border-radius: var(--radius-lg);
+  /* The orange top accent is an inset shadow rather than a 3px border-top: an
+     inset shadow is clipped by border-radius, so the band curves into the
+     corners instead of ending square against a 14px radius. */
   box-shadow:
+    inset 0 3px 0 var(--dh-orange),
     0 2px 4px rgba(25,51,89,0.06),
     0 8px 28px rgba(25,51,89,0.16),
     0 24px 64px rgba(25,51,89,0.10),
@@ -906,7 +971,7 @@ button { font-family: inherit; cursor: pointer; }
 .hub__spark { display: block; width: 100%; height: 18px; }
 .hub__metric { display: flex; align-items: baseline; gap: 4px; margin-top: 4px; }
 .hub__metric-val { font-size: 13px; font-weight: var(--fw-bold); color: var(--dh-navy); line-height: 1; }
-.hub__metric-up { font-size: 8px; font-weight: var(--fw-bold); color: #2E8B57; }
+.hub__metric-up { font-size: 8px; font-weight: var(--fw-bold); color: var(--success); }
 .hub__hbars { display: flex; flex-direction: column; gap: 3px; margin-top: 6px; }
 .hub__hbar { height: 4px; border-radius: 2px; }
 .hub__hbar--a { width: 78%; background: var(--dh-orange); }
@@ -928,7 +993,7 @@ button { font-family: inherit; cursor: pointer; }
    Problem section - 4 columns, muted
    ----------------------------------------------------------- */
 .problem { background: var(--bg-1); }
-.problem .section-head .eyebrow { color: var(--dh-orange); }
+.problem .section-head .eyebrow { color: var(--fg-accent-label); }
 .problem__grid {
   display: grid;
   gap: var(--space-6);
@@ -958,7 +1023,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 .problem__item:hover .problem__icon {
   opacity: 1;
-  color: var(--dh-orange);
+  color: var(--fg-accent);
 }
 .problem__item h3 {
   font-size: var(--fs-24);
@@ -976,7 +1041,7 @@ button { font-family: inherit; cursor: pointer; }
    Solution section - 2×2 feature cards
    ----------------------------------------------------------- */
 .solution { background: var(--bg-3); }
-.solution .section-head .eyebrow { color: var(--dh-orange); }
+.solution .section-head .eyebrow { color: var(--fg-accent-label); }
 .solution__grid {
   display: grid;
   gap: var(--space-5);
@@ -1062,7 +1127,7 @@ button { font-family: inherit; cursor: pointer; }
   margin: 0;
   text-wrap: balance;
 }
-.promise__line .accent { color: var(--dh-orange); }
+.promise__line .accent { color: var(--fg-accent); }
 .promise__line .punct { color: var(--dh-grey-light); }
 
 /* -----------------------------------------------------------
@@ -1140,7 +1205,7 @@ button { font-family: inherit; cursor: pointer; }
   z-index: 1;
   font-size: 44px;
   font-weight: var(--fw-bold);
-  color: var(--dh-orange);
+  color: var(--fg-accent);
   letter-spacing: -0.04em;
   line-height: 1;
 }
@@ -1302,7 +1367,7 @@ button { font-family: inherit; cursor: pointer; }
 .proof__logo {
   font-size: var(--fs-18);
   font-weight: var(--fw-bold);
-  color: var(--dh-grey);
+  color: var(--fg-3);
   letter-spacing: -0.01em;
   white-space: nowrap;
   opacity: 0.72;
@@ -1377,7 +1442,7 @@ button { font-family: inherit; cursor: pointer; }
   margin: 0;
   white-space: nowrap;
 }
-.metric__num .unit { color: var(--dh-orange); }
+.metric__num .unit { color: var(--fg-accent); }
 .metric__num .unit--word {
   display: inline-block;
   margin-left: 0.18em;
@@ -1493,7 +1558,7 @@ button { font-family: inherit; cursor: pointer; }
 .usecase__link .arrow {
   transition: transform var(--dur-base) var(--ease-out);
 }
-.usecase:hover .usecase__link { color: var(--dh-orange); }
+.usecase:hover .usecase__link { color: var(--fg-accent); }
 .usecase:hover .usecase__link .arrow { transform: translateX(6px); }
 
 /* -----------------------------------------------------------
@@ -1521,7 +1586,7 @@ button { font-family: inherit; cursor: pointer; }
   font-size: var(--fs-14);
   color: var(--dh-navy);
 }
-.g2-badge__star { display: inline-flex; gap: 1px; color: var(--dh-orange); }
+.g2-badge__star { display: inline-flex; gap: 1px; color: var(--fg-accent); }
 .g2-badge__star svg { width: 14px; height: 14px; fill: currentColor; }
 .g2-badge__star .half { fill: url(#half-fill); }
 .g2-badge__rating { font-weight: var(--fw-bold); }
@@ -1573,7 +1638,7 @@ button { font-family: inherit; cursor: pointer; }
   position: absolute;
   top: -28px; left: -8px;
   font-size: 90px;
-  color: var(--dh-orange);
+  color: var(--fg-accent);
   font-family: Georgia, serif;
   line-height: 1;
   opacity: 0.4;
@@ -1607,28 +1672,37 @@ button { font-family: inherit; cursor: pointer; }
   display: flex; gap: var(--space-2);
 }
 .carousel__dot {
-  /* Tap target is the full 44px-tall button — the visible pill is a ::after pseudo */
-  width: 28px;
+  /* Fixed 44px square: the button never resizes, so changing slides cannot
+     reposition the sibling dots. The visible pill is the ::after, which is
+     out of flow and grows by transform alone — no layout, no paint beyond
+     the compositor. Side effect worth having: every dot is now a full 44px
+     tap target, where inactive ones used to be 28px wide. */
+  width: 44px;
   height: 44px;
   background: transparent;
   border: none;
   padding: 0;
   cursor: pointer;
   position: relative;
-  transition: width var(--dur-base) var(--ease-out);
 }
 .carousel__dot::after {
   content: '';
   position: absolute;
-  left: 0; right: 0;
-  top: 50%; transform: translateY(-50%);
+  left: 50%;
+  top: 50%;
+  width: 44px;
   height: 4px;
   background: var(--border-1);
   border-radius: var(--radius-pill);
-  transition: background var(--dur-base) var(--ease-out);
+  /* 0.636 = 28/44, so the resting pill is the same 28px it always was */
+  transform: translate(-50%, -50%) scaleX(0.636);
+  transition: transform var(--dur-base) var(--ease-out),
+              background var(--dur-base) var(--ease-out);
 }
-.carousel__dot.is-active { width: 44px; }
-.carousel__dot.is-active::after { background: var(--dh-navy); }
+.carousel__dot.is-active::after {
+  transform: translate(-50%, -50%) scaleX(1);
+  background: var(--dh-navy);
+}
 
 .carousel__arrows { display: flex; gap: var(--space-2); }
 .carousel__arrow {
@@ -1698,7 +1772,7 @@ button { font-family: inherit; cursor: pointer; }
   background: rgba(243, 146, 53, 0.16);
   pointer-events: none;
 }
-#research .section-head .eyebrow { color: var(--dh-orange); }
+#research .section-head .eyebrow { color: var(--fg-accent-label); }
 .research__panel .eyebrow { color: var(--dh-yellow); }
 .research__panel h3 {
   color: #fff;
@@ -1839,6 +1913,7 @@ button { font-family: inherit; cursor: pointer; }
 }
 .footer__social a {
   display: grid; place-items: center;
+  position: relative;
   width: 36px; height: 36px;
   border: 1px solid rgba(255,255,255,0.18);
   border-radius: 50%;
@@ -1846,7 +1921,15 @@ button { font-family: inherit; cursor: pointer; }
   border-bottom-width: 1px;
   transition: border-color var(--dur-base) var(--ease-out), background var(--dur-base) var(--ease-out);
 }
-.footer__social a:hover { border-color: var(--dh-orange); background: rgba(243,146,53,0.1); color: var(--dh-orange); }
+/* Keeps the 36px circle but pushes the tap target to 44px, so the footer
+   rhythm is unchanged and the target still clears the platform minimum. */
+.footer__social a::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+}
+.footer__social a:hover { border-color: var(--dh-orange); background: rgba(243,146,53,0.1); color: var(--fg-accent); }
 
 .footer__col h3 {
   font-size: var(--fs-12);
@@ -1862,13 +1945,21 @@ button { font-family: inherit; cursor: pointer; }
   font-size: var(--fs-12);
   border-bottom: none;
 }
-.footer__col a:hover { color: var(--dh-orange); }
+.footer__col a:hover { color: var(--fg-accent); }
 @media (max-width: 767px) {
   .footer__top { grid-template-columns: 1fr 1fr; gap: var(--space-5) var(--space-4); }
   .footer__brand { grid-column: 1 / -1; }
   .footer__col a {
     min-height: 44px;
     display: flex;
+    align-items: center;
+  }
+  /* The bottom bar (Privacy, Terms, Cookie settings) sat at 15-18px on touch
+     while the column links above it already had 44px. Same treatment. */
+  .footer__bottom a,
+  .footer__bottom .footer__cookie-btn {
+    min-height: 44px;
+    display: inline-flex;
     align-items: center;
   }
 }
@@ -1890,7 +1981,7 @@ button { font-family: inherit; cursor: pointer; }
   margin: 0; padding: 0;
 }
 .footer__bottom a { color: rgba(255,255,255,0.5); border-bottom: none; font-size: var(--fs-12); }
-.footer__bottom a:hover { color: var(--dh-orange); }
+.footer__bottom a:hover { color: var(--fg-accent); }
 
 /* -----------------------------------------------------------
    Breadcrumb — shared by use-cases, blog, resources, vs pages
@@ -1913,7 +2004,7 @@ button { font-family: inherit; cursor: pointer; }
   font-weight: var(--fw-medium);
   border-bottom: none;
 }
-.breadcrumb a:hover { color: var(--dh-orange); }
+.breadcrumb a:hover { color: var(--fg-accent); }
 .breadcrumb .sep {
   color: var(--dh-grey-light);
   font-weight: var(--fw-regular);
@@ -1947,10 +2038,21 @@ button { font-family: inherit; cursor: pointer; }
 .research__list.is-visible li:nth-child(4) { transition-delay: 320ms; }
 
 @media (prefers-reduced-motion: reduce) {
+  /* Looping and entrance animation is removed outright. */
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+    animation-delay: 0s !important;
+  }
+  /* Transitions are narrowed to the non-moving properties rather than killed.
+     The previous blanket `transition-duration: 0.01ms` also flattened button
+     hover, focus rings and chip selection - feedback a reduced-motion user
+     still needs. Movement (transform, width, height, inset) no longer
+     transitions; colour, depth and opacity still confirm a state change. */
+  *, *::before, *::after {
+    transition-property: color, background-color, border-color, outline-color,
+                         box-shadow, opacity, fill, stroke !important;
+    transition-duration: var(--dur-fast) !important;
   }
   .reveal { opacity: 1; transform: none; }
 }
