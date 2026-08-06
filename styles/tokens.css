@@ -3,54 +3,39 @@
    Single source of truth for brand foundations.
    ============================================================= */
 
-/* Webfont - Montserrat (self-hosted from /fonts), woff2 only.
-   Files provided: Regular 400, Italic 400, Medium 500, MediumItalic 500, Bold 700.
-   Matching .ttf files used to be listed as a fallback after each woff2. Every
-   browser that reaches this stylesheet supports woff2, so those 1.3 MB were
-   never fetched by anyone; the files and the fallbacks are gone.
-   Weights 300 (Light) and 600 (SemiBold) referenced in the brand guide were
-   NOT provided, so browsers synthesise them from the nearest available weight,
-   which renders inconsistently across platforms.
+/* Webfont - Montserrat (self-hosted from /fonts), variable, woff2, latin subset.
 
-   OPEN ISSUE: --fw-semibold (600) is NOT theoretical - it is live in ~20 rules,
-   including the h2 and h3 defaults below. Every section heading on the site is
-   therefore faux-bold right now. The fix is to supply Montserrat-SemiBold.woff2
-   and register it here; retyping those rules to 500 or 700 instead would change
-   heading weight across every page, which is a type decision, not a cleanup.
-   --fw-light (300) has the same gap but is referenced nowhere, so it is inert. */
+   Two files cover the whole weight axis: one upright, one italic. They replace
+   six static cuts totalling ~420 KB, so the font payload drops to ~76 KB. Any
+   weight from 100 to 900 is now genuine rather than synthesised - which is what
+   finally fixes h2/h3, where --fw-semibold (600) was live in ~20 rules with no
+   600 file behind it and every section heading rendered faux-bold. 300 (Light)
+   is real now too, though nothing currently uses it.
+
+   Subset is latin only. Every page is lang="en" and the site carries no
+   Cyrillic, Greek, Vietnamese or Latin-Extended text, so the wider coverage
+   was payload nobody used.
+
+   KNOWN CONSEQUENCE: the latin subset excludes U+2192 and U+2264, so the
+   arrows inside the Blog.html SVG diagrams, one link on a Resources page and
+   the "Healthy <=" label in /ops now render in the fallback sans rather than
+   Montserrat. Checked and accepted: at those sizes the two are near identical.
+   The check-mark, star and command glyphs elsewhere were never in Montserrat
+   at any subset, so they were already falling back before this change.
+
+   Variable-font support is Chrome 62+, Firefox 62+, Safari 11+, Edge 17+. */
 @font-face {
   font-family: "Montserrat";
-  src: url("fonts/Montserrat-Regular.woff2") format("woff2");
-  font-weight: 400;
+  src: url("fonts/Montserrat-Variable.woff2") format("woff2");
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Montserrat";
-  src: url("fonts/Montserrat-Italic.woff2") format("woff2");
-  font-weight: 400;
+  src: url("fonts/Montserrat-Variable-Italic.woff2") format("woff2");
+  font-weight: 100 900;
   font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Montserrat";
-  src: url("fonts/Montserrat-Medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Montserrat";
-  src: url("fonts/Montserrat-MediumItalic.woff2") format("woff2");
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Montserrat";
-  src: url("fonts/Montserrat-Bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
   font-display: swap;
 }
 
