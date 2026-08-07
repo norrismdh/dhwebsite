@@ -1,0 +1,23 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "montserrat",
+        "createdAt": "2026-08-06T15:39:37.594Z",
+        "reason": "Montserrat is the binding brand typeface (Brand Guidelines p.9); rule targets Inter/Roboto/Geist/etc"
+      },
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "styles/about.css"
+        ],
+        "createdAt": "2026-08-06T15:39:45.414Z",
+        "reason": "Both instances are quotation callouts, not cards: no background, no radius, no other borders"
+      }
+    ]
+  }
+}
