@@ -414,9 +414,21 @@
       });
 
       // Keep the card glued to its row while scrolling; Escape dismisses.
-      const reflow = () => { if (isOpen && anchorRow) positionPopover(anchorRow); };
+      // positionPopover reads getBoundingClientRect/offsetWidth then writes
+      // style.left/top, so calling it straight from the event handler thrashes
+      // layout once per frame. Coalescing into a single rAF keeps at most one
+      // read-write pair per frame no matter how fast the events arrive.
+      let reflowQueued = false;
+      const reflow = () => {
+        if (!isOpen || !anchorRow || reflowQueued) return;
+        reflowQueued = true;
+        requestAnimationFrame(() => {
+          reflowQueued = false;
+          if (isOpen && anchorRow) positionPopover(anchorRow);
+        });
+      };
       window.addEventListener('scroll', reflow, { passive: true });
-      window.addEventListener('resize', reflow);
+      window.addEventListener('resize', reflow, { passive: true });
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && isOpen) hide(); });
 
       return { hide };

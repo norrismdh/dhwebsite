@@ -163,16 +163,32 @@
     bar.setAttribute('aria-valuemin', '0');
     bar.setAttribute('aria-valuemax', '100');
     document.body.appendChild(bar);
-    function updateProgress() {
-      var scrolled = window.scrollY;
-      var total = document.documentElement.scrollHeight - window.innerHeight;
-      var pct = total > 0 ? Math.min(scrolled / total, 1) : 0;
-      // scaleX rather than width: composited, no layout on each scroll frame.
-      bar.style.transform = 'scaleX(' + pct + ')';
-      bar.setAttribute('aria-valuenow', Math.round(pct * 100));
+    // The scroll extent is measured up front and re-measured only when it can
+    // actually change. Reading scrollHeight inside the scroll handler forced a
+    // style + layout flush on every frame; the scaleX write is composited, but
+    // that read was not.
+    var total = 0;
+    var lastPct = -1;
+    function measure() {
+      total = document.documentElement.scrollHeight - window.innerHeight;
     }
-    window.addEventListener('scroll', updateProgress, { passive: true });
+    function updateProgress() {
+      var pct = total > 0 ? Math.min(window.scrollY / total, 1) : 0;
+      bar.style.transform = 'scaleX(' + pct + ')';
+      var whole = Math.round(pct * 100);
+      if (whole !== lastPct) {
+        bar.setAttribute('aria-valuenow', whole);
+        lastPct = whole;
+      }
+    }
+    function remeasure() { measure(); updateProgress(); }
+
+    measure();
     updateProgress();
+    window.addEventListener('scroll', updateProgress, { passive: true });
+    window.addEventListener('resize', remeasure, { passive: true });
+    // Late-loading images and webfonts change document height after DOMContentLoaded.
+    window.addEventListener('load', remeasure);
   })();
 
   // ---------- Sticky nav border on scroll ----------
@@ -211,6 +227,40 @@
     reveals.forEach((el) => io.observe(el));
   } else {
     reveals.forEach((el) => el.classList.add('is-visible'));
+  }
+
+  // ---------- Pause looping animations while off-screen ----------
+  // Every one of these containers holds at least one `infinite` animation.
+  // Left alone they composite for the whole session even after the visitor has
+  // scrolled well past them; the SVG stroke-dashoffset loops on UseCases,
+  // About and Architecture repaint on every frame rather than compositing.
+  // Unlike the reveal observer above, this one stays connected and toggles
+  // both ways.
+  const LOOPING = [
+    '.consolidator',  // homepage hero: 8 gliding chips + the hub reveal
+    '.steps',         // how-it-works hexagons
+    '.proof__row',    // client marquee
+    '.uc-net',        // UseCases network diagram; the floating chips live inside it
+    '.pr-cta__art',   // CTA artwork: the 20-element hn-* SVG on the homepage,
+                      // and the cdao-line dashes on About
+    '.arch-stack',    // Architecture: bobbing planes
+    '.arch-flow'      // Architecture: flow dashes
+  ].join(',');
+
+  const loopers = document.querySelectorAll(LOOPING);
+  if (loopers.length && 'IntersectionObserver' in window) {
+    const pauseIO = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        entry.target.classList.toggle('is-offscreen', !entry.isIntersecting);
+      });
+    }, { rootMargin: '200px 0px' }); // resume just before it scrolls into view
+    // Deliberately NOT pre-marked as off-screen. An IntersectionObserver
+    // delivers an initial callback for every target it observes, so anything
+    // genuinely out of view is paused on the first tick anyway. Starting
+    // paused would mean that if the observer never fires, the animations stay
+    // frozen forever - failing closed on a pure optimisation. This way the
+    // worst case is simply the old behaviour: everything keeps running.
+    loopers.forEach((el) => pauseIO.observe(el));
   }
 
   // ---------- Article TOC: mobile collapse + scroll-spy ----------

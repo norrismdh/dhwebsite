@@ -208,6 +208,30 @@ const FOOTER = `
 const NAV_RE = /(<header class="nav"[^>]*>)[\s\S]*?(<\/header>)/;
 const FOOTER_RE = /(<footer class="footer"[^>]*>)[\s\S]*?(<\/footer>)/;
 
+// Preload the upright variable font. Without this it is only discovered once
+// tokens.css has downloaded and parsed - a serialised HTML -> CSS -> font chain.
+// Root-absolute so it is identical at every folder depth (pages one level down
+// reference stylesheets as ../styles/...). Only the upright face: the italic is
+// not needed for first paint and would compete for bandwidth.
+// `crossorigin` is required even same-origin, or the preload is discarded and
+// the font fetched a second time.
+const PRELOAD =
+  '<link rel="preload" href="/styles/fonts/Montserrat-Variable.woff2" as="font" type="font/woff2" crossorigin />';
+const PRELOAD_RE = /[ \t]*<link rel="preload"[^>]*Montserrat-Variable\.woff2[^>]*>\n?/g;
+const FIRST_CSS_RE = /([ \t]*)(<link rel="stylesheet")/;
+
+// First-party scripts sat at the end of <body> with no defer, blocking
+// DOMContentLoaded. defer lets them download during parse and, critically,
+// preserves execution order between them.
+//
+// This must cover EVERY first-party script on a page, not just consent/site:
+// eight pages load business-email.js, contact.js, pricing.js, partners.js or
+// blog-posts.js afterwards, and deferring only some would invert the order
+// (non-deferred scripts run first). The pattern matches only tags with no
+// attributes at all, so type="module" scripts - already deferred by spec - are
+// left alone, and re-running is a no-op once defer is present.
+const DEFER_RE = /<script src="((?:\.\.\/)*scripts\/[A-Za-z0-9._-]+\.js)"><\/script>/g;
+
 function collectHtml(dir, out = []) {
   for (const name of readdirSync(dir)) {
     if (name === 'node_modules' || name === 'dhadmin' || name === 'ops' || name === '.git') continue;
@@ -219,14 +243,30 @@ function collectHtml(dir, out = []) {
   return out;
 }
 
-let navCount = 0, footerCount = 0, skipped = [];
+let navCount = 0, footerCount = 0, preloadCount = 0, deferCount = 0, skipped = [];
 for (const file of collectHtml(ROOT)) {
   let html = readFileSync(file, 'utf8');
   const before = html;
   if (NAV_RE.test(html))    { html = html.replace(NAV_RE, `$1${NAV}$2`); navCount++; }
   if (FOOTER_RE.test(html)) { html = html.replace(FOOTER_RE, `$1${FOOTER}$2`); footerCount++; }
+
+  // Re-stamp the preload: drop any existing one, then re-insert immediately
+  // before the first stylesheet so it is idempotent across runs.
+  if (FIRST_CSS_RE.test(html)) {
+    html = html.replace(PRELOAD_RE, '');
+    html = html.replace(FIRST_CSS_RE, `$1${PRELOAD}\n$1$2`);
+    preloadCount++;
+  }
+
+  const deferred = html.replace(DEFER_RE, '<script src="$1" defer></script>');
+  if (deferred !== html) deferCount++;
+  html = deferred;
+
   if (html !== before) writeFileSync(file, html);
   else if (!/<header class="nav"/.test(before)) skipped.push(file);
 }
 
-console.log(`nav injected into ${navCount} pages, footer into ${footerCount} pages`);
+console.log(
+  `nav injected into ${navCount} pages, footer into ${footerCount} pages, ` +
+  `font preload into ${preloadCount}, defer added on ${deferCount}`
+);

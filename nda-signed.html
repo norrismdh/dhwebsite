@@ -7,6 +7,7 @@
   <title>NDA signed - Digital Hive</title>
   <meta name="description" content="Your NDA has been signed. We'll be in touch shortly." />
   <meta name="robots" content="noindex, nofollow" />
+  <link rel="preload" href="/styles/fonts/Montserrat-Variable.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="stylesheet" href="styles/tokens.css" />
   <link rel="stylesheet" href="styles/site.css" />
   <link rel="stylesheet" href="styles/consent.css" />
@@ -447,8 +448,8 @@
     </div>
   </main>
 
-  <script src="scripts/consent.js"></script>
-  <script src="scripts/site.js"></script>
+  <script src="scripts/consent.js" defer></script>
+  <script src="scripts/site.js" defer></script>
   <script>
     (function () {
       // Personalise the message if name/email were passed in the URL

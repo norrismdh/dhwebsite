@@ -1182,7 +1182,30 @@ button { font-family: inherit; cursor: pointer; }
   place-items: center;
   position: relative;
   margin-bottom: var(--space-5);
+  /* Static, so it rasterises once and the lift animation just moves the layer.
+     This used to be animated inside stepHexLift, growing the blur radius from
+     0 to 22px on every frame of a 6s loop, on an element that also carries a
+     clip-path - the most expensive repeating effect on the site. */
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.30));
   transition: background var(--dur-slow) var(--ease-out);
+}
+/* Orange glow behind the hex, revealed by opacity as the highlight passes.
+   It lives on .step rather than .step__hex because .step__hex has a clip-path,
+   and a clip-path clips whatever its children paint - a glow parented inside it
+   would be cut off at the hex edge. Blur is static; only opacity animates. */
+.step::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 140px;
+  height: 162px;
+  margin-left: -70px;
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+  background: var(--dh-orange);
+  filter: blur(14px);
+  opacity: 0;
+  pointer-events: none;
 }
 /* orange rim overlay - sits under the dark fill so it shows only as the hex edge */
 .step__hex::before {
@@ -1235,22 +1258,25 @@ button { font-family: inherit; cursor: pointer; }
 @media (prefers-reduced-motion: no-preference) {
   .step__hex        { animation: stepHexLift 6s var(--ease-out) infinite; }
   .step__hex::before { animation: stepHexRim  6s var(--ease-out) infinite; }
+  .step::before      { animation: stepHexGlow 6s var(--ease-out) infinite; }
 
   .step:nth-child(2) .step__hex,
-  .step:nth-child(2) .step__hex::before { animation-delay: 2s; }
+  .step:nth-child(2) .step__hex::before,
+  .step:nth-child(2)::before { animation-delay: 2s; }
 
   .step:nth-child(3) .step__hex,
-  .step:nth-child(3) .step__hex::before { animation-delay: 4s; }
+  .step:nth-child(3) .step__hex::before,
+  .step:nth-child(3)::before { animation-delay: 4s; }
 }
+/* transform only - the shadow is now static on .step__hex and the glow is an
+   opacity fade on .step::before, so nothing here re-rasterises per frame. */
 @keyframes stepHexLift {
-  0%, 30%, 100% {
-    transform: translateY(0);
-    filter: drop-shadow(0 0 0 rgba(0,0,0,0)) drop-shadow(0 0 0 rgba(243,146,53,0));
-  }
-  15% {
-    transform: translateY(-6px);
-    filter: drop-shadow(0 12px 22px rgba(0,0,0,0.4)) drop-shadow(0 0 14px rgba(243,146,53,0.55));
-  }
+  0%, 30%, 100% { transform: translateY(0); }
+  15%           { transform: translateY(-6px); }
+}
+@keyframes stepHexGlow {
+  0%, 30%, 100% { opacity: 0; }
+  15%           { opacity: 0.55; }
 }
 @keyframes stepHexRim {
   0%, 30%, 100% { opacity: 0; }
@@ -2010,6 +2036,26 @@ button { font-family: inherit; cursor: pointer; }
   font-weight: var(--fw-regular);
 }
 .breadcrumb .current { color: var(--dh-navy); font-weight: var(--fw-bold); }
+
+/* -----------------------------------------------------------
+   Off-screen animation pause
+
+   site.js adds .is-offscreen to the containers holding looping animations
+   whenever they leave the viewport. Without it, every infinite animation on a
+   page keeps running for the whole session - the homepage alone has 17 of them
+   across 34 elements, and they carry on compositing long after the visitor has
+   scrolled past. Purely a cost control: nothing looks different, because a
+   paused animation is only ever paused while it cannot be seen.
+
+   !important because these override per-component animation declarations of
+   equal specificity, and this must win regardless of source order.
+   ----------------------------------------------------------- */
+.is-offscreen,
+.is-offscreen *,
+.is-offscreen *::before,
+.is-offscreen *::after {
+  animation-play-state: paused !important;
+}
 
 /* -----------------------------------------------------------
    Scroll-triggered fades
