@@ -326,3 +326,43 @@
   color: var(--fg-2);
   text-underline-offset: 2px;
 }
+
+/* -----------------------------------------------------------
+   Consent-gated embeds
+
+   A third-party embed that has not been allowed to load yet. The host
+   element reserves the embed's height so granting consent does not shift
+   the page, and the placeholder explains what is missing and why rather
+   than leaving a blank panel.
+   ----------------------------------------------------------- */
+.dh-embed {
+  min-width: 320px;
+  min-height: 600px;
+}
+.dh-embed__blocked {
+  min-height: 600px;
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: var(--space-3);
+  padding: var(--space-7) var(--space-6);
+  background: var(--bg-2);
+  border: 1px solid var(--border-2);
+  border-radius: var(--radius-md);
+}
+.dh-embed__title {
+  margin: 0;
+  font-size: var(--fs-18);
+  font-weight: var(--fw-bold);
+  color: var(--fg-1);
+}
+.dh-embed__note {
+  margin: 0;
+  max-width: 46ch;
+  font-size: var(--fs-14);
+  color: var(--fg-2);
+  line-height: var(--lh-loose);
+}
+.dh-embed__blocked button {
+  margin-top: var(--space-2);
+}

@@ -367,13 +367,16 @@
 
           <!-- RIGHT - Calendly scheduler -->
           <div class="reveal" id="scheduler">
-            <!-- Calendly inline widget begin -->
-            <div class="calendly-inline-widget"
-                 data-url="https://calendly.com/doug-bonanno-digitalhive/introductiontodigitalhive?hide_event_type_details=1&amp;hide_gdpr_banner=1&amp;primary_color=F39235&amp;text_color=193359"
-                 data-resize="true"
-                 style="min-width:320px;height:600px;"></div>
-            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-            <!-- Calendly inline widget end -->
+            <!-- Calendly scheduler.
+                 The embed is deliberately NOT in the markup. Previously the
+                 widget script and a calendly.com iframe both loaded on page
+                 load, before the visitor had answered the cookie banner -
+                 the only third party on the site that bypassed consent.
+                 consent.js now mounts it once functional consent exists, and
+                 renders a click-to-load placeholder otherwise. -->
+            <div class="dh-embed"
+                 data-embed="calendly"
+                 data-embed-url="https://calendly.com/doug-bonanno-digitalhive/introductiontodigitalhive?hide_event_type_details=1&amp;hide_gdpr_banner=1&amp;primary_color=F39235&amp;text_color=193359"></div>
           </div>
 
         </div>

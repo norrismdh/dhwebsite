@@ -35,7 +35,11 @@
   // treated as absent, so the banner re-appears and everyone re-consents.
   // v2: Apollo website tracker (a new third-party vendor, company-level
   //     visitor identification) added to the marketing bucket.
-  var CONSENT_VERSION = 2;
+  // v3: Calendly scheduling embed brought under the functional bucket. It was
+  //     previously hard-coded into Demo.html and loaded regardless of consent,
+  //     so anyone who consented under v2 agreed to a "Functional" description
+  //     that never mentioned it. Re-consent is the honest course.
+  var CONSENT_VERSION = 3;
   var DEFAULTS = { v: CONSENT_VERSION, necessary: true, functional: true, performance: false, marketing: false };
 
   function loadConsent() {
@@ -71,6 +75,7 @@
       loadLinkedInInsight();
       loadApollo();
     }
+    applyCalendlyEmbeds(prefs);
     fillUtmFields();
   }
 
@@ -141,6 +146,77 @@
       window.trackingFunctions.onLoad({ appId: APOLLO_APP_ID });
     };
     document.head.appendChild(o);
+  }
+
+  // ── Calendly scheduler (functional) ──────────────────────────────
+  // The booking embed on /Demo. It used to be a hard-coded widget script plus
+  // an inline <div> in the page, so calendly.com loaded in an iframe on page
+  // load - before the visitor had answered the banner, and with Calendly's own
+  // GDPR notice suppressed by hide_gdpr_banner=1 in the embed URL. It is now
+  // mounted from here like every other third party.
+  //
+  // Filed under "functional" rather than marketing: it is the thing the
+  // visitor came to that page to use, not attribution. Without consent the
+  // host element renders a placeholder, and pressing its button loads the
+  // embed for that page view only - it deliberately does NOT write consent
+  // back to the cookie, because agreeing to one scheduler is not the same as
+  // agreeing to the category.
+  var CALENDLY_SRC = 'https://assets.calendly.com/assets/external/widget.js';
+  var calendlyScriptRequested = false;
+
+  function mountCalendly(host) {
+    if (host.getAttribute('data-embed-state') === 'loaded') return;
+    host.setAttribute('data-embed-state', 'loaded');
+
+    var url = host.getAttribute('data-embed-url');
+    host.innerHTML = '';
+    var widget = document.createElement('div');
+    widget.className = 'calendly-inline-widget';
+    widget.setAttribute('data-url', url);
+    widget.setAttribute('data-resize', 'true');
+    // Matches the dimensions the old inline markup carried. data-resize grows
+    // it to fit afterwards, but without a starting height Calendly mounts at
+    // its ~150px collapsed default and the panel looks broken.
+    widget.style.minWidth = '320px';
+    widget.style.height = '600px';
+    host.appendChild(widget);
+
+    if (window.Calendly && window.Calendly.initInlineWidget) {
+      // Script already present (second embed, or a load after the placeholder).
+      window.Calendly.initInlineWidget({ url: url, parentElement: widget });
+      return;
+    }
+    if (calendlyScriptRequested) return; // in flight; it will pick the div up
+    calendlyScriptRequested = true;
+    var s = document.createElement('script');
+    s.src = CALENDLY_SRC;
+    s.async = true;
+    document.head.appendChild(s);
+  }
+
+  function placeholderCalendly(host) {
+    if (host.getAttribute('data-embed-state')) return;
+    host.setAttribute('data-embed-state', 'blocked');
+    host.innerHTML =
+      '<div class="dh-embed__blocked">' +
+        '<p class="dh-embed__title">The scheduler is not loaded</p>' +
+        '<p class="dh-embed__note">Our booking calendar comes from Calendly, which sets its own cookies. ' +
+          'Load it to pick a time, or <a href="/Contact">send us a message</a> instead</p>' +
+        '<button type="button" class="dh-cb dh-cb--primary" data-embed-load>Load the scheduler</button>' +
+      '</div>';
+    host.querySelector('[data-embed-load]').addEventListener('click', function () {
+      host.removeAttribute('data-embed-state');
+      mountCalendly(host);
+    });
+  }
+
+  function applyCalendlyEmbeds(prefs) {
+    var hosts = document.querySelectorAll('[data-embed="calendly"]');
+    if (!hosts.length) return;
+    for (var i = 0; i < hosts.length; i++) {
+      if (prefs && prefs.functional) mountCalendly(hosts[i]);
+      else placeholderCalendly(hosts[i]);
+    }
   }
 
   // ── UTM storage ──────────────────────────────────────────────────
@@ -266,7 +342,7 @@
         '<div class="dh-cm__body">' +
           '<p class="dh-cm__intro">Choose which cookies Digital Hive may use. Strictly necessary cookies keep the site working and cannot be disabled.</p>' +
           toggle('necessary',   'Strictly necessary',        'Required for navigation, form submission, and security. Always active.',                                        true,              true)  +
-          toggle('functional',  'Functional',                'Remembers your cookie choice so we don\'t ask again for 12 months.',                                           prefs.functional,  false) +
+          toggle('functional',  'Functional',                'Remembers your cookie choice so we don\'t ask again for 12 months, and loads the Calendly booking calendar on our demo page. Turn this off and you can still load the calendar manually.', prefs.functional,  false) +
           toggle('performance', 'Performance & analytics',   'Helps us understand how visitors use the site (e.g. Google Analytics). No personal data sold or shared.',      prefs.performance, false) +
           toggle('marketing',   'Marketing & attribution',   'Measures which campaigns and channels bring you here (UTM tags, LinkedIn) and, via Apollo, identifies the company a business visitor belongs to.',  prefs.marketing,   false) +
         '</div>' +
@@ -345,6 +421,9 @@
     if (stored) {
       applyConsent(stored);
     } else {
+      // No decision yet: render the click-to-load placeholder so the page is
+      // still usable, but no third party runs until the visitor chooses.
+      applyCalendlyEmbeds(null);
       showBanner();
     }
 
