@@ -1,10 +1,13 @@
-const html = require("@html-eslint/eslint-plugin");
+// ESM, because package.json declares "type": "module" — a require() here throws
+// before ESLint sees any config. The plugin itself is CommonJS; the default
+// import is its module.exports.
+import html from "@html-eslint/eslint-plugin";
 
 // Spread flat/recommended to get the correct HTML parser, then replace the
 // rules with only WCAG 2.1 AA accessibility checks (no formatting noise).
 const base = html.configs["flat/recommended"];
 
-module.exports = [
+export default [
   // ── WCAG 2.1 AA accessibility linting for all HTML files ──────────────────
   {
     ...base,
