@@ -13,7 +13,9 @@
  * Required env vars:
  *   ZOHO_DESK_REFRESH_TOKEN   Desk-scoped refresh token
  *                             (Desk.tickets.READ, Desk.basic.READ,
- *                              Desk.search.READ, Desk.articles.READ)
+ *                              Desk.search.READ, Desk.articles.READ,
+ *                              Desk.contacts.READ — the last one only for
+ *                              /accounts, i.e. client names in the client list)
  *   ZOHO_DESK_ORG_ID          Desk organization id (orgId header)
  * OAuth client (first match wins):
  *   ZOHO_DESK_CLIENT_ID/SECRET → ZOHO_REPORTING_CLIENT_ID/SECRET → ZOHO_CLIENT_ID/SECRET
@@ -357,6 +359,25 @@ export default async function handler(req, res) {
     }
     const nameFor = (id) => agentName.get(String(id)) || (id ? 'Unassigned/Unknown' : 'Unassigned');
 
+    // ── Accounts (client names for the client list) ─────────────────────────
+    // Guarded like the other sub-fetches: without names the list still renders,
+    // it just falls back to account ids.
+    const accountName = new Map();
+    let accountNamesOk = false;
+    try {
+      const accts = await deskPage((from, size) => `/accounts?from=${from}&limit=${size}`, token);
+      for (const a of accts.rows) {
+        const nm = String(a.accountName ?? a.name ?? '').trim();
+        if (nm) accountName.set(String(a.id), nm);
+      }
+      accountNamesOk = true;
+    } catch (e) {
+      // /accounts sits under Desk's contacts scope — name it so the fix is obvious
+      notes.push(/scope/i.test(e.message)
+        ? 'Client names unavailable — add Desk.contacts.READ to the Desk token (needed for /accounts)'
+        : `Client names unavailable (${e.message})`);
+    }
+
     // ── Period slices
     const newCur  = tickets.filter((t) => inWin(ms(t.createdTime), w.cur));
     const newPrev = tickets.filter((t) => inWin(ms(t.createdTime), w.prev));
@@ -477,6 +498,54 @@ export default async function handler(req, res) {
     // Average over analysts who actually handled tickets this period, not the
     // whole agent roster — otherwise the average is diluted by inactive agents.
     const analystCount = leaderboard.length;
+
+    /* ── Client list: who raised the tickets, busiest first ──────────────────
+       Period-scoped throughout, so the row's own numbers reconcile with each
+       other and with the KPIs above: `tickets` counts this period's new tickets
+       (same slice as newCur), `open` is how many of those are still open, and
+       `resolved` counts tickets closed in the window whenever they were raised
+       — which is why a client can show resolutions and zero new tickets.
+       Deliberately NOT the all-time open snapshot used for backlog: mixing an
+       all-time count into a period row makes `open` exceed `tickets` and reads
+       as a data error. */
+    const clientRows = (() => {
+      const map = new Map();
+      const seed = (t) => {
+        const id = t.accountId != null && String(t.accountId).trim() ? String(t.accountId) : '';
+        const k = id || 'unattributed';
+        if (!map.has(k)) {
+          map.set(k, {
+            accountId: id || null,
+            // Ticket has an account but /accounts didn't resolve it → show the id
+            // rather than dropping the row, so volume still reconciles
+            name: id ? (accountName.get(id) ?? `Account ${id}`) : 'No account on ticket',
+            unattributed: !id,
+            tickets: 0, open: 0, resolved: 0, avgResolutionHours: null, _res: [],
+          });
+        }
+        return map.get(k);
+      };
+
+      for (const t of newCur) {
+        const row = seed(t);
+        row.tickets += 1;
+        if (isOpen(t)) row.open += 1;
+      }
+      for (const t of resolvedCur) {
+        const row = seed(t);
+        row.resolved += 1;
+        const c = ms(t.createdTime), r = resolvedAt(t);
+        if (c != null && r != null && r >= c) row._res.push((r - c) / 36e5);
+      }
+
+      return [...map.values()]
+        .map((r) => { r.avgResolutionHours = avg(r._res); delete r._res; return r; })
+        // Ticket count is the requested sort; resolved then name break ties so
+        // the order is stable across refreshes rather than Map insertion order
+        .sort((a, b) => b.tickets - a.tickets || b.resolved - a.resolved || a.name.localeCompare(b.name));
+    })();
+
+    const namedClients = clientRows.filter((r) => !r.unattributed);
 
     // ── Knowledge base (guarded — a KB failure must not sink tickets metrics)
     let kb = null;
@@ -599,6 +668,13 @@ export default async function handler(req, res) {
         analysts: analystCount,
         agentsTotal: activeAgents,
         avgTicketsPerAnalyst: analystCount ? newCur.length / analystCount : null,
+      },
+      clients: clientRows,
+      clientSummary: {
+        clients: namedClients.length,
+        attributed: namedClients.reduce((s, r) => s + r.tickets, 0),
+        unattributed: clientRows.find((r) => r.unattributed)?.tickets ?? 0,
+        namesResolved: accountNamesOk,
       },
       kb,
       meta: { notes, historyMonths: MAX_HISTORY_MONTHS },

@@ -150,6 +150,33 @@
               </table>
             </div>
           </div>
+
+          <!-- Client list — collapsed by default: it's a reference lookup, not a
+               headline, and at this account count it would otherwise dominate the
+               page. Scoped to the period selector like everything above. -->
+          <details class="admin-panel ops-panel-full ops-collapse">
+            <summary class="admin-panel__head ops-collapse__head">
+              <h3>
+                <svg class="ops-collapse__chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+                Client list
+              </h3>
+            </summary>
+            <p id="ops-client-summary" class="ops-updated ops-collapse__note"></p>
+            <div class="admin-table-wrap">
+              <table class="admin-table" aria-label="Clients by ticket volume">
+                <thead>
+                  <tr>
+                    <th>Client</th>
+                    <th class="ops-num">Tickets</th>
+                    <th class="ops-num">Still open</th>
+                    <th class="ops-num">Resolved</th>
+                    <th class="ops-num">Avg resolution</th>
+                  </tr>
+                </thead>
+                <tbody id="ops-clients"></tbody>
+              </table>
+            </div>
+          </details>
         </section>
 
         <!-- ========================================================

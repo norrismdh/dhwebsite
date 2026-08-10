@@ -238,6 +238,37 @@ function renderLeaderboard(rows, summary) {
     : '';
 }
 
+/**
+ * Client list — ranked by ticket volume in the selected period (the API already
+ * sorts it). Collapsed by default in the markup, so this only ever renders into
+ * a panel the user has chosen to open.
+ */
+function renderClients(rows, summary) {
+  const tb = $('ops-clients');
+  if (!rows.length) {
+    tb.innerHTML = `<tr><td colspan="5" class="ops-empty">No client ticket activity in this period</td></tr>`;
+  } else {
+    tb.innerHTML = rows.map((r, i) => `
+      <tr class="ops-row-in" style="--i:${Math.min(i, 16)}">
+        <td style="font-weight:var(--fw-medium)">${esc(r.name)}</td>
+        <td class="ops-num">${fmtInt(r.tickets)}</td>
+        <td class="ops-num">${fmtInt(r.open)}</td>
+        <td class="ops-num">${fmtInt(r.resolved)}</td>
+        <td class="ops-num">${fmtDuration(r.avgResolutionHours)}</td>
+      </tr>`).join('');
+  }
+
+  const s = summary ?? {};
+  const parts = [];
+  if (rows.length) {
+    parts.push(`${fmtInt(s.clients ?? 0)} clients · ${fmtInt(s.attributed ?? 0)} tickets`);
+    if (s.unattributed) parts.push(`${fmtInt(s.unattributed)} with no account`);
+    parts.push('sorted by tickets raised in this period');
+    if (spanLabel()) parts.push(spanLabel());
+  }
+  $('ops-client-summary').textContent = parts.join(' · ');
+}
+
 function renderAll(data, period) {
   currentData = data;
   renderKpis(data.kpis, period);
@@ -249,6 +280,7 @@ function renderAll(data, period) {
   renderBars($('ops-by-priority'), toBars(data.byPriority ?? [], 'priority'), ORANGE);
   renderBars($('ops-by-channel'), toBars(data.byChannel ?? [], 'channel'), YELLOW);
   renderLeaderboard(data.leaderboard ?? [], data.analystSummary);
+  renderClients(data.clients ?? [], data.clientSummary);
 
   // Make the charted window explicit — it follows the period selector
   // Charts are rebuilt above, so (re)wire their tooltips
@@ -275,8 +307,10 @@ function showLoading() {
   const ph = `<p class="ops-empty">Loading&hellip;</p>`;
   ['ops-tickets-trend', 'ops-kb', 'ops-kb-growth', 'ops-by-status', 'ops-by-priority', 'ops-by-channel'].forEach((id) => { $(id).innerHTML = ph; });
   $('ops-leaderboard').innerHTML = `<tr><td colspan="5" class="ops-empty">Loading&hellip;</td></tr>`;
+  $('ops-clients').innerHTML = `<tr><td colspan="5" class="ops-empty">Loading&hellip;</td></tr>`;
   $('ops-updated').textContent = 'Updating…';
   $('ops-analyst-summary').textContent = '';
+  $('ops-client-summary').textContent = '';
 }
 
 // ── Demo + empty data ───────────────────────────────────────────────────────
@@ -333,6 +367,15 @@ function demoData(period) {
       { agentId: '3', name: 'Support Analyst C', taken: 7 * scale, resolved: 6 * scale, open: 3, avgResolutionHours: 27.4 },
     ],
     analystSummary: { analysts: 3, avgTicketsPerAnalyst: (34 * scale) / 3 },
+    clients: [
+      { accountId: '1', name: 'Northwind Traders',   unattributed: false, tickets: 11 * scale, open: 3, resolved: 9 * scale,  avgResolutionHours: 14.1 },
+      { accountId: '2', name: 'Contoso Manufacturing', unattributed: false, tickets: 8 * scale, open: 2, resolved: 7 * scale, avgResolutionHours: 22.7 },
+      { accountId: '3', name: 'Fabrikam Logistics', unattributed: false, tickets: 6 * scale, open: 1, resolved: 6 * scale,  avgResolutionHours: 9.4 },
+      { accountId: '4', name: 'Tailspin Utilities', unattributed: false, tickets: 4 * scale, open: 2, resolved: 3 * scale,  avgResolutionHours: 41.6 },
+      { accountId: '5', name: 'Adventure Works',    unattributed: false, tickets: 3 * scale, open: 0, resolved: 3 * scale,  avgResolutionHours: 5.2 },
+      { accountId: null, name: 'No account on ticket', unattributed: true, tickets: 2 * scale, open: 1, resolved: 1 * scale, avgResolutionHours: 30.0 },
+    ],
+    clientSummary: { clients: 5, attributed: 32 * scale, unattributed: 2 * scale, namesResolved: true },
     kb: {
       createdInPeriod: 4 * scale, publishedInPeriod: 3 * scale, totalPublished: 42, drafts: 7,
       byStatus: [{ status: 'Published', count: 42 }, { status: 'Draft', count: 7 }],
@@ -357,7 +400,8 @@ function emptyData(period) {
     },
     byStatus: [], byPriority: [], byChannel: [],
     trend: { months: [], tickets: { categories: [], series: {}, total: [] } },
-    leaderboard: [], analystSummary: null, kb: null, meta: { notes: [] },
+    leaderboard: [], analystSummary: null, clients: [], clientSummary: null,
+    kb: null, meta: { notes: [] },
   };
 }
 

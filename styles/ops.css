@@ -686,8 +686,13 @@
 .ops-kpi__value--warn { color: #8a6100; }
 .ops-kpi__value--down { color: var(--danger); }
 
-/* Numeric table cells align right for quick scanning */
-.ops-num { text-align: right; font-variant-numeric: tabular-nums; }
+/* Numeric table cells align right for quick scanning.
+   `.admin-table th, .admin-table td { text-align: left }` in dhadmin.css is one
+   specificity step higher than a bare `.ops-num`, so the class needs the table
+   context to win — without it every "numeric" column here rendered left-aligned. */
+.ops-num,
+.admin-table th.ops-num,
+.admin-table td.ops-num { text-align: right; font-variant-numeric: tabular-nums; }
 
 /* Column leader. Paired with a visually-hidden "(highest)" in the markup, so the
    meaning survives without colour or weight perception. */
@@ -699,11 +704,58 @@
 .ops-empty { color: var(--fg-3); font-size: var(--fs-14); margin: 0; }
 
 /* -----------------------------------------------------------
+   Collapsible panel (<details>) — the Support client list.
+   Reuses .admin-panel chrome; the panel head doubles as the
+   toggle, so no separate button and no JS state to keep.
+   ----------------------------------------------------------- */
+.ops-collapse__head {
+  cursor: pointer;
+  user-select: none;
+  list-style: none;                    /* hides the marker in Firefox */
+}
+
+.ops-collapse__head::-webkit-details-marker { display: none; }
+
+.ops-collapse__head h3 {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.ops-collapse__head:hover { background: var(--bg-3); }
+
+/* The global ring sits 3px outside the element, which the panel's overflow:hidden
+   would clip along the top edge — pull it inside instead */
+.ops-collapse__head:focus-visible { outline-offset: -3px; }
+
+/* Closed, the head's bottom rule would float across the card as a stray line */
+.ops-collapse:not([open]) > .ops-collapse__head { border-bottom: none; }
+
+.ops-collapse__chev {
+  flex: 0 0 auto;
+  color: var(--fg-3);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.ops-collapse[open] > .ops-collapse__head .ops-collapse__chev { transform: rotate(90deg); }
+
+/* Caption between the head and the table. Matches the panel body's horizontal
+   padding without its full block spacing, so the note sits close to the table
+   it describes. */
+.ops-collapse__note {
+  margin: 0;
+  padding: var(--space-4) var(--space-6) 0;
+}
+
+.ops-collapse__note:empty { display: none; }
+
+/* -----------------------------------------------------------
    Reduced motion
    ----------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   .ops-bar__fill,
   .ops-donut__seg,
+  .ops-collapse__chev,
   .ops-refresh svg { transition: none; animation: none; }
 
   /* Reduced motion means gentler, not none: keep the opacity fades that signal
