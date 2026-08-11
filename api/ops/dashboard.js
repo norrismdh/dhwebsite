@@ -12,7 +12,8 @@
  *   ≤2 conditions and we aggregate in JS. Volumes are tiny (the whole Deals
  *   module is well under a hundred rows) and this is a manual-refresh tool, so
  *   the extra rows are cheap. Deals are pulled in full and classified against
- *   the live Stage picklist (open / won / lost by forecast category).
+ *   the live Stage picklist (open / won / lost by forecast category), then
+ *   Motio-product deals are dropped (see MOTIO_RE) — this is a DH sales view.
  *
  * Required env vars:
  *   ZOHO_CLIENT_ID, ZOHO_CLIENT_SECRET   (shared with the lead-create flow)
@@ -35,6 +36,16 @@ const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', '
 // Fallback stage classification if the live picklist metadata can't be read.
 const FALLBACK_WON  = ['Closed Won'];
 const FALLBACK_LOST = ['Closed Lost', 'Closed-Lost to Competition'];
+
+/**
+ * Motio-product deals are excluded — this view reports Digital Hive sales only.
+ * Deals carry no product field in this org, so the product is read off the deal
+ * name, which is how they're written ("RCMP - Motio CI 2026 Renewal", "VAC -
+ * Motio Soterre"). Soterre is a Motio product, matched on its own in case a
+ * future deal name drops the "Motio" prefix.
+ */
+const MOTIO_RE = /\b(motio\w*|soterre)\b/i;
+const isMotioDeal = (d) => MOTIO_RE.test(d.Deal_Name ?? '');
 
 // ── Zoho access token (reporting / read scope) ──────────────────────────────
 // Cached for the function-instance lifetime; refreshed 5 min early.
@@ -376,6 +387,11 @@ export default async function handler(req, res) {
       pull(`select Status from Tasks where Created_Time >= '${w.prev.fromISO}' and Created_Time <= '${w.prev.toISO}'`),
     ]);
 
+    // Drop Motio deals before any aggregation, so every deal-derived figure
+    // below (KPIs, pipeline, leaderboard, closing soon, deals trend) is DH-only.
+    const motioExcluded = allDeals.filter(isMotioDeal).length;
+    const deals = allDeals.filter((d) => !isMotioDeal(d));
+
     const isWon  = (d) => stages.won.has(d.Stage);
     const isLost = (d) => stages.lost.has(d.Stage);
     const isOpen = (d) => !isWon(d) && !isLost(d);
@@ -390,10 +406,10 @@ export default async function handler(req, res) {
     };
 
     // ── Deals: revenue won + win rate (cur & prev) ──────────────────────────
-    const wonCur  = allDeals.filter((d) => isWon(d)  && closedInWin(d, w.cur));
-    const lostCur = allDeals.filter((d) => isLost(d) && closedInWin(d, w.cur));
-    const wonPrev = allDeals.filter((d) => isWon(d)  && closedInWin(d, w.prev));
-    const lostPrev= allDeals.filter((d) => isLost(d) && closedInWin(d, w.prev));
+    const wonCur  = deals.filter((d) => isWon(d)  && closedInWin(d, w.cur));
+    const lostCur = deals.filter((d) => isLost(d) && closedInWin(d, w.cur));
+    const wonPrev = deals.filter((d) => isWon(d)  && closedInWin(d, w.prev));
+    const lostPrev= deals.filter((d) => isLost(d) && closedInWin(d, w.prev));
 
     const revenueWon     = wonCur.reduce((s, d) => s + num(d.Amount), 0);
     const revenueWonPrev = wonPrev.reduce((s, d) => s + num(d.Amount), 0);
@@ -401,11 +417,11 @@ export default async function handler(req, res) {
     const winRatePrev = (wonPrev.length + lostPrev.length) ? wonPrev.length / (wonPrev.length + lostPrev.length) : null;
 
     // ── Deals: new-created counts (cur & prev) ──────────────────────────────
-    const newDealsCur  = allDeals.filter((d) => createdInWin(d, w.cur)).length;
-    const newDealsPrev = allDeals.filter((d) => createdInWin(d, w.prev)).length;
+    const newDealsCur  = deals.filter((d) => createdInWin(d, w.cur)).length;
+    const newDealsPrev = deals.filter((d) => createdInWin(d, w.prev)).length;
 
     // ── Deals: open pipeline snapshot ───────────────────────────────────────
-    const openDeals = allDeals.filter(isOpen);
+    const openDeals = deals.filter(isOpen);
     const openPipeline = openDeals.reduce((s, d) => s + num(d.Amount), 0);
 
     const stageMap = new Map();
@@ -487,7 +503,7 @@ export default async function handler(req, res) {
       months: tb.buckets.map((b) => ({ key: b.key, label: b.label, year: b.year })),
       spanLabel: tb.spanLabel,
       leads: buildTrend(leadTrendRows, (r) => r.Lead_Status, (r) => r.Created_Time),
-      deals: buildTrend(allDeals, (d) => d.Stage, (d) => d.Created_Time),
+      deals: buildTrend(deals, (d) => d.Stage, (d) => d.Created_Time),
     };
 
     if (capped) notes.push(`A dataset exceeded ${MAX_PAGES * PAGE_SIZE} rows and was truncated`);
@@ -512,7 +528,7 @@ export default async function handler(req, res) {
       leaderboard,
       closingSoon,
       trend,
-      meta: { capped, notes },
+      meta: { capped, notes, motioExcluded },
     });
   } catch (err) {
     console.error('ops/dashboard error:', err.message);

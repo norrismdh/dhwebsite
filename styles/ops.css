@@ -81,6 +81,14 @@
   text-align: left;
 }
 
+/* Scope note under the page title — says what the figures do and don't cover,
+   so a smaller-than-expected pipeline reads as deliberate rather than missing */
+.ops-subhead {
+  margin: var(--space-2) 0 0;
+  font-size: var(--fs-14);
+  color: var(--fg-3);
+}
+
 .ops-badge {
   display: inline-block;
   padding: 3px 10px;

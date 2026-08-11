@@ -1,5 +1,5 @@
 /* ─── DH OPS MODULE ──────────────────────────────────────────────────────────
- * Ops dashboard page logic.
+ * Ops Sales page logic.
  *
  * Flow: initOps() (Azure AD gate) → reveal shell → load /api/ops/dashboard for
  * the selected period → render KPIs, charts and tables. Data reloads ONLY on an
@@ -380,9 +380,10 @@ function demoData(period) {
       { name: 'Gonzalo Mendez', revenueWon: 0,      dealsWon: 0, openPipeline: 0,       calls: 14, meetings: 1, tasks: 6,  activities: 21 },
       { name: 'Doug Bonanno',   revenueWon: 26_036, dealsWon: 1, openPipeline: 174_000, calls: 2,  meetings: 5, tasks: 2,  activities: 9 },
     ],
+    // Motio deals are filtered out server-side, so the sample deals are all DH
     closingSoon: [
-      { name: 'RCMP - Motio CI 2026 Renewal', stage: 'Renewal', owner: 'Scott Masson', closingDate: '2026-08-15', amount: 152_133 },
-      { name: 'VAC - Motio Soterre', stage: 'Proposal/Price Quote', owner: 'Scott Masson', closingDate: '2026-08-29', amount: 13_475 },
+      { name: 'HCSC - 2026 Renewal', stage: 'Renewal', owner: 'Scott Masson', closingDate: '2026-08-15', amount: 300_000 },
+      { name: 'Jones Day - Expansion', stage: 'Proposal/Price Quote', owner: 'Scott Masson', closingDate: '2026-08-29', amount: 42_500 },
       { name: 'Froneri - 2026 DH Renewal', stage: 'Renewal', owner: 'Mike Norris', closingDate: '2026-09-30', amount: 95_087 },
     ],
     trend: demoTrend(period),
