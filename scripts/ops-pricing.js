@@ -13,7 +13,7 @@ const $ = (id) => document.getElementById(id);
 
 const DEFAULTS = { users: 3000, price: 5.00, rate: 10, tier: 1000, months: 12, capOn: true, cap: 15000 };
 const MAX_TIERS = 200000; // safety guard against runaway loops
-const MIN_USERS = 500;
+const MIN_USERS = 250;
 
 // ── Formatters ──────────────────────────────────────────────────────────────
 const fmtInt   = (n) => Math.round(n ?? 0).toLocaleString('en-US');
