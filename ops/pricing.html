@@ -91,9 +91,9 @@
             <div class="admin-panel__body">
 
               <div class="form-group">
-                <label for="pr-users">Number of users <span class="form-hint-inline">min 250</span></label>
+                <label for="pr-users">Number of users <span class="form-required">*</span> <span class="form-hint-inline">min 250</span></label>
                 <div class="ops-price-inp">
-                  <input id="pr-users" type="number" min="250" step="1" value="3000">
+                  <input id="pr-users" type="number" min="250" step="1" value="0" required>
                 </div>
               </div>
 
@@ -121,9 +121,9 @@
               </div>
 
               <div class="form-group">
-                <label for="pr-months">Contract length</label>
+                <label for="pr-months">Contract length <span class="form-required">*</span></label>
                 <div class="ops-price-inp">
-                  <input id="pr-months" class="ops-price-pad-r" type="number" min="1" step="1" value="12">
+                  <input id="pr-months" class="ops-price-pad-r" type="number" min="1" step="1" value="12" required>
                   <span class="ops-price-suf">months</span>
                 </div>
               </div>
@@ -143,12 +143,12 @@
               <!-- Rep/Partner only — hidden in Admin. Rep looks the customer up in
                    the CRM; Partner (no CRM access) types it in instead. -->
               <div class="form-group" id="pr-customer-group" hidden>
-                <label for="pr-customer-rep">Customer name</label>
+                <label for="pr-customer-rep">Customer name <span class="form-required">*</span></label>
                 <div class="ops-price-combo" id="pr-customer-rep-wrap">
-                  <input id="pr-customer-rep" type="text" autocomplete="off" placeholder="Search accounts…">
+                  <input id="pr-customer-rep" type="text" autocomplete="off" placeholder="Search accounts…" required>
                   <ul class="ops-price-combo__list" id="pr-customer-list" hidden></ul>
                 </div>
-                <input id="pr-customer-partner" class="ops-price-text" type="text" placeholder="Customer name" hidden>
+                <input id="pr-customer-partner" class="ops-price-text" type="text" placeholder="Customer name" required hidden>
               </div>
 
               <!-- Partner only — reseller quota context, used to work out

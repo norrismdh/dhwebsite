@@ -15,7 +15,7 @@ import { chartBox, attachChartTooltip, ORANGE, COMPARE } from './ops-charts.js';
 
 const $ = (id) => document.getElementById(id);
 
-const DEFAULTS = { users: 3000, price: 5.00, rate: 10, tier: 1000, months: 12, capOn: true, cap: 15000 };
+const DEFAULTS = { users: 0, price: 5.00, rate: 10, tier: 1000, months: 12, capOn: true, cap: 15000 };
 const MAX_TIERS = 200000; // safety guard against runaway loops
 const MIN_USERS = 250;
 
@@ -48,18 +48,38 @@ const fmtUSD0  = (n) => new Intl.NumberFormat('en-US', { style: 'currency', curr
 const price2 = (n) => '$' + (n ?? 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 4 }).replace(/(\.\d*?)0+$/, '$1').replace(/\.$/, '');
 const ceilCent = (x) => Math.ceil(x * 100 - 1e-6) / 100; // always round UP to the nearest cent
 
+// Shown everywhere results are withheld — every KPI tile, table, and the
+// chart share this one message rather than each writing its own.
+const EMPTY_NOTE = 'Enter number of users and contract length above';
+
+/** One result tile, shared by the client-price and margin KPI rows so a
+ * blank/invalid state and a computed state render through the same markup. */
+function kpiTile({ i, label, value, note, hero, accent }) {
+  const cls = ['admin-stat-card', 'ops-kpi', hero && 'ops-kpi--hero', accent && 'ops-kpi--margin'].filter(Boolean).join(' ');
+  const valCls = hero ? ' ops-kpi__value--hero' : '';
+  return `<div class="${cls}" style="--i:${i}"><div class="admin-stat-card__label">${label}</div><div class="ops-kpi__value${valCls}">${value}</div><div class="ops-kpi__note">${note}</div></div>`;
+}
+
 // ── Compute ─────────────────────────────────────────────────────────────────
 
 function readInputs() {
   return {
-    users:  Math.max(MIN_USERS, Math.floor(+$('pr-users').value || 0)),
-    price:  Math.max(0, +$('pr-price').value || 0),
+    users:  Math.floor(+$('pr-users').value || 0),
+    price:  +$('pr-price').value || 0,
     rate:   Math.min(1, Math.max(0, (+$('pr-rate').value || 0) / 100)),
-    tier:   Math.max(1, Math.floor(+$('pr-tier').value || 1)),
-    months: Math.max(1, Math.floor(+$('pr-months').value || 1)),
+    tier:   Math.floor(+$('pr-tier').value || 0),
+    months: Math.floor(+$('pr-months').value || 0),
     capOn:  $('pr-cap-on').checked,
     capVal: Math.max(0, Math.floor(+$('pr-cap').value || 0)),
   };
+}
+
+/** Required fields, all views: users must clear the 250 minimum, contract
+ * length and starting price must be positive, and tier size must be at
+ * least 1 (0 would spin compute()'s tier loop forever). Nothing is shown
+ * until every one of these holds. */
+function isValid(raw) {
+  return raw.users >= MIN_USERS && raw.months >= 1 && raw.price > 0 && raw.tier >= 1;
 }
 
 function compute(inputs) {
@@ -124,11 +144,14 @@ function computeMargin({ acv, termMonths, annualTarget, ytdSold }) {
 // ── Render ──────────────────────────────────────────────────────────────────
 
 function render() {
-  const d = compute(readInputs());
-  const annual = d.months ? d.total / d.months * 12 : 0;
-  const blended = d.users > 0 ? d.total / d.users / d.months : 0;
-  const undiscounted = d.users * d.price * d.months;
-  const disc = undiscounted > 0 ? (1 - d.total / undiscounted) : 0;
+  const raw = readInputs();
+  const valid = isValid(raw);
+  const d = valid ? compute(raw) : null;
+
+  const annual = d ? (d.months ? d.total / d.months * 12 : 0) : 0;
+  const blended = d && d.users > 0 ? d.total / d.users / d.months : 0;
+  const undiscounted = d ? d.users * d.price * d.months : 0;
+  const disc = d && undiscounted > 0 ? (1 - d.total / undiscounted) : 0;
 
   renderKpis(d, annual, blended, disc, undiscounted);
   // The tier table and chart are Admin-only and hidden for Rep/Partner — skip
@@ -138,46 +161,48 @@ function render() {
     renderChart(d);
   }
   if (currentView === 'partner') {
-    const m = computeMargin({
+    const m = d ? computeMargin({
       acv: annual,
       termMonths: d.months,
       annualTarget: Math.max(0, +$('pr-quota').value || 0),
       ytdSold: Math.max(0, +$('pr-ytd').value || 0),
-    });
+    }) : null;
     renderMarginKpis(m, annual);
     renderMarginTable(m);
   }
 }
 
 function renderKpis(d, annual, blended, disc, undiscounted) {
-  const totalNote = `${fmtInt(d.users)} users · ${d.months} months`;
-  const discNote = d.users > 0 ? `${fmtUSD0(undiscounted - d.total)} saved vs. ${price2(d.price)}/user` : 'vs. flat starting price';
+  if (!d) {
+    $('pr-kpis').innerHTML = [
+      kpiTile({ i: 0, label: 'Total contract cost', value: '—', note: EMPTY_NOTE, hero: true }),
+      kpiTile({ i: 1, label: 'Annualized', value: '—', note: EMPTY_NOTE }),
+      kpiTile({ i: 2, label: 'Blended price', value: '—', note: EMPTY_NOTE }),
+      kpiTile({ i: 3, label: 'Effective discount', value: '—', note: EMPTY_NOTE }),
+    ].join('');
+    return;
+  }
 
-  $('pr-kpis').innerHTML = `
-    <div class="admin-stat-card ops-kpi ops-kpi--hero" style="--i:0">
-      <div class="admin-stat-card__label">Total contract cost</div>
-      <div class="ops-kpi__value ops-kpi__value--hero">${d.users > 0 ? fmtUSD0(d.total) : '$0'}</div>
-      <div class="ops-kpi__note">${totalNote}</div>
-    </div>
-    <div class="admin-stat-card ops-kpi" style="--i:1">
-      <div class="admin-stat-card__label">Annualized</div>
-      <div class="ops-kpi__value">${fmtUSD0(annual)}</div>
-      <div class="ops-kpi__note">per 12 months</div>
-    </div>
-    <div class="admin-stat-card ops-kpi" style="--i:2">
-      <div class="admin-stat-card__label">Blended price</div>
-      <div class="ops-kpi__value">${d.users > 0 ? price2(blended) : '—'}</div>
-      <div class="ops-kpi__note">avg / user / month</div>
-    </div>
-    <div class="admin-stat-card ops-kpi" style="--i:3">
-      <div class="admin-stat-card__label">Effective discount</div>
-      <div class="ops-kpi__value">${(disc * 100).toFixed(1)}%</div>
-      <div class="ops-kpi__note">${discNote}</div>
-    </div>`;
+  const totalNote = `${fmtInt(d.users)} users · ${d.months} months`;
+  const discNote = `${fmtUSD0(undiscounted - d.total)} saved vs. ${price2(d.price)}/user`;
+
+  $('pr-kpis').innerHTML = [
+    kpiTile({ i: 0, label: 'Total contract cost', value: fmtUSD0(d.total), note: totalNote, hero: true }),
+    kpiTile({ i: 1, label: 'Annualized', value: fmtUSD0(annual), note: 'per 12 months' }),
+    kpiTile({ i: 2, label: 'Blended price', value: price2(blended), note: 'avg / user / month' }),
+    kpiTile({ i: 3, label: 'Effective discount', value: `${(disc * 100).toFixed(1)}%`, note: discNote }),
+  ].join('');
 }
 
 function renderTable(d) {
   const tb = $('pr-tbody');
+  if (!d) {
+    tb.innerHTML = '';
+    $('pr-f-users').textContent = '—';
+    $('pr-f-total').textContent = '—';
+    $('pr-foot-note').textContent = `${EMPTY_NOTE} to see the tier breakdown.`;
+    return;
+  }
   tb.innerHTML = '';
 
   // Group trailing floor tiers into one row — a 15-tier floor run would
@@ -233,8 +258,8 @@ function renderTable(d) {
 
 function renderChart(d) {
   const wrap = $('pr-chart-wrap');
-  if (d.rows.length === 0) {
-    wrap.innerHTML = `<p class="ops-empty">Enter a user count to see pricing.</p>`;
+  if (!d || d.rows.length === 0) {
+    wrap.innerHTML = `<p class="ops-empty">${EMPTY_NOTE} to see pricing.</p>`;
     return;
   }
 
@@ -309,6 +334,16 @@ function renderChart(d) {
 }
 
 function renderMarginKpis(m, acv) {
+  if (!m) {
+    $('pr-margin-kpis').innerHTML = [
+      kpiTile({ i: 0, label: 'Effective margin', value: '—', note: EMPTY_NOTE }),
+      kpiTile({ i: 1, label: 'Your margin (year 1)', value: '—', note: EMPTY_NOTE, accent: true }),
+      kpiTile({ i: 2, label: 'Attainment with this deal', value: '—', note: EMPTY_NOTE }),
+    ].join('');
+    $('pr-attainment-note').textContent = `${EMPTY_NOTE} to see margin.`;
+    return;
+  }
+
   const accelNote = m.accelerated
     ? 'Base + multi-year + sales accelerator'
     : m.isMultiYear ? 'Base + multi-year accelerator' : 'Base margin — flat renewal rate after year 1';
@@ -317,37 +352,36 @@ function renderMarginKpis(m, acv) {
     ? 'Enter your target and YTD sold above'
     : `${(m.ytdAttainment * 100).toFixed(0)}% YTD → ${(m.attainmentWithDeal * 100).toFixed(0)}% with this deal`;
 
-  $('pr-margin-kpis').innerHTML = `
-    <div class="admin-stat-card ops-kpi" style="--i:0">
-      <div class="admin-stat-card__label">Effective margin</div>
-      <div class="ops-kpi__value">${(m.effectiveMargin * 100).toFixed(1)}%</div>
-      <div class="ops-kpi__note">${accelNote}</div>
-    </div>
-    <div class="admin-stat-card ops-kpi ops-kpi--margin" style="--i:1">
-      <div class="admin-stat-card__label">Your margin (year 1)</div>
-      <div class="ops-kpi__value">${fmtUSD0(m.yearOneMargin)}</div>
-      <div class="ops-kpi__note">${fmtUSD0(acv)} ACV &times; ${(m.effectiveMargin * 100).toFixed(1)}%</div>
-    </div>
-    ${m.termYears > 1 ? `
-    <div class="admin-stat-card ops-kpi ops-kpi--margin" style="--i:2">
-      <div class="admin-stat-card__label">Your margin (${m.termYears}-yr total)</div>
-      <div class="ops-kpi__value">${fmtUSD0(m.totalMargin)}</div>
-      <div class="ops-kpi__note">${m.isMultiYear ? `Same rate locked in for all ${m.termYears} years` : 'Year 1 new + flat-rate renewal after'}</div>
-    </div>` : ''}
-    <div class="admin-stat-card ops-kpi" style="--i:3">
-      <div class="admin-stat-card__label">Attainment with this deal</div>
-      <div class="ops-kpi__value">${m.attainmentWithDeal != null ? (m.attainmentWithDeal * 100).toFixed(0) + '%' : '—'}</div>
-      <div class="ops-kpi__note">${attainmentNote}</div>
-    </div>`;
+  const tiles = [
+    kpiTile({ i: 0, label: 'Effective margin', value: `${(m.effectiveMargin * 100).toFixed(1)}%`, note: accelNote }),
+    kpiTile({ i: 1, label: 'Your margin (year 1)', value: fmtUSD0(m.yearOneMargin), note: `${fmtUSD0(acv)} ACV &times; ${(m.effectiveMargin * 100).toFixed(1)}%`, accent: true }),
+  ];
+  if (m.termYears > 1) {
+    tiles.push(kpiTile({
+      i: tiles.length,
+      label: `Your margin (${m.termYears}-yr total)`,
+      value: fmtUSD0(m.totalMargin),
+      note: m.isMultiYear ? `Same rate locked in for all ${m.termYears} years` : 'Year 1 new + flat-rate renewal after',
+      accent: true,
+    }));
+  }
+  tiles.push(kpiTile({
+    i: tiles.length,
+    label: 'Attainment with this deal',
+    value: m.attainmentWithDeal != null ? (m.attainmentWithDeal * 100).toFixed(0) + '%' : '—',
+    note: attainmentNote,
+  }));
 
+  $('pr-margin-kpis').innerHTML = tiles.join('');
   $('pr-attainment-note').textContent = m.attainmentWithDeal == null
     ? 'Enter your target and YTD sold to see whether this deal reaches 100% attainment.'
     : `${attainmentNote}${m.accelerated ? ' — reaches 100%, sales accelerator applied.' : '.'}`;
 }
 
 function renderMarginTable(m) {
-  $('pr-margin-table-section').hidden = m.years.length <= 1;
-  if (m.years.length <= 1) return;
+  const noTable = !m || m.years.length <= 1;
+  $('pr-margin-table-section').hidden = noTable;
+  if (noTable) return;
 
   $('pr-margin-tbody').innerHTML = m.years.map((y, i) => {
     const label = y.year === 1 ? 'Year 1 (new)' : `Year ${y.year} (renewal)`;
