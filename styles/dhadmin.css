@@ -324,6 +324,13 @@ body::before {
   border-bottom: none;
 }
 
+/* Totals row, when a table has one (e.g. the Pricing tier breakdown) */
+.admin-table tfoot td {
+  border-top: 2px solid var(--border-1);
+  font-weight: var(--fw-bold);
+  color: var(--fg-1);
+}
+
 /* Row action buttons — kept on a single line, aligned to the right edge.
    The table wrapper scrolls horizontally on narrow screens, so no wrap. */
 .admin-actions {
@@ -445,6 +452,7 @@ body::before {
 }
 
 .form-group input[type="text"],
+.form-group input[type="number"],
 .form-group select,
 .form-group textarea {
   width: 100%;
@@ -461,11 +469,25 @@ body::before {
 }
 
 .form-group input[type="text"]:focus,
+.form-group input[type="number"]:focus,
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
   border-color: var(--dh-navy);
   box-shadow: 0 0 0 3px rgba(25, 51, 89, 0.1);
+}
+
+/* Tabular figures line up in numeric forms (e.g. the Pricing calculator);
+   the native spin buttons are dropped since these fields are typically
+   stepped by more than 1 and the up/down arrows add little. */
+.form-group input[type="number"] {
+  font-variant-numeric: tabular-nums;
+  -moz-appearance: textfield;
+}
+.form-group input[type="number"]::-webkit-inner-spin-button,
+.form-group input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .form-group textarea {

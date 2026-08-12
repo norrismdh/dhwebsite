@@ -1,0 +1,286 @@
+/* ─── DH OPS MODULE ──────────────────────────────────────────────────────────
+ * Ops Pricing page logic — admin tiered-pricing calculator.
+ *
+ * Flow: initOps() (Azure AD gate) → reveal shell → compute + render from the
+ * input fields. Everything here is client-side arithmetic; there is no CRM
+ * call and no period selector, unlike the other ops pages.
+ * ─────────────────────────────────────────────────────────────────────────── */
+
+import { initOps } from './dhops.js';
+import { chartBox, attachChartTooltip, ORANGE, COMPARE } from './ops-charts.js';
+
+const $ = (id) => document.getElementById(id);
+
+const DEFAULTS = { users: 3000, price: 5.00, rate: 10, tier: 1000, months: 12, capOn: true, cap: 15000 };
+const MAX_TIERS = 200000; // safety guard against runaway loops
+const MIN_USERS = 500;
+
+// ── Formatters ──────────────────────────────────────────────────────────────
+const fmtInt   = (n) => Math.round(n ?? 0).toLocaleString('en-US');
+const fmtUSD0  = (n) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(n ?? 0);
+// Per-user price needs up to 4 decimal places (fractional cents at deep
+// discount tiers) with trailing zeros trimmed — Intl's currency formatter
+// can't do the latter, so this stays a manual formatter.
+const price2 = (n) => '$' + (n ?? 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 4 }).replace(/(\.\d*?)0+$/, '$1').replace(/\.$/, '');
+const ceilCent = (x) => Math.ceil(x * 100 - 1e-6) / 100; // always round UP to the nearest cent
+
+// ── Compute ─────────────────────────────────────────────────────────────────
+
+function readInputs() {
+  return {
+    users:  Math.max(MIN_USERS, Math.floor(+$('pr-users').value || 0)),
+    price:  Math.max(0, +$('pr-price').value || 0),
+    rate:   Math.min(1, Math.max(0, (+$('pr-rate').value || 0) / 100)),
+    tier:   Math.max(1, Math.floor(+$('pr-tier').value || 1)),
+    months: Math.max(1, Math.floor(+$('pr-months').value || 1)),
+    capOn:  $('pr-cap-on').checked,
+    capVal: Math.max(0, Math.floor(+$('pr-cap').value || 0)),
+  };
+}
+
+function compute(inputs) {
+  const { users, price, rate, tier, months, capOn, capVal } = inputs;
+  // Number of tiers that keep decaying before the floor kicks in
+  const maxDiscTiers = (capOn && capVal > 0) ? Math.ceil(capVal / tier) : Infinity;
+
+  let remaining = users, idx = 0, total = 0, capped = false;
+  const rows = [];
+  while (remaining > 0 && idx < MAX_TIERS) {
+    idx++;
+    const u = Math.min(tier, remaining);
+    const level = Math.min(idx - 1, maxDiscTiers - 1);
+    const isFloor = (idx - 1) > (maxDiscTiers - 1);
+    if (isFloor) capped = true;
+    // Floor price (charged to users over the max count) is always rounded UP
+    // to the nearest cent
+    const ppu = isFloor ? ceilCent(price * Math.pow(1 - rate, level)) : price * Math.pow(1 - rate, level);
+    const cost = u * ppu * months;
+    total += cost;
+    rows.push({ idx, u, ppu, cost, isFloor, cum: users - remaining + u });
+    remaining -= u;
+  }
+  return { users, price, rate, tier, months, capOn, capVal, total, rows, capped };
+}
+
+// ── Render ──────────────────────────────────────────────────────────────────
+
+function render() {
+  const d = compute(readInputs());
+  const annual = d.months ? d.total / d.months * 12 : 0;
+  const blended = d.users > 0 ? d.total / d.users / d.months : 0;
+  const undiscounted = d.users * d.price * d.months;
+  const disc = undiscounted > 0 ? (1 - d.total / undiscounted) : 0;
+
+  renderKpis(d, annual, blended, disc, undiscounted);
+  renderTable(d);
+  renderChart(d);
+}
+
+function renderKpis(d, annual, blended, disc, undiscounted) {
+  const totalNote = `${fmtInt(d.users)} users · ${d.months} months`;
+  const discNote = d.users > 0 ? `${fmtUSD0(undiscounted - d.total)} saved vs. ${price2(d.price)}/user` : 'vs. flat starting price';
+
+  $('pr-kpis').innerHTML = `
+    <div class="admin-stat-card ops-kpi ops-kpi--hero" style="--i:0">
+      <div class="admin-stat-card__label">Total contract cost</div>
+      <div class="ops-kpi__value ops-kpi__value--hero">${d.users > 0 ? fmtUSD0(d.total) : '$0'}</div>
+      <div class="ops-kpi__note">${totalNote}</div>
+    </div>
+    <div class="admin-stat-card ops-kpi" style="--i:1">
+      <div class="admin-stat-card__label">Annualized</div>
+      <div class="ops-kpi__value">${fmtUSD0(annual)}</div>
+      <div class="ops-kpi__note">per 12 months</div>
+    </div>
+    <div class="admin-stat-card ops-kpi" style="--i:2">
+      <div class="admin-stat-card__label">Blended price</div>
+      <div class="ops-kpi__value">${d.users > 0 ? price2(blended) : '—'}</div>
+      <div class="ops-kpi__note">avg / user / month</div>
+    </div>
+    <div class="admin-stat-card ops-kpi" style="--i:3">
+      <div class="admin-stat-card__label">Effective discount</div>
+      <div class="ops-kpi__value">${(disc * 100).toFixed(1)}%</div>
+      <div class="ops-kpi__note">${discNote}</div>
+    </div>`;
+}
+
+function renderTable(d) {
+  const tb = $('pr-tbody');
+  tb.innerHTML = '';
+
+  // Group trailing floor tiers into one row — a 15-tier floor run would
+  // otherwise be 15 near-identical rows
+  const display = [];
+  let floorRun = null;
+  for (const r of d.rows) {
+    if (r.isFloor) {
+      if (!floorRun) floorRun = { ...r, count: 1, uSum: r.u, cost: r.cost, firstIdx: r.idx };
+      else { floorRun.count++; floorRun.uSum += r.u; floorRun.cost += r.cost; floorRun.idx = r.idx; floorRun.cum = r.cum; }
+    } else {
+      display.push(r);
+    }
+  }
+
+  let running = 0;
+  let i = 0;
+  const push = (label, users, cum, ppu, cost, floor) => {
+    running += cost;
+    const tr = document.createElement('tr');
+    tr.className = 'ops-row-in' + (floor ? ' ops-price-floor' : '');
+    tr.style.setProperty('--i', i++);
+    tr.innerHTML = `<td>${label}</td><td class="ops-num">${fmtInt(users)}</td><td class="ops-num">${fmtInt(cum)}</td>` +
+      `<td class="ops-num">${price2(ppu)}</td><td class="ops-num">${fmtUSD0(cost)}</td><td class="ops-num">${fmtUSD0(running)}</td>`;
+    tb.appendChild(tr);
+  };
+  for (const r of display) push('Tier ' + r.idx, r.u, r.cum, r.ppu, r.cost, false);
+  if (floorRun) {
+    const lbl = floorRun.count > 1 ? `Tiers ${floorRun.firstIdx}–${floorRun.idx}` : `Tier ${floorRun.firstIdx}`;
+    const tr = document.createElement('tr');
+    tr.className = 'ops-row-in ops-price-floor';
+    tr.style.setProperty('--i', i++);
+    running += floorRun.cost;
+    tr.innerHTML = `<td>${lbl}<span class="ops-price-floor-pill">Floor</span></td><td class="ops-num">${fmtInt(floorRun.uSum)}</td>` +
+      `<td class="ops-num">${fmtInt(floorRun.cum)}</td><td class="ops-num">${price2(floorRun.ppu)}</td><td class="ops-num">${fmtUSD0(floorRun.cost)}</td><td class="ops-num">${fmtUSD0(running)}</td>`;
+    tb.appendChild(tr);
+  }
+
+  $('pr-f-users').textContent = fmtInt(d.users);
+  $('pr-f-total').textContent = fmtUSD0(d.total);
+
+  let note = '';
+  if (d.capped) {
+    note = `Discounting stops after ${fmtInt(d.capVal)} users — every user beyond that is billed at the floor price of ${price2(d.rows.find((r) => r.isFloor).ppu)}/user/month (rounded up to the nearest cent).`;
+  } else if (d.capOn) {
+    note = `The ${fmtInt(d.users)} users don't reach the ${fmtInt(d.capVal)}-user discount cap, so every tier is still decaying.`;
+  } else {
+    note = `No discount cap — each additional ${fmtInt(d.tier)}-user tier keeps decaying by ${(d.rate * 100).toFixed(1)}%.`;
+  }
+  if (d.rows.length >= MAX_TIERS) note += ' (Display truncated at the tier limit.)';
+  $('pr-foot-note').textContent = note;
+}
+
+function renderChart(d) {
+  const wrap = $('pr-chart-wrap');
+  if (d.rows.length === 0) {
+    wrap.innerHTML = `<p class="ops-empty">Enter a user count to see pricing.</p>`;
+    return;
+  }
+
+  const box = chartBox(wrap, { height: 260 });
+  const m = { t: 18, r: 14, b: 34, l: 56 };
+  const iw = box.w - m.l - m.r, ih = box.h - m.t - m.b;
+
+  // Cap the number of bars drawn for readability — a 60-tier contract would
+  // otherwise render as an unreadable comb of hairline bars
+  const MAXBARS = 60;
+  let bars = d.rows;
+  const truncated = bars.length > MAXBARS;
+  if (truncated) bars = bars.slice(0, MAXBARS);
+
+  const maxP = Math.max(...d.rows.map((r) => r.ppu), d.price);
+  const yMax = maxP * 1.08 || 1;
+  const x = (i) => m.l + (iw / bars.length) * i;
+  const bw = Math.max(2, (iw / bars.length) * 0.68);
+  const gap = (iw / bars.length - bw) / 2;
+  const y = (v) => m.t + ih - (v / yMax) * ih;
+
+  const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+  // Gridlines + y-axis ticks
+  let ticks = '';
+  const TICKS = 4;
+  for (let i = 0; i <= TICKS; i++) {
+    const val = yMax * i / TICKS, yy = y(val);
+    ticks += `<line x1="${m.l}" x2="${box.w - m.r}" y1="${yy.toFixed(1)}" y2="${yy.toFixed(1)}" class="ops-chart__axis" style="opacity:${i === 0 ? 1 : 0.5}" />`;
+    ticks += `<text x="${(m.l - 8).toFixed(1)}" y="${(yy + 3).toFixed(1)}" text-anchor="end" class="ops-chart__lbl">$${val.toFixed(2)}</text>`;
+  }
+
+  // Bars, with a full-height hover target per tier carrying tooltip data —
+  // same {title, rows} shape attachChartTooltip() already knows how to render
+  let barEls = '';
+  bars.forEach((r, i) => {
+    const bx = x(i) + gap, by = y(r.ppu), bh = m.t + ih - by;
+    const color = r.isFloor ? COMPARE : ORANGE;
+    const payload = {
+      title: `Tier ${r.idx}${r.isFloor ? ' (floor)' : ''}`,
+      rows: [
+        { name: 'Price', value: price2(r.ppu) + '/user/mo', color },
+        { name: 'Users', value: fmtInt(r.u) },
+        { name: 'Tier cost', value: fmtUSD0(r.cost) },
+      ],
+    };
+    barEls += `<g class="ops-chart__slot" data-slot="${i}" data-tip="${esc(JSON.stringify(payload))}">
+      <rect class="ops-chart__hit-bg" x="${bx.toFixed(1)}" y="${m.t}" width="${bw.toFixed(1)}" height="${ih}" rx="3" />
+      <rect class="ops-chart__bar" style="--i:${i}" x="${bx.toFixed(1)}" y="${by.toFixed(1)}" width="${bw.toFixed(1)}" height="${Math.max(0, bh).toFixed(1)}" rx="${Math.min(4, bw / 2).toFixed(1)}" fill="${color}" />
+      <rect class="ops-chart__hit" x="${bx.toFixed(1)}" y="${m.t}" width="${bw.toFixed(1)}" height="${ih}" />
+    </g>`;
+  });
+
+  // X-axis tier labels (sparse — one per ~12 bars, plus the last)
+  let xLabels = '';
+  const step = Math.ceil(bars.length / 12);
+  bars.forEach((r, i) => {
+    if (i % step === 0 || i === bars.length - 1) {
+      xLabels += `<text x="${(x(i) + iw / bars.length / 2).toFixed(1)}" y="${box.h - 12}" text-anchor="middle" class="ops-chart__lbl">${r.idx}</text>`;
+    }
+  });
+  xLabels += `<text x="${(m.l + iw / 2).toFixed(1)}" y="${box.h - 1}" text-anchor="middle" class="ops-chart__lbl">Tier${truncated ? ` (first ${MAXBARS} shown)` : ''} →</text>`;
+
+  wrap.innerHTML = `
+    <svg class="ops-chart" style="height:${box.h}px" viewBox="0 0 ${box.w} ${box.h}" role="img" aria-label="Per-user monthly price by tier">
+      ${ticks}${barEls}${xLabels}
+    </svg>
+    <div class="ops-legend-row">
+      <span class="ops-legend-key"><span class="ops-legend-key__bar" style="background:${ORANGE}"></span>Discounted tier</span>
+      <span class="ops-legend-key"><span class="ops-legend-key__bar" style="background:${COMPARE}"></span>Floor price (discount stopped)</span>
+    </div>`;
+
+  attachChartTooltip(wrap);
+}
+
+// ── Wiring ──────────────────────────────────────────────────────────────────
+
+function resetDefaults() {
+  $('pr-users').value = DEFAULTS.users;
+  $('pr-price').value = DEFAULTS.price.toFixed(2);
+  $('pr-rate').value = DEFAULTS.rate;
+  $('pr-tier').value = DEFAULTS.tier;
+  $('pr-months').value = DEFAULTS.months;
+  $('pr-cap-on').checked = DEFAULTS.capOn;
+  $('pr-cap').value = DEFAULTS.cap;
+  $('pr-cap').disabled = !DEFAULTS.capOn;
+  render();
+}
+
+function wireEvents() {
+  ['pr-users', 'pr-price', 'pr-rate', 'pr-tier', 'pr-months', 'pr-cap-on', 'pr-cap'].forEach((id) => {
+    $(id).addEventListener('input', render);
+  });
+  $('pr-cap-on').addEventListener('change', () => { $('pr-cap').disabled = !$('pr-cap-on').checked; render(); });
+  $('pr-reset').addEventListener('click', resetDefaults);
+  // Chart redraws on resize — it's measured off the container's pixel width
+  window.addEventListener('resize', render);
+}
+
+// ── Main ────────────────────────────────────────────────────────────────────
+
+async function main() {
+  try {
+    const auth = await initOps();
+    if (!auth) return; // redirect in progress
+
+    $('ops-user-email').textContent = auth.account.username;
+    $('ops-signout').addEventListener('click', () => auth.signOut());
+
+    $('ops-loading').hidden = true;
+    $('ops-app').hidden = false;
+
+    wireEvents();
+    render();
+  } catch (err) {
+    console.error('[ops]', err);
+    $('ops-loading-msg').textContent = `Error: ${err.message}`;
+    $('ops-loading').querySelector('.admin-loading__spinner')?.remove();
+  }
+}
+
+main();

@@ -712,6 +712,77 @@
 .ops-empty { color: var(--fg-3); font-size: var(--fs-14); margin: 0; }
 
 /* -----------------------------------------------------------
+   Pricing calculator (admin) — inputs sidebar, numeric field
+   decorations, hero KPI tile, and floor-tier table styling.
+   Everything else (panels, stats grid, table) is shared chrome.
+   ----------------------------------------------------------- */
+.ops-price-grid {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: var(--space-5);
+  align-items: start;
+}
+@media (max-width: 880px) { .ops-price-grid { grid-template-columns: 1fr; } }
+
+.ops-price-inp { position: relative; display: flex; align-items: center; }
+.ops-price-pre,
+.ops-price-suf {
+  position: absolute;
+  color: var(--fg-3);
+  font-size: var(--fs-14);
+  pointer-events: none;
+}
+.ops-price-pre { left: var(--space-3); }
+.ops-price-suf { right: var(--space-3); }
+.ops-price-pad-l { padding-left: 24px !important; }
+.ops-price-pad-r { padding-right: 60px !important; }
+
+.ops-price-check {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-bottom: var(--space-2);
+}
+.ops-price-check input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--dh-navy);
+}
+.ops-price-check label { margin: 0; }
+
+.ops-price-inp input:disabled { opacity: 0.45; }
+
+/* Hero KPI — the headline figure gets the brand treatment the way the
+   original mockup's hero tile did, translated into shared admin tokens */
+.ops-kpi--hero {
+  background: linear-gradient(150deg, var(--dh-navy-500), var(--dh-navy));
+  border-color: transparent;
+}
+.ops-kpi--hero .admin-stat-card__label,
+.ops-kpi--hero .ops-kpi__note { color: rgba(255, 255, 255, 0.75); }
+.ops-kpi__value--hero { color: var(--dh-orange); font-size: var(--fs-40); }
+
+.ops-kpi__note { font-size: var(--fs-12); color: var(--fg-3); margin-top: 2px; }
+
+/* Floor-tier rows (discounting has stopped) read as muted, with a small
+   pill flagging why — same visual language as .ops-health, neutral tone
+   since it's informational rather than a warning */
+tr.ops-price-floor td { color: var(--fg-3); }
+.ops-price-floor-pill {
+  display: inline-block;
+  margin-left: 7px;
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  font-size: 10px;
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  background: var(--bg-3);
+  color: var(--fg-2);
+  vertical-align: middle;
+}
+
+/* -----------------------------------------------------------
    Collapsible panel (<details>) — the Support client list.
    Reuses .admin-panel chrome; the panel head doubles as the
    toggle, so no separate button and no JS state to keep.

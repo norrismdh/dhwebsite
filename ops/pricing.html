@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <title>Pricing - Ops - Digital Hive</title>
+  <!-- No marketing nav/footer on ops pages - ops has its own chrome -->
+  <link rel="stylesheet" href="../styles/tokens.css" />
+  <link rel="stylesheet" href="../styles/site.css" />
+  <link rel="stylesheet" href="../styles/dhadmin.css" />
+  <link rel="stylesheet" href="../styles/ops.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       AUTH LOADING - shown while MSAL initialises / redirecting
+       ============================================================ -->
+  <div id="ops-loading" class="admin-loading" role="status" aria-live="polite">
+    <div class="admin-loading__spinner" aria-hidden="true"></div>
+    <p id="ops-loading-msg">Authenticating&hellip;</p>
+  </div>
+
+  <!-- ============================================================
+       OPS APP - hidden until auth confirmed
+       ============================================================ -->
+  <div id="ops-app" hidden>
+
+    <!-- Top bar -->
+    <header class="admin-topbar">
+      <div class="admin-topbar__inner">
+
+        <div class="admin-topbar__brand">
+          <img src="../assets/logo-reversed.svg" alt="Digital Hive" height="40" loading="lazy" decoding="async" />
+          <span class="admin-topbar__brand-title">Ops</span>
+        </div>
+
+        <nav class="admin-nav" aria-label="Ops">
+          <a href="/ops" class="admin-nav__item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            Sales
+          </a>
+          <a href="/ops/support" class="admin-nav__item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            Support
+          </a>
+          <a href="/ops/clients" class="admin-nav__item">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Clients
+          </a>
+          <a href="/ops/pricing" class="admin-nav__item is-active" aria-current="page">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            Pricing
+          </a>
+        </nav>
+
+        <div class="admin-topbar__user">
+          <span id="ops-user-email" class="admin-user-email" aria-label="Signed in as"></span>
+          <button id="ops-signout" class="admin-signout-btn" type="button">Sign out</button>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="admin-main" id="ops-content">
+      <div class="container">
+
+        <!-- Page header -->
+        <div class="admin-page-head">
+          <div class="admin-page-head__title">
+            <h1>Pricing</h1>
+            <p class="ops-subhead">Tiered per-user pricing with exponential-decay volume discounts &mdash; admin calculator</p>
+          </div>
+
+          <div class="ops-controls">
+            <button type="button" id="pr-reset" class="btn btn--outline">Reset to defaults</button>
+          </div>
+        </div>
+
+        <div class="ops-price-grid">
+          <!-- INPUTS -->
+          <section class="admin-panel" aria-label="Inputs">
+            <div class="admin-panel__head"><h2>Inputs</h2></div>
+            <div class="admin-panel__body">
+
+              <div class="form-group">
+                <label for="pr-users">Number of users <span class="form-hint-inline">min 500</span></label>
+                <div class="ops-price-inp">
+                  <input id="pr-users" type="number" min="500" step="1" value="3000">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="pr-price">Starting price <span class="form-hint-inline">/ user / month</span></label>
+                <div class="ops-price-inp">
+                  <span class="ops-price-pre">$</span>
+                  <input id="pr-price" class="ops-price-pad-l" type="number" min="0" step="0.05" value="5.00">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="pr-rate">Decay rate per tier</label>
+                <div class="ops-price-inp">
+                  <input id="pr-rate" class="ops-price-pad-r" type="number" min="0" max="100" step="0.5" value="10">
+                  <span class="ops-price-suf">%</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="pr-tier">Tier size <span class="form-hint-inline">users per block</span></label>
+                <div class="ops-price-inp">
+                  <input id="pr-tier" type="number" min="1" step="1" value="1000">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="pr-months">Contract length</label>
+                <div class="ops-price-inp">
+                  <input id="pr-months" class="ops-price-pad-r" type="number" min="1" step="1" value="12">
+                  <span class="ops-price-suf">months</span>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <div class="ops-price-check">
+                  <input id="pr-cap-on" type="checkbox" checked>
+                  <label for="pr-cap-on">Stop discounting after</label>
+                </div>
+                <div class="ops-price-inp">
+                  <input id="pr-cap" class="ops-price-pad-r" type="number" min="0" step="1000" value="15000">
+                  <span class="ops-price-suf">users</span>
+                </div>
+                <p class="form-hint">Users beyond this point stay at the last tier's price (the floor).</p>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- RESULTS -->
+          <div>
+            <div class="admin-stats" id="pr-kpis"></div>
+
+            <section class="admin-panel ops-panel-full" aria-label="Price decay by tier">
+              <div class="admin-panel__head"><h2>Per-user price by tier</h2></div>
+              <div class="admin-panel__body">
+                <div id="pr-chart-wrap"></div>
+              </div>
+            </section>
+
+            <section class="admin-panel ops-panel-full" aria-label="Cost breakdown">
+              <div class="admin-panel__head"><h2>Tier breakdown</h2></div>
+              <div class="admin-table-wrap">
+                <table class="admin-table" aria-label="Tier breakdown">
+                  <thead>
+                    <tr>
+                      <th>Tier</th>
+                      <th class="ops-num">Users</th>
+                      <th class="ops-num">Cumulative</th>
+                      <th class="ops-num">$ / user / mo</th>
+                      <th class="ops-num">Tier cost</th>
+                      <th class="ops-num">Running total</th>
+                    </tr>
+                  </thead>
+                  <tbody id="pr-tbody"></tbody>
+                  <tfoot>
+                    <tr>
+                      <td>Total</td>
+                      <td class="ops-num" id="pr-f-users"></td>
+                      <td></td><td></td><td></td>
+                      <td class="ops-num" id="pr-f-total"></td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <p class="ops-note" id="pr-foot-note"></p>
+            </section>
+          </div>
+        </div>
+
+      </div>
+    </main>
+
+  </div><!-- /ops-app -->
+
+  <script type="module" src="../scripts/ops-pricing.js"></script>
+
+</body>
+</html>
