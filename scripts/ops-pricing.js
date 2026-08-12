@@ -1,12 +1,16 @@
 /* ─── DH OPS MODULE ──────────────────────────────────────────────────────────
- * Ops Pricing page logic — admin tiered-pricing calculator.
+ * Ops Pricing page logic — tiered-pricing calculator with three views:
+ * Admin (full rate-card controls + chart/table), Rep (CRM customer lookup),
+ * and Partner (free-text customer name). All three share one set of
+ * users/months inputs and the same compute() — Rep/Partner just can't touch
+ * price/rate/tier/cap, which stay pinned to the standard rate card (DEFAULTS).
  *
  * Flow: initOps() (Azure AD gate) → reveal shell → compute + render from the
- * input fields. Everything here is client-side arithmetic; there is no CRM
- * call and no period selector, unlike the other ops pages.
+ * input fields. Pricing math is client-side; the only network call is the
+ * CRM account-name search behind Rep's customer field.
  * ─────────────────────────────────────────────────────────────────────────── */
 
-import { initOps } from './dhops.js';
+import { initOps, opsFetch } from './dhops.js';
 import { chartBox, attachChartTooltip, ORANGE, COMPARE } from './ops-charts.js';
 
 const $ = (id) => document.getElementById(id);
@@ -14,6 +18,15 @@ const $ = (id) => document.getElementById(id);
 const DEFAULTS = { users: 3000, price: 5.00, rate: 10, tier: 1000, months: 12, capOn: true, cap: 15000 };
 const MAX_TIERS = 200000; // safety guard against runaway loops
 const MIN_USERS = 250;
+
+// Rep/Partner are read-only views over the standard rate card — they see the
+// same four result tiles as Admin, but can't touch price/rate/tier/cap, and
+// never see the chart or tier-by-tier table.
+let currentView = 'admin';
+
+function esc(s) {
+  return String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+}
 
 // ── Formatters ──────────────────────────────────────────────────────────────
 const fmtInt   = (n) => Math.round(n ?? 0).toLocaleString('en-US');
@@ -72,8 +85,12 @@ function render() {
   const disc = undiscounted > 0 ? (1 - d.total / undiscounted) : 0;
 
   renderKpis(d, annual, blended, disc, undiscounted);
-  renderTable(d);
-  renderChart(d);
+  // The tier table and chart are Admin-only and hidden for Rep/Partner — skip
+  // them there so the chart isn't measured at zero width behind [hidden]
+  if (currentView === 'admin') {
+    renderTable(d);
+    renderChart(d);
+  }
 }
 
 function renderKpis(d, annual, blended, disc, undiscounted) {
@@ -183,8 +200,6 @@ function renderChart(d) {
   const gap = (iw / bars.length - bw) / 2;
   const y = (v) => m.t + ih - (v / yMax) * ih;
 
-  const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-
   // Gridlines + y-axis ticks
   let ticks = '';
   const TICKS = 4;
@@ -237,6 +252,95 @@ function renderChart(d) {
   attachChartTooltip(wrap);
 }
 
+// ── View toggle (Admin / Rep / Partner) ──────────────────────────────────────
+
+function applyView(view) {
+  currentView = view;
+
+  document.querySelectorAll('#pr-view-toggle .ops-period__btn').forEach((b) => {
+    const on = b.dataset.view === view;
+    b.classList.toggle('is-active', on);
+    b.setAttribute('aria-pressed', String(on));
+  });
+
+  const isAdmin = view === 'admin';
+  document.querySelectorAll('.pr-admin-only').forEach((el) => { el.hidden = !isAdmin; });
+
+  $('pr-customer-group').hidden = isAdmin;
+  $('pr-customer-rep-wrap').hidden = view !== 'rep';
+  $('pr-customer-partner').hidden = view !== 'partner';
+
+  if (!isAdmin) {
+    // Rep/Partner always quote off the standard rate card, never whatever
+    // Admin happens to be testing at the moment
+    $('pr-price').value = DEFAULTS.price.toFixed(2);
+    $('pr-rate').value = DEFAULTS.rate;
+    $('pr-tier').value = DEFAULTS.tier;
+    $('pr-cap-on').checked = DEFAULTS.capOn;
+    $('pr-cap').value = DEFAULTS.cap;
+    $('pr-cap').disabled = !DEFAULTS.capOn;
+  }
+
+  render();
+}
+
+function wireViewToggle() {
+  $('pr-view-toggle').addEventListener('click', (e) => {
+    const btn = e.target.closest('.ops-period__btn');
+    if (!btn || btn.dataset.view === currentView) return;
+    applyView(btn.dataset.view);
+  });
+}
+
+// ── Customer lookup (Rep view — CRM account search) ──────────────────────────
+
+let searchTimer = null;
+
+function renderCustomerList(accounts) {
+  const list = $('pr-customer-list');
+  if (!accounts.length) {
+    list.innerHTML = `<li class="ops-price-combo__empty">No matching accounts</li>`;
+    list.hidden = false;
+    return;
+  }
+  list.innerHTML = accounts.map((a) =>
+    `<li class="ops-price-combo__item" data-name="${esc(a.name)}">${esc(a.name)}</li>`).join('');
+  list.hidden = false;
+  list.querySelectorAll('.ops-price-combo__item').forEach((li) => {
+    // mousedown (not click) fires before the input's blur hides the list
+    li.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      $('pr-customer-rep').value = li.dataset.name;
+      list.hidden = true;
+    });
+  });
+}
+
+function wireCustomerSearch(auth) {
+  const input = $('pr-customer-rep');
+  const list = $('pr-customer-list');
+
+  input.addEventListener('input', () => {
+    clearTimeout(searchTimer);
+    const q = input.value.trim();
+    if (q.length < 2) { list.hidden = true; list.innerHTML = ''; return; }
+    searchTimer = setTimeout(async () => {
+      const res = await opsFetch(`/api/ops/accounts?q=${encodeURIComponent(q)}`, auth);
+      if (!res || !res.ok) return;
+      const { accounts } = await res.json();
+      // The field may have been cleared or the view switched away while the
+      // request was in flight — don't resurrect a list nobody's looking at
+      if (input.value.trim() === q && currentView === 'rep') renderCustomerList(accounts || []);
+    }, 250);
+  });
+
+  input.addEventListener('focus', () => { if (list.innerHTML) list.hidden = false; });
+  input.addEventListener('blur', () => {
+    // Delay so a mousedown on a list item lands before the list disappears
+    setTimeout(() => { list.hidden = true; }, 150);
+  });
+}
+
 // ── Wiring ──────────────────────────────────────────────────────────────────
 
 function resetDefaults() {
@@ -248,6 +352,9 @@ function resetDefaults() {
   $('pr-cap-on').checked = DEFAULTS.capOn;
   $('pr-cap').value = DEFAULTS.cap;
   $('pr-cap').disabled = !DEFAULTS.capOn;
+  $('pr-customer-rep').value = '';
+  $('pr-customer-partner').value = '';
+  $('pr-customer-list').hidden = true;
   render();
 }
 
@@ -257,6 +364,7 @@ function wireEvents() {
   });
   $('pr-cap-on').addEventListener('change', () => { $('pr-cap').disabled = !$('pr-cap-on').checked; render(); });
   $('pr-reset').addEventListener('click', resetDefaults);
+  wireViewToggle();
   // Chart redraws on resize — it's measured off the container's pixel width
   window.addEventListener('resize', render);
 }
@@ -275,6 +383,7 @@ async function main() {
     $('ops-app').hidden = false;
 
     wireEvents();
+    wireCustomerSearch(auth);
     render();
   } catch (err) {
     console.error('[ops]', err);

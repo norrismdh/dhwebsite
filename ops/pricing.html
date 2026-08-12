@@ -75,6 +75,11 @@
           </div>
 
           <div class="ops-controls">
+            <div class="ops-period" id="pr-view-toggle" role="group" aria-label="Calculator view">
+              <button type="button" class="ops-period__btn is-active" data-view="admin" aria-pressed="true">Admin</button>
+              <button type="button" class="ops-period__btn" data-view="rep" aria-pressed="false">Rep</button>
+              <button type="button" class="ops-period__btn" data-view="partner" aria-pressed="false">Partner</button>
+            </div>
             <button type="button" id="pr-reset" class="btn btn--outline">Reset to defaults</button>
           </div>
         </div>
@@ -92,7 +97,7 @@
                 </div>
               </div>
 
-              <div class="form-group">
+              <div class="form-group pr-admin-only">
                 <label for="pr-price">Starting price <span class="form-hint-inline">/ user / month</span></label>
                 <div class="ops-price-inp">
                   <span class="ops-price-pre">$</span>
@@ -100,7 +105,7 @@
                 </div>
               </div>
 
-              <div class="form-group">
+              <div class="form-group pr-admin-only">
                 <label for="pr-rate">Decay rate per tier</label>
                 <div class="ops-price-inp">
                   <input id="pr-rate" class="ops-price-pad-r" type="number" min="0" max="100" step="0.5" value="10">
@@ -108,7 +113,7 @@
                 </div>
               </div>
 
-              <div class="form-group">
+              <div class="form-group pr-admin-only">
                 <label for="pr-tier">Tier size <span class="form-hint-inline">users per block</span></label>
                 <div class="ops-price-inp">
                   <input id="pr-tier" type="number" min="1" step="1" value="1000">
@@ -123,7 +128,7 @@
                 </div>
               </div>
 
-              <div class="form-group">
+              <div class="form-group pr-admin-only">
                 <div class="ops-price-check">
                   <input id="pr-cap-on" type="checkbox" checked>
                   <label for="pr-cap-on">Stop discounting after</label>
@@ -135,6 +140,17 @@
                 <p class="form-hint">Users beyond this point stay at the last tier's price (the floor).</p>
               </div>
 
+              <!-- Rep/Partner only — hidden in Admin. Rep looks the customer up in
+                   the CRM; Partner (no CRM access) types it in instead. -->
+              <div class="form-group" id="pr-customer-group" hidden>
+                <label for="pr-customer-rep">Customer name</label>
+                <div class="ops-price-combo" id="pr-customer-rep-wrap">
+                  <input id="pr-customer-rep" type="text" autocomplete="off" placeholder="Search accounts…">
+                  <ul class="ops-price-combo__list" id="pr-customer-list" hidden></ul>
+                </div>
+                <input id="pr-customer-partner" class="ops-price-text" type="text" placeholder="Customer name" hidden>
+              </div>
+
             </div>
           </section>
 
@@ -142,14 +158,14 @@
           <div>
             <div class="admin-stats" id="pr-kpis"></div>
 
-            <section class="admin-panel ops-panel-full" aria-label="Price decay by tier">
+            <section class="admin-panel ops-panel-full pr-admin-only" aria-label="Price decay by tier">
               <div class="admin-panel__head"><h2>Per-user price by tier</h2></div>
               <div class="admin-panel__body">
                 <div id="pr-chart-wrap"></div>
               </div>
             </section>
 
-            <section class="admin-panel ops-panel-full" aria-label="Cost breakdown">
+            <section class="admin-panel ops-panel-full pr-admin-only" aria-label="Cost breakdown">
               <div class="admin-panel__head"><h2>Tier breakdown</h2></div>
               <div class="admin-table-wrap">
                 <table class="admin-table" aria-label="Tier breakdown">

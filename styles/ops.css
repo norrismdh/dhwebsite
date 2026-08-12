@@ -767,6 +767,41 @@
 /* Floor-tier rows (discounting has stopped) read as muted, with a small
    pill flagging why — same visual language as .ops-health, neutral tone
    since it's informational rather than a warning */
+/* Customer-name lookup (Rep view) — text input + a dropdown of CRM account
+   matches. The input itself is styled by the shared .form-group rule in
+   dhadmin.css; only the positioning/list chrome lives here. */
+.ops-price-combo { position: relative; }
+
+.ops-price-combo__list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  margin: 4px 0 0;
+  padding: 6px;
+  list-style: none;
+  max-height: 220px;
+  overflow-y: auto;
+  background: var(--bg-2);
+  border: 1px solid var(--border-1);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-2);
+}
+
+.ops-price-combo__item {
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-14);
+  color: var(--fg-1);
+  cursor: pointer;
+}
+
+.ops-price-combo__item:hover,
+.ops-price-combo__item.is-active { background: var(--bg-3); }
+
+.ops-price-combo__empty { padding: 8px 10px; font-size: var(--fs-14); color: var(--fg-3); }
+
 tr.ops-price-floor td { color: var(--fg-3); }
 .ops-price-floor-pill {
   display: inline-block;
