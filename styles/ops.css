@@ -764,6 +764,12 @@
 
 .ops-kpi__note { font-size: var(--fs-12); color: var(--fg-3); margin-top: 2px; }
 
+/* Reseller-margin tiles (Partner view) — a light success tint distinguishes
+   "what the partner earns" from the navy/orange "what the client pays" tiles
+   above them, without introducing a new color */
+.ops-kpi--margin { border-color: rgba(40, 122, 77, 0.25); }
+.ops-kpi--margin .ops-kpi__value { color: var(--success); }
+
 /* Floor-tier rows (discounting has stopped) read as muted, with a small
    pill flagging why — same visual language as .ops-health, neutral tone
    since it's informational rather than a warning */

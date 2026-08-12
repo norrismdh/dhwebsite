@@ -151,12 +151,66 @@
                 <input id="pr-customer-partner" class="ops-price-text" type="text" placeholder="Customer name" hidden>
               </div>
 
+              <!-- Partner only — reseller quota context, used to work out
+                   whether the sales-level accelerator applies to this deal. -->
+              <hr class="form-divider pr-partner-only" hidden>
+              <div class="form-group pr-partner-only" hidden>
+                <label for="pr-quota">Your annual new-logo target <span class="form-hint-inline">ACV</span></label>
+                <div class="ops-price-inp">
+                  <span class="ops-price-pre">$</span>
+                  <input id="pr-quota" class="ops-price-pad-l" type="number" min="0" step="1000">
+                </div>
+              </div>
+              <div class="form-group pr-partner-only" hidden>
+                <label for="pr-ytd">Your YTD ACV sold so far</label>
+                <div class="ops-price-inp">
+                  <span class="ops-price-pre">$</span>
+                  <input id="pr-ytd" class="ops-price-pad-l" type="number" min="0" step="1000">
+                </div>
+                <p class="form-hint" id="pr-attainment-note">Enter your target and YTD sold to see whether this deal reaches 100% attainment.</p>
+              </div>
+
             </div>
           </section>
 
           <!-- RESULTS -->
           <div>
+            <div class="ops-section pr-partner-only" hidden>
+              <h2>Price for your client</h2>
+            </div>
             <div class="admin-stats" id="pr-kpis"></div>
+
+            <div class="ops-section pr-partner-only" hidden>
+              <h2>Your margin</h2>
+              <span class="ops-section__note">Reseller margin on this deal</span>
+            </div>
+            <div class="admin-stats pr-partner-only" id="pr-margin-kpis" hidden></div>
+
+            <section class="admin-panel ops-panel-full pr-partner-only" id="pr-margin-table-section" hidden aria-label="Margin by year">
+              <div class="admin-panel__head"><h2>Margin by year</h2></div>
+              <div class="admin-table-wrap">
+                <table class="admin-table" aria-label="Margin by year">
+                  <thead>
+                    <tr>
+                      <th>Year</th>
+                      <th class="ops-num">ACV</th>
+                      <th class="ops-num">Rate</th>
+                      <th class="ops-num">Margin $</th>
+                    </tr>
+                  </thead>
+                  <tbody id="pr-margin-tbody"></tbody>
+                  <tfoot>
+                    <tr>
+                      <td>Total</td>
+                      <td class="ops-num" id="pr-margin-f-acv"></td>
+                      <td class="ops-num" id="pr-margin-f-rate"></td>
+                      <td class="ops-num" id="pr-margin-f-total"></td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+              <p class="ops-note">Multi-year deals are paid the same rate for every year of the committed term.</p>
+            </section>
 
             <section class="admin-panel ops-panel-full pr-admin-only" aria-label="Price decay by tier">
               <div class="admin-panel__head"><h2>Per-user price by tier</h2></div>

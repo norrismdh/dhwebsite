@@ -19,6 +19,17 @@ const DEFAULTS = { users: 3000, price: 5.00, rate: 10, tier: 1000, months: 12, c
 const MAX_TIERS = 200000; // safety guard against runaway loops
 const MIN_USERS = 250;
 
+// Reseller/channel margin rate card — from "Reseller Margin Calculator July
+// 2026" (Margin Calc Worksheet). Fixed business terms, not user-editable:
+//   Reseller Base Margin:  new subscriptions 31%, renewals 21%
+//   Multi-yr Contract:     +3% on new subscriptions when the committed term
+//                          is 3+ years (locked in for every year of that term)
+//   Sales Level Accelerator: +2% one-time, when this deal pushes the
+//                          reseller's YTD attainment to 100%+ of their annual
+//                          new-logo target
+const MARGIN_RATES = { newSubBase: 0.31, renewalBase: 0.21, multiYearBonus: 0.03, salesAccelBonus: 0.02 };
+const MULTI_YEAR_MONTHS = 36;
+
 // Rep/Partner are read-only views over the standard rate card — they see the
 // same four result tiles as Admin, but can't touch price/rate/tier/cap, and
 // never see the chart or tier-by-tier table.
@@ -75,6 +86,41 @@ function compute(inputs) {
   return { users, price, rate, tier, months, capOn, capVal, total, rows, capped };
 }
 
+/**
+ * Reseller margin for this deal (Partner view only).
+ * @param {{acv:number, termMonths:number, annualTarget:number, ytdSold:number}} inputs
+ *   acv          — this deal's Annual Contract Value (the "Annualized" tile)
+ *   termMonths   — committed contract length in months
+ *   annualTarget — reseller's annual new-logo ACV quota (0 = unknown)
+ *   ytdSold      — reseller's ACV sold so far this year, before this deal
+ */
+function computeMargin({ acv, termMonths, annualTarget, ytdSold }) {
+  const isMultiYear = termMonths >= MULTI_YEAR_MONTHS;
+  const baseMargin = MARGIN_RATES.newSubBase + (isMultiYear ? MARGIN_RATES.multiYearBonus : 0);
+
+  const ytdAttainment = annualTarget > 0 ? ytdSold / annualTarget : null;
+  const attainmentWithDeal = annualTarget > 0 ? (ytdSold + acv) / annualTarget : null;
+  // The sales accelerator rewards the attainment MOMENT this deal creates —
+  // it's a one-time bonus on year one, not a permanent rate increase
+  const accelerated = attainmentWithDeal !== null && attainmentWithDeal >= 1;
+  const effectiveMargin = baseMargin + (accelerated ? MARGIN_RATES.salesAccelBonus : 0);
+  const yearOneMargin = acv * effectiveMargin;
+
+  // Multi-year (3+ yr) commitments pay the SAME base rate for every year of
+  // the initial term. A shorter deal that still spans more than one year
+  // (e.g. a 24-month term) isn't a committed multi-year contract, so its
+  // second year is a separate, uncommitted renewal at the flat renewal rate.
+  const termYears = Math.max(1, Math.round(termMonths / 12));
+  const years = [];
+  for (let y = 1; y <= termYears; y++) {
+    const rate = y === 1 ? effectiveMargin : (isMultiYear ? baseMargin : MARGIN_RATES.renewalBase);
+    years.push({ year: y, acv, rate, margin: acv * rate });
+  }
+  const totalMargin = years.reduce((sum, y) => sum + y.margin, 0);
+
+  return { isMultiYear, baseMargin, ytdAttainment, attainmentWithDeal, accelerated, effectiveMargin, yearOneMargin, termYears, years, totalMargin };
+}
+
 // ── Render ──────────────────────────────────────────────────────────────────
 
 function render() {
@@ -90,6 +136,16 @@ function render() {
   if (currentView === 'admin') {
     renderTable(d);
     renderChart(d);
+  }
+  if (currentView === 'partner') {
+    const m = computeMargin({
+      acv: annual,
+      termMonths: d.months,
+      annualTarget: Math.max(0, +$('pr-quota').value || 0),
+      ytdSold: Math.max(0, +$('pr-ytd').value || 0),
+    });
+    renderMarginKpis(m, annual);
+    renderMarginTable(m);
   }
 }
 
@@ -252,6 +308,59 @@ function renderChart(d) {
   attachChartTooltip(wrap);
 }
 
+function renderMarginKpis(m, acv) {
+  const accelNote = m.accelerated
+    ? 'Base + multi-year + sales accelerator'
+    : m.isMultiYear ? 'Base + multi-year accelerator' : 'Base margin — flat renewal rate after year 1';
+
+  const attainmentNote = m.attainmentWithDeal == null
+    ? 'Enter your target and YTD sold above'
+    : `${(m.ytdAttainment * 100).toFixed(0)}% YTD → ${(m.attainmentWithDeal * 100).toFixed(0)}% with this deal`;
+
+  $('pr-margin-kpis').innerHTML = `
+    <div class="admin-stat-card ops-kpi" style="--i:0">
+      <div class="admin-stat-card__label">Effective margin</div>
+      <div class="ops-kpi__value">${(m.effectiveMargin * 100).toFixed(1)}%</div>
+      <div class="ops-kpi__note">${accelNote}</div>
+    </div>
+    <div class="admin-stat-card ops-kpi ops-kpi--margin" style="--i:1">
+      <div class="admin-stat-card__label">Your margin (year 1)</div>
+      <div class="ops-kpi__value">${fmtUSD0(m.yearOneMargin)}</div>
+      <div class="ops-kpi__note">${fmtUSD0(acv)} ACV &times; ${(m.effectiveMargin * 100).toFixed(1)}%</div>
+    </div>
+    ${m.termYears > 1 ? `
+    <div class="admin-stat-card ops-kpi ops-kpi--margin" style="--i:2">
+      <div class="admin-stat-card__label">Your margin (${m.termYears}-yr total)</div>
+      <div class="ops-kpi__value">${fmtUSD0(m.totalMargin)}</div>
+      <div class="ops-kpi__note">${m.isMultiYear ? `Same rate locked in for all ${m.termYears} years` : 'Year 1 new + flat-rate renewal after'}</div>
+    </div>` : ''}
+    <div class="admin-stat-card ops-kpi" style="--i:3">
+      <div class="admin-stat-card__label">Attainment with this deal</div>
+      <div class="ops-kpi__value">${m.attainmentWithDeal != null ? (m.attainmentWithDeal * 100).toFixed(0) + '%' : '—'}</div>
+      <div class="ops-kpi__note">${attainmentNote}</div>
+    </div>`;
+
+  $('pr-attainment-note').textContent = m.attainmentWithDeal == null
+    ? 'Enter your target and YTD sold to see whether this deal reaches 100% attainment.'
+    : `${attainmentNote}${m.accelerated ? ' — reaches 100%, sales accelerator applied.' : '.'}`;
+}
+
+function renderMarginTable(m) {
+  $('pr-margin-table-section').hidden = m.years.length <= 1;
+  if (m.years.length <= 1) return;
+
+  $('pr-margin-tbody').innerHTML = m.years.map((y, i) => {
+    const label = y.year === 1 ? 'Year 1 (new)' : `Year ${y.year} (renewal)`;
+    return `<tr class="ops-row-in" style="--i:${i}"><td>${label}</td><td class="ops-num">${fmtUSD0(y.acv)}</td>` +
+      `<td class="ops-num">${(y.rate * 100).toFixed(1)}%</td><td class="ops-num">${fmtUSD0(y.margin)}</td></tr>`;
+  }).join('');
+
+  const totalAcv = m.years.reduce((sum, y) => sum + y.acv, 0);
+  $('pr-margin-f-acv').textContent = fmtUSD0(totalAcv);
+  $('pr-margin-f-rate').textContent = totalAcv > 0 ? (m.totalMargin / totalAcv * 100).toFixed(1) + '%' : '—';
+  $('pr-margin-f-total').textContent = fmtUSD0(m.totalMargin);
+}
+
 // ── View toggle (Admin / Rep / Partner) ──────────────────────────────────────
 
 function applyView(view) {
@@ -265,6 +374,7 @@ function applyView(view) {
 
   const isAdmin = view === 'admin';
   document.querySelectorAll('.pr-admin-only').forEach((el) => { el.hidden = !isAdmin; });
+  document.querySelectorAll('.pr-partner-only').forEach((el) => { el.hidden = view !== 'partner'; });
 
   $('pr-customer-group').hidden = isAdmin;
   $('pr-customer-rep-wrap').hidden = view !== 'rep';
@@ -355,11 +465,13 @@ function resetDefaults() {
   $('pr-customer-rep').value = '';
   $('pr-customer-partner').value = '';
   $('pr-customer-list').hidden = true;
+  $('pr-quota').value = '';
+  $('pr-ytd').value = '';
   render();
 }
 
 function wireEvents() {
-  ['pr-users', 'pr-price', 'pr-rate', 'pr-tier', 'pr-months', 'pr-cap-on', 'pr-cap'].forEach((id) => {
+  ['pr-users', 'pr-price', 'pr-rate', 'pr-tier', 'pr-months', 'pr-cap-on', 'pr-cap', 'pr-quota', 'pr-ytd'].forEach((id) => {
     $(id).addEventListener('input', render);
   });
   $('pr-cap-on').addEventListener('change', () => { $('pr-cap').disabled = !$('pr-cap-on').checked; render(); });
