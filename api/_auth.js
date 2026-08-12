@@ -9,15 +9,22 @@
  *      checks issuer + audience, then enforces a per-area email allowlist.
  *   4. No client secret is required — verification uses Azure's public keys.
  *
- * Two areas share the same App Registration but have independent allowlists:
- *   • Downloads admin  → ADMIN_ALLOWED_EMAILS  (requireAdmin / verifyAdminToken)
- *   • Ops dashboard    → OPS_ALLOWED_EMAILS     (requireOps / verifyOpsToken)
+ * Areas share the same App Registration but have independent allowlists:
+ *   • Downloads admin  → ADMIN_ALLOWED_EMAILS         (requireAdmin / verifyAdminToken)
+ *   • Ops dashboard     → OPS_ALLOWED_EMAILS           (requireOps / verifyOpsToken)
+ *   • Ops Pricing tab   → OPS_ALLOWED_EMAILS           (requireOpsPricing / verifyOpsPricingToken)
+ *                         OR OPS_PRICING_ALLOWED_EMAILS — a narrower allowlist for
+ *                         people who should see ONLY the Pricing calculator, not
+ *                         Sales/Support/Clients. Full ops users pass automatically
+ *                         since their emails already satisfy OPS_ALLOWED_EMAILS.
  *
  * Required env vars (add to .env.local for local dev):
- *   AZURE_AD_TENANT_ID      Directory (tenant) ID from the App Registration
- *   AZURE_AD_CLIENT_ID      Application (client) ID from the App Registration
- *   ADMIN_ALLOWED_EMAILS    Comma-separated authorised emails for /dhadmin
- *   OPS_ALLOWED_EMAILS      Comma-separated authorised emails for /ops
+ *   AZURE_AD_TENANT_ID          Directory (tenant) ID from the App Registration
+ *   AZURE_AD_CLIENT_ID          Application (client) ID from the App Registration
+ *   ADMIN_ALLOWED_EMAILS        Comma-separated authorised emails for /dhadmin
+ *   OPS_ALLOWED_EMAILS          Comma-separated authorised emails for all of /ops
+ *   OPS_PRICING_ALLOWED_EMAILS  Comma-separated emails allowed into /ops/pricing
+ *                               ONLY (no Sales/Support/Clients access)
  * ─────────────────────────────────────────────────────────────────────────── */
 
 import { createRemoteJWKSet, jwtVerify } from 'jose';
@@ -57,14 +64,15 @@ function allowedEmails(envVar) {
 
 /**
  * Verify the Bearer token's signature/issuer/audience and confirm the caller's
- * email is in the given allow-list env var. Shared by every gated area.
+ * email is in at least one of the given allow-list env vars (OR — access to
+ * ANY listed area is sufficient). Shared by every gated area.
  *
  * @param {import('http').IncomingMessage} req
- * @param {string} allowlistEnvVar  Name of the env var holding the CSV allow-list.
+ * @param {string[]} allowlistEnvVars  Names of env vars holding CSV allow-lists.
  * @returns {Promise<object>} The verified JWT payload.
- * @throws If the token is missing, invalid, expired, or not in the allow-list.
+ * @throws If the token is missing, invalid, expired, or not in any allow-list.
  */
-async function verifyToken(req, allowlistEnvVar) {
+async function verifyTokenAgainst(req, allowlistEnvVars) {
   const authHeader = req.headers['authorization'] ?? '';
   const token      = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : null;
 
@@ -84,10 +92,10 @@ async function verifyToken(req, allowlistEnvVar) {
 
   // Enforce allow-list — no Azure AD Premium licence required
   const email   = emailFromPayload(payload);
-  const allowed = allowedEmails(allowlistEnvVar);
+  const allowed = allowlistEnvVars.flatMap(allowedEmails);
 
   if (!allowed.length) {
-    throw new Error(`${allowlistEnvVar} is not configured`);
+    throw new Error(`${allowlistEnvVars.join(' / ')} is not configured`);
   }
   if (!allowed.includes(email)) {
     throw new Error(`Access denied for: ${email}`);
@@ -96,25 +104,36 @@ async function verifyToken(req, allowlistEnvVar) {
   return payload;
 }
 
+/** Single-allowlist form of {@link verifyTokenAgainst}. */
+function verifyToken(req, allowlistEnvVar) {
+  return verifyTokenAgainst(req, [allowlistEnvVar]);
+}
+
 /**
- * Convenience wrapper for route handlers: verify against an allow-list env var;
- * on failure log the reason server-side and send a generic 401 (so we don't
- * disclose config — allow-list membership, missing env vars — to the client).
+ * Convenience wrapper for route handlers: verify against one or more allow-list
+ * env vars (OR); on failure log the reason server-side and send a generic 401
+ * (so we don't disclose config — allow-list membership, missing env vars — to
+ * the client).
  *
  * @param {import('http').IncomingMessage} req
  * @param {import('http').ServerResponse}  res
- * @param {string} allowlistEnvVar
+ * @param {string[]} allowlistEnvVars
  * @param {string} areaLabel  Short label for the server-side log line.
  * @returns {Promise<object|null>}  Payload on success, null after sending 401.
  */
-async function requireArea(req, res, allowlistEnvVar, areaLabel) {
+async function requireAreaAgainst(req, res, allowlistEnvVars, areaLabel) {
   try {
-    return await verifyToken(req, allowlistEnvVar);
+    return await verifyTokenAgainst(req, allowlistEnvVars);
   } catch (err) {
     console.warn(`${areaLabel} auth failed:`, err.message);
     res.status(401).json({ error: 'Unauthorized' });
     return null;
   }
+}
+
+/** Single-allowlist form of {@link requireAreaAgainst}. */
+function requireArea(req, res, allowlistEnvVar, areaLabel) {
+  return requireAreaAgainst(req, res, [allowlistEnvVar], areaLabel);
 }
 
 // ── Public API ────────────────────────────────────────────────────────────────
@@ -155,4 +174,25 @@ export function verifyOpsToken(req) {
  */
 export function requireOps(req, res) {
   return requireArea(req, res, 'OPS_ALLOWED_EMAILS', 'Ops');
+}
+
+/**
+ * Verify the Bearer token and confirm the caller is in the ops allow-list OR
+ * the Pricing-only allow-list — i.e. full ops access implies pricing access.
+ * @param {import('http').IncomingMessage} req
+ * @returns {Promise<object>} The verified JWT payload.
+ */
+export function verifyOpsPricingToken(req) {
+  return verifyTokenAgainst(req, ['OPS_ALLOWED_EMAILS', 'OPS_PRICING_ALLOWED_EMAILS']);
+}
+
+/**
+ * Route-handler gate for the ops Pricing tab specifically — grants access to
+ * full ops users AND to the narrower OPS_PRICING_ALLOWED_EMAILS list, so
+ * someone can be given the calculator without seeing Sales/Support/Clients.
+ * Usage:  const user = await requireOpsPricing(req, res); if (!user) return;
+ * @returns {Promise<object|null>}
+ */
+export function requireOpsPricing(req, res) {
+  return requireAreaAgainst(req, res, ['OPS_ALLOWED_EMAILS', 'OPS_PRICING_ALLOWED_EMAILS'], 'Ops-Pricing');
 }

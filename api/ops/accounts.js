@@ -2,15 +2,16 @@
  * GET /api/ops/accounts?q=<partial name>
  *
  * CRM account name lookup for the Pricing page's Rep view — lets a rep pick
- * the customer from Zoho instead of retyping it. Gated by requireOps, same as
- * every other /api/ops/* route.
+ * the customer from Zoho instead of retyping it. Gated by requireOpsPricing
+ * (full ops OR the Pricing-only allow-list), not requireOps — this is a
+ * Pricing-tab feature, so Pricing-only users need it to work too.
  *
  * Required env vars: same Zoho reporting credentials as api/ops/dashboard.js
  * (ZOHO_CLIENT_ID / ZOHO_CLIENT_SECRET / ZOHO_REPORTING_REFRESH_TOKEN) — this
  * is a read-only lookup, so no new token or scope is needed.
  * ─────────────────────────────────────────────────────────────────────────── */
 
-import { requireOps } from '../_auth.js';
+import { requireOpsPricing } from '../_auth.js';
 
 const ZOHO_API   = 'https://www.zohoapis.com/crm/v2';
 const ZOHO_OAUTH = 'https://accounts.zoho.com/oauth/v2/token';
@@ -52,7 +53,7 @@ async function getAccessToken() {
 export default async function handler(req, res) {
   if (req.method !== 'GET') return res.status(405).json({ error: 'Method not allowed' });
 
-  const user = await requireOps(req, res);
+  const user = await requireOpsPricing(req, res);
   if (!user) return; // 401 already sent
 
   res.setHeader('Cache-Control', 'no-store');

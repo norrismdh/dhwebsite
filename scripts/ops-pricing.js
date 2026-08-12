@@ -522,6 +522,18 @@ async function main() {
     const auth = await initOps();
     if (!auth) return; // redirect in progress
 
+    // Pricing does all its math client-side, so — unlike Sales/Support/Clients,
+    // which are implicitly gated by their data endpoint returning 401 — nothing
+    // else here would ever check the allow-list. This probe is that gate.
+    const accessRes = await opsFetch('/api/ops/access-pricing', auth);
+    if (!accessRes) return; // token refresh triggered a redirect
+    if (accessRes.status === 401) {
+      $('ops-loading-msg').textContent = "You don't have access to Pricing. Contact Mike if this seems wrong.";
+      $('ops-loading').querySelector('.admin-loading__spinner')?.remove();
+      return;
+    }
+    if (!accessRes.ok) throw new Error(`Could not verify access (HTTP ${accessRes.status})`);
+
     $('ops-user-email').textContent = auth.account.username;
     $('ops-signout').addEventListener('click', () => auth.signOut());
 
