@@ -724,6 +724,18 @@
 }
 @media (max-width: 880px) { .ops-price-grid { grid-template-columns: 1fr; } }
 
+/* Fixed 2-column KPI rows (client-price tiles + margin tiles) rather than
+   .admin-stats' auto-fit — at this panel's width auto-fit was landing on 3
+   columns and orphaning the 4th tile onto a row by itself. */
+#pr-kpis,
+#pr-margin-kpis {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+@media (max-width: 480px) {
+  #pr-kpis,
+  #pr-margin-kpis { grid-template-columns: 1fr; }
+}
+
 .ops-price-inp { position: relative; display: flex; align-items: center; }
 .ops-price-pre,
 .ops-price-suf {

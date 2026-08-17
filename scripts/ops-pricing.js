@@ -62,11 +62,16 @@ function kpiTile({ i, label, value, note, hero, accent }) {
 
 // ── Compute ─────────────────────────────────────────────────────────────────
 
+/** Nearest 0.5, e.g. 7.53 → 7.5, 7.76 → 8.0. Decay rate is only ever quoted
+ * in half-point steps — this keeps the price consistent with that even if
+ * someone types (rather than steps) a rate with an odd decimal. */
+const roundHalfPoint = (pct) => Math.round(pct * 2) / 2;
+
 function readInputs() {
   return {
     users:  Math.floor(+$('pr-users').value || 0),
     price:  +$('pr-price').value || 0,
-    rate:   Math.min(1, Math.max(0, (+$('pr-rate').value || 0) / 100)),
+    rate:   Math.min(1, Math.max(0, roundHalfPoint(+$('pr-rate').value || 0) / 100)),
     tier:   Math.floor(+$('pr-tier').value || 0),
     months: Math.floor(+$('pr-months').value || 0),
     capOn:  $('pr-cap-on').checked,
@@ -509,6 +514,13 @@ function wireEvents() {
     $(id).addEventListener('input', render);
   });
   $('pr-cap-on').addEventListener('change', () => { $('pr-cap').disabled = !$('pr-cap-on').checked; render(); });
+  // readInputs() already rounds the rate used for pricing on every keystroke;
+  // this just snaps what's DISPLAYED once they're done editing, rather than
+  // rewriting it mid-keystroke (which would fight someone typing "7.25").
+  $('pr-rate').addEventListener('blur', () => {
+    const raw = +$('pr-rate').value;
+    if (Number.isFinite(raw)) $('pr-rate').value = roundHalfPoint(raw);
+  });
   $('pr-reset').addEventListener('click', resetDefaults);
   wireViewToggle();
   // Chart redraws on resize — it's measured off the container's pixel width
