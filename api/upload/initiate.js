@@ -16,6 +16,7 @@ import { requireAdmin }             from '../_auth.js';
 const MIME = {
   exe:      'application/vnd.microsoft.portable-executable',
   msi:      'application/x-msi',
+  zip:      'application/zip',
   gz:       'application/gzip',
   deb:      'application/vnd.debian.binary-package',
   rpm:      'application/x-rpm',
