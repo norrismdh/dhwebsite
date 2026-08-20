@@ -197,10 +197,10 @@
       return `<span class="dl-badge ${cls}">${type}</span>`;
     }
 
-    function statusHtml(enabled) {
-      return enabled
-        ? `<span class="admin-status admin-status--on"><span class="admin-status__dot"></span>Active</span>`
-        : `<span class="admin-status admin-status--off"><span class="admin-status__dot"></span>Disabled</span>`;
+    function statusHtml(enabled, unlisted) {
+      if (!enabled) return `<span class="admin-status admin-status--off"><span class="admin-status__dot"></span>Disabled</span>`;
+      const label = unlisted ? 'Active &middot; Unlisted' : 'Active';
+      return `<span class="admin-status admin-status--on"><span class="admin-status__dot"></span>${label}</span>`;
     }
 
     function totalDownloads(files) {
@@ -256,7 +256,7 @@
           <td>${r.title}${notesById[r.id] ? NOTES_ICON : ''}</td>
           <td style="color:var(--fg-3)">${formatDate(r.publishedAt)}</td>
           <td style="color:var(--fg-2)">${totalDownloads(r.files)}</td>
-          <td>${statusHtml(r.enabled)}</td>
+          <td>${statusHtml(r.enabled, r.unlisted)}</td>
           <td class="admin-actions">
             <button class="btn btn--ghost admin-toggle-btn"
               data-id="${r.id}" data-enabled="${r.enabled}"

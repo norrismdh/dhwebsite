@@ -1,6 +1,9 @@
 /* ─── DH DOWNLOADS MODULE ────────────────────────────────────────────────────
  * GET /api/releases
- * Public endpoint — returns enabled releases sorted newest-first.
+ * Public endpoint — returns enabled, listed releases sorted newest-first.
+ * Unlisted releases are omitted here but still resolve at their direct
+ * /downloads/:fileId link (see api/download/[fileId].js) — "unlisted" only
+ * hides a release from this public feed, it does not restrict access.
  * Internal storage keys (r2Key) are stripped from the response.
  * ─────────────────────────────────────────────────────────────────────────── */
 
@@ -15,7 +18,7 @@ export default async function handler(req, res) {
     const data = await getReleases();
 
     const releases = (data.releases ?? [])
-      .filter(r => r.enabled)
+      .filter(r => r.enabled && !r.unlisted)
       .sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
       .map(({ id, type, version, title, notes, publishedAt, files }) => ({
         id,

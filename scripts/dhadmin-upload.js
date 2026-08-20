@@ -255,6 +255,36 @@ async function handleCancel(auth) {
   cancelBtn.textContent = 'Cancel upload';
 }
 
+// ── Unlisted share links ──────────────────────────────────────────────────────
+
+const OS_LABEL = { windows: 'Windows', linux: 'Linux' };
+
+function showShareLinks(release) {
+  const shareEl = document.getElementById('success-share');
+  const linksEl = document.getElementById('success-share-links');
+
+  linksEl.innerHTML = Object.entries(release.files ?? {}).map(([os, f]) => {
+    const url = `${window.location.origin}/downloads?fid=${encodeURIComponent(f.fileId)}`;
+    return `
+      <div style="display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-2)">
+        <span style="font-size:var(--fs-12);font-weight:var(--fw-bold);min-width:70px">${OS_LABEL[os] ?? os}</span>
+        <input type="text" readonly value="${url}" style="flex:1;padding:8px 10px;font-size:var(--fs-13);font-family:inherit;border:1px solid var(--border-1);border-radius:6px;background:var(--bg-1)" onclick="this.select()" />
+        <button type="button" class="btn btn--ghost copy-share-btn" data-url="${url}" style="padding:6px 14px;font-size:var(--fs-12)">Copy</button>
+      </div>`;
+  }).join('');
+
+  linksEl.querySelectorAll('.copy-share-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      await navigator.clipboard.writeText(btn.dataset.url);
+      const original = btn.textContent;
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = original; }, 1500);
+    });
+  });
+
+  shareEl.hidden = false;
+}
+
 // ── Main submit handler ───────────────────────────────────────────────────────
 
 async function handleSubmit(e, auth) {
@@ -268,10 +298,11 @@ async function handleSubmit(e, auth) {
   const lnxFile = getFile(lnxInput);
 
   const formData = {
-    type:    document.getElementById('f-type').value,
-    version: document.getElementById('f-version').value.trim(),
-    title:   document.getElementById('f-title').value.trim(),
-    notes:   document.getElementById('f-notes').value.trim(),
+    type:     document.getElementById('f-type').value,
+    version:  document.getElementById('f-version').value.trim(),
+    title:    document.getElementById('f-title').value.trim(),
+    notes:    document.getElementById('f-notes').value.trim(),
+    unlisted: document.getElementById('f-unlisted').checked,
   };
 
   // Switch to progress view
@@ -329,6 +360,8 @@ async function handleSubmit(e, auth) {
     successPanel.hidden = false;
     document.getElementById('success-detail').textContent =
       `${release.type} v${release.version} — ${Object.keys(release.files).join(' & ')} builds published.`;
+
+    if (release.unlisted) showShareLinks(release);
 
   } catch (err) {
     if (err.cancelled) return; // Already handled by handleCancel()

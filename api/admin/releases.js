@@ -38,7 +38,7 @@ async function handleGet(req, res) {
 // ── POST ──────────────────────────────────────────────────────────────────────
 
 async function handlePost(req, res) {
-  const { type, version, title, notes, files } = req.body ?? {};
+  const { type, version, title, notes, files, unlisted } = req.body ?? {};
 
   // Basic validation
   if (!type || !['Release', 'Update', 'Hotfix'].includes(type)) {
@@ -74,6 +74,7 @@ async function handlePost(req, res) {
     notes:       (notes ?? '').trim(),
     publishedAt: new Date().toISOString(),
     enabled:     true,
+    unlisted:    Boolean(unlisted),
     files:       Object.fromEntries(
       Object.entries(files).map(([os, f]) => [
         os,

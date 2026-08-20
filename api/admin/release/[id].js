@@ -2,7 +2,7 @@
  * /api/admin/release/:id
  *
  * GET    — Fetch a single release (full detail, admin view).
- * PUT    — Update editable fields: type, version, title, notes, enabled.
+ * PUT    — Update editable fields: type, version, title, notes, enabled, unlisted.
  *          Files cannot be changed after upload — use a new release for that.
  * DELETE — Remove the release record and delete all associated R2 files.
  *
@@ -29,7 +29,7 @@ async function handleGet(req, res) {
 
 async function handlePut(req, res) {
   const { id } = req.query;
-  const { type, version, title, notes, enabled } = req.body ?? {};
+  const { type, version, title, notes, enabled, unlisted } = req.body ?? {};
 
   const data = await getReleases();
   const idx  = (data.releases ?? []).findIndex(r => r.id === id);
@@ -63,6 +63,10 @@ async function handlePut(req, res) {
 
   if (enabled !== undefined) {
     release.enabled = Boolean(enabled);
+  }
+
+  if (unlisted !== undefined) {
+    release.unlisted = Boolean(unlisted);
   }
 
   data.releases[idx] = release;

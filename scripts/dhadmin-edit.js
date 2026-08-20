@@ -74,14 +74,15 @@ function populateForm(release) {
   pageTitle.textContent = `Edit — ${release.type} v${release.version}`;
   document.title        = `Edit v${release.version} — Downloads Admin — Digital Hive`;
 
-  document.getElementById('f-type').value    = release.type;
-  document.getElementById('f-version').value = release.version;
-  document.getElementById('f-title').value   = release.title;
-  document.getElementById('f-notes').value   = release.notes ?? '';
+  document.getElementById('f-type').value     = release.type;
+  document.getElementById('f-version').value  = release.version;
+  document.getElementById('f-title').value    = release.title;
+  document.getElementById('f-notes').value    = release.notes ?? '';
+  document.getElementById('f-unlisted').checked = Boolean(release.unlisted);
 
   setStatus(release.enabled);
 
-  // Files section (read-only)
+  // Files section (read-only, plus a copy-able share link per file)
   const files = Object.entries(release.files ?? {});
   if (!files.length) {
     filesPanelBody.innerHTML = `<p style="color:var(--fg-3);margin:0">No files attached to this release.</p>`;
@@ -92,7 +93,9 @@ function populateForm(release) {
   const WIN_ICON = `<svg width="15" height="15" viewBox="0 0 23 23" fill="currentColor" aria-hidden="true"><path d="M0 3.4 9.9 2v9.6H0V3.4zm10.9-1.5L23 0v11.5H10.9V1.9zm-10.9 10 9.9.1v9.5L0 19.6v-8.1zm10.9.2H23V22l-13.1 1.9v-10.2z"/></svg>`;
   const LNX_ICON = `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2"/><polyline points="8 21 12 17 16 21"/><line x1="5" y1="10" x2="7" y2="10"/><polyline points="5 13 5 8 7 10"/></svg>`;
 
-  filesPanelBody.innerHTML = files.map(([os, f]) => `
+  filesPanelBody.innerHTML = files.map(([os, f]) => {
+    const shareUrl = `${window.location.origin}/downloads?fid=${encodeURIComponent(f.fileId)}`;
+    return `
     <div class="file-info-row">
       <div class="file-info-row__icon">${os === 'windows' ? WIN_ICON : LNX_ICON}</div>
       <div class="file-info-row__detail">
@@ -100,8 +103,22 @@ function populateForm(release) {
         <span class="file-info-row__name">${f.filename}</span>
         <span class="file-info-row__meta">${formatSize(f.sizeBytes)} &bull; ${f.downloadCount ?? 0} download${f.downloadCount === 1 ? '' : 's'}</span>
         <span class="file-info-row__key">${f.r2Key}</span>
+        <div style="display:flex;align-items:center;gap:var(--space-2);margin-top:var(--space-2)">
+          <input type="text" readonly value="${shareUrl}" style="flex:1;max-width:360px;padding:6px 10px;font-size:var(--fs-12);font-family:inherit;border:1px solid var(--border-1);border-radius:6px;background:var(--bg-1)" onclick="this.select()" />
+          <button type="button" class="btn btn--ghost copy-share-btn" data-url="${shareUrl}" style="padding:5px 12px;font-size:var(--fs-12)">Copy link</button>
+        </div>
       </div>
-    </div>`).join('');
+    </div>`;
+  }).join('');
+
+  filesPanelBody.querySelectorAll('.copy-share-btn').forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      await navigator.clipboard.writeText(btn.dataset.url);
+      const original = btn.textContent;
+      btn.textContent = 'Copied!';
+      setTimeout(() => { btn.textContent = original; }, 1500);
+    });
+  });
 }
 
 // ── Save handler ──────────────────────────────────────────────────────────────
@@ -110,10 +127,11 @@ async function handleSave(e, auth) {
   e.preventDefault();
   formError.hidden = true;
 
-  const type    = document.getElementById('f-type').value;
-  const version = document.getElementById('f-version').value.trim();
-  const title   = document.getElementById('f-title').value.trim();
-  const notes   = document.getElementById('f-notes').value.trim();
+  const type     = document.getElementById('f-type').value;
+  const version  = document.getElementById('f-version').value.trim();
+  const title    = document.getElementById('f-title').value.trim();
+  const notes    = document.getElementById('f-notes').value.trim();
+  const unlisted = document.getElementById('f-unlisted').checked;
 
   if (!version) { formError.textContent = 'Version is required.'; formError.hidden = false; return; }
   if (!/^\d+\.\d+(\.\d+)*$/.test(version)) {
@@ -128,7 +146,7 @@ async function handleSave(e, auth) {
   try {
     const res = await adminFetch(`/api/admin/release/${releaseId}`, auth, {
       method: 'PUT',
-      body: JSON.stringify({ type, version, title, notes }),
+      body: JSON.stringify({ type, version, title, notes, unlisted }),
     });
 
     if (!res?.ok) {

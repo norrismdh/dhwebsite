@@ -102,6 +102,15 @@
                 <span class="form-hint">Rendered as formatted HTML on the public downloads page.</span>
               </div>
 
+              <!-- Unlisted -->
+              <div class="form-group">
+                <label>
+                  <input type="checkbox" id="f-unlisted" name="unlisted" />
+                  Unlisted release
+                </label>
+                <span class="form-hint">Hidden from the public downloads page - only reachable via a direct share link (still shown after upload). Use this for client-specific builds.</span>
+              </div>
+
               <hr class="form-divider" />
 
               <!-- Windows file -->
@@ -211,6 +220,18 @@
                 <p id="success-detail" style="color:var(--fg-2);margin:0"></p>
               </div>
             </div>
+
+            <!-- Share links - shown only for unlisted releases -->
+            <div id="success-share" class="admin-panel" style="margin-top:var(--space-6);background:var(--bg-2)" hidden>
+              <div class="admin-panel__body">
+                <strong>Direct share links</strong>
+                <p style="color:var(--fg-2);margin:var(--space-1) 0 var(--space-3);font-size:var(--fs-14)">
+                  This release is unlisted - it won't appear on the public downloads page. Share one of these links with the client instead; they'll still get the usual agreement prompt before downloading.
+                </p>
+                <div id="success-share-links"></div>
+              </div>
+            </div>
+
             <div class="form-actions" style="margin-top:var(--space-6)">
               <a href="/dhadmin/upload" class="btn btn--ghost">Upload another</a>
               <a href="/dhadmin" class="btn btn--primary">View all releases</a>

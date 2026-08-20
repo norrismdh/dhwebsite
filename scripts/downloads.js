@@ -143,6 +143,18 @@ eulaDecline.addEventListener('click', closeEula);
 eulaModal.addEventListener('click', (e) => { if (e.target === eulaModal) closeEula(); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !eulaModal.hidden) closeEula(); });
 
+// ── Direct share links (unlisted releases) ────────────────────────────────────
+// A link like /downloads?fid=<fileId> — shared directly with one client rather
+// than posted on this page — still goes through the same EULA gate above.
+// The fileId itself resolves via /downloads/:fileId regardless of whether its
+// release is unlisted, so this is purely UX: it saves the recipient a search
+// through a list their build was deliberately kept off of.
+
+const directFileId = new URLSearchParams(window.location.search).get('fid');
+if (directFileId) {
+  openEula(`/downloads/${encodeURIComponent(directFileId)}`);
+}
+
 // ── Main ──────────────────────────────────────────────────────────────────────
 
 async function loadReleases() {
